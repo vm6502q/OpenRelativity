@@ -4,33 +4,32 @@ using UnityEngine;
 namespace OpenRelativity
 {
     //Shader properties:
-    [StructLayout(LayoutKind.Sequential, Pack = 4, Size = 360)]
+    [StructLayout(LayoutKind.Sequential, Pack = 4, Size = 424)]
     public struct ShaderParams
     {
         //[FieldOffset(0)]
-        public Matrix4x4 ltwMatrix; //local to world matrix of transform
+        public Matrix4x4 ltwMatrix; //local-to-world transform matrix
         //[FieldOffset(16)]
-        public Matrix4x4 wtlMatrix; //world to local matrix of transform
+        public Matrix4x4 wtlMatrix; //world-to-local transform matrix
         //[FieldOffset(32)]
-        public Vector4 viw; //velocity of object in world
-        //[FieldOffset(36)]
-        //[FieldOffset(40)]
+        public Matrix4x4 vpcLorentzMatrix; //Lorentz transform between world and player
+        //[FieldOffset(64)]
+        public Matrix4x4 viwLorentzMatrix; //Lorentz transform between world and object
+        //[FieldOffset(80)]
+        public Vector4 viw; //velocity of object in synchronous coordinates
+        //[FieldOffset(84)]
         public Vector4 vpc; //velocity of player
-        //[FieldOffset(44)]
+        //[FieldOffset(88)]
         public Vector4 playerOffset; //player position in world
-        //[FieldOffset(48)]
-        public float speed; //speed of player;
-        //[FieldOffset(49)]
-        public float spdOfLight; //current speed of light
-        //[FieldOffset(50)]
-        public Vector4 pap;
-        //[FieldOffset(66)]
-        public Vector4 avp;
-        //[FieldOffset(82)]
-        public Vector4 aiw;
-        //[FieldOffset(98)]
-        public Matrix4x4 vpcLorentzMatrix;
-        //[FieldOffset(162)]
-        public Matrix4x4 viwLorentzMatrix;
+        //[FieldOffset(92)]
+        public Vector4 pap; //acceleration of player in world coordinates
+        //[FieldOffset(96)]
+        public Vector4 avp; //angular velocity of player in world coordinates
+        //[FieldOffset(100)]
+        public Vector4 aiw; //acceleration of object in world coordinates
+        //[FieldOffset(104)]
+        public System.Single speed; //speed of player;
+        //[FieldOffset(105)]
+        public System.Single spdOfLight; //current speed of light
     }
 }

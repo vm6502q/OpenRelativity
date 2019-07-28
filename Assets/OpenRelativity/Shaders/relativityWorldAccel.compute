@@ -27,16 +27,16 @@
 struct GlobalParams {
 	float4x4 ltwMatrix; //local-to-world transform matrix
 	float4x4 wtlMatrix; //world-to-local transform matrix
+	float4x4 vpcLorentzMatrix; //Lorentz transform between world and player
+	float4x4 viwLorentzMatrix; //Lorentz transform between world and object
 	float4 viw; //velocity of object in synchronous coordinates
 	float4 vpc; //velocity of player
 	float4 playerOffset; //player position in world
-	float speed; //speed of player;
-	float spdOfLight; //current speed of light
 	float4 pap; //acceleration of player in world coordinates
 	float4 avp; //angular velocity of player in world coordinates
 	float4 aiw; //acceleration of object in world coordinates
-	float4x4 vpcLorentzMatrix; //Lorentz transform between world and player
-	float4x4 viwLorentzMatrix; //Lorentz transform between world and object
+	float speed; //speed of player;
+	float spdOfLight; //current speed of light
 };
 
 StructuredBuffer<GlobalParams> glblPrms;

@@ -27,16 +27,16 @@
 struct GlobalParams {
 	float4x4 ltwMatrix; //local-to-world transform matrix
 	float4x4 wtlMatrix; //world-to-local transform matrix
+	float4x4 vpcLorentzMatrix; //Lorentz transform between world and player
+	float4x4 viwLorentzMatrix; //Lorentz transform between world and object
 	float4 viw; //velocity of object in synchronous coordinates
 	float4 vpc; //velocity of player
 	float4 playerOffset; //player position in world
-	float speed; //speed of player;
-	float spdOfLight; //current speed of light
 	float4 pap; //acceleration of player in world coordinates
 	float4 avp; //angular velocity of player in world coordinates
 	float4 aiw; //acceleration of object in world coordinates
-	float4x4 vpcLorentzMatrix; //Lorentz transform between world and player
-	float4x4 viwLorentzMatrix; //Lorentz transform between world and object
+	float speed; //speed of player;
+	float spdOfLight; //current speed of light
 };
 
 StructuredBuffer<GlobalParams> glblPrms;
@@ -90,6 +90,8 @@ void CSMain(uint3 id : SV_DispatchThreadID)
 	vpcLorentzMatrix._m03_m13_m23_m33 = -transComp;
 	metric = mul(transpose(vpcLorentzMatrix), mul(metric, vpcLorentzMatrix));
 
+	//We'll also Lorentz transform the vectors:
+
 	//Remember that relativity is time-translation invariant.
 	//The above metric gives the numerically correct result if the time coordinate of riw is zero,
 	//(at least if the "conformal factor" or "mixed [indices] metric" is the identity).
@@ -140,9 +142,11 @@ void CSMain(uint3 id : SV_DispatchThreadID)
 	tisw = riw.w;
 	riw = float4(riw.xyz + tisw * spdOfLight * viw.xyz, 0);
 
-	float newz = speed * spdOfLight * tisw;
-
-	if (speed > 0) {
+	if (speed > divByZeroCutoff) {
+		//Apply Lorentz transform
+		// float newz =(riw.z + state.PlayerVelocity * tisw) / state.SqrtOneMinusVSquaredCWDividedByCSquared;
+		//I had to break it up into steps, unity was getting order of operations wrong.	
+		float newz = speed * spdOfLight * tisw;
 		float3 vpcUnit = vpc.xyz / speed;
 		newz = (dot(riw.xyz, vpcUnit) + newz) / (float)sqrt(1 - (speed * speed));
 		riw += (newz - dot(riw.xyz, vpcUnit)) * float4(vpcUnit, 0);
