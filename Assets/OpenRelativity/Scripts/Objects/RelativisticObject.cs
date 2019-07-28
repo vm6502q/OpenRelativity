@@ -34,9 +34,7 @@ namespace OpenRelativity.Objects
                 initialViw = value;
 
                 // Under instantaneous changes in velocity, the optical position should be invariant.
-                // Cast to Vector3 to ignor time component
-                Vector3 opiw = ((Vector4)piw).WorldToOptical(_viw, properAiw);
-                piw = ((Vector4)opiw).OpticalToWorldHighPrecision(value, properAiw);
+                piw = ((Vector4)((Vector4)piw).WorldToOptical(_viw, Vector4.zero)).OpticalToWorld(value, Vector4.zero);
                 if (!nonrelativisticShader && !IsNaNOrInf(piw.magnitude))
                 {
                     transform.position = piw;

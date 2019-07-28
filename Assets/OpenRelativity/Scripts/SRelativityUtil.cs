@@ -414,40 +414,6 @@ namespace OpenRelativity
             return riw;
         }
 
-        public static Vector4 OpticalToWorldHighPrecision(this Vector4 opticalPos, Vector3 velocity, Vector4? aiw = null, Matrix4x4? vpcLorentzMatrix = null, Matrix4x4? viwLorentzMatrix = null)
-        {
-            return opticalPos.OpticalToWorldHighPrecision(velocity, srCamera.playerTransform.position, srCamera.PlayerVelocityVector, srCamera.PlayerAccelerationVector, srCamera.PlayerAngularVelocityVector, aiw, vpcLorentzMatrix, viwLorentzMatrix);
-        }
-
-        public static Vector4 OpticalToWorldHighPrecision(this Vector4 opticalPos, Vector3 velocity, Vector3 origin, Vector3 playerVel, Vector3 pap, Vector3 avp, Vector4? aiw = null, Matrix4x4? vpcLorentz = null, Matrix4x4? viwLorentz = null)
-        {
-            Vector4 startPoint = opticalPos;
-            Vector3 est, offset, newEst;
-            est = opticalPos.OpticalToWorld(velocity, origin, playerVel, Vector4.zero, Vector3.zero, Vector4.zero);
-            offset = (Vector3)opticalPos - ((Vector4)est).WorldToOptical(velocity, origin, playerVel, pap, avp, aiw, vpcLorentz, viwLorentz);
-
-            float sqrError = offset.sqrMagnitude;
-            float oldSqrError = sqrError + 1.0f;
-            float iterations = 1;
-            while ((iterations < defaultOpticalToWorldMaxIterations)
-                && (sqrError > defaultOpticalToWorldSqrErrorTolerance)
-                && (sqrError < oldSqrError))
-            {
-                iterations++;
-                startPoint += (Vector4)offset / 2.0f;
-                newEst = startPoint.OpticalToWorld(velocity, origin, playerVel, pap, avp, aiw);
-                offset = (Vector3)startPoint - ((Vector4)newEst).WorldToOptical(velocity, origin, playerVel, pap, avp, aiw, vpcLorentz, viwLorentz);
-                oldSqrError = sqrError;
-                sqrError = ((Vector3)opticalPos - ((Vector4)newEst).WorldToOptical(velocity, origin, playerVel, pap, avp, aiw, vpcLorentz, viwLorentz)).sqrMagnitude;
-                if (sqrError < oldSqrError)
-                {
-                    est = newEst;
-                }
-            }
-
-            return est;
-        }
-
         public static float Gamma(this Vector3 velocity)
         {
             return 1.0f / Mathf.Sqrt(1.0f - velocity.sqrMagnitude / cSqrd);
