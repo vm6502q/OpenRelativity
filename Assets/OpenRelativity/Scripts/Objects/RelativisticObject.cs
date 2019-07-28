@@ -1003,7 +1003,7 @@ namespace OpenRelativity.Objects
                     UpdateColliderPosition();
                 }
 
-                if (isWorldStatic)
+                if (isWorldStatic && myRigidbody != null)
                 {
                     myRigidbody.velocity = Vector3.zero;
                     myRigidbody.angularVelocity = Vector3.zero;
