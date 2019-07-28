@@ -327,7 +327,7 @@ namespace OpenRelativity
             riw = (Vector3)riw + tisw * velocity;
 
             float speed = viw.magnitude;
-            if (speed > 0)
+            if (speed > divByZeroCutoff)
             {
                 float newz = speed * c * tisw;
                 Vector4 vpcUnit = vpc / speed;
@@ -350,29 +350,26 @@ namespace OpenRelativity
 
         public static Vector4 OpticalToWorld(this Vector4 opticalPos, Vector3 velocity, Vector3 origin, Vector3 playerVel, Vector3 pap, Vector3 avp, Vector4? aiw = null, Matrix4x4? vpcLorentzMatrix = null, Matrix4x4? viwLorentzMatrix = null)
         {
-            Vector3 vpc = -playerVel / c;// srCamera.PlayerVelocityVector;
+            Vector3 vpc = -playerVel / c;
+            Vector3 viw = velocity / c;
 
             //riw = location in world, for reference
             Vector4 riw = opticalPos - (Vector4)origin; //Position that will be used in the output
             Vector4 pos = (Vector3)riw;
 
-            //Transform fails and is unecessary if relative speed is zero:
-            float newz;
             float tisw = -pos.magnitude / c;
 
-            float speed = vpc.magnitude;
-
+            //Transform fails and is unecessary if relative speed is zero:
+            float speed = viw.magnitude;
             if (speed > divByZeroCutoff)
             {
                 Vector4 vpcUnit = vpc / speed;
-                newz = Vector4.Dot((Vector3)riw, vpcUnit) * Mathf.Sqrt(1 - (speed * speed));
-                riw = riw + (newz - Vector4.Dot((Vector3)riw, vpcUnit)) * vpcUnit;
-                newz = speed * c * tisw;
-                riw = riw - newz * vpcUnit;
+                float riwDotVpcUnit = Vector4.Dot(riw, vpcUnit);
+                float newz = (riwDotVpcUnit + speed * c * tisw) / Mathf.Sqrt(1 - (speed * speed));
+                riw -= (newz - riwDotVpcUnit) * vpcUnit;
             }
 
             //Rotate all our vectors so that velocity is entirely along z direction:
-            Vector3 viw = velocity / c;
             Quaternion viwToZRot = Quaternion.FromToRotation(viw, Vector3.forward);
             Vector4 riwTransformed = viwToZRot * ((Vector3)riw - velocity * tisw);
             riwTransformed.w = tisw;
@@ -395,13 +392,13 @@ namespace OpenRelativity
             avpTransformed = viwLorentzMatrix.Value * avpTransformed;
             aiwTransformed = viwLorentzMatrix.Value * aiwTransformed;
 
-            tisw = riwTransformed.w;
+            float t2 = riwTransformed.w;
 
             if (aiw.Value.sqrMagnitude > divByZeroCutoff)
             {
                 float aiwMag = aiwTransformed.magnitude;
                 //add the position offset due to acceleration
-                riwTransformed += (Vector4)(aiwTransformed) / aiwMag * c * c * (Mathf.Sqrt(1 + (aiwMag * tisw / c) * (aiwMag * tisw / c)) - 1);
+                riwTransformed += (Vector4)(aiwTransformed) / aiwMag * c * c * (Mathf.Sqrt(1 + (aiwMag * t2 / c) * (aiwMag * t2 / c)) - 1);
             }
 
             //Inverse Lorentz transform the position:

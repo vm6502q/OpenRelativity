@@ -175,19 +175,9 @@ namespace OpenRelativity.Objects
 
                 if (foundCollider)
                 {
-                    //Vector4 playerAccel = gameState.PlayerVisualAccelerationVector;
-                    if (isStatic)
-                    {
-                        toUpdateBox.center = transform.InverseTransformPoint(
-                            ((Vector4)(transform.TransformPoint(origPositions[i]))).WorldToOptical(Vector3.zero, Vector4.zero, Matrix4x4.identity)
-                       );
-                    }
-                    else
-                    {
-                        toUpdateBox.center = transform.InverseTransformPoint(
-                            ((Vector4)(transform.TransformPoint(origPositions[i]))).WorldToOptical(myRO.viw, myRO.Get4Acceleration(), myRO.viwLorentz)
-                       );
-                    }
+                    toUpdateBox.center = transform.InverseTransformPoint(
+                       ((Vector4)(transform.TransformPoint(origPositions[i]))).WorldToOptical(myRO.viw, myRO.Get4Acceleration(), myRO.viwLorentz)
+                    );
                 }
             }
             else if (finishedCoroutine)
