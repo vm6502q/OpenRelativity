@@ -898,218 +898,224 @@ namespace OpenRelativity.Objects
                 }
             }
 
-            if (!state.MovementFrozen)
+            //If our rigidbody is not null, and movement is frozen, then set the object to standstill.
+            if (state.MovementFrozen)
             {
-                // "Twins paradox"
-                float deltaTime = (float)(state.FixedDeltaTimePlayer * GetTimeFactor());
-                float localDeltaT = deltaTime - (float)state.FixedDeltaTimeWorld;
-
-                if (nonrelativisticShader)
-                {
-                    // The object should still contract, if sleeping, but this "unglues" it from any object it rests on, in an obvious way.
-                    if (!isWorldStatic)
-                    {
-                        //Update the position in world, if necessary:
-                        piw += transform.position - contractor.position;
-                        transform.localPosition = Vector3.zero;
-                        Vector3 testPos = ((Vector4)piw).WorldToOptical(viw, GetTotalAcceleration(), viwLorentz);
-                        float testMag = testPos.sqrMagnitude;
-                        if (!IsNaNOrInf(testMag))
-                        {
-                            contractor.position = testPos;
-                            ContractLength();
-                        }
-                    }
-                }
-                else
-                {
-                    piw = transform.position;
-                }
-
-                if (state.conformalMap != null)
-                {
-                    //Update comoving position
-                    Vector3 opiw = nonrelativisticShader ? transform.position : ((Vector4)piw).WorldToOptical(viw, GetTotalAcceleration());
-
-                    Vector4 piw4 = state.conformalMap.ComoveOptical(deltaTime, opiw);
-                    piw4 = nonrelativisticShader ? piw4 : piw4.OpticalToWorld(viw, state.playerTransform.position, -state.PlayerVelocityVector, state.PlayerAccelerationVector, state.PlayerAngularVelocityVector, GetTotalAcceleration());
-                    float testMag = piw4.sqrMagnitude;
-                    if (!IsNaNOrInf(testMag))
-                    {
-                        piw = piw4;
-                        if (nonrelativisticShader)
-                        {
-                            contractor.position = piw;
-                            transform.localPosition = Vector3.zero;
-                        }
-                        deltaTime = piw4.w;
-                        localDeltaT = deltaTime - (float)state.FixedDeltaTimeWorld;
-                    }
-                }
-                
-                if (!IsNaNOrInf(localDeltaT))
-                {
-                    localTimeOffset += localDeltaT;
-                }
-
-                //Add proper acceleration:
-                if (properAiw.sqrMagnitude != 0)
-                {
-                    viw += properAiw * deltaTime;
-                }
-
-                if (meshFilter != null)
-                {
-                    //As long as our object is actually alive, perform these calculations
-                    if (transform != null)
-                    {
-                        /***************************
-                         * Start Part 6 Bullet 1
-                         * *************************/
-
-                        float tisw = GetTisw();
-
-                        /****************************
-                         * Start Part 6 Bullet 2
-                         * **************************/
-
-                        //If we're past our death time (in the player's view, as seen by tisw)
-                        if (state.TotalTimeWorld + localTimeOffset + tisw > DeathTime)
-                        {
-                            KillObject();
-                        }
-                        else if ((state.TotalTimeWorld + localTimeOffset + tisw > startTime))
-                        {
-                            //Grab our renderer.
-                            Renderer tempRenderer = GetComponent<Renderer>();
-                            if (!tempRenderer.enabled)
-                            {
-                                tempRenderer.enabled = !hasParent;
-                                AudioSource[] audioSources = GetComponents<AudioSource>();
-                                if (audioSources.Length > 0)
-                                {
-                                    for (int i = 0; i < audioSources.Length; i++)
-                                    {
-                                        audioSources[i].enabled = true;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (!myColliderIsVoxel)
-                {
-                    UpdateColliderPosition();
-                }
-
-                if (isWorldStatic && myRigidbody != null)
+                if (myRigidbody != null)
                 {
                     myRigidbody.velocity = Vector3.zero;
                     myRigidbody.angularVelocity = Vector3.zero;
-
-                    viw = Vector4.zero;
-                    aviw = Vector4.zero;
                 }
-                else if (myRigidbody != null)
+
+                // We're done.
+                return;
+            }
+
+            //Otherwise, we continue with real-time physics updates.
+
+            // "Twins paradox"
+            float deltaTime = (float)(state.FixedDeltaTimePlayer * GetTimeFactor());
+            float localDeltaT = deltaTime - (float)state.FixedDeltaTimeWorld;
+
+            if (nonrelativisticShader)
+            {
+                // The object should still contract, if sleeping, but this "unglues" it from any object it rests on, in an obvious way.
+                if (!isWorldStatic)
                 {
-                    //update our viw and set the rigid body proportionally
-                    //Dragging probably happens intrinsically in the rest frame,
-                    // so it acts on the rapidity. (Drag is computationally expensive
-                    // due to tripping the velocity setter every frame.)
-                    // TODO: Replace with drag force
-                    //Vector3 rapidity = (float)(1.0 - drag * state.DeltaTimeWorld) * viw.Gamma() * viw;
-                    //viw = rapidity.RapidityToVelocity();
-                    //aviw = (float)(1.0 - angularDrag * state.DeltaTimeWorld) * aviw;
-
-                    //Correct for both time dilation and change in metric due to player acceleration:
-                    UpdateRigidbodyVelocity(viw, aviw);
-
-                    if (!isSleeping &&
-                        (viw.sqrMagnitude < (sleepVelocity * sleepVelocity)) && (aviw.sqrMagnitude < (sleepVelocity * sleepVelocity)))
+                    //Update the position in world, if necessary:
+                    piw += transform.position - contractor.position;
+                    transform.localPosition = Vector3.zero;
+                    Vector3 testPos = ((Vector4)piw).WorldToOptical(viw, GetTotalAcceleration(), viwLorentz);
+                    float testMag = testPos.sqrMagnitude;
+                    if (!IsNaNOrInf(testMag))
                     {
-                        sleepFrameCounter++;
-                        if (sleepFrameCounter >= sleepFrameDelay)
+                        contractor.position = testPos;
+                        ContractLength();
+                    }
+                }
+            }
+            else
+            {
+                piw = transform.position;
+            }
+
+            if (state.conformalMap != null)
+            {
+                //Update comoving position
+                Vector3 opiw = nonrelativisticShader ? transform.position : ((Vector4)piw).WorldToOptical(viw, GetTotalAcceleration());
+
+                Vector4 piw4 = state.conformalMap.ComoveOptical(deltaTime, opiw);
+                piw4 = nonrelativisticShader ? piw4 : piw4.OpticalToWorld(viw, state.playerTransform.position, -state.PlayerVelocityVector, state.PlayerAccelerationVector, state.PlayerAngularVelocityVector, GetTotalAcceleration());
+                float testMag = piw4.sqrMagnitude;
+                if (!IsNaNOrInf(testMag))
+                {
+                    piw = piw4;
+                    if (nonrelativisticShader)
+                    {
+                        contractor.position = piw;
+                        transform.localPosition = Vector3.zero;
+                    }
+                    deltaTime = piw4.w;
+                    localDeltaT = deltaTime - (float)state.FixedDeltaTimeWorld;
+                }
+            }
+
+            if (!IsNaNOrInf(localDeltaT))
+            {
+                localTimeOffset += localDeltaT;
+            }
+
+            //Add proper acceleration:
+            if (properAiw.sqrMagnitude != 0)
+            {
+                viw += properAiw * deltaTime;
+            }
+
+            if (meshFilter != null)
+            {
+                //As long as our object is actually alive, perform these calculations
+                if (transform != null)
+                {
+                    /***************************
+                     * Start Part 6 Bullet 1
+                     * *************************/
+
+                    float tisw = GetTisw();
+
+                    /****************************
+                     * Start Part 6 Bullet 2
+                     * **************************/
+
+                    //If we're past our death time (in the player's view, as seen by tisw)
+                    if (state.TotalTimeWorld + localTimeOffset + tisw > DeathTime)
+                    {
+                        KillObject();
+                    }
+                    else if ((state.TotalTimeWorld + localTimeOffset + tisw > startTime))
+                    {
+                        //Grab our renderer.
+                        Renderer tempRenderer = GetComponent<Renderer>();
+                        if (!tempRenderer.enabled)
                         {
-                            if (useGravity && myColliders != null && myColliders.Length > 0)
+                            tempRenderer.enabled = !hasParent;
+                            AudioSource[] audioSources = GetComponents<AudioSource>();
+                            if (audioSources.Length > 0)
                             {
-                                int myLayer = gameObject.layer;
-                                gameObject.layer = 1 << LayerMask.NameToLayer("Ignore Raycast");
-                                Ray down = new Ray(opticalWorldCenterOfMass, Vector3.down);
-                                float extentY = myColliders[0].bounds.extents.y;
-                                RaycastHit hitInfo;
-                                float distance = (transform.position - transform.TransformPoint(Vector3.down * extentY)).magnitude;
-                                if (Physics.Raycast(down, out hitInfo, distance + 0.01f))
+                                for (int i = 0; i < audioSources.Length; i++)
                                 {
-                                    sleepFrameCounter = sleepFrameDelay;
-                                    Sleep();
-                                    isRestingOnCollider = true;
+                                    audioSources[i].enabled = true;
                                 }
-                                gameObject.layer = myLayer;
                             }
-                            else
+                        }
+                    }
+                }
+            }
+
+            if (!myColliderIsVoxel)
+            {
+                UpdateColliderPosition();
+            }
+
+            if (isWorldStatic && myRigidbody != null)
+            {
+                myRigidbody.velocity = Vector3.zero;
+                myRigidbody.angularVelocity = Vector3.zero;
+
+                viw = Vector4.zero;
+                aviw = Vector4.zero;
+            }
+            else if (myRigidbody != null)
+            {
+                //update our viw and set the rigid body proportionally
+                //Dragging probably happens intrinsically in the rest frame,
+                // so it acts on the rapidity. (Drag is computationally expensive
+                // due to tripping the velocity setter every frame.)
+                // TODO: Replace with drag force
+                //Vector3 rapidity = (float)(1.0 - drag * state.DeltaTimeWorld) * viw.Gamma() * viw;
+                //viw = rapidity.RapidityToVelocity();
+                //aviw = (float)(1.0 - angularDrag * state.DeltaTimeWorld) * aviw;
+
+                //Correct for both time dilation and change in metric due to player acceleration:
+                UpdateRigidbodyVelocity(viw, aviw);
+
+                if (!isSleeping &&
+                    (viw.sqrMagnitude < (sleepVelocity * sleepVelocity)) && (aviw.sqrMagnitude < (sleepVelocity * sleepVelocity)))
+                {
+                    sleepFrameCounter++;
+                    if (sleepFrameCounter >= sleepFrameDelay)
+                    {
+                        if (useGravity && myColliders != null && myColliders.Length > 0)
+                        {
+                            int myLayer = gameObject.layer;
+                            gameObject.layer = 1 << LayerMask.NameToLayer("Ignore Raycast");
+                            Ray down = new Ray(opticalWorldCenterOfMass, Vector3.down);
+                            float extentY = myColliders[0].bounds.extents.y;
+                            RaycastHit hitInfo;
+                            float distance = (transform.position - transform.TransformPoint(Vector3.down * extentY)).magnitude;
+                            if (Physics.Raycast(down, out hitInfo, distance + 0.01f))
                             {
                                 sleepFrameCounter = sleepFrameDelay;
                                 Sleep();
+                                isRestingOnCollider = true;
                             }
+                            gameObject.layer = myLayer;
                         }
                         else
                         {
-                            UpdateGravity();
+                            sleepFrameCounter = sleepFrameDelay;
+                            Sleep();
                         }
                     }
                     else
                     {
-                        sleepFrameCounter = 0;
                         UpdateGravity();
                     }
-
-                    if ((sleepOldPosition - piw).sqrMagnitude >= (sleepDistance * sleepDistance))
-                    {
-                        sleepOldPosition = piw;
-                    }
-
-                    if (Vector3.Angle(sleepOldOrientation, transform.forward) >= sleepAngle)
-                    {
-                        sleepOldOrientation = transform.forward;
-                    }
+                }
+                else
+                {
+                    sleepFrameCounter = 0;
+                    UpdateGravity();
                 }
 
-                //This might be nonphysical, but we want resting colliders to stay "glued" to the floor:
-                if (myColliderIsBox && isSleeping && isRestingOnCollider)
+                if ((sleepOldPosition - piw).sqrMagnitude >= (sleepDistance * sleepDistance))
                 {
-                    int myLayer = gameObject.layer;
-                    gameObject.layer = 1 << LayerMask.NameToLayer("Ignore Raycast");
+                    sleepOldPosition = piw;
+                }
 
-                    float extentY = myColliders[0].bounds.extents.y;
-                    float maxDist = 100f;
-                    Ray downRay = new Ray()
-                    {
-                        direction = Physics.gravity.normalized,
-                        origin = transform.TransformPoint(((BoxCollider)myColliders[0]).center + extentY * Vector3.up)
-                    };
-                    RaycastHit hitInfo;
-                    if (Physics.Raycast(downRay, out hitInfo, maxDist, gameObject.layer))
-                    {
-                        if (nonrelativisticShader)
-                        {
-                            contractor.position += (hitInfo.distance - 2.0f * extentY) * Vector3.down;
-                            transform.localPosition = Vector3.zero;
-                        }
-                        else
-                        {
-                            transform.position += (hitInfo.distance - 2.0f * extentY) * Vector3.down;
-                        }
-                    }
-
-                    gameObject.layer = myLayer;
+                if (Vector3.Angle(sleepOldOrientation, transform.forward) >= sleepAngle)
+                {
+                    sleepOldOrientation = transform.forward;
                 }
             }
-            //If our rigidbody is not null, and movement is frozen, then set the object to standstill.
-            else if (myRigidbody != null)
+
+            //This might be nonphysical, but we want resting colliders to stay "glued" to the floor:
+            if (myColliderIsBox && isSleeping && isRestingOnCollider)
             {
-                myRigidbody.velocity = Vector3.zero;
-                myRigidbody.angularVelocity = Vector3.zero;
+                int myLayer = gameObject.layer;
+                gameObject.layer = 1 << LayerMask.NameToLayer("Ignore Raycast");
+
+                float extentY = myColliders[0].bounds.extents.y;
+                float maxDist = 100f;
+                Ray downRay = new Ray()
+                {
+                    direction = Physics.gravity.normalized,
+                    origin = transform.TransformPoint(((BoxCollider)myColliders[0]).center + extentY * Vector3.up)
+                };
+                RaycastHit hitInfo;
+                if (Physics.Raycast(downRay, out hitInfo, maxDist, gameObject.layer))
+                {
+                    if (nonrelativisticShader)
+                    {
+                        contractor.position += (hitInfo.distance - 2.0f * extentY) * Vector3.down;
+                        transform.localPosition = Vector3.zero;
+                    }
+                    else
+                    {
+                        transform.position += (hitInfo.distance - 2.0f * extentY) * Vector3.down;
+                    }
+                }
+
+                gameObject.layer = myLayer;
             }
         }
 
