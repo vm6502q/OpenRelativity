@@ -130,7 +130,7 @@ namespace OpenRelativity
         public static Vector3 InverseContractLengthBy(this Vector3 interval, Vector3 velocity)
         {
             float speedSqr = velocity.sqrMagnitude;
-            if (speedSqr == 0.0)
+            if (float.IsNaN(speedSqr) || float.IsInfinity(speedSqr) || speedSqr < divByZeroCutoff)
             {
                 return interval;
             }
