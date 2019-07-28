@@ -874,9 +874,13 @@ namespace OpenRelativity.Objects
             UpdateShaderParams();
         }
 
-        public float GetTisw()
+        public float GetTisw(Vector3? pos = null)
         {
-            return ((Vector4)piw).GetTisw(viw, properAiw);
+            if (pos == null)
+            {
+                pos = piw;
+            }
+            return ((Vector4)pos.Value).GetTisw(viw, properAiw);
         }
 
         void FixedUpdate() {
