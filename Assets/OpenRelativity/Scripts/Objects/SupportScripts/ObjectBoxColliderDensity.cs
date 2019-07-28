@@ -185,7 +185,7 @@ namespace OpenRelativity.Objects
                     else
                     {
                         toUpdateBox.center = transform.InverseTransformPoint(
-                            ((Vector4)(transform.TransformPoint(origPositions[i]))).WorldToOptical(myRO.viw, myRO.GetTotalAcceleration(), myRO.viwLorentz)
+                            ((Vector4)(transform.TransformPoint(origPositions[i]))).WorldToOptical(myRO.viw, myRO.Get4Acceleration(), myRO.viwLorentz)
                        );
                     }
                 }
@@ -222,7 +222,7 @@ namespace OpenRelativity.Objects
             }
             else {
                 viw = myRO.viw;
-                aiw = myRO.GetTotalAcceleration();
+                aiw = myRO.Get4Acceleration();
             }
 
             Matrix4x4 viwLorentz = myRO.viwLorentz;
