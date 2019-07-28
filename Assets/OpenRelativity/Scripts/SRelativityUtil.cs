@@ -241,9 +241,9 @@ namespace OpenRelativity
             return tisw;
         }
 
-        public static Vector3 WorldToOptical(this Vector4 stpiw, Vector3 velocity, Vector4? aiw = null, Matrix4x4? vpcLorentzMatrix = null, Matrix4x4? viwLorentzMatrix = null)
+        public static Vector3 WorldToOptical(this Vector4 stpiw, Vector3 velocity, Vector4? aiw = null, Matrix4x4? viwLorentzMatrix = null)
         {
-            return stpiw.WorldToOptical(velocity, srCamera.playerTransform.position, srCamera.PlayerVelocityVector, srCamera.PlayerAccelerationVector, srCamera.PlayerAngularVelocityVector, aiw, vpcLorentzMatrix, viwLorentzMatrix);
+            return stpiw.WorldToOptical(velocity, srCamera.playerTransform.position, srCamera.PlayerVelocityVector, srCamera.PlayerAccelerationVector, srCamera.PlayerAngularVelocityVector, aiw, srCamera.PlayerLorentzMatrix, viwLorentzMatrix);
         }
 
         public static Vector3 WorldToOptical(this Vector4 stpiw, Vector3 velocity, Vector3 origin, Vector3 playerVel, Vector3 pap, Vector3 avp, Vector3? aiw = null, Matrix4x4? vpcLorentzMatrix = null, Matrix4x4? viwLorentzMatrix = null)

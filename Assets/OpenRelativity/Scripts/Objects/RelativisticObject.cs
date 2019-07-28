@@ -377,7 +377,6 @@ namespace OpenRelativity.Objects
         // Get the start time of our object, so that we know where not to draw it
         public void SetStartTime()
         {
-            // TODO: Why is position subtracted from acceleration, here?
             Vector3 playerPos = state.playerTransform.position;
             float timeDelayToPlayer = (float)Math.Sqrt((((Vector4)piw).WorldToOptical(viw, GetTotalAcceleration()) - playerPos).sqrMagnitude / state.SpeedOfLightSqrd);
             timeDelayToPlayer *= (float)GetTimeFactor();
@@ -388,7 +387,6 @@ namespace OpenRelativity.Objects
         //Set the death time, so that we know at what point to destroy the object in the player's view point.
         public virtual void SetDeathTime()
         {
-            // TODO: Why is position subtracted from acceleration, here?
             Vector3 playerPos = state.playerTransform.position;
             float timeDelayToPlayer = (float)Math.Sqrt((((Vector4)piw).WorldToOptical(viw, GetTotalAcceleration()) - playerPos).sqrMagnitude / state.SpeedOfLightSqrd);
             timeDelayToPlayer *= (float)GetTimeFactor();
@@ -914,7 +912,7 @@ namespace OpenRelativity.Objects
                         //Update the position in world, if necessary:
                         piw += transform.position - contractor.position;
                         transform.localPosition = Vector3.zero;
-                        Vector3 testPos = ((Vector4)piw).WorldToOptical(viw, GetTotalAcceleration(), state.PlayerLorentzMatrix, viwLorentz);
+                        Vector3 testPos = ((Vector4)piw).WorldToOptical(viw, GetTotalAcceleration(), viwLorentz);
                         float testMag = testPos.sqrMagnitude;
                         if (!IsNaNOrInf(testMag))
                         {
@@ -1117,8 +1115,6 @@ namespace OpenRelativity.Objects
 
         public void UpdateColliderPosition(Collider toUpdate = null)
         {
-            Matrix4x4 vpcLorentz = state.PlayerLorentzMatrix;
-
             if (myColliderIsVoxel)
             {
                 ObjectBoxColliderDensity obcd = GetComponent<ObjectBoxColliderDensity>();
@@ -1153,11 +1149,11 @@ namespace OpenRelativity.Objects
                         pos = transform.TransformPoint(colliderPiw[i]);
                         if (isWorldStatic)
                         {
-                            testPos = transform.InverseTransformPoint(((Vector4)pos).WorldToOptical(Vector3.zero, Vector3.zero, vpcLorentz, viwLorentz));
+                            testPos = transform.InverseTransformPoint(((Vector4)pos).WorldToOptical(Vector3.zero, Vector3.zero, viwLorentz));
                         }
                         else
                         {
-                            testPos = transform.InverseTransformPoint(((Vector4)pos).WorldToOptical(viw, aiw, vpcLorentz, viwLorentz));
+                            testPos = transform.InverseTransformPoint(((Vector4)pos).WorldToOptical(viw, aiw, viwLorentz));
                         }
                         testMag = testPos.sqrMagnitude;
 
