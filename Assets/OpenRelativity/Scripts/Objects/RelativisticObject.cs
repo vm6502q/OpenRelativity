@@ -803,7 +803,7 @@ namespace OpenRelativity.Objects
             if (useGravity && !isRestingOnCollider)
             {
                 if (isSleeping) WakeUp();
-                properAiw = -Physics.gravity;
+                properAiw = Physics.gravity;
             }
             else
             {
