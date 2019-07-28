@@ -897,6 +897,28 @@ namespace OpenRelativity.Objects
             {
                 double deltaTime = state.FixedDeltaTimePlayer * GetTimeFactor();
                 double localDeltaT = deltaTime - state.FixedDeltaTimeWorld;
+
+                if (state.conformalMap != null)
+                {
+                    //Update comoving position
+                    Vector3 opiw = nonrelativisticShader ? transform.position : ((Vector4)piw).WorldToOptical(viw, Get4Acceleration());
+
+                    Vector4 piw4 = state.conformalMap.ComoveOptical((float)deltaTime, opiw);
+                    piw4 = nonrelativisticShader ? piw4 : piw4.OpticalToWorld(viw, state.playerTransform.position, -state.PlayerVelocityVector, state.PlayerAccelerationVector, state.PlayerAngularVelocityVector, Get4Acceleration());
+                    float testMag = piw4.sqrMagnitude;
+                    if (!IsNaNOrInf(testMag))
+                    {
+                        piw = piw4;
+                        if (nonrelativisticShader)
+                        {
+                            contractor.position = piw;
+                            transform.localPosition = Vector3.zero;
+                        }
+                        deltaTime = piw4.w;
+                        localDeltaT = deltaTime - (float)state.FixedDeltaTimeWorld;
+                    }
+                }
+
                 if (!IsNaNOrInf(localDeltaT))
                 {
                     localTimeOffset += localDeltaT;
