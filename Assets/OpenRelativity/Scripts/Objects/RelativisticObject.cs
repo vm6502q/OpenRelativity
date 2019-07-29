@@ -34,7 +34,7 @@ namespace OpenRelativity.Objects
                 initialViw = value;
 
                 // Under instantaneous changes in velocity, the optical position should be invariant.
-                piw = ((Vector4)((Vector4)piw).WorldToOptical(_viw, Get4Acceleration())).OpticalToWorld(value, Get4Acceleration());
+                piw = ((Vector4)((Vector4)piw).WorldToOptical(_viw, Get4Acceleration())).OpticalToWorldHighPrecision(value, Get4Acceleration());
                 if (!nonrelativisticShader && !IsNaNOrInf(piw.magnitude))
                 {
                     transform.position = piw;
@@ -1016,6 +1016,12 @@ namespace OpenRelativity.Objects
 
                 viw = Vector4.zero;
                 aviw = Vector4.zero;
+
+                if (!myColliderIsVoxel)
+                {
+                    UpdateColliderPosition();
+                }
+
                 // We're done.
                 return;
             }
