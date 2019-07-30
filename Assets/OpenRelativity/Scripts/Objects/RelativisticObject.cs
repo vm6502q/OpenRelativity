@@ -1581,6 +1581,7 @@ namespace OpenRelativity.Objects
                 myLocPoint = (contact - com);
             }
 
+            myAccel = Get4Acceleration();
             if (otherRO.myColliderIsMesh)
             {
                 contact = ((Vector4)(contactPoint.point)).OpticalToWorld(otherVel, myAccel);
@@ -1844,7 +1845,7 @@ namespace OpenRelativity.Objects
         // while it is considered to be "upwards" when they are at rest under the effects of gravity, so they don't fall through the surface they're feeling pushed into.)
         // The apparent deformation of the Minkowski metric also depends on an object's distance from the player, so it is calculated by and for the object itself.
         public Matrix4x4 GetMetric()
-        {
+        {   
             return SRelativityUtil.GetRindlerMetric(piw);
         }
 
@@ -1889,7 +1890,7 @@ namespace OpenRelativity.Objects
 
         public double GetTimeFactor()
         {
-            if (state.SqrtOneMinusVSquaredCWDividedByCSquared < 0)
+            if (state.SqrtOneMinusVSquaredCWDividedByCSquared <= 0)
             {
                 return 1;
             }
