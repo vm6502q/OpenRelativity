@@ -235,7 +235,7 @@ namespace OpenRelativity
 
                 //update our player velocity
                 playerVelocity = playerVelocityVector.magnitude;
-                Vector4 vpc = new Vector4(-playerVelocityVector.x, -playerVelocityVector.y, -playerVelocityVector.z, 0) / (float)c;
+                Vector4 vpc = -playerVelocityVector / (float)c;
                 playerLorentzMatrix = SRelativityUtil.GetLorentzTransformMatrix(vpc);
 
                 //update our acceleration (which relates rapidities rather than velocities)

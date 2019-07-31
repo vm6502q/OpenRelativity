@@ -35,18 +35,12 @@ namespace OpenRelativity.Objects
 
                 // Under instantaneous changes in velocity, the optical position should be invariant.
                 Vector4 myAccel = Get4Acceleration();
-                piw = ((Vector4)((Vector4)piw).WorldToOptical(_viw, myAccel)).OpticalToWorld(value, myAccel);
+                piw = ((Vector4)((Vector4)piw).WorldToOptical(_viw, myAccel)).OpticalToWorldHighPrecision(value, myAccel);
                 if (!IsNaNOrInf(piw.magnitude))
                 {
                     if (nonrelativisticShader)
                     {
-                        if (contractor == null)
-                        {
-                            SetUpContractor();
-                        }
-                        contractor.position = ((Vector4)piw).WorldToOptical(value, myAccel);
-                        transform.localPosition = Vector3.zero;
-                        ContractLength();
+                        UpdateContractorPosition();
                     }
                     else
                     {
@@ -70,16 +64,7 @@ namespace OpenRelativity.Objects
             initialViw = newViw;
             transform.position = newPiw;
 
-            if (nonrelativisticShader)
-            {
-                if (contractor == null)
-                {
-                    SetUpContractor();
-                }
-                contractor.position = ((Vector4)newPiw).WorldToOptical(viw, Get4Acceleration());
-                transform.localPosition = Vector3.zero;
-                ContractLength();
-            }
+            UpdateContractorPosition();
 
             MarkStaticColliderPos();
 
@@ -673,15 +658,7 @@ namespace OpenRelativity.Objects
             }
 
             //If the shader is nonrelativistic, map the object from world space to optical space and handle length contraction:
-            if (nonrelativisticShader)
-            {
-                transform.position = ((Vector4)piw).WorldToOptical(viw, Get4Acceleration());
-                if (contractor == null)
-                {
-                    SetUpContractor();
-                }
-                ContractLength();
-            }
+            UpdateContractorPosition();
         }
 
         private void UpdateCollider()
@@ -721,14 +698,25 @@ namespace OpenRelativity.Objects
         private void EnforceCollision()
         {
             // Like how Rigidbody components are co-opted for efficient relativistic motion,
-            // it's probably feasible to get (at least reasonable, if not exact) relativistic collision
+            // it's feasible to get (at least reasonable, if not exact) relativistic collision
             // handling by transforming the end state after PhysX collisions.
 
-            // TODO: Figure out how to best relate the input Rigidbody states to relativistic collision
-            // outputs via PhysX.
+            // We pass the RelativisticObject's rapidity to the rigidbody, right before the physics update
+            // We restore the time-dilated visual apparent velocity, afterward.
 
+            // Get the position and rotation after the collision:
+            riw = myRigidbody.rotation;
+            if (nonrelativisticShader)
+            {
+                piw = ((Vector4)transform.position).OpticalToWorldHighPrecision(viw, Get4Acceleration());
+            }
+            else
+            {
+                piw = transform.position;
+            }
+
+            // Now, update the velocity and angular velocity based on the collision result:
             Vector3 myViw = myRigidbody.velocity.RapidityToVelocity();
-
             // Make sure we're not updating to faster than max speed
             float mySpeed = myViw.magnitude;
             if (mySpeed > state.MaxSpeed)
@@ -739,7 +727,7 @@ namespace OpenRelativity.Objects
             float gamma = GetTimeFactor(myViw);
 
             viw = myViw;
-            aviw = viw = myRigidbody.angularVelocity / gamma;
+            aviw = myRigidbody.angularVelocity / gamma;
 
             // As soon as we're out of the physics update, we want our animation updates have the right viw
             UpdateRigidbodyVelocity(viw, aviw);
@@ -1312,6 +1300,20 @@ namespace OpenRelativity.Objects
             {
                 myRigidbody.velocity = Vector3.zero;
                 myRigidbody.angularVelocity = Vector3.zero;
+            }
+        }
+
+        public void UpdateContractorPosition()
+        {
+            if (nonrelativisticShader)
+            {
+                if (contractor == null)
+                {
+                    SetUpContractor();
+                }
+                contractor.position = ((Vector4)piw).WorldToOptical(viw, Get4Acceleration());
+                transform.localPosition = Vector3.zero;
+                ContractLength();
             }
         }
 
