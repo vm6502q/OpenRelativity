@@ -949,8 +949,10 @@ namespace OpenRelativity.Objects
                 }
                 else
                 {
-                    myRigidbody.position = piw;
+                    myRigidbody.MovePosition(piw);
                 }
+
+                myRigidbody.rotation = Quaternion.Euler((float)deltaTime * aviw) * myRigidbody.rotation;
             }
 
             if (!myColliderIsVoxel)
@@ -1102,6 +1104,8 @@ namespace OpenRelativity.Objects
                 // If we're lower than the bounce threshold, just reset the state.
                 // We often end up here when player acceleration puts high apparent curvature on a too low vertex mesh collider.
                 // PhysX will force the objects apart, but this might be the least error we can get away with.
+                viw = Vector3.zero;
+                aviw = Vector3.zero;
                 UpdateRigidbodyVelocity(viw, aviw);
 
                 return;
@@ -1139,6 +1143,8 @@ namespace OpenRelativity.Objects
                 // If we're lower than the bounce threshold, just reset the state.
                 // We often end up here when player acceleration puts high apparent curvature on a too low vertex mesh collider.
                 // PhysX will force the objects apart, but this might be the least error we can get away with.
+                viw = Vector3.zero;
+                aviw = Vector3.zero;
                 UpdateRigidbodyVelocity(viw, aviw);
 
                 return;
