@@ -737,6 +737,9 @@ namespace OpenRelativity.Objects
 
             viw = myViw;
             aviw = viw = myRigidbody.angularVelocity / gamma;
+
+            // As soon as we're out of the physics update, we want our animation updates have the right viw
+            UpdateRigidbodyVelocity(viw, aviw);
         }
 
         public void UpdateGravity()
