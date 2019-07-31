@@ -232,10 +232,6 @@ namespace OpenRelativity.Objects
         private Rigidbody myRigidbody;
         //If we have a Renderer, we cache it, too.
         public Renderer myRenderer { get; set; }
-        //Did we collide last frame?
-        private bool didCollide;
-        //Time when the collision started
-        public double collideTimeStart { get; set; }
 
         public void MarkStaticColliderPos()
         {
@@ -284,7 +280,6 @@ namespace OpenRelativity.Objects
                     wasKinematic = myRigidbody.isKinematic;
                     myRigidbody.isKinematic = true;
                 }
-                collideTimeStart += state.DeltaTimeWorld;
                 return;
             }
             else if (wasFrozen)
@@ -605,7 +600,6 @@ namespace OpenRelativity.Objects
             piw = transform.position;
             isSleeping = false;
             isRestingOnCollider = false;
-            didCollide = false;
             sleepFrameCounter = 0;
             myRigidbody = GetComponent<Rigidbody>();
             rawVertsBufferLength = 0;
@@ -761,37 +755,32 @@ namespace OpenRelativity.Objects
 
         private void EnforceCollision()
         {
-            if (didCollide)
+            // Like how Rigidbody components are co-opted for efficient relativistic motion,
+            // it's probably feasible to get (at least reasonable, if not exact) relativistic collision
+            // handling by transforming the end state after PhysX collisions.
+
+            // TODO: Figure out how to best relate the input Rigidbody states to relativistic collision
+            // outputs via PhysX.
+
+            if (nonrelativisticShader)
             {
-                // Like how Rigidbody components are co-opted for efficient relativistic motion,
-                // it's probably feasible to get (at least reasonable, if not exact) relativistic collision
-                // handling by transforming the end state after PhysX collisions.
-
-                // TODO: Figure out how to best relate the input Rigidbody states to relativistic collision
-                // outputs via PhysX.
-
-                if (nonrelativisticShader)
-                {
-                    piw = ((Vector4)transform.position).OpticalToWorldHighPrecision(viw, Get4Acceleration());
-                    contractor.position = piw;
-                    transform.localPosition = Vector3.zero;
-                }
-
-                float timeFac = GetTimeFactor();
-
-                // Make sure we're not updating to faster than max speed
-                Vector3 myViw = myRigidbody.velocity / timeFac;
-                float mySpeed = myViw.magnitude;
-                if (mySpeed > state.MaxSpeed)
-                {
-                    myViw = (float)state.MaxSpeed / mySpeed * myViw;
-                }
-
-                viw = myViw;
-                aviw = viw = myRigidbody.angularVelocity / timeFac;
-
-                didCollide = false;
+                piw = ((Vector4)transform.position).OpticalToWorldHighPrecision(viw, Get4Acceleration());
+                contractor.position = piw;
+                transform.localPosition = Vector3.zero;
             }
+
+            float timeFac = GetTimeFactor();
+
+            // Make sure we're not updating to faster than max speed
+            Vector3 myViw = myRigidbody.velocity / timeFac;
+            float mySpeed = myViw.magnitude;
+            if (mySpeed > state.MaxSpeed)
+            {
+                myViw = (float)state.MaxSpeed / mySpeed * myViw;
+            }
+
+            viw = myViw;
+            aviw = viw = myRigidbody.angularVelocity / timeFac;
         }
 
         public void UpdateGravity()
@@ -809,62 +798,64 @@ namespace OpenRelativity.Objects
 
         public void Update()
         {
-            EnforceCollision();
+            UpdateShaderParams();
 
             //This is where I'm going to change our mesh density.
             //I'll take the model, and pass MeshDensity the mesh and unchanged vertices
             //If it comes back as having changed something, I'll edit the mesh.
 
             //If the shader is nonrelativistic, there's no reason to change the mesh density.
-            if (meshFilter != null && !state.MovementFrozen && !nonrelativisticShader)
+            if (meshFilter == null || state.MovementFrozen || nonrelativisticShader)
             {
-                #region meshDensity
-                ObjectMeshDensity density = GetComponent<ObjectMeshDensity>();
-
-                if (density != null)
-                {
-                    //Only run MeshDensity if the mesh needs to change, and if it's passed a threshold distance.
-                    if (rawVertsBuffer != null && density.change != null)
-                    {
-                        //This checks if we're within our large range, first mesh density circle
-                        //If we're within a distance of 40, split this mesh
-                        if (!(density.state) && (RecursiveTransform(rawVertsBuffer[0], meshFilter.transform).sqrMagnitude < (21000 * 21000)))
-                        {
-                            Mesh meshFilterMesh = meshFilter.mesh;
-                            if (density.ReturnVerts(meshFilterMesh, true))
-                            {
-                                Vector3[] meshVerts = meshFilterMesh.vertices;
-                                rawVertsBufferLength = meshVerts.Length;
-                                if (rawVertsBuffer.Length < rawVertsBufferLength)
-                                {
-                                    rawVertsBuffer = new Vector3[rawVertsBufferLength];
-                                }
-                                System.Array.Copy(meshVerts, rawVertsBuffer, rawVertsBufferLength);
-                            }
-                        }
-
-                        //If the object leaves our wide range, revert mesh to original state
-                        else if (density.state && (RecursiveTransform(rawVertsBuffer[0], meshFilter.transform).sqrMagnitude > (21000 * 21000)))
-                        {
-                            Mesh meshFilterMesh = meshFilter.mesh;
-                            if (density.ReturnVerts(meshFilterMesh, false))
-                            {
-                                Vector3[] meshVerts = meshFilterMesh.vertices;
-                                rawVertsBufferLength = meshVerts.Length;
-                                if (rawVertsBuffer.Length < rawVertsBufferLength)
-                                {
-                                    rawVertsBuffer = new Vector3[rawVertsBufferLength];
-                                }
-                                System.Array.Copy(meshVerts, rawVertsBuffer, rawVertsBufferLength);
-                            }
-                        }
-
-                    }
-                }
-                #endregion
+                return;
             }
 
-            UpdateShaderParams();
+            #region meshDensity
+            ObjectMeshDensity density = GetComponent<ObjectMeshDensity>();
+
+            if (density == null)
+            {
+                return;
+            }
+
+            //Only run MeshDensity if the mesh needs to change, and if it's passed a threshold distance.
+            if (rawVertsBuffer != null && density.change != null)
+            {
+                //This checks if we're within our large range, first mesh density circle
+                //If we're within a distance of 40, split this mesh
+                if (!(density.state) && (RecursiveTransform(rawVertsBuffer[0], meshFilter.transform).sqrMagnitude < (21000 * 21000)))
+                {
+                    Mesh meshFilterMesh = meshFilter.mesh;
+                    if (density.ReturnVerts(meshFilterMesh, true))
+                    {
+                        Vector3[] meshVerts = meshFilterMesh.vertices;
+                        rawVertsBufferLength = meshVerts.Length;
+                        if (rawVertsBuffer.Length < rawVertsBufferLength)
+                        {
+                            rawVertsBuffer = new Vector3[rawVertsBufferLength];
+                        }
+                        System.Array.Copy(meshVerts, rawVertsBuffer, rawVertsBufferLength);
+                    }
+                }
+
+                //If the object leaves our wide range, revert mesh to original state
+                else if (density.state && (RecursiveTransform(rawVertsBuffer[0], meshFilter.transform).sqrMagnitude > (21000 * 21000)))
+                {
+                    Mesh meshFilterMesh = meshFilter.mesh;
+                    if (density.ReturnVerts(meshFilterMesh, false))
+                    {
+                        Vector3[] meshVerts = meshFilterMesh.vertices;
+                        rawVertsBufferLength = meshVerts.Length;
+                        if (rawVertsBuffer.Length < rawVertsBufferLength)
+                        {
+                            rawVertsBuffer = new Vector3[rawVertsBufferLength];
+                        }
+                        System.Array.Copy(meshVerts, rawVertsBuffer, rawVertsBufferLength);
+                    }
+                }
+
+            }
+            #endregion
         }
 
         public float GetTisw(Vector3? pos = null)
@@ -1226,8 +1217,7 @@ namespace OpenRelativity.Objects
             // At low enough velocities, where the Newtonian approximation is reasonable,
             // PhysX is probably MORE accurate for even relativistic collision than the hacky relativistic collision we had
             // (which is still in the commit history, for reference).
-            // (See EnforceCollision())
-            didCollide = true;
+            EnforceCollision();
         }
 
         public void OnCollisionStay(Collision collision)
@@ -1264,8 +1254,7 @@ namespace OpenRelativity.Objects
             // At low enough velocities, where the Newtonian approximation is reasonable,
             // PhysX is probably MORE accurate for even relativistic collision than the hacky relativistic collision we had
             // (which is still in the commit history, for reference).
-            // (See EnforceCollision())
-            didCollide = true;
+            EnforceCollision();
         }
 
         private void Sleep()

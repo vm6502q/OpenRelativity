@@ -262,7 +262,6 @@ namespace OpenRelativity.Objects
                         myRO.wasKinematic = myRB.isKinematic;
                         myRB.isKinematic = true;
                     }
-                    myRO.collideTimeStart += gameState.DeltaTimeWorld;
                 }
                 else if (myRO.wasFrozen)
                 {
