@@ -772,22 +772,28 @@ namespace OpenRelativity.Objects
 
         private void EnforceCollision()
         {
-            oldCollisionResultVel3 = collisionResultVel3;
-            oldCollisionResultAngVel3 = collisionResultAngVel3;
-
             if (didCollide)
             {
-                //Finish and shut off enforcement
-                if (!IsNaNOrInf(collisionResultVel3.magnitude))
+                // Like how Rigidbody components are co-opted for efficient relativistic motion,
+                // it's probably feasible to get (at least reasonable, if not exact) relativistic collision
+                // handling by transforming the end state after PhysX collisions.
+
+                // TODO: Figure out how to best relate the input Rigidbody states to relativistic collision
+                // outputs via PhysX.
+
+                float timeFac = GetTimeFactor();
+
+                // Make sure we're not updating to faster than max speed
+                Vector3 myViw = myRigidbody.velocity / timeFac;
+                float mySpeed = myViw.magnitude;
+                if (mySpeed > state.MaxSpeed)
                 {
-                    viw = collisionResultVel3;
+                    myViw = (float)state.MaxSpeed / mySpeed * myViw;
                 }
 
-                if (!IsNaNOrInf(collisionResultAngVel3.magnitude))
-                {
-                    aviw = collisionResultAngVel3;
-                    myRigidbody.angularVelocity = aviw * GetTimeFactor();
-                }
+                viw = myViw;
+                aviw = viw = myRigidbody.angularVelocity / timeFac;
+
                 didCollide = false;
             }
         }
@@ -1223,73 +1229,6 @@ namespace OpenRelativity.Objects
         }
 
         #region 4D Rigid body mechanics
-        //This is a reference type to package collision points with collision normal vectors
-        private class PointAndNorm
-        {
-            public Vector3 point;
-            public Vector3 normal;
-        }
-
-        public void OnCollisionStay(Collision collision)
-        {
-            if (myRigidbody == null || myRigidbody.isKinematic)
-            {
-                return;
-            }
-
-            GameObject otherGO = collision.gameObject;
-            RelativisticObject otherRO = otherGO.GetComponent<RelativisticObject>();
-
-            if (collision.contacts.Length > 1)
-            {
-                Ray down = new Ray(opticalWorldCenterOfMass, Vector3.down);
-                RaycastHit hitInfo;
-                if (collision.collider.Raycast(down, out hitInfo, (opticalWorldCenterOfMass - otherRO.opticalWorldCenterOfMass).magnitude))
-                {
-                    isRestingOnCollider = true;
-                }
-            }
-
-            //Lorentz transformation might make us come "unglued" from a collider we're resting on.
-            // If we're asleep, and the other collider has zero velocity, we don't need to wake up:
-            if (isSleeping && otherRO.viw == Vector3.zero)
-            {
-                return;
-            }
-
-            //If we made it this far, we shouldn't be sleeping:
-            WakeUp();
-
-            PhysicMaterial otherMaterial = collision.collider.material;
-            float combFriction = CombinePhysics(myPhysicMaterial.frictionCombine, myPhysicMaterial.staticFriction, otherMaterial.staticFriction);
-            float combRestCoeff = CombinePhysics(myPhysicMaterial.bounceCombine, myPhysicMaterial.bounciness, otherMaterial.bounciness);
-
-            //Tangental relationship scales normalized "bounciness" to a Young's modulus
-
-            float combYoungsModulus = GetYoungsModulus(combRestCoeff);
-
-            PointAndNorm contactPoint = DecideContactPoint(collision);
-            //ApplyPenalty(collision, otherRO, contactPoint, combFriction, combYoungsModulus);
-            didCollide = true;
-        }
-
-        private float GetYoungsModulus(float combRestCoeff)
-        {
-            float combYoungsModulus;
-            if (combRestCoeff < 1.0f)
-            {
-                combYoungsModulus = Mathf.Tan(combRestCoeff);
-                //If the Young's modulus is higher than a realistic material, cap it.
-                if (combYoungsModulus > maxYoungsModulus) combYoungsModulus = maxYoungsModulus;
-            }
-            else
-            {
-                //If the coeffecient of restitution is one, set the Young's modulus to max:
-                combYoungsModulus = maxYoungsModulus;
-            }
-
-            return combYoungsModulus;
-        }
 
         public void OnCollisionEnter(Collision collision)
         {
@@ -1328,350 +1267,51 @@ namespace OpenRelativity.Objects
 
             //If we made it this far, we shouldn't be sleeping:
             WakeUp();
-            didCollide = true;
 
-            PointAndNorm contactPoint = DecideContactPoint(collision);
-            if (contactPoint == null)
+            // Let's start simple:
+            // At low enough velocities, where the Newtonian approximation is reasonable,
+            // PhysX is probably MORE accurate for even relativistic collision than the hacky relativistic collision we had
+            // (which is still in the commit history, for reference).
+            // (See EnforceCollision())
+            didCollide = true;
+        }
+
+        public void OnCollisionStay(Collision collision)
+        {
+            if (myRigidbody == null || myRigidbody.isKinematic)
             {
                 return;
             }
 
-            PhysicMaterial otherMaterial = collision.collider.material;
-            float myFriction = isSleeping ? myPhysicMaterial.staticFriction : myPhysicMaterial.dynamicFriction;
-            float otherFriction = otherRO.isSleeping ? otherMaterial.staticFriction : otherMaterial.dynamicFriction;
-            float combFriction = CombinePhysics(myPhysicMaterial.frictionCombine, myFriction, otherFriction);
-            float combRestCoeff = CombinePhysics(myPhysicMaterial.bounceCombine, myPhysicMaterial.bounciness, otherMaterial.bounciness);
+            GameObject otherGO = collision.gameObject;
+            RelativisticObject otherRO = otherGO.GetComponent<RelativisticObject>();
 
-            oldCollisionResultVel3 = viw;
-            oldCollisionResultAngVel3 = aviw;
-            otherRO.oldCollisionResultVel3 = otherRO.viw;
-            otherRO.oldCollisionResultAngVel3 = otherRO.aviw;
-            Collide(collision, otherRO, contactPoint, combRestCoeff, combFriction, (collision.rigidbody == null) || (collision.rigidbody.isKinematic));
-        }
-
-        private float CombinePhysics(PhysicMaterialCombine physMatCombine, float mine, float theirs)
-        {
-            float effectiveValue = 0.0f;
-            switch (physMatCombine)
+            if (collision.contacts.Length > 1)
             {
-                case PhysicMaterialCombine.Average:
-                    effectiveValue = (mine + theirs) * 0.5f;
-                    break;
-                case PhysicMaterialCombine.Maximum:
-                    effectiveValue = Mathf.Max(mine, theirs);
-                    break;
-                case PhysicMaterialCombine.Minimum:
-                    effectiveValue = Mathf.Min(mine, theirs);
-                    break;
-                default:
-                    effectiveValue = mine;
-                    break;
-            }
-            return effectiveValue;
-        }
-
-        private PointAndNorm DecideContactPoint(Collision collision)
-        {
-            PointAndNorm contactPoint;
-            if (collision.contacts.Length == 0)
-            {
-                return null;
-            }
-            else if (collision.contacts.Length == 1)
-            {
-                contactPoint = new PointAndNorm()
+                Ray down = new Ray(opticalWorldCenterOfMass, Vector3.down);
+                RaycastHit hitInfo;
+                if (collision.collider.Raycast(down, out hitInfo, (opticalWorldCenterOfMass - otherRO.opticalWorldCenterOfMass).magnitude))
                 {
-                    point = collision.contacts[0].point,
-                    normal = collision.contacts[0].normal
-                };
-            }
-            else
-            {
-                contactPoint = new PointAndNorm();
-                for (int i = 0; i < collision.contacts.Length; i++)
-                {
-                    contactPoint.point += collision.contacts[i].point;
-                    contactPoint.normal += collision.contacts[i].normal;
+                    isRestingOnCollider = true;
                 }
-                contactPoint.point = 1.0f / (float)collision.contacts.Length * contactPoint.point;
-                contactPoint.normal.Normalize();
             }
-            if ((contactPoint.point - transform.position).sqrMagnitude == 0.0f)
+
+            //Lorentz transformation might make us come "unglued" from a collider we're resting on.
+            // If we're asleep, and the other collider has zero velocity, we don't need to wake up:
+            if (isSleeping && otherRO.viw == Vector3.zero)
             {
-                contactPoint.point = 0.001f * collision.collider.transform.position;
-            }
-            return contactPoint;
-        }
-
-        private void Collide(Collision collision, RelativisticObject otherRO, PointAndNorm contactPoint, float combRestCoeff, float combFriction, bool isReflected)
-        {
-            //We grab the velocities from the RelativisticObject rather than the Rigidbody,
-            // since the Rigidbody velocity is not directly physical.
-            float mass = myRigidbody.mass;
-            Vector3 myVel = oldCollisionResultVel3;
-            Vector3 myAngVel = oldCollisionResultAngVel3;
-            Rigidbody otherRB = collision.rigidbody;
-            Vector3 otherVel = otherRO.oldCollisionResultVel3;
-            Vector3 otherAngVel = otherRO.oldCollisionResultAngVel3;
-
-            //Vector3 myPRelVel = myVel.AddVelocity(-state.PlayerVelocityVector);
-            Vector4 myAccel = Get4Acceleration();
-
-            //We want to find the contact offset relative the centers of mass of in each object's inertial frame;
-            Vector3 myLocPoint, otLocPoint, contact;
-            Vector3 com = ((Vector4)opticalWorldCenterOfMass).OpticalToWorldHighPrecision(myVel, myAccel);
-            contact = myColliderIsMesh ? ((Vector4)(contactPoint.point)).OpticalToWorldHighPrecision(myVel, myAccel) : contactPoint.point;
-            myLocPoint = nonrelativisticShader ? (contact - com).InverseContractLengthBy(myVel) : (contact - com);
-
-            myAccel = Get4Acceleration();
-            com = ((Vector4)otherRO.opticalWorldCenterOfMass).OpticalToWorldHighPrecision(otherVel, myAccel);
-            contact = otherRO.myColliderIsMesh ? ((Vector4)(contactPoint.point)).OpticalToWorldHighPrecision(otherVel, myAccel) : contactPoint.point;
-            otLocPoint = otherRO.nonrelativisticShader ? (contact - com).InverseContractLengthBy(myVel) : (contact - com);
-
-            Vector3 myAngTanVel = Vector3.Cross(myAngVel, myLocPoint);
-            Vector3 myTotalVel = myVel.AddVelocity(myAngTanVel);
-            Vector3 otherAngTanVel = Vector3.Cross(otherAngVel, otLocPoint);
-            Vector3 otherTotalVel = otherVel.AddVelocity(otherAngTanVel);
-            Vector3 lineOfAction = -contactPoint.normal;
-
-            //Decompose velocity in parallel and perpendicular components:
-            Vector3 myParraVel = Vector3.Project(myTotalVel, lineOfAction);
-            Vector3 myPerpVel = (myTotalVel - myParraVel) * myParraVel.Gamma();
-            //Boost to the inertial frame where my velocity is entirely along the line of action:
-            Vector3 otherContactVel = otherTotalVel.AddVelocity(-myPerpVel);
-            //Find the relative velocity:
-            Vector3 relVel = myParraVel.RelativeVelocityTo(otherContactVel);
-            //Find the relative rapidity on the line of action, where my contact velocity is 0:
-            float relVelGamma = relVel.Gamma();
-            Vector3 rapidityOnLoA = relVelGamma * relVel;
-
-            Vector3 myPos = opticalWorldCenterOfMass;
-            Vector3 otherPos = otherRO.opticalWorldCenterOfMass;
-            /*
-            float penDist = GetPenetrationDepth(collision, myColliders[0], myPRelVel, myPos, otherPos, ref contactPoint);
-
-            //We will apply penalty methods after the initial collision, in order to stabilize objects coming to rest on flat surfaces with gravity.
-            // Our penalty methods can give a somewhat obvious apparent deviation from conservation of energy and momentum,
-            // unless we account for the initial energy and momentum loss due to "spring-loading":
-            float springImpulse = 0;
-            if (penDist > 0.0f)
-            {
-                float combYoungsModulus = GetYoungsModulus(combRestCoeff);
-                //Potential energy as if from a spring,
-                //H = K + V = p^2/(2m) + 1/2*k*l^2
-                // from which it can be shown that this is the change in momentum from the implied initial loading of the "spring":
-                springImpulse = Mathf.Sqrt(hookeMultiplier * combYoungsModulus * penDist * penDist * myRigidbody.mass);
-            }
-            */
-
-            //Rotate my relative contact point:
-            Vector3 rotatedLoc = Quaternion.Inverse(transform.rotation) * myLocPoint;
-            rotatedLoc.Scale(rotatedLoc);
-            //The relative contact point is the lever arm of the torque:
-            float myMOI = Vector3.Dot(myRigidbody.inertiaTensor, rotatedLoc);
-            //In special relativity, the impulse relates the change in rapidities, rather than the change in velocities.
-            float impulse;
-            if (isReflected)
-            {
-                impulse = -rapidityOnLoA.magnitude * (combRestCoeff + 1.0f) / (1.0f / mass + Vector3.Dot(lineOfAction, Vector3.Cross(1.0f / myMOI * Vector3.Cross(myLocPoint, lineOfAction), myLocPoint)));
-            }
-            else
-            {
-                rotatedLoc = Quaternion.Inverse(otherRB.transform.rotation) * otLocPoint;
-                rotatedLoc.Scale(rotatedLoc);
-                float otherMOI = Vector3.Dot(otherRB.inertiaTensor, rotatedLoc);
-                impulse = -rapidityOnLoA.magnitude * (combRestCoeff + 1.0f) / (1.0f / mass + 1.0f / otherRB.mass + Vector3.Dot(lineOfAction, Vector3.Cross(1.0f / myMOI * Vector3.Cross(myLocPoint, lineOfAction), myLocPoint)) + Vector3.Dot(lineOfAction, Vector3.Cross(1.0f / otherMOI * Vector3.Cross(otLocPoint, lineOfAction), otLocPoint)));
+                return;
             }
 
-            //impulse -= springImpulse;
+            //If we made it this far, we shouldn't be sleeping:
+            WakeUp();
 
-            Vector3 tanNorm = Vector3.Cross(Vector3.Cross(lineOfAction, relVel), lineOfAction).normalized;
-            Vector3 frictionChange = combFriction * impulse * tanNorm;
-            //The change in rapidity on the line of action:
-            Vector3 finalLinearRapidity = relVelGamma * myVel + (impulse * lineOfAction + frictionChange) / mass;
-            //The change in rapidity perpendincular to the line of action:
-            Vector3 finalTanRapidity = relVelGamma * myAngTanVel + Vector3.Cross(1.0f / myMOI * Vector3.Cross(myLocPoint, impulse * lineOfAction + frictionChange), myLocPoint);
-            //Velocities aren't linearly additive in special relativity, but rapidities are:
-            float finalRapidityMag = (finalLinearRapidity + finalTanRapidity).magnitude;
-            Vector3 tanVelFinal = finalTanRapidity.RapidityToVelocity(finalRapidityMag);
-            //This is a hack. We save the new velocities to overwrite the Rigidbody velocities on the next frame:
-            collisionResultVel3 = finalLinearRapidity.RapidityToVelocity(finalRapidityMag);
-            //If the angle of the torque is close to 0 or 180, we have rounding problems:
-            float angle = Vector3.Angle(myAngVel, myLocPoint);
-            if (angle > 2.0f && angle < 178.0f)
-            {
-                collisionResultAngVel3 = Vector3.Cross(tanVelFinal, myLocPoint) / myLocPoint.sqrMagnitude;
-            }
-            else
-            {
-                collisionResultAngVel3 = myAngVel;
-            }
-            //In the ideal, it shouldn't be necessary to clamp the speed
-            // in order to prevent FTL collision results, but we could
-            // still exceed the max speed and come very close to the speed of light
-            checkCollisionSpeed();
-
-            //Velocity overwrite will come on next frame:
-            //oldCollisionResultVel3 = collisionResultVel3;
-            //oldCollisionResultAngVel3 = collisionResultAngVel3;
+            // Let's start simple:
+            // At low enough velocities, where the Newtonian approximation is reasonable,
+            // PhysX is probably MORE accurate for even relativistic collision than the hacky relativistic collision we had
+            // (which is still in the commit history, for reference).
+            // (See EnforceCollision())
             didCollide = true;
-        }
-
-        //EXPERIMENTAL PENALTY METHOD CODE BELOW
-        private const float hookeMultiplier = 1.0f;
-        private void ApplyPenalty(Collision collision, RelativisticObject otherRO, PointAndNorm contactPoint, float combFriction, float combYoungsModulus)
-        {
-            //We grab the velocities from the RelativisticObject rather than the Rigidbody,
-            // since the Rigidbody velocity is not directly physical.
-            float mass = myRigidbody.mass;
-            Vector3 myVel = oldCollisionResultVel3;
-            Vector3 myAngVel = oldCollisionResultAngVel3;
-            Rigidbody otherRB = collision.rigidbody;
-            Vector3 otherVel = otherRO.oldCollisionResultVel3;
-            Vector3 otherAngVel = otherRO.oldCollisionResultAngVel3;
-
-            Vector3 myPRelVel = myVel.AddVelocity(-state.PlayerVelocityVector);
-            Vector4 myAccel = Get4Acceleration();
-
-            //We want to find the contact offset relative the centers of mass of in each object's inertial frame;
-            Vector3 myLocPoint, otLocPoint, contact;
-            Vector3 com = ((Vector4)opticalWorldCenterOfMass).OpticalToWorldHighPrecision(myVel, myAccel);
-            contact = myColliderIsMesh ? ((Vector4)(contactPoint.point)).OpticalToWorldHighPrecision(myVel, myAccel) : contactPoint.point;
-            myLocPoint = nonrelativisticShader ? (contact - com).InverseContractLengthBy(myVel) : (contact - com);
-
-            myAccel = Get4Acceleration();
-            com = ((Vector4)otherRO.opticalWorldCenterOfMass).OpticalToWorldHighPrecision(otherVel, myAccel);
-            contact = otherRO.myColliderIsMesh ? ((Vector4)(contactPoint.point)).OpticalToWorldHighPrecision(otherVel, myAccel) : contactPoint.point;
-            otLocPoint = otherRO.nonrelativisticShader ? (contact - com).InverseContractLengthBy(myVel) : (contact - com);
-
-            Vector3 myAngTanVel = Vector3.Cross(myAngVel, myLocPoint);
-            Vector3 myTotalVel = myVel.AddVelocity(myAngTanVel);
-            Vector3 otherAngTanVel = Vector3.Cross(otherAngVel, otLocPoint);
-            Vector3 otherTotalVel = otherVel.AddVelocity(otherAngTanVel);
-            Vector3 lineOfAction = -contactPoint.normal.InverseContractLengthBy(myVel);
-            lineOfAction.Normalize();
-            //Decompose velocity in parallel and perpendicular components:
-            Vector3 myParraVel = Vector3.Project(myTotalVel, lineOfAction);
-            Vector3 myPerpVel = (myTotalVel - myParraVel) * myParraVel.Gamma();
-            //Boost to the inertial frame where my velocity is entirely along the line of action:
-            Vector3 otherContactVel = otherTotalVel.AddVelocity(-myPerpVel);
-            //Find the relative velocity:
-            Vector3 relVel = myParraVel.RelativeVelocityTo(otherContactVel);
-            //Find the relative rapidity on the line of action, where my contact velocity is 0:
-            float relVelGamma = relVel.Gamma();
-            //Vector3 rapidityOnLoA = relVelGamma * relVel;
-
-            Vector3 myPos = opticalWorldCenterOfMass;
-            Vector3 otherPos = otherRO.opticalWorldCenterOfMass;
-            float penDist = GetPenetrationDepth(collision, myColliders[0], myPRelVel, myPos, otherPos, ref contactPoint);
-
-            
-
-            //Rotate my relative contact point:
-            Vector3 rotatedLoc = Quaternion.Inverse(transform.rotation) * myLocPoint;
-            //The relative contact point is the lever arm of the torque:
-            float myMOI = Vector3.Dot(myRigidbody.inertiaTensor, new Vector3(rotatedLoc.x * rotatedLoc.x, rotatedLoc.y * rotatedLoc.y, rotatedLoc.z * rotatedLoc.z));
-
-            Vector3 finalLinearRapidity;
-            Vector3 finalTanRapidity;
-            if (penDist > 0)
-            {
-                float impulse = (float)(hookeMultiplier * combYoungsModulus * penDist * state.FixedDeltaTimePlayer * GetTimeFactor());
-
-                Vector3 tanNorm = Vector3.Cross(Vector3.Cross(lineOfAction, relVel), lineOfAction).normalized;
-                Vector3 frictionChange = combFriction * impulse * tanNorm;
-                //The change in rapidity on the line of action:
-                finalLinearRapidity = relVelGamma * myVel + (impulse * lineOfAction + frictionChange) / mass;
-                //The change in rapidity perpendincular to the line of action:
-                finalTanRapidity = relVelGamma * myAngTanVel + Vector3.Cross(1.0f / myMOI * Vector3.Cross(myLocPoint, impulse * lineOfAction + frictionChange), myLocPoint);
-            }
-            else
-            {
-                finalLinearRapidity = relVelGamma * myVel * combFriction;
-                finalTanRapidity = relVelGamma * myAngTanVel * combFriction;
-            }
-            //Velocities aren't linearly additive in special relativity, but rapidities are:
-            float finalRapidityMag = (finalLinearRapidity + finalTanRapidity).magnitude;
-            Vector3 tanVelFinal = finalTanRapidity.RapidityToVelocity(finalRapidityMag);
-            //This is a hack. We save the new velocities to overwrite the Rigidbody velocities on the next frame:
-            collisionResultVel3 = finalLinearRapidity.RapidityToVelocity(finalRapidityMag);
-            //If the angle of the torque is close to 0 or 180, we have rounding problems:
-            float angle = Vector3.Angle(myAngVel, myLocPoint);
-            if (angle > 2.0f && angle < 178.0f)
-            {
-                collisionResultAngVel3 = Vector3.Cross(tanVelFinal, myLocPoint) / myLocPoint.sqrMagnitude;
-            }
-            else
-            {
-                collisionResultAngVel3 = myAngVel;
-            }
-            //In the ideal, it shouldn't be necessary to clamp the speed
-            // in order to prevent FTL collision results, but we could
-            // still exceed the max speed and come very close to the speed of light
-            checkCollisionSpeed();
-
-            didCollide = true;
-        }
-
-        private float GetPenetrationDepth(Collision collision, Collider myCollider, Vector3 myPRelVel, Vector3 myPos, Vector3 otherPos, ref PointAndNorm contactPoint)
-        {
-            //Raycast with other collider in a collision
-
-            //float gamma = myPRelVel.Gamma();
-
-            Vector3 testNormal;
-            float penDist = 0.0f;
-            float penTest = 0.0f;
-            Vector3 myExtents = myCollider.bounds.extents;
-            Vector3 otherExtents = collision.collider.bounds.extents;
-            float startDist = 4.0f * Mathf.Max(otherExtents.x, otherExtents.y, otherExtents.z, myExtents.x, myExtents.y, myExtents.z);
-            RaycastHit hitInfo;
-            ContactPoint point;
-            float maxLCV = collision.contacts.Length;
-            Ray ray = new Ray();
-            for (int i = 0; i < maxLCV; i++)
-            {
-                point = collision.contacts[i];
-                testNormal = point.normal;
-                ray.origin = myPos + startDist * testNormal;
-                ray.direction = -testNormal;
-
-                if (collision.collider.Raycast(ray, out hitInfo, startDist))
-                {
-                    penTest = hitInfo.distance - startDist;
-                }
-                else
-                {
-                    penTest = 0.0f;
-                }
-                if (penTest > penDist)
-                {
-                    penDist = penTest;
-                    contactPoint.point = point.point;
-                    contactPoint.normal = point.normal;
-                }
-
-                ray.origin = otherPos - startDist * testNormal;
-                ray.direction = testNormal;
-
-                if (myCollider.Raycast(ray, out hitInfo, startDist))
-                {
-                    penTest = hitInfo.distance - startDist;
-                }
-                else
-                {
-                    penTest = 0.0f;
-                }
-
-                if (penTest > penDist)
-                {
-                    penDist = penTest;
-                    contactPoint.point = point.point;
-                    contactPoint.normal = point.normal;
-                }
-            }
-
-            return penDist;
         }
 
         private void Sleep()
