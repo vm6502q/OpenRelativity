@@ -129,22 +129,8 @@ namespace OpenRelativity.Objects
 
         public bool useGravity;
 
-        //This is a velocity we "sleep" the rigid body at:
-        private const float sleepVelocity = 0.01f;
-        //Gravity might keep the velocity above this, so we also check whether the position is changing:
-        private const float sleepDistance = 0.01f;
-        private const float sleepAngle = 6f;
-        private Vector3 sleepOldPosition;
-        private Vector3 sleepOldOrientation;
-        //Once we're below the sleep velocity threshold, this is how many frames we wait for
-        // before sleeping the object:
-        private const int sleepFrameDelay = 3;
-        private int sleepFrameCounter;
-        private bool isRestingOnCollider;
         //TODO: Rigidbody doesn't stay asleep. Figure out why, and get rid of this:
         private bool isSleeping;
-        //The center of mass calculation in the rigidbody becomes non-physical when we transform the collider
-        public Vector3 opticalWorldCenterOfMass { get; set; }
         #endregion
         //Keep track of our own Mesh Filter
         private MeshFilter meshFilter;
@@ -321,10 +307,9 @@ namespace OpenRelativity.Objects
             trnsfrmdMesh.RecalculateBounds();
             transformCollider.sharedMesh = trnsfrmdMesh;
 
-            //Cache actual world center of mass, and then reset local (rest frame) center of mass:
+            // Reset physics:
             myRigidbody.ResetCenterOfMass();
-            opticalWorldCenterOfMass = myRigidbody.worldCenterOfMass;
-            myRigidbody.centerOfMass = initCOM;
+            myRigidbody.ResetInertiaTensor();
 
             //Debug.Log("Finished updating mesh collider.");
         }
@@ -585,8 +570,6 @@ namespace OpenRelativity.Objects
             _aviw = initialAviw;
             piw = transform.position;
             isSleeping = false;
-            isRestingOnCollider = false;
-            sleepFrameCounter = 0;
             myRigidbody = GetComponent<Rigidbody>();
             rawVertsBufferLength = 0;
             wasKinematic = false;
@@ -696,11 +679,6 @@ namespace OpenRelativity.Objects
                 }
                 ContractLength();
             }
-
-            if (myRigidbody != null)
-            {
-                opticalWorldCenterOfMass = myRigidbody.worldCenterOfMass;
-            }
         }
 
         private void UpdateCollider()
@@ -746,13 +724,6 @@ namespace OpenRelativity.Objects
             // TODO: Figure out how to best relate the input Rigidbody states to relativistic collision
             // outputs via PhysX.
 
-            if (nonrelativisticShader)
-            {
-                piw = ((Vector4)transform.position).OpticalToWorldHighPrecision(viw, Get4Acceleration());
-                contractor.position = piw;
-                transform.localPosition = Vector3.zero;
-            }
-
             float timeFac = GetTimeFactor();
 
             // Make sure we're not updating to faster than max speed
@@ -769,7 +740,7 @@ namespace OpenRelativity.Objects
 
         public void UpdateGravity()
         {
-            if (useGravity && !isRestingOnCollider)
+            if (useGravity)
             {
                 if (isSleeping) WakeUp();
                 properAiw = Physics.gravity;
@@ -982,7 +953,6 @@ namespace OpenRelativity.Objects
             // Accelerate after updating gravity's effect on proper acceleration
             viw += properAiw * (float)deltaTime;
 
-            // FOR THE PHYSICS UPDATE ONLY, we want rapidities passed to Rigidbodies, for collision
             UpdateRigidbodyVelocity(viw, aviw);
         }
 
@@ -1028,11 +998,6 @@ namespace OpenRelativity.Objects
                         }
                     }
                 }
-            }
-
-            if (myRigidbody != null)
-            {
-                opticalWorldCenterOfMass = myRigidbody.worldCenterOfMass;
             }
         }
 
@@ -1138,16 +1103,6 @@ namespace OpenRelativity.Objects
             GameObject otherGO = collision.gameObject;
             RelativisticObject otherRO = otherGO.GetComponent<RelativisticObject>();
 
-            if (collision.contacts.Length > 1)
-            {
-                Ray down = new Ray(opticalWorldCenterOfMass, Vector3.down);
-                RaycastHit hitInfo;
-                if (collision.collider.Raycast(down, out hitInfo, (opticalWorldCenterOfMass - otherRO.opticalWorldCenterOfMass).magnitude))
-                {
-                    isRestingOnCollider = true;
-                }
-            }
-
             //Lorentz transformation might make us come "unglued" from a collider we're resting on.
             // If we're asleep, and the other collider has zero velocity, we don't need to wake up:
             if (isSleeping && otherRO.viw == Vector3.zero)
@@ -1165,7 +1120,7 @@ namespace OpenRelativity.Objects
             EnforceCollision();
         }
 
-        private void Sleep()
+        public void Sleep()
         {
             viw = Vector3.zero;
             aviw = Vector3.zero;
@@ -1181,10 +1136,9 @@ namespace OpenRelativity.Objects
             isSleeping = true;
         }
 
-        private void WakeUp()
+        public void WakeUp()
         {
             isSleeping = false;
-            isRestingOnCollider = false;
             if (myRigidbody != null)
             {
                 myRigidbody.WakeUp();
@@ -1309,20 +1263,15 @@ namespace OpenRelativity.Objects
 
         public float GetTimeFactor()
         {
-            if (state.SqrtOneMinusVSquaredCWDividedByCSquared <= 0)
-            {
-                return 1;
-            }
-
             Vector3 pVel = state.PlayerVelocityVector;
-            //This works so long as our metric uses synchronous coordinates:
             Matrix4x4 metric = GetMetric();
 
-            float timeFac = (float)((state.SpeedOfLightSqrd + Vector4.Dot(pVel, metric * pVel)) / state.SpeedOfLightSqrd);
-            if (timeFac < 0)
+            float timeFac = 1 / Mathf.Sqrt(1 - (float)(Vector4.Dot(pVel, metric * pVel) / state.SpeedOfLightSqrd));
+            if (IsNaNOrInf(timeFac))
             {
-                timeFac = 0;
+                timeFac = 1;
             }
+
             return timeFac;
         }
     }
