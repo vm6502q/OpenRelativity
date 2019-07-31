@@ -35,7 +35,7 @@ namespace OpenRelativity.Objects
 
                 // Under instantaneous changes in velocity, the optical position should be invariant.
                 Vector4 myAccel = Get4Acceleration();
-                piw = ((Vector4)((Vector4)piw).WorldToOptical(_viw, Get4Acceleration())).OpticalToWorldHighPrecision(value, myAccel);
+                piw = ((Vector4)((Vector4)piw).WorldToOptical(_viw, myAccel)).OpticalToWorldHighPrecision(value, myAccel);
                 if (!IsNaNOrInf(piw.magnitude))
                 {
                     if (nonrelativisticShader)
@@ -753,8 +753,10 @@ namespace OpenRelativity.Objects
                 transform.localPosition = Vector3.zero;
             }
 
+            float timeFac = GetTimeFactor();
+
             // Make sure we're not updating to faster than max speed
-            Vector3 myViw = myRigidbody.velocity.RapidityToVelocity();
+            Vector3 myViw = myRigidbody.velocity / timeFac;
             float mySpeed = myViw.magnitude;
             if (mySpeed > state.MaxSpeed)
             {
@@ -762,7 +764,7 @@ namespace OpenRelativity.Objects
             }
 
             viw = myViw;
-            aviw = viw = myRigidbody.angularVelocity / myViw.Gamma();
+            aviw = viw = myRigidbody.angularVelocity / timeFac;
         }
 
         public void UpdateGravity()
@@ -780,12 +782,6 @@ namespace OpenRelativity.Objects
 
         public void Update()
         {
-            //Correct for both time dilation and change in metric due to player acceleration:
-            if (!isKinematic && !isSleeping && myRigidbody != null)
-            {
-                UpdateRigidbodyVelocity(viw, aviw);
-            }
-
             UpdateShaderParams();
 
             //This is where I'm going to change our mesh density.
@@ -987,9 +983,7 @@ namespace OpenRelativity.Objects
             viw += properAiw * (float)deltaTime;
 
             // FOR THE PHYSICS UPDATE ONLY, we want rapidities passed to Rigidbodies, for collision
-            float gamma = viw.Gamma();
-            myRigidbody.velocity = viw * gamma;
-            myRigidbody.angularVelocity = aviw * gamma;
+            UpdateRigidbodyVelocity(viw, aviw);
         }
 
         public void UpdateColliderPosition(Collider toUpdate = null)
