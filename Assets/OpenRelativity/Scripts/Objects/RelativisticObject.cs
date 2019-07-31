@@ -760,30 +760,29 @@ namespace OpenRelativity.Objects
 
         public void Update()
         {
-            if (!isKinematic && !isSleeping && myRigidbody != null)
+            if (state.MovementFrozen || nonrelativisticShader || meshFilter != null)
+            {
+                UpdateShaderParams();
+                return;
+            }
+
+            if (myRigidbody != null)
             {
                 UpdateRigidbodyVelocity(viw, aviw);
             }
 
-            UpdateShaderParams();
-
-            //This is where I'm going to change our mesh density.
-            //I'll take the model, and pass MeshDensity the mesh and unchanged vertices
-            //If it comes back as having changed something, I'll edit the mesh.
-
-            //If the shader is nonrelativistic, there's no reason to change the mesh density.
-            if (meshFilter == null || state.MovementFrozen || nonrelativisticShader)
-            {
-                return;
-            }
-
-            #region meshDensity
             ObjectMeshDensity density = GetComponent<ObjectMeshDensity>();
 
             if (density == null)
             {
+                UpdateShaderParams();
                 return;
             }
+
+            #region meshDensity
+            //This is where I'm going to change our mesh density.
+            //I'll take the model, and pass MeshDensity the mesh and unchanged vertices
+            //If it comes back as having changed something, I'll edit the mesh.
 
             //Only run MeshDensity if the mesh needs to change, and if it's passed a threshold distance.
             if (rawVertsBuffer != null && density.change != null)
@@ -823,6 +822,8 @@ namespace OpenRelativity.Objects
 
             }
             #endregion
+
+            UpdateShaderParams();
         }
 
         public float GetTisw(Vector3? pos = null)
@@ -848,13 +849,13 @@ namespace OpenRelativity.Objects
                 return;
             }
 
-            double deltaTime = state.FixedDeltaTimePlayer * GetTimeFactor();
-            double localDeltaT = deltaTime - state.FixedDeltaTimeWorld;
+            float deltaTime = (float)state.FixedDeltaTimePlayer * GetTimeFactor();
+            float localDeltaT = deltaTime - (float)state.FixedDeltaTimeWorld;
 
             if (state.conformalMap != null)
             {
                 //Update comoving position
-                Vector4 piw4 = state.conformalMap.ComoveOptical((float)deltaTime, piw);
+                Vector4 piw4 = state.conformalMap.ComoveOptical(deltaTime, piw);
                 float testMag = piw4.sqrMagnitude;
                 if (!IsNaNOrInf(testMag))
                 {
@@ -914,8 +915,10 @@ namespace OpenRelativity.Objects
                 }
             }
 
+            #region rigidbody
             // The rest of the updates are for objects with Rigidbodies that move and aren't asleep.
-            if (isKinematic || isSleeping || myRigidbody == null) {
+            if (isKinematic || isSleeping || myRigidbody == null)
+            {
 
                 if (myRigidbody != null)
                 {
@@ -931,13 +934,28 @@ namespace OpenRelativity.Objects
                     UpdateColliderPosition();
                 }
 
+                UpdateShaderParams();
+
                 // We're done.
                 return;
             }
 
-            Vector3 testVec = (float)deltaTime * viw;
+            // Gravity can affect proper acceleration
+            UpdateGravity();
+
+            // Accelerate after updating gravity's effect on proper acceleration
+            viw += properAiw * deltaTime;
+
+            // Set the Rigidbody parameters, dependent on player's point of view
+            UpdateRigidbodyVelocity(viw, aviw);
+
+            Vector3 testVec = deltaTime * viw;
             if (!IsNaNOrInf(testVec.sqrMagnitude))
             {
+                Quaternion diffRot = Quaternion.Euler(deltaTime * aviw);
+                riw = riw * diffRot;
+                myRigidbody.MoveRotation(riw);
+
                 piw += testVec;
 
                 if (nonrelativisticShader)
@@ -954,21 +972,13 @@ namespace OpenRelativity.Objects
                 {
                     myRigidbody.MovePosition(piw);
                 }
-
-                riw = Quaternion.Euler((float)deltaTime * aviw) * riw;
-                myRigidbody.MoveRotation(riw);
             }
 
             if (!myColliderIsVoxel)
             {
                 UpdateColliderPosition();
             }
-
-            // Gravity can affect proper acceleration
-            UpdateGravity();
-
-            // Accelerate after updating gravity's effect on proper acceleration
-            viw += properAiw * (float)deltaTime;
+            #endregion
 
             // FOR THE PHYSICS UPDATE ONLY, we give our rapidity to the Rigidbody
             float gamma = viw.Gamma();
