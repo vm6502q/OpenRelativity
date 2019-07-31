@@ -185,6 +185,8 @@ namespace OpenRelativity.Objects
         //private int? oldParentID;
         //Store world position, mostly for a nonrelativistic shader:
         public Vector3 piw { get; set; }
+        //Store rotation quaternion
+        public Quaternion riw { get; set; }
 
         //We use an attached shader to transform the collider verts:
         public ComputeShader colliderShader;
@@ -569,6 +571,7 @@ namespace OpenRelativity.Objects
             _viw = initialViw;
             _aviw = initialAviw;
             piw = transform.position;
+            riw = transform.rotation;
             isSleeping = false;
             myRigidbody = GetComponent<Rigidbody>();
             rawVertsBufferLength = 0;
@@ -952,7 +955,8 @@ namespace OpenRelativity.Objects
                     myRigidbody.MovePosition(piw);
                 }
 
-                myRigidbody.rotation = Quaternion.Euler((float)deltaTime * aviw) * myRigidbody.rotation;
+                riw = Quaternion.Euler((float)deltaTime * aviw) * riw;
+                myRigidbody.MoveRotation(riw);
             }
 
             if (!myColliderIsVoxel)
