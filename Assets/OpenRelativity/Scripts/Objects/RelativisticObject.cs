@@ -932,23 +932,25 @@ namespace OpenRelativity.Objects
                 return;
             }
 
-            if (nonrelativisticShader)
+            Vector3 testVec = (float)deltaTime * viw;
+            if (!IsNaNOrInf(testVec.sqrMagnitude))
             {
-                Vector3 testVec = (float)state.FixedDeltaTimeWorld * viw;
-                if (!IsNaNOrInf(testVec.sqrMagnitude))
-                {
-                    piw += (float)state.FixedDeltaTimeWorld * viw;
-                    transform.localPosition = Vector3.zero;
-                }
+                piw += testVec;
 
-                testVec = ((Vector4)piw).WorldToOptical(viw, Get4Acceleration());
-                if (!IsNaNOrInf(testVec.sqrMagnitude)) {
-                    contractor.position = testVec;
-                    ContractLength();
+                if (nonrelativisticShader)
+                {
+                    transform.localPosition = Vector3.zero;
+                    testVec = ((Vector4)piw).WorldToOptical(viw, Get4Acceleration());
+                    if (!IsNaNOrInf(testVec.sqrMagnitude))
+                    {
+                        contractor.position = testVec;
+                        ContractLength();
+                    }
                 }
-            } else
-            {
-                piw = transform.position;
+                else
+                {
+                    myRigidbody.position = piw;
+                }
             }
 
             if (!myColliderIsVoxel)
