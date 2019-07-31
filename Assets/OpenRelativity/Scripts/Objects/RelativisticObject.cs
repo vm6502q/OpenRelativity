@@ -1083,6 +1083,16 @@ namespace OpenRelativity.Objects
                 return;
             }
 
+            if ((viw.AddVelocity(-otherRO.viw).magnitude < Physics.bounceThreshold))
+            {
+                // If we're lower than the bounce threshold, just reset the state.
+                // We often end up here when player acceleration puts high apparent curvature on a too low vertex mesh collider.
+                // PhysX will force the objects apart, but this might be the least error we can get away with.
+                UpdateRigidbodyVelocity(viw, aviw);
+
+                return;
+            }
+
             //If we made it this far, we shouldn't be sleeping:
             WakeUp();
 
@@ -1107,6 +1117,16 @@ namespace OpenRelativity.Objects
             // If we're asleep, and the other collider has zero velocity, we don't need to wake up:
             if (isSleeping && otherRO.viw == Vector3.zero)
             {
+                return;
+            }
+
+            if ((viw.AddVelocity(-otherRO.viw).magnitude < Physics.bounceThreshold))
+            {
+                // If we're lower than the bounce threshold, just reset the state.
+                // We often end up here when player acceleration puts high apparent curvature on a too low vertex mesh collider.
+                // PhysX will force the objects apart, but this might be the least error we can get away with.
+                UpdateRigidbodyVelocity(viw, aviw);
+
                 return;
             }
 
