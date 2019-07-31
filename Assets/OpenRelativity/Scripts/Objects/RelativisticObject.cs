@@ -724,18 +724,19 @@ namespace OpenRelativity.Objects
             // TODO: Figure out how to best relate the input Rigidbody states to relativistic collision
             // outputs via PhysX.
 
-            float timeFac = GetTimeFactor();
+            Vector3 myViw = myRigidbody.velocity.RapidityToVelocity();
 
             // Make sure we're not updating to faster than max speed
-            Vector3 myViw = myRigidbody.velocity / timeFac;
             float mySpeed = myViw.magnitude;
             if (mySpeed > state.MaxSpeed)
             {
                 myViw = (float)state.MaxSpeed / mySpeed * myViw;
             }
 
+            float gamma = GetTimeFactor(myViw);
+
             viw = myViw;
-            aviw = viw = myRigidbody.angularVelocity / timeFac;
+            aviw = viw = myRigidbody.angularVelocity / gamma;
         }
 
         public void UpdateGravity()
@@ -753,6 +754,11 @@ namespace OpenRelativity.Objects
 
         public void Update()
         {
+            if (!isKinematic && !isSleeping && myRigidbody != null)
+            {
+                UpdateRigidbodyVelocity(viw, aviw);
+            }
+
             UpdateShaderParams();
 
             //This is where I'm going to change our mesh density.
@@ -953,7 +959,10 @@ namespace OpenRelativity.Objects
             // Accelerate after updating gravity's effect on proper acceleration
             viw += properAiw * (float)deltaTime;
 
-            UpdateRigidbodyVelocity(viw, aviw);
+            // FOR THE PHYSICS UPDATE ONLY, we give our rapidity to the Rigidbody
+            float gamma = viw.Gamma();
+            myRigidbody.velocity = gamma * viw;
+            myRigidbody.angularVelocity = gamma * aviw;
         }
 
         public void UpdateColliderPosition(Collider toUpdate = null)
@@ -1281,12 +1290,16 @@ namespace OpenRelativity.Objects
             }
         }
 
-        public float GetTimeFactor()
+        public float GetTimeFactor(Vector3? pVel = null)
         {
-            Vector3 pVel = state.PlayerVelocityVector;
+            if (!pVel.HasValue)
+            {
+                pVel = state.PlayerVelocityVector;
+            }
+
             Matrix4x4 metric = GetMetric();
 
-            float timeFac = 1 / Mathf.Sqrt(1 - (float)(Vector4.Dot(pVel, metric * pVel) / state.SpeedOfLightSqrd));
+            float timeFac = 1 / Mathf.Sqrt(1 - (float)(Vector4.Dot(pVel.Value, metric * pVel.Value) / state.SpeedOfLightSqrd));
             if (IsNaNOrInf(timeFac))
             {
                 timeFac = 1;
