@@ -143,22 +143,8 @@ namespace OpenRelativity.Objects
         private bool isRestingOnCollider;
         //TODO: Rigidbody doesn't stay asleep. Figure out why, and get rid of this:
         private bool isSleeping;
-        //This is a cap on penalty method collision.
-        //(It's roughly the Unity units equivalent of Young's Modulus of diamond.)
-        private const float maxYoungsModulus = 1220.0e9f;
         //The center of mass calculation in the rigidbody becomes non-physical when we transform the collider
         public Vector3 opticalWorldCenterOfMass { get; set; }
-        //private const float drag = 0.1f;
-        //private const float angularDrag = 0.1f;
-        public float initBounciness = 0.4f;
-        //During collision, viw getters and setters trigger many "enter" rather than "stay" events, so we smooth this:
-        private class RecentCollision
-        {
-            public double LastTime { get; set; }
-            public Collider Collider { get; set; }
-        }
-        private List<RecentCollision> collidedWith;
-        private float collideAgainWait = 0.3f;
         #endregion
         //Keep track of our own Mesh Filter
         private MeshFilter meshFilter;
@@ -603,7 +589,6 @@ namespace OpenRelativity.Objects
             sleepFrameCounter = 0;
             myRigidbody = GetComponent<Rigidbody>();
             rawVertsBufferLength = 0;
-            collidedWith = new List<RecentCollision>();
             wasKinematic = false;
             wasFrozen = false;
 
@@ -624,7 +609,6 @@ namespace OpenRelativity.Objects
             {
                 for (int i = 0; i < myColliders.Length; i++)
                 {
-                    myColliders[i].material.bounciness = initBounciness;
                     if (myColliderIsMesh)
                     {
                         ((MeshCollider)myColliders[i]).sharedMesh.MarkDynamic();
@@ -769,10 +753,8 @@ namespace OpenRelativity.Objects
                 transform.localPosition = Vector3.zero;
             }
 
-            float timeFac = GetTimeFactor();
-
             // Make sure we're not updating to faster than max speed
-            Vector3 myViw = myRigidbody.velocity / timeFac;
+            Vector3 myViw = myRigidbody.velocity.RapidityToVelocity();
             float mySpeed = myViw.magnitude;
             if (mySpeed > state.MaxSpeed)
             {
@@ -780,7 +762,7 @@ namespace OpenRelativity.Objects
             }
 
             viw = myViw;
-            aviw = viw = myRigidbody.angularVelocity / timeFac;
+            aviw = viw = myRigidbody.angularVelocity / myViw.Gamma();
         }
 
         public void UpdateGravity()
@@ -798,6 +780,12 @@ namespace OpenRelativity.Objects
 
         public void Update()
         {
+            //Correct for both time dilation and change in metric due to player acceleration:
+            if (!isKinematic && !isSleeping && myRigidbody != null)
+            {
+                UpdateRigidbodyVelocity(viw, aviw);
+            }
+
             UpdateShaderParams();
 
             //This is where I'm going to change our mesh density.
@@ -868,19 +856,6 @@ namespace OpenRelativity.Objects
         }
 
         void FixedUpdate() {
-            int lcv = 0;
-            while (lcv < collidedWith.Count)
-            {
-                if (collidedWith[lcv].LastTime + collideAgainWait <= state.TotalTimeWorld)
-                {
-                    collidedWith.RemoveAt(lcv);
-                }
-                else
-                {
-                    lcv++;
-                }
-            }
-
             if (state.MovementFrozen)
             {
                 // If our rigidbody is not null, and movement is frozen, then set the object to standstill.
@@ -1011,53 +986,10 @@ namespace OpenRelativity.Objects
             // Accelerate after updating gravity's effect on proper acceleration
             viw += properAiw * (float)deltaTime;
 
-            //Correct for both time dilation and change in metric due to player acceleration:
-            UpdateRigidbodyVelocity(viw, aviw);
-
-            float sleepThreshold = sleepVelocity * sleepVelocity;
-            bool isFallingAsleep = (viw.sqrMagnitude < sleepThreshold) && (aviw.sqrMagnitude < sleepThreshold);
-            if (!isFallingAsleep)
-            {
-                sleepFrameCounter = 0;
-            }
-            else
-            {
-                sleepFrameCounter++;
-                if (sleepFrameCounter >= sleepFrameDelay)
-                {
-                    if (useGravity && myColliders != null && myColliders.Length > 0)
-                    {
-                        int myLayer = gameObject.layer;
-                        gameObject.layer = 1 << LayerMask.NameToLayer("Ignore Raycast");
-                        Ray down = new Ray(opticalWorldCenterOfMass, Vector3.down);
-                        float extentY = myColliders[0].bounds.extents.y;
-                        RaycastHit hitInfo;
-                        float distance = (transform.position - transform.TransformPoint(Vector3.down * extentY)).magnitude;
-                        if (Physics.Raycast(down, out hitInfo, distance + 0.01f))
-                        {
-                            sleepFrameCounter = sleepFrameDelay;
-                            Sleep();
-                            isRestingOnCollider = true;
-                        }
-                        gameObject.layer = myLayer;
-                    }
-                    else
-                    {
-                        sleepFrameCounter = sleepFrameDelay;
-                        Sleep();
-                    }
-                }
-            }
-
-            if ((sleepOldPosition - piw).sqrMagnitude >= (sleepDistance * sleepDistance))
-            {
-                sleepOldPosition = piw;
-            }
-
-            if (Vector3.Angle(sleepOldOrientation, transform.forward) >= sleepAngle)
-            {
-                sleepOldOrientation = transform.forward;
-            }
+            // FOR THE PHYSICS UPDATE ONLY, we want rapidities passed to Rigidbodies, for collision
+            float gamma = viw.Gamma();
+            myRigidbody.velocity = viw * gamma;
+            myRigidbody.angularVelocity = aviw * gamma;
         }
 
         public void UpdateColliderPosition(Collider toUpdate = null)
@@ -1181,24 +1113,6 @@ namespace OpenRelativity.Objects
             {
                 return;
             }
-            else if (collidedWith.Count > 0)
-            {
-                for (int i = 0; i < collidedWith.Count; i++)
-                {
-                    //If this collision is returned, redirect to OnCollisionStay
-                    if (collision.collider.Equals(collidedWith[i].Collider))
-                    {
-                        collidedWith[i].LastTime = state.TotalTimeWorld;
-                        //Then, immediately finish.
-                        return;
-                    }
-                }
-            }
-            collidedWith.Add(new RecentCollision()
-            {
-                Collider = collision.collider,
-                LastTime = state.TotalTimeWorld
-            });
 
             GameObject otherGO = collision.gameObject;
             RelativisticObject otherRO = otherGO.GetComponent<RelativisticObject>();
