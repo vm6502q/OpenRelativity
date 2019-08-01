@@ -144,6 +144,9 @@ namespace OpenRelativity.Objects
             }
         }
 
+        // How long (in seconds) do we wait before we detect collisions with an object we just collided with?
+        private float collideWait = 0.1f;
+
         //TODO: Rigidbody doesn't stay asleep. Figure out why, and get rid of this:
         private bool isSleeping;
         #endregion
@@ -1147,8 +1150,11 @@ namespace OpenRelativity.Objects
             WakeUp();
 
             // We don't want to bug out, on many collisions with the same object
-            Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider, true);
-            StartCoroutine(EnableCollision(0.1f, collision.collider));
+            if (collideWait > 0)
+            {
+                Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider, true);
+                StartCoroutine(EnableCollision(collideWait, collision.collider));
+            }
 
             // Let's start simple:
             // At low enough velocities, where the Newtonian approximation is reasonable,
@@ -1188,6 +1194,13 @@ namespace OpenRelativity.Objects
 
             //If we made it this far, we shouldn't be sleeping:
             WakeUp();
+
+            // We don't want to bug out, on many collisions with the same object
+            if (collideWait > 0)
+            {
+                Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider, true);
+                StartCoroutine(EnableCollision(collideWait, collision.collider));
+            }
 
             // Let's start simple:
             // At low enough velocities, where the Newtonian approximation is reasonable,
