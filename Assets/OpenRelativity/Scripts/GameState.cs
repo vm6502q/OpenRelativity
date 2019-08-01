@@ -129,9 +129,20 @@ namespace OpenRelativity
         public const int splitDistance = 21000;
         #endregion
 
+        public bool IsInitDone
+        {
+            get
+            {
+                return sqrtOneMinusVSquaredCWDividedByCSquared != 0;
+            }
+        }
+
 
         public void Awake()
         {
+            // This is the "flag" that lets us know initialization is not complete.
+            sqrtOneMinusVSquaredCWDividedByCSquared = 0;
+
             if (conformalMap != null)
             {
                 conformalMap.state = this;
@@ -269,7 +280,7 @@ namespace OpenRelativity
                 * THE TIME PASSED IN WORLD FRAME
                 * ****************************/
                 //find this constant
-                sqrtOneMinusVSquaredCWDividedByCSquared = (double)Math.Sqrt(1 - (playerVelocity * playerVelocity) / cSqrd);
+                sqrtOneMinusVSquaredCWDividedByCSquared = Math.Sqrt(1 - (playerVelocity * playerVelocity) / cSqrd);
                 //inverseAcceleratedGamma = SRelativityUtil.InverseAcceleratedGamma(playerAccelerationVector, playerVelocityVector, deltaTimePlayer);
 
                 //Set by Unity, time since last update

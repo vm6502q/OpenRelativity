@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 //using System.Linq; //For debugging purposes only
 using UnityEngine;
@@ -7,10 +8,15 @@ namespace OpenRelativity.Objects
 {
     public class RelativisticObject : MonoBehaviour
     {
-        #region Rigid body physics
+        #region Public Settings
         public bool isKinematic = false;
         public bool isLightMapStatic = false;
+        public bool useGravity;
         public Vector3 initialViw;
+        public Vector3 initialAviw;
+        #endregion
+
+        #region Rigid body physics
         private Vector3 _viw = Vector3.zero;
         public Vector3 viw
         {
@@ -18,44 +24,93 @@ namespace OpenRelativity.Objects
             {
                 return _viw;
             }
-            //Changing velocities lose continuity of position,
-            // unless we transform the world position to optical position with the old velocity,
-            // and inverse transform the optical position with the new the velocity.
-            // (This keeps the optical and Minkowski position fixed.)
+
             set
             {
                 // Skip this all, if the change is negligible.
-                if (isKinematic || IsNaNOrInf(value.sqrMagnitude) || (value - viw).sqrMagnitude < SRelativityUtil.divByZeroCutoff)
+                if (isKinematic || IsNaNOrInf(value.sqrMagnitude) || (value - _viw).sqrMagnitude < SRelativityUtil.divByZeroCutoff)
                 {
                     return;
                 }
 
-                // This makes instantiation cleaner:
+                // This keeps the public parameter up-to-date:
                 initialViw = value;
 
-                // Under instantaneous changes in velocity, the optical position should be invariant.
-                Vector4 myAccel = Get4Acceleration();
-                piw = ((Vector4)((Vector4)piw).WorldToOptical(_viw, myAccel)).OpticalToWorldHighPrecision(value, myAccel);
-                if (!IsNaNOrInf(piw.magnitude))
-                {
-                    if (nonrelativisticShader)
-                    {
-                        UpdateContractorPosition();
-                    }
-                    else
-                    {
-                        transform.position = piw;
-                    }
-                }
-                _viw = value;
-                // Also update the Rigidbody, if any
-                UpdateRigidbodyVelocity(value, aviw);
-
-                // Update the shader parameters if necessary
-                UpdateShaderParams();
+                UpdateViwAndAccel(_viw, _properAiw, value, _properAiw);
             }
         }
         public Matrix4x4 viwLorentz { get; private set; }
+
+        //Store this object's angular velocity here.
+        private Vector3 _aviw;
+        public Vector3 aviw
+        {
+            get
+            {
+                return _aviw;
+            }
+            set
+            {
+                if (!isKinematic)
+                {
+                    initialAviw = value;
+                    _aviw = value;
+                    UpdateRigidbodyVelocity(viw, value);
+                }
+            }
+        }
+
+        //Store object's acceleration;
+        public Vector3 _properAiw;
+        public Vector3 properAiw
+        {
+            get
+            {
+                return _properAiw;
+            }
+
+            set
+            {
+                // Skip this all, if the change is negligible.
+                if (isKinematic || IsNaNOrInf(value.sqrMagnitude) || (value - _properAiw).sqrMagnitude < SRelativityUtil.divByZeroCutoff)
+                {
+                    return;
+                }
+
+                UpdateViwAndAccel(_viw, _properAiw, _viw, value);
+            }
+        }
+
+        public void UpdateViwAndAccel(Vector3 vi, Vector3 ai, Vector3 vf, Vector3 af)
+        {
+            //Changing velocities lose continuity of position,
+            // unless we transform the world position to optical position with the old velocity,
+            // and inverse transform the optical position with the new the velocity.
+            // (This keeps the optical position fixed.)
+
+            piw = ((Vector4)((Vector4)piw).WorldToOptical(vi, ai)).OpticalToWorldHighPrecision(vf, af);
+
+            if (!IsNaNOrInf(piw.magnitude))
+            {
+                if (nonrelativisticShader)
+                {
+                    UpdateContractorPosition();
+                }
+                else
+                {
+                    transform.position = piw;
+                }
+            }
+
+            _viw = vf;
+            _properAiw = af;
+
+            // Also update the Rigidbody, if any
+            UpdateRigidbodyVelocity(_viw, _aviw);
+
+            // Update the shader parameters if necessary
+            UpdateShaderParams();
+        }
 
         public void SetViwAndPosition(Vector3 newViw, Vector3 newPiw)
         {
@@ -77,29 +132,6 @@ namespace OpenRelativity.Objects
             UpdateShaderParams();
         }
 
-        //Store this object's angular velocity here.
-        public Vector3 initialAviw;
-        private Vector3 _aviw;
-        public Vector3 aviw
-        {
-            get
-            {
-                return _aviw;
-            }
-            set
-            {
-                if (!isKinematic)
-                {
-                    initialAviw = value;
-                    _aviw = value;
-                    UpdateRigidbodyVelocity(viw, value);
-                }
-            }
-        }
-
-        //Store object's acceleration;
-        public Vector3 properAiw = Vector3.zero;
-
         public bool isRBKinematic
         {
             get
@@ -111,8 +143,6 @@ namespace OpenRelativity.Objects
                 myRigidbody.isKinematic = value;
             }
         }
-
-        public bool useGravity;
 
         //TODO: Rigidbody doesn't stay asleep. Figure out why, and get rid of this:
         private bool isSleeping;
@@ -227,10 +257,8 @@ namespace OpenRelativity.Objects
 
         private void UpdateMeshCollider(MeshCollider transformCollider)
         {
-            //Debug.Log("Updating mesh collider.");
-
             //Freeze the physics if the global state is frozen.
-            if (state.MovementFrozen || viw.sqrMagnitude >= state.SpeedOfLightSqrd || state.SqrtOneMinusVSquaredCWDividedByCSquared <= 0)
+            if (state.MovementFrozen)
             {
                 if (!wasFrozen)
                 {
@@ -555,8 +583,11 @@ namespace OpenRelativity.Objects
         {
             _viw = initialViw;
             _aviw = initialAviw;
+            _properAiw = Vector3.zero;
+
             piw = transform.position;
             riw = transform.rotation;
+
             isSleeping = false;
             myRigidbody = GetComponent<Rigidbody>();
             rawVertsBufferLength = 0;
@@ -706,14 +737,7 @@ namespace OpenRelativity.Objects
 
             // Get the position and rotation after the collision:
             riw = myRigidbody.rotation;
-            if (nonrelativisticShader)
-            {
-                piw = ((Vector4)transform.position).OpticalToWorldHighPrecision(viw, Get4Acceleration());
-            }
-            else
-            {
-                piw = transform.position;
-            }
+            piw = nonrelativisticShader ? ((Vector4)transform.position).OpticalToWorldHighPrecision(viw, Get4Acceleration()) : transform.position;
 
             // Now, update the velocity and angular velocity based on the collision result:
             Vector3 myViw = myRigidbody.velocity.RapidityToVelocity();
@@ -989,7 +1013,7 @@ namespace OpenRelativity.Objects
             else if (!nonrelativisticShader && (myColliders != null) && (myColliders.Length > 0))
             {
                 //If we have a MeshCollider and a compute shader, transform the collider verts relativistically:
-                if (myColliderIsMesh && (colliderShader != null) && SystemInfo.supportsComputeShaders)
+                if (myColliderIsMesh && (colliderShader != null) && SystemInfo.supportsComputeShaders && state.IsInitDone)
                 {
                     for (int i = 0; i < myColliders.Length; i++)
                     {
@@ -1084,6 +1108,12 @@ namespace OpenRelativity.Objects
 
         #region 4D Rigid body mechanics
 
+        private IEnumerator EnableCollision(float delay, Collider otherCollider)
+        {
+            yield return new WaitForSeconds(delay);
+            Physics.IgnoreCollision(GetComponent<Collider>(), otherCollider, false);
+        }
+
         public void OnCollisionEnter(Collision collision)
         {
             if (myRigidbody == null || myColliders == null || myRigidbody.isKinematic)
@@ -1115,6 +1145,10 @@ namespace OpenRelativity.Objects
 
             //If we made it this far, we shouldn't be sleeping:
             WakeUp();
+
+            // We don't want to bug out, on many collisions with the same object
+            Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider, true);
+            StartCoroutine(EnableCollision(0.1f, collision.collider));
 
             // Let's start simple:
             // At low enough velocities, where the Newtonian approximation is reasonable,
@@ -1282,25 +1316,27 @@ namespace OpenRelativity.Objects
                 return;
             }
 
-            if ((!state.MovementFrozen) && (state.SqrtOneMinusVSquaredCWDividedByCSquared > 0))
-            {                    
-                float timeFac = GetTimeFactor();
-                if (!IsNaNOrInf(timeFac) && timeFac > 0)
-                {
-                    myRigidbody.velocity = mViw * timeFac;
-                    myRigidbody.angularVelocity = mAviw * timeFac;
-                }
-                else
-                {
-                    myRigidbody.velocity = Vector3.zero;
-                    myRigidbody.angularVelocity = Vector3.zero;
-                }
-            }
-            else
+            // If movement is frozen, set to zero.
+            if (state.MovementFrozen)
             {
                 myRigidbody.velocity = Vector3.zero;
                 myRigidbody.angularVelocity = Vector3.zero;
+
+                return;
             }
+
+            // If we're in an invalid state, (such as before full initialization,) set to zero.
+            float timeFac = GetTimeFactor();
+            if (IsNaNOrInf(timeFac) || timeFac == 0)
+            {
+                myRigidbody.velocity = Vector3.zero;
+                myRigidbody.angularVelocity = Vector3.zero;
+
+                return;
+            }
+
+            myRigidbody.velocity = mViw * timeFac;
+            myRigidbody.angularVelocity = mAviw * timeFac;
         }
 
         public void UpdateContractorPosition()
