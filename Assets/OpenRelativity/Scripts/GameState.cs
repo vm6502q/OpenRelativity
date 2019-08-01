@@ -270,7 +270,7 @@ namespace OpenRelativity
 
                 //Send velocities and acceleration to shader
                 Shader.SetGlobalVector("_vpc", vpc);
-                Shader.SetGlobalVector("_pap", playerAccelerationVector);
+                Shader.SetGlobalVector("_pap", PlayerAccelerationVector);
                 Shader.SetGlobalVector("_avp", PlayerAngularVelocityVector);
                 Shader.SetGlobalMatrix("_vpcLorentzMatrix", playerLorentzMatrix);
 

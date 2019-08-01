@@ -170,22 +170,23 @@ namespace OpenRelativity
 
         public static Matrix4x4 GetRindlerMetric(Vector4 riw)
         {
-            return GetRindlerMetric(riw, srCamera.PlayerAccelerationVector, srCamera.PlayerAngularVelocityVector);
+            Matrix4x4 mink = Matrix4x4.identity;
+            mink.m33 = -1;
+            return mink;
+            //return GetRindlerMetric(riw, srCamera.PlayerAccelerationVector, srCamera.PlayerAngularVelocityVector);
         }
 
         public static Matrix4x4 GetRindlerMetric(Vector4 riw, Vector4 pap, Vector3 avp)
         {
             //Find metric based on player acceleration and rest frame:
-            Vector3 angFac = Vector3.Cross(avp, riw) / c;
-            float linFac = Vector3.Dot(pap, riw) / cSqrd;
-            linFac = ((1 + linFac) * (1 + linFac) - angFac.sqrMagnitude) * cSqrd;
-            angFac *= -2;
+            float linFac = 1 + Vector3.Dot(pap, riw) / cSqrd;
+            linFac = (linFac * linFac);
 
             Matrix4x4 metric = new Matrix4x4(
-                new Vector4(-1, 0, 0, angFac.x),
-                new Vector4(0, -1, 0, angFac.y),
-                new Vector4(0, 0, -1, angFac.z),
-                new Vector4(angFac.x, angFac.y, angFac.z, linFac)
+                new Vector4(-1, 0, 0, 0),
+                new Vector4(0, -1, 0, 0),
+                new Vector4(0, 0, -1, 0),
+                new Vector4(0, 0, 0, linFac)
             );
 
             return metric;

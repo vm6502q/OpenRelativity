@@ -18,9 +18,9 @@ namespace OpenRelativity.Objects
 
         #region Rigid body physics
         // How long (in seconds) do we wait before we detect collisions with an object we just collided with?
-        private float collideWait = 0.2f;
+        private float collideWait = 0f;
         // If we have intrinsic proper acceleration besides gravity, how quickly does it degrade?
-        private float jerkDrag = 1.0f;
+        private float jerkDrag = 1f;
 
         private Vector3 _viw = Vector3.zero;
         public Vector3 viw
@@ -747,7 +747,7 @@ namespace OpenRelativity.Objects
             }
 
             float gamma = GetTimeFactor(myViw);
-            Vector3 myAccel = properAiw;// + (myViw * gamma - viw * viw.Gamma()) / (float)state.FixedDeltaTimePlayer * jerkDrag;
+            Vector3 myAccel = jerkDrag <= 0 ? properAiw : (properAiw + (myViw * gamma - viw * viw.Gamma()) * Mathf.Log(1 + (float)state.FixedDeltaTimePlayer * jerkDrag) / jerkDrag);
 
             UpdateViwAndAccel(viw, properAiw, myViw, myAccel);
             aviw = myRigidbody.angularVelocity / gamma;
@@ -938,26 +938,26 @@ namespace OpenRelativity.Objects
                 return;
             }
 
-            Vector3 myAccel = properAiw;
-
-            if (useGravity)
+            if (jerkDrag > 0)
             {
-                myAccel -= Physics.gravity;
-            }
 
-            float jerkDiff = (1 - deltaTime * jerkDrag);
-            if (jerkDiff < 0)
-            {
-                jerkDiff = 0;
-            }
-            myAccel = myAccel * jerkDiff;
+                Vector3 myAccel = properAiw;
 
-            if (useGravity)
-            {
-                myAccel += Physics.gravity;
-            }
+                if (useGravity)
+                {
+                    myAccel -= Physics.gravity;
+                }
 
-            properAiw = myAccel;
+                float jerkDiff = (1 + deltaTime * jerkDrag);
+                myAccel = myAccel / jerkDiff;
+
+                if (useGravity)
+                {
+                    myAccel += Physics.gravity;
+                }
+
+                properAiw = myAccel;
+            }
 
             // Accelerate after updating gravity's effect on proper acceleration
             viw += properAiw * deltaTime;

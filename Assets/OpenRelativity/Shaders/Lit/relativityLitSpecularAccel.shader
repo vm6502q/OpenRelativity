@@ -184,16 +184,14 @@ Shader "Relativity/Lit/Specular/ColorShift" {
 			float4 riwForMetric = mul(vpcLorentzMatrix, riw);
 
 			//Find metric based on player acceleration and rest frame:
-			float3 angFac = cross(_avp.xyz, riwForMetric.xyz) / _spdOfLight;
-			float linFac = dot(_pap.xyz, riwForMetric.xyz) / spdOfLightSqrd;
-			linFac = ((1 + linFac) * (1 + linFac) - dot(angFac, angFac)) * spdOfLightSqrd;
-			angFac *= -2 * _spdOfLight;
+			float linFac = 1 + dot(_pap.xyz, riwForMetric.xyz) / spdOfLightSqrd;
+			linFac = (linFac * linFac);
 
 			float4x4 metric = {
-				-1, 0, 0, angFac.x,
-				0, -1, 0, angFac.y,
-				0, 0, -1, angFac.z,
-				angFac.x, angFac.y, angFac.z, linFac
+				-1, 0, 0, 0,
+				0, -1, 0, 0,
+				0, 0, -1, 0,
+				0, 0, 0, linFac
 			};
 
 			//Lorentz boost back to world frame;
