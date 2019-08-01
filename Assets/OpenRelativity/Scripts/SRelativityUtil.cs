@@ -241,12 +241,12 @@ namespace OpenRelativity
             return tisw;
         }
 
-        public static Vector3 WorldToOptical(this Vector4 stpiw, Vector3 velocity, Vector4? aiw = null, Matrix4x4? viwLorentzMatrix = null)
+        public static Vector3 WorldToOptical(this Vector4 stpiw, Vector3 velocity, Vector4 aiw, Matrix4x4? viwLorentzMatrix = null)
         {
             return stpiw.WorldToOptical(velocity, srCamera.playerTransform.position, srCamera.PlayerVelocityVector, srCamera.PlayerAccelerationVector, srCamera.PlayerAngularVelocityVector, aiw, srCamera.PlayerLorentzMatrix, viwLorentzMatrix);
         }
 
-        public static Vector3 WorldToOptical(this Vector4 stpiw, Vector3 velocity, Vector3 origin, Vector3 playerVel, Vector3 pap, Vector3 avp, Vector4? aiw = null, Matrix4x4? vpcLorentzMatrix = null, Matrix4x4? viwLorentzMatrix = null)
+        public static Vector3 WorldToOptical(this Vector4 stpiw, Vector3 velocity, Vector3 origin, Vector3 playerVel, Vector3 pap, Vector3 avp, Vector4 aiw, Matrix4x4? vpcLorentzMatrix = null, Matrix4x4? viwLorentzMatrix = null)
         {
             Vector3 vpc = -playerVel / c;
             Vector3 viw = velocity / c;
@@ -280,12 +280,7 @@ namespace OpenRelativity
             //We are free to translate our position in time such that this is the case.
 
             //Apply Lorentz transform;
-            //metric = mul(transpose(viwLorentzMatrix), mul(metric, viwLorentzMatrix));
-            if (aiw == null)
-            {
-                aiw = Vector3.zero.ProperToWorldAccel(viw);
-            }
-            Vector4 aiwTransformed = viwLorentzMatrix.Value * aiw.Value;
+            Vector4 aiwTransformed = viwLorentzMatrix.Value * aiw;
             aiwTransformed.w = 0;
             Vector4 riwTransformed = viwLorentzMatrix.Value * riw;
             //Translate in time:
@@ -343,12 +338,12 @@ namespace OpenRelativity
         const int defaultOpticalToWorldMaxIterations = 5;
         const float defaultOpticalToWorldSqrErrorTolerance = 0.0001f;
 
-        public static Vector4 OpticalToWorld(this Vector4 opticalPos, Vector3 velocity, Vector4? aiw = null, Matrix4x4? vpcLorentzMatrix = null, Matrix4x4? viwLorentzMatrix = null)
+        public static Vector4 OpticalToWorld(this Vector4 opticalPos, Vector3 velocity, Vector4 aiw, Matrix4x4? vpcLorentzMatrix = null, Matrix4x4? viwLorentzMatrix = null)
         {
             return opticalPos.OpticalToWorld(velocity, srCamera.playerTransform.position, srCamera.PlayerVelocityVector, srCamera.PlayerAccelerationVector, srCamera.PlayerAngularVelocityVector, aiw, vpcLorentzMatrix, viwLorentzMatrix);
         }
 
-        public static Vector4 OpticalToWorld(this Vector4 opticalPos, Vector3 velocity, Vector3 origin, Vector3 playerVel, Vector3 pap, Vector3 avp, Vector4? aiw = null, Matrix4x4? vpcLorentzMatrix = null, Matrix4x4? viwLorentzMatrix = null)
+        public static Vector4 OpticalToWorld(this Vector4 opticalPos, Vector3 velocity, Vector3 origin, Vector3 playerVel, Vector3 pap, Vector3 avp, Vector4 aiw, Matrix4x4? vpcLorentzMatrix = null, Matrix4x4? viwLorentzMatrix = null)
         {
             Vector3 vpc = -playerVel / c;
             Vector3 viw = velocity / c;
@@ -374,11 +369,7 @@ namespace OpenRelativity
             Vector4 riwTransformed = viwToZRot * ((Vector3)riw - velocity * tisw);
             riwTransformed.w = tisw;
             Vector3 avpTransformed = viwToZRot * avp;
-            if (!aiw.HasValue)
-            {
-                aiw = Vector3.zero.ProperToWorldAccel(viw);
-            }
-            Vector3 aiwTransformed = viwToZRot * aiw.Value;
+            Vector3 aiwTransformed = viwToZRot * aiw;
 
             //We'll also Lorentz transform the vectors:
             if (viwLorentzMatrix == null)
@@ -394,9 +385,9 @@ namespace OpenRelativity
 
             float t2 = riwTransformed.w;
 
-            if (aiw.Value.sqrMagnitude > divByZeroCutoff)
+            float aiwMag = aiwTransformed.magnitude;
+            if (aiwMag> divByZeroCutoff)
             {
-                float aiwMag = aiwTransformed.magnitude;
                 //add the position offset due to acceleration
                 riwTransformed += (Vector4)(aiwTransformed) / aiwMag * c * c * (Mathf.Sqrt(1 + (aiwMag * t2 / c) * (aiwMag * t2 / c)) - 1);
             }

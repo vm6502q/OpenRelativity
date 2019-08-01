@@ -17,6 +17,11 @@ namespace OpenRelativity.Objects
         #endregion
 
         #region Rigid body physics
+        // How long (in seconds) do we wait before we detect collisions with an object we just collided with?
+        private float collideWait = 0.2f;
+        // If we have intrinsic proper acceleration besides gravity, how quickly does it degrade?
+        private float jerkDrag = 1.0f;
+
         private Vector3 _viw = Vector3.zero;
         public Vector3 viw
         {
@@ -117,8 +122,9 @@ namespace OpenRelativity.Objects
             _viw = vf;
             _properAiw = af;
 
-            // Also update the Rigidbody, if any
+            // Also update the Rigidbody and Collider, if any
             UpdateRigidbodyVelocity(_viw, _aviw);
+            UpdateColliderPosition();
 
             // Update the shader parameters if necessary
             UpdateShaderParams();
@@ -135,9 +141,6 @@ namespace OpenRelativity.Objects
                 myRigidbody.isKinematic = value;
             }
         }
-
-        // How long (in seconds) do we wait before we detect collisions with an object we just collided with?
-        private float collideWait = 0.1f;
 
         //TODO: Rigidbody doesn't stay asleep. Figure out why, and get rid of this:
         private bool isSleeping;
@@ -318,8 +321,8 @@ namespace OpenRelativity.Objects
             transformCollider.sharedMesh = trnsfrmdMesh;
 
             // Reset physics:
-            myRigidbody.ResetCenterOfMass();
-            myRigidbody.ResetInertiaTensor();
+            //myRigidbody.ResetCenterOfMass();
+            //myRigidbody.ResetInertiaTensor();
 
             //Debug.Log("Finished updating mesh collider.");
         }
@@ -578,7 +581,7 @@ namespace OpenRelativity.Objects
         {
             _viw = initialViw;
             _aviw = initialAviw;
-            _properAiw = Vector3.zero;
+            _properAiw = useGravity ? Physics.gravity : Vector3.zero;
 
             piw = transform.position;
             riw = transform.rotation;
@@ -732,7 +735,7 @@ namespace OpenRelativity.Objects
 
             // Get the position and rotation after the collision:
             riw = myRigidbody.rotation;
-            piw = nonrelativisticShader ? ((Vector4)transform.position).OpticalToWorldHighPrecision(viw, Get4Acceleration()) : transform.position;
+            //piw = nonrelativisticShader ? ((Vector4)transform.position).OpticalToWorldHighPrecision(viw, Get4Acceleration()) : transform.position;
 
             // Now, update the velocity and angular velocity based on the collision result:
             Vector3 myViw = myRigidbody.velocity.RapidityToVelocity();
@@ -744,25 +747,10 @@ namespace OpenRelativity.Objects
             }
 
             float gamma = GetTimeFactor(myViw);
+            Vector3 myAccel = properAiw;// + (myViw * gamma - viw * viw.Gamma()) / (float)state.FixedDeltaTimePlayer * jerkDrag;
 
-            viw = myViw;
+            UpdateViwAndAccel(viw, properAiw, myViw, myAccel);
             aviw = myRigidbody.angularVelocity / gamma;
-
-            // As soon as we're out of the physics update, we want our animation updates have the right viw
-            UpdateRigidbodyVelocity(viw, aviw);
-        }
-
-        public void UpdateGravity()
-        {
-            if (useGravity)
-            {
-                if (isSleeping) WakeUp();
-                properAiw = Physics.gravity;
-            }
-            else
-            {
-                properAiw = Vector3.zero;
-            }
         }
 
         public void Update()
@@ -856,6 +844,9 @@ namespace OpenRelativity.Objects
                 return;
             }
 
+            // FOR THE PHYSICS UPDATE ONLY, we give our rapidity to the Rigidbody
+            //EnforceCollision();
+
             float deltaTime = (float)state.FixedDeltaTimePlayer * GetTimeFactor();
             float localDeltaT = deltaTime - (float)state.FixedDeltaTimeWorld;
 
@@ -947,8 +938,26 @@ namespace OpenRelativity.Objects
                 return;
             }
 
-            // Gravity can affect proper acceleration
-            UpdateGravity();
+            Vector3 myAccel = properAiw;
+
+            if (useGravity)
+            {
+                myAccel -= Physics.gravity;
+            }
+
+            float jerkDiff = (1 - deltaTime * jerkDrag);
+            if (jerkDiff < 0)
+            {
+                jerkDiff = 0;
+            }
+            myAccel = myAccel * jerkDiff;
+
+            if (useGravity)
+            {
+                myAccel += Physics.gravity;
+            }
+
+            properAiw = myAccel;
 
             // Accelerate after updating gravity's effect on proper acceleration
             viw += properAiw * deltaTime;
