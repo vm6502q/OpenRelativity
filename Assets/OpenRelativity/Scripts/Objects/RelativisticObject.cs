@@ -28,8 +28,14 @@ namespace OpenRelativity.Objects
             set
             {
                 // Skip this all, if the change is negligible.
-                if (isKinematic || IsNaNOrInf(value.sqrMagnitude) || (value - _viw).sqrMagnitude < SRelativityUtil.divByZeroCutoff)
+                if (IsNaNOrInf(value.sqrMagnitude) || (value - _viw).sqrMagnitude < SRelativityUtil.divByZeroCutoff)
                 {
+                    return;
+                }
+
+                if (isKinematic)
+                {
+                    _viw = value;
                     return;
                 }
 
@@ -72,8 +78,14 @@ namespace OpenRelativity.Objects
             set
             {
                 // Skip this all, if the change is negligible.
-                if (isKinematic || IsNaNOrInf(value.sqrMagnitude) || (value - _properAiw).sqrMagnitude < SRelativityUtil.divByZeroCutoff)
+                if (IsNaNOrInf(value.sqrMagnitude) || (value - _properAiw).sqrMagnitude < SRelativityUtil.divByZeroCutoff)
                 {
+                    return;
+                }
+
+                if (isKinematic)
+                {
+                    _properAiw = value;
                     return;
                 }
 
@@ -109,26 +121,6 @@ namespace OpenRelativity.Objects
             UpdateRigidbodyVelocity(_viw, _aviw);
 
             // Update the shader parameters if necessary
-            UpdateShaderParams();
-        }
-
-        public void SetViwAndPosition(Vector3 newViw, Vector3 newPiw)
-        {
-            piw = newPiw;
-            _viw = newViw;
-            initialViw = newViw;
-            transform.position = newPiw;
-
-            UpdateContractorPosition();
-
-            MarkStaticColliderPos();
-
-            //Also update the Rigidbody, if any
-            if (!isKinematic)
-            {
-                UpdateRigidbodyVelocity(newViw, aviw);
-            }
-
             UpdateShaderParams();
         }
 
