@@ -20,7 +20,8 @@ namespace OpenRelativity.Objects
         // How long (in seconds) do we wait before we detect collisions with an object we just collided with?
         private float collideWait = 0f;
         // If we have intrinsic proper acceleration besides gravity, how quickly does it degrade?
-        private float jerkDrag = 1f;
+        // (This isn't physically how we want to handle changing acceleration, but it's a stop-gap to experiment with smooth-ish changes in proper acceleration.)
+        private float accelDrag = 0f;
 
         private Vector3 _viw = Vector3.zero;
         public Vector3 viw
@@ -747,7 +748,7 @@ namespace OpenRelativity.Objects
             }
 
             float gamma = GetTimeFactor(myViw);
-            Vector3 myAccel = jerkDrag <= 0 ? properAiw : (properAiw + (myViw * gamma - viw * viw.Gamma()) * Mathf.Log(1 + (float)state.FixedDeltaTimePlayer * jerkDrag) / jerkDrag);
+            Vector3 myAccel = accelDrag <= 0 ? properAiw : (properAiw + (myViw * gamma - viw * viw.Gamma()) * Mathf.Log(1 + (float)state.FixedDeltaTimePlayer * accelDrag) / accelDrag);
 
             UpdateViwAndAccel(viw, properAiw, myViw, myAccel);
             aviw = myRigidbody.angularVelocity / gamma;
@@ -938,7 +939,7 @@ namespace OpenRelativity.Objects
                 return;
             }
 
-            if (jerkDrag > 0)
+            if (accelDrag > 0)
             {
 
                 Vector3 myAccel = properAiw;
@@ -948,7 +949,7 @@ namespace OpenRelativity.Objects
                     myAccel -= Physics.gravity;
                 }
 
-                float jerkDiff = (1 + deltaTime * jerkDrag);
+                float jerkDiff = (1 + deltaTime * accelDrag);
                 myAccel = myAccel / jerkDiff;
 
                 if (useGravity)

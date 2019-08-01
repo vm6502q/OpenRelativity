@@ -170,10 +170,7 @@ namespace OpenRelativity
 
         public static Matrix4x4 GetRindlerMetric(Vector4 riw)
         {
-            Matrix4x4 mink = Matrix4x4.identity;
-            mink.m33 = -1;
-            return mink;
-            //return GetRindlerMetric(riw, srCamera.PlayerAccelerationVector, srCamera.PlayerAngularVelocityVector);
+            return GetRindlerMetric(riw, srCamera.PlayerAccelerationVector, srCamera.PlayerAngularVelocityVector);
         }
 
         public static Matrix4x4 GetRindlerMetric(Vector4 riw, Vector4 pap, Vector3 avp)
