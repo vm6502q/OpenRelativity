@@ -156,13 +156,20 @@ Shader "Relativity/Unlit/ColorShift"
 
 			//Find metric based on player acceleration and rest frame:
 			float linFac = 1 + dot(_pap.xyz, riwForMetric.xyz) / spdOfLightSqrd;
-			linFac = (linFac * linFac);
+			linFac *= linFac;
+			float angFac = dot(_avp.xyz, riwForMetric.xyz) / _spdOfLight;
+			angFac *= angFac;
+			float avpMagSqr = dot(_avp.xyz, _avp.xyz);
+			float3 angVec = float3(0, 0, 0);
+			if (avpMagSqr > divByZeroCutoff) {
+				angVec = 2 * angFac / (_spdOfLight * avpMagSqr) * _avp.xyz;
+			}
 
 			float4x4 metric = {
-				-1, 0, 0, 0,
-				0, -1, 0, 0,
-				0, 0, -1, 0,
-				0, 0, 0, linFac
+				-1, 0, 0, -angVec.x,
+				0, -1, 0, -angVec.y,
+				0, 0, -1, -angVec.z,
+				-angVec.x, -angVec.y, angVec.z, (linFac * (1 - angFac) - angFac)
 			};
 
 			//Lorentz boost back to world frame;

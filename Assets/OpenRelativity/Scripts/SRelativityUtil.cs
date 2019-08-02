@@ -177,13 +177,17 @@ namespace OpenRelativity
         {
             //Find metric based on player acceleration and rest frame:
             float linFac = 1 + Vector3.Dot(pap, riw) / cSqrd;
-            linFac = (linFac * linFac);
+            linFac *= linFac;
+            float angFac = Vector3.Dot(avp, riw) / c;
+            angFac *= angFac;
+            float avpMagSqr = avp.sqrMagnitude;
+            Vector3 angVec = avpMagSqr < divByZeroCutoff ? Vector3.zero : 2 * angFac / (c * avpMagSqr) * avp.normalized;
 
             Matrix4x4 metric = new Matrix4x4(
-                new Vector4(-1, 0, 0, 0),
-                new Vector4(0, -1, 0, 0),
-                new Vector4(0, 0, -1, 0),
-                new Vector4(0, 0, 0, linFac)
+                new Vector4(-1, 0, 0, -angVec.x),
+                new Vector4(0, -1, 0, -angVec.y),
+                new Vector4(0, 0, -1, -angVec.z),
+                new Vector4(-angVec.x, -angVec.y, -angVec.z, (linFac * (1 - angFac) - angFac))
             );
 
             return metric;
