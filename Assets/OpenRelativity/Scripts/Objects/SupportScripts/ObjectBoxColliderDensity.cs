@@ -175,7 +175,7 @@ namespace OpenRelativity.Objects
                 if (foundCollider)
                 {
                     toUpdateBox.center = transform.InverseTransformPoint(
-                       ((Vector4)(transform.TransformPoint(origPositions[i]))).WorldToOptical(myRO.viw, myRO.Get4Acceleration(), myRO.viwLorentz)
+                       ((Vector4)(transform.TransformPoint(origPositions[i]))).WorldToOptical(myRO.Get4Velocity(), myRO.Get4Acceleration(), myRO.viwLorentz)
                     );
                 }
             }
@@ -203,14 +203,14 @@ namespace OpenRelativity.Objects
             {
                 initCOM = myRB.centerOfMass;
             }
-            Vector3 viw;
+            Vector4 viw;
             Vector4 aiw;
             if (isStatic) {
-                viw = Vector3.zero;
-                aiw = Vector4.zero;
+                viw = Vector3.zero.ToMinkowski4Viw();
+                aiw = Vector3.zero.ProperToWorldAccel(Vector3.zero);
             }
             else {
-                viw = myRO.viw;
+                viw = myRO.viw.ToMinkowski4Viw();
                 aiw = myRO.Get4Acceleration();
             }
 

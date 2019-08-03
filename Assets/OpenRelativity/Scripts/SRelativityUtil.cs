@@ -401,7 +401,12 @@ namespace OpenRelativity
 
         public static Vector4 ToMinkowski4Viw(this Vector3 viw)
         {
-            return new Vector4(viw.x, viw.y, viw.z, (float)(Math.Sqrt(c - viw.sqrMagnitude) / c));
+            if (c < divByZeroCutoff)
+            {
+                return Vector4.zero;
+            }
+
+            return new Vector4(viw.x, viw.y, viw.z, c) * viw.Gamma();
         }
 
         public static Vector4 ProperToWorldAccel(this Vector3 propAccel, Vector3 viw)

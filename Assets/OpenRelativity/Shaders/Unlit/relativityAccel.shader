@@ -42,25 +42,6 @@ Shader "Relativity/Unlit/ColorShift"
 //Prevent NaN and Inf
 #define divByZeroCutoff 1e-8f
 
-//#define quaternion float4
-//
-//		inline quaternion fromToRotation(float3 from, float3 to) {
-//			quaternion rotation;
-//			rotation.xyz = cross(from, to);
-//			rotation.w = sqrt(dot(from, from) + dot(to, to) + dot(from, to));
-//			return normalize(rotation);
-//		}
-//
-//		//See: https://blog.molecular-matters.com/2013/05/24/a-faster-quaternion-vector-multiplication/
-//		inline float3 rotate(quaternion rot, float3 vec) {
-//			float3 temp;
-//			temp = 2 * cross(rot.xyz, vec.xyz);
-//			return vec + rot.w * temp + cross(rot.xyz, temp);
-//		}
-//
-//		inline quaternion inverse(quaternion q) {
-//			return quaternion(-q.xyz, q.w) / length(q);
-//		}
 
 		//This is the data sent from the vertex shader to the fragment shader
 		struct v2f
@@ -131,7 +112,7 @@ Shader "Relativity/Unlit/ColorShift"
 				//Get the perpendicular component of our velocity, just by subtraction
 				float3 uperp = _viw.xyz - uparra.xyz;
 				//relative velocity calculation
-				vr = float4((_vpc.xyz - uparra.xyz - (sqrt(1 - speed*speed))*uperp.xyz) / (1 + vuDot), 0);
+				vr = float4((_vpc.xyz - uparra.xyz - (sqrt(1 - speed * speed))*uperp.xyz) / (1 + vuDot), 0);
 			}
 			//If our speed is nearly zero, it could lead to infinities.
 			else
@@ -198,7 +179,7 @@ Shader "Relativity/Unlit/ColorShift"
 			riw = mul(vpcLorentzMatrix, riwForMetric);
 			riwTransformed = mul(viwLorentzMatrix, riw);
 			riwTransformed.w = 0;
-			
+
 			//(When we "dot" four-vectors, always do it with the metric at that point in space-time, like we do so here.)
 			float riwDotRiw = -dot(riwTransformed, mul(metric, riwTransformed));
 			float aiwDotAiw = -dot(aiwTransformed, mul(metric, aiwTransformed));
@@ -405,8 +386,8 @@ Shader "Relativity/Unlit/ColorShift"
 			rParam.x = weights.x; rParam.y = (float)615; rParam.z = (float)8;
 			gParam.x = weights.y; gParam.y = (float)550; gParam.z = (float)4;
 			bParam.x = weights.z; bParam.y = (float)463; bParam.z = (float)5;
-			UVParam.x = 0.02; UVParam.y = UV_START + UV_RANGE*UV; UVParam.z = (float)5;
-			IRParam.x = 0.02; IRParam.y = IR_START + IR_RANGE*IR; IRParam.z = (float)5;
+			UVParam.x = 0.02; UVParam.y = UV_START + UV_RANGE * UV; UVParam.z = (float)5;
+			IRParam.x = 0.02; IRParam.y = IR_START + IR_RANGE * IR; IRParam.z = (float)5;
 
 			xyz.x = (getXFromCurve(rParam, shift) + getXFromCurve(gParam,shift) + getXFromCurve(bParam,shift) + getXFromCurve(IRParam,shift) + getXFromCurve(UVParam,shift));
 			xyz.y = (getYFromCurve(rParam, shift) + getYFromCurve(gParam,shift) + getYFromCurve(bParam,shift) + getYFromCurve(IRParam,shift) + getYFromCurve(UVParam,shift));
@@ -422,9 +403,9 @@ Shader "Relativity/Unlit/ColorShift"
 			return float4(rgbFinal.xyz,data.a); //use me for any real build
 		}
 
-		ENDCG
+			ENDCG
 
-		Subshader {
+			Subshader {
 
 			Pass{
 				//Shader properties, for things such as transparency

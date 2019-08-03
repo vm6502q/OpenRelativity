@@ -103,7 +103,7 @@ namespace OpenRelativity.Objects
             // and inverse transform the optical position with the new the velocity.
             // (This keeps the optical position fixed.)
 
-            piw = ((Vector4)((Vector4)piw).WorldToOptical(vi, ai)).OpticalToWorldHighPrecision(vf, af);
+            piw = ((Vector4)((Vector4)piw).WorldToOptical(vi.ToMinkowski4Viw(), ai.ProperToWorldAccel(viw))).OpticalToWorldHighPrecision(vf.ToMinkowski4Viw(), af.ProperToWorldAccel(vf));
 
             if (!IsNaNOrInf(piw.magnitude))
             {
@@ -344,7 +344,7 @@ namespace OpenRelativity.Objects
         public void SetStartTime()
         {
             Vector3 playerPos = state.playerTransform.position;
-            float timeDelayToPlayer = (float)Math.Sqrt((((Vector4)piw).WorldToOptical(viw, Get4Acceleration()) - playerPos).sqrMagnitude / state.SpeedOfLightSqrd);
+            float timeDelayToPlayer = (float)Math.Sqrt((((Vector4)piw).WorldToOptical(Get4Velocity(), Get4Acceleration()) - playerPos).sqrMagnitude / state.SpeedOfLightSqrd);
             timeDelayToPlayer *= GetTimeFactor();
             startTime = (float)(state.TotalTimeWorld - timeDelayToPlayer);
             if (myRenderer != null)
@@ -354,7 +354,7 @@ namespace OpenRelativity.Objects
         public virtual void SetDeathTime()
         {
             Vector3 playerPos = state.playerTransform.position;
-            float timeDelayToPlayer = (float)Math.Sqrt((((Vector4)piw).WorldToOptical(viw, Get4Acceleration()) - playerPos).sqrMagnitude / state.SpeedOfLightSqrd);
+            float timeDelayToPlayer = (float)Math.Sqrt((((Vector4)piw).WorldToOptical(Get4Velocity(), Get4Acceleration()) - playerPos).sqrMagnitude / state.SpeedOfLightSqrd);
             timeDelayToPlayer *= GetTimeFactor();
             DeathTime = (float)(state.TotalTimeWorld - timeDelayToPlayer);
         }
@@ -790,7 +790,7 @@ namespace OpenRelativity.Objects
             {
                 //This checks if we're within our large range, first mesh density circle
                 //If we're within a distance of 40, split this mesh
-                if (!(density.state) && (RecursiveTransform(rawVertsBuffer[0], meshFilter.transform).sqrMagnitude < (21000 * 21000)))
+                if (!(density.state) && (meshFilter.transform.TransformPoint(rawVertsBuffer[0]).sqrMagnitude < (21000 * 21000)))
                 {
                     Mesh meshFilterMesh = meshFilter.mesh;
                     if (density.ReturnVerts(meshFilterMesh, true))
@@ -806,7 +806,7 @@ namespace OpenRelativity.Objects
                 }
 
                 //If the object leaves our wide range, revert mesh to original state
-                else if (density.state && (RecursiveTransform(rawVertsBuffer[0], meshFilter.transform).sqrMagnitude > (21000 * 21000)))
+                else if (density.state && (meshFilter.transform.TransformPoint(rawVertsBuffer[0]).sqrMagnitude > (21000 * 21000)))
                 {
                     Mesh meshFilterMesh = meshFilter.mesh;
                     if (density.ReturnVerts(meshFilterMesh, false))
@@ -866,7 +866,7 @@ namespace OpenRelativity.Objects
                     piw = piw4;
                     if (nonrelativisticShader)
                     {
-                        contractor.position = ((Vector4)piw).WorldToOptical(viw, Get4Acceleration());
+                        contractor.position = ((Vector4)piw).WorldToOptical(Get4Velocity(), Get4Acceleration());
                         transform.localPosition = Vector3.zero;
                     }
                     deltaTime = piw4.w;
@@ -936,7 +936,7 @@ namespace OpenRelativity.Objects
                     aviw = Vector4.zero;
                 } else
                 {
-                    transform.position = nonrelativisticShader ? ((Vector4)piw).WorldToOptical(viw, Get4Acceleration()) : piw;
+                    transform.position = nonrelativisticShader ? ((Vector4)piw).WorldToOptical(Get4Velocity(), Get4Acceleration()) : piw;
                 }
 
                 if (!myColliderIsVoxel)
@@ -987,7 +987,7 @@ namespace OpenRelativity.Objects
                 if (nonrelativisticShader)
                 {
                     transform.localPosition = Vector3.zero;
-                    testVec = ((Vector4)piw).WorldToOptical(viw, Get4Acceleration());
+                    testVec = ((Vector4)piw).WorldToOptical(Get4Velocity(), Get4Acceleration());
                     if (!IsNaNOrInf(testVec.sqrMagnitude))
                     {
                         contractor.position = testVec;
@@ -1037,7 +1037,8 @@ namespace OpenRelativity.Objects
                 //If we have a BoxCollider, transform its center to its optical position
                 else if (myColliderIsBox)
                 {
-                    Vector4 aiw = Get4Acceleration();
+                    Vector4 viw4 = Get4Velocity();
+                    Vector4 aiw4 = Get4Acceleration();
                     Vector3 pos;
                     BoxCollider collider;
                     Vector3 testPos;
@@ -1045,8 +1046,8 @@ namespace OpenRelativity.Objects
                     for (int i = 0; i < myColliders.Length; i++)
                     {
                         collider = (BoxCollider)myColliders[i];
-                        pos = transform.InverseTransformPoint(((Vector4)colliderPiw[i]));
-                        testPos = transform.InverseTransformPoint(((Vector4)pos).WorldToOptical(viw, aiw, viwLorentz));
+                        pos = transform.TransformPoint(((Vector4)colliderPiw[i]));
+                        testPos = transform.InverseTransformPoint(((Vector4)pos).WorldToOptical(viw4, aiw4, viwLorentz));
                         testMag = testPos.sqrMagnitude;
                         if (!IsNaNOrInf(testMag))
                         {
@@ -1086,23 +1087,6 @@ namespace OpenRelativity.Objects
         {
             gameObject.SetActive(false);
             //Destroy(this.gameObject);
-        }
-        public Vector3 RecursiveTransform(Vector3 pt, Transform trans)
-        {
-            //Basically, this will transform the point until it has no more parent transforms.
-            Vector3 pt1 = Vector3.zero;
-            //If we have a parent transform, run this function again
-            if (trans.parent != null)
-            {
-                pt = RecursiveTransform(pt1, trans.parent);
-
-                return pt;
-            }
-            else
-            {
-                pt1 = trans.TransformPoint(pt);
-                return pt1;
-            }
         }
 
         //This is a function that just ensures we're slower than our maximum speed. The VIW that Unity sets SHOULD (it's creator-chosen) be smaller than the maximum speed.
@@ -1325,6 +1309,11 @@ namespace OpenRelativity.Objects
             return SRelativityUtil.GetRindlerMetric(piw);
         }
 
+        public Vector4 Get4Velocity()
+        {
+            return viw.ToMinkowski4Viw();
+        }
+
         public Vector4 Get4Acceleration()
         {
             return properAiw.ProperToWorldAccel(viw);
@@ -1370,7 +1359,7 @@ namespace OpenRelativity.Objects
                 {
                     SetUpContractor();
                 }
-                contractor.position = ((Vector4)piw).WorldToOptical(viw, Get4Acceleration());
+                contractor.position = ((Vector4)piw).WorldToOptical(Get4Velocity(), Get4Acceleration());
                 transform.localPosition = Vector3.zero;
                 ContractLength();
             }
