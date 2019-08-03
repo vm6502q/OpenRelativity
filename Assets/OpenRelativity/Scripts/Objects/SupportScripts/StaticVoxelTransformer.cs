@@ -73,11 +73,13 @@ namespace OpenRelativity.Objects
 
             if (forceCPU || colliderShader == null)
             {
-                CPUUpdatePositions();
+                finishedCoroutine = false;
+                StartCoroutine("GPUUpdatePositions");
             }
             else
             {
-                GPUUpdatePositions();
+                finishedCoroutine = false;
+                StartCoroutine("CPUUpdatePositions");
             }
         }
         void Init()
@@ -168,23 +170,25 @@ namespace OpenRelativity.Objects
             if (!gameState.MovementFrozen)
             {
                 if (sphericalCulling) cullingFrameCount++;
-                if (finishedCoroutine)
+                if (!finishedCoroutine)
                 {
-                    if (sphericalCulling && ((cullingFrameCount + 1) >= cullingFrameInterval))
-                    {
-                        cullingFrameCount = 0;
-                        Cull();
-                    }
-                    if (colliderShader != null && SystemInfo.supportsComputeShaders && !forceCPU)
-                    {
-                        finishedCoroutine = false;
-                        StartCoroutine("GPUUpdatePositions");
-                    }
-                    else
-                    {
-                        finishedCoroutine = false;
-                        StartCoroutine("CPUUpdatePositions");
-                    }
+                    return;
+                }
+
+                if (sphericalCulling && ((cullingFrameCount + 1) >= cullingFrameInterval))
+                {
+                    cullingFrameCount = 0;
+                    Cull();
+                }
+                if (colliderShader != null && SystemInfo.supportsComputeShaders && !forceCPU)
+                {
+                    finishedCoroutine = false;
+                    StartCoroutine("GPUUpdatePositions");
+                }
+                else
+                {
+                    finishedCoroutine = false;
+                    StartCoroutine("CPUUpdatePositions");
                 }
             }
             else if (!wasFrozen)

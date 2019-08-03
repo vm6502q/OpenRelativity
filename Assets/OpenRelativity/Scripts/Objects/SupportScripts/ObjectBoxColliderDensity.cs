@@ -89,17 +89,16 @@ namespace OpenRelativity.Objects
             if (isStatic)
             {
                 TakeQueueNumber();
+                return;
+            }
+
+            if (colliderShader == null)
+            {
+                StartCoroutine("CPUUpdatePositions");
             }
             else
             {
-                if (colliderShader == null)
-                {
-                    CPUUpdatePositions();
-                }
-                else
-                {
-                    GPUUpdatePositions();
-                }
+                StartCoroutine("GPUUpdatePositions");
             }
         }
 
