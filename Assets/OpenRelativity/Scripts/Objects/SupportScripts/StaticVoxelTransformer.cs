@@ -71,7 +71,7 @@ namespace OpenRelativity.Objects
             //wasFrozen = false;
             coroutineTimer = new System.Diagnostics.Stopwatch();
 
-            if (forceCPU || colliderShader == null)
+            if (colliderShader != null && SystemInfo.supportsComputeShaders && !forceCPU)
             {
                 finishedCoroutine = false;
                 StartCoroutine("GPUUpdatePositions");
@@ -199,17 +199,14 @@ namespace OpenRelativity.Objects
                 queuedOrigPositionsList.AddRange(origPositionsList);
                 queuedOrigPositions = queuedOrigPositionsList.ToArray();
                 cullingFrameCount = 0;
-                //for (int i = 0; i < allColliders.Count; i++)
-                //{
-                //    allColliders[i].enabled = true;
-                //}
+
                 if (colliderShader != null && SystemInfo.supportsComputeShaders && !forceCPU)
                 {
                     finishedCoroutine = false;
                     StopCoroutine("GPUUpdatePositions");
                     StartCoroutine("GPUUpdatePositions");
                 }
-                else //if (finishedCoroutine)
+                else
                 {
                     finishedCoroutine = false;
                     StopCoroutine("CPUUpdatePositions");
@@ -298,7 +295,9 @@ namespace OpenRelativity.Objects
 
             for (int i = 0; i < queuedColliders.Count; i++)
             {
-                Vector3 newPos = queuedColliders[i].transform.InverseTransformPoint(((Vector4)(queuedOrigPositions[i])).WorldToOptical(Vector3.zero.ToMinkowski4Viw(), Vector3.zero.ProperToWorldAccel(Vector3.zero), Matrix4x4.identity));
+                Vector3 newPos = queuedColliders[i].transform.InverseTransformPoint(
+                    ((Vector4)(queuedOrigPositions[i])).WorldToOptical(Vector3.zero, Vector3.zero.ProperToWorldAccel(Vector3.zero), Matrix4x4.identity)
+                );
                 //Change mesh:
                 if ((!takePriority) && (coroutineTimer.ElapsedMilliseconds > 16))
                 {
@@ -341,7 +340,7 @@ namespace OpenRelativity.Objects
                 for (int i = 0; i < origPositionsList.Count; i++)
                 {
                     // Don't cull anything (spherically) close to the player.
-                    Vector3 colliderPos = ((Vector4)origPositionsList[i]).WorldToOptical(Vector3.zero.ToMinkowski4Viw(), Vector3.zero.ProperToWorldAccel(Vector3.zero), Matrix4x4.identity);
+                    Vector3 colliderPos = ((Vector4)origPositionsList[i]).WorldToOptical(Vector3.zero, Vector3.zero.ProperToWorldAccel(Vector3.zero), Matrix4x4.identity);
                     distSqr = (colliderPos - playerPos).sqrMagnitude;
                     if (distSqr < cullingSqrDistance)
                     {

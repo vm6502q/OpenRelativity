@@ -222,14 +222,9 @@ namespace OpenRelativity
                 viwLorentzMatrix = GetLorentzTransformMatrix(viw);
             }
 
-            //Remember that relativity is time-translation invariant.
-            //The above metric gives the numerically correct result if the time coordinate of riw is zero,
-            //(at least if the "conformal factor" or "mixed [indices] metric" is the identity).
-            //We are free to translate our position in time such that this is the case.
-
             //Apply Lorentz transform;
+            metric = viwLorentzMatrix.Value.transpose * metric * viwLorentzMatrix.Value;
             Vector4 aiwTransformed = viwLorentzMatrix.Value * aiw;
-            aiwTransformed.w = 0;
             Vector4 riwTransformed = viwLorentzMatrix.Value * riw;
             //Translate in time:
             float tisw = riwTransformed.w;
