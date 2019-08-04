@@ -1051,7 +1051,7 @@ namespace OpenRelativity.Objects
                 Vector4 tempViw = viw / (float)state.SpeedOfLight;
                 Vector3 tempAviw = aviw;
                 Vector4 tempAiw = Get4Acceleration();
-                Vector4 tempVr = viw.AddVelocity(state.PlayerVelocityVector) / (float)state.SpeedOfLight;
+                Vector4 tempVr = (-viw).AddVelocity(state.PlayerVelocityVector) / (float)state.SpeedOfLight;
 
                 //Velocity of object Lorentz transforms are the same for all points in an object,
                 // so it saves redundant GPU time to calculate them beforehand.
