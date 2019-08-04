@@ -224,7 +224,6 @@ namespace OpenRelativity.Objects
 
             colliderShaderParams.vpc = -gameState.PlayerVelocityVector / (float)gameState.SpeedOfLight;
             colliderShaderParams.playerOffset = gameState.playerTransform.position;
-            colliderShaderParams.speed = (float)(gameState.PlayerVelocity / gameState.SpeedOfLight);
             colliderShaderParams.spdOfLight = (float)gameState.SpeedOfLight;
 
             ShaderParams[] spa = new ShaderParams[1];

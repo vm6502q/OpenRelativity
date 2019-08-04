@@ -191,6 +191,7 @@ Shader "Relativity/Lit/ColorShift" {
 			//Inverse Lorentz transform the position:
 			riw = mul(_invViwLorentzMatrix, riwTransformed);
 			tisw = riw.w;
+
 			riw = float4(riw.xyz + tisw * _spdOfLight * _viw.xyz, 0);
 
 			float newz = speed * _spdOfLight * tisw;
