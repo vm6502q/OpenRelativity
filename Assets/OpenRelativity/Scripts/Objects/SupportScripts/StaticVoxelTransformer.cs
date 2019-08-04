@@ -259,7 +259,7 @@ namespace OpenRelativity.Objects
                 }
                 if (trnsfrmdPositions == null || (trnsfrmdPositions.Length < queuedOrigPositions.Length))
                 {
-                    trnsfrmdPositions = new Vector3[queuedOrigPositions.Length];
+                    trnsfrmdPositions = queuedOrigPositionsList.ToArray();
                 }
                 //Read data for frame at last possible moment:
                 if (dispatchedShader)
