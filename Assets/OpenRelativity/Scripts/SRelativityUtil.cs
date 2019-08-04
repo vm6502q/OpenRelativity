@@ -259,7 +259,7 @@ namespace OpenRelativity
             tisw = riw.w;
             riw = (Vector3)riw + tisw * velocity;
 
-            float speed = viw.magnitude;
+            float speed = vpc.magnitude;
             if (speed > divByZeroCutoff)
             {
                 float newz = speed * c * tisw;
@@ -293,7 +293,7 @@ namespace OpenRelativity
             float tisw = -pos.magnitude / c;
 
             //Transform fails and is unecessary if relative speed is zero:
-            float speed = viw.magnitude;
+            float speed = vpc.magnitude;
             if (speed > divByZeroCutoff)
             {
                 Vector4 vpcUnit = vpc / speed;

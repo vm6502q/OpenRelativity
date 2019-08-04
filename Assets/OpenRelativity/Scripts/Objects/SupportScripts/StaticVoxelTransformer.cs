@@ -308,8 +308,23 @@ namespace OpenRelativity.Objects
 
             for (int i = 0; i < queuedColliders.Count; i++)
             {
+                colliderShaderParams.viw = Vector3.zero;
+                colliderShaderParams.aiw = Vector3.zero.ProperToWorldAccel(Vector3.zero);
+                colliderShaderParams.viwLorentzMatrix = Matrix4x4.identity;
+                colliderShaderParams.invViwLorentzMatrix = Matrix4x4.identity;
+
+                colliderShaderParams.ltwMatrix = Matrix4x4.identity;
+                colliderShaderParams.wtlMatrix = Matrix4x4.identity;
+                colliderShaderParams.vpc = -state.PlayerVelocityVector / (float)state.SpeedOfLight;
+                colliderShaderParams.pap = state.PlayerAccelerationVector;
+                colliderShaderParams.avp = state.PlayerAngularVelocityVector;
+                colliderShaderParams.playerOffset = state.playerTransform.position;
+                colliderShaderParams.spdOfLight = (float)state.SpeedOfLight;
+                colliderShaderParams.vpcLorentzMatrix = state.PlayerLorentzMatrix;
+                colliderShaderParams.invVpcLorentzMatrix = state.PlayerLorentzMatrix.inverse;
+
                 Vector3 newPos = queuedColliders[i].transform.InverseTransformPoint(
-                    ((Vector4)(queuedOrigPositions[i])).WorldToOptical(Vector3.zero, Vector3.zero.ProperToWorldAccel(Vector3.zero), Matrix4x4.identity)
+                    ((Vector4)(queuedOrigPositions[i])).WorldToOptical(Vector3.zero, state.playerTransform.position, state.PlayerVelocityVector, state.PlayerAccelerationVector, state.PlayerAngularVelocityVector, Vector3.zero.ProperToWorldAccel(Vector3.zero), Matrix4x4.identity, Matrix4x4.identity)
                 );
                 //Change mesh:
                 if ((!takePriority) && (coroutineTimer.ElapsedMilliseconds > 16))
