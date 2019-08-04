@@ -760,14 +760,27 @@ namespace OpenRelativity.Objects
             }
         }
 
-        private void EnforceCollision()
+        private void EnforceCollision(Collision collision)
         {
             // Like how Rigidbody components are co-opted for efficient relativistic motion,
             // it's feasible to get (at least reasonable, if not exact) relativistic collision
             // handling by transforming the end state after PhysX collisions.
 
             // We pass the RelativisticObject's rapidity to the rigidbody, right before the physics update
-            // We restore the time-dilated visual apparent velocity, afterward.
+            // We restore the time-dilated visual apparent velocity, afterward
+
+            if (useGravity && (collision.contacts.Length > 2))
+            {
+                ContactPoint contact = collision.contacts[0];
+                if (Vector3.Dot(contact.normal, Vector3.up) > 0.5)
+                {
+                    viw = Vector3.zero;
+                    aviw = Vector3.zero;
+                    isResting = true;
+
+                    return;
+                }
+            }
 
             // Get the position and rotation after the collision:
             riw = myRigidbody.rotation;
@@ -776,11 +789,6 @@ namespace OpenRelativity.Objects
             // Now, update the velocity and angular velocity based on the collision result:
             // Make sure we're not updating to faster than max speed
             Vector3 myViw = myRigidbody.velocity.RapidityToVelocity();
-            float mySpeed = myViw.magnitude;
-            if (mySpeed > state.MaxSpeed)
-            {
-                myViw = (float)state.MaxSpeed / mySpeed * myViw;
-            }
 
             float gamma = GetTimeFactor(myViw);
 
@@ -793,6 +801,8 @@ namespace OpenRelativity.Objects
             UpdateViwAndAccel(viw, properAiw, myViw, myAccel);
 
             aviw = myRigidbody.angularVelocity / gamma;
+
+            checkSpeed();
         }
 
         public void Update()
@@ -956,7 +966,7 @@ namespace OpenRelativity.Objects
 
             #region rigidbody
             // The rest of the updates are for objects with Rigidbodies that move and aren't asleep.
-            if (isKinematic || isSleeping || myRigidbody == null)
+            if (isKinematic || isSleeping || isResting || myRigidbody == null)
             {
 
                 if (myRigidbody != null)
@@ -975,6 +985,8 @@ namespace OpenRelativity.Objects
                 }
 
                 UpdateShaderParams();
+
+                isResting = false;
 
                 // We're done.
                 return;
@@ -999,13 +1011,6 @@ namespace OpenRelativity.Objects
 
                 properAiw = myAccel;
             }
-
-            if (useGravity && isResting)
-            {
-                myAccel -= Physics.gravity;
-            }
-
-            isResting = false;
 
             // Accelerate after updating gravity's effect on proper acceleration
             viw += myAccel * deltaTime;
@@ -1041,7 +1046,7 @@ namespace OpenRelativity.Objects
             #endregion
 
             // FOR THE PHYSICS UPDATE ONLY, we give our rapidity to the Rigidbody
-            float gamma = viw.Gamma();
+            float gamma = GetTimeFactor(viw);
             myRigidbody.velocity = gamma * viw;
             myRigidbody.angularVelocity = gamma * aviw;
         }
@@ -1123,9 +1128,28 @@ namespace OpenRelativity.Objects
         //This is a function that just ensures we're slower than our maximum speed. The VIW that Unity sets SHOULD (it's creator-chosen) be smaller than the maximum speed.
         private void checkSpeed()
         {
-            if (viw.sqrMagnitude > ((state.MaxSpeed - .01) * (state.MaxSpeed - .01)))
+            float maxSpeedSqr = (float)((state.MaxSpeed - 0.01f) * (state.MaxSpeed - 0.01f));
+
+            if (viw.sqrMagnitude > maxSpeedSqr)
             {
                 viw = viw.normalized * (float)(state.MaxSpeed - .01f);
+            }
+
+            // The tangential velocities of each vertex should also not be greater than the maximum speed.
+            // (This is a relatively computationally costly check, but it's good practice.
+            
+            if (trnsfrmdMeshVerts != null)
+            {
+                for (int i = 0; i < trnsfrmdMeshVerts.Length; i++)
+                {
+                    Vector3 disp = Vector3.Scale(trnsfrmdMeshVerts[i], transform.lossyScale);
+                    Vector3 tangentialVel = Vector3.Cross(aviw, disp);
+                    float tanVelMagSqr = tangentialVel.sqrMagnitude;
+                    if (tanVelMagSqr > maxSpeedSqr)
+                    {
+                        aviw = aviw.normalized * (float)(state.MaxSpeed - 0.01f) / disp.magnitude;
+                    }
+                }
             }
         }
 
@@ -1169,16 +1193,11 @@ namespace OpenRelativity.Objects
                 return;
             }
 
-            if (collision.contacts.Length > 2)
-            {
-                isResting = true;
-            }
-
             // Let's start simple:
             // At low enough velocities, where the Newtonian approximation is reasonable,
             // PhysX is probably MORE accurate for even relativistic collision than the hacky relativistic collision we had
             // (which is still in the commit history, for reference).
-            EnforceCollision();
+            EnforceCollision(collision);
             // EnforceCollision() might opt not to set didCollide
 
             // We don't want to bug out, on many collisions with the same object

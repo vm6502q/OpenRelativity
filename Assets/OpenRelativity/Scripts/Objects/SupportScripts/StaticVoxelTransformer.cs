@@ -71,17 +71,13 @@ namespace OpenRelativity.Objects
             //wasFrozen = false;
             coroutineTimer = new System.Diagnostics.Stopwatch();
 
-            if (colliderShader != null && SystemInfo.supportsComputeShaders && !forceCPU)
-            {
-                finishedCoroutine = false;
-                StartCoroutine("GPUUpdatePositions");
-            }
-            else
-            {
-                finishedCoroutine = false;
-                StartCoroutine("CPUUpdatePositions");
-            }
+            queuedOrigPositions = new Vector3[0];
+            origPositionsList = new List<Vector3>();
+            queuedOrigPositionsList = new List<Vector3>();
+            allColliders = new List<BoxCollider>();
+            queuedColliders = new List<BoxCollider>();
         }
+
         void Init()
         {
             if (origPositionsList == null) origPositionsList = new List<Vector3>();
@@ -109,7 +105,12 @@ namespace OpenRelativity.Objects
 
             allColliders.AddRange(collidersToAdd);
             origPositionsList.AddRange(positionsToAdd);
+
+            queuedColliders.AddRange(collidersToAdd);
+            queuedOrigPositionsList.AddRange(positionsToAdd);
+
             Cull();
+
             batchSizeDict.Add(batchNum, positionsToAdd.Length);
             serialQueue.Add(batchNum);
 
@@ -149,7 +150,10 @@ namespace OpenRelativity.Objects
                     }
                 }
 
-                Cull();
+                queuedColliders.Clear();
+                queuedColliders.AddRange(allColliders);
+                queuedOrigPositionsList.Clear();
+                queuedOrigPositionsList.AddRange(origPositionsList);
 
                 return true;
             }
@@ -316,69 +320,63 @@ namespace OpenRelativity.Objects
         private void Cull()
         {
             Init();
-            if (sphericalCulling && !gameState.MovementFrozen)
+            if (!sphericalCulling || gameState.MovementFrozen)
             {
-                RelativisticObject[] ros = FindObjectsOfType<RelativisticObject>();
-                List<Vector3> rosPiw = new List<Vector3>();
-                for (int i = 0; i < ros.Length; i++)
+                return;
+            }
+
+            RelativisticObject[] ros = FindObjectsOfType<RelativisticObject>();
+            List<Vector3> rosPiw = new List<Vector3>();
+            for (int i = 0; i < ros.Length; i++)
+            {
+                if (ros[i].GetComponent<Rigidbody>() != null)
                 {
-                    if (ros[i].GetComponent<Rigidbody>() != null) {
-                        Collider roC = ros[i].GetComponent<Collider>();
-                        if ((roC != null) && roC.enabled)
-                        {
-                            rosPiw.Add(ros[i].piw);
-                        }
-                    }
-                }
-                queuedOrigPositionsList.Clear();
-                queuedColliders.Clear();
-
-                Vector3 playerPos = gameState.playerTransform.position;
-                float distSqr;
-
-                for (int i = 0; i < origPositionsList.Count; i++)
-                {
-                    // Don't cull anything (spherically) close to the player.
-                    Vector3 colliderPos = ((Vector4)origPositionsList[i]).WorldToOptical(Vector3.zero, Vector3.zero.ProperToWorldAccel(Vector3.zero), Matrix4x4.identity);
-                    distSqr = (colliderPos - playerPos).sqrMagnitude;
-                    if (distSqr < cullingSqrDistance)
+                    Collider roC = ros[i].GetComponent<Collider>();
+                    if ((roC != null) && roC.enabled)
                     {
-                        queuedColliders.Add(allColliders[i]);
-                        queuedOrigPositionsList.Add(origPositionsList[i]);
-                    } else
-                    {
-                        bool didCull = true;
-                        // The object isn't close to the player, but remote RelativisticObjects still need their own active collider spheres, if they're colliding far away.
-                        for (int j = 0; j < rosPiw.Count; j++)
-                        {
-                            distSqr = (colliderPos - rosPiw[j]).sqrMagnitude;
-                            if (distSqr < cullingSqrDistance)
-                            {
-                                queuedColliders.Add(allColliders[i]);
-                                queuedOrigPositionsList.Add(origPositionsList[i]);
-                                didCull = false;
-                                break;
-                            }
-                        }
-
-                        // If the transform is culled, reset it.
-                        if (didCull)
-                        {
-                            allColliders[i].center = allColliders[i].transform.InverseTransformPoint(origPositionsList[i]);
-                        }
+                        rosPiw.Add(ros[i].piw);
                     }
                 }
             }
-            else
-            {
-                queuedColliders.Clear();
-                queuedColliders.AddRange(allColliders);
-                queuedOrigPositionsList.Clear();
-                queuedOrigPositionsList.AddRange(origPositionsList);
-            }
+            queuedOrigPositionsList.Clear();
+            queuedColliders.Clear();
 
-            queuedOrigPositions = queuedOrigPositionsList.ToArray();
-            origPositionsBufferLength = queuedOrigPositions.Length;
+            Vector3 playerPos = gameState.playerTransform.position;
+            float distSqr;
+
+            for (int i = 0; i < origPositionsList.Count; i++)
+            {
+                // Don't cull anything (spherically) close to the player.
+                Vector3 colliderPos = ((Vector4)origPositionsList[i]).WorldToOptical(Vector3.zero, Vector3.zero.ProperToWorldAccel(Vector3.zero), Matrix4x4.identity);
+                distSqr = (colliderPos - playerPos).sqrMagnitude;
+                if (distSqr < cullingSqrDistance)
+                {
+                    queuedColliders.Add(allColliders[i]);
+                    queuedOrigPositionsList.Add(origPositionsList[i]);
+                }
+                else
+                {
+                    bool didCull = true;
+                    // The object isn't close to the player, but remote RelativisticObjects still need their own active collider spheres, if they're colliding far away.
+                    for (int j = 0; j < rosPiw.Count; j++)
+                    {
+                        distSqr = (colliderPos - rosPiw[j]).sqrMagnitude;
+                        if (distSqr < cullingSqrDistance)
+                        {
+                            queuedColliders.Add(allColliders[i]);
+                            queuedOrigPositionsList.Add(origPositionsList[i]);
+                            didCull = false;
+                            break;
+                        }
+                    }
+
+                    // If the transform is culled, reset it.
+                    if (didCull)
+                    {
+                        allColliders[i].center = allColliders[i].transform.InverseTransformPoint(origPositionsList[i]);
+                    }
+                }
+            }
         }
     }
 }
