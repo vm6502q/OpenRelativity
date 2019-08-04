@@ -388,5 +388,17 @@ namespace OpenRelativity.Objects
                 }
             }
         }
+
+        private void OnDestroy()
+        {
+            if (dispatchedShader)
+            {
+                posBuffer.GetData(trnsfrmdPositions);
+                dispatchedShader = false;
+
+                posBuffer.Release();
+                paramsBuffer.Release();
+            }
+        }
     }
 }
