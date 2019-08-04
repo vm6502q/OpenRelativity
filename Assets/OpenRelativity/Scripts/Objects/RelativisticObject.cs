@@ -1079,7 +1079,7 @@ namespace OpenRelativity.Objects
                 for (int i = 0; i < myColliders.Length; i++)
                 {
                     collider = (BoxCollider)myColliders[i];
-                    pos = transform.TransformPoint(((Vector4)colliderPiw[i]));
+                    pos = transform.TransformPoint((Vector4)colliderPiw[i]);
                     testPos = transform.InverseTransformPoint(((Vector4)pos).WorldToOptical(viw, aiw4, viwLorentz));
                     testMag = testPos.sqrMagnitude;
                     if (!IsNaNOrInf(testMag))
