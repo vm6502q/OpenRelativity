@@ -622,6 +622,8 @@ namespace OpenRelativity.Objects
             piw = nonrelativisticShader ? ((Vector4)transform.position).OpticalToWorldHighPrecision(viw, Get4Acceleration()) : transform.position;
             riw = transform.rotation;
 
+            UpdateViwAndAccel(Vector3.zero, Vector3.zero, viw, properAiw);
+
             isSleeping = false;
             myRigidbody = GetComponent<Rigidbody>();
             rawVertsBufferLength = 0;
