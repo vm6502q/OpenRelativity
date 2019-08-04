@@ -805,7 +805,7 @@ namespace OpenRelativity.Objects
             checkSpeed();
         }
 
-        public void Update()
+        void Update()
         {
             if (myRigidbody != null)
             {
