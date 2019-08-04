@@ -9,9 +9,49 @@ namespace OpenRelativity.Objects
     public class RelativisticObject : MonoBehaviour
     {
         #region Public Settings
-        public bool isKinematic = false;
+        // Set with Rigidbody isKinematic flag instead
+        public bool isKinematic
+        {
+            get
+            {
+                if (myRigidbody == null)
+                {
+                    return true;
+                }
+
+                return myRigidbody.isKinematic;
+            }
+
+            set
+            {
+                if (myRigidbody != null)
+                {
+                    myRigidbody.isKinematic = value;
+                }
+            }
+        }
         public bool isLightMapStatic = false;
-        public bool useGravity;
+        public bool _useGravity;
+        public bool useGravity
+        {
+            get
+            {
+                return _useGravity;
+            }
+
+            set
+            {
+                if (useGravity && !value)
+                {
+                    properAiw -= Physics.gravity;
+                } else if (!useGravity && value)
+                {
+                    properAiw += Physics.gravity;
+                }
+
+                _useGravity = value;
+            }
+        }
         #endregion
 
         #region Rigid body physics
@@ -575,9 +615,11 @@ namespace OpenRelativity.Objects
 
         void Start()
         {
-            _properAiw = useGravity ? Physics.gravity : Vector3.zero;
-
-            piw = transform.position;
+            if (useGravity)
+            {
+                _properAiw += Physics.gravity;
+            }
+            piw = nonrelativisticShader ? ((Vector4)transform.position).OpticalToWorldHighPrecision(viw, Get4Acceleration()) : transform.position;
             riw = transform.rotation;
 
             isSleeping = false;
