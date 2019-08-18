@@ -39,6 +39,7 @@ namespace OpenRelativity
         // Based on Strano 2019, (preprint).
         // (I will always implement potentially "cranky" features so you can toggle them off, but I might as well.)
         public bool doDegradeAccel;
+        private Vector3 frameDragAccel;
         GameState state;
 
         void Start()
@@ -64,6 +65,8 @@ namespace OpenRelativity
             invertKeyDown = false;
 
             viwMax = Mathf.Min(viwMax, (float)GameObject.FindGameObjectWithTag(Tags.player).GetComponent<GameState>().MaxSpeed);
+
+            frameDragAccel = Vector3.zero;
 
             frames = 0;
         }
@@ -237,7 +240,8 @@ namespace OpenRelativity
 
                     if (doDegradeAccel)
                     {
-                        totalAccel *= (1 - totalAccel.sqrMagnitude / (float)state.SpeedOfLight * Time.deltaTime);
+                        frameDragAccel -= totalAccel.normalized * totalAccel.sqrMagnitude / (float)state.SpeedOfLight * Time.deltaTime;
+                        totalAccel += frameDragAccel;
                     }
 
                     state.PlayerAccelerationVector = totalAccel;
