@@ -57,9 +57,11 @@ namespace OpenRelativity.Objects
         #region Rigid body physics
         // How long (in seconds) do we wait before we detect collisions with an object we just collided with?
         private float collideWait = 0f;
-        // If we have intrinsic proper acceleration besides gravity, how quickly does it degrade?
-        // (This isn't physically how we want to handle changing acceleration, but it's a stop-gap to experiment with smooth-ish changes in proper acceleration.)
-        private float accelDrag = 0f;
+
+        // Based on Strano 2019, (preprint).
+        // (I will always implement potentially "cranky" features so you can toggle them off, but I might as well.)
+        public bool doDegradeAccel = true;
+
         private bool isResting;
 
         private bool wasUsingGravity;
@@ -794,13 +796,7 @@ namespace OpenRelativity.Objects
 
             float gamma = GetTimeFactor(myViw);
 
-            Vector3 myAccel = properAiw;
-            if (accelDrag > 0)
-            {
-                myAccel += (myViw * gamma - viw * GetTimeFactor(viw)) * Mathf.Log(1 + (float)state.FixedDeltaTimePlayer * accelDrag) / accelDrag;
-            }
-
-            UpdateViwAndAccel(viw, properAiw, myViw, myAccel);
+            UpdateViwAndAccel(viw, properAiw, myViw, properAiw);
 
             aviw = myRigidbody.angularVelocity / gamma;
 
@@ -995,16 +991,15 @@ namespace OpenRelativity.Objects
             }
 
             Vector3 myAccel = properAiw;
-            if (accelDrag > 0)
+            if (doDegradeAccel)
             {
-
+                // To support Unity's concept of Newtonian gravity, we "cheat" a little on equivalence principle, here.
                 if (useGravity)
                 {
                     myAccel -= Physics.gravity;
                 }
 
-                float jerkDiff = (1 + deltaTime * accelDrag);
-                myAccel = myAccel / jerkDiff;
+                myAccel *= (1 - myAccel.sqrMagnitude / (float)state.SpeedOfLight * deltaTime);
 
                 if (useGravity)
                 {

@@ -36,6 +36,9 @@ namespace OpenRelativity
         //How fast are we going to shoot the bullets?
         public float viwMax = 3;
         //Gamestate reference for quick access
+        // Based on Strano 2019, (preprint).
+        // (I will always implement potentially "cranky" features so you can toggle them off, but I might as well.)
+        public bool doDegradeAccel;
         GameState state;
 
         void Start()
@@ -230,6 +233,11 @@ namespace OpenRelativity
                     if (state.conformalMap != null && !isFalling)
                     {
                         totalAccel += state.conformalMap.GetRindlerAcceleration(state.playerTransform.position);
+                    }
+
+                    if (doDegradeAccel)
+                    {
+                        totalAccel *= (1 - totalAccel.sqrMagnitude / (float)state.SpeedOfLight * Time.deltaTime);
                     }
 
                     state.PlayerAccelerationVector = totalAccel;

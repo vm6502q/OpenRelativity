@@ -28,6 +28,10 @@ namespace OpenRelativity
         public double totalC = 200;
         //max speed the player can achieve (starting value accessible from Unity Editor)
         public double maxPlayerSpeed;
+        // Reduced Planck constant divided by gravitational constant
+        // (WARNING: Effects implemented based on this have not been peer reviewed,
+        // but that doesn't mean they wouldn't be "cool" in a video game, at least.)
+        public float hbarOverG = 1e-12f; // Physically would be ~7.038e-45f m^5/s^3, in our universe
 
         //Use this to determine the state of the color shader. If it's True, all you'll see is the lorenz transform.
         private bool shaderOff = false;

@@ -9,7 +9,6 @@ namespace OpenRelativity.ConformalMaps
         public bool doEvaporate = true;
         public float radius = 1;
         public float radiusCutoff = 1;
-        public float hbarOverG = 7.038e-45f; // m^5/s^3
 
         override public Vector4 ComoveOptical(float properTDiff, Vector3 piw)
         {
@@ -80,7 +79,7 @@ namespace OpenRelativity.ConformalMaps
             if (!double.IsInfinity(state.FixedDeltaTimeWorld) && !double.IsNaN(state.FixedDeltaTimeWorld))
             {
                 float cTo7 = Mathf.Pow(SRelativityUtil.c, 7.0f);
-                radius = radius - ((float)state.FixedDeltaTimeWorld * Mathf.Sqrt(hbarOverG * cTo7) * 2.0f / radius);
+                radius = radius - ((float)state.FixedDeltaTimeWorld * Mathf.Sqrt(state.hbarOverG * cTo7) * 2.0f / radius);
             }
 
             if (radius < radiusCutoff)
