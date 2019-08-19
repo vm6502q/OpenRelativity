@@ -1014,7 +1014,7 @@ namespace OpenRelativity.Objects
                 // for video game purposes, there's maybe no easy way to even make it consistent, so just control it with an editor variable.)
                 float gravAccel = useGravity ? Physics.gravity.magnitude : 0;
                 gravAccel += state.conformalMap == null ? 0 : state.conformalMap.GetRindlerAcceleration(piw).magnitude;
-                myRigidbody.mass += state.gConst * (myRigidbody.mass * (gravAccel * state.fluxPerAccel - myAccel.magnitude / Mathf.Pow((float)state.SpeedOfLight, 4))) * (deltaTime / state.planckTime); 
+                myRigidbody.mass += (state.gConst * myRigidbody.mass) * ((gravAccel / state.planckAccel) * state.fluxPerAccel - myAccel.magnitude / Mathf.Pow((float)state.SpeedOfLight, 4)) * (deltaTime / state.planckTime); 
                 //... But just turn "doDegradeAccel" off, if you don't want this effect for any reason.
                 // (We ignore the "little bit" of acceleration from collisions, but maybe we could add that next.)
 

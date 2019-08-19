@@ -48,6 +48,13 @@ namespace OpenRelativity
                 return Mathf.Sqrt(hbar * gConst / Mathf.Pow((float)SpeedOfLight, 5));
             }
         }
+        public float planckAccel
+        {
+            get
+            {
+                return (float)SpeedOfLight / planckTime;
+            }
+        }
         public float fluxPerAccel = 0;
 
         //Use this to determine the state of the color shader. If it's True, all you'll see is the lorenz transform.
