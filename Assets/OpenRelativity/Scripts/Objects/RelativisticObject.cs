@@ -1005,7 +1005,7 @@ namespace OpenRelativity.Objects
 
                 // This is "really" equivalence principle, except that "typical" Newtownian accelerations are actually extreme.
                 // If the RelativisticObject is at rest on the ground, according to Strano 2019, (not yet peer reviewed,)
-                // it loses surface acceleration, (specifically not weight force,) the longer it stays in this configuration,
+                // it loses surface acceleration, (not weight force, directly,) the longer it stays in this configuration,
                 // (which should also be equivalent to a loss of rest mass.)
                 frameDragAccel -= myAccel * myAccel.sqrMagnitude / (float)state.SpeedOfLight * deltaTime;
                 myAccel += frameDragAccel;
