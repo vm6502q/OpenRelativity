@@ -61,6 +61,7 @@ namespace OpenRelativity.Objects
         // Based on Strano 2019, (preprint).
         // (I will always implement potentially "cranky" features so you can toggle them off, but I might as well.)
         public bool doDegradeAccel = true;
+        private Vector3 frameDragAccel;
 
         private bool isResting;
 
@@ -617,6 +618,7 @@ namespace OpenRelativity.Objects
 
         void Start()
         {
+            frameDragAccel = Vector3.zero;
             if (useGravity)
             {
                 _properAiw += Physics.gravity;
@@ -994,12 +996,21 @@ namespace OpenRelativity.Objects
             if (doDegradeAccel)
             {
                 // To support Unity's concept of Newtonian gravity, we "cheat" a little on equivalence principle, here.
+                // This isn't 100% right, but it keeps the world from looking like the space-time curvature is incomprehensibly 
+                // warped in a "moderate" (really, extremely high) approximately Newtonian surface gravity.
                 if (useGravity)
                 {
                     myAccel -= Physics.gravity;
                 }
 
-                myAccel *= (1 - myAccel.sqrMagnitude / (float)state.SpeedOfLight * deltaTime);
+                // This is "really" equivalence principle, except that "typical" Newtownian accelerations are actually extreme.
+                // If the RelativisticObject is at rest on the ground, according to Strano 2019, (not yet peer reviewed,)
+                // it loses weight (force), the longer it stays in this configuration, (which should also be equivalent
+                // to a loss of rest mass.)
+                frameDragAccel -= myAccel * myAccel.sqrMagnitude / (float)state.SpeedOfLight * deltaTime;
+                myAccel += frameDragAccel;
+                //... But just turn "doDegradeAccel" off, if you don't want this effect for any reason.
+                // (We ignore the "little bit" of acceleration from collisions, but maybe we could add that next.)
 
                 if (useGravity)
                 {
