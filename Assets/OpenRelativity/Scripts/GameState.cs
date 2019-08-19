@@ -31,7 +31,23 @@ namespace OpenRelativity
         // Reduced Planck constant divided by gravitational constant
         // (WARNING: Effects implemented based on this have not been peer reviewed,
         // but that doesn't mean they wouldn't be "cool" in a video game, at least.)
-        public float hbarOverG = 1e-12f; // Physically would be ~7.038e-45f m^5/s^3, in our universe
+        public float hbar = 1e-12f;
+        public float gConst = 1;
+        public float hbarOverG
+        {
+            // Physically would be ~7.038e-45f m^5/s^3, in our universe
+            get
+            {
+                return hbar / gConst;
+            }
+        }
+        public float planckTime
+        {
+            get
+            {
+                return Mathf.Sqrt(hbar * gConst / Mathf.Pow((float)SpeedOfLight, 5));
+            }
+        }
 
         //Use this to determine the state of the color shader. If it's True, all you'll see is the lorenz transform.
         private bool shaderOff = false;
