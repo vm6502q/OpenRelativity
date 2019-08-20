@@ -242,7 +242,7 @@ namespace OpenRelativity
                     {
                         Vector3 da = -totalAccel.normalized * totalAccel.sqrMagnitude / (float)state.SpeedOfLight * Time.deltaTime;
                         frameDragAccel += da;
-                        totalAccel += da;
+                        totalAccel += frameDragAccel;
                     }
 
                     state.PlayerAccelerationVector = totalAccel;
