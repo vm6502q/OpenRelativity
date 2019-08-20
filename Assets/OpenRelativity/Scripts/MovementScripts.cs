@@ -211,11 +211,7 @@ namespace OpenRelativity
                         totalAccel = totalAccel.Gamma() * totalAccel;
 
                         //Set it, depending on gravity
-                        if (!useGravity)
-                        {
-                            state.PlayerVelocityVector = rotatedVelocity;
-                        }
-                        else
+                        if (useGravity)
                         {
                             if (!isFalling)
                             {
@@ -231,21 +227,30 @@ namespace OpenRelativity
                                 state.PlayerVelocityVector = rotatedVelocity.AddVelocity((-Physics.gravity * Time.deltaTime).RapidityToVelocity());
                             }
                         }
-                    }
 
-                    if (state.conformalMap != null && !isFalling)
-                    {
-                        totalAccel += state.conformalMap.GetRindlerAcceleration(state.playerTransform.position);
-                    }
+                        if (state.conformalMap != null && !isFalling)
+                        {
+                            totalAccel += state.conformalMap.GetRindlerAcceleration(state.playerTransform.position);
+                        }
 
-                    if (doDegradeAccel)
-                    {
-                        Vector3 da = -totalAccel.normalized * totalAccel.sqrMagnitude / (float)state.SpeedOfLight * Time.deltaTime;
-                        frameDragAccel += da;
-                        totalAccel += frameDragAccel;
-                    }
+                        if (doDegradeAccel)
+                        {
+                            totalAccel += frameDragAccel;
+                            Vector3 da = -totalAccel.normalized * totalAccel.sqrMagnitude / (float)state.SpeedOfLight * Time.deltaTime;
+                            frameDragAccel += da;
+                        }
 
-                    state.PlayerAccelerationVector = totalAccel;
+                        state.PlayerAccelerationVector = totalAccel;
+
+                        if (useGravity && isFalling)
+                        {
+                            state.PlayerVelocityVector = rotatedVelocity.AddVelocity((-Physics.gravity * Time.deltaTime).RapidityToVelocity());
+                        }
+                        else
+                        {
+                            state.PlayerVelocityVector = rotatedVelocity;
+                        }
+                    }
 
                     //CHANGE the speed of light
 
