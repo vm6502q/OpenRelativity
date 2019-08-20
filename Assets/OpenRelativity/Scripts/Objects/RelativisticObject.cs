@@ -965,6 +965,41 @@ namespace OpenRelativity.Objects
             UpdateColliderPosition();
 
             #region rigidbody
+
+            Vector3 myAccel = properAiw;
+            if (doDegradeAccel)
+            {
+                // To support Unity's concept of Newtonian gravity, we "cheat" a little on equivalence principle, here.
+                // This isn't 100% right, but it keeps the world from looking like the space-time curvature is incomprehensibly 
+                // warped in a "moderate" (really, extremely high) approximately Newtonian surface gravity.
+                if (useGravity)
+                {
+                    myAccel -= Physics.gravity;
+                }
+
+                // This is "really" equivalence principle, except that "typical" Newtownian accelerations are actually extreme.
+                // If the RelativisticObject is at rest on the ground, according to Strano 2019, (not yet peer reviewed,)
+                // it loses surface acceleration, (not weight force, directly,) the longer it stays in this configuration.
+                frameDragAccel -= myAccel.normalized * myAccel.sqrMagnitude / (float)state.SpeedOfLight * deltaTime;
+                myAccel += frameDragAccel;
+                // Per Strano 2019, due to the interaction with the thermal graviton gas radiated by the Rindler horizon,
+                // there is also a loss of mass.
+                // (The applied Newtonian field implies a mass distribution that produces more gravity waves, but,
+                // for video game purposes, there's maybe no easy way to even make it consistent, so just control it with an editor variable.)
+                float gravAccel = useGravity ? Physics.gravity.magnitude : 0;
+                gravAccel += state.conformalMap == null ? 0 : state.conformalMap.GetRindlerAcceleration(piw).magnitude;
+                myRigidbody.mass += state.planckMass * (state.gConst * myRigidbody.mass / state.planckMass) * ((state.fluxPerAccel * gravAccel - myAccel.magnitude) / state.planckAccel) * (deltaTime / state.planckTime);
+                //... But just turn "doDegradeAccel" off, if you don't want this effect for any reason.
+                // (We ignore the "little bit" of acceleration from collisions, but maybe we could add that next.)
+
+                if (useGravity)
+                {
+                    myAccel += Physics.gravity;
+                }
+
+                properAiw = myAccel;
+            }
+
             // The rest of the updates are for objects with Rigidbodies that move and aren't asleep.
             if (isKinematic || isSleeping || isResting || myRigidbody == null)
             {
@@ -990,40 +1025,6 @@ namespace OpenRelativity.Objects
 
                 // We're done.
                 return;
-            }
-
-            Vector3 myAccel = properAiw;
-            if (doDegradeAccel)
-            {
-                // To support Unity's concept of Newtonian gravity, we "cheat" a little on equivalence principle, here.
-                // This isn't 100% right, but it keeps the world from looking like the space-time curvature is incomprehensibly 
-                // warped in a "moderate" (really, extremely high) approximately Newtonian surface gravity.
-                if (useGravity)
-                {
-                    myAccel -= Physics.gravity;
-                }
-
-                // This is "really" equivalence principle, except that "typical" Newtownian accelerations are actually extreme.
-                // If the RelativisticObject is at rest on the ground, according to Strano 2019, (not yet peer reviewed,)
-                // it loses surface acceleration, (not weight force, directly,) the longer it stays in this configuration.
-                frameDragAccel -= myAccel * myAccel.sqrMagnitude / (float)state.SpeedOfLight * deltaTime;
-                myAccel += frameDragAccel;
-                // Per Strano 2019, due to the interaction with the thermal graviton gas radiated by the Rindler horizon,
-                // there is also a loss of mass.
-                // (The applied Newtonian field implies a mass distribution that produces more gravity waves, but,
-                // for video game purposes, there's maybe no easy way to even make it consistent, so just control it with an editor variable.)
-                float gravAccel = useGravity ? Physics.gravity.magnitude : 0;
-                gravAccel += state.conformalMap == null ? 0 : state.conformalMap.GetRindlerAcceleration(piw).magnitude;
-                myRigidbody.mass += state.planckMass * (state.gConst * myRigidbody.mass / state.planckMass) * ((state.fluxPerAccel * gravAccel - myAccel.magnitude) / state.planckAccel) * (deltaTime / state.planckTime); 
-                //... But just turn "doDegradeAccel" off, if you don't want this effect for any reason.
-                // (We ignore the "little bit" of acceleration from collisions, but maybe we could add that next.)
-
-                if (useGravity)
-                {
-                    myAccel += Physics.gravity;
-                }
-
-                properAiw = myAccel;
             }
 
             // Accelerate after updating gravity's effect on proper acceleration
@@ -1188,6 +1189,11 @@ namespace OpenRelativity.Objects
         public void OnCollisionStay(Collision collision)
         {
             OnCollision(collision);
+        }
+
+        public void OnCollisionExit(Collision collision)
+        {
+            
         }
 
         public void OnCollision(Collision collision)
