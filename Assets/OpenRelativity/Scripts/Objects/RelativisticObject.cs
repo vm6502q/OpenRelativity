@@ -972,16 +972,16 @@ namespace OpenRelativity.Objects
                 // To support Unity's concept of Newtonian gravity, we "cheat" a little on equivalence principle, here.
                 // This isn't 100% right, but it keeps the world from looking like the space-time curvature is incomprehensibly 
                 // warped in a "moderate" (really, extremely high) approximately Newtonian surface gravity.
-                if (useGravity)
+                if (useGravity && !isResting)
                 {
                     myAccel -= Physics.gravity;
                 }
 
-                // This is "really" equivalence principle, except that "typical" Newtownian accelerations are actually extreme.
                 // If the RelativisticObject is at rest on the ground, according to Strano 2019, (not yet peer reviewed,)
                 // it loses surface acceleration, (not weight force, directly,) the longer it stays in this configuration.
-                frameDragAccel -= myAccel.normalized * myAccel.sqrMagnitude / (float)state.SpeedOfLight * deltaTime;
-                myAccel += frameDragAccel;
+                Vector3 da = -myAccel.normalized * myAccel.sqrMagnitude / (float)state.SpeedOfLight * deltaTime;
+                frameDragAccel += da;
+                myAccel += da;
                 // Per Strano 2019, due to the interaction with the thermal graviton gas radiated by the Rindler horizon,
                 // there is also a loss of mass.
                 // (The applied Newtonian field implies a mass distribution that produces more gravity waves, but,
@@ -992,7 +992,7 @@ namespace OpenRelativity.Objects
                 //... But just turn "doDegradeAccel" off, if you don't want this effect for any reason.
                 // (We ignore the "little bit" of acceleration from collisions, but maybe we could add that next.)
 
-                if (useGravity)
+                if (useGravity && !isResting)
                 {
                     myAccel += Physics.gravity;
                 }

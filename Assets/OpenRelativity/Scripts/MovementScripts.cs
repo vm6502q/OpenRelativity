@@ -240,8 +240,9 @@ namespace OpenRelativity
 
                     if (doDegradeAccel)
                     {
-                        frameDragAccel -= totalAccel.normalized * totalAccel.sqrMagnitude / (float)state.SpeedOfLight * Time.deltaTime;
-                        totalAccel += frameDragAccel;
+                        Vector3 da = -totalAccel.normalized * totalAccel.sqrMagnitude / (float)state.SpeedOfLight * Time.deltaTime;
+                        frameDragAccel += da;
+                        totalAccel += da;
                     }
 
                     state.PlayerAccelerationVector = totalAccel;
