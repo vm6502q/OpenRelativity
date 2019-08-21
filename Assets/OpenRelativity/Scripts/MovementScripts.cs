@@ -127,9 +127,6 @@ namespace OpenRelativity
                     }
 
 
-                    //Store our added velocity into temporary variable addedVelocity
-                    Vector3 addedVelocity = Vector3.zero;
-
                     //Turn our camera rotation into a Quaternion. This allows us to make where we're pointing the direction of our added velocity.
                     //If you want to constrain the player to just x/z movement, with no Y direction movement, comment out the next two lines
                     //and uncomment the line below that is marked
@@ -139,118 +136,98 @@ namespace OpenRelativity
                     //UNCOMMENT THIS LINE if you would like to constrain the player to just x/z movement.
                     //Quaternion cameraRotation = Quaternion.AngleAxis(camTransform.eulerAngles.y, Vector3.up);
 
+                    Vector3 totalAccel = Vector3.zero;
 
                     float temp;
                     //Movement due to left/right input
-                    addedVelocity += new Vector3(0, 0, (temp = -Input.GetAxis("Vertical")) * ACCEL_RATE) * Time.deltaTime;
+                    totalAccel += new Vector3(0, 0, (temp = -Input.GetAxis("Vertical")) * ACCEL_RATE);
                     if (temp != 0)
                     {
                         state.keyHit = true;
                     }
-                    addedVelocity += new Vector3((temp = -Input.GetAxis("Horizontal")) * ACCEL_RATE, 0, 0) * Time.deltaTime;
+                    totalAccel += new Vector3((temp = -Input.GetAxis("Horizontal")) * ACCEL_RATE, 0, 0);
                     if (temp != 0)
                     {
                         state.keyHit = true;
                     }
 
                     //And rotate our added velocity by camera angle
-                    addedVelocity = cameraRotation * addedVelocity;
+                    totalAccel = cameraRotation * totalAccel;
 
                     //AUTO SLOW DOWN CODE BLOCK
 
                     //If we are not adding velocity this round to our x direction, slow down
-                    if (addedVelocity.x == 0)
+                    if (totalAccel.x == 0)
                     {
-                        addedVelocity += new Vector3(-1 * SLOW_DOWN_RATE * playerVelocityVector.x, 0, 0) * Time.deltaTime;
+                        totalAccel.x += -1 * SLOW_DOWN_RATE * playerVelocityVector.x;
                     }
                     //If we are not adding velocity this round to our z direction, slow down
-                    if (addedVelocity.z == 0)
+                    if (totalAccel.z == 0)
                     {
-                        addedVelocity += new Vector3(0, 0, -1 * SLOW_DOWN_RATE * playerVelocityVector.z) * Time.deltaTime;
+                        totalAccel.z += -1 * SLOW_DOWN_RATE * playerVelocityVector.z;
                     }
                     //If we are not adding velocity this round to our y direction, slow down
-                    if (addedVelocity.y == 0)
+                    if (totalAccel.y == 0)
                     {
-                        addedVelocity += new Vector3(0, -1 * SLOW_DOWN_RATE * playerVelocityVector.y, 0) * Time.deltaTime;
+                        totalAccel.y += -1 * SLOW_DOWN_RATE * playerVelocityVector.y;
                     }
 
-                    /*
-                     * IF you turn on this bit of code, you'll get head bob. It's a fun little effect, but if you make the magnitude of the cosine too large it gets sickening.
-                    if (!double.IsNaN((float)(0.2 * Mathf.Cos((float)GetComponent<GameState>().TotalTimePlayer) * Time.deltaTime)) && frames > 2)
+                    Vector3 quasiWorldAccel = totalAccel;
+
+                    if ((Time.deltaTime > 0) && (useGravity || (totalAccel.sqrMagnitude != 0) || (frameDragAccel.sqrMagnitude != 0)))
                     {
-                        addedVelocity.y += (float)(0.2 * Mathf.Cos((float)GetComponent<GameState>().TotalTimePlayer) * Time.deltaTime);
-                    }
-                    */
-
-                    Vector3 totalAccel = Vector3.zero;
-                    //Add the velocities here. remember, this is the equation:
-                    //vNew = (1/(1+vOld*vAddx/cSqrd))*(Vector3(vAdd.x+vOld.x,vAdd.y/Gamma,vAdd.z/Gamma))
-                    if (addedVelocity.sqrMagnitude != 0 || useGravity)
-                    {
-                        //get gamma so we don't have to bother getting it every time
-                        float gamma = (float)state.SqrtOneMinusVSquaredCWDividedByCSquared;
-
-                        //Rotate our velocity Vector    
-                        Vector3 rotatedVelocity = rotateX * playerVelocityVector;
-
-                        if (addedVelocity.sqrMagnitude != 0)
+                        if (!isFalling)
                         {
-                            //Rotate our added Velocity
-                            addedVelocity = rotateX * addedVelocity;
-
-                            //Do relativistic velocity addition as described by the above equation.
-                            rotatedVelocity = (1 / (1 + (rotatedVelocity.x * addedVelocity.x) / (float)state.SpeedOfLightSqrd)) *
-                                (new Vector3(addedVelocity.x + rotatedVelocity.x, addedVelocity.y * gamma, gamma * addedVelocity.z));
-                        }
-
-                        //Unrotate our new total velocity
-                        rotatedVelocity = unRotateX * rotatedVelocity;
-
-                        //3-acceleration acts as classically on the rapidity, rather than velocity.
-                        totalAccel = (addedVelocity / Time.deltaTime);
-                        totalAccel = totalAccel.Gamma() * totalAccel;
-
-                        //Set it, depending on gravity
-                        if (useGravity)
-                        {
-                            if (!isFalling)
+                            if (quasiWorldAccel.y < 0)
                             {
-                                if (rotatedVelocity.y > 0.0f)
-                                {
-                                    rotatedVelocity.y = 0.0f;
-                                }
-                                state.PlayerVelocityVector = rotatedVelocity;
+                                quasiWorldAccel.y = 0;
+                            }
+
+                            if (totalAccel.y < 0)
+                            {
+                                totalAccel.y = 0;
+                            }
+
+                            if (useGravity)
+                            {
                                 totalAccel -= Physics.gravity;
                             }
-                            else
+
+                            if (state.conformalMap != null)
                             {
-                                state.PlayerVelocityVector = rotatedVelocity.AddVelocity((-Physics.gravity * Time.deltaTime).RapidityToVelocity());
+                                totalAccel += state.conformalMap.GetRindlerAcceleration(state.playerTransform.position);
                             }
                         }
-
-                        if (state.conformalMap != null && !isFalling)
+                        else if (useGravity)
                         {
-                            totalAccel += state.conformalMap.GetRindlerAcceleration(state.playerTransform.position);
+                            quasiWorldAccel -= Physics.gravity;
                         }
 
                         if (doDegradeAccel)
                         {
+                            // This isn't "smooth," but the player shouldn't fall through the floor.
+                            if (!isFalling && frameDragAccel.y < 0)
+                            {
+                                frameDragAccel.y = 0;
+                            }
+
+                            quasiWorldAccel += frameDragAccel;
                             totalAccel += frameDragAccel;
                             Vector3 da = -totalAccel.normalized * totalAccel.sqrMagnitude / (float)state.SpeedOfLight * Time.deltaTime;
                             frameDragAccel += da;
                         }
-
-                        state.PlayerAccelerationVector = totalAccel;
-
-                        if (useGravity && isFalling)
-                        {
-                            state.PlayerVelocityVector = rotatedVelocity.AddVelocity((-Physics.gravity * Time.deltaTime).RapidityToVelocity());
-                        }
-                        else
-                        {
-                            state.PlayerVelocityVector = rotatedVelocity;
-                        }
                     }
+
+                    //3-acceleration acts as classically on the rapidity, rather than velocity.
+                    Vector3 totalVel = playerVelocityVector.AddVelocity((quasiWorldAccel * Time.deltaTime).RapidityToVelocity());
+                    Vector3 projVOnG = Vector3.Project(totalVel, Physics.gravity);
+                    if (useGravity && !isFalling && ((projVOnG - Physics.gravity).sqrMagnitude < SRelativityUtil.divByZeroCutoff))
+                    {
+                        totalVel = totalVel.AddVelocity(projVOnG * totalVel.Gamma());
+                    }
+
+                    state.PlayerVelocityVector = totalVel;
+                    state.PlayerAccelerationVector = totalAccel;
 
                     //CHANGE the speed of light
 
@@ -397,6 +374,13 @@ namespace OpenRelativity
                     if (pVel.y > 0.0f)
                     {
                         state.PlayerVelocityVector = state.PlayerVelocityVector.AddVelocity(new Vector3(0.0f, -pVel.y * pVelPerp.Gamma(), 0.0f));
+                    }
+
+                    Vector3 pAccel = state.PlayerAccelerationVector;
+                    if (pAccel.y < 0.0f)
+                    {
+                        pAccel.y = 0.0f;
+                        state.PlayerAccelerationVector = pAccel;
                     }
 
                     otherRO.UpdateColliderPosition(collider);
