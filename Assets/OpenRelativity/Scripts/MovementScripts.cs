@@ -38,6 +38,7 @@ namespace OpenRelativity
         //Gamestate reference for quick access
         // Based on Strano 2019, (preprint).
         // (I will always implement potentially "cranky" features so you can toggle them off, but I might as well.)
+        public float floorDrag = 0.1f;
         public bool doDegradeAccel;
         private Vector3 frameDragAccel;
         GameState state;
@@ -159,17 +160,17 @@ namespace OpenRelativity
                     //If we are not adding velocity this round to our x direction, slow down
                     if (totalAccel.x == 0)
                     {
-                        totalAccel.x += -1 * SLOW_DOWN_RATE * playerVelocityVector.x;
+                        totalAccel.x += -SLOW_DOWN_RATE * playerVelocityVector.x;
                     }
                     //If we are not adding velocity this round to our z direction, slow down
                     if (totalAccel.z == 0)
                     {
-                        totalAccel.z += -1 * SLOW_DOWN_RATE * playerVelocityVector.z;
+                        totalAccel.z += -SLOW_DOWN_RATE * playerVelocityVector.z;
                     }
                     //If we are not adding velocity this round to our y direction, slow down
                     if (totalAccel.y == 0)
                     {
-                        totalAccel.y += -1 * SLOW_DOWN_RATE * playerVelocityVector.y;
+                        totalAccel.y += -SLOW_DOWN_RATE * playerVelocityVector.y;
                     }
 
                     Vector3 quasiWorldAccel = totalAccel;
@@ -211,10 +212,18 @@ namespace OpenRelativity
                                 frameDragAccel.y = 0;
                             }
 
+                            // Per Strano 2019, acceleration "nudges" the preferred accelerated rest frame.
+                            // (Relativity privileges no "inertial" frame, but there is intrinsic observable difference between "accelerated frames.")
+                            // (The author speculates, this accelerated frame "nudge" might be equivalent to the 3-vector potential of the Higgs field.
+                            // The scalar potential can excite the "fundamental" rest mass. The independence of the rest mass from gravitational acceleration
+                            // has been known since Galileo.)
                             quasiWorldAccel += frameDragAccel;
                             totalAccel += frameDragAccel;
                             Vector3 da = -totalAccel.normalized * totalAccel.sqrMagnitude / (float)state.SpeedOfLight * Time.deltaTime;
                             frameDragAccel += da;
+
+                            // The "AUTO SLOW DOWN CODE BLOCK" above gives a qualitative "drag" effect, (as by friction with air or the floor,)
+                            // that should ultimately "lock" the player's frame of accelerated rest back to "world coordinates," at the limit.
                         }
                     }
 
