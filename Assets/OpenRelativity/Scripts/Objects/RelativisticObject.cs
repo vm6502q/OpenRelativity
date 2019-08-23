@@ -31,27 +31,7 @@ namespace OpenRelativity.Objects
             }
         }
         public bool isLightMapStatic = false;
-        public bool _useGravity;
-        public bool useGravity
-        {
-            get
-            {
-                return _useGravity;
-            }
-
-            set
-            {
-                if (useGravity && !value)
-                {
-                    properAiw -= Physics.gravity;
-                } else if (!useGravity && value)
-                {
-                    properAiw += Physics.gravity;
-                }
-
-                _useGravity = value;
-            }
-        }
+        public bool useGravity;
         #endregion
 
         #region Rigid body physics
@@ -89,7 +69,7 @@ namespace OpenRelativity.Objects
                     return;
                 }
 
-                UpdateViwAndAccel(_viw, _properAiw, value, _properAiw);
+                UpdateViwAndAccel(_viw, _nonGravAccel, value, _nonGravAccel);
                 UpdateRigidbodyVelocity(_viw, _aviw);
             }
         }
@@ -113,40 +93,115 @@ namespace OpenRelativity.Objects
             }
         }
 
-        //Store object's acceleration;
-        public Vector3 _properAiw;
-        public Vector3 properAiw
+        // This is the part of acceleration that can be set. It neglects gravity.
+        public Vector3 _nonGravAccel;
+        public Vector3 nonGravAccel
         {
             get
             {
-                return _properAiw;
+                return _nonGravAccel;
             }
 
             set
             {
                 // Skip this all, if the change is negligible.
-                if (IsNaNOrInf(value.sqrMagnitude) || (value - _properAiw).sqrMagnitude < SRelativityUtil.divByZeroCutoff)
+                if (IsNaNOrInf(value.sqrMagnitude) || (value - _nonGravAccel).sqrMagnitude < SRelativityUtil.divByZeroCutoff)
                 {
                     return;
                 }
 
                 if (isKinematic)
                 {
-                    _properAiw = value;
+                    _nonGravAccel = value;
                     return;
                 }
 
-                UpdateViwAndAccel(_viw, _properAiw, _viw, value);
+                UpdateViwAndAccel(_viw, _nonGravAccel, _viw, value);
                 UpdateRigidbodyVelocity(_viw, _aviw);
+            }
+        }
+
+        //This is truly the object's "proper" acceleration, corresponding with the force it feels.
+        private Vector3 _properAccel;
+        public Vector3 properAccel
+        {
+            get
+            {
+                _properAccel = nonGravAccel + frameDragAccel;
+
+                if (!isResting)
+                {
+                    return _properAccel;
+                }
+
+                if (useGravity)
+                {
+                    _properAccel -= Physics.gravity;
+                }
+
+                if (isResting && state.conformalMap != null)
+                {
+                    _properAccel += state.conformalMap.GetRindlerAcceleration(piw);
+                }
+
+                return _properAccel;
+            }
+
+            set
+            {
+                _nonGravAccel = value - frameDragAccel;
+                if (!isResting)
+                {
+                    _properAccel = properAccel;
+                    return;
+                }
+
+                if (useGravity)
+                {
+                    _nonGravAccel += Physics.gravity;
+                }
+
+                if (isResting && state.conformalMap != null)
+                {
+                    _nonGravAccel -= state.conformalMap.GetRindlerAcceleration(piw);
+                }
+
+                _properAccel = properAccel;
+            }
+        }
+
+        // This hack-around is to support Physics.gravity in a way that is acceptable for a video game.
+        // It is the object's "visual" acceleration.
+        public Vector3 aiw
+        {
+            get
+            {
+                if (useGravity)
+                {
+                    return properAccel + Physics.gravity;
+                }
+                else
+                {
+                    return properAccel;
+                }
             }
         }
 
         public void UpdateViwAndAccel(Vector3 vi, Vector3 ai, Vector3 vf, Vector3 af)
         {
-            //Changing velocities lose continuity of position,
+            // Changing velocities lose continuity of position,
             // unless we transform the world position to optical position with the old velocity,
             // and inverse transform the optical position with the new the velocity.
             // (This keeps the optical position fixed.)
+
+            _viw = vf;
+            _nonGravAccel = af;
+
+            if (useGravity && !isResting)
+            {
+                ai += Physics.gravity;
+                af += Physics.gravity;
+            }
 
             piw = ((Vector4)((Vector4)piw).WorldToOptical(vi, ai.ProperToWorldAccel(vi))).OpticalToWorldHighPrecision(vf, af.ProperToWorldAccel(vf));
 
@@ -161,9 +216,6 @@ namespace OpenRelativity.Objects
                     transform.position = piw;
                 }
             }
-
-            _viw = vf;
-            _properAiw = af;
 
             // Update the shader parameters if necessary
             UpdateShaderParams();
@@ -619,14 +671,10 @@ namespace OpenRelativity.Objects
         void Start()
         {
             frameDragAccel = Vector3.zero;
-            if (useGravity)
-            {
-                _properAiw += Physics.gravity;
-            }
             piw = nonrelativisticShader ? ((Vector4)transform.position).OpticalToWorldHighPrecision(viw, Get4Acceleration()) : transform.position;
             riw = transform.rotation;
 
-            UpdateViwAndAccel(Vector3.zero, Vector3.zero, viw, properAiw);
+            UpdateViwAndAccel(Vector3.zero, Vector3.zero, viw, aiw);
 
             isSleeping = false;
             myRigidbody = GetComponent<Rigidbody>();
@@ -798,7 +846,7 @@ namespace OpenRelativity.Objects
 
             float gamma = GetTimeFactor(myViw);
 
-            UpdateViwAndAccel(viw, properAiw, myViw, properAiw);
+            UpdateViwAndAccel(viw, aiw, myViw, aiw);
 
             aviw = myRigidbody.angularVelocity / gamma;
 
@@ -879,7 +927,7 @@ namespace OpenRelativity.Objects
             {
                 pos = piw;
             }
-            return ((Vector4)pos.Value).GetTisw(viw, properAiw);
+            return ((Vector4)pos.Value).GetTisw(viw, aiw);
         }
 
         void FixedUpdate() {
@@ -966,16 +1014,12 @@ namespace OpenRelativity.Objects
 
             #region rigidbody
 
-            Vector3 myAccel = properAiw;
             if (doDegradeAccel)
             {
+                Vector3 myAccel = properAccel;
                 // To support Unity's concept of Newtonian gravity, we "cheat" a little on equivalence principle, here.
                 // This isn't 100% right, but it keeps the world from looking like the space-time curvature is incomprehensibly 
                 // warped in a "moderate" (really, extremely high) approximately Newtonian surface gravity.
-                if (useGravity && !isResting)
-                {
-                    myAccel -= Physics.gravity;
-                }
 
                 // If the RelativisticObject is at rest on the ground, according to Strano 2019, (not yet peer reviewed,)
                 // it loses surface acceleration, (not weight force, directly,) the longer it stays in this configuration.
@@ -992,12 +1036,7 @@ namespace OpenRelativity.Objects
                 //... But just turn "doDegradeAccel" off, if you don't want this effect for any reason.
                 // (We ignore the "little bit" of acceleration from collisions, but maybe we could add that next.)
 
-                if (useGravity && !isResting)
-                {
-                    myAccel += Physics.gravity;
-                }
-
-                properAiw = myAccel;
+                properAccel = myAccel;
             }
 
             // The rest of the updates are for objects with Rigidbodies that move and aren't asleep.
@@ -1028,7 +1067,7 @@ namespace OpenRelativity.Objects
             }
 
             // Accelerate after updating gravity's effect on proper acceleration
-            viw += myAccel * deltaTime;
+            viw += aiw * deltaTime;
 
             Vector3 testVec = deltaTime * viw;
             if (!IsNaNOrInf(testVec.sqrMagnitude))
@@ -1316,7 +1355,7 @@ namespace OpenRelativity.Objects
 
         public Vector4 Get4Acceleration()
         {
-            return properAiw.ProperToWorldAccel(viw);
+            return aiw.ProperToWorldAccel(viw);
         }
 
         private void UpdateRigidbodyVelocity(Vector3 mViw, Vector3 mAviw)
