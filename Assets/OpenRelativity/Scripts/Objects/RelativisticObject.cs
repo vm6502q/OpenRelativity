@@ -185,6 +185,16 @@ namespace OpenRelativity.Objects
                     return properAccel;
                 }
             }
+            set
+            {
+                if (useGravity)
+                {
+                    properAccel = value - Physics.gravity;
+                } else
+                {
+                    properAccel = value;
+                }
+            }
         }
 
         public void UpdateViwAndAccel(Vector3 vi, Vector3 ai, Vector3 vf, Vector3 af)
