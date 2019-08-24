@@ -176,24 +176,35 @@ namespace OpenRelativity.Objects
         {
             get
             {
+                Vector3 _aiw = properAccel;
+
                 if (useGravity)
                 {
-                    return properAccel + Physics.gravity;
+                    _aiw += Physics.gravity;
                 }
-                else
+
+                if (state.conformalMap != null)
                 {
-                    return properAccel;
+                    _aiw -= state.conformalMap.GetRindlerAcceleration(piw);
                 }
+
+                return _aiw;
             }
             set
             {
+                Vector3 _aiw = value;
+
                 if (useGravity)
                 {
-                    properAccel = value - Physics.gravity;
-                } else
-                {
-                    properAccel = value;
+                    _aiw -= Physics.gravity;
                 }
+
+                if (state.conformalMap != null)
+                {
+                    _aiw += state.conformalMap.GetRindlerAcceleration(piw);
+                }
+
+                properAccel = _aiw;
             }
         }
 
@@ -211,6 +222,13 @@ namespace OpenRelativity.Objects
             {
                 ai += Physics.gravity;
                 af += Physics.gravity;
+            }
+
+            if (state.conformalMap != null && isResting)
+            {
+                Vector3 ra = state.conformalMap.GetRindlerAcceleration(piw);
+                ai -= ra;
+                af -= ra;
             }
 
             piw = ((Vector4)((Vector4)piw).WorldToOptical(vi, ai.ProperToWorldAccel(vi))).OpticalToWorldHighPrecision(vf, af.ProperToWorldAccel(vf));
@@ -684,7 +702,7 @@ namespace OpenRelativity.Objects
             piw = nonrelativisticShader ? ((Vector4)transform.position).OpticalToWorldHighPrecision(viw, Get4Acceleration()) : transform.position;
             riw = transform.rotation;
 
-            UpdateViwAndAccel(Vector3.zero, Vector3.zero, viw, aiw);
+            UpdateViwAndAccel(Vector3.zero, Vector3.zero, viw, nonGravAccel);
 
             isSleeping = false;
             myRigidbody = GetComponent<Rigidbody>();
@@ -856,7 +874,7 @@ namespace OpenRelativity.Objects
 
             float gamma = GetTimeFactor(myViw);
 
-            UpdateViwAndAccel(viw, aiw, myViw, aiw);
+            UpdateViwAndAccel(viw, nonGravAccel, myViw, nonGravAccel);
 
             aviw = myRigidbody.angularVelocity / gamma;
 
@@ -957,7 +975,7 @@ namespace OpenRelativity.Objects
             float deltaTime = (float)state.FixedDeltaTimePlayer * GetTimeFactor();
             float localDeltaT = deltaTime - (float)state.FixedDeltaTimeWorld;
 
-            if (state.conformalMap != null)
+            /*if (state.conformalMap != null)
             {
                 //Update comoving position
                 Vector4 piw4 = state.conformalMap.ComoveOptical(deltaTime, piw);
@@ -973,7 +991,7 @@ namespace OpenRelativity.Objects
                     deltaTime = piw4.w;
                     localDeltaT = deltaTime - (float)state.FixedDeltaTimeWorld;
                 }
-            }
+            }*/
 
             if (!IsNaNOrInf(localDeltaT))
             {
@@ -1040,9 +1058,12 @@ namespace OpenRelativity.Objects
                 // there is also a loss of mass.
                 // (The applied Newtonian field implies a mass distribution that produces more gravity waves, but,
                 // for video game purposes, there's maybe no easy way to even make it consistent, so just control it with an editor variable.)
-                float gravAccel = useGravity ? Physics.gravity.magnitude : 0;
-                gravAccel += state.conformalMap == null ? 0 : state.conformalMap.GetRindlerAcceleration(piw).magnitude;
-                myRigidbody.mass += state.planckMass * (state.gConst * myRigidbody.mass / state.planckMass) * ((state.fluxPerAccel * gravAccel - myAccel.magnitude) / state.planckAccel) * (deltaTime / state.planckTime);
+                if (myRigidbody != null)
+                {
+                    float gravAccel = useGravity ? Physics.gravity.magnitude : 0;
+                    gravAccel += state.conformalMap == null ? 0 : state.conformalMap.GetRindlerAcceleration(piw).magnitude;
+                    myRigidbody.mass += state.planckMass * (state.gConst * myRigidbody.mass / state.planckMass) * ((state.fluxPerAccel * gravAccel - myAccel.magnitude) / state.planckAccel) * (deltaTime / state.planckTime);
+                }
                 //... But just turn "doDegradeAccel" off, if you don't want this effect for any reason.
                 // (We ignore the "little bit" of acceleration from collisions, but maybe we could add that next.)
 
