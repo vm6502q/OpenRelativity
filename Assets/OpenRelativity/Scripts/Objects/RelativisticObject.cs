@@ -231,7 +231,7 @@ namespace OpenRelativity.Objects
                 af -= ra;
             }
 
-            piw = ((Vector4)((Vector4)piw).WorldToOptical(vi, ai.ProperToWorldAccel(vi))).OpticalToWorldHighPrecision(vf, af.ProperToWorldAccel(vf));
+            piw = ((Vector4)((Vector4)piw).WorldToOptical(vi, ai.ProperToWorldAccel(vi, GetTimeFactor()))).OpticalToWorldHighPrecision(vf, af.ProperToWorldAccel(vf, GetTimeFactor()));
 
             if (!IsNaNOrInf(piw.magnitude))
             {
@@ -1366,7 +1366,7 @@ namespace OpenRelativity.Objects
 
         public Vector4 Get4Acceleration()
         {
-            return aiw.ProperToWorldAccel(viw);
+            return aiw.ProperToWorldAccel(viw, GetTimeFactor());
         }
 
         private void UpdateRigidbodyVelocity(Vector3 mViw, Vector3 mAviw)
