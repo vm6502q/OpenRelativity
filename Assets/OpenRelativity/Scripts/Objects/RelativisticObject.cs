@@ -1347,8 +1347,8 @@ namespace OpenRelativity.Objects
         // In general relativity, the underlying metric could be curved, according to the Einstein field equations.
         // The (flat) metric appears to change due to proper acceleration from the player's/camera's point of view, since acceleration is not physically relative like velocity.
         // (Physically, proper acceleration could be detected by a force on the observer in the opposite direction from the acceleration,
-        // like being pushed back into the seat of an accelerating car. When we stand still on the surface of earth, we feel our weight pushed into
-        // the surface of the planet due to gravity, which is equivalent to an acceleration in the opposite direction, upwards, similar to the car.
+        // like being pushed back into the seat of an accelerating car. When we stand still on the surface of earth, we feel our weight as the ground exerts a normal force "upward,"
+        // which is equivalent to an acceleration in the opposite direction from the ostensible Newtonian gravity field, similar to the car.
         // "Einstein equivalence principle" says that, over small enough regions, we can't tell the difference between
         // a uniform acceleration and a gravitational field, that the two are physically equivalent over small enough regions of space.
         // In free-fall, gravitational fields disappear. Hence, when the player is in free-fall, their acceleration is considered to be zero,
@@ -1415,12 +1415,20 @@ namespace OpenRelativity.Objects
             }
         }
 
+        // This is the factor commonly referred to as "gamma," for length contraction and time dilation,
+        // only also with consideration for a gravitationally curved background, such as due to Rindler coordinates.
+        // (Rindler coordinates are actually Minkowski flat, but the same principle applies.)
         public float GetTimeFactor(Vector3? pVel = null)
         {
             if (!pVel.HasValue)
             {
+                // The common default case is, we want the player's "gamma,"
+                // at this RO's position in space-time.
                 pVel = state.PlayerVelocityVector;
             }
+
+            // However, sometimes we want a different velocity, at this space-time point,
+            // such as this RO's own velocity.
 
             Matrix4x4 metric = GetMetric();
 
