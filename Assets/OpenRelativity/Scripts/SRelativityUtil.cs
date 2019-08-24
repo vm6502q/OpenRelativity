@@ -394,16 +394,8 @@ namespace OpenRelativity
                 return beta * c * rapidity.normalized;
             }
 
-            Matrix4x4 im = metric.Value.inverse;
-            Matrix4x4 bi = Matrix4x4.identity;
-            bi.m00 *= -beta * c;
-            bi.m11 *= -beta * c;
-            bi.m22 *= -beta * c;
-            bi.m33 *= -beta * c;
-            im *= bi;
             Vector4 rUnit = rapidity.normalized;
-            Vector3 result = Vector4.Dot(rUnit, im * rUnit) * rUnit;
-            return result;
+            return -beta * c * Vector4.Dot(rUnit, metric.Value.inverse * rUnit) * rUnit;
         }
 
         public static Vector4 ToMinkowski4Viw(this Vector3 viw)
