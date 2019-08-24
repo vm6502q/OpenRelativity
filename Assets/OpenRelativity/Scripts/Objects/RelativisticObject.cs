@@ -864,18 +864,18 @@ namespace OpenRelativity.Objects
                 }
             }
 
-            // Now, update the velocity and angular velocity based on the collision result:
-            // Make sure we're not updating to faster than max speed
             Vector3 myViw = myRigidbody.velocity.RapidityToVelocity(GetMetric());
 
             // Get the position and rotation after the collision:
             riw = myRigidbody.rotation;
             piw = nonrelativisticShader ? ((Vector4)myRigidbody.position).OpticalToWorldHighPrecision(viw, Get4Acceleration()) : myRigidbody.position;
 
+            // Now, update the velocity and angular velocity based on the collision result:
             UpdateViwAndAccel(viw, nonGravAccel, myViw, nonGravAccel);
 
             aviw = myRigidbody.angularVelocity / GetTimeFactor();
 
+            // Make sure we're not updating to faster than max speed
             checkSpeed();
         }
 

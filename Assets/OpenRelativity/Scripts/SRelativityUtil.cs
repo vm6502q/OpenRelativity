@@ -386,16 +386,18 @@ namespace OpenRelativity
 
         public static Vector3 RapidityToVelocity(this Vector3 rapidity, Matrix4x4? metric = null)
         {
-            float exp2Omega = Mathf.Exp(2 * rapidity.magnitude / c);
-            float beta = (exp2Omega - 1) / (exp2Omega + 1);
+            rapidity /= c;
+            float rMag = rapidity.magnitude;
+            Vector3 rUnit = rapidity / rMag;
+            float exp2Rap = Mathf.Exp(2 * rMag);
+            Vector3 flat3V = c * (exp2Rap - 1) / (exp2Rap + 1) * rUnit;
 
             if (metric == null)
             {
-                return beta * c * rapidity.normalized;
+                return flat3V;
             }
 
-            Vector4 rUnit = rapidity.normalized;
-            return -beta * c * Vector4.Dot(rUnit, metric.Value.inverse * rUnit) * rUnit;
+            return Mathf.Sqrt(-Vector4.Dot(flat3V, metric.Value.inverse * flat3V)) * rUnit;
         }
 
         public static Vector4 ToMinkowski4Viw(this Vector3 viw)

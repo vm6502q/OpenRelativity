@@ -275,10 +275,10 @@ namespace OpenRelativity
                     //Current position of the mouse
                     //Difference between last frame's mouse position
                     //X axis position change
-                    float positionChangeX = -(float)Input.GetAxis("Mouse X");
+                    float positionChangeX = -Input.GetAxis("Mouse X");
 
                     //Y axis position change
-                    float positionChangeY = (float)inverted * Input.GetAxis("Mouse Y");
+                    float positionChangeY = inverted * Input.GetAxis("Mouse Y");
 
                     //Use these to determine camera rotation, that is, to look around the world without changing direction of motion
                     //These two are for X axis rotation and Y axis rotation, respectively
@@ -286,14 +286,14 @@ namespace OpenRelativity
                     if (Mathf.Abs(positionChangeX) <= 1 && Mathf.Abs(positionChangeY) <= 1)
                     {
                         //Take the position changes and translate them into an amount of rotation
-                        viewRotX = (float)(-positionChangeX * Time.deltaTime * rotSpeed * mouseSensitivity * controllerBoost);
-                        viewRotY = (float)(positionChangeY * Time.deltaTime * rotSpeed * mouseSensitivity * controllerBoost);
+                        viewRotX = -positionChangeX * Time.deltaTime * rotSpeed * mouseSensitivity * controllerBoost;
+                        viewRotY = positionChangeY * Time.deltaTime * rotSpeed * mouseSensitivity * controllerBoost;
                     }
                     else
                     {
                         //Take the position changes and translate them into an amount of rotation
-                        viewRotX = (float)(-positionChangeX * Time.deltaTime * rotSpeed * mouseSensitivity);
-                        viewRotY = (float)(positionChangeY * Time.deltaTime * rotSpeed * mouseSensitivity);
+                        viewRotX = -positionChangeX * Time.deltaTime * rotSpeed * mouseSensitivity;
+                        viewRotY = positionChangeY * Time.deltaTime * rotSpeed * mouseSensitivity;
                     }
                     //Perform Rotation on the camera, so that we can look in places that aren't the direction of movement
                     //Wait some frames on start up, otherwise we spin during the intialization when we can't see yet
@@ -327,7 +327,7 @@ namespace OpenRelativity
                     if (Camera.main)
                     {
                         Shader.SetGlobalFloat("xyr", (float)Camera.main.pixelWidth / Camera.main.pixelHeight);
-                        Shader.SetGlobalFloat("xs", (float)Mathf.Tan(Mathf.Deg2Rad * Camera.main.fieldOfView / 2f));
+                        Shader.SetGlobalFloat("xs", Mathf.Tan(Mathf.Deg2Rad * Camera.main.fieldOfView / 2f));
 
                         //Don't cull because at high speeds, things come into view that are not visible normally
                         //This is due to the lorenz transformation, which is pretty cool but means that basic culling will not work.
