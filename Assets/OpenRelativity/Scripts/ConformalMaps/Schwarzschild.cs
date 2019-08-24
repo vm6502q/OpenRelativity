@@ -56,7 +56,7 @@ namespace OpenRelativity.ConformalMaps
 
         override public Vector3 GetRindlerAcceleration(Vector3 piw)
         {
-            if (radius < SRelativityUtil.divByZeroCutoff)
+            if (radius < radiusCutoff)
             {
                 return Vector3.zero;
             }
