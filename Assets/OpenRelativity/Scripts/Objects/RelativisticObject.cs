@@ -977,20 +977,7 @@ namespace OpenRelativity.Objects
 
             if (state.conformalMap != null)
             {
-                //Update comoving position
-                Vector4 piw4 = state.conformalMap.ComoveOptical(deltaTime, piw);
-                float testMag = piw4.sqrMagnitude;
-                if (!IsNaNOrInf(testMag))
-                {
-                    piw = piw4;
-                    if (nonrelativisticShader)
-                    {
-                        contractor.position = ((Vector4)piw).WorldToOptical(viw, Get4Acceleration());
-                        transform.localPosition = Vector3.zero;
-                    }
-                    deltaTime = piw4.w;
-                    localDeltaT = deltaTime - (float)state.FixedDeltaTimeWorld;
-                }
+                viw = viw.AddVelocity(-state.conformalMap.GetRindlerAcceleration(piw) * deltaTime);
             }
 
             if (!IsNaNOrInf(localDeltaT))

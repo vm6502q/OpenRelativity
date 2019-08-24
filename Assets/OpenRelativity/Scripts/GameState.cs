@@ -353,10 +353,10 @@ namespace OpenRelativity
                 if (conformalMap != null)
                 {
                     // Assume local player coordinates are comoving
-                    PlayerVelocityVector = PlayerVelocityVector.AddVelocity(conformalMap.GetRindlerAcceleration(playerTransform.position) * (float)_fixedDeltaTimeWorld);
                     Vector4 piw4 = conformalMap.ComoveOptical((float)FixedDeltaTimePlayer, playerTransform.position);
                     playerTransform.position = piw4;
                     _fixedDeltaTimeWorld = piw4.w / SqrtOneMinusVSquaredCWDividedByCSquared;
+                    PlayerVelocityVector = PlayerVelocityVector.AddVelocity(conformalMap.GetRindlerAcceleration(playerTransform.position) * Time.deltaTime);
                 }
 
                 Rigidbody playerRB = GameObject.FindGameObjectWithTag(Tags.playerMesh).GetComponent<Rigidbody>();
