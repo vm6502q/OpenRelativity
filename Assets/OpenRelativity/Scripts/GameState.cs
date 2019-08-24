@@ -356,7 +356,7 @@ namespace OpenRelativity
                     Vector4 piw4 = conformalMap.ComoveOptical((float)FixedDeltaTimePlayer, playerTransform.position);
                     playerTransform.position = piw4;
                     _fixedDeltaTimeWorld = piw4.w / SqrtOneMinusVSquaredCWDividedByCSquared;
-                    PlayerVelocityVector = PlayerVelocityVector.AddVelocity(conformalMap.GetRindlerAcceleration(playerTransform.position) * Time.deltaTime);
+                    PlayerVelocityVector = PlayerVelocityVector.AddVelocity(conformalMap.GetRindlerAcceleration(playerTransform.position) * (float)FixedDeltaTimePlayer);
                 }
 
                 Rigidbody playerRB = GameObject.FindGameObjectWithTag(Tags.playerMesh).GetComponent<Rigidbody>();

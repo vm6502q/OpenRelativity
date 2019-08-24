@@ -975,11 +975,6 @@ namespace OpenRelativity.Objects
             float deltaTime = (float)state.FixedDeltaTimePlayer * GetTimeFactor();
             float localDeltaT = deltaTime - (float)state.FixedDeltaTimeWorld;
 
-            if (state.conformalMap != null)
-            {
-                viw = viw.AddVelocity(-state.conformalMap.GetRindlerAcceleration(piw) * deltaTime);
-            }
-
             if (!IsNaNOrInf(localDeltaT))
             {
                 localTimeOffset += localDeltaT;
