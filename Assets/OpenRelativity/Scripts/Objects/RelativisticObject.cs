@@ -1366,7 +1366,7 @@ namespace OpenRelativity.Objects
 
         public Vector4 Get4Acceleration()
         {
-            return aiw.ProperToWorldAccel(viw, GetTimeFactor());
+            return aiw.ProperToWorldAccel(viw, GetTimeFactor(viw));
         }
 
         private void UpdateRigidbodyVelocity(Vector3 mViw, Vector3 mAviw)
