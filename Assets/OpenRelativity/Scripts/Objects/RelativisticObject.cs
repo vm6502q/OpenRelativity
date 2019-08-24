@@ -975,7 +975,7 @@ namespace OpenRelativity.Objects
             float deltaTime = (float)state.FixedDeltaTimePlayer * GetTimeFactor();
             float localDeltaT = deltaTime - (float)state.FixedDeltaTimeWorld;
 
-            /*if (state.conformalMap != null)
+            if (state.conformalMap != null)
             {
                 //Update comoving position
                 Vector4 piw4 = state.conformalMap.ComoveOptical(deltaTime, piw);
@@ -991,7 +991,7 @@ namespace OpenRelativity.Objects
                     deltaTime = piw4.w;
                     localDeltaT = deltaTime - (float)state.FixedDeltaTimeWorld;
                 }
-            }*/
+            }
 
             if (!IsNaNOrInf(localDeltaT))
             {
