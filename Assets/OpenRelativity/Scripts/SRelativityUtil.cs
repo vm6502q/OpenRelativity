@@ -389,6 +389,12 @@ namespace OpenRelativity
             rapidity /= c;
             float rMag = rapidity.magnitude;
             Vector3 rUnit = rapidity / rMag;
+
+            if (rUnit == Vector3.zero)
+            {
+                return Vector3.zero;
+            }
+
             float exp2Rap = Mathf.Exp(2 * rMag);
             Vector3 flat3V = c * (exp2Rap - 1) / (exp2Rap + 1) * rUnit;
 

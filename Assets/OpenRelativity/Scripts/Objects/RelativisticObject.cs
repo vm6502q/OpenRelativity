@@ -1424,7 +1424,7 @@ namespace OpenRelativity.Objects
 
             Matrix4x4 metric = GetMetric();
 
-            float timeFac = 1 / Mathf.Sqrt(1 - (float)(Vector4.Dot(pVel.Value, metric * pVel.Value) / state.SpeedOfLightSqrd));
+            float timeFac = 1 / Mathf.Sqrt(1 + (float)(Vector4.Dot(pVel.Value, metric * pVel.Value) / state.SpeedOfLightSqrd));
             if (IsNaNOrInf(timeFac))
             {
                 timeFac = 1;
