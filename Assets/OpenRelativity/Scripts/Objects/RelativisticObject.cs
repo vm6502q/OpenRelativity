@@ -69,7 +69,7 @@ namespace OpenRelativity.Objects
                     return;
                 }
 
-                UpdateViwAndAccel(_viw, _nonGravAccel, value, _nonGravAccel);
+                UpdateViwAndAccel(value, _nonGravAccel);
                 UpdateRigidbodyVelocity(_viw, _aviw);
             }
         }
@@ -116,7 +116,7 @@ namespace OpenRelativity.Objects
                     return;
                 }
 
-                UpdateViwAndAccel(_viw, _nonGravAccel, _viw, value);
+                UpdateViwAndAccel(_viw, value);
                 UpdateRigidbodyVelocity(_viw, _aviw);
             }
         }
@@ -208,30 +208,20 @@ namespace OpenRelativity.Objects
             }
         }
 
-        public void UpdateViwAndAccel(Vector3 vi, Vector3 ai, Vector3 vf, Vector3 af)
+        public void UpdateViwAndAccel(Vector3 vf, Vector3 af)
         {
             // Changing velocities lose continuity of position,
             // unless we transform the world position to optical position with the old velocity,
             // and inverse transform the optical position with the new the velocity.
             // (This keeps the optical position fixed.)
 
+            Vector3 vi = _viw;
+            Vector3 ai = aiw;
+
             _viw = vf;
             _nonGravAccel = af;
 
-            if (useGravity && !isResting)
-            {
-                ai += Physics.gravity;
-                af += Physics.gravity;
-            }
-
-            if (state.conformalMap != null && isResting)
-            {
-                Vector3 ra = state.conformalMap.GetRindlerAcceleration(piw);
-                ai -= ra;
-                af -= ra;
-            }
-
-            piw = ((Vector4)((Vector4)piw).WorldToOptical(vi, ai.ProperToWorldAccel(vi, GetTimeFactor()))).OpticalToWorldHighPrecision(vf, af.ProperToWorldAccel(vf, GetTimeFactor()));
+            piw = ((Vector4)((Vector4)piw).WorldToOptical(vi, ai.ProperToWorldAccel(vi, GetTimeFactor()))).OpticalToWorldHighPrecision(vf, aiw.ProperToWorldAccel(vf, GetTimeFactor()));
 
             if (!IsNaNOrInf(piw.magnitude))
             {
@@ -702,7 +692,19 @@ namespace OpenRelativity.Objects
             piw = nonrelativisticShader ? ((Vector4)transform.position).OpticalToWorldHighPrecision(viw, Get4Acceleration()) : transform.position;
             riw = transform.rotation;
 
-            UpdateViwAndAccel(Vector3.zero, Vector3.zero, viw, nonGravAccel);
+            piw = ((Vector4)((Vector4)piw).WorldToOptical(Vector3.zero, Vector3.zero.ProperToWorldAccel(Vector3.zero, GetTimeFactor()))).OpticalToWorldHighPrecision(viw, aiw.ProperToWorldAccel(viw, GetTimeFactor()));
+
+            if (nonrelativisticShader)
+            {
+                UpdateContractorPosition();
+            }
+            else
+            {
+                transform.position = piw;
+            }
+
+            // Update the shader parameters if necessary
+            UpdateShaderParams();
 
             isSleeping = false;
             myRigidbody = GetComponent<Rigidbody>();
@@ -803,9 +805,6 @@ namespace OpenRelativity.Objects
                 float extremeBound = 500000.0f;
                 meshFilter.sharedMesh.bounds = new Bounds(center, Vector3.one * extremeBound);
             }
-
-            //If the shader is nonrelativistic, map the object from world space to optical space and handle length contraction:
-            UpdateContractorPosition();
         }
 
         private void UpdateCollider()
@@ -864,19 +863,19 @@ namespace OpenRelativity.Objects
                 }
             }
 
-            Vector3 myViw = myRigidbody.velocity.RapidityToVelocity(GetMetric());
-
             // Get the position and rotation after the collision:
             riw = myRigidbody.rotation;
             piw = nonrelativisticShader ? ((Vector4)myRigidbody.position).OpticalToWorldHighPrecision(viw, Get4Acceleration()) : myRigidbody.position;
 
             // Now, update the velocity and angular velocity based on the collision result:
-            UpdateViwAndAccel(viw, nonGravAccel, myViw, nonGravAccel);
-
+            viw = myRigidbody.velocity.RapidityToVelocity(GetMetric());
             aviw = myRigidbody.angularVelocity / GetTimeFactor();
 
             // Make sure we're not updating to faster than max speed
             checkSpeed();
+
+            UpdateContractorPosition();
+            UpdateColliderPosition();
         }
 
         void Update()
