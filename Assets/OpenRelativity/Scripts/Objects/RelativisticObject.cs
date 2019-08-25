@@ -350,6 +350,7 @@ namespace OpenRelativity.Objects
 
         //We need to freeze any attached rigidbody if the world states is frozen 
         public bool wasKinematic { get; set; }
+        public CollisionDetectionMode collisionDetectionMode;
         public bool wasFrozen { get; set; }
 
         private bool IsNaNOrInf(double p)
@@ -372,6 +373,8 @@ namespace OpenRelativity.Objects
                     //Read the state of the rigidbody and shut it off, once.
                     wasFrozen = true;
                     wasKinematic = myRigidbody.isKinematic;
+                    collisionDetectionMode = myRigidbody.collisionDetectionMode;
+                    myRigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
                     myRigidbody.isKinematic = true;
                 }
                 return;
@@ -381,6 +384,7 @@ namespace OpenRelativity.Objects
                 //Restore the state of the rigidbody, once.
                 wasFrozen = false;
                 myRigidbody.isKinematic = wasKinematic;
+                myRigidbody.collisionDetectionMode = collisionDetectionMode;
             }
 
             //Set remaining global parameters:
