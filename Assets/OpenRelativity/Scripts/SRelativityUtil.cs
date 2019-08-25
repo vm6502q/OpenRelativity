@@ -303,7 +303,7 @@ namespace OpenRelativity
             }
 
             //Rotate all our vectors so that velocity is entirely along z direction:
-            Quaternion viwToZRot = Quaternion.FromToRotation(viw, Vector3.forward);
+            Quaternion viwToZRot = viw.sqrMagnitude < divByZeroCutoff ? Quaternion.identity : Quaternion.FromToRotation(viw, Vector3.forward);
             Vector4 riwTransformed = viwToZRot * ((Vector3)riw - velocity * tisw);
             riwTransformed.w = tisw;
             Vector3 avpTransformed = viwToZRot * avp;
@@ -388,13 +388,13 @@ namespace OpenRelativity
         {
             rapidity /= c;
             float rMag = rapidity.magnitude;
-            Vector3 rUnit = rapidity / rMag;
 
-            if (rUnit == Vector3.zero)
+            if (rMag < divByZeroCutoff)
             {
                 return Vector3.zero;
             }
 
+            Vector3 rUnit = rapidity / rMag;
             float exp2Rap = Mathf.Exp(2 * rMag);
             Vector3 flat3V = c * (exp2Rap - 1) / (exp2Rap + 1) * rUnit;
 
