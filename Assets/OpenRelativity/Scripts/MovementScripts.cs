@@ -9,7 +9,7 @@ namespace OpenRelativity
     {
         //Consts 
         private const float SLOW_DOWN_RATE = 0.75f;
-        private const float ACCEL_RATE = 2.0f;
+        private const float ACCEL_RATE = 8.0f;
         private const int INIT_FRAME_WAIT = 5;
         private const float DEGREE_TO_RADIAN_CONST = 57.2957795f;
         public bool useGravity = false;
@@ -41,6 +41,10 @@ namespace OpenRelativity
         public float floorDrag = 0.1f;
         public bool doDegradeAccel;
         private Vector3 frameDragAccel;
+        // Float precision prevents the "frameDragAccel" from correctly returning to "world accelerated rest frame"
+        // under the effect of forces like drag and friction in the at rest W.R.T. the "world."
+        // If we track small differences separately, we can get better accuracy.
+        private Vector3 frameDragAccelRemainder;
         GameState state;
 
         void Start()
@@ -157,21 +161,8 @@ namespace OpenRelativity
 
                     //AUTO SLOW DOWN CODE BLOCK
 
-                    //If we are not adding velocity this round to our x direction, slow down
-                    if (totalAccel.x == 0)
-                    {
-                        totalAccel.x += -SLOW_DOWN_RATE * playerVelocityVector.x;
-                    }
-                    //If we are not adding velocity this round to our z direction, slow down
-                    if (totalAccel.z == 0)
-                    {
-                        totalAccel.z += -SLOW_DOWN_RATE * playerVelocityVector.z;
-                    }
-                    //If we are not adding velocity this round to our y direction, slow down
-                    if (totalAccel.y == 0)
-                    {
-                        totalAccel.y += -SLOW_DOWN_RATE * playerVelocityVector.y;
-                    }
+                    //Add a fluid drag force (as for air)
+                    totalAccel -= SLOW_DOWN_RATE * playerVelocityVector.sqrMagnitude * playerVelocityVector.normalized;
 
                     Vector3 quasiWorldAccel = totalAccel;
 
@@ -220,7 +211,24 @@ namespace OpenRelativity
                             quasiWorldAccel += frameDragAccel;
                             totalAccel += frameDragAccel;
                             Vector3 da = -totalAccel.normalized * totalAccel.sqrMagnitude / (float)state.SpeedOfLight * Time.deltaTime;
-                            frameDragAccel += da;
+                            Vector3 oldFrameDragAccel = frameDragAccel;
+                            frameDragAccelRemainder += da;
+
+                            frameDragAccel.x += frameDragAccelRemainder.x;
+                            if (oldFrameDragAccel.x != frameDragAccel.x)
+                            {
+                                frameDragAccelRemainder.x = (frameDragAccel.x - oldFrameDragAccel.x);
+                            }
+                            frameDragAccel.y += frameDragAccelRemainder.y;
+                            if (oldFrameDragAccel.y != frameDragAccel.y)
+                            {
+                                frameDragAccelRemainder.y = (frameDragAccel.y - oldFrameDragAccel.y);
+                            }
+                            frameDragAccel.z += frameDragAccelRemainder.z;
+                            if (oldFrameDragAccel.z != frameDragAccel.z)
+                            {
+                                frameDragAccelRemainder.z -= (frameDragAccel.z - oldFrameDragAccel.z);
+                            }
 
                             // The "AUTO SLOW DOWN CODE BLOCK" above gives a qualitative "drag" effect, (as by friction with air or the floor,)
                             // that should ultimately "lock" the player's frame of accelerated rest back to "world coordinates," at the limit.
