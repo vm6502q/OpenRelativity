@@ -78,8 +78,6 @@ namespace OpenRelativity
         //Again, use LateUpdate to solve some collision issues.
         void LateUpdate()
         {
-            if (true)
-            {
                 float viewRotX = 0;
                 //If we're not paused, update speed and rotation using player input.
                 if (!state.MovementFrozen)
@@ -217,12 +215,12 @@ namespace OpenRelativity
                             frameDragAccel.x += frameDragAccelRemainder.x;
                             if (oldFrameDragAccel.x != frameDragAccel.x)
                             {
-                                frameDragAccelRemainder.x = (frameDragAccel.x - oldFrameDragAccel.x);
+                                frameDragAccelRemainder.x -= (frameDragAccel.x - oldFrameDragAccel.x);
                             }
                             frameDragAccel.y += frameDragAccelRemainder.y;
                             if (oldFrameDragAccel.y != frameDragAccel.y)
                             {
-                                frameDragAccelRemainder.y = (frameDragAccel.y - oldFrameDragAccel.y);
+                                frameDragAccelRemainder.y -= (frameDragAccel.y - oldFrameDragAccel.y);
                             }
                             frameDragAccel.z += frameDragAccelRemainder.z;
                             if (oldFrameDragAccel.z != frameDragAccel.z)
@@ -345,7 +343,6 @@ namespace OpenRelativity
 
 
                 }
-            }
         }
 
         void OnTriggerEnter(Collider collider)
