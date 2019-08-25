@@ -33,19 +33,17 @@ namespace OpenRelativity
         public bool invertKeyDown { get; set; }
         //Keep track of total frames passed
         int frames;
-        //How fast are we going to shoot the bullets?
-        public float viwMax = 3;
         //Gamestate reference for quick access
+        private GameState state;
+
         // Based on Strano 2019, (preprint).
         // (I will always implement potentially "cranky" features so you can toggle them off, but I might as well.)
-        public float floorDrag = 0.1f;
-        public bool doDegradeAccel;
+        public bool monopoleAccel = false;
         private Vector3 frameDragAccel;
         // Float precision prevents the "frameDragAccel" from correctly returning to "world accelerated rest frame"
         // under the effect of forces like drag and friction in the at rest W.R.T. the "world."
         // If we track small differences separately, we can get better accuracy.
         private Vector3 frameDragAccelRemainder;
-        GameState state;
 
         void Start()
         {
@@ -68,8 +66,6 @@ namespace OpenRelativity
             //Inverted, at first
             inverted = -1;
             invertKeyDown = false;
-
-            viwMax = Mathf.Min(viwMax, (float)GameObject.FindGameObjectWithTag(Tags.player).GetComponent<GameState>().MaxSpeed);
 
             frameDragAccel = Vector3.zero;
 
@@ -193,7 +189,7 @@ namespace OpenRelativity
                             quasiWorldAccel -= Physics.gravity;
                         }
 
-                        if (doDegradeAccel)
+                        if (monopoleAccel)
                         {
                             // This isn't "smooth," but the player shouldn't fall through the floor.
                             if (!isFalling && frameDragAccel.y < 0)

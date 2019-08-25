@@ -38,14 +38,7 @@ namespace OpenRelativity.Objects
         // How long (in seconds) do we wait before we detect collisions with an object we just collided with?
         private float collideWait = 0f;
 
-        // Based on Strano 2019, (preprint).
-        // (I will always implement potentially "cranky" features so you can toggle them off, but I might as well.)
-        public bool doDegradeAccel = true;
-        private Vector3 frameDragAccel;
-
         private bool isResting;
-
-        private bool wasUsingGravity;
 
         public Vector3 _viw = Vector3.zero;
         public Vector3 viw
@@ -250,9 +243,6 @@ namespace OpenRelativity.Objects
                 myRigidbody.isKinematic = value;
             }
         }
-
-        //TODO: Rigidbody doesn't stay asleep. Figure out why, and get rid of this:
-        private bool isSleeping;
         #endregion
         //Keep track of our own Mesh Filter
         private MeshFilter meshFilter;
@@ -313,7 +303,7 @@ namespace OpenRelativity.Objects
         //We use an attached shader to transform the collider verts:
         public ComputeShader colliderShader;
         //We set global constants in a struct;
-        public ShaderParams colliderShaderParams;
+        private ShaderParams colliderShaderParams;
         //We save and reuse the transformed vert array to avoid garbage collection 
         private Vector3[] trnsfrmdMeshVerts;
         //If we have a collider to transform, we cache it here
@@ -341,17 +331,20 @@ namespace OpenRelativity.Objects
                 colliderPiw = sttcPosList.ToArray();
             }
         }
-        public float staticResetPlayerSpeedSqr;
-        public Vector3 staticTransformPosition;
-        public Vector3[] colliderPiw;
+        public Vector3[] colliderPiw { get; set; }
 
-        ComputeBuffer paramsBuffer;
-        ComputeBuffer vertBuffer;
+        private ComputeBuffer paramsBuffer;
+        private ComputeBuffer vertBuffer;
 
         //We need to freeze any attached rigidbody if the world states is frozen 
         public bool wasKinematic { get; set; }
-        public CollisionDetectionMode collisionDetectionMode;
+        private CollisionDetectionMode collisionDetectionMode;
         public bool wasFrozen { get; set; }
+
+        // Based on Strano 2019, (preprint).
+        // (I will always implement potentially "cranky" features so you can toggle them off, but I might as well.)
+        public bool monopoleAccel = false;
+        private Vector3 frameDragAccel;
 
         private bool IsNaNOrInf(double p)
         {
@@ -710,13 +703,10 @@ namespace OpenRelativity.Objects
             // Update the shader parameters if necessary
             UpdateShaderParams();
 
-            isSleeping = false;
             myRigidbody = GetComponent<Rigidbody>();
             rawVertsBufferLength = 0;
             wasKinematic = false;
             wasFrozen = false;
-
-            staticResetPlayerSpeedSqr = (float)(state.SpeedOfLightSqrd * 0.005f * 0.005f);
 
             UpdateCollider();
 
@@ -1025,7 +1015,7 @@ namespace OpenRelativity.Objects
 
             #region rigidbody
 
-            if (doDegradeAccel)
+            if (monopoleAccel)
             {
                 Vector3 myAccel = properAccel;
                 // To support Unity's concept of Newtonian gravity, we "cheat" a little on equivalence principle, here.
@@ -1054,7 +1044,7 @@ namespace OpenRelativity.Objects
             }
 
             // The rest of the updates are for objects with Rigidbodies that move and aren't asleep.
-            if (isKinematic || isSleeping || isResting || myRigidbody == null)
+            if (isKinematic || isResting || myRigidbody == null)
             {
 
                 if (myRigidbody != null)
@@ -1252,16 +1242,6 @@ namespace OpenRelativity.Objects
         public void OnCollision(Collision collision)
         {
             if (myRigidbody == null || myColliders == null || myRigidbody.isKinematic)
-            {
-                return;
-            }
-
-            GameObject otherGO = collision.gameObject;
-            RelativisticObject otherRO = otherGO.GetComponent<RelativisticObject>();
-
-            //Lorentz transformation might make us come "unglued" from a collider we're resting on.
-            // If we're asleep, and the other collider has zero velocity, we don't need to wake up:
-            if (isSleeping && otherRO.viw == Vector3.zero)
             {
                 return;
             }
