@@ -46,7 +46,7 @@
 		float r = length(lensPlaneCoords);
 		if (r != 0) {
 			float sourceAngle = atan(r);
-			float deflectionAngle = 2 * _lensRadius / (r * r) * cos(_playerAngle / 2);
+			float deflectionAngle = (2 / _playerDist) * _lensRadius / (r * r) * cos(_playerAngle / 2);
 			if (sourceAngle >= deflectionAngle) {
 				lensPlaneCoords = tan(sourceAngle - deflectionAngle) / r * lensPlaneCoords;
 				i.uv = lensPlaneCoords / frustumSize + lensUVPos;
