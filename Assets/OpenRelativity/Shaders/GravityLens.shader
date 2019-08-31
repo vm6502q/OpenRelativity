@@ -54,11 +54,10 @@
 			if (_playerDist < 0) {
 				deflectionAngle *= -1;
 			}
-			if (sourceAngle >= deflectionAngle) {
-				lensPlaneCoords = tan(sourceAngle - deflectionAngle) * lensPlaneCoords / r;
-				i.uv = lensPlaneCoords / frustumSize + lensUVPos;
-				sourceColor = tex2D(_MainTex, i.uv).rgb;
-			}
+			
+			lensPlaneCoords = tan(sourceAngle - deflectionAngle) * lensPlaneCoords / r;
+			i.uv = lensPlaneCoords / frustumSize + lensUVPos;
+			sourceColor = tex2D(_MainTex, i.uv).rgb;
 		}
 		return float4(sourceColor, 1);
 	}
