@@ -46,7 +46,7 @@
 		if (r != 0) {
 			float sourceAngle = atan(r);
 			float deflectionAngle = 2 * _lensRadius / (r * r);
-			lensPlaneCoords = tan(sourceAngle - deflectionAngle) / r * lensPlaneCoords;
+			lensPlaneCoords = tan(sourceAngle + deflectionAngle) / r * lensPlaneCoords;
 			i.uv = lensPlaneCoords / frustumSize + lensUVPos;
 		}
 		float3 sourceColor = tex2D(_MainTex, i.uv).rgb;
