@@ -1,0 +1,42 @@
+﻿using OpenRelativity;
+using OpenRelativity.ConformalMaps;
+using UnityEngine;
+
+public class SchwarzschildLens : GravityLens
+{
+    public GameState state;
+    public Schwarzschild schwarzschild;
+    public Camera cam;
+
+    private void Start()
+    {
+        if (cam == null)
+        {
+            cam = GetComponent<Camera>();
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        float r = schwarzschild.radius;
+
+        if (r == 0)
+        {
+            enabled = false;
+            return;
+        }
+
+        float frustumHeight = 2.0f * r * Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
+        float frustumWidth = frustumHeight * cam.aspect;
+
+        Vector3 lensUVPos = cam.WorldToViewportPoint(Vector3.zero);
+
+        lensMaterial.SetFloat("_playerDist", state.playerTransform.position.magnitude);
+        lensMaterial.SetFloat("_lensRadius", schwarzschild.radius);
+        lensMaterial.SetFloat("_lensUPos", lensUVPos.x);
+        lensMaterial.SetFloat("_lensVPos", lensUVPos.y);
+        lensMaterial.SetFloat("_frustumWidth", frustumWidth);
+        lensMaterial.SetFloat("_frustumHeight", frustumHeight);
+    }
+}
