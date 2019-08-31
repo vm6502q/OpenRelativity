@@ -33,7 +33,7 @@ public class SchwarzschildLens : GravityLens
         Vector3 lensUVPos = cam.WorldToViewportPoint(Vector3.zero);
 
         lensMaterial.SetFloat("_playerDist", state.playerTransform.position.magnitude);
-        lensMaterial.SetFloat("_lensRadius", schwarzschild.radius);
+        lensMaterial.SetFloat("_lensRadius", r);
         lensMaterial.SetFloat("_lensUPos", lensUVPos.x);
         lensMaterial.SetFloat("_lensVPos", lensUVPos.y);
         lensMaterial.SetFloat("_frustumWidth", frustumWidth);

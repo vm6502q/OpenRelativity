@@ -41,15 +41,12 @@
 		float2 lensUVPos = float2(_lensUPos, _lensVPos);
 		float2 frustumSize = float2(_frustumWidth, _frustumHeight);
 		float2 lensPlaneCoords = (i.uv - lensUVPos) * frustumSize;
-		float3 sourceColor;
+		float3 sourceColor = float3(0, 0, 0);
 		float r = length(lensPlaneCoords);
 		if (r != 0) {
 			float sourceAngle = atan(r);
 			float deflectionAngle = 2 * _lensRadius / (r * r);
-			if (sourceAngle < deflectionAngle) {
-				sourceColor = float3(0, 0, 0);
-			}
-			else {
+			if (sourceAngle >= deflectionAngle) {
 				lensPlaneCoords = tan(sourceAngle - deflectionAngle) / r * lensPlaneCoords;
 				i.uv = lensPlaneCoords / frustumSize + lensUVPos;
 				sourceColor = tex2D(_MainTex, i.uv).rgb;
