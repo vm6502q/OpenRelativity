@@ -16,6 +16,8 @@
 #pragma exclude_renderers xbox360
 #pragma glsl
 
+#define divByZeroCutoff 1e-8f
+
 	sampler2D _MainTex;
 	float _playerDist, _playerAngle, _lensRadius;
 	float _lensUPos, _lensVPos;
@@ -44,9 +46,11 @@
 		float2 lensPlaneCoords = (i.uv - lensUVPos) * frustumSize;
 		float3 sourceColor = float3(0, 0, 0);
 		float r = length(lensPlaneCoords);
-		if (r != 0) {
+		if (r < divByZeroCutoff) {
+			sourceColor = tex2D(_MainTex, i.uv).rgb;
+		} else {
 			float sourceAngle = atan(r);
-			float deflectionAngle = 2 * _lensRadius / r * cos(_playerAngle / 2);
+			float deflectionAngle = 2 * (_lensRadius / r) * cos(_playerAngle / 2);
 			if (_playerDist < 0) {
 				deflectionAngle *= -1;
 			}
