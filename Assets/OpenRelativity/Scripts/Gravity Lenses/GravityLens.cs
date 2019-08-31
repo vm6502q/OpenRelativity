@@ -4,8 +4,16 @@ public class GravityLens : MonoBehaviour
 {
     public Material lensMaterial;
 
+    protected bool doBlit = true;
+
     void OnRenderImage(RenderTexture src, RenderTexture dest)
     {
-        Graphics.Blit(src, dest, lensMaterial);
+        if (doBlit)
+        {
+            Graphics.Blit(src, dest, lensMaterial);
+        } else
+        {
+            Graphics.Blit(src, dest);
+        }
     }
 }

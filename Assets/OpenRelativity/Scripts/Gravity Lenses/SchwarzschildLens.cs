@@ -23,7 +23,7 @@ public class SchwarzschildLens : GravityLens
 
         if (r == 0)
         {
-            enabled = false;
+            doBlit = false;
             return;
         }
 
@@ -31,6 +31,15 @@ public class SchwarzschildLens : GravityLens
         float frustumWidth = frustumHeight * cam.aspect;
 
         Vector3 lensUVPos = cam.WorldToViewportPoint(Vector3.zero);
+        float playerDist = state.playerTransform.position.magnitude;
+        if (lensUVPos.z < -10)
+        {
+            // To prevent this from appearing when the Schwarzschild origin is out our back, we have to turn it off at some limit.
+            doBlit = false;
+            return;
+        }
+
+        doBlit = true;
 
         lensMaterial.SetFloat("_playerDist", state.playerTransform.position.magnitude);
         lensMaterial.SetFloat("_lensRadius", r);
