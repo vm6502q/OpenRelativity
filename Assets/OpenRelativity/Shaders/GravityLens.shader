@@ -4,6 +4,7 @@
 	{
 		_MainTex("Source", 2D) = "white" {}
 		_playerDist("Player Distance", float) = 0
+		_playerAngle("Player Angle", float) = 0
 		_lensRadius("Lens Schwarzschild Radius", float) = 0
 		_lensUPos("Lens Position (U)", float) = 0
 		_lensVPos("Lens Position (V)", float) = 0
@@ -16,7 +17,7 @@
 #pragma glsl
 
 	sampler2D _MainTex;
-	float _playerDist, _lensRadius;
+	float _playerDist, _playerAngle, _lensRadius;
 	float _lensUPos, _lensVPos;
 	float _frustumWidth, _frustumHeight;
 
@@ -45,7 +46,7 @@
 		float r = length(lensPlaneCoords);
 		if (r != 0) {
 			float sourceAngle = atan(r);
-			float deflectionAngle = 2 * _lensRadius / (r * r);
+			float deflectionAngle = 2 * _lensRadius / (r * r) * cos(_playerAngle / 2);
 			if (sourceAngle >= deflectionAngle) {
 				lensPlaneCoords = tan(sourceAngle - deflectionAngle) / r * lensPlaneCoords;
 				i.uv = lensPlaneCoords / frustumSize + lensUVPos;
