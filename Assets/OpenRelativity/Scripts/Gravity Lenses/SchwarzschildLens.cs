@@ -29,7 +29,7 @@ public class SchwarzschildLens : GravityLens
 
         doBlit = true;
 
-        float frustumHeight = 2.0f * r * Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
+        float frustumHeight = 2.0f * cam.transform.position.magnitude * Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
         float frustumWidth = frustumHeight * cam.aspect;
 
         Vector3 lensUVPos = cam.WorldToViewportPoint(Vector3.zero);
