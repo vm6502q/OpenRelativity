@@ -51,10 +51,6 @@
 		} else {
 			float sourceAngle = atan2(r, _playerDist);
 			float deflectionAngle = 2 * (_lensRadius / r) * cos(_playerAngle / 2);
-			if (_playerDist < 0) {
-				deflectionAngle *= -1;
-			}
-			
 			lensPlaneCoords = _playerDist * tan(sourceAngle - deflectionAngle) * lensPlaneCoords / r;
 			i.uv = lensPlaneCoords / frustumSize + lensUVPos;
 			sourceColor = tex2D(_MainTex, i.uv).rgb;
