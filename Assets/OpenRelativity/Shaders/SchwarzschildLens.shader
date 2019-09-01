@@ -10,7 +10,7 @@
 		_lensVPos("Lens Position (V)", float) = 0
 		_frustumWidth("Frustum Width", float) = 0
 		_frustumHeight("Frustum Height", float) = 0
-		[Toggle] _isEvaporating("is Evaporating", float) = 0
+		[Toggle] _HasEventHorizon("Block event horizon", float) = 0
 	}
 
 	CGINCLUDE
@@ -18,12 +18,13 @@
 #pragma glsl
 
 #define divByZeroCutoff 1e-8f
+#define PI_2 1.57079632679489661923
 
 	sampler2D _MainTex;
 	float _playerDist, _playerAngle, _lensRadius;
 	float _lensUPos, _lensVPos;
 	float _frustumWidth, _frustumHeight;
-	float _isEvaporating;
+	float _HasEventHorizon;
 
 	struct VertexData {
 		float4 vertex : POSITION;
@@ -53,17 +54,17 @@
 		} else {
 			float sourceAngle = atan2(r, _playerDist);
 			float deflectionAngle = 2 * (_lensRadius / r) * cos(_playerAngle / 2);
-			float impactParam = _playerDist * tan(sourceAngle - deflectionAngle);
-
-			// Minimum impact paramater should be the Schwarzschild radius. Anything less is trapped.
-			// However, per the black hole dissolution treatment, these rays would be released at a later time.
-			// If the lensed object behind the mass lens has been "static," (consistently emitting/reflecting,) for a long enough time,
-			// the light we see in this parameter region is consistent with what's being emitted/reflected now.
-			// (TL;DR - Dan is speculating, but the less speculative case is enacted when black hole dissolution is turned off.)
-			if (_isEvaporating || impactParam > _lensRadius) {
-				lensPlaneCoords = impactParam * lensPlaneCoords / r;
-				i.uv = lensPlaneCoords / frustumSize + lensUVPos;
-				sourceColor = tex2D(_MainTex, i.uv).rgb;
+			// Deflection angle greater than pi / 2 implies total deflection, away from camera
+			if (abs(deflectionAngle) < PI_2) {
+				// Minimum impact paramater should be the Schwarzschild radius. Anything less would be trapped.
+				// However, per the black hole dissolution treatment, these rays would be released at a later time.
+				// (TL;DR - Dan is speculating, but the less speculative case is enacted when black hole dissolution is turned off.)
+				float impactParam = _playerDist * tan(sourceAngle - deflectionAngle);
+				if (!_HasEventHorizon || abs(impactParam) > _lensRadius) {
+					lensPlaneCoords = impactParam * lensPlaneCoords / r;
+					i.uv = lensPlaneCoords / frustumSize + lensUVPos;
+					sourceColor = tex2D(_MainTex, i.uv).rgb;
+				}
 			}
 		}
 		return float4(sourceColor, 1);

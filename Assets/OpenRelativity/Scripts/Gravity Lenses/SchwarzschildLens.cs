@@ -43,6 +43,6 @@ public class SchwarzschildLens : GravityLens
         lensMaterial.SetFloat("_lensVPos", lensUVPos.y);
         lensMaterial.SetFloat("_frustumWidth", frustumWidth);
         lensMaterial.SetFloat("_frustumHeight", frustumHeight);
-        lensMaterial.SetFloat("_isEvaporating", schwarzschild.doEvaporate ? 1 : 0);
+        lensMaterial.SetFloat("_HasEventHorizon", schwarzschild.doEvaporate ? 0 : 1);
     }
 }
