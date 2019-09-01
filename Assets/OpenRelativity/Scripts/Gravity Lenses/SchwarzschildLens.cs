@@ -31,9 +31,9 @@ public class SchwarzschildLens : GravityLens
 
         Vector3 lensUVPos = cam.WorldToViewportPoint(Vector3.zero);
         float playerAngle = Mathf.Deg2Rad * Vector3.Angle(-cam.transform.position, cam.transform.forward);
-        float playerDist = lensUVPos.z;
+        float playerDist = cam.transform.position.magnitude;
 
-        float frustumHeight = 2.0f * cam.transform.position.magnitude * Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
+        float frustumHeight = 2.0f * playerDist * Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
         float frustumWidth = frustumHeight * cam.aspect;
 
         lensMaterial.SetFloat("_playerDist", playerDist);
