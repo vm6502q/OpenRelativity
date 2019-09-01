@@ -1,4 +1,4 @@
-﻿Shader "Relativity/GravityLens"
+﻿Shader "Relativity/SchwarzschildLens"
 {
 	Properties
 	{
