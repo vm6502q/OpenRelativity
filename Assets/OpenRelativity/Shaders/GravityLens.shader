@@ -49,13 +49,13 @@
 		if (r < divByZeroCutoff) {
 			sourceColor = tex2D(_MainTex, i.uv).rgb;
 		} else {
-			float sourceAngle = atan(r);
+			float sourceAngle = atan2(r, _playerDist);
 			float deflectionAngle = 2 * (_lensRadius / r) * cos(_playerAngle / 2);
 			if (_playerDist < 0) {
 				deflectionAngle *= -1;
 			}
 			
-			lensPlaneCoords = tan(sourceAngle - deflectionAngle) * lensPlaneCoords / r;
+			lensPlaneCoords = _playerDist * tan(sourceAngle - deflectionAngle) * lensPlaneCoords / r;
 			i.uv = lensPlaneCoords / frustumSize + lensUVPos;
 			sourceColor = tex2D(_MainTex, i.uv).rgb;
 		}
