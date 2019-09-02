@@ -37,6 +37,7 @@ public class GravityLens : MonoBehaviour
                 else
                 {
                     Graphics.Blit(src, lensPass, lensMaterial);
+                    mirrorLens.GetComponent<GravityMirror>().ManualUpdate();
                 }
             }
             else

@@ -11,7 +11,7 @@ public class GravityMirror : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void ManualUpdate()
     {
         transform.position = -playerCam.transform.position;
         transform.forward = Vector3.Reflect(-playerCam.transform.forward, Vector3.up);
