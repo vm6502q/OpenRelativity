@@ -7,11 +7,14 @@ public class GravityLens : MonoBehaviour
     public GravityLens mirrorLens;
     public bool isMirror;
 
-    protected bool doBlit = true;
+    protected bool doBlit;
+    protected bool wasBlit;
     protected RenderTexture lensPass;
 
     private void Start()
     {
+        doBlit = true;
+        wasBlit = false;
         if (cam == null)
         {
             cam = GetComponent<Camera>();
@@ -22,6 +25,7 @@ public class GravityLens : MonoBehaviour
     {
         if (doBlit)
         {
+            wasBlit = true;
             if (mirrorLens)
             {
                 if (!isMirror && lensPass == null)
@@ -44,9 +48,18 @@ public class GravityLens : MonoBehaviour
             {
                 Graphics.Blit(src, dest, lensMaterial);
             }
-        } else
+        }
+        else
         {
-            Graphics.Blit(src, dest);
+            if (wasBlit && isMirror && mirrorLens)
+            {
+                wasBlit = false;
+                gameObject.SetActive(false);
+            } else
+            {
+                wasBlit = false;
+                Graphics.Blit(src, dest);
+            }
         }
     }
 }
