@@ -6,15 +6,6 @@ public class SchwarzschildLens : GravityLens
 {
     public GameState state;
     public Schwarzschild schwarzschild;
-    public Camera cam;
-
-    private void Start()
-    {
-        if (cam == null)
-        {
-            cam = GetComponent<Camera>();
-        }
-    }
 
     // Update is called once per frame
     void Update()
@@ -43,6 +34,5 @@ public class SchwarzschildLens : GravityLens
         lensMaterial.SetFloat("_lensVPos", lensUVPos.y);
         lensMaterial.SetFloat("_frustumWidth", frustumWidth);
         lensMaterial.SetFloat("_frustumHeight", frustumHeight);
-        lensMaterial.SetFloat("_HasEventHorizon", schwarzschild.doEvaporate ? 0 : 1);
     }
 }
