@@ -54,10 +54,11 @@
 		} else {
 			float sourceAngle = atan2(r, _playerDist);
 			float deflectionAngle = 2 * (_lensRadius / r) * cos(_playerAngle / 2);
+			uint inversionCount = abs(deflectionAngle) / PI_2;
 			// Deflection angle greater than pi / 2 implies total deflection, away from camera
-			if (abs(deflectionAngle) < PI_2) {
+			if (inversionCount % 2 == 0) {
 				// Minimum impact paramater should be the Schwarzschild radius. Anything less would be trapped.
-				// However, per the black hole dissolution treatment, these rays would be released at a later time.
+				// However, per the black hole dissolution treatment, these rays would ultimately be released.
 				// (TL;DR - Dan is speculating, but the less speculative case is enacted when black hole dissolution is turned off.)
 				float impactParam = _playerDist * tan(sourceAngle - deflectionAngle);
 				if (!_HasEventHorizon || abs(impactParam) > _lensRadius) {
