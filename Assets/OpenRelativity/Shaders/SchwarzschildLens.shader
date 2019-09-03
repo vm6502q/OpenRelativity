@@ -13,7 +13,6 @@
 		_lensTex("Lens-Pass Texture", 2D) = "black" {}
 		[Toggle] _isMirror("Gravity Mirror", float) = 0
 		[Toggle] _hasEventHorizon("Block event horizon", float) = 0
-		_skyboxDist("Distance to Skybox", float) = 1000000
 	}
 
 	CGINCLUDE
@@ -30,7 +29,6 @@
 	float _frustumWidth, _frustumHeight;
 	float _isMirror;
 	float _hasEventHorizon;
-	float _skyboxDist;
 
 	struct VertexData {
 		float4 vertex : POSITION;
@@ -59,7 +57,7 @@
 			sourceColor = tex2D(_MainTex, i.uv).rgb;
 		}
 		else {
-			float sourceAngle = atan2(r + r * tan(r / _skyboxDist), _playerDist);
+			float sourceAngle = atan2(r, _playerDist);
 			float deflectionAngle = 2 * (_lensRadius / r) * cos(_playerAngle / 2);
 			uint inversionCount = abs(deflectionAngle) / PI_2;
 			if (inversionCount % 2 == (_isMirror < 0.5 ? 0 : 1)) {
