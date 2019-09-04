@@ -43,6 +43,7 @@ namespace OpenRelativity.GravityLenses
                     else
                     {
                         Graphics.Blit(src, lensPass, lensMaterial);
+                        mirrorLens.cam.targetTexture = dest;
                         mirrorLens.GetComponent<GravityMirror>().ManualUpdate();
                     }
                 }
