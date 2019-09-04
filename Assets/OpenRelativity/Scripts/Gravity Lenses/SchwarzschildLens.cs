@@ -8,10 +8,16 @@ namespace OpenRelativity.GravityLenses
     {
         public GameState state;
         public Schwarzschild schwarzschild;
+        public GravityMirror gravityMirror;
 
         // Update is called once per frame
         void Update()
         {
+            if (gravityMirror != null)
+            {
+                gravityMirror.ManualUpdate();
+            }
+
             float r = schwarzschild.radius;
 
             if (r == 0)
