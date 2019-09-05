@@ -1,69 +1,65 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-namespace OpenRelativity.GravityLenses
+public class GravityLens : MonoBehaviour
 {
-    public class GravityLens : MonoBehaviour
+    public Camera cam;
+    public Material lensMaterial;
+    public GravityLens mirrorLens;
+    public bool isMirror;
+
+    protected bool doBlit;
+    protected bool wasBlit;
+    protected List<RenderTexture> lensPass;
+
+    private void Start()
     {
-        public Camera cam;
-        public Material lensMaterial;
-        public GravityLens mirrorLens;
-        public bool isMirror;
-
-        protected bool doBlit;
-        protected bool wasBlit;
-        protected RenderTexture lensPass;
-
-        private void Start()
+        doBlit = true;
+        wasBlit = false;
+        if (cam == null)
         {
-            doBlit = true;
-            wasBlit = false;
-            if (cam == null)
-            {
-                cam = GetComponent<Camera>();
-            }
+            cam = GetComponent<Camera>();
         }
+    }
 
-        void OnRenderImage(RenderTexture src, RenderTexture dest)
+    void OnRenderImage(RenderTexture src, RenderTexture dest)
+    {
+        if (doBlit)
         {
-            if (doBlit)
+            wasBlit = true;
+            if (mirrorLens)
             {
-                wasBlit = true;
-                if (mirrorLens)
+                if (isMirror)
                 {
-                    if (!isMirror && lensPass == null)
-                    {
-                        lensPass = new RenderTexture(src);
-                    }
-
-                    if (isMirror)
-                    {
-                        lensMaterial.SetTexture("_lensTex", mirrorLens.lensPass);
-                        Graphics.Blit(src, dest, lensMaterial);
-                    }
-                    else
-                    {
-                        Graphics.Blit(src, lensPass, lensMaterial);
-                        mirrorLens.cam.targetTexture = dest;
-                        mirrorLens.GetComponent<GravityMirror>().ManualUpdate();
-                    }
+                    lensMaterial.SetTexture("_lensTex", mirrorLens.lensPass[0]);
+                    mirrorLens.lensPass.RemoveAt(0);
+                    Graphics.Blit(src, dest, lensMaterial);
                 }
                 else
                 {
+                    if (lensPass == null)
+                    {
+                        lensPass = new List<RenderTexture>();
+                    }
                     Graphics.Blit(src, dest, lensMaterial);
+                    lensPass.Add(dest);
                 }
             }
             else
             {
-                if (wasBlit && isMirror && mirrorLens)
-                {
-                    wasBlit = false;
-                    gameObject.SetActive(false);
-                }
-                else
-                {
-                    wasBlit = false;
-                    Graphics.Blit(src, dest);
-                }
+                Graphics.Blit(src, dest, lensMaterial);
+            }
+        }
+        else
+        {
+            if (wasBlit && isMirror && mirrorLens)
+            {
+                wasBlit = false;
+                gameObject.SetActive(false);
+            } else
+            {
+                wasBlit = false;
+                Graphics.Blit(src, dest);
             }
         }
     }
