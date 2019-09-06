@@ -62,13 +62,15 @@
 			uint inversionCount = abs(deflectionAngle) / PI_2;
 			if (inversionCount % 2 == (_isMirror < 0.5 ? 0 : 1)) {
 				// Minimum impact paramater should be the Schwarzschild radius. Anything less would be trapped.
-				// However, per the black hole dissolution treatment, these rays would ultimately be released.
-				// (TL;DR - Dan is speculating, but the less speculative case is enacted when black hole dissolution is turned off.)
 				float impactParam = _playerDist * tan(sourceAngle - deflectionAngle);
 				if (!_hasEventHorizon || abs(impactParam) > _lensRadius) {
 					lensPlaneCoords = impactParam * lensPlaneCoords / r;
-					i.uv = lensPlaneCoords / frustumSize + lensUVPos;
-					sourceColor = tex2D(_MainTex, i.uv).rgb;
+					float2 uvProj = lensPlaneCoords / frustumSize;
+					float scale = length(i.uv - lensUVPos) / length(uvProj);
+					uvProj += lensUVPos;
+					uvProj *= scale;
+					float4 s = float4(uvProj, 0, scale);
+					sourceColor = tex2Dproj(_MainTex, UNITY_PROJ_COORD(s)).rgb;
 				}
 			}
 			else if (_isMirror >= 0.5f) {
