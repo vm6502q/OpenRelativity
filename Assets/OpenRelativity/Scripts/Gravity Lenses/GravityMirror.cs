@@ -3,7 +3,6 @@
 public class GravityMirror : MonoBehaviour
 {
     public Camera playerCam;
-
     // Start is called before the first frame update
     void Start()
     {

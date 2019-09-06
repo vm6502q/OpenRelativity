@@ -31,9 +31,12 @@ public class GravityLens : MonoBehaviour
             {
                 if (isMirror)
                 {
-                    lensMaterial.SetTexture("_lensTex", mirrorLens.lensPass[0]);
-                    mirrorLens.lensPass.RemoveAt(0);
-                    Graphics.Blit(src, dest, lensMaterial);
+                    if (mirrorLens.lensPass != null && mirrorLens.lensPass.Count > 0)
+                    {
+                        lensMaterial.SetTexture("_lensTex", mirrorLens.lensPass[0]);
+                        mirrorLens.lensPass.RemoveAt(0);
+                        Graphics.Blit(src, dest, lensMaterial);
+                    }
                 }
                 else
                 {
