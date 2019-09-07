@@ -64,8 +64,11 @@
 			float deflectionAngle = 2 * (_lensRadius / r) * cos(_playerAngle / 2) / _cameraScale;
 
 			uint inversionCount = abs(deflectionAngle) / PI_2;
-			if (inversionCount % 2 == (_isMirror < 0.5 ? 0 : 1)) {
-				lensPlaneCoords = _playerDist * tan(sourceAngle + deflectionAngle) * lensPlaneCoords / r;
+			if ((_playerAngle > PI_2 ||
+				!(_hasEventHorizon && deflectionAngle >= PI_2))
+				&& inversionCount % 2 == (_isMirror < 0.5 ? 0 : 1))
+			{
+				lensPlaneCoords = _playerDist * tan(sourceAngle - deflectionAngle) * lensPlaneCoords / r;
 				float2 uvProj = lensPlaneCoords / frustumSize;
 				float scale = length(i.uv - lensUVPos) / length(uvProj);
 				uvProj = (uvProj + lensUVPos);
