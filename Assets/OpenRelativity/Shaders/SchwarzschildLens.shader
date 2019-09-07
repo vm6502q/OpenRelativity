@@ -63,7 +63,7 @@
 		uint inversionCount = abs(deflectionAngle) / PI_2;
 		if (inversionCount % 2 == (_isMirror < 0.5 ? 0 : 1)) {
 			// Minimum impact paramater should be the Schwarzschild radius. Anything less would be trapped.
-			float impactParam = _playerDist * tan(sourceAngle - deflectionAngle);
+			float impactParam = _playerDist * tan(sourceAngle + deflectionAngle);
 			if (!_hasEventHorizon || abs(impactParam) > _lensRadius) {
 				lensPlaneCoords = impactParam * lensPlaneCoords / r;
 				float2 uvProj = lensPlaneCoords / frustumSize;
