@@ -57,6 +57,7 @@
 		float2 lensPlaneCoords = (i.uv - lensUVPos) * frustumSize;
 		float r = length(lensPlaneCoords);
 
+		// Minimum impact paramater should be the Schwarzschild radius. Anything less would be trapped.
 		if (!_hasEventHorizon || r > _lensRadius || _playerAngle > PI_2) {
 
 			float sourceAngle = atan2(r, _playerDist);
@@ -64,18 +65,14 @@
 
 			uint inversionCount = abs(deflectionAngle) / PI_2;
 			if (inversionCount % 2 == (_isMirror < 0.5 ? 0 : 1)) {
-				// Minimum impact paramater should be the Schwarzschild radius. Anything less would be trapped.
-				float impactParam = _playerDist * tan(sourceAngle + deflectionAngle);
-				if (!_hasEventHorizon || abs(impactParam) > _lensRadius) {
-					lensPlaneCoords = impactParam * lensPlaneCoords / r;
-					float2 uvProj = lensPlaneCoords / frustumSize;
-					float scale = length(i.uv - lensUVPos) / length(uvProj);
-					uvProj = (uvProj + lensUVPos);
-					uvProj = (uvProj - float2(0.5f, 0.5f)) * _cameraScale + float2(0.5f, 0.5f);
-					uvProj *= scale;
-					float4 s = float4(uvProj, 0, scale);
-					sourceColor = tex2Dproj(_MainTex, UNITY_PROJ_COORD(s)).rgb;
-				}
+				lensPlaneCoords = _playerDist * tan(sourceAngle + deflectionAngle) * lensPlaneCoords / r;
+				float2 uvProj = lensPlaneCoords / frustumSize;
+				float scale = length(i.uv - lensUVPos) / length(uvProj);
+				uvProj = (uvProj + lensUVPos);
+				uvProj = (uvProj - float2(0.5f, 0.5f)) * _cameraScale + float2(0.5f, 0.5f);
+				uvProj *= scale;
+				float4 s = float4(uvProj, 0, scale);
+				sourceColor = tex2Dproj(_MainTex, UNITY_PROJ_COORD(s)).rgb;
 			}
 			else if (_isMirror >= 0.5f) {
 				sourceColor = tex2D(_lensTex, i.uv).rgb;
