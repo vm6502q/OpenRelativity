@@ -35,6 +35,7 @@ namespace OpenRelativity.ConformalMaps
             if (!isExterior)
             {
                 tau *= -1;
+                rho = (float)(state.SpeedOfLight * state.TotalTimeWorld);
             }
 
             // Partial differential, finite difference approach:
