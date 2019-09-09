@@ -110,8 +110,8 @@ namespace OpenRelativity
         //public double FixedDeltaTimeWorld { get { return Time.fixedDeltaTime / inverseAcceleratedGamma; } }
         public double DeltaTimePlayer { get; private set; }
         public double FixedDeltaTimePlayer { get { return Time.fixedDeltaTime; } }
-        public double TotalTimePlayer { get; private set; }
-        public double TotalTimeWorld { get; private set; }
+        public double TotalTimePlayer { get; set; }
+        public double TotalTimeWorld { get; set; }
         public double SpeedOfLight { get { return c; } set { c = value; SpeedOfLightSqrd = value * value; } }
         public double SpeedOfLightSqrd { get; private set; }
 
@@ -235,9 +235,9 @@ namespace OpenRelativity
 
                 //if we reached max speed, forward or backwards, keep at max speed
 
-                if (PlayerVelocityVector.magnitude >= (float)MaxSpeed - .01f)
+                if (PlayerVelocityVector.magnitude >= (float)maxPlayerSpeed - .01f)
                 {
-                    PlayerVelocityVector = PlayerVelocityVector.normalized * ((float)MaxSpeed - .01f);
+                    PlayerVelocityVector = PlayerVelocityVector.normalized * ((float)maxPlayerSpeed - .01f);
                 }
 
                 //update our player velocity
