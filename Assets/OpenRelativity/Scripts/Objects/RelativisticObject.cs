@@ -958,6 +958,11 @@ namespace OpenRelativity.Objects
             float deltaTime = (float)state.FixedDeltaTimePlayer * GetTimeFactor();
             float localDeltaT = deltaTime - (float)state.FixedDeltaTimeWorld;
 
+            if (state.conformalMap != null)
+            {
+                piw = state.conformalMap.ComoveOptical(deltaTime, piw);
+            }
+
             if (!IsNaNOrInf(localDeltaT))
             {
                 localTimeOffset += localDeltaT;
