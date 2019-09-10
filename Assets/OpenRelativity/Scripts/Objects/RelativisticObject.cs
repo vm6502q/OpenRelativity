@@ -787,7 +787,7 @@ namespace OpenRelativity.Objects
             {
                 Transform camTransform = Camera.main.transform;
                 float distToCenter = (Camera.main.farClipPlane + Camera.main.nearClipPlane) / 2.0f;
-                Vector3 center = camTransform.position + camTransform.forward * distToCenter;
+                Vector3 center = camTransform.position;
                 float extremeBound = 500000.0f;
                 meshFilter.sharedMesh.bounds = new Bounds(center, Vector3.one * extremeBound);
             }
@@ -1079,7 +1079,15 @@ namespace OpenRelativity.Objects
             if (!IsNaNOrInf(testVec.sqrMagnitude))
             {
                 float aviwMag = aviw.magnitude;
-                Quaternion diffRot = Quaternion.AngleAxis(Mathf.Rad2Deg * deltaTime * aviwMag, aviw / aviwMag);
+                Quaternion diffRot;
+                if (aviwMag < SRelativityUtil.divByZeroCutoff)
+                {
+                    diffRot = Quaternion.identity;
+                }
+                else
+                {
+                    diffRot = Quaternion.AngleAxis(Mathf.Rad2Deg * deltaTime * aviwMag, aviw / aviwMag);
+                }
                 riw = riw * diffRot;
                 myRigidbody.MoveRotation(riw);
 
@@ -1306,7 +1314,7 @@ namespace OpenRelativity.Objects
                 SetUpContractor();
             }
 
-            if (relVelMag > 0.0f)
+            if (relVelMag > SRelativityUtil.divByZeroCutoff)
             {
                 Quaternion rot = transform.rotation;
 
