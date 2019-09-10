@@ -30,12 +30,16 @@ namespace OpenRelativity.ConformalMaps
             float tau = properTDiff;
             float rsCubeRoot = Mathf.Pow(radius, 1.0f / 3.0f);
             // To begin, "tau" = 0;
-            float rho = (2.0f * r * Mathf.Sqrt(r / rsCubeRoot)) / (3.0f * rsCubeRoot);
+            float rho;
 
-            if (!isExterior)
+            if (isExterior)
             {
+                r = piw.magnitude;
+                rho = (2.0f * r * Mathf.Sqrt(r / rsCubeRoot)) / (3.0f * rsCubeRoot);
+            } else {
                 tau *= -1;
                 rho = (float)(state.SpeedOfLight * state.TotalTimeWorld);
+                r = Mathf.Pow(rho / (2 * rsCubeRoot), 2.0f / 3.0f);
             }
 
             // Partial differential, finite difference approach:

@@ -13,7 +13,6 @@
 		_lensTex("Lens-Pass Texture", 2D) = "black" {}
 		[Toggle] _isMirror("Gravity Mirror", float) = 0
 		[Toggle] _hasEventHorizon("Block event horizon", float) = 0
-		[Toggle] _isExterior("Is Exterior", float) = 1
 		_cameraScale("Camera Scale", float) = 1
 	}
 
@@ -48,7 +47,6 @@
 	float _frustumWidth, _frustumHeight;
 	float _isMirror;
 	float _hasEventHorizon;
-	float _isExterior;
 	float _cameraScale;
 
 	struct VertexData {
