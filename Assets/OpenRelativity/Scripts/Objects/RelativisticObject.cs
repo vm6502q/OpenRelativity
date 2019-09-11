@@ -788,8 +788,7 @@ namespace OpenRelativity.Objects
                 Transform camTransform = Camera.main.transform;
                 float distToCenter = (Camera.main.farClipPlane + Camera.main.nearClipPlane) / 2.0f;
                 Vector3 center = camTransform.position;
-                float extremeBound = 500000.0f;
-                meshFilter.sharedMesh.bounds = new Bounds(center, Vector3.one * extremeBound);
+                meshFilter.sharedMesh.bounds = new Bounds(distToCenter * camTransform.forward + center, 2 * distToCenter * Vector3.one);
             }
         }
 

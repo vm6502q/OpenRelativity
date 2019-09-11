@@ -100,13 +100,21 @@ namespace OpenRelativity.ConformalMaps
             // It's not properly Hawking radition, but this could be easily modified to approximate that instead.
             if (!double.IsInfinity(state.FixedDeltaTimeWorld) && !double.IsNaN(state.FixedDeltaTimeWorld))
             {
-                float cTo7 = Mathf.Pow(SRelativityUtil.c, 7.0f);
-                float diffR = (float)state.FixedDeltaTimeWorld * Mathf.Sqrt(state.hbarOverG * cTo7) * 2.0f / radius;
+                float diffR;
+                if (radius > state.planckLength)
+                {
+                    float cTo7 = Mathf.Pow(SRelativityUtil.c, 7.0f);
+                    diffR = (float)-state.FixedDeltaTimeWorld * Mathf.Sqrt(state.hbarOverG * cTo7) * 2.0f / radius;
+                } else
+                {
+                    diffR = (float)-state.FixedDeltaTimeWorld * state.planckLength / (2.0f * state.planckTime);
+                }
+
                 if (!isExterior)
                 {
                     diffR *= -1;
                 }
-                radius = radius - diffR;
+                radius = radius + diffR;
             }
 
             if (radius < 0)

@@ -41,25 +41,32 @@ namespace OpenRelativity
                 return hbar / gConst;
             }
         }
+        public float planckLength
+        {
+            get
+            {
+                return (float)Math.Sqrt((hbar * gConst) / Math.Pow(SpeedOfLight, 3));
+            }
+        }
         public float planckTime
         {
             get
             {
-                return Mathf.Sqrt(hbar * gConst / Mathf.Pow((float)SpeedOfLight, 5));
+                return (float)Math.Sqrt(hbar * gConst / Math.Pow(SpeedOfLight, 5));
             }
         }
         public float planckMass
         {
             get
             {
-                return Mathf.Sqrt(hbar * gConst / (float)SpeedOfLight);
+                return (float)Math.Sqrt(hbar * gConst / SpeedOfLight);
             }
         }
         public float planckAccel
         {
             get
             {
-                return (float)SpeedOfLight / planckTime;
+                return (float)(SpeedOfLight / planckTime);
             }
         }
         public float fluxPerAccel = 0;
