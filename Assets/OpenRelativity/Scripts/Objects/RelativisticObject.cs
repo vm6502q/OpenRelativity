@@ -70,6 +70,7 @@ namespace OpenRelativity.Objects
             }
         }
         public Matrix4x4 viwLorentz { get; private set; }
+        public Vector3 cviw;
 
         //Store this object's angular velocity here.
         public Vector3 _aviw;
@@ -677,6 +678,7 @@ namespace OpenRelativity.Objects
 
         void Start()
         {
+            cviw = Vector3.zero;
             frameDragAccel = Vector3.zero;
             ResetPiw();
             riw = transform.rotation;
@@ -842,6 +844,7 @@ namespace OpenRelativity.Objects
                 {
                     viw = Vector3.zero;
                     aviw = Vector3.zero;
+                    cviw = Vector3.zero;
                     isResting = true;
 
                     return;
@@ -959,7 +962,10 @@ namespace OpenRelativity.Objects
 
             if (state.conformalMap != null)
             {
-                piw = state.conformalMap.ComoveOptical(deltaTime, piw);
+                Vector4 nPiw4 = state.conformalMap.ComoveOptical(deltaTime, piw);
+                Vector3 pDiff = (Vector3)nPiw4 - piw;
+                cviw = pDiff / deltaTime;
+                piw = nPiw4;
             }
 
             if (!IsNaNOrInf(localDeltaT))
@@ -1056,8 +1062,9 @@ namespace OpenRelativity.Objects
 
                 if (!isKinematic)
                 {
-                    viw = Vector4.zero;
-                    aviw = Vector4.zero;
+                    viw = Vector3.zero;
+                    aviw = Vector3.zero;
+                    cviw = Vector3.zero;
                 } else
                 {
                     transform.position = nonrelativisticShader ? ((Vector4)piw).WorldToOptical(viw, Get4Acceleration()) : piw;
@@ -1162,10 +1169,10 @@ namespace OpenRelativity.Objects
             //Send our object's v/c (Velocity over the Speed of Light) to the shader
             if (myRenderer != null && !isLightMapStatic)
             {
-                Vector4 tempViw = viw / (float)state.SpeedOfLight;
+                Vector3 tempViw = cviw.AddVelocity(viw) / (float)state.SpeedOfLight;
                 Vector3 tempAviw = aviw;
                 Vector4 tempAiw = Get4Acceleration();
-                Vector4 tempVr = (-viw).AddVelocity(state.PlayerVelocityVector) / (float)state.SpeedOfLight;
+                Vector4 tempVr = tempViw.AddVelocity(-(state.PlayerComovingVelocityVector.AddVelocity(state.PlayerVelocityVector))) / (float)state.SpeedOfLight;
 
                 //Velocity of object Lorentz transforms are the same for all points in an object,
                 // so it saves redundant GPU time to calculate them beforehand.

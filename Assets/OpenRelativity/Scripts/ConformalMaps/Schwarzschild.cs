@@ -25,6 +25,13 @@ namespace OpenRelativity.ConformalMaps
 
         override public Vector4 ComoveOptical(float properTDiff, Vector3 piw)
         {
+            if (radius <= 0)
+            {
+                Vector4 toRet = piw;
+                toRet.w = properTDiff;
+                return toRet;
+            }
+
             // Assume that the spatial component is in world coordinates, and the time is a local time differential 
             float r = piw.magnitude;
             float tau = properTDiff;
@@ -90,7 +97,7 @@ namespace OpenRelativity.ConformalMaps
 
         void FixedUpdate()
         {
-            if (!doEvaporate || state.MovementFrozen)
+            if (radius <= 0 || !doEvaporate || state.MovementFrozen)
             {
                 return;
             }

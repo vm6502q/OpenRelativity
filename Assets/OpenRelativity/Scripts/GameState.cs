@@ -100,6 +100,7 @@ namespace OpenRelativity
         public Matrix4x4 WorldRotation { get; private set; }
         public Quaternion Orientation { get { return orientation; } }
         public Vector3 PlayerVelocityVector { get; set; }
+        public Vector3 PlayerComovingVelocityVector { get; set; }
         public Vector3 PlayerAccelerationVector { get; set; }
         public Vector3 PlayerAngularVelocityVector { get { if (DeltaTimePlayer == 0) { return Vector3.zero; } else { return (float)(deltaCameraAngle * Mathf.Deg2Rad / DeltaTimePlayer) * playerTransform.up; } } }
         public Matrix4x4 PlayerLorentzMatrix { get; private set; }
@@ -354,6 +355,8 @@ namespace OpenRelativity
                 {
                     // Assume local player coordinates are comoving
                     Vector4 piw4 = conformalMap.ComoveOptical((float)FixedDeltaTimePlayer, playerTransform.position);
+                    Vector3 pDiff = (Vector3)piw4 - playerTransform.position;
+                    PlayerComovingVelocityVector = pDiff / (float)FixedDeltaTimePlayer;
                     playerTransform.position = piw4;
                     PlayerVelocityVector = PlayerVelocityVector.AddVelocity(conformalMap.GetRindlerAcceleration(playerTransform.position) * (float)FixedDeltaTimePlayer);
                 }
