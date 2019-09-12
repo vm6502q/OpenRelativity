@@ -17,7 +17,7 @@ namespace OpenRelativity.ConformalMaps
             isExterior = (dist > radius);
             if (!isExterior)
             {
-                state.TotalTimeWorld = dist / state.SpeedOfLight;
+                state.TotalTimeWorld = Math.Tan(dist / radius * Math.PI / 2) * radius / state.SpeedOfLight;
                 state.TotalTimePlayer = state.TotalTimeWorld;
                 state.playerTransform.position = Vector3.zero;
             }
