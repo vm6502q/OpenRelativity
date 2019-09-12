@@ -11,7 +11,7 @@ namespace OpenRelativity.ConformalMaps
         public bool doEvaporate = true;
         public float radius = 1;
 
-        public void Awake()
+        public void Start()
         {
             float dist = state.playerTransform.position.magnitude;
             isExterior = (dist > radius);
