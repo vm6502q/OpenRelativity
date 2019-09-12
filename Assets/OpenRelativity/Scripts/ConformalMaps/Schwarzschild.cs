@@ -74,12 +74,11 @@ namespace OpenRelativity.ConformalMaps
             if (!isExterior)
             {
                 float temp = diffT;
-                diffT = diffR;
-                diffR = temp;
-                nR = r + diffR;
+                diffT = diffR / (float)state.SpeedOfLight;
+                diffR = temp * (float)state.SpeedOfLight;
             }
 
-            Vector4 piw4 = piw.normalized * nR;
+            Vector4 piw4 = piw + piw.normalized * diffR;
             piw4.w = diffT;
 
             return piw4;
