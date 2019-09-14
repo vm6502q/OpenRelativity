@@ -282,7 +282,19 @@ namespace OpenRelativity.Objects
         //If the shader is not relativistic, we need to handle length contraction with a "contractor" transform.
         private Transform contractor;
         //Changing a transform's parent is expensive, but we can avoid it with this:
-        private Vector3 contractorLocalScale;
+        public Vector3 _localScale;
+        public Vector3 localScale
+        {
+            get
+            {
+                return _localScale;
+            }
+            set
+            {
+                transform.localScale = value;
+                _localScale = value;
+            }
+        }
         //private int? oldParentID;
         //Store world position, mostly for a nonrelativistic shader:
         public Vector3 piw { get; set; }
@@ -1295,13 +1307,13 @@ namespace OpenRelativity.Objects
             contractor.position = transform.position;
             transform.parent = contractor;
             transform.localPosition = Vector3.zero;
-            contractorLocalScale = contractor.localScale;
+            localScale = transform.localScale;
         }
 
         public void ContractLength()
         {
             Vector3 playerVel = state.PlayerVelocityVector;
-            Vector3 relVel = viw.RelativeVelocityTo(playerVel);
+            Vector3 relVel = cviw.AddVelocity(viw).AddVelocity(-(state.PlayerComovingVelocityVector.AddVelocity(playerVel)));
             float relVelMag = relVel.sqrMagnitude;
 
             if (relVelMag > (state.MaxSpeed))
@@ -1313,12 +1325,8 @@ namespace OpenRelativity.Objects
 
             //Undo length contraction from previous state, and apply updated contraction:
             // - First, return to world frame:
-            contractor.localScale = contractorLocalScale;
-            if ((contractor.lossyScale - new Vector3(1.0f, 1.0f, 1.0f)).sqrMagnitude > 0.0001)
-            {
-                //If we can't avoid (expensive) re-parenting, we do it:
-                SetUpContractor();
-            }
+            contractor.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            transform.localScale = localScale;
 
             if (relVelMag > SRelativityUtil.divByZeroCutoff)
             {
@@ -1337,7 +1345,7 @@ namespace OpenRelativity.Objects
                 transform.rotation = origRot;
 
                 // - Set the scale based only on the velocity relative to the player:
-                contractor.localScale = contractorLocalScale.ContractLengthBy(relVelMag * Vector3.forward);
+                contractor.localScale = new Vector3(1.0f, 1.0f, 1.0f).ContractLengthBy(relVelMag * Vector3.forward);
             }
         }
 
