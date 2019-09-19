@@ -340,6 +340,8 @@ namespace OpenRelativity
 
         private void FixedUpdate()
         {
+            Rigidbody playerRB = GameObject.FindGameObjectWithTag(Tags.playerMesh).GetComponent<Rigidbody>();
+
             if (!MovementFrozen &&
                 !double.IsNaN(DeltaTimePlayer) &&
                 SqrtOneMinusVSquaredCWDividedByCSquared > 0 &&
@@ -355,9 +357,11 @@ namespace OpenRelativity
                     PlayerVelocityVector = PlayerVelocityVector.AddVelocity(conformalMap.GetRindlerAcceleration(playerTransform.position) * (float)FixedDeltaTimePlayer);
                 }
 
-                Rigidbody playerRB = GameObject.FindGameObjectWithTag(Tags.playerMesh).GetComponent<Rigidbody>();
                 Vector3 velocity = -PlayerVelocityVector;
                 playerRB.velocity = velocity / (float)SqrtOneMinusVSquaredCWDividedByCSquared;
+            } else
+            {
+                playerRB.velocity = Vector3.zero;
             }
         }
         #region Matrix/Quat math
