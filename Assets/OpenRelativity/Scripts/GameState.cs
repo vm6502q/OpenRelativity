@@ -104,7 +104,7 @@ namespace OpenRelativity
         public double PlayerVelocity { get { return playerVelocity; } }
         public double SqrtOneMinusVSquaredCWDividedByCSquared { get; private set; }
         //public double InverseAcceleratedGamma { get { return inverseAcceleratedGamma; } }
-        public double DeltaTimeWorld { get; private set; }
+        public double DeltaTimeWorld { get; protected set; }
         public double FixedDeltaTimeWorld {
             get {
                 return Time.fixedDeltaTime / SqrtOneMinusVSquaredCWDividedByCSquared;
@@ -180,7 +180,7 @@ namespace OpenRelativity
             pctOfSpdUsing = 0;
         }
         //Call this function to pause and unpause the game
-        public void ChangeState()
+        public virtual void ChangeState()
         {
             if (MovementFrozen)
             {
@@ -201,7 +201,7 @@ namespace OpenRelativity
         }
 
         //We set this in late update because of timing issues with collisions
-        public void LateUpdate()
+        public virtual void LateUpdate()
         {
             //Set the pause code in here so that our other objects can access it.
             if (Input.GetAxis("Menu Key") > 0 && !menuKeyDown)
