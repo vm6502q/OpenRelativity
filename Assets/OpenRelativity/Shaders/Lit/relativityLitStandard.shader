@@ -2,7 +2,7 @@
 // with respect to world coordinates! General constant velocity lights are more complicated,
 // and lights that accelerate might not be at all feasible.
 
-Shader "Relativity/Standard" {
+Shader "Relativity/Lit/Standard" {
 	Properties{
 		_Color("Color", Color) = (1,1,1,1)
 		_MainTex("Albedo", 2D) = "white" {}
@@ -12,6 +12,11 @@ Shader "Relativity/Standard" {
 		[Toggle(SPECULAR)]
 		_SpecularOn("Specular Reflections", Range(0, 1)) = 0
 		_Specular("Normal Reflectance", Range(0, 1)) = 0
+		[Toggle(_EMISSION)]
+		_EmissionOn("Emission Lighting", Range(0, 1)) = 0
+		_EmissionMap("Emission Map", 2D) = "black" {}
+		[HDR] _EmissionColor("Emission Color", Color) = (0,0,0)
+		_EmissionMultiplier("Emission Multiplier", Range(0,10)) = 1
 		_viw("viw", Vector) = (0,0,0,0) //Vector that represents object's velocity in synchronous frame
 		_aiw("aiw", Vector) = (0,0,0,0) //Vector that represents object's acceleration in world coordinates
 		_pap("pap", Vector) = (0,0,0,0) //Vector that represents the player's acceleration in world coordinates
@@ -68,9 +73,15 @@ Shader "Relativity/Standard" {
 			float2 uv2 : TEXCOORD4; //Lightmap TEXCOORD
 			float4 diff : COLOR0; //Diffuse lighting color in world rest frame
 			float4 normal : TEXCOORD5; //normal in world
+#if _EMISSION
+			float2 uv3 : TEXCOORD6; //EmisionMap TEXCOORD
 #if defined(SHADOWS_SCREEN) || defined(SHADOWS_CUBE) || (defined(SHADOWS_DEPTH) && defined(SPOT))
-			float4 ambient : TEXCOORD6;
+			float4 ambient : TEXCOORD7;
 			SHADOW_COORDS(7)
+#endif
+#elif defined(SHADOWS_SCREEN) || defined(SHADOWS_CUBE) || (defined(SHADOWS_DEPTH) && defined(SPOT))
+			float4 ambient : TEXCOORD6;
+			SHADOW_COORDS(6)
 #endif
 		};
 
@@ -83,6 +94,9 @@ Shader "Relativity/Standard" {
 		sampler2D _UVTex;
 		uniform float4 _UVTex_ST;
 		sampler2D _CameraDepthTexture;
+
+		uniform float4 _EmissionMap_ST;
+		float _EmissionMultiplier;
 
 		float _Specular;
 
@@ -126,6 +140,10 @@ Shader "Relativity/Standard" {
 			if (_MainTex_TexelSize.y < 0)
 				o.uv1.y = 1.0 - o.uv1.y;
 #endif 
+
+#if _EMISSION
+			o.uv3.xy = (v.texcoord + _EmissionMap_ST.zw) * _EmissionMap_ST.xy;
+#endif
 
 			float4 tempPos = mul(unity_ObjectToWorld, float4(v.vertex.xyz, 1.0f));
 			o.pos = float4(tempPos.xyz / tempPos.w - _playerOffset.xyz, 0);
@@ -463,6 +481,10 @@ Shader "Relativity/Standard" {
 			float UV = tex2D(_UVTex, i.uv1).r;
 			float IR = tex2D(_IRTex, i.uv1).r;
 
+#if _EMISSION
+			float3 rgbEmission = DopplerShift((tex2D(_EmissionMap, i.uv3) * _EmissionMultiplier) * _EmissionColor, UV, IR, shift);
+#endif
+
 			//Apply lighting in world frame:
 			float3 rgb = data.xyz;
 			float3 rgbFinal = DopplerShift(rgb, UV, IR, shift);
@@ -542,6 +564,10 @@ Shader "Relativity/Standard" {
 
 			//Doppler factor should be squared for reflected light:
 			rgbFinal = DopplerShift(rgbFinal, UV, IR, shift);
+#if _EMISSION
+			//Add emission:
+			rgbFinal += rgbEmission;
+#endif
 			rgbFinal = constrainRGB(rgbFinal.x, rgbFinal.y, rgbFinal.z); //might not be needed
 
 			//Test if unity_Scale is correct, unity occasionally does not give us the correct scale and you will see strange things in vertices,  this is just easy way to test
@@ -571,7 +597,7 @@ Shader "Relativity/Standard" {
 
 				#pragma fragmentoption ARB_precision_hint_nicest
 				#pragma multi_compile_fwdbase
-				#pragma shader_feature SPECULAR
+				#pragma shader_feature __ SPECULAR _EMISSION
 
 				#pragma vertex vert
 				#pragma fragment frag
@@ -590,7 +616,7 @@ Shader "Relativity/Standard" {
 
 				#pragma fragmentoption ARB_precision_hint_nicest
 				#pragma multi_compile_fwdadd
-				#pragma shader_feature SPECULAR
+				#pragma shader_feature __ SPECULAR _EMISSION
 
 				#pragma vertex vert
 				#pragma fragment frag
@@ -618,13 +644,20 @@ Shader "Relativity/Standard" {
 					UnityMetaInput o;
 					UNITY_INITIALIZE_OUTPUT(UnityMetaInput, o);
 					fixed4 c = tex2D(_GIAlbedoTex, i.uv1);
-					o.Albedo = fixed3(c.rgb * _GIAlbedoColor.rgb);
+#if _EMISSION
+					o.Emission = (tex2D(_EmissionMap, i.uv3) * _EmissionMultiplier) * _EmissionColor;
+#else
 					o.Emission = 0;
+#endif
+					o.Albedo = fixed3(c.rgb * _GIAlbedoColor.rgb);
+					
 					return UnityMetaFragment(o);
 				}
 
 				#pragma vertex vert_meta
 				#pragma fragment frag_meta2
+				#pragma shader_feature _EMISSION
+
 				#pragma shader_feature _METALLICGLOSSMAP
 				#pragma shader_feature ___ _DETAIL_MULX2
 				ENDCG
