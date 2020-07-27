@@ -533,7 +533,7 @@ Shader "Relativity/Lit/Standard" {
 				specFactor = 0.0;
 			}
 
-			float indexRefrac = sqrt(_Specular);
+			float indexRefrac = sqrt(1 - _Specular);
 			indexRefrac = (1.0 + indexRefrac) / (1.0 - indexRefrac);
 			float angle = acos(dot(viewDir, i.normal) / length(viewDir));
 			float cosAngle = cos(angle);
@@ -597,7 +597,8 @@ Shader "Relativity/Lit/Standard" {
 
 				#pragma fragmentoption ARB_precision_hint_nicest
 				#pragma multi_compile_fwdbase
-				#pragma shader_feature __ SPECULAR _EMISSION
+				#pragma shader_feature SPECULAR
+			    #pragma shader_feature _EMISSION
 
 				#pragma vertex vert
 				#pragma fragment frag
@@ -616,7 +617,8 @@ Shader "Relativity/Lit/Standard" {
 
 				#pragma fragmentoption ARB_precision_hint_nicest
 				#pragma multi_compile_fwdadd
-				#pragma shader_feature __ SPECULAR _EMISSION
+				#pragma shader_feature SPECULAR
+				#pragma shader_feature _EMISSION
 
 				#pragma vertex vert
 				#pragma fragment frag
