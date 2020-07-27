@@ -407,6 +407,23 @@ Shader "Relativity/Lit/Emissive/ColorShift" {
 
 	};
 
+	float3 DopplerShift(float3 rgb, float UV, float IR, float shift) {
+		//Color shift due to doppler, go from RGB -> XYZ, shift, then back to RGB.
+		float3 xyz = RGBToXYZC(rgb);
+		float3 weights = weightFromXYZCurves(xyz);
+		float3 rParam, gParam, bParam, UVParam, IRParam;
+		rParam.x = weights.x; rParam.y = (float)615; rParam.z = (float)8;
+		gParam.x = weights.y; gParam.y = (float)550; gParam.z = (float)4;
+		bParam.x = weights.z; bParam.y = (float)463; bParam.z = (float)5;
+		UVParam.x = 0.02; UVParam.y = UV_START + UV_RANGE * UV; UVParam.z = (float)5;
+		IRParam.x = 0.02; IRParam.y = IR_START + IR_RANGE * IR; IRParam.z = (float)5;
+
+		xyz.x = (getXFromCurve(rParam, shift) + getXFromCurve(gParam, shift) + getXFromCurve(bParam, shift) + getXFromCurve(IRParam, shift) + getXFromCurve(UVParam, shift));
+		xyz.y = (getYFromCurve(rParam, shift) + getYFromCurve(gParam, shift) + getYFromCurve(bParam, shift) + getYFromCurve(IRParam, shift) + getYFromCurve(UVParam, shift));
+		xyz.z = (getZFromCurve(rParam, shift) + getZFromCurve(gParam, shift) + getZFromCurve(bParam, shift) + getZFromCurve(IRParam, shift) + getZFromCurve(UVParam, shift));
+		return XYZToRGBC(pow(1 / shift, 3) * xyz);
+	}
+
 	//Per pixel shader, does color modifications
 	float4 frag(v2f i) : COLOR
 	{
@@ -423,18 +440,7 @@ Shader "Relativity/Lit/Emissive/ColorShift" {
 		float UV = tex2D(_UVTex, i.uv1).r;
 		float IR = tex2D(_IRTex, i.uv1).r;
 
-		float3 xyz = RGBToXYZC((tex2D(_EmissionMap, i.uv3) * _EmissionMultiplier) * _EmissionColor);
-		float3 weights = weightFromXYZCurves(xyz);
-		float3 rParam, gParam, bParam, UVParam, IRParam;
-		rParam.x = weights.x; rParam.y = (float)615; rParam.z = (float)8;
-		gParam.x = weights.y; gParam.y = (float)550; gParam.z = (float)4;
-		bParam.x = weights.z; bParam.y = (float)463; bParam.z = (float)5;
-		UVParam.x = 0.02; UVParam.y = UV_START + UV_RANGE*UV; UVParam.z = (float)5;
-		IRParam.x = 0.02; IRParam.y = IR_START + IR_RANGE*IR; IRParam.z = (float)5;
-		xyz.x = (getXFromCurve(rParam, shift) + getXFromCurve(gParam, shift) + getXFromCurve(bParam, shift) + getXFromCurve(IRParam, shift) + getXFromCurve(UVParam, shift));
-		xyz.y = (getYFromCurve(rParam, shift) + getYFromCurve(gParam, shift) + getYFromCurve(bParam, shift) + getYFromCurve(IRParam, shift) + getYFromCurve(UVParam, shift));
-		xyz.z = (getZFromCurve(rParam, shift) + getZFromCurve(gParam, shift) + getZFromCurve(bParam, shift) + getZFromCurve(IRParam, shift) + getZFromCurve(UVParam, shift));
-		float3 rgbEmission = XYZToRGBC(xyz);
+		float3 rgbEmission = DopplerShift((tex2D(_EmissionMap, i.uv3) * _EmissionMultiplier) * _EmissionColor, UV, IR, shift);
 
 		//The Doppler factor is squared for (diffuse or specular) reflected light.
 		//The light color is given in the world frame. That is, the Doppler-shifted "photons" in the world frame
@@ -449,18 +455,8 @@ Shader "Relativity/Lit/Emissive/ColorShift" {
 		float3 rgb = data.xyz;
 
 		//Color shift due to doppler, go from RGB -> XYZ, shift, then back to RGB.
-		xyz = RGBToXYZC(rgb);
-		weights = weightFromXYZCurves(xyz);
-		rParam.x = weights.x; rParam.y = (float)615; rParam.z = (float)8;
-		gParam.x = weights.y; gParam.y = (float)550; gParam.z = (float)4;
-		bParam.x = weights.z; bParam.y = (float)463; bParam.z = (float)5;
-		UVParam.x = 0.02; UVParam.y = UV_START + UV_RANGE*UV; UVParam.z = (float)5;
-		IRParam.x = 0.02; IRParam.y = IR_START + IR_RANGE*IR; IRParam.z = (float)5;
 
-		xyz.x = (getXFromCurve(rParam, shift) + getXFromCurve(gParam, shift) + getXFromCurve(bParam, shift) + getXFromCurve(IRParam, shift) + getXFromCurve(UVParam, shift));
-		xyz.y = (getYFromCurve(rParam, shift) + getYFromCurve(gParam, shift) + getYFromCurve(bParam, shift) + getYFromCurve(IRParam, shift) + getYFromCurve(UVParam, shift));
-		xyz.z = (getZFromCurve(rParam, shift) + getZFromCurve(gParam, shift) + getZFromCurve(bParam, shift) + getZFromCurve(IRParam, shift) + getZFromCurve(UVParam, shift));
-		float3 rgbFinal = XYZToRGBC(pow(1 / shift, 3) * xyz);
+		float3 rgbFinal = DopplerShift(rgb, UV, IR, shift);
 
 #if defined(LIGHTMAP_ON)
 		half3 lms = DecodeLightmap(UNITY_SAMPLE_TEX2D(unity_Lightmap, i.uv2));
@@ -495,15 +491,7 @@ Shader "Relativity/Lit/Emissive/ColorShift" {
 		rgbFinal *= i.diff;
 #endif
 		//Doppler factor should be squared for reflected light:
-		xyz = RGBToXYZC(rgbFinal);
-		weights = weightFromXYZCurves(xyz);
-		rParam.x = weights.x; rParam.y = (float)615; rParam.z = (float)8;
-		gParam.x = weights.y; gParam.y = (float)550; gParam.z = (float)4;
-		bParam.x = weights.z; bParam.y = (float)463; bParam.z = (float)5;
-		xyz.x = (getXFromCurve(rParam, shift) + getXFromCurve(gParam, shift) + getXFromCurve(bParam, shift) + getXFromCurve(IRParam, shift) + getXFromCurve(UVParam, shift));
-		xyz.y = (getYFromCurve(rParam, shift) + getYFromCurve(gParam, shift) + getYFromCurve(bParam, shift) + getYFromCurve(IRParam, shift) + getYFromCurve(UVParam, shift));
-		xyz.z = (getZFromCurve(rParam, shift) + getZFromCurve(gParam, shift) + getZFromCurve(bParam, shift) + getZFromCurve(IRParam, shift) + getZFromCurve(UVParam, shift));
-		rgbFinal = XYZToRGBC(pow(1 / shift, 3) * xyz);
+		rgbFinal = DopplerShift(rgb, UV, IR, shift);
 		//Add emission:
 		rgbFinal += rgbEmission;
 		rgbFinal = constrainRGB(rgbFinal.x,rgbFinal.y, rgbFinal.z); //might not be needed

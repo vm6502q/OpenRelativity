@@ -2,14 +2,16 @@
 // with respect to world coordinates! General constant velocity lights are more complicated,
 // and lights that accelerate might not be at all feasible.
 
-Shader "Relativity/Lit/Specular/ColorShift" {
+Shader "Relativity/Standard" {
 	Properties{
 		_Color("Color", Color) = (1,1,1,1)
 		_MainTex("Albedo", 2D) = "white" {}
 		_UVTex("UV",2D) = "" {} //UV texture
 		_IRTex("IR",2D) = "" {} //IR texture
-		_Specular("Normal Reflectance", Range(0, 1)) = 0
 		_Cutoff("Base Alpha cutoff", Range(0,.9)) = 0.1
+		[Toggle(SPECULAR)]
+		_SpecularOn("Specular Reflections", Range(0, 1)) = 0
+		_Specular("Normal Reflectance", Range(0, 1)) = 0
 		_viw("viw", Vector) = (0,0,0,0) //Vector that represents object's velocity in synchronous frame
 		_aiw("aiw", Vector) = (0,0,0,0) //Vector that represents object's acceleration in world coordinates
 		_pap("pap", Vector) = (0,0,0,0) //Vector that represents the player's acceleration in world coordinates
@@ -465,39 +467,6 @@ Shader "Relativity/Lit/Specular/ColorShift" {
 			float3 rgb = data.xyz;
 			float3 rgbFinal = DopplerShift(rgb, UV, IR, shift);
 
-			//Apply specular reflectance
-			//(Assume surrounding medium has an index of refraction of 1)
-			float specFactor;
-			if (_Specular >= 1.0) {
-				specFactor = 1.0;
-			}
-			else if (_Specular <= 0.0) {
-				specFactor = 0.0;
-			}
-			else {
-				float indexRefrac = sqrt(_Specular);
-				indexRefrac = (1.0 + indexRefrac) / (1.0 - indexRefrac);
-				float angle = acos(dot(viewDir, i.normal) / length(viewDir));
-				float cosAngle = cos(angle);
-				float sinFac = sin(angle) / indexRefrac;
-				sinFac *= sinFac;
-				sinFac = sqrt(1 - sinFac);
-				float reflecS = (cosAngle - indexRefrac * sinFac) / (cosAngle + indexRefrac * sinFac);
-				reflecS *= reflecS;
-				float reflecP = (sinFac - indexRefrac * cosAngle) / (sinFac + indexRefrac * cosAngle);
-				reflecP *= reflecP;
-				specFactor = (reflecS + reflecP) / 2;
-			}
-			float3 specRgb, specFinal;
-			if (specFactor > 0.0) {
-				specRgb = DecodeHDR(envSample, unity_SpecCube0_HDR) * specFactor;
-				specFinal = DopplerShift(specRgb, 0, 0, shift);
-			}
-			else {
-				specRgb = 0;
-				specFinal = 0;
-			}
-
 #if defined(LIGHTMAP_ON)
 			half3 lms = DecodeLightmap(UNITY_SAMPLE_TEX2D(unity_Lightmap, i.uv2));
 			i.diff = float4((float3)lms, 0);
@@ -531,10 +500,45 @@ Shader "Relativity/Lit/Specular/ColorShift" {
 			rgbFinal *= i.diff;
 #endif
 
+#if SPECULAR
+			//Apply specular reflectance
+			//(Assume surrounding medium has an index of refraction of 1)
+			float specFactor;
+			if (_Specular >= 1.0) {
+				specFactor = 1.0;
+			}
+			else if (_Specular <= 0.0) {
+				specFactor = 0.0;
+			}
+
+			float indexRefrac = sqrt(_Specular);
+			indexRefrac = (1.0 + indexRefrac) / (1.0 - indexRefrac);
+			float angle = acos(dot(viewDir, i.normal) / length(viewDir));
+			float cosAngle = cos(angle);
+			float sinFac = sin(angle) / indexRefrac;
+			sinFac *= sinFac;
+			sinFac = sqrt(1 - sinFac);
+			float reflecS = (cosAngle - indexRefrac * sinFac) / (cosAngle + indexRefrac * sinFac);
+			reflecS *= reflecS;
+			float reflecP = (sinFac - indexRefrac * cosAngle) / (sinFac + indexRefrac * cosAngle);
+			reflecP *= reflecP;
+			specFactor = (reflecS + reflecP) / 2;
+
+			float3 specRgb, specFinal;
+			if (specFactor > 0.0) {
+				specRgb = DecodeHDR(envSample, unity_SpecCube0_HDR) * specFactor;
+				specFinal = DopplerShift(specRgb, 0, 0, shift);
+			}
+			else {
+				specRgb = 0;
+				specFinal = 0;
+			}
+
 			// Specular reflection is added after lightmap and shadow
 			if (specFactor > 0.0) {
 				rgbFinal += specFinal;
 			}
+#endif
 
 			//Doppler factor should be squared for reflected light:
 			rgbFinal = DopplerShift(rgbFinal, UV, IR, shift);
@@ -567,6 +571,7 @@ Shader "Relativity/Lit/Specular/ColorShift" {
 
 				#pragma fragmentoption ARB_precision_hint_nicest
 				#pragma multi_compile_fwdbase
+				#pragma shader_feature SPECULAR
 
 				#pragma vertex vert
 				#pragma fragment frag
@@ -585,6 +590,7 @@ Shader "Relativity/Lit/Specular/ColorShift" {
 
 				#pragma fragmentoption ARB_precision_hint_nicest
 				#pragma multi_compile_fwdadd
+				#pragma shader_feature SPECULAR
 
 				#pragma vertex vert
 				#pragma fragment frag
