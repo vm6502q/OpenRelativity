@@ -384,7 +384,7 @@ Shader "Relativity/Lit/Standard" {
 			if (aiwDotAiw == 0) {
 				lightColor = _LightColor0;
 			} else {
-				posTransformed = mul(_viwLorentzMatrix, _WorldSpaceLightPos0.xyz);
+				float4 posTransformed = mul(_viwLorentzMatrix, _WorldSpaceLightPos0.xyz);
 				float posDotAiw = -dot(posTransformed, mul(metric, aiwTransformed));
 
 				float shift = 1.0 + posDotAiw / (sqrt(aiwDotAiw) * spdOfLightSqrd);
@@ -423,7 +423,7 @@ Shader "Relativity/Lit/Standard" {
 					lightColor = unity_LightColor[index].rgb;
 				}
 				else {
-					posTransformed = mul(_viwLorentzMatrix, _WorldSpaceLightPos0.xyz);
+					float4 posTransformed = mul(_viwLorentzMatrix, _WorldSpaceLightPos0.xyz) - riwTransformed;
 					float posDotAiw = -dot(posTransformed, mul(metric, aiwTransformed));
 
 					float shift = 1.0 + posDotAiw / (sqrt(aiwDotAiw) * spdOfLightSqrd);
@@ -458,8 +458,11 @@ Shader "Relativity/Lit/Standard" {
 				lightColor = _LightColor0;
 			}
 			else {
-				float shift = 1.0 + dot(_aiw, _WorldSpaceLightPos0.xyz) / (sqrt(dot(_aiw, _aiw)) * spdOfLightSqrd);
-				lightColor = float4(DopplerShift(_LightColor0.xyz, 0, 0, shift), _LightColor0.w);
+				float4 posTransformed = mul(_viwLorentzMatrix, _WorldSpaceLightPos0.xyz) - riwTransformed;
+				float posDotAiw = -dot(posTransformed, mul(metric, aiwTransformed));
+
+				float shift = 1.0 + posDotAiw / (sqrt(aiwDotAiw) * spdOfLightSqrd);
+				lightColor = float4(DopplerShift(_LightColor0, 0, 0, shift), _LightColor0.w);
 			}
 
 			// dot product between normal and light direction for
