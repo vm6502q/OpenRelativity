@@ -74,13 +74,28 @@ Shader "Relativity/Lit/Standard" {
 			float4 diff : COLOR0; //Diffuse lighting color in world rest frame
 			float4 normal : TEXCOORD5; //normal in world
 			float4 aiwt : TEXCOORD6;
-			float vtld : COLOR1;
+// This section is a mess, but the problem is that shader semantics are "prime real estate."
+// We want to use the bare minimum of TEXCOORD instances we can get away with, to support
+// the oldest and most limited possible hardware.
+// TODO: Prettify the syntax of this section.
 #if _EMISSION
 			float2 uv3 : TEXCOORD7; //EmisionMap TEXCOORD
-#if defined(SHADOWS_SCREEN) || defined(SHADOWS_CUBE) || (defined(SHADOWS_DEPTH) && defined(SPOT))
+	#if defined(POINT)
+			float vtlt : TEXCOORD8;
+		#if defined(SHADOWS_SCREEN) || defined(SHADOWS_CUBE) || (defined(SHADOWS_DEPTH) && defined(SPOT))
+			float4 ambient : TEXCOORD9;
+			SHADOW_COORDS(9)
+		#endif
+	#elif defined(SHADOWS_SCREEN) || defined(SHADOWS_CUBE) || (defined(SHADOWS_DEPTH) && defined(SPOT))
 			float4 ambient : TEXCOORD8;
 			SHADOW_COORDS(8)
-#endif
+	#endif
+#elif defined(POINT)
+			float vtlt : TEXCOORD7;
+	#if defined(SHADOWS_SCREEN) || defined(SHADOWS_CUBE) || (defined(SHADOWS_DEPTH) && defined(SPOT))
+			float4 ambient : TEXCOORD8;
+			SHADOW_COORDS(8)
+	#endif
 #elif defined(SHADOWS_SCREEN) || defined(SHADOWS_CUBE) || (defined(SHADOWS_DEPTH) && defined(SPOT))
 			float4 ambient : TEXCOORD7;
 			SHADOW_COORDS(7)
@@ -484,7 +499,7 @@ Shader "Relativity/Lit/Standard" {
 
 #if defined(POINT)
 			float4 vtl = float4(mul(_viwLorentzMatrix, _WorldSpaceLightPos0.xyz) - o.pos2.xyz, 0);
-			o.vtld = dot(vtl, mul(metric, vtl));
+			o.vtlt = mul(metric, vtl);
 #endif
 
 			return o;
@@ -553,7 +568,8 @@ Shader "Relativity/Lit/Standard" {
 			{
 				float3 vertexToLightSource =
 					mul(_viwLorentzMatrix, _WorldSpaceLightPos0.xyz).xyz - i.pos2.xyz;
-				attenuation = 1.0 / (1.0 + 0.0005 * i.vtld * i.vtld);
+				float squaredDistance = dot(vertexToLightSource, i.vtlt);
+				attenuation = 1.0 / (1.0 + 0.0005 * squaredDistance);
 				lightDirection = normalize(vertexToLightSource);
 			}
 			float nl = max(0, dot(normalDirection, lightDirection));
