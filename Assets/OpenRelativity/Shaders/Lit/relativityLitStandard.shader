@@ -424,7 +424,7 @@ Shader "Relativity/Lit/Standard" {
 				}
 				else {
 					float4 posTransformed = mul(_viwLorentzMatrix, _WorldSpaceLightPos0.xyz) - riwTransformed;
-					float posDotAiw = -dot(posTransformed, i.aiwt);
+					float posDotAiw = -dot(posTransformed, o.aiwt);
 
 					float shift = 1.0 + posDotAiw / (sqrt(aiwDotAiw) * _spdOfLightSqrd);
 					lightColor = float4(DopplerShift(_LightColor0, 0, 0, shift), _LightColor0.w);
