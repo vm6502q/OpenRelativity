@@ -63,6 +63,7 @@ namespace Qrack
 
                 RealTimeQasmInstruction instruction = new RealTimeQasmInstruction();
 
+                instruction.LineNumber = i;
                 instruction.Time = float.Parse(words[0]);
 
                 bool isControlled = false;
@@ -234,6 +235,7 @@ namespace Qrack
                         break;
                     case "IF":
                         instruction.Gate = QasmInstruction.IF;
+                        isControlled = true;
                         isClassical = true;
                         break;
                     case "ELSE":
@@ -252,16 +254,24 @@ namespace Qrack
                         throw new FormatException("Could not parse RealTimeQasmText, line " + (i + 1).ToString());
                 }
 
-                int targetIndex = words.Length - (tailArgs + 1);
-                uint targetValue = uint.Parse(words[targetIndex]);
+                int targetIndex;
 
-                if (isClassical)
+                if (instruction.Gate == QasmInstruction.IF)
                 {
-                    instruction.ClassicalTarget = targetValue;
+                    targetIndex = words.Length;
                 }
                 else
                 {
-                    instruction.Target = targetValue;
+                    targetIndex = words.Length - (tailArgs + 1);
+                    uint targetValue = uint.Parse(words[targetIndex]);
+                    if (isClassical)
+                    {
+                        instruction.ClassicalTarget = targetValue;
+                    }
+                    else
+                    {
+                        instruction.Target = targetValue;
+                    }
                 }
 
                 if (instruction.Gate == QasmInstruction.M)
