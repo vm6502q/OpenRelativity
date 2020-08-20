@@ -30,7 +30,7 @@ namespace Qrack
             public uint Target { get; set; }
             public uint ClassicalTarget { get; set; }
             public uint[] Controls { get; set; }
-            public float[] Args { get; set; }
+            public uint[] FloatIndices { get; set; }
         }
 
         public List<RealTimeQasmInstruction> InstructionList { get; set; }
@@ -240,10 +240,10 @@ namespace Qrack
                     }
                 }
 
-                instruction.Args = (tailArgs > 0) ? new float[tailArgs] : null;
+                instruction.FloatIndices = (tailArgs > 0) ? new uint[tailArgs] : null;
                 for (int j = 0; j < tailArgs; j++)
                 {
-                    instruction.Args[j] = float.Parse(words[targetIndex + j + 1]);
+                    instruction.FloatIndices[j] = uint.Parse(words[targetIndex + j + 1]);
                 }
 
                 lrtqi.Add(instruction);

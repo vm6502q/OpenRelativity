@@ -7,18 +7,16 @@ using UnityEngine;
 
 namespace Qrack
 {
-    public class QuantumRegister : MonoBehaviour
+    public class QuantumRegister : QuantumSystem
     {
-        public QuantumSystem QuantumSystem;
         public uint RegisterStartIndex = 0;
-        public uint RegisterLength = 2;
-        public RealTimeQasmProgram QuantumProgram;
+        public QuantumSystem QuantumSystem;
 
         private uint RegisterEnd
         {
             get
             {
-                return RegisterStartIndex + RegisterLength;
+                return RegisterStartIndex + QubitCount;
             }
         }
 
@@ -82,7 +80,7 @@ namespace Qrack
             {
                 // Invalid bounds
                 RegisterStartIndex = 0;
-                RegisterLength = 0;
+                QubitCount = 0;
             }
 
             if (QuantumSystem.QubitCount < RegisterEnd)
@@ -98,7 +96,7 @@ namespace Qrack
             {
                 // Invalid bounds
                 RegisterStartIndex = 0;
-                RegisterLength = 0;
+                QubitCount = 0;
             }
 
             if (QuantumSystem.QubitCount < RegisterEnd)

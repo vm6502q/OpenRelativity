@@ -4,7 +4,10 @@ namespace Qrack
 {
     public class QuantumSystem : MonoBehaviour
     {
+        public RealTimeQasmProgram QuantumProgram;
         public uint QubitCount = 1;
+        public bool[] ClassicalBitRegisters;
+        public float[] ClassicalFloatRegisters;
 
         private uint lastQubitCount;
 

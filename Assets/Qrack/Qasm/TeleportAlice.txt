@@ -1,5 +1,6 @@
 # "Alice" prepares a message to send to "Bob"
-1.5 U 0 1.3 0.4 2.5
+# (Apply a random 3-float parameter unitary gate on qubit 0, with floats 0, 1, 2)
+1.5 U 0 0 1 2
 # Alice prepares to teleport
 2.0 MCX 0 1
 2.5 H 0
