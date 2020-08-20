@@ -64,7 +64,7 @@ namespace Qrack
             }
         }
 
-        private void OnDestroy()
+        protected void OnDestroy()
         {
             if (qMan != null)
             {
