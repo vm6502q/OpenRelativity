@@ -77,6 +77,11 @@ namespace Qrack
                     case "RAND":
                         instruction.Gate = QasmInstruction.RAND;
                         break;
+                    case "SETCLOCK":
+                        instruction.Gate = QasmInstruction.SETCLOCK;
+                        isClassical = true;
+                        tailArgs = 1;
+                        break;
                     case "X":
                         instruction.Gate = QasmInstruction.X;
                         break;
@@ -277,7 +282,8 @@ namespace Qrack
                 int targetIndex;
 
                 if ((instruction.Gate == QasmInstruction.IF)
-                    || (instruction.Gate == QasmInstruction.WHILE))
+                    || (instruction.Gate == QasmInstruction.WHILE)
+                    || (instruction.Gate == QasmInstruction.SETCLOCK))
                 {
                     targetIndex = words.Length;
                 }
@@ -300,7 +306,8 @@ namespace Qrack
                     instruction.ClassicalTarget = uint.Parse(words[targetIndex + 1]);
                     lrtqi.Add(instruction);
                     continue;
-                } else if (instruction.Gate == QasmInstruction.FLOAD)
+                } else if ((instruction.Gate == QasmInstruction.FLOAD)
+                    || (instruction.Gate == QasmInstruction.SETCLOCK))
                 {
                     instruction.FloatValue = float.Parse(words[targetIndex + 1]);
                     lrtqi.Add(instruction);

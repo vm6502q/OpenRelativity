@@ -10,7 +10,7 @@
 
     public enum QasmInstruction
     {
-        I = 0, RAND,
+        I = 0, RAND, SETCLOCK,
         X, Y, Z, H, S, T, ADJS, ADJT, U,
         EXP, RX, RY, RZ,
         MCX, MCY, MCZ, MCH, MCS, MCT, MCADJS, MCADJT, MCU,
