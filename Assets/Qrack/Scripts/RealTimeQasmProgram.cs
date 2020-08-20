@@ -290,6 +290,16 @@ namespace Qrack
                 else
                 {
                     targetIndex = words.Length - (tailArgs + 1);
+
+                    if (words[targetIndex][0] == '$')
+                    {
+                        instruction.IsIndirectTarget = true;
+                        words[targetIndex] = words[targetIndex].Substring(1);
+                    } else
+                    {
+                        instruction.IsIndirectTarget = false;
+                    }
+
                     uint targetValue = uint.Parse(words[targetIndex]);
                     if (isClassical)
                     {
@@ -316,17 +326,48 @@ namespace Qrack
 
                 if (isControlled)
                 {
-                    instruction.Controls = (targetIndex > 2) ? new uint[targetIndex - 2] : null;
+                    if (targetIndex > 2)
+                    {
+                        instruction.Controls = new uint[targetIndex - 2];
+                        instruction.IsIndirectControls = new bool[targetIndex - 2];
+                    }
                     for (int j = 2; j < targetIndex; j++)
                     {
+                        if (words[j][0] == '$')
+                        {
+                            instruction.IsIndirectControls[j - 2] = true;
+                            words[j] = words[j].Substring(1);
+                        }
+                        else
+                        {
+                            instruction.IsIndirectControls[j - 2] = false;
+                        }
+
                         instruction.Controls[j - 2] = uint.Parse(words[j]);
                     }
                 }
 
-                instruction.FloatIndices = (tailArgs > 0) ? new uint[tailArgs] : null;
+                if (tailArgs > 0)
+                {
+                    instruction.FloatIndices = new uint[tailArgs];
+                    instruction.IsIndirectFloatIndices = new bool[tailArgs];
+                }
+
+                int wordOffset;
                 for (int j = 0; j < tailArgs; j++)
                 {
-                    instruction.FloatIndices[j] = uint.Parse(words[targetIndex + j + 1]);
+                    wordOffset = targetIndex + j + 1;
+                    if (words[wordOffset][0] == '$')
+                    {
+                        instruction.IsIndirectControls[j] = true;
+                        words[wordOffset] = words[wordOffset].Substring(1);
+                    }
+                    else
+                    {
+                        instruction.IsIndirectControls[j] = false;
+                    }
+
+                    instruction.FloatIndices[j] = uint.Parse(words[wordOffset]);
                 }
 
                 lrtqi.Add(instruction);

@@ -28,8 +28,11 @@
         public QasmInstruction Gate { get; set; }
         public uint Target { get; set; }
         public uint ClassicalTarget { get; set; }
+        public bool IsIndirectTarget { get; set; }
         public float FloatValue { get; set; }
         public uint[] Controls { get; set; }
+        public bool[] IsIndirectControls { get; set; }
         public uint[] FloatIndices { get; set; }
+        public bool[] IsIndirectFloatIndices { get; set; }
     }
 }
