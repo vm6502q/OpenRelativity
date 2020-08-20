@@ -74,7 +74,7 @@ namespace Qrack
         }
 
         // Start is called before the first frame update
-        void Start()
+        override protected void Start()
         {
             if (RegisterEnd > 64)
             {
@@ -90,7 +90,7 @@ namespace Qrack
         }
 
         // Update is called once per frame
-        void Update()
+        override protected void Update()
         {
             if (RegisterEnd > 64)
             {
@@ -110,7 +110,7 @@ namespace Qrack
         }
 
 #if OPEN_RELATIVITY_INCLUDED
-        private void LateUpdate()
+        protected void LateUpdate()
         {
             LocalTimeUpdate();
         }
