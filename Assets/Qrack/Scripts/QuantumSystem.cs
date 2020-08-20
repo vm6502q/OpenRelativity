@@ -6,8 +6,9 @@ namespace Qrack
     {
         public RealTimeQasmProgram QuantumProgram;
         public uint QubitCount = 1;
-        public bool[] ClassicalBitRegisters;
-        public float[] ClassicalFloatRegisters;
+        public bool[] ClassicalBits;
+        public float[] ClassicalFloats;
+        public int[] ClassicalAccumulators;
 
         private uint lastQubitCount;
 
@@ -257,26 +258,26 @@ namespace Qrack
         {
             bool[] nRegisters = new bool[cTargetId + 1];
 
-            for (int i = 0; i < ClassicalBitRegisters.Length; i++)
+            for (int i = 0; i < ClassicalBits.Length; i++)
             {
-                nRegisters[i] = ClassicalBitRegisters[i];
+                nRegisters[i] = ClassicalBits[i];
             }
 
-            ClassicalBitRegisters = nRegisters;
+            ClassicalBits = nRegisters;
         }
 
         private void SetOrReset(uint cTargetId, bool set)
         {
-            if (cTargetId < ClassicalBitRegisters.Length)
+            if (cTargetId < ClassicalBits.Length)
             {
-                ClassicalBitRegisters[cTargetId] = set;
+                ClassicalBits[cTargetId] = set;
 
                 return;
             }
 
             AdjustClassicalRegisterLength(cTargetId);
 
-            ClassicalBitRegisters[cTargetId] = set;
+            ClassicalBits[cTargetId] = set;
         }
 
         public void SET(uint cTargetId)
@@ -291,17 +292,17 @@ namespace Qrack
 
         public void FLOAD(uint fTargetId, float value)
         {
-            ClassicalFloatRegisters[fTargetId] = value;
+            ClassicalFloats[fTargetId] = value;
         }
 
         public void NOT(uint cTargetId)
         {
-            if (cTargetId < ClassicalFloatRegisters.Length)
+            if (cTargetId < ClassicalFloats.Length)
             {
                 AdjustClassicalRegisterLength(cTargetId);
             }
 
-            ClassicalBitRegisters[cTargetId] = !ClassicalBitRegisters[cTargetId];
+            ClassicalBits[cTargetId] = !ClassicalBits[cTargetId];
         }
 
         private void AdjustBoolMaxIndex(uint cInput1, uint cInput2, uint cOutput)
@@ -318,7 +319,7 @@ namespace Qrack
                 cInput1 = cOutput;
             }
 
-            if (cInput1 < ClassicalFloatRegisters.Length)
+            if (cInput1 < ClassicalFloats.Length)
             {
                 AdjustClassicalRegisterLength(cInput1);
             }
@@ -327,37 +328,37 @@ namespace Qrack
         public void AND(uint cInput1, uint cInput2, uint cOutput)
         {
             AdjustBoolMaxIndex(cInput1, cInput2, cOutput);
-            ClassicalBitRegisters[cOutput] = ClassicalBitRegisters[cInput1] && ClassicalBitRegisters[cInput2];
+            ClassicalBits[cOutput] = ClassicalBits[cInput1] && ClassicalBits[cInput2];
         }
 
         public void OR(uint cInput1, uint cInput2, uint cOutput)
         {
             AdjustBoolMaxIndex(cInput1, cInput2, cOutput);
-            ClassicalBitRegisters[cOutput] = ClassicalBitRegisters[cInput1] || ClassicalBitRegisters[cInput2];
+            ClassicalBits[cOutput] = ClassicalBits[cInput1] || ClassicalBits[cInput2];
         }
 
         public void XOR(uint cInput1, uint cInput2, uint cOutput)
         {
             AdjustBoolMaxIndex(cInput1, cInput2, cOutput);
-            ClassicalBitRegisters[cOutput] = ClassicalBitRegisters[cInput1] ^ ClassicalBitRegisters[cInput2];
+            ClassicalBits[cOutput] = ClassicalBits[cInput1] ^ ClassicalBits[cInput2];
         }
 
         public void NAND(uint cInput1, uint cInput2, uint cOutput)
         {
             AdjustBoolMaxIndex(cInput1, cInput2, cOutput);
-            ClassicalBitRegisters[cOutput] = !(ClassicalBitRegisters[cInput1] && ClassicalBitRegisters[cInput2]);
+            ClassicalBits[cOutput] = !(ClassicalBits[cInput1] && ClassicalBits[cInput2]);
         }
 
         public void NOR(uint cInput1, uint cInput2, uint cOutput)
         {
             AdjustBoolMaxIndex(cInput1, cInput2, cOutput);
-            ClassicalBitRegisters[cOutput] = !(ClassicalBitRegisters[cInput1] || ClassicalBitRegisters[cInput2]);
+            ClassicalBits[cOutput] = !(ClassicalBits[cInput1] || ClassicalBits[cInput2]);
         }
 
         public void XNOR(uint cInput1, uint cInput2, uint cOutput)
         {
             AdjustBoolMaxIndex(cInput1, cInput2, cOutput);
-            ClassicalBitRegisters[cOutput] = !(ClassicalBitRegisters[cInput1] ^ ClassicalBitRegisters[cInput2]);
+            ClassicalBits[cOutput] = !(ClassicalBits[cInput1] ^ ClassicalBits[cInput2]);
         }
     }
 }

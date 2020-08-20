@@ -17,12 +17,13 @@
         MCEXP, MCRX, MCRY, MCRZ,
         M, QSET, QRESET, SET, RESET, FLOAD,
         NOT, AND, OR, XOR, NAND, NOR, XNOR,
-        IF, ELSE, ENDIF
+        IF, ELSE, ENDIF, FOR, WHILE, DO, LOOP
     }
 
     public class RealTimeQasmInstruction
     {
         public int LineNumber { get; set; }
+        public bool IsRelativeTime { get; set; }
         public float Time { get; set; }
         public QasmInstruction Gate { get; set; }
         public uint Target { get; set; }

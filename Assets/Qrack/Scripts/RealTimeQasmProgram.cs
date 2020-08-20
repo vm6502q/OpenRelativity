@@ -10,24 +10,16 @@ namespace Qrack
         public float SecondsOffset = 0;
         public bool isRepeating = false;
 
-        private uint ifDepth;
-        private bool hasElse;
-
         public List<RealTimeQasmInstruction> InstructionList { get; set; }
 
         // Start is called before the first frame update
         void Awake()
         {
-            ifDepth = 0;
-            hasElse = false;
-
             InstructionList = ParseBlock();
         }
 
         public void ResetBlock(TextAsset nProgram)
         {
-            ifDepth = 0;
-            hasElse = false;
             SecondsOffset = Time.time;
 
             RealTimeQasmText = nProgram;
@@ -64,6 +56,16 @@ namespace Qrack
                 RealTimeQasmInstruction instruction = new RealTimeQasmInstruction();
 
                 instruction.LineNumber = i;
+
+                if (words[0][0] == '+')
+                {
+                    instruction.IsRelativeTime = true;
+                    words[0] = words[0].Substring(1);
+                } else
+                {
+                    instruction.IsRelativeTime = false;
+                }
+
                 instruction.Time = float.Parse(words[0]);
 
                 bool isControlled = false;
@@ -246,6 +248,24 @@ namespace Qrack
                         instruction.Gate = QasmInstruction.ENDIF;
                         lrtqi.Add(instruction);
                         continue;
+                    case "FOR":
+                        instruction.Gate = QasmInstruction.FOR;
+                        isClassical = true;
+                        tailArgs = 2;
+                        break;
+                    case "WHILE":
+                        instruction.Gate = QasmInstruction.WHILE;
+                        isControlled = true;
+                        isClassical = true;
+                        break;
+                    case "DO":
+                        instruction.Gate = QasmInstruction.DO;
+                        lrtqi.Add(instruction);
+                        continue;
+                    case "LOOP":
+                        instruction.Gate = QasmInstruction.LOOP;
+                        lrtqi.Add(instruction);
+                        continue;
                     case "I":
                         instruction.Gate = QasmInstruction.I;
                         lrtqi.Add(instruction);
@@ -256,7 +276,8 @@ namespace Qrack
 
                 int targetIndex;
 
-                if (instruction.Gate == QasmInstruction.IF)
+                if ((instruction.Gate == QasmInstruction.IF)
+                    || (instruction.Gate == QasmInstruction.WHILE))
                 {
                     targetIndex = words.Length;
                 }
