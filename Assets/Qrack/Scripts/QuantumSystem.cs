@@ -29,13 +29,13 @@ namespace Qrack
         private uint registerId;
 
         // Start is called before the first frame update
-        void Start()
+        public virtual void Start()
         {
             registerId = qMan.AllocateSimulator(QubitCount);
             lastQubitCount = QubitCount;
         }
 
-        private void Update()
+        public virtual void Update()
         {
             if (QubitCount > 64)
             {
