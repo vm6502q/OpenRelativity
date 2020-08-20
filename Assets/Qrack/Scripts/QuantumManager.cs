@@ -45,6 +45,9 @@ namespace Qrack
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "AdjT")]
         private static extern void AdjT(uint simId, uint qubitId);
 
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "R")]
+        private static extern void R(uint simId, uint basis, double phi, uint qubitId);
+
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MCX")]
         private static extern void MCX(uint simId, uint controlLen, uint[] controls, uint targetId);
 
@@ -72,14 +75,11 @@ namespace Qrack
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MCU")]
         private static extern void MCU(uint simId, uint controlLen, uint[] controls, uint targetId, double theta, double phi, double lambda);
 
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MCR")]
+        private static extern void MCR(uint simId, uint basis, double phi, uint controlLen, uint[] controls, uint targetId);
+
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "M")]
         private static extern uint M(uint simId, uint qubitId);
-
-        /*
-        X, Y, Z, H, S, T, U,
-        MCX, MCY, MCZ, MCH, MCS, MCT, MCU,
-        M, QSET, QRESET
-        */
 
         private List<uint> SimulatorIds = new List<uint>();
 
@@ -115,6 +115,26 @@ namespace Qrack
         public void ReleaseQubit(uint simId, uint qubitId)
         {
             Release(simId, qubitId);
+        }
+
+        public void Exp(uint simId, uint target, float phi)
+        {
+            R(simId, 0, phi, target);
+        }
+
+        public void RX(uint simId, uint target, float phi)
+        {
+            R(simId, 1, phi, target);
+        }
+
+        public void RY(uint simId, uint target, float phi)
+        {
+            R(simId, 2, phi, target);
+        }
+
+        public void RZ(uint simId, uint target, float phi)
+        {
+            R(simId, 3, phi, target);
         }
 
     }

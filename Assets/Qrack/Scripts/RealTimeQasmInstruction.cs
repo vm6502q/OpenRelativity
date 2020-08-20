@@ -4,7 +4,9 @@
     {
         I = 0,
         X, Y, Z, H, S, T, ADJS, ADJT, U,
+        EXP, RX, RY, RZ,
         MCX, MCY, MCZ, MCH, MCS, MCT, MCADJS, MCADJT, MCU,
+        MCEXP, MCRX, MCRY, MCRZ,
         M, QSET, QRESET, SET, RESET, FLOAD,
         NOT, AND, OR, XOR, NAND, NOR, XNOR,
         IF, ELSE, ENDIF
