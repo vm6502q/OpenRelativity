@@ -53,13 +53,14 @@ namespace Qrack
                     continue;
                 }
 
-                if (programLines[0] == "#")
+                string[] words = programLines[i].Trim().Split(' ');
+
+                if (words[0] == "#")
                 {
                     // Comment
                     continue;
                 }
 
-                string[] words = programLines[i].Trim().Split(' ');
                 RealTimeQasmInstruction instruction = new RealTimeQasmInstruction();
 
                 instruction.Time = float.Parse(words[0]);
@@ -70,6 +71,9 @@ namespace Qrack
 
                 switch (words[1].Trim().ToUpperInvariant())
                 {
+                    case "RAND":
+                        instruction.Gate = QasmInstruction.RAND;
+                        break;
                     case "X":
                         instruction.Gate = QasmInstruction.X;
                         break;
@@ -173,6 +177,7 @@ namespace Qrack
                         break;
                     case "M":
                         instruction.Gate = QasmInstruction.M;
+                        tailArgs = 1;
                         break;
                     case "QSET":
                         instruction.Gate = QasmInstruction.QSET;
@@ -191,6 +196,7 @@ namespace Qrack
                     case "FLOAD":
                         instruction.Gate = QasmInstruction.FLOAD;
                         isClassical = true;
+                        tailArgs = 1;
                         break;
                     case "NOT":
                         instruction.Gate = QasmInstruction.NOT;
@@ -272,7 +278,7 @@ namespace Qrack
 
                 if (isControlled)
                 {
-                    instruction.Controls = (targetIndex < 2) ? new uint[targetIndex - 2] : null;
+                    instruction.Controls = (targetIndex > 2) ? new uint[targetIndex - 2] : null;
                     for (int j = 2; j < targetIndex; j++)
                     {
                         instruction.Controls[j - 2] = uint.Parse(words[j]);

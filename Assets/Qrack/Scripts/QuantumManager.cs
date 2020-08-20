@@ -10,78 +10,86 @@ namespace Qrack
         public const string QRACKSIM_DLL_NAME = @"qrack_pinvoke";
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "init_count")]
-        private static extern uint Init(uint numQubits);
+        public static extern uint Init(uint numQubits);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "destroy")]
-        private static extern void Destroy(uint simId);
+        public static extern void Destroy(uint simId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "allocateQubit")]
-        private static extern void AllocQubit(uint simId, uint qubitId);
+        public static extern void AllocQubit(uint simId, uint qubitId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "release")]
-        private static extern void Release(uint simId, uint qubitId);
+        public static extern void Release(uint simId, uint qubitId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "X")]
-        private static extern void X(uint simId, uint qubitId);
+        public static extern void X(uint simId, uint qubitId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Y")]
-        private static extern void Y(uint simId, uint qubitId);
+        public static extern void Y(uint simId, uint qubitId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Z")]
-        private static extern void Z(uint simId, uint qubitId);
+        public static extern void Z(uint simId, uint qubitId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "H")]
-        private static extern void H(uint simId, uint qubitId);
+        public static extern void H(uint simId, uint qubitId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "S")]
-        private static extern void S(uint simId, uint qubitId);
+        public static extern void S(uint simId, uint qubitId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "T")]
-        private static extern void T(uint simId, uint qubitId);
+        public static extern void T(uint simId, uint qubitId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "AdjS")]
-        private static extern void AdjS(uint simId, uint qubitId);
+        public static extern void AdjS(uint simId, uint qubitId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "AdjT")]
-        private static extern void AdjT(uint simId, uint qubitId);
+        public static extern void AdjT(uint simId, uint qubitId);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "U")]
+        public static extern void U(uint simId, uint qubitId, double theta, double phi, double lambda);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "R")]
-        private static extern void R(uint simId, uint basis, double phi, uint qubitId);
+        public static extern void R(uint simId, uint basis, double phi, uint qubitId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MCX")]
-        private static extern void MCX(uint simId, uint controlLen, uint[] controls, uint targetId);
+        public static extern void MCX(uint simId, uint controlLen, uint[] controls, uint targetId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MCY")]
-        private static extern void MCY(uint simId, uint controlLen, uint[] controls, uint targetId);
+        public static extern void MCY(uint simId, uint controlLen, uint[] controls, uint targetId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MCZ")]
-        private static extern void MCZ(uint simId, uint controlLen, uint[] controls, uint targetId);
+        public static extern void MCZ(uint simId, uint controlLen, uint[] controls, uint targetId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MCH")]
-        private static extern void MCH(uint simId, uint controlLen, uint[] controls, uint targetId);
+        public static extern void MCH(uint simId, uint controlLen, uint[] controls, uint targetId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MCS")]
-        private static extern void MCS(uint simId, uint controlLen, uint[] controls, uint targetId);
+        public static extern void MCS(uint simId, uint controlLen, uint[] controls, uint targetId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MCT")]
-        private static extern void MCT(uint simId, uint controlLen, uint[] controls, uint targetId);
+        public static extern void MCT(uint simId, uint controlLen, uint[] controls, uint targetId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MCADJS")]
-        private static extern void MCADJS(uint simId, uint controlLen, uint[] controls, uint targetId);
+        public static extern void MCADJS(uint simId, uint controlLen, uint[] controls, uint targetId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MCADJT")]
-        private static extern void MCADJ(uint simId, uint controlLen, uint[] controls, uint targetId);
+        public static extern void MCADJT(uint simId, uint controlLen, uint[] controls, uint targetId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MCU")]
-        private static extern void MCU(uint simId, uint controlLen, uint[] controls, uint targetId, double theta, double phi, double lambda);
+        public static extern void MCU(uint simId, uint controlLen, uint[] controls, uint targetId, double theta, double phi, double lambda);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MCR")]
-        private static extern void MCR(uint simId, uint basis, double phi, uint controlLen, uint[] controls, uint targetId);
+        public static extern void MCR(uint simId, uint basis, double phi, uint controlLen, uint[] controls, uint targetId);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "M")]
-        private static extern uint M(uint simId, uint qubitId);
+        public static extern uint M(uint simId, uint qubitId);
 
-        private List<uint> SimulatorIds = new List<uint>();
+        private List<uint> SimulatorIds;
+
+        private void Awake()
+        {
+            SimulatorIds = new List<uint>();
+        }
 
         private void OnDestroy()
         {
@@ -107,34 +115,59 @@ namespace Qrack
             }
         }
 
-        public void AllocateQubit(uint simId, uint qubitId)
+        public static void AllocateQubit(uint simId, uint qubitId)
         {
             AllocQubit(simId, qubitId);
         }
 
-        public void ReleaseQubit(uint simId, uint qubitId)
+        public static void ReleaseQubit(uint simId, uint qubitId)
         {
             Release(simId, qubitId);
         }
 
-        public void Exp(uint simId, uint target, float phi)
+        public static void Rand(uint simId, uint target)
+        {
+            U(simId, target, Random.Range(0, 2 * Mathf.PI), Random.Range(0, 2 * Mathf.PI), Random.Range(0, 2 * Mathf.PI));
+        }
+
+        public static void Exp(uint simId, uint target, double phi)
         {
             R(simId, 0, phi, target);
         }
 
-        public void RX(uint simId, uint target, float phi)
+        public static void RX(uint simId, uint target, double phi)
         {
             R(simId, 1, phi, target);
         }
 
-        public void RY(uint simId, uint target, float phi)
+        public static void RY(uint simId, uint target, double phi)
+        {
+            R(simId, 3, phi, target);
+        }
+
+        public static void RZ(uint simId, uint target, double phi)
         {
             R(simId, 2, phi, target);
         }
 
-        public void RZ(uint simId, uint target, float phi)
+        public static void MCExp(uint simId, uint controlLen, uint[] controls, uint target, double phi)
         {
-            R(simId, 3, phi, target);
+            MCR(simId, 0, phi, controlLen, controls, target);
+        }
+
+        public static void MCRX(uint simId, uint controlLen, uint[] controls, uint target, double phi)
+        {
+            MCR(simId, 1, phi, controlLen, controls, target);
+        }
+
+        public static void MCRY(uint simId, uint controlLen, uint[] controls, uint target, double phi)
+        {
+            MCR(simId, 3, phi, controlLen, controls, target);
+        }
+
+        public static void MCRZ(uint simId, uint controlLen, uint[] controls, uint target, double phi)
+        {
+            MCR(simId, 2, phi, controlLen, controls, target);
         }
 
     }

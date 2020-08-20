@@ -1,8 +1,16 @@
 ﻿namespace Qrack
 {
+    public enum Pauli
+    {
+        PauliI = 0,
+        PauliX = 1,
+        PauliY = 3,
+        PauliZ = 2
+    }
+
     public enum QasmInstruction
     {
-        I = 0,
+        I = 0, RAND,
         X, Y, Z, H, S, T, ADJS, ADJT, U,
         EXP, RX, RY, RZ,
         MCX, MCY, MCZ, MCH, MCS, MCT, MCADJS, MCADJT, MCU,

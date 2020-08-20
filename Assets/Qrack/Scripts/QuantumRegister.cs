@@ -20,7 +20,7 @@ namespace Qrack
             }
         }
 
-        private uint GetSystemIndex(uint registerIndex)
+        override protected uint GetSystemIndex(uint registerIndex)
         {
             return registerIndex + RegisterStartIndex;
         }
