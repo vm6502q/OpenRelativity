@@ -13,26 +13,6 @@ namespace Qrack
         private uint ifDepth;
         private bool hasElse;
 
-        public enum QasmInstruction
-        {
-            I = 0,
-            X, Y, Z, H, S, T, U,
-            MCX, MCY, MCZ, MCH, MCS, MCT, MCU,
-            M, QSET, QRESET, SET, RESET,
-            NOT, AND, OR, XOR, NAND, NOR, XNOR,
-            IF, ELSE, ENDIF
-        }
-
-        public class RealTimeQasmInstruction
-        {
-            public float Time { get; set; }
-            public QasmInstruction Gate { get; set; }
-            public uint Target { get; set; }
-            public uint ClassicalTarget { get; set; }
-            public uint[] Controls { get; set; }
-            public uint[] FloatIndices { get; set; }
-        }
-
         public List<RealTimeQasmInstruction> InstructionList { get; set; }
 
         // Start is called before the first frame update
@@ -108,6 +88,12 @@ namespace Qrack
                     case "T":
                         instruction.Gate = QasmInstruction.T;
                         break;
+                    case "ADJS":
+                        instruction.Gate = QasmInstruction.ADJS;
+                        break;
+                    case "ADJT":
+                        instruction.Gate = QasmInstruction.ADJT;
+                        break;
                     case "U":
                         instruction.Gate = QasmInstruction.U;
                         tailArgs = 3;
@@ -136,6 +122,14 @@ namespace Qrack
                         instruction.Gate = QasmInstruction.MCT;
                         isControlled = true;
                         break;
+                    case "MCADJS":
+                        instruction.Gate = QasmInstruction.MCADJS;
+                        isControlled = true;
+                        break;
+                    case "MCADJT":
+                        instruction.Gate = QasmInstruction.MCADJT;
+                        isControlled = true;
+                        break;
                     case "MCU":
                         instruction.Gate = QasmInstruction.MCU;
                         isControlled = true;
@@ -156,6 +150,10 @@ namespace Qrack
                         break;
                     case "RESET":
                         instruction.Gate = QasmInstruction.RESET;
+                        isClassical = true;
+                        break;
+                    case "FLOAD":
+                        instruction.Gate = QasmInstruction.FLOAD;
                         isClassical = true;
                         break;
                     case "NOT":
@@ -227,6 +225,11 @@ namespace Qrack
                 if (instruction.Gate == QasmInstruction.M)
                 {
                     instruction.ClassicalTarget = uint.Parse(words[targetIndex + 1]);
+                    lrtqi.Add(instruction);
+                    continue;
+                } else if (instruction.Gate == QasmInstruction.FLOAD)
+                {
+                    instruction.FloatValue = float.Parse(words[targetIndex + 1]);
                     lrtqi.Add(instruction);
                     continue;
                 }
