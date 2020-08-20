@@ -1,10 +1,9 @@
 ﻿using Boo.Lang;
-using System;
 using System.Runtime.InteropServices;
 
 using UnityEngine;
 
-namespace Tachyoid
+namespace Qrack
 {
     public class QuantumManager : MonoBehaviour
     {

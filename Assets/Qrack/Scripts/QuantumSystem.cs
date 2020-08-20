@@ -1,71 +1,72 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Tachyoid;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class QuantumSystem : MonoBehaviour
+namespace Qrack
 {
-    public uint QubitCount = 1;
-
-    private uint lastQubitCount;
-
-    private QuantumManager _qMan = null;
-
-    private QuantumManager qMan {
-        get
-        {
-            if (_qMan == null)
-            {
-                _qMan = FindObjectOfType<QuantumManager>();
-            }
-
-            return _qMan;
-        }
-    }
-
-    private uint registerId;
-
-    // Start is called before the first frame update
-    void Start()
+    public class QuantumSystem : MonoBehaviour
     {
-        registerId = qMan.AllocateSimulator(QubitCount);
-        lastQubitCount = QubitCount;
-    }
+        public uint QubitCount = 1;
 
-    private void Update()
-    {
-        if (QubitCount > 64)
-        {
-            QubitCount = 64;
-        }
+        private uint lastQubitCount;
 
-        if (QubitCount < 1)
-        {
-            QubitCount = 1;
-        }
+        private QuantumManager _qMan = null;
 
-        if (lastQubitCount < QubitCount)
+        private QuantumManager qMan
         {
-            for (uint i = lastQubitCount; i < QubitCount; i++)
+            get
             {
-                qMan.AllocateQubit(registerId, i);
+                if (_qMan == null)
+                {
+                    _qMan = FindObjectOfType<QuantumManager>();
+                }
+
+                return _qMan;
             }
         }
 
-        if (lastQubitCount > QubitCount)
+        private uint registerId;
+
+        // Start is called before the first frame update
+        void Start()
         {
-            for (uint i = (lastQubitCount - 1); i >= QubitCount; i--)
+            registerId = qMan.AllocateSimulator(QubitCount);
+            lastQubitCount = QubitCount;
+        }
+
+        private void Update()
+        {
+            if (QubitCount > 64)
             {
-                qMan.ReleaseQubit(registerId, i);
+                QubitCount = 64;
+            }
+
+            if (QubitCount < 1)
+            {
+                QubitCount = 1;
+            }
+
+            if (lastQubitCount < QubitCount)
+            {
+                for (uint i = lastQubitCount; i < QubitCount; i++)
+                {
+                    qMan.AllocateQubit(registerId, i);
+                }
+            }
+
+            if (lastQubitCount > QubitCount)
+            {
+                for (uint i = (lastQubitCount - 1); i >= QubitCount; i--)
+                {
+                    qMan.ReleaseQubit(registerId, i);
+                }
             }
         }
-    }
 
-    private void OnDestroy()
-    {
-        if (qMan != null)
+        private void OnDestroy()
         {
-            qMan.DeallocateSimulator(registerId);
+            if (qMan != null)
+            {
+                qMan.DeallocateSimulator(registerId);
+            }
         }
     }
 }
