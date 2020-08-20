@@ -98,6 +98,22 @@ namespace Qrack
                         instruction.Gate = QasmInstruction.U;
                         tailArgs = 3;
                         break;
+                    case "EXP":
+                        instruction.Gate = QasmInstruction.EXP;
+                        tailArgs = 1;
+                        break;
+                    case "RX":
+                        instruction.Gate = QasmInstruction.RX;
+                        tailArgs = 1;
+                        break;
+                    case "RY":
+                        instruction.Gate = QasmInstruction.RY;
+                        tailArgs = 1;
+                        break;
+                    case "RZ":
+                        instruction.Gate = QasmInstruction.RZ;
+                        tailArgs = 1;
+                        break;
                     case "MCX":
                         instruction.Gate = QasmInstruction.MCX;
                         isControlled = true;
@@ -134,6 +150,26 @@ namespace Qrack
                         instruction.Gate = QasmInstruction.MCU;
                         isControlled = true;
                         tailArgs = 3;
+                        break;
+                    case "MCEXP":
+                        instruction.Gate = QasmInstruction.MCEXP;
+                        isControlled = true;
+                        tailArgs = 1;
+                        break;
+                    case "MCRX":
+                        instruction.Gate = QasmInstruction.MCRX;
+                        isControlled = true;
+                        tailArgs = 1;
+                        break;
+                    case "MCRY":
+                        instruction.Gate = QasmInstruction.MCRY;
+                        isControlled = true;
+                        tailArgs = 1;
+                        break;
+                    case "MCRZ":
+                        instruction.Gate = QasmInstruction.MCRZ;
+                        isControlled = true;
+                        tailArgs = 1;
                         break;
                     case "M":
                         instruction.Gate = QasmInstruction.M;
