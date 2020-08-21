@@ -66,7 +66,15 @@ namespace Qrack
                     instruction.IsRelativeTime = false;
                 }
 
-                instruction.Time = float.Parse(words[0]);
+                if (words[0][0] == '-')
+                {
+                    instruction.IsForcedSerial = true;
+                }
+                else
+                {
+                    instruction.IsForcedSerial = false;
+                    instruction.Time = float.Parse(words[0]);
+                }
 
                 bool isControlled = false;
                 bool isClassical = false;

@@ -25,6 +25,7 @@
     {
         public int LineNumber { get; set; }
         public bool IsRelativeTime { get; set; }
+        public bool IsForcedSerial { get; set; }
         public float Time { get; set; }
         public QasmInstruction Gate { get; set; }
         public uint Target { get; set; }
