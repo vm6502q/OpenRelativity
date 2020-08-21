@@ -25,7 +25,7 @@ Basically, "$0", "$1", "$2", etc. are the only "variable names" available in the
 - Comments are indicated by the "#" symbol and must be on their own line.
 - Instructions (and comments) can be preceded by any amount of white space.
 - After white space, the first part of the instruction must be a parsable time in (floating-point) seconds, such as "0.0" or "1.5". These are ABSOLUTE times, for the ECS update loop timing. Alternatively, RELATIVE times have a leading "+" sign (like "+0.5") and indicate a relative time offset from the previous line, in seconds. (The program clock can be directly set within the program.)
-- Times can be out-of-order, if conditional, looping, and relative time structures otherwise make sense. Multiple instructions can be dispatched at the same absolute or relative time, under the same conditions.
+- Times can be out-of-order between clock-setting instructions, if conditional, looping, and relative time structures otherwise make sense. Multiple instructions can be dispatched at the same absolute or relative time, under the same conditions.
 - Starting from the time value, each word must be followed by exactly ONE "space" character, or end-of-line.
 - End-of-line terminates all instructions.
 - "$" before an immediate argument makes it absolute; "$" before an absolute argument makes it indirect.
