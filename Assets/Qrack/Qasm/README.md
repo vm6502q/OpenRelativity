@@ -54,6 +54,7 @@ Name: Identity
 Gate: I
 Controls: -
 Target: -
+Tail Args: -
 Purpose: Does nothing! (The identity operator, in this case, can be used as an anchor for the local clock, since it is proceeded by an absolute or relative time.)
 Examples:
 5.0 I
@@ -63,6 +64,7 @@ Name: Randomize Qubit
 Gate: RAND
 Controls: -
 Target: A-Q
+Tail Args: -
 Purpose: Randomize a single qubit with a random 3-parameter unitary gate.
 Examples:
 +2.0 RAND 0
@@ -73,7 +75,8 @@ Example Description: "At 1.0 seconds on the local clock, randomize the qubit add
 Name: Set local clock
 Gate: SETCLOCK
 Controls: -
-Target: A-F
+Target: -
+Tail Args: A-F
 Purpose: 
 Examples:
 +0.5 SETCLOCK 1
@@ -85,19 +88,41 @@ Name: Pauli X
 Gate: X
 Controls: -
 Target: A-Q
+Tail Args: -
 Purpose: Act the Pauli X gate (AKA "quantum NOT gate") on the qubit target.
 Examples:
 1.0 X 0
 Example Description: "At 1.0 seconds on the local clock, act Pauli X (AKA "quantum NOT gate") on qubit register 0."
 
+Name: 3-parameter unitary gate
+Gate: U
+Controls: -
+Target: A-Q
+Tail Args: A-F
+Purpose: Act the 3-parameter unitary gate on the qubit target.
+Examples:
+1.0 U 0 0 1 2
+Example Description: "At 1.0 seconds on the local clock, act quantum 3-parameter U gate with target qubit 0, with 3 float parameters in float addresses 0, 1, and 2."
+
 Name: Multiply-Controlled Pauli X
 Gate: MCX
 Controls: A-Q
 Target: A-Q
+Tail Args: -
 Purpose: In superposition, act the Pauli X gate (AKA "quantum NOT gate") on the qubit target in quantum basis states where all control qubits are set.
 Examples:
 1.0 MCX 1 2 0
 Example Description: "At 1.0 seconds on the local clock, act quantum CCNOT with control qubits 1 and 2, and target qubit 0."
+
+Name: Multiply-Controlled 3-parameter unitary gate
+Gate: MCU
+Controls: A-Q
+Target: A-Q
+Tail Args: A-F
+Purpose: In superposition, act the 3-parameter unitary gate on the qubit target in quantum basis states where all control qubits are set.
+Examples:
+1.0 MCU 1 2 0 0 1 2
+Example Description: "At 1.0 seconds on the local clock, act quantum 3-parameter U gate with control qubits 1 and 2, and target qubit 0, with 3 float parameters in float addresses 0, 1, and 2."
 
 ## Copyright, License, and Acknowledgements
 
