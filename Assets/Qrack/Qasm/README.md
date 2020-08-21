@@ -34,7 +34,7 @@ F - Float. A "classical" float.
 - Comments are indicated by the "#" symbol and must be on their own line.
 - Instructions (and comments) can be preceded by any amount of white space.
 - After white space, the first part of the instruction must be a parsable time in (floating-point) seconds, such as "0.0" or "1.5". These are ABSOLUTE times, for the ECS update loop timing. Alternatively, RELATIVE times have a leading "+" sign (like "+0.5") and indicate a relative time offset from the previous line, in seconds. (The program clock can be directly set within the program.)
-- Identical local time instructions MIGHT be run in parallel. Forced serialization at identical time is specified with just a leading "-" sign, without a time. (Currently, they are not parallelized, but we're reserving room in the specification.)
+- Identical local time instructions MIGHT be run in parallel. Forced serialization at identical time is specified with just a leading "=" sign, without a time. (Currently, they are not parallelized, but we're reserving room in the specification.)
 - Times can be out-of-order, if conditional, looping, and relative time structures otherwise make sense. Multiple instructions can be dispatched at the same absolute or relative time, under the same conditions.
 - Starting from the time value, each word must be followed by exactly ONE "space" character, or end-of-line.
 - End-of-line terminates all instructions.
@@ -135,15 +135,15 @@ Tail Args: -
 Purpose: IF statement, which can have an ELSE, and must terminate with an ENDIF. Multiple A-B controls always evaluate as a Boolean "AND".
 Examples:
 1.0 IF 0
-    - X 1
-  - ENDIF
+    = X 1
+  = ENDIF
 Example Description: "At 1.0 seconds on the local clock, if classical bit register 0 is TRUE, then immediately operate a Pauli X gate on qubit address 1."
 1.0 IF 0 1
-    - X 1
+    = X 1
 1.0 ELSE
-    - Z 1
+    = Z 1
 	2.0 X 0
-  - ENDIF
+  = ENDIF
 Example Description: "At 1.0 seconds on the local clock, if classical bit registers 0 and 1 are both TRUE, then immediately operate a Pauli X gate on qubit address 1. Otherwise, immediately act a Pauli Z gate on qubit 1, then act a Pauli X gate on qubit 0 a second later."
 
 ## Copyright, License, and Acknowledgements

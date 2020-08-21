@@ -66,7 +66,7 @@ namespace Qrack
                     instruction.IsRelativeTime = false;
                 }
 
-                if (words[0][0] == '-')
+                if (words[0][0] == '=')
                 {
                     instruction.IsForcedSerial = true;
                 }
