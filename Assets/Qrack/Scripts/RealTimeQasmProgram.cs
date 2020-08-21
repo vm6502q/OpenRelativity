@@ -351,8 +351,7 @@ namespace Qrack
                     instruction.ClassicalTarget = uint.Parse(words[targetIndex + 1]);
                     lrtqi.Add(instruction);
                     continue;
-                } else if ((instruction.Gate == QasmInstruction.FLOAD)
-                    || (instruction.Gate == QasmInstruction.SETCLOCK))
+                } else if (instruction.Gate == QasmInstruction.FLOAD)
                 {
                     instruction.FloatValue = float.Parse(words[targetIndex + 1]);
                     lrtqi.Add(instruction);

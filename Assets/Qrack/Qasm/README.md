@@ -20,6 +20,15 @@ X - Indirect. Indirect values use a "$" character in front a literal in an absol
 
 Basically, "$0", "$1", "$2", etc. are the only "variable names" available in the language. "$2" means "Use the value stored in integer accumulator 2, (or float address 2)." (Note that, depending on context, "$0" for example points to both integer accumulator address 0 and float register address 0, as instruction argument context will only allow one or the other, never both.)
 
+## Register Types
+
+There are 3 types of "register" (or variable) in Real Time QASM:
+
+Q - Qubit. A quantum bit. Does not necessarily have a definite state until measured.
+B - Bit. A "classical" Boolean bit.
+A - Accumulator. A "classical" integer.
+F - Float. A "classical" float.
+
 ## Syntax
 
 - Comments are indicated by the "#" symbol and must be on their own line.
@@ -29,9 +38,66 @@ Basically, "$0", "$1", "$2", etc. are the only "variable names" available in the
 - Starting from the time value, each word must be followed by exactly ONE "space" character, or end-of-line.
 - End-of-line terminates all instructions.
 - "$" before an immediate argument makes it absolute; "$" before an absolute argument makes it indirect.
+- Controlled quantum gates can take any number of control qubit addresses, acting at once, between the instruction keyword and its target qubit position.
 
 ## API reference
-(TBD)
+
+Name: (API Format Example)
+Gate: (Keyword for Gate)
+Controls: (Addressing mode) - (Register type)
+Target: (Addressing mode) - (Register type)
+Tail Args: (Count of trailing absolute float arguments)
+Purpose: (Description of purpose)
+Example: (Time) (Keyword) (Controls) (Target) (Tail Args)
+
+Name: Identity
+Gate: I
+Controls: -
+Target: -
+Purpose: Does nothing! (The identity operator, in this case, can be used as an anchor for the local clock, since it is proceeded by an absolute or relative time.)
+Examples:
+5.0 I
+Example Description: "Do nothing at absolute local clock of 5.0 seconds."
+
+Name: Randomize Qubit
+Gate: RAND
+Controls: -
+Target: A-Q
+Purpose: Randomize a single qubit with a random 3-parameter unitary gate.
+Examples:
++2.0 RAND 0
+Example Description: "Randomize qubit address 0 at 2.0 seconds past the immediately previous line's time."
+1.0 RAND $1
+Example Description: "At 1.0 seconds on the local clock, randomize the qubit address POINTED TO BY accumulator 1."
+
+Name: Set local clock
+Gate: SETCLOCK
+Controls: -
+Target: A-F
+Purpose: 
+Examples:
++0.5 SETCLOCK 1
+Example Description: "At 0.5 seconds past the previous line's instruction, set the local clock to the value of float register 1."
+2.0 SETCLOCK $2
+Example Description: "At 2.0 seconds on the local clock, reset the local clock to the value of the float register address POINTED TO BY accumulator 2."
+
+Name: Pauli X
+Gate: X
+Controls: -
+Target: A-Q
+Purpose: Act the Pauli X gate (AKA "quantum NOT gate") on the qubit target.
+Examples:
+1.0 X 0
+Example Description: "At 1.0 seconds on the local clock, act Pauli X (AKA "quantum NOT gate") on qubit register 0."
+
+Name: Multiply-Controlled Pauli X
+Gate: MCX
+Controls: A-Q
+Target: A-Q
+Purpose: In superposition, act the Pauli X gate (AKA "quantum NOT gate") on the qubit target in quantum basis states where all control qubits are set.
+Examples:
+1.0 MCX 1 2 0
+Example Description: "At 1.0 seconds on the local clock, act quantum CCNOT with control qubits 1 and 2, and target qubit 0."
 
 ## Copyright, License, and Acknowledgements
 
