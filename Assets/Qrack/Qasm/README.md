@@ -16,7 +16,7 @@ There are 3 addressing modes in Real Time QASM:
 
 I - Immediate. Immediate values are integer and float literals. This mode is limited in use to (integer) "accumulator register" and "float register" arithmetic, and loop control.
 A - Absolute. Absolute values use an integer literal to point to an absolute address of a bit, float, or accumulator register. This is the predominant addressing mode of the language.
-X - Indirect. Indirect values use a "$" character in front a literal in an absolute argument to indicate that the absolute value should be read from a VARIABLE instead of being read as an absolute literal.
+X - Indirect. Indirect values use a "$" character in front a literal in an absolute argument to indicate that the absolute value should be read from a VARIABLE instead of being read as an absolute literal. Indirect "variables" are ALWAYS integer "accumulators," pointing to a bit, float, or another accumulator piece of RAM.
 
 Basically, "$0", "$1", "$2", etc. are the only "variable names" available in the language. "$2" means "Use the value stored in integer accumulator 2, (or float address 2)." (Note that, depending on context, "$0" for example points to both integer accumulator address 0 and float register address 0, as instruction argument context will only allow one or the other, never both.)
 
