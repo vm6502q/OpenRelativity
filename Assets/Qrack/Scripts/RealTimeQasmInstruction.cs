@@ -15,8 +15,9 @@
         EXP, RX, RY, RZ,
         MCX, MCY, MCZ, MCH, MCS, MCT, MCADJS, MCADJT, MCU,
         MCEXP, MCRX, MCRY, MCRZ,
-        M, QSET, QRESET, SET, RESET, FLOAD,
+        M, QSET, QRESET, SET, RESET, FLOAD, ALOAD,
         NOT, AND, OR, XOR, NAND, NOR, XNOR,
+        ADD, SUB, MUL, DIV, CMPEQ, CMPGR,
         IF, ELSE, ENDIF, FOR, WHILE, DO, LOOP
     }
 
@@ -30,6 +31,7 @@
         public uint ClassicalTarget { get; set; }
         public bool IsIndirectTarget { get; set; }
         public float FloatValue { get; set; }
+        public int IntValue { get; set; }
         public uint[] Controls { get; set; }
         public bool[] IsIndirectControls { get; set; }
         public uint[] FloatIndices { get; set; }

@@ -206,6 +206,11 @@ namespace Qrack
                         isClassical = true;
                         tailArgs = 1;
                         break;
+                    case "ALOAD":
+                        instruction.Gate = QasmInstruction.ALOAD;
+                        isClassical = true;
+                        tailArgs = 1;
+                        break;
                     case "NOT":
                         instruction.Gate = QasmInstruction.NOT;
                         isClassical = true;
@@ -237,6 +242,36 @@ namespace Qrack
                         break;
                     case "XNOR":
                         instruction.Gate = QasmInstruction.XNOR;
+                        isControlled = true;
+                        isClassical = true;
+                        break;
+                    case "ADD":
+                        instruction.Gate = QasmInstruction.ADD;
+                        isControlled = true;
+                        isClassical = true;
+                        break;
+                    case "SUB":
+                        instruction.Gate = QasmInstruction.SUB;
+                        isControlled = true;
+                        isClassical = true;
+                        break;
+                    case "MUL":
+                        instruction.Gate = QasmInstruction.MUL;
+                        isControlled = true;
+                        isClassical = true;
+                        break;
+                    case "DIV":
+                        instruction.Gate = QasmInstruction.DIV;
+                        isControlled = true;
+                        isClassical = true;
+                        break;
+                    case "CMPEQ":
+                        instruction.Gate = QasmInstruction.CMPEQ;
+                        isControlled = true;
+                        isClassical = true;
+                        break;
+                    case "CMPGR":
+                        instruction.Gate = QasmInstruction.CMPGR;
                         isControlled = true;
                         isClassical = true;
                         break;
@@ -320,6 +355,11 @@ namespace Qrack
                     || (instruction.Gate == QasmInstruction.SETCLOCK))
                 {
                     instruction.FloatValue = float.Parse(words[targetIndex + 1]);
+                    lrtqi.Add(instruction);
+                    continue;
+                } else if (instruction.Gate == QasmInstruction.ALOAD)
+                {
+                    instruction.IntValue = int.Parse(words[targetIndex + 1]);
                     lrtqi.Add(instruction);
                     continue;
                 }
