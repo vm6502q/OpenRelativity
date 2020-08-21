@@ -139,9 +139,9 @@ Examples:
   = ENDIF
 Example Description: "At 1.0 seconds on the local clock, if classical bit register 0 is TRUE, then immediately operate a Pauli X gate on qubit address 1."
 1.0 IF 0 1
-    = X 1
+      = X 1
 1.0 ELSE
-    = Z 1
+      = Z 1
 	2.0 X 0
   = ENDIF
 Example Description: "At 1.0 seconds on the local clock, if classical bit registers 0 and 1 are both TRUE, then immediately operate a Pauli X gate on qubit address 1. Otherwise, immediately act a Pauli Z gate on qubit 1, then act a Pauli X gate on qubit 0 a second later."
