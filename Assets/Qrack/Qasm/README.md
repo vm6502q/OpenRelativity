@@ -112,7 +112,7 @@ Tail Args: -
 Purpose: In superposition, act the Pauli X gate (AKA "quantum NOT gate") on the qubit target in quantum basis states where all control qubits are set.
 Examples:
 1.0 MCX 3 1
-Example Description: "At 1.0 seconds on the local clock, act quantum CNOT with control qubits 3, and target qubit 1."
+Example Description: "At 1.0 seconds on the local clock, act quantum CNOT with control qubit 3, and target qubit 1."
 1.0 MCX 1 2 0
 Example Description: "At 1.0 seconds on the local clock, act quantum CCNOT with control qubits 1 and 2, and target qubit 0."
 
