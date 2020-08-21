@@ -98,7 +98,7 @@ Name: 3-parameter unitary gate
 Gate: U
 Controls: -
 Target: A-Q
-Tail Args: A-F
+Tail Args: A-F, A-F, A-F
 Purpose: Act the 3-parameter unitary gate on the qubit target.
 Examples:
 1.0 U 0 0 1 2
@@ -118,7 +118,7 @@ Name: Multiply-Controlled 3-parameter unitary gate
 Gate: MCU
 Controls: A-Q
 Target: A-Q
-Tail Args: A-F
+Tail Args: A-F, A-F, A-F
 Purpose: In superposition, act the 3-parameter unitary gate on the qubit target in quantum basis states where all control qubits are set.
 Examples:
 1.0 MCU 1 2 0 0 1 2
