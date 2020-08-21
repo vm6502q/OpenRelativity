@@ -126,6 +126,25 @@ Examples:
 1.0 MCU 1 2 0 0 1 2
 Example Description: "At 1.0 seconds on the local clock, act quantum 3-parameter U gate with control qubits 1 and 2, and target qubit 0, with 3 float parameters in float addresses 0, 1, and 2."
 
+Name: IF conditional
+Gate: IF
+Controls: A-B
+Target: -
+Tail Args: -
+Purpose: IF statement, which can have an ELSE, and must terminate with an ENDIF. Multiple A-B controls always evaluate as a Boolean "AND".
+Examples:
+1.0 IF 0
+    1.0 X 1
+1.0 ENDIF
+Example Description: "At 1.0 seconds on the local clock, if classical bit register 0 is TRUE, then immediately operate a Pauli X gate on qubit address 1."
+1.0 IF 0 1
+    1.0 X 1
+1.0 ELSE
+    1.0 Z 1
+	2.0 X 0
++0.0 ENDIF
+Example Description: "At 1.0 seconds on the local clock, if classical bit registers 0 and 1 are both TRUE, then immediately operate a Pauli X gate on qubit address 1. Otherwise, immediately act a Pauli Z gate on qubit 1, then act a Pauli X gate on qubit 0 a second later."
+
 ## Copyright, License, and Acknowledgements
 
 Real Time QASM is:
