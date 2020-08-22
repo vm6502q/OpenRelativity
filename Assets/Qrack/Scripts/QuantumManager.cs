@@ -84,6 +84,42 @@ namespace Qrack
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "M")]
         public static extern uint M(uint simId, uint qubitId);
 
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "AND")]
+        public static extern uint AND(uint simId, uint qi1, uint qi2, uint qo);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "OR")]
+        public static extern uint OR(uint simId, uint qi1, uint qi2, uint qo);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "XOR")]
+        public static extern uint XOR(uint simId, uint qi1, uint qi2, uint qo);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "NAND")]
+        public static extern uint NAND(uint simId, uint qi1, uint qi2, uint qo);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "NOR")]
+        public static extern uint NOR(uint simId, uint qi1, uint qi2, uint qo);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "XNOR")]
+        public static extern uint XNOR(uint simId, uint qi1, uint qi2, uint qo);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "CLAND")]
+        public static extern uint CLAND(uint simId, bool ci, uint qi, uint qo);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "CLOR")]
+        public static extern uint CLOR(uint simId, bool ci, uint qi, uint qo);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "CLXOR")]
+        public static extern uint CLXOR(uint simId, bool ci, uint qi, uint qo);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "CLNAND")]
+        public static extern uint CLNAND(uint simId, bool ci, uint qi, uint qo);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "CLNOR")]
+        public static extern uint CLNOR(uint simId, bool ci, uint qi, uint qo);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "CLXNOR")]
+        public static extern uint CLXNOR(uint simId, bool ci, uint qi, uint qo);
+
         private List<uint> SimulatorIds;
 
         private void Awake()

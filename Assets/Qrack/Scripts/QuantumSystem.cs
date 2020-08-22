@@ -360,5 +360,65 @@ namespace Qrack
             AdjustBoolMaxIndex(cInput1, cInput2, cOutput);
             ClassicalBits[cOutput] = !(ClassicalBits[cInput1] ^ ClassicalBits[cInput2]);
         }
+
+        public void QAND(uint qInput1, uint qInput2, uint qOutput)
+        {
+            QuantumManager.AND(systemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
+        }
+
+        public void QOR(uint qInput1, uint qInput2, uint qOutput)
+        {
+            QuantumManager.OR(systemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
+        }
+
+        public void QXOR(uint qInput1, uint qInput2, uint qOutput)
+        {
+            QuantumManager.XOR(systemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
+        }
+
+        public void QNAND(uint qInput1, uint qInput2, uint qOutput)
+        {
+            QuantumManager.NAND(systemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
+        }
+
+        public void QNOR(uint qInput1, uint qInput2, uint qOutput)
+        {
+            QuantumManager.NOR(systemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
+        }
+
+        public void QXNOR(uint qInput1, uint qInput2, uint qOutput)
+        {
+            QuantumManager.XNOR(systemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
+        }
+
+        public void CQAND(uint cInput, uint qInput, uint cOutput)
+        {
+            QuantumManager.CLAND(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
+        }
+
+        public void CQOR(uint cInput, uint qInput, uint cOutput)
+        {
+            QuantumManager.CLOR(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
+        }
+
+        public void CQXOR(uint cInput, uint qInput, uint cOutput)
+        {
+            QuantumManager.CLXOR(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
+        }
+
+        public void CQNAND(uint cInput, uint qInput, uint cOutput)
+        {
+            QuantumManager.CLNAND(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
+        }
+
+        public void CQNOR(uint cInput, uint qInput, uint cOutput)
+        {
+            QuantumManager.CLNOR(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
+        }
+
+        public void CQXNOR(uint cInput, uint qInput, uint cOutput)
+        {
+            QuantumManager.CLXNOR(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
+        }
     }
 }

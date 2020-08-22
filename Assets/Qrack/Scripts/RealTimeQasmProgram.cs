@@ -77,7 +77,7 @@ namespace Qrack
                 }
 
                 bool isControlled = false;
-                bool isClassical = false;
+
                 int tailArgs = 0;
 
                 switch (words[1].Trim().ToUpperInvariant())
@@ -87,7 +87,6 @@ namespace Qrack
                         break;
                     case "SETCLOCK":
                         instruction.Gate = QasmInstruction.SETCLOCK;
-                        isClassical = true;
                         tailArgs = 1;
                         break;
                     case "X":
@@ -203,90 +202,120 @@ namespace Qrack
                         break;
                     case "SET":
                         instruction.Gate = QasmInstruction.SET;
-                        isClassical = true;
                         break;
                     case "RESET":
                         instruction.Gate = QasmInstruction.RESET;
-                        isClassical = true;
                         break;
                     case "FLOAD":
                         instruction.Gate = QasmInstruction.FLOAD;
-                        isClassical = true;
                         tailArgs = 1;
                         break;
                     case "ALOAD":
                         instruction.Gate = QasmInstruction.ALOAD;
-                        isClassical = true;
                         tailArgs = 1;
                         break;
                     case "NOT":
                         instruction.Gate = QasmInstruction.NOT;
-                        isClassical = true;
                         break;
                     case "AND":
                         instruction.Gate = QasmInstruction.AND;
                         isControlled = true;
-                        isClassical = true;
                         break;
                     case "OR":
                         instruction.Gate = QasmInstruction.OR;
                         isControlled = true;
-                        isClassical = true;
                         break;
                     case "XOR":
                         instruction.Gate = QasmInstruction.XOR;
                         isControlled = true;
-                        isClassical = true;
                         break;
                     case "NAND":
                         instruction.Gate = QasmInstruction.NAND;
                         isControlled = true;
-                        isClassical = true;
                         break;
                     case "NOR":
                         instruction.Gate = QasmInstruction.NOR;
                         isControlled = true;
-                        isClassical = true;
                         break;
                     case "XNOR":
                         instruction.Gate = QasmInstruction.XNOR;
                         isControlled = true;
-                        isClassical = true;
+                        break;
+                    case "QAND":
+                        instruction.Gate = QasmInstruction.QAND;
+                        isControlled = true;
+                        break;
+                    case "QOR":
+                        instruction.Gate = QasmInstruction.QOR;
+                        isControlled = true;
+                        break;
+                    case "QXOR":
+                        instruction.Gate = QasmInstruction.QXOR;
+                        isControlled = true;
+                        break;
+                    case "QNAND":
+                        instruction.Gate = QasmInstruction.QNAND;
+                        isControlled = true;
+                        break;
+                    case "QNOR":
+                        instruction.Gate = QasmInstruction.QNOR;
+                        isControlled = true;
+                        break;
+                    case "QXNOR":
+                        instruction.Gate = QasmInstruction.QXNOR;
+                        isControlled = true;
+                        break;
+                    case "CQAND":
+                        instruction.Gate = QasmInstruction.CQAND;
+                        isControlled = true;
+                        break;
+                    case "CQOR":
+                        instruction.Gate = QasmInstruction.CQOR;
+                        isControlled = true;
+                        break;
+                    case "CQXOR":
+                        instruction.Gate = QasmInstruction.CQXOR;
+                        isControlled = true;
+                        break;
+                    case "CQNAND":
+                        instruction.Gate = QasmInstruction.CQNAND;
+                        isControlled = true;
+                        break;
+                    case "CQNOR":
+                        instruction.Gate = QasmInstruction.CQNOR;
+                        isControlled = true;
+                        break;
+                    case "CQXNOR":
+                        instruction.Gate = QasmInstruction.CQXNOR;
+                        isControlled = true;
                         break;
                     case "ADD":
                         instruction.Gate = QasmInstruction.ADD;
                         isControlled = true;
-                        isClassical = true;
                         break;
                     case "SUB":
                         instruction.Gate = QasmInstruction.SUB;
                         isControlled = true;
-                        isClassical = true;
                         break;
                     case "MUL":
                         instruction.Gate = QasmInstruction.MUL;
                         isControlled = true;
-                        isClassical = true;
                         break;
                     case "DIV":
                         instruction.Gate = QasmInstruction.DIV;
                         isControlled = true;
-                        isClassical = true;
                         break;
                     case "CMPEQ":
                         instruction.Gate = QasmInstruction.CMPEQ;
                         isControlled = true;
-                        isClassical = true;
                         break;
                     case "CMPGR":
                         instruction.Gate = QasmInstruction.CMPGR;
                         isControlled = true;
-                        isClassical = true;
                         break;
                     case "IF":
                         instruction.Gate = QasmInstruction.IF;
                         isControlled = true;
-                        isClassical = true;
                         break;
                     case "ELSE":
                         instruction.Gate = QasmInstruction.ELSE;
@@ -298,13 +327,11 @@ namespace Qrack
                         continue;
                     case "FOR":
                         instruction.Gate = QasmInstruction.FOR;
-                        isClassical = true;
                         tailArgs = 2;
                         break;
                     case "WHILE":
                         instruction.Gate = QasmInstruction.WHILE;
                         isControlled = true;
-                        isClassical = true;
                         break;
                     case "DO":
                         instruction.Gate = QasmInstruction.DO;
@@ -343,20 +370,12 @@ namespace Qrack
                         instruction.IsIndirectTarget = false;
                     }
 
-                    uint targetValue = uint.Parse(words[targetIndex]);
-                    if (isClassical)
-                    {
-                        instruction.ClassicalTarget = targetValue;
-                    }
-                    else
-                    {
-                        instruction.Target = targetValue;
-                    }
+                    instruction.TargetIndex = uint.Parse(words[targetIndex]);
                 }
 
                 if (instruction.Gate == QasmInstruction.M)
                 {
-                    instruction.ClassicalTarget = uint.Parse(words[targetIndex + 1]);
+                    instruction.TargetIndex = uint.Parse(words[targetIndex + 1]);
                     lrtqi.Add(instruction);
                     continue;
                 } else if (instruction.Gate == QasmInstruction.FLOAD)

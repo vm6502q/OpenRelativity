@@ -17,6 +17,8 @@
         MCEXP, MCRX, MCRY, MCRZ,
         M, QSET, QRESET, SET, RESET, FLOAD, ALOAD,
         NOT, AND, OR, XOR, NAND, NOR, XNOR,
+        QAND, QOR, QXOR, QNAND, QNOR, QXNOR,
+        CQAND, CQOR, CQXOR, CQNAND, CQNOR, CQXNOR,
         ADD, SUB, MUL, DIV, CMPEQ, CMPGR,
         IF, ELSE, ENDIF, FOR, WHILE, DO, LOOP
     }
@@ -28,8 +30,7 @@
         public bool IsForcedSerial { get; set; }
         public float Time { get; set; }
         public QasmInstruction Gate { get; set; }
-        public uint Target { get; set; }
-        public uint ClassicalTarget { get; set; }
+        public uint TargetIndex { get; set; }
         public bool IsIndirectTarget { get; set; }
         public float FloatValue { get; set; }
         public int IntValue { get; set; }
