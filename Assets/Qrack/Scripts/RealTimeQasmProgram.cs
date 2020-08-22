@@ -7,23 +7,20 @@ namespace Qrack
     public class RealTimeQasmProgram : MonoBehaviour
     {
         public TextAsset RealTimeQasmText;
-        public float SecondsOffset = 0;
         public bool isRepeating = false;
 
-        public List<RealTimeQasmInstruction> InstructionList { get; set; }
+        public List<List<List<RealTimeQasmInstruction>>> InstructionBlocks { get; private set; }
 
         // Start is called before the first frame update
         void Awake()
         {
-            InstructionList = ParseBlock();
+            ResetBlock(RealTimeQasmText);
         }
 
         public void ResetBlock(TextAsset nProgram)
         {
-            SecondsOffset = Time.time;
-
             RealTimeQasmText = nProgram;
-            InstructionList = ParseBlock();
+            InstructionBlocks = SortTimes(ParseBlock());
         }
 
         List<RealTimeQasmInstruction> ParseBlock()
@@ -440,6 +437,64 @@ namespace Qrack
             }
 
             return lrtqi;
+        }
+
+        private List<List<List<RealTimeQasmInstruction>>> SortTimes(List<RealTimeQasmInstruction> instructions)
+        {
+            int lineNumber = 0;
+            float lastClock = 0;
+            List<List<List<RealTimeQasmInstruction>>> setClockBlocks = new List<List<List<RealTimeQasmInstruction>>>();
+            while (lineNumber < instructions.Count)
+            {
+                // Get the next set of instructions between SETCLOCK operations, or until EOF.
+                List<RealTimeQasmInstruction> setClockBlock = new List<RealTimeQasmInstruction>();
+                do
+                {
+                    setClockBlock.Add(instructions[lineNumber]);
+                    lineNumber++;
+                } while ((lineNumber < instructions.Count) &&
+                    (instructions[lineNumber].Gate != QasmInstruction.SETCLOCK));
+
+                if (setClockBlock[0].IsRelativeTime)
+                {
+                    setClockBlock[0].IsRelativeTime = false;
+                    setClockBlock[0].Time += lastClock;
+                }
+                if (setClockBlock[0].IsForcedSerial)
+                {
+                    setClockBlock[0].IsForcedSerial = false;
+                    setClockBlock[0].Time = lastClock;
+                }
+
+                int blockIndex = 0;
+
+                List<List<RealTimeQasmInstruction>> absoluteTimeBlocks = new List<List<RealTimeQasmInstruction>>();
+                do
+                {
+                    List<RealTimeQasmInstruction> absoluteTimeBlock = new List<RealTimeQasmInstruction>();
+                    do
+                    {
+                        absoluteTimeBlock.Add(setClockBlock[blockIndex]);
+                        blockIndex++;
+
+                    } while ((blockIndex < setClockBlock.Count) &&
+                        (setClockBlock[0].IsRelativeTime || setClockBlock[0].IsForcedSerial));
+
+                    absoluteTimeBlocks.Add(absoluteTimeBlock);
+
+                } while (blockIndex < setClockBlock.Count);
+
+                absoluteTimeBlocks.Sort((x, y) => x[0].Time.CompareTo(y[0].Time));
+
+                setClockBlocks.Add(absoluteTimeBlocks);
+
+                if (instructions[lineNumber - 1].Gate == QasmInstruction.SETCLOCK)
+                {
+                    lastClock = instructions[lineNumber - 1].FloatValue;
+                }
+            }
+
+            return setClockBlocks;
         }
     }
 }

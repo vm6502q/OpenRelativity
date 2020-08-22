@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Qrack
 {
@@ -11,6 +12,16 @@ namespace Qrack
         public int[] ClassicalAccumulators;
 
         private uint lastQubitCount;
+
+        private float countDown;
+        private float clockOffset;
+        private int ifDepth;
+        private List<bool> hasElse;
+        private int blockIndex;
+        private int absoluteTimeIndex;
+        private int instructionIndex;
+
+        private List<List<RealTimeQasmInstruction>> ActiveInstructionBlock { get; set; }
 
         private QuantumManager _qMan = null;
 
@@ -39,6 +50,14 @@ namespace Qrack
         {
             systemId = qMan.AllocateSimulator(QubitCount);
             lastQubitCount = QubitCount;
+            clockOffset = 0;
+            countDown = 0;
+            ifDepth = 0;
+            hasElse = new List<bool>();
+            blockIndex = 0;
+            absoluteTimeIndex = 0;
+            instructionIndex = 0;
+            ActiveInstructionBlock = QuantumProgram.InstructionBlocks[0];
         }
 
         protected virtual void Update()
@@ -68,6 +87,8 @@ namespace Qrack
                     QuantumManager.ReleaseQubit(systemId, i);
                 }
             }
+
+            RunInstructions();
         }
 
         protected virtual void OnDestroy()
@@ -76,6 +97,11 @@ namespace Qrack
             {
                 qMan.DeallocateSimulator(systemId);
             }
+        }
+
+        private void RunInstructions()
+        {
+            
         }
 
         private uint[] MapControls(uint[] controls)
@@ -393,31 +419,55 @@ namespace Qrack
 
         public void CQAND(uint cInput, uint qInput, uint cOutput)
         {
+            if (cInput < ClassicalFloats.Length)
+            {
+                AdjustClassicalRegisterLength(cInput);
+            }
             QuantumManager.CLAND(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
 
         public void CQOR(uint cInput, uint qInput, uint cOutput)
         {
+            if (cInput < ClassicalFloats.Length)
+            {
+                AdjustClassicalRegisterLength(cInput);
+            }
             QuantumManager.CLOR(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
 
         public void CQXOR(uint cInput, uint qInput, uint cOutput)
         {
+            if (cInput < ClassicalFloats.Length)
+            {
+                AdjustClassicalRegisterLength(cInput);
+            }
             QuantumManager.CLXOR(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
 
         public void CQNAND(uint cInput, uint qInput, uint cOutput)
         {
+            if (cInput < ClassicalFloats.Length)
+            {
+                AdjustClassicalRegisterLength(cInput);
+            }
             QuantumManager.CLNAND(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
 
         public void CQNOR(uint cInput, uint qInput, uint cOutput)
         {
+            if (cInput < ClassicalFloats.Length)
+            {
+                AdjustClassicalRegisterLength(cInput);
+            }
             QuantumManager.CLNOR(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
 
         public void CQXNOR(uint cInput, uint qInput, uint cOutput)
         {
+            if (cInput < ClassicalFloats.Length)
+            {
+                AdjustClassicalRegisterLength(cInput);
+            }
             QuantumManager.CLXNOR(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
     }
