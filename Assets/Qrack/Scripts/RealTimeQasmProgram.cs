@@ -15,47 +15,58 @@ namespace Qrack
         protected List<RealTimeQasmInstruction> ProgramInstructions { get; set; }
         protected abstract void StartProgram();
 
+        public void ResetTime()
+        {
+            if (ProgramInstructions == null)
+            {
+                ProgramInstructions = new List<RealTimeQasmInstruction>();
+
+                StartProgram();
+            }
+
+            nextInstructionTime = QuantumSystem.LocalTime + ProgramInstructions[InstructionIndex].DeltaTime;
+        }
+
         private void Start()
         {
-            nextInstructionTime = 0;
-
             ProgramInstructions = new List<RealTimeQasmInstruction>();
 
             StartProgram();
+
+            ResetTime();
 
             StartCoroutine(RunProgram());
         }
 
         IEnumerator RunProgram()
         {
-            RealTimeQasmInstruction rtqi = ProgramInstructions[InstructionIndex];
-
-            if (nextInstructionTime <= QuantumSystem.LocalTime)
+            while (true)
             {
-                rtqi.quantumProgramUpdate(this);
+                RealTimeQasmInstruction rtqi = ProgramInstructions[InstructionIndex];
 
-                InstructionIndex++;
-
-                if (InstructionIndex >= ProgramInstructions.Count)
+                if (nextInstructionTime <= QuantumSystem.LocalTime)
                 {
-                    InstructionIndex = 0;
-                    if (!DoRepeat)
+                    rtqi.quantumProgramUpdate(this);
+
+                    InstructionIndex++;
+
+                    if (InstructionIndex >= ProgramInstructions.Count)
                     {
-                        gameObject.SetActive(false);
+                        InstructionIndex = 0;
+                        if (!DoRepeat)
+                        {
+                            gameObject.SetActive(false);
+                        }
+                    }
+                    else
+                    {
+                        rtqi = ProgramInstructions[InstructionIndex];
+                        nextInstructionTime += rtqi.DeltaTime;
                     }
                 }
 
-                if (rtqi.IsRelativeTime)
-                {
-                    nextInstructionTime += rtqi.Time;
-                }
-                else
-                {
-                    nextInstructionTime = rtqi.Time;
-                }
+                yield return null;
             }
-
-            yield return null;
         }
 
     }

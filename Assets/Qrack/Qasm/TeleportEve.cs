@@ -9,16 +9,16 @@
         {
             ProgramInstructions.Add(new RealTimeQasmInstruction()
             {
-                IsRelativeTime = true,
-                Time = 1.0f,
+                DeltaTime = 1.0f,
                 quantumProgramUpdate = (x) =>
                 {
                     QuantumSystem qs = x.QuantumSystem;
                     qs.H(1);
                     qs.MCX(new uint[] { 0 }, 2);
 
-                    Alice.InstructionIndex = 0;
+                    Alice.ResetTime();
                     Alice.gameObject.SetActive(true);
+                    gameObject.SetActive(false);
                 }
             });
         }
