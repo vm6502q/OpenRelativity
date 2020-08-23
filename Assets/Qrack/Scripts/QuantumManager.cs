@@ -120,6 +120,9 @@ namespace Qrack
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "CLXNOR")]
         public static extern uint CLXNOR(uint simId, bool ci, uint qi, uint qo);
 
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Prob")]
+        public static extern double Prob(uint simId, uint qubitId);
+
         private List<uint> SimulatorIds;
 
         private void Awake()

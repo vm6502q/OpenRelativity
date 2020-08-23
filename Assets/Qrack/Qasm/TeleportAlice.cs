@@ -13,9 +13,11 @@
                 quantumProgramUpdate = (x) =>
                 {
                     QuantumSystem qs = x.QuantumSystem;
+                    bool test = qs.M(0);
                     qs.Rand(0);
+
                     qs.MCX(new uint[] { 0 }, 1);
-                    qs.H(1);
+                    qs.H(0);
                 }
             });
 

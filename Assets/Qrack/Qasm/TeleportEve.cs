@@ -14,7 +14,7 @@
                 {
                     QuantumSystem qs = x.QuantumSystem;
                     qs.H(1);
-                    qs.MCX(new uint[] { 0 }, 2);
+                    qs.MCX(new uint[] { 1 }, 2);
 
                     Alice.ResetProgram();
                     gameObject.SetActive(false);

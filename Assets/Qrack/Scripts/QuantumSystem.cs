@@ -367,5 +367,10 @@ namespace Qrack
         {
             QuantumManager.CLXNOR(systemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
+
+        public float Prob(uint targetId)
+        {
+            return (float)QuantumManager.Prob(systemId, GetSystemIndex(targetId));
+        }
     }
 }
