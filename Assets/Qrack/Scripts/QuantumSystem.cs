@@ -18,8 +18,7 @@ namespace Qrack
         private uint lastQubitCount;
 
         private float clockOffset;
-        private int ifDepth;
-        private List<bool> hasElse;
+        private List<bool> isIfTrue;
         private int nextClockBlockIndex;
         private int[] instructionIndices;
         private float[] countDowns;
@@ -103,9 +102,8 @@ namespace Qrack
             systemId = qMan.AllocateSimulator(QubitCount);
             lastQubitCount = QubitCount;
             clockOffset = 0;
-            ifDepth = 0;
-            hasElse = new List<bool>();
             nextClockBlockIndex = 0;
+            isIfTrue = new List<bool>();
             IterateClockBlock();
         }
 
@@ -222,7 +220,7 @@ namespace Qrack
 
         private void RunBlock(int i)
         {
-            RunInstruction(ActiveClockBlock[i][instructionIndices[i]]);
+            RunInstruction(i);
             instructionIndices[i]++;
 
             bool isChained = true;
@@ -243,7 +241,7 @@ namespace Qrack
                 if (nextInstruction.IsForcedSerial ||
                     (nextInstruction.IsRelativeTime && (nextInstruction.Time <= (-countDowns[i]))))
                 {
-                    RunInstruction(ActiveClockBlock[i][instructionIndices[i]]);
+                    RunInstruction(i);
                     instructionIndices[i]++;
                     countDowns[i] += nextInstruction.Time;
                 }
@@ -259,9 +257,66 @@ namespace Qrack
             }
         }
 
-        private void RunInstruction(RealTimeQasmInstruction rtqi)
+        private void SkipBranch(int blockIndex)
         {
+            QasmInstruction nextGate;
+            do
+            {
+                instructionIndices[blockIndex]++;
+                nextGate = ActiveClockBlock[blockIndex][instructionIndices[blockIndex]].Gate;
+            } while ((nextGate != QasmInstruction.ELSE) && (nextGate != QasmInstruction.ENDIF));
 
+            if (nextGate == QasmInstruction.ENDIF)
+            {
+                isIfTrue.RemoveAt(isIfTrue.Count - 1);
+            }
+        }
+
+        private void RunInstruction(int blockIndex)
+        {
+            RealTimeQasmInstruction rtqi = ActiveClockBlock[blockIndex][instructionIndices[blockIndex]];
+
+            bool isTrue = false;
+
+            if (rtqi.Gate == QasmInstruction.IF)
+            {
+                isTrue = true;
+                for (int i = 0; i < rtqi.Controls.Length; i++)
+                {
+                    if (rtqi.IsIndirectControls[i])
+                    {
+                        isTrue &= ClassicalBits[ClassicalAccumulators[rtqi.Controls[i]]];
+                    }
+                    else
+                    {
+                        isTrue &= ClassicalBits[rtqi.Controls[i]];
+                    }
+
+                    if (!isTrue)
+                    {
+                        break;
+                    }
+                }
+
+                isIfTrue.Add(isTrue);
+
+                if (!isTrue)
+                {
+                    SkipBranch(blockIndex);
+                }
+            }
+
+            if (rtqi.Gate == QasmInstruction.ELSE && isIfTrue[isIfTrue.Count - 1])
+            {
+                SkipBranch(blockIndex);
+            }
+
+            if (rtqi.Gate == QasmInstruction.ENDIF)
+            {
+                isIfTrue.RemoveAt(isIfTrue.Count - 1);
+            }
+
+            instructionIndices[blockIndex]++;
         }
 
         private uint[] MapControls(uint[] controls)
