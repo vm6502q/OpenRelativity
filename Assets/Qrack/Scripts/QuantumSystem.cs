@@ -24,6 +24,15 @@ namespace Qrack
         private float[] countDowns;
         private bool[] isBlockFinished;
 
+        private class LoopHead
+        {
+            public int SetClockIndex { get; set; }
+            public int BlockIndex { get; set; }
+            public int LineIndex { get; set; }
+        }
+
+        private List<LoopHead> loopHead;
+
         private List<List<RealTimeQasmInstruction>> ActiveClockBlock { get; set; }
 
         private QuantumManager _qMan = null;
@@ -104,6 +113,7 @@ namespace Qrack
             clockOffset = 0;
             nextClockBlockIndex = 0;
             isIfTrue = new List<bool>();
+            loopHead = new List<LoopHead>();
             IterateClockBlock();
         }
 
@@ -259,17 +269,55 @@ namespace Qrack
 
         private void SkipBranch(int blockIndex)
         {
+            int ifDepth = isIfTrue.Count;
+
             QasmInstruction nextGate;
             do
             {
                 instructionIndices[blockIndex]++;
                 nextGate = ActiveClockBlock[blockIndex][instructionIndices[blockIndex]].Gate;
-            } while ((nextGate != QasmInstruction.ELSE) && (nextGate != QasmInstruction.ENDIF));
+
+                if (nextGate == QasmInstruction.IF)
+                {
+                    isIfTrue.Add(false);
+                }
+
+                if ((ifDepth != isIfTrue.Count) && (nextGate == QasmInstruction.ENDIF))
+                {
+                    isIfTrue.RemoveAt(isIfTrue.Count - 1);
+                }
+
+            } while ((ifDepth < isIfTrue.Count) || ((nextGate != QasmInstruction.ELSE) && (nextGate != QasmInstruction.ENDIF)));
 
             if (nextGate == QasmInstruction.ENDIF)
             {
                 isIfTrue.RemoveAt(isIfTrue.Count - 1);
             }
+        }
+
+        private void SkipLoop(int blockIndex)
+        {
+            int loopDepth = loopHead.Count;
+
+            QasmInstruction nextGate;
+            do
+            {
+                instructionIndices[blockIndex]++;
+                nextGate = ActiveClockBlock[blockIndex][instructionIndices[blockIndex]].Gate;
+
+                if ((nextGate == QasmInstruction.FOR) || (nextGate == QasmInstruction.WHILE))
+                {
+                    loopHead.Add(new LoopHead());
+                }
+
+                if ((loopDepth != isIfTrue.Count) && (nextGate == QasmInstruction.LOOP))
+                {
+                    isIfTrue.RemoveAt(isIfTrue.Count - 1);
+                }
+
+            } while ((loopDepth < loopHead.Count) || (nextGate != QasmInstruction.LOOP));
+
+            loopHead.RemoveAt(loopHead.Count - 1);
         }
 
         private void RunInstruction(int blockIndex)
@@ -314,6 +362,23 @@ namespace Qrack
             if (rtqi.Gate == QasmInstruction.ENDIF)
             {
                 isIfTrue.RemoveAt(isIfTrue.Count - 1);
+            }
+
+            if (rtqi.Gate == QasmInstruction.WHILE)
+            {
+
+            }
+
+            if (rtqi.Gate == QasmInstruction.FOR)
+            {
+                ClassicalAccumulators[rtqi.TargetIndex] = rtqi.TailArgs[0];
+            }
+
+            if (rtqi.Gate == QasmInstruction.LOOP)
+            {
+                LoopHead lhc = loopHead[loopHead.Count - 1];
+                RealTimeQasmInstruction lh = QuantumProgram.ClockBlocks[lhc.SetClockIndex][lhc.BlockIndex][lhc.LineIndex];
+
             }
         }
 

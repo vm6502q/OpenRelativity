@@ -412,7 +412,7 @@ namespace Qrack
 
                 if (tailArgs > 0)
                 {
-                    instruction.FloatIndices = new uint[tailArgs];
+                    instruction.TailArgs = new int[tailArgs];
                     instruction.IsIndirectFloatIndices = new bool[tailArgs];
                 }
 
@@ -430,7 +430,7 @@ namespace Qrack
                         instruction.IsIndirectControls[j] = false;
                     }
 
-                    instruction.FloatIndices[j] = uint.Parse(words[wordOffset]);
+                    instruction.TailArgs[j] = int.Parse(words[wordOffset]);
                 }
 
                 lrtqi.Add(instruction);

@@ -36,7 +36,7 @@
         public int IntValue { get; set; }
         public uint[] Controls { get; set; }
         public bool[] IsIndirectControls { get; set; }
-        public uint[] FloatIndices { get; set; }
+        public int[] TailArgs { get; set; }
         public bool[] IsIndirectFloatIndices { get; set; }
     }
 }
