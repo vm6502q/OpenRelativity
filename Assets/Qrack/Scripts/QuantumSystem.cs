@@ -217,74 +217,74 @@ namespace Qrack
             QuantumManager.RZ(systemId, GetSystemIndex(targetId), phi);
         }
 
-        public void MCX(uint controlLen, uint[] controls, uint targetId)
+        public void MCX(uint[] controls, uint targetId)
         {
-            QuantumManager.MCX(systemId, controlLen, MapControls(controls), targetId);
+            QuantumManager.MCX(systemId, (uint)controls.Length, MapControls(controls), targetId);
         }
 
-        public void MCY(uint controlLen, uint[] controls, uint targetId)
+        public void MCY(uint[] controls, uint targetId)
         {
-            QuantumManager.MCY(systemId, controlLen, MapControls(controls), targetId);
+            QuantumManager.MCY(systemId, (uint)controls.Length, MapControls(controls), targetId);
         }
 
-        public void MCZ(uint controlLen, uint[] controls, uint targetId)
+        public void MCZ(uint[] controls, uint targetId)
         {
-            QuantumManager.MCZ(systemId, controlLen, MapControls(controls), targetId);
+            QuantumManager.MCZ(systemId, (uint)controls.Length, MapControls(controls), targetId);
         }
 
-        public void MCH(uint controlLen, uint[] controls, uint targetId)
+        public void MCH(uint[] controls, uint targetId)
         {
-            QuantumManager.MCH(systemId, controlLen, MapControls(controls), targetId);
+            QuantumManager.MCH(systemId, (uint)controls.Length, MapControls(controls), targetId);
         }
 
-        public void MCS(uint controlLen, uint[] controls, uint targetId)
+        public void MCS(uint[] controls, uint targetId)
         {
-            QuantumManager.MCS(systemId, controlLen, MapControls(controls), targetId);
+            QuantumManager.MCS(systemId, (uint)controls.Length, MapControls(controls), targetId);
         }
 
-        public void MCT(uint controlLen, uint[] controls, uint targetId)
+        public void MCT(uint[] controls, uint targetId)
         {
-            QuantumManager.MCT(systemId, controlLen, MapControls(controls), targetId);
+            QuantumManager.MCT(systemId, (uint)controls.Length, MapControls(controls), targetId);
         }
 
-        public void MCADJS(uint controlLen, uint[] controls, uint targetId)
+        public void MCADJS(uint[] controls, uint targetId)
         {
-            QuantumManager.MCADJS(systemId, controlLen, MapControls(controls), targetId);
+            QuantumManager.MCADJS(systemId, (uint)controls.Length, MapControls(controls), targetId);
         }
 
-        public void MCADJT(uint controlLen, uint[] controls, uint targetId)
+        public void MCADJT(uint[] controls, uint targetId)
         {
-            QuantumManager.MCADJT(systemId, controlLen, MapControls(controls), targetId);
+            QuantumManager.MCADJT(systemId, (uint)controls.Length, MapControls(controls), targetId);
         }
 
-        public void MCU(uint controlLen, uint[] controls, uint targetId, double theta, double phi, double lambda)
+        public void MCU(uint[] controls, uint targetId, double theta, double phi, double lambda)
         {
-            QuantumManager.MCU(systemId, controlLen, MapControls(controls), GetSystemIndex(targetId), theta, phi, lambda);
+            QuantumManager.MCU(systemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId), theta, phi, lambda);
         }
 
-        public void MCR(Pauli basis, double phi, uint controlLen, uint[] controls, uint targetId)
+        public void MCR(Pauli basis, double phi, uint[] controls, uint targetId)
         {
-            QuantumManager.MCR(systemId, (uint)basis, phi, controlLen, MapControls(controls), GetSystemIndex(targetId));
+            QuantumManager.MCR(systemId, (uint)basis, phi, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId));
         }
 
-        public void MCExp(uint controlLen, uint[] controls, uint targetId, double phi)
+        public void MCExp(uint[] controls, uint targetId, double phi)
         {
-            QuantumManager.MCExp(systemId, controlLen, MapControls(controls), GetSystemIndex(targetId), phi);
+            QuantumManager.MCExp(systemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId), phi);
         }
 
-        public void MCRX(uint controlLen, uint[] controls, uint targetId, double phi)
+        public void MCRX(uint[] controls, uint targetId, double phi)
         {
-            QuantumManager.MCRX(systemId, controlLen, MapControls(controls), GetSystemIndex(targetId), phi);
+            QuantumManager.MCRX(systemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId), phi);
         }
 
-        public void MCRY(uint controlLen, uint[] controls, uint targetId, double phi)
+        public void MCRY(uint[] controls, uint targetId, double phi)
         {
-            QuantumManager.MCRY(systemId, controlLen, MapControls(controls), GetSystemIndex(targetId), phi);
+            QuantumManager.MCRY(systemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId), phi);
         }
 
-        public void MCRZ(uint controlLen, uint[] controls, uint targetId, double phi)
+        public void MCRZ(uint[] controls, uint targetId, double phi)
         {
-            QuantumManager.MCRZ(systemId, controlLen, MapControls(controls), GetSystemIndex(targetId), phi);
+            QuantumManager.MCRZ(systemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId), phi);
         }
 
         public bool M(uint targetId)

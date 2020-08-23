@@ -19,6 +19,8 @@ namespace Qrack
         {
             nextInstructionTime = 0;
 
+            ProgramInstructions = new List<RealTimeQasmInstruction>();
+
             StartProgram();
 
             StartCoroutine(RunProgram());

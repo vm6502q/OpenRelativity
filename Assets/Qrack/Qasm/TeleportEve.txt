@@ -1,5 +1,0 @@
-# "Eve" (resets and) prepares a Bell pair for "Alice" and "Bob"
-0.0 QRESET 0
-0.0 QRESET 1
-0.5 H 0
-1.0 MCX 0 1
