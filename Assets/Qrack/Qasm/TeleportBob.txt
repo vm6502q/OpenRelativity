@@ -4,14 +4,14 @@
 3.5 IF 0
     # ... The Pauli Z on QUANTUM BIT 0
     # (Quantum/classical bit meaning is inferred from context)
-    3.5 Z 0
-3.5 ENDIF
+    = Z 0
+= ENDIF
 
 # If classical bit 1 is set:
 4.0 IF 1
     # ... The Pauli X on quantum bit 0
-    4.0 X 0
-4.0 ENDIF
+    = X 0
+= ENDIF
 
 # Bob has successfully completed the teleportation. (He can measure the result).
 4.5 M 0 2

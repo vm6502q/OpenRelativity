@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿#if OPEN_RELATIVITY_INCLUDED
+using OpenRelativity.Objects;
+#endif
+
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Qrack
@@ -13,15 +17,15 @@ namespace Qrack
 
         private uint lastQubitCount;
 
-        private float countDown;
         private float clockOffset;
         private int ifDepth;
         private List<bool> hasElse;
-        private int blockIndex;
-        private int absoluteTimeIndex;
-        private int instructionIndex;
+        private int nextClockBlockIndex;
+        private int[] instructionIndices;
+        private float[] countDowns;
+        private bool[] isBlockFinished;
 
-        private List<List<RealTimeQasmInstruction>> ActiveInstructionBlock { get; set; }
+        private List<List<RealTimeQasmInstruction>> ActiveClockBlock { get; set; }
 
         private QuantumManager _qMan = null;
 
@@ -45,22 +49,88 @@ namespace Qrack
             return registerIndex;
         }
 
+#if OPEN_RELATIVITY_INCLUDED
+        private RelativisticObject _myRO;
+
+        private RelativisticObject myRO
+        {
+            get
+            {
+                return _myRO != null ? _myRO : _myRO = GetComponent<RelativisticObject>();
+            }
+        }
+#endif
+
+        private float LocalTime
+        {
+            get
+            {
+#if OPEN_RELATIVITY_INCLUDED
+                return clockOffset + myRO.GetLocalTime();
+#else
+                return clockOFfset + Time.time;
+#endif
+            }
+        }
+
+        private float LocalDeltaTime
+        {
+            get
+            {
+#if OPEN_RELATIVITY_INCLUDED
+                return (float)myRO.localDeltaTime;
+#else
+                return Time.deltaTime;
+#endif
+            }
+        }
+
+        private float LocalFixedDeltaTime
+        {
+            get
+            {
+#if OPEN_RELATIVITY_INCLUDED
+                return (float)myRO.localFixedDeltaTime;
+#else
+                return Time.fixedDeltaTime;
+#endif
+            }
+        }
+
         // Start is called before the first frame update
-        protected virtual void Start()
+        void Start()
         {
             systemId = qMan.AllocateSimulator(QubitCount);
             lastQubitCount = QubitCount;
             clockOffset = 0;
-            countDown = 0;
             ifDepth = 0;
             hasElse = new List<bool>();
-            blockIndex = 0;
-            absoluteTimeIndex = 0;
-            instructionIndex = 0;
-            ActiveInstructionBlock = QuantumProgram.InstructionBlocks[0];
+            nextClockBlockIndex = 0;
+            IterateClockBlock();
         }
 
-        protected virtual void Update()
+        private void IterateClockBlock()
+        {
+            if (QuantumProgram.ClockBlocks.Count <= nextClockBlockIndex)
+            {
+                if (QuantumProgram.doRepeat)
+                {
+                    nextClockBlockIndex = 0;
+                } else
+                {
+                    ActiveClockBlock = null;
+                    return;
+                }
+            }
+
+            ActiveClockBlock = QuantumProgram.ClockBlocks[nextClockBlockIndex];
+            instructionIndices = new int[ActiveClockBlock.Count];
+            countDowns = new float[ActiveClockBlock.Count];
+            isBlockFinished = new bool[ActiveClockBlock.Count];
+            nextClockBlockIndex++;
+        }
+
+        void Update()
         {
             if (QubitCount > 64)
             {
@@ -91,7 +161,7 @@ namespace Qrack
             RunInstructions();
         }
 
-        protected virtual void OnDestroy()
+        void OnDestroy()
         {
             if (qMan != null)
             {
@@ -101,7 +171,97 @@ namespace Qrack
 
         private void RunInstructions()
         {
-            
+            if (ActiveClockBlock == null)
+            {
+                return;
+            }
+
+            bool isAllFinished = true;
+
+            for (int i = 0; i < ActiveClockBlock.Count; i++)
+            {
+                if (isBlockFinished[i])
+                {
+                    continue;
+                }
+
+                if (instructionIndices[i] == 0)
+                {
+                    if (LocalTime >= ActiveClockBlock[i][0].Time)
+                    {
+                        RunBlock(i);
+                    }
+                } else
+                {
+                    countDowns[i] -= LocalDeltaTime;
+
+                    if (countDowns[i] <= 0)
+                    {
+                        RunBlock(i);
+                    }
+                }
+
+                if (!isBlockFinished[i])
+                {
+                    isAllFinished = false;
+                }
+            }
+
+            if (isAllFinished)
+            {
+                int lastBlock = ActiveClockBlock.Count - 1;
+                int lastIndex = ActiveClockBlock[lastBlock].Count - 1;
+                RealTimeQasmInstruction lastInstruction = ActiveClockBlock[lastBlock][lastIndex];
+                if (lastInstruction.Gate == QasmInstruction.SETCLOCK)
+                {
+                    clockOffset = lastInstruction.FloatValue - (LocalTime - clockOffset);
+                }
+                IterateClockBlock();
+            }
+        }
+
+        private void RunBlock(int i)
+        {
+            RunInstruction(ActiveClockBlock[i][instructionIndices[i]]);
+            instructionIndices[i]++;
+
+            bool isChained = true;
+
+            while ((ActiveClockBlock[i].Count > instructionIndices[i]) && isChained)
+            {
+                RealTimeQasmInstruction nextInstruction;
+                if (ActiveClockBlock[i].Count > instructionIndices[i])
+                {
+                    nextInstruction = ActiveClockBlock[i][instructionIndices[i]];
+                }
+                else
+                {
+                    isChained = false;
+                    continue;
+                }
+
+                if (nextInstruction.IsForcedSerial ||
+                    (nextInstruction.IsRelativeTime && (nextInstruction.Time <= (-countDowns[i]))))
+                {
+                    RunInstruction(ActiveClockBlock[i][instructionIndices[i]]);
+                    instructionIndices[i]++;
+                    countDowns[i] += nextInstruction.Time;
+                }
+            }
+
+            if (ActiveClockBlock[i].Count > instructionIndices[i])
+            {
+                countDowns[i] += ActiveClockBlock[i][1].Time;
+            }
+            else
+            {
+                isBlockFinished[i] = true;
+            }
+        }
+
+        private void RunInstruction(RealTimeQasmInstruction rtqi)
+        {
+
         }
 
         private uint[] MapControls(uint[] controls)

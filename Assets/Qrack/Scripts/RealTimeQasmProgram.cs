@@ -7,9 +7,9 @@ namespace Qrack
     public class RealTimeQasmProgram : MonoBehaviour
     {
         public TextAsset RealTimeQasmText;
-        public bool isRepeating = false;
+        public bool doRepeat = false;
 
-        public List<List<List<RealTimeQasmInstruction>>> InstructionBlocks { get; private set; }
+        public List<List<List<RealTimeQasmInstruction>>> ClockBlocks { get; private set; }
 
         // Start is called before the first frame update
         void Awake()
@@ -20,7 +20,7 @@ namespace Qrack
         public void ResetBlock(TextAsset nProgram)
         {
             RealTimeQasmText = nProgram;
-            InstructionBlocks = SortTimes(ParseBlock());
+            ClockBlocks = SortTimes(ParseBlock());
         }
 
         List<RealTimeQasmInstruction> ParseBlock()
