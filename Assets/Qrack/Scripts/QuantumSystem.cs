@@ -9,31 +9,11 @@ namespace Qrack
 {
     public class QuantumSystem : MonoBehaviour
     {
-        public RealTimeQasmProgram QuantumProgram;
+
         public uint QubitCount = 1;
-        public bool[] ClassicalBits;
-        public float[] ClassicalFloats;
-        public int[] ClassicalAccumulators;
+        public float ClockOffset;
 
         private uint lastQubitCount;
-
-        private float clockOffset;
-        private List<bool> isIfTrue;
-        private int nextClockBlockIndex;
-        private int[] instructionIndices;
-        private float[] countDowns;
-        private bool[] isBlockFinished;
-
-        private class LoopHead
-        {
-            public int SetClockIndex { get; set; }
-            public int BlockIndex { get; set; }
-            public int LineIndex { get; set; }
-        }
-
-        private List<LoopHead> loopHead;
-
-        private List<List<RealTimeQasmInstruction>> ActiveClockBlock { get; set; }
 
         private QuantumManager _qMan = null;
 
@@ -69,19 +49,19 @@ namespace Qrack
         }
 #endif
 
-        private float LocalTime
+        public float LocalTime
         {
             get
             {
 #if OPEN_RELATIVITY_INCLUDED
-                return clockOffset + myRO.GetLocalTime();
+                return ClockOffset + myRO.GetLocalTime();
 #else
                 return clockOFfset + Time.time;
 #endif
             }
         }
 
-        private float LocalDeltaTime
+        public float LocalDeltaTime
         {
             get
             {
@@ -93,7 +73,7 @@ namespace Qrack
             }
         }
 
-        private float LocalFixedDeltaTime
+        public float LocalFixedDeltaTime
         {
             get
             {
@@ -110,33 +90,9 @@ namespace Qrack
         {
             systemId = qMan.AllocateSimulator(QubitCount);
             lastQubitCount = QubitCount;
-            clockOffset = 0;
-            nextClockBlockIndex = 0;
-            isIfTrue = new List<bool>();
-            loopHead = new List<LoopHead>();
-            IterateClockBlock();
         }
 
-        private void IterateClockBlock()
-        {
-            if (QuantumProgram.ClockBlocks.Count <= nextClockBlockIndex)
-            {
-                if (QuantumProgram.doRepeat)
-                {
-                    nextClockBlockIndex = 0;
-                } else
-                {
-                    ActiveClockBlock = null;
-                    return;
-                }
-            }
-
-            ActiveClockBlock = QuantumProgram.ClockBlocks[nextClockBlockIndex];
-            instructionIndices = new int[ActiveClockBlock.Count];
-            countDowns = new float[ActiveClockBlock.Count];
-            isBlockFinished = new bool[ActiveClockBlock.Count];
-            nextClockBlockIndex++;
-        }
+        
 
         void Update()
         {
@@ -166,7 +122,6 @@ namespace Qrack
                 }
             }
 
-            RunInstructions();
         }
 
         void OnDestroy()
@@ -174,211 +129,6 @@ namespace Qrack
             if (qMan != null)
             {
                 qMan.DeallocateSimulator(systemId);
-            }
-        }
-
-        private void RunInstructions()
-        {
-            if (ActiveClockBlock == null)
-            {
-                return;
-            }
-
-            bool isAllFinished = true;
-
-            for (int i = 0; i < ActiveClockBlock.Count; i++)
-            {
-                if (isBlockFinished[i])
-                {
-                    continue;
-                }
-
-                if (instructionIndices[i] == 0)
-                {
-                    if (LocalTime >= ActiveClockBlock[i][0].Time)
-                    {
-                        RunBlock(i);
-                    }
-                } else
-                {
-                    countDowns[i] -= LocalDeltaTime;
-
-                    if (countDowns[i] <= 0)
-                    {
-                        RunBlock(i);
-                    }
-                }
-
-                if (!isBlockFinished[i])
-                {
-                    isAllFinished = false;
-                }
-            }
-
-            if (isAllFinished)
-            {
-                int lastBlock = ActiveClockBlock.Count - 1;
-                int lastIndex = ActiveClockBlock[lastBlock].Count - 1;
-                RealTimeQasmInstruction lastInstruction = ActiveClockBlock[lastBlock][lastIndex];
-                if (lastInstruction.Gate == QasmInstruction.SETCLOCK)
-                {
-                    clockOffset = lastInstruction.FloatValue - (LocalTime - clockOffset);
-                }
-                IterateClockBlock();
-            }
-        }
-
-        private void RunBlock(int i)
-        {
-            RunInstruction(i);
-            instructionIndices[i]++;
-
-            bool isChained = true;
-
-            while ((ActiveClockBlock[i].Count > instructionIndices[i]) && isChained)
-            {
-                RealTimeQasmInstruction nextInstruction;
-                if (ActiveClockBlock[i].Count > instructionIndices[i])
-                {
-                    nextInstruction = ActiveClockBlock[i][instructionIndices[i]];
-                }
-                else
-                {
-                    isChained = false;
-                    continue;
-                }
-
-                if (nextInstruction.IsForcedSerial ||
-                    (nextInstruction.IsRelativeTime && (nextInstruction.Time <= (-countDowns[i]))))
-                {
-                    RunInstruction(i);
-                    instructionIndices[i]++;
-                    countDowns[i] += nextInstruction.Time;
-                }
-            }
-
-            if (ActiveClockBlock[i].Count > instructionIndices[i])
-            {
-                countDowns[i] += ActiveClockBlock[i][1].Time;
-            }
-            else
-            {
-                isBlockFinished[i] = true;
-            }
-        }
-
-        private void SkipBranch(int blockIndex)
-        {
-            int ifDepth = isIfTrue.Count;
-
-            QasmInstruction nextGate;
-            do
-            {
-                instructionIndices[blockIndex]++;
-                nextGate = ActiveClockBlock[blockIndex][instructionIndices[blockIndex]].Gate;
-
-                if (nextGate == QasmInstruction.IF)
-                {
-                    isIfTrue.Add(false);
-                }
-
-                if ((ifDepth != isIfTrue.Count) && (nextGate == QasmInstruction.ENDIF))
-                {
-                    isIfTrue.RemoveAt(isIfTrue.Count - 1);
-                }
-
-            } while ((ifDepth < isIfTrue.Count) || ((nextGate != QasmInstruction.ELSE) && (nextGate != QasmInstruction.ENDIF)));
-
-            if (nextGate == QasmInstruction.ENDIF)
-            {
-                isIfTrue.RemoveAt(isIfTrue.Count - 1);
-            }
-        }
-
-        private void SkipLoop(int blockIndex)
-        {
-            int loopDepth = loopHead.Count;
-
-            QasmInstruction nextGate;
-            do
-            {
-                instructionIndices[blockIndex]++;
-                nextGate = ActiveClockBlock[blockIndex][instructionIndices[blockIndex]].Gate;
-
-                if ((nextGate == QasmInstruction.FOR) || (nextGate == QasmInstruction.WHILE))
-                {
-                    loopHead.Add(new LoopHead());
-                }
-
-                if ((loopDepth != isIfTrue.Count) && (nextGate == QasmInstruction.LOOP))
-                {
-                    isIfTrue.RemoveAt(isIfTrue.Count - 1);
-                }
-
-            } while ((loopDepth < loopHead.Count) || (nextGate != QasmInstruction.LOOP));
-
-            loopHead.RemoveAt(loopHead.Count - 1);
-        }
-
-        private void RunInstruction(int blockIndex)
-        {
-            RealTimeQasmInstruction rtqi = ActiveClockBlock[blockIndex][instructionIndices[blockIndex]];
-
-            bool isTrue = false;
-
-            if (rtqi.Gate == QasmInstruction.IF)
-            {
-                isTrue = true;
-                for (int i = 0; i < rtqi.Controls.Length; i++)
-                {
-                    if (rtqi.IsIndirectControls[i])
-                    {
-                        isTrue &= ClassicalBits[ClassicalAccumulators[rtqi.Controls[i]]];
-                    }
-                    else
-                    {
-                        isTrue &= ClassicalBits[rtqi.Controls[i]];
-                    }
-
-                    if (!isTrue)
-                    {
-                        break;
-                    }
-                }
-
-                isIfTrue.Add(isTrue);
-
-                if (!isTrue)
-                {
-                    SkipBranch(blockIndex);
-                }
-            }
-
-            if (rtqi.Gate == QasmInstruction.ELSE && isIfTrue[isIfTrue.Count - 1])
-            {
-                SkipBranch(blockIndex);
-            }
-
-            if (rtqi.Gate == QasmInstruction.ENDIF)
-            {
-                isIfTrue.RemoveAt(isIfTrue.Count - 1);
-            }
-
-            if (rtqi.Gate == QasmInstruction.WHILE)
-            {
-
-            }
-
-            if (rtqi.Gate == QasmInstruction.FOR)
-            {
-                ClassicalAccumulators[rtqi.TargetIndex] = rtqi.TailArgs[0];
-            }
-
-            if (rtqi.Gate == QasmInstruction.LOOP)
-            {
-                LoopHead lhc = loopHead[loopHead.Count - 1];
-                RealTimeQasmInstruction lh = QuantumProgram.ClockBlocks[lhc.SetClockIndex][lhc.BlockIndex][lhc.LineIndex];
-
             }
         }
 
@@ -558,113 +308,6 @@ namespace Qrack
             }
         }
 
-        private void AdjustClassicalRegisterLength(uint cTargetId)
-        {
-            bool[] nRegisters = new bool[cTargetId + 1];
-
-            for (int i = 0; i < ClassicalBits.Length; i++)
-            {
-                nRegisters[i] = ClassicalBits[i];
-            }
-
-            ClassicalBits = nRegisters;
-        }
-
-        private void SetOrReset(uint cTargetId, bool set)
-        {
-            if (cTargetId < ClassicalBits.Length)
-            {
-                ClassicalBits[cTargetId] = set;
-
-                return;
-            }
-
-            AdjustClassicalRegisterLength(cTargetId);
-
-            ClassicalBits[cTargetId] = set;
-        }
-
-        public void SET(uint cTargetId)
-        {
-            SetOrReset(cTargetId, true);
-        }
-
-        public void RESET(uint cTargetId)
-        {
-            SetOrReset(cTargetId, false);
-        }
-
-        public void FLOAD(uint fTargetId, float value)
-        {
-            ClassicalFloats[fTargetId] = value;
-        }
-
-        public void NOT(uint cTargetId)
-        {
-            if (cTargetId < ClassicalFloats.Length)
-            {
-                AdjustClassicalRegisterLength(cTargetId);
-            }
-
-            ClassicalBits[cTargetId] = !ClassicalBits[cTargetId];
-        }
-
-        private void AdjustBoolMaxIndex(uint cInput1, uint cInput2, uint cOutput)
-        {
-            // Store maximum value in cInput1
-
-            if (cInput2 > cInput1)
-            {
-                cInput1 = cInput2;
-            }
-
-            if (cOutput > cInput1)
-            {
-                cInput1 = cOutput;
-            }
-
-            if (cInput1 < ClassicalFloats.Length)
-            {
-                AdjustClassicalRegisterLength(cInput1);
-            }
-        }
-
-        public void AND(uint cInput1, uint cInput2, uint cOutput)
-        {
-            AdjustBoolMaxIndex(cInput1, cInput2, cOutput);
-            ClassicalBits[cOutput] = ClassicalBits[cInput1] && ClassicalBits[cInput2];
-        }
-
-        public void OR(uint cInput1, uint cInput2, uint cOutput)
-        {
-            AdjustBoolMaxIndex(cInput1, cInput2, cOutput);
-            ClassicalBits[cOutput] = ClassicalBits[cInput1] || ClassicalBits[cInput2];
-        }
-
-        public void XOR(uint cInput1, uint cInput2, uint cOutput)
-        {
-            AdjustBoolMaxIndex(cInput1, cInput2, cOutput);
-            ClassicalBits[cOutput] = ClassicalBits[cInput1] ^ ClassicalBits[cInput2];
-        }
-
-        public void NAND(uint cInput1, uint cInput2, uint cOutput)
-        {
-            AdjustBoolMaxIndex(cInput1, cInput2, cOutput);
-            ClassicalBits[cOutput] = !(ClassicalBits[cInput1] && ClassicalBits[cInput2]);
-        }
-
-        public void NOR(uint cInput1, uint cInput2, uint cOutput)
-        {
-            AdjustBoolMaxIndex(cInput1, cInput2, cOutput);
-            ClassicalBits[cOutput] = !(ClassicalBits[cInput1] || ClassicalBits[cInput2]);
-        }
-
-        public void XNOR(uint cInput1, uint cInput2, uint cOutput)
-        {
-            AdjustBoolMaxIndex(cInput1, cInput2, cOutput);
-            ClassicalBits[cOutput] = !(ClassicalBits[cInput1] ^ ClassicalBits[cInput2]);
-        }
-
         public void QAND(uint qInput1, uint qInput2, uint qOutput)
         {
             QuantumManager.AND(systemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
@@ -695,58 +338,34 @@ namespace Qrack
             QuantumManager.XNOR(systemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
         }
 
-        public void CQAND(uint cInput, uint qInput, uint cOutput)
+        public void CQAND(bool cInput, uint qInput, uint cOutput)
         {
-            if (cInput < ClassicalFloats.Length)
-            {
-                AdjustClassicalRegisterLength(cInput);
-            }
-            QuantumManager.CLAND(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
+            QuantumManager.CLAND(systemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
 
-        public void CQOR(uint cInput, uint qInput, uint cOutput)
+        public void CQOR(bool cInput, uint qInput, uint cOutput)
         {
-            if (cInput < ClassicalFloats.Length)
-            {
-                AdjustClassicalRegisterLength(cInput);
-            }
-            QuantumManager.CLOR(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
+            QuantumManager.CLOR(systemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
 
-        public void CQXOR(uint cInput, uint qInput, uint cOutput)
+        public void CQXOR(bool cInput, uint qInput, uint cOutput)
         {
-            if (cInput < ClassicalFloats.Length)
-            {
-                AdjustClassicalRegisterLength(cInput);
-            }
-            QuantumManager.CLXOR(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
+            QuantumManager.CLXOR(systemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
 
-        public void CQNAND(uint cInput, uint qInput, uint cOutput)
+        public void CQNAND(bool cInput, uint qInput, uint cOutput)
         {
-            if (cInput < ClassicalFloats.Length)
-            {
-                AdjustClassicalRegisterLength(cInput);
-            }
-            QuantumManager.CLNAND(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
+            QuantumManager.CLNAND(systemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
 
-        public void CQNOR(uint cInput, uint qInput, uint cOutput)
+        public void CQNOR(bool cInput, uint qInput, uint cOutput)
         {
-            if (cInput < ClassicalFloats.Length)
-            {
-                AdjustClassicalRegisterLength(cInput);
-            }
-            QuantumManager.CLNOR(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
+            QuantumManager.CLNOR(systemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
 
-        public void CQXNOR(uint cInput, uint qInput, uint cOutput)
+        public void CQXNOR(bool cInput, uint qInput, uint cOutput)
         {
-            if (cInput < ClassicalFloats.Length)
-            {
-                AdjustClassicalRegisterLength(cInput);
-            }
-            QuantumManager.CLXNOR(systemId, ClassicalBits[cInput], GetSystemIndex(qInput), GetSystemIndex(cOutput));
+            QuantumManager.CLXNOR(systemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
     }
 }
