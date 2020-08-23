@@ -28,8 +28,7 @@
                     Bob.MeasurmentResults[0] = qs.M(0);
                     Bob.MeasurmentResults[1] = qs.M(1);
 
-                    Bob.ResetTime();
-                    Bob.gameObject.SetActive(true);
+                    Bob.ResetProgram();
                     gameObject.SetActive(false);
                 }
             });

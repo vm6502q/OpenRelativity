@@ -32,8 +32,7 @@
                 DeltaTime = 1.0f,
                 quantumProgramUpdate = (x) =>
                 {
-                    Eve.ResetTime();
-                    Eve.gameObject.SetActive(true);
+                    Eve.ResetProgram();
                     gameObject.SetActive(false);
                 }
             });

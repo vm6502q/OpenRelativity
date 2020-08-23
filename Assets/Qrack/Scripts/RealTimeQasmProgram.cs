@@ -27,15 +27,22 @@ namespace Qrack
             nextInstructionTime = QuantumSystem.LocalTime + ProgramInstructions[InstructionIndex].DeltaTime;
         }
 
+        public void ResetProgram()
+        {
+            ResetTime();
+
+            gameObject.SetActive(true);
+
+            StartCoroutine(RunProgram());
+        }
+
         private void Start()
         {
             ProgramInstructions = new List<RealTimeQasmInstruction>();
 
             StartProgram();
 
-            ResetTime();
-
-            StartCoroutine(RunProgram());
+            ResetProgram();
         }
 
         IEnumerator RunProgram()
