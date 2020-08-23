@@ -315,8 +315,6 @@ namespace Qrack
             {
                 isIfTrue.RemoveAt(isIfTrue.Count - 1);
             }
-
-            instructionIndices[blockIndex]++;
         }
 
         private uint[] MapControls(uint[] controls)
