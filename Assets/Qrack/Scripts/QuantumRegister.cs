@@ -13,5 +13,20 @@ namespace Qrack
             return QuantumSystemMappings[registerIndex];
         }
 
+        void Start()
+        {
+            SystemId = QuantumSystem.SystemId;
+            lastQubitCount = QubitCount;
+        }
+
+        void Update()
+        {
+            
+        }
+
+        void OnDestroy()
+        {
+            
+        }
     }
 }

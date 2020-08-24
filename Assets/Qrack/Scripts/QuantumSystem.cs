@@ -13,7 +13,7 @@ namespace Qrack
         public uint QubitCount = 1;
         public float ClockOffset;
 
-        private uint lastQubitCount;
+        protected uint lastQubitCount;
 
         private QuantumManager _qMan = null;
 
@@ -30,7 +30,7 @@ namespace Qrack
             }
         }
 
-        private uint systemId;
+        public uint SystemId;
 
         virtual protected uint GetSystemIndex(uint registerIndex)
         {
@@ -88,11 +88,9 @@ namespace Qrack
         // Start is called before the first frame update
         void Start()
         {
-            systemId = qMan.AllocateSimulator(QubitCount);
+            SystemId = qMan.AllocateSimulator(QubitCount);
             lastQubitCount = QubitCount;
         }
-
-        
 
         void Update()
         {
@@ -110,7 +108,7 @@ namespace Qrack
             {
                 for (uint i = lastQubitCount; i < QubitCount; i++)
                 {
-                    QuantumManager.AllocateQubit(systemId, i);
+                    QuantumManager.AllocateQubit(SystemId, i);
                 }
             }
 
@@ -118,7 +116,7 @@ namespace Qrack
             {
                 for (uint i = (lastQubitCount - 1); i >= QubitCount; i--)
                 {
-                    QuantumManager.ReleaseQubit(systemId, i);
+                    QuantumManager.ReleaseQubit(SystemId, i);
                 }
             }
 
@@ -128,7 +126,7 @@ namespace Qrack
         {
             if (qMan != null)
             {
-                qMan.DeallocateSimulator(systemId);
+                qMan.DeallocateSimulator(SystemId);
             }
         }
 
@@ -145,151 +143,151 @@ namespace Qrack
 
         public void Rand(uint targetId)
         {
-            QuantumManager.Rand(systemId, GetSystemIndex(targetId));
+            QuantumManager.Rand(SystemId, GetSystemIndex(targetId));
         }
 
         public void X(uint targetId)
         {
-            QuantumManager.X(systemId, GetSystemIndex(targetId));
+            QuantumManager.X(SystemId, GetSystemIndex(targetId));
         }
 
         public void Y(uint targetId)
         {
-            QuantumManager.Y(systemId, GetSystemIndex(targetId));
+            QuantumManager.Y(SystemId, GetSystemIndex(targetId));
         }
 
         public void Z(uint targetId)
         {
-            QuantumManager.Z(systemId, GetSystemIndex(targetId));
+            QuantumManager.Z(SystemId, GetSystemIndex(targetId));
         }
 
         public void H(uint targetId)
         {
-            QuantumManager.H(systemId, GetSystemIndex(targetId));
+            QuantumManager.H(SystemId, GetSystemIndex(targetId));
         }
         public void S(uint targetId)
         {
-            QuantumManager.S(systemId, GetSystemIndex(targetId));
+            QuantumManager.S(SystemId, GetSystemIndex(targetId));
         }
 
         public void T(uint targetId)
         {
-            QuantumManager.T(systemId, GetSystemIndex(targetId));
+            QuantumManager.T(SystemId, GetSystemIndex(targetId));
         }
 
         public void AdjS(uint targetId)
         {
-            QuantumManager.AdjS(systemId, GetSystemIndex(targetId));
+            QuantumManager.AdjS(SystemId, GetSystemIndex(targetId));
         }
 
         public void AdjT(uint targetId)
         {
-            QuantumManager.AdjT(systemId, GetSystemIndex(targetId));
+            QuantumManager.AdjT(SystemId, GetSystemIndex(targetId));
         }
 
         public void U(uint targetId, double theta, double phi, double lambda)
         {
-            QuantumManager.U(systemId, GetSystemIndex(targetId), theta, phi, lambda);
+            QuantumManager.U(SystemId, GetSystemIndex(targetId), theta, phi, lambda);
         }
 
         public void R(Pauli basis, double phi, uint targetId)
         {
-            QuantumManager.R(systemId, (uint)basis, phi, GetSystemIndex(targetId));
+            QuantumManager.R(SystemId, (uint)basis, phi, GetSystemIndex(targetId));
         }
 
         public void Exp(uint targetId, double phi)
         {
-            QuantumManager.Exp(systemId, GetSystemIndex(targetId), phi);
+            QuantumManager.Exp(SystemId, GetSystemIndex(targetId), phi);
         }
 
         public void RX(uint targetId, double phi)
         {
-            QuantumManager.RX(systemId, GetSystemIndex(targetId), phi);
+            QuantumManager.RX(SystemId, GetSystemIndex(targetId), phi);
         }
 
         public void RY(uint targetId, double phi)
         {
-            QuantumManager.RY(systemId, GetSystemIndex(targetId), phi);
+            QuantumManager.RY(SystemId, GetSystemIndex(targetId), phi);
         }
 
         public void RZ(uint targetId, double phi)
         {
-            QuantumManager.RZ(systemId, GetSystemIndex(targetId), phi);
+            QuantumManager.RZ(SystemId, GetSystemIndex(targetId), phi);
         }
 
         public void MCX(uint[] controls, uint targetId)
         {
-            QuantumManager.MCX(systemId, (uint)controls.Length, MapControls(controls), targetId);
+            QuantumManager.MCX(SystemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId));
         }
 
         public void MCY(uint[] controls, uint targetId)
         {
-            QuantumManager.MCY(systemId, (uint)controls.Length, MapControls(controls), targetId);
+            QuantumManager.MCY(SystemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId));
         }
 
         public void MCZ(uint[] controls, uint targetId)
         {
-            QuantumManager.MCZ(systemId, (uint)controls.Length, MapControls(controls), targetId);
+            QuantumManager.MCZ(SystemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId));
         }
 
         public void MCH(uint[] controls, uint targetId)
         {
-            QuantumManager.MCH(systemId, (uint)controls.Length, MapControls(controls), targetId);
+            QuantumManager.MCH(SystemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId));
         }
 
         public void MCS(uint[] controls, uint targetId)
         {
-            QuantumManager.MCS(systemId, (uint)controls.Length, MapControls(controls), targetId);
+            QuantumManager.MCS(SystemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId));
         }
 
         public void MCT(uint[] controls, uint targetId)
         {
-            QuantumManager.MCT(systemId, (uint)controls.Length, MapControls(controls), targetId);
+            QuantumManager.MCT(SystemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId));
         }
 
         public void MCADJS(uint[] controls, uint targetId)
         {
-            QuantumManager.MCADJS(systemId, (uint)controls.Length, MapControls(controls), targetId);
+            QuantumManager.MCADJS(SystemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId));
         }
 
         public void MCADJT(uint[] controls, uint targetId)
         {
-            QuantumManager.MCADJT(systemId, (uint)controls.Length, MapControls(controls), targetId);
+            QuantumManager.MCADJT(SystemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId));
         }
 
         public void MCU(uint[] controls, uint targetId, double theta, double phi, double lambda)
         {
-            QuantumManager.MCU(systemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId), theta, phi, lambda);
+            QuantumManager.MCU(SystemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId), theta, phi, lambda);
         }
 
         public void MCR(Pauli basis, double phi, uint[] controls, uint targetId)
         {
-            QuantumManager.MCR(systemId, (uint)basis, phi, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId));
+            QuantumManager.MCR(SystemId, (uint)basis, phi, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId));
         }
 
         public void MCExp(uint[] controls, uint targetId, double phi)
         {
-            QuantumManager.MCExp(systemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId), phi);
+            QuantumManager.MCExp(SystemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId), phi);
         }
 
         public void MCRX(uint[] controls, uint targetId, double phi)
         {
-            QuantumManager.MCRX(systemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId), phi);
+            QuantumManager.MCRX(SystemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId), phi);
         }
 
         public void MCRY(uint[] controls, uint targetId, double phi)
         {
-            QuantumManager.MCRY(systemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId), phi);
+            QuantumManager.MCRY(SystemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId), phi);
         }
 
         public void MCRZ(uint[] controls, uint targetId, double phi)
         {
-            QuantumManager.MCRZ(systemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId), phi);
+            QuantumManager.MCRZ(SystemId, (uint)controls.Length, MapControls(controls), GetSystemIndex(targetId), phi);
         }
 
         public bool M(uint targetId)
         {
-            return QuantumManager.M(systemId, GetSystemIndex(targetId)) > 0;
+            return QuantumManager.M(SystemId, GetSystemIndex(targetId)) > 0;
         }
 
         public void QSET(uint targetId)
@@ -310,67 +308,78 @@ namespace Qrack
 
         public void QAND(uint qInput1, uint qInput2, uint qOutput)
         {
-            QuantumManager.AND(systemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
+            QuantumManager.AND(SystemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
         }
 
         public void QOR(uint qInput1, uint qInput2, uint qOutput)
         {
-            QuantumManager.OR(systemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
+            QuantumManager.OR(SystemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
         }
 
         public void QXOR(uint qInput1, uint qInput2, uint qOutput)
         {
-            QuantumManager.XOR(systemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
+            QuantumManager.XOR(SystemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
         }
 
         public void QNAND(uint qInput1, uint qInput2, uint qOutput)
         {
-            QuantumManager.NAND(systemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
+            QuantumManager.NAND(SystemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
         }
 
         public void QNOR(uint qInput1, uint qInput2, uint qOutput)
         {
-            QuantumManager.NOR(systemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
+            QuantumManager.NOR(SystemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
         }
 
         public void QXNOR(uint qInput1, uint qInput2, uint qOutput)
         {
-            QuantumManager.XNOR(systemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
+            QuantumManager.XNOR(SystemId, GetSystemIndex(qInput1), GetSystemIndex(qInput2), GetSystemIndex(qOutput));
         }
 
         public void CQAND(bool cInput, uint qInput, uint cOutput)
         {
-            QuantumManager.CLAND(systemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
+            QuantumManager.CLAND(SystemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
 
         public void CQOR(bool cInput, uint qInput, uint cOutput)
         {
-            QuantumManager.CLOR(systemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
+            QuantumManager.CLOR(SystemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
 
         public void CQXOR(bool cInput, uint qInput, uint cOutput)
         {
-            QuantumManager.CLXOR(systemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
+            QuantumManager.CLXOR(SystemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
 
         public void CQNAND(bool cInput, uint qInput, uint cOutput)
         {
-            QuantumManager.CLNAND(systemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
+            QuantumManager.CLNAND(SystemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
 
         public void CQNOR(bool cInput, uint qInput, uint cOutput)
         {
-            QuantumManager.CLNOR(systemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
+            QuantumManager.CLNOR(SystemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
 
         public void CQXNOR(bool cInput, uint qInput, uint cOutput)
         {
-            QuantumManager.CLXNOR(systemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
+            QuantumManager.CLXNOR(SystemId, cInput, GetSystemIndex(qInput), GetSystemIndex(cOutput));
         }
 
         public float Prob(uint targetId)
         {
-            return (float)QuantumManager.Prob(systemId, GetSystemIndex(targetId));
+            return (float)QuantumManager.Prob(SystemId, GetSystemIndex(targetId));
+        }
+
+        public void SetBit(uint targetID, bool tOrF)
+        {
+            if (tOrF)
+            {
+                QSET(targetID);
+            } else
+            {
+                QRESET(targetID);
+            }
         }
     }
 }

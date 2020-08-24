@@ -1,4 +1,6 @@
-﻿namespace Qrack
+﻿using UnityEngine;
+
+namespace Qrack
 {
     public class TeleportAlice : RealTimeQasmProgram
     {
@@ -13,8 +15,13 @@
                 quantumProgramUpdate = (x) =>
                 {
                     QuantumSystem qs = x.QuantumSystem;
-                    bool test = qs.M(0);
                     qs.Rand(0);
+
+                    float prob = qs.Prob(0);
+                    qs.H(0);
+                    float hProb = qs.Prob(0);
+                    qs.H(0);
+                    qs.transform.localEulerAngles = new Vector3(prob * 360.0f, hProb * 360.0f, 0.0f);
 
                     qs.MCX(new uint[] { 0 }, 1);
                     qs.H(0);
@@ -27,8 +34,8 @@
                 quantumProgramUpdate = (x) =>
                 {
                     QuantumSystem qs = x.QuantumSystem;
-                    Bob.MeasurmentResults[0] = qs.M(0);
-                    Bob.MeasurmentResults[1] = qs.M(1);
+                    Bob.MeasurementResults[0] = qs.M(0);
+                    Bob.MeasurementResults[1] = qs.M(1);
 
                     Bob.ResetProgram();
                     gameObject.SetActive(false);

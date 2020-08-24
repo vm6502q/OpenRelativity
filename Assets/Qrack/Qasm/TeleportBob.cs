@@ -1,10 +1,12 @@
-﻿namespace Qrack
+﻿using UnityEngine;
+
+namespace Qrack
 {
     public class TeleportBob : RealTimeQasmProgram
     {
         public TeleportEve Eve;
 
-        public bool[] MeasurmentResults = new bool[2];
+        public bool[] MeasurementResults = new bool[2];
 
         protected override void StartProgram()
         {
@@ -15,15 +17,21 @@
                 {
                     QuantumSystem qs = x.QuantumSystem;
 
-                    if (MeasurmentResults[0])
+                    if (MeasurementResults[0])
                     {
                         qs.Z(0);
                     }
 
-                    if (MeasurmentResults[1])
+                    if (MeasurementResults[1])
                     {
                         qs.X(0);
                     }
+
+                    float prob = qs.Prob(0);
+                    qs.H(0);
+                    float hProb = qs.Prob(0);
+                    qs.H(0);
+                    qs.transform.localEulerAngles = new Vector3(prob * 360.0f, hProb * 360.0f, 0.0f);
                 }
             });
 
