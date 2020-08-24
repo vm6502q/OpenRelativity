@@ -56,7 +56,7 @@ namespace Qrack
 #if OPEN_RELATIVITY_INCLUDED
                 return ClockOffset + myRO.GetLocalTime();
 #else
-                return clockOFfset + Time.time;
+                return ClockOffset + Time.time;
 #endif
             }
         }
