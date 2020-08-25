@@ -13,6 +13,8 @@ namespace Qrack
         public uint QubitCount = 1;
         public float ClockOffset;
 
+        public uint SystemId { get; set; }
+
         protected uint lastQubitCount;
 
         private QuantumManager _qMan = null;
@@ -29,8 +31,6 @@ namespace Qrack
                 return _qMan;
             }
         }
-
-        public uint SystemId;
 
         virtual protected uint GetSystemIndex(uint registerIndex)
         {

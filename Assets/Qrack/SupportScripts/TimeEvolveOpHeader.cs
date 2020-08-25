@@ -7,7 +7,7 @@ namespace Qrack
     {
         public uint target;
         public uint controlLen;
-        [MarshalAs(UnmanagedType.LPArray, SizeConst = 32)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32)]
         public uint[] controls;
     }
 }
