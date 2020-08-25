@@ -381,5 +381,10 @@ namespace Qrack
                 QRESET(targetID);
             }
         }
+
+        public void TimeEvolve(double t, TimeEvolveOpHeader[] teos, double[] mtrx)
+        {
+            QuantumManager.TimeEvolve(SystemId, t, (uint)teos.Length, teos, (uint)mtrx.Length, mtrx);
+        }
     }
 }
