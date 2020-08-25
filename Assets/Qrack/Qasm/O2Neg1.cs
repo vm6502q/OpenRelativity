@@ -11,20 +11,12 @@ namespace Qrack
             double e0 = Math.Sqrt(1.0 - aParam * aParam);
 
             double[] hamiltonian = {
-                //First 2x2 complex
-                1.0, 0.0, 0.0, 0.0,
-                0.0, 0.0, 1.0, 0.0,
-                //Second 2x2 complex
+                // Hermitian 2x2 complex array 
                 e0, 0.0, -aParam, 0.0,
-                -aParam, 0.0, e0, 0.0
+                -aParam, 0.0, e0, 0.0,
             };
 
-            TimeEvolveOpHeader teo = new TimeEvolveOpHeader()
-            {
-                controlLen = 1,
-                controls = new uint[1] { 1 },
-                target = 0
-            };
+            TimeEvolveOpHeader teo = new TimeEvolveOpHeader(0, null);
 
             TimeEvolveOpHeader[] timeEvolveOpHeaders = new TimeEvolveOpHeader[1] { teo };
 
