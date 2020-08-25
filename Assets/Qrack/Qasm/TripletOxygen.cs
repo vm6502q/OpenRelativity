@@ -1,19 +1,21 @@
 ﻿using System;
+using System.Reflection;
 
 namespace Qrack
 {
-    public class O2Neg1 : RealTimeQasmProgram
+    public class TripletOxygen : RealTimeQasmProgram
     {
+        public double alphaParam = 1e-4;
+
         // Prepare a Bell pair for Alice and Bob to share
         protected override void StartProgram()
         {
-            const double aParam = 1e-4;
-            double e0 = Math.Sqrt(1.0 - aParam * aParam);
+            double e0 = Math.Sqrt(1.0 - alphaParam * alphaParam);
 
             double[] hamiltonian = {
                 // Hermitian 2x2 complex array 
-                e0, 0.0, -aParam, 0.0,
-                -aParam, 0.0, e0, 0.0,
+                e0, 0.0, -alphaParam, 0.0,
+                -alphaParam, 0.0, e0, 0.0,
             };
 
             TimeEvolveOpHeader teo = new TimeEvolveOpHeader(0, null);
