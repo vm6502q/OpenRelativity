@@ -140,6 +140,23 @@ namespace OpenRelativity.Audio
 
         private void Update()
         {
+            // Note that pvHistory points are (retrospectively) speculative, not guaranteed points in the history.
+            // The discontinuities in the speculative history are exactly at the points of change in world-frame velocity.
+            // The same is true, basically verbatim, for "piw" as we have handled it elsewhere in the physics module,
+            // including in collision.
+            //
+            // It is the "OPTICAL" position which must maintain continuity under instantenous changes in velocity,
+            // which correspond with non-integrable jumps in "piw" and now also "soundPosition." (Think about this.
+            // This maintains the integrability of the continuous "image" world-line of the object at any distance
+            // and observer relative velocity.)
+            //
+            // Hence, if (rapidity-based) "sound history points" of world-frame position and velocity introduce a
+            // prediction of EARLIER world-frame history points after velocity change than what is already foremost on
+            // the history, then this speculative history is KNOWN to be discontinuous from the point where velocity
+            // changed. The true history would correspond with some (instantaneous) pitch distortion of the history
+            // points recorded earlier, hence we just want to "fast-forward" past any speculative points that are not
+            // monotonically increasing over world-frame time in the history. These were an incorrect "prediction."
+
             pvHistory.Add(new RelativisticAudioSourceVelocityHistoryPoint(state.TotalTimeWorld - soundLightDelayTime, relativisticObject.piw, relativisticObject.viw));
 
             while (pvHistory.Count > 1)
