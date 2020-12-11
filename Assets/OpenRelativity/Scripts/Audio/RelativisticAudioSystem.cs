@@ -50,42 +50,15 @@ namespace OpenRelativity.Audio
 
         public void WorldSoundDopplerShift(RelativisticAudioSource source)
         {
-            Vector3 sourcePiw;
-            Vector3 sourceViw;
-
-            if (source.pvHistory.Count == 0)
-            {
-                sourcePiw = source.piw;
-                sourceViw = source.viw;
-            }
-            else
-            {
-                sourcePiw = source.pvHistory[0].piw;
-                sourceViw = source.pvHistory[0].viw;
-
-                while (source.pvHistory.Count >= 2)
-                {
-                    if (source.pvHistory[1].WorldSoundTime >= state.TotalTimeWorld)
-                    {
-                        // Run the history out as far as it will go, but stop if there are no more recorded points.
-                        break;
-                    }
-
-                    source.pvHistory.RemoveAt(0);
-
-                    sourcePiw = source.pvHistory[0].piw;
-                    sourceViw = source.pvHistory[0].viw;
-                }
-            }
-
-            Vector3 unitDisplacementSR = PlayerAudioListener.piw - sourcePiw;
+            Vector3 unitDisplacementSR = PlayerAudioListener.piw - source.piw;
             unitDisplacementSR.Normalize();
             if (unitDisplacementSR == Vector3.zero)
             {
                 unitDisplacementSR = Vector3.up;
             }
 
-            Vector3 sourceRapidity = sourceViw * sourceViw.Gamma();
+            Vector3 sourceRapidity = source.viw;
+            sourceRapidity = sourceRapidity * source.relativisticObject.GetTimeFactor();
 
             Vector3 receiverRapidity = PlayerAudioListener.viw;
             receiverRapidity = receiverRapidity * receiverRapidity.Gamma();

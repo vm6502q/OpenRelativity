@@ -1,6 +1,6 @@
-﻿using OpenRelativity.Objects;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using OpenRelativity.Objects;
 
 namespace OpenRelativity.Audio
 {
@@ -14,35 +14,19 @@ namespace OpenRelativity.Audio
 
         protected RelativisticAudioSystem audioSystem;
 
-        protected class RelativisticAudioSourcePlayTimeHistoryPoint
+        protected class RelativisticAudioSourceHistoryPoint
         {
             public Vector4 sourceWorldSpaceTimePos { get; set; }
             public int audioSourceIndex { get; set; }
 
-            public RelativisticAudioSourcePlayTimeHistoryPoint(Vector4 sourceWorldSTPos, int audioSource)
+            public RelativisticAudioSourceHistoryPoint(Vector4 sourceWorldSTPos, int audioSource)
             {
                 sourceWorldSpaceTimePos = sourceWorldSTPos;
                 audioSourceIndex = audioSource;
             }
         }
 
-        protected List<RelativisticAudioSourcePlayTimeHistoryPoint> playTimeHistory;
-
-        public class RelativisticAudioSourcePVHistoryPoint
-        {
-            public float WorldSoundTime;
-            public Vector3 piw { get; set; }
-            public Vector3 viw { get; set; }
-
-            public RelativisticAudioSourcePVHistoryPoint(float w, Vector3 p, Vector3 v)
-            {
-                WorldSoundTime = w;
-                piw = p;
-                viw = v;
-            }
-        }
-
-        public List<RelativisticAudioSourcePVHistoryPoint> pvHistory { get; protected set; }
+        protected List<RelativisticAudioSourceHistoryPoint> historyPoints;
 
         public Vector3 piw
         {
@@ -91,11 +75,10 @@ namespace OpenRelativity.Audio
             get
             {
                 Vector3 dispUnit = (listenerPiw - piw).normalized;
+                Matrix4x4 m = metric;
 
-                // TODO: Use the generalized metric for RapidityToVelocity, with speed-of-sound delay.
-
-                return (audioSystem.RapidityOfSound * dispUnit).RapidityToVelocity()
-                    .AddVelocity(audioSystem.WorldSoundMediumRapidity.RapidityToVelocity());
+                return (audioSystem.RapidityOfSound * dispUnit).RapidityToVelocity(m)
+                    .AddVelocity(audioSystem.WorldSoundMediumRapidity.RapidityToVelocity(m));
             }
         }
         protected Vector3 soundPosition
@@ -106,25 +89,13 @@ namespace OpenRelativity.Audio
             }
         }
 
-        protected float soundDelayTime
-        {
-            get
-            {
-                // TODO: Does this need handling for a generalized metric?
-                return (relativisticObject.opticalPiw
-                    - (relativisticObject.piw + tisw * Vector3.Project(viw.AddVelocity(soundVelocity), viw.normalized))).magnitude
-                    / state.SpeedOfLight;
-            }
-        }
-
         // Start is called before the first frame update
         void Start()
         {
             audioSystem = RelativisticAudioSystem.Instance;
             relativisticObject = GetComponent<RelativisticObject>();
             audioSources = AudioSourceTransform.GetComponents<AudioSource>();
-            playTimeHistory = new List<RelativisticAudioSourcePlayTimeHistoryPoint>();
-            pvHistory = new List<RelativisticAudioSourcePVHistoryPoint>();
+            historyPoints = new List<RelativisticAudioSourceHistoryPoint>();
 
             pitches = new float[audioSources.Length];
             for (int i = 0; i < audioSources.Length; i++)
@@ -142,21 +113,17 @@ namespace OpenRelativity.Audio
 
             AudioSourceTransform.position = soundPosition;
 
-            float soundTime = state.TotalTimeWorld - soundDelayTime;
-
-            pvHistory.Add(new RelativisticAudioSourcePVHistoryPoint(state.TotalTimeWorld + soundDelayTime, piw, viw));
-
             audioSystem.WorldSoundDopplerShift(this);
 
-            if (playTimeHistory.Count == 0)
+            if (historyPoints.Count == 0)
             {
                 return;
             }
 
-            while (playTimeHistory[0].sourceWorldSpaceTimePos.w >= (state.TotalTimeWorld - audioSystem.WorldSoundVelocityDelay(this)))
+            while (historyPoints[0].sourceWorldSpaceTimePos.w >= (state.TotalTimeWorld - audioSystem.WorldSoundVelocityDelay(this)))
             {
-                audioSources[playTimeHistory[0].audioSourceIndex].Play();
-                playTimeHistory.RemoveAt(0);
+                audioSources[historyPoints[0].audioSourceIndex].Play();
+                historyPoints.RemoveAt(0);
             }
         }
 
@@ -170,7 +137,7 @@ namespace OpenRelativity.Audio
 
         public void PlayOnWorldClock(int audioSourceIndex = 0)
         {
-            playTimeHistory.Add(new RelativisticAudioSourcePlayTimeHistoryPoint(relativisticObject.piw, audioSourceIndex));
+            historyPoints.Add(new RelativisticAudioSourceHistoryPoint(piw, audioSourceIndex));
         }
     }
 }
