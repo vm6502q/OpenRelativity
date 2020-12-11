@@ -157,7 +157,11 @@ namespace OpenRelativity.Audio
             // points recorded earlier, hence we just want to "fast-forward" past any speculative points that are not
             // monotonically increasing over world-frame time in the history. These were an incorrect "prediction."
 
-            pvHistory.Add(new RelativisticAudioSourceVelocityHistoryPoint(state.TotalTimeWorld - soundLightDelayTime, relativisticObject.piw, relativisticObject.viw));
+            float soundWorldTime = state.TotalTimeWorld - soundLightDelayTime;
+            if (pvHistory.Count == 0 || pvHistory[0].WorldSoundTime < soundWorldTime)
+            {
+                pvHistory.Add(new RelativisticAudioSourceVelocityHistoryPoint(state.TotalTimeWorld - soundLightDelayTime, relativisticObject.piw, relativisticObject.viw));
+            }
 
             while (pvHistory.Count > 1)
             {
