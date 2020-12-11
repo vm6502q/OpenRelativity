@@ -145,7 +145,7 @@ namespace OpenRelativity.Audio
             // The same is true, basically verbatim, for "piw" as we have handled it elsewhere in the physics module,
             // including in collision.
             //
-            // It is the "OPTICAL" position which must maintain continuity under instantenous changes in velocity,
+            // It is the "OPTICAL" position which must maintain continuity under instantaneous changes in velocity,
             // which correspond with non-integrable jumps in "piw" and now also "soundPosition." (Think about this.
             // This maintains the integrability of the continuous "image" world-line of the object at any distance
             // and observer relative velocity.)
