@@ -32,23 +32,23 @@ namespace OpenRelativity.Audio
         {
             public float WorldSoundTime { get; set; }
             public Vector3 viw { get; set; }
+            public Vector3 piw { get; set; }
 
-            public RelativisticAudioSourceVelocityHistoryPoint(float t, Vector3 v)
+            public RelativisticAudioSourceVelocityHistoryPoint(float t, Vector3 p, Vector3 v)
             {
                 WorldSoundTime = t;
+                piw = v;
                 viw = v;
             }
         }
 
-        protected List<RelativisticAudioSourceVelocityHistoryPoint> velocityHistory;
-
-        protected Vector3 oldViw;
+        protected List<RelativisticAudioSourceVelocityHistoryPoint> pvHistory;
 
         public Vector3 piw
         {
             get
             {
-                return relativisticObject.piw;
+                return ((pvHistory != null) && (pvHistory.Count > 0)) ? pvHistory[0].piw : relativisticObject.piw;
             }
         }
 
@@ -56,11 +56,13 @@ namespace OpenRelativity.Audio
         {
             get
             {
-                return ((velocityHistory != null) && (velocityHistory.Count > 0)) ? velocityHistory[0].viw : relativisticObject.viw;
+                return ((pvHistory != null) && (pvHistory.Count > 0)) ? pvHistory[0].viw : relativisticObject.viw;
             }
         }
 
-        public Matrix4x4 metric;
+        // Rindler metric responds immediately to player local acceleration,
+        // but it would be better 
+        public Matrix4x4 metric { get; protected set; }
 
         protected float tisw
         {
@@ -91,17 +93,18 @@ namespace OpenRelativity.Audio
             get
             {
                 Vector3 dispUnit = (listenerPiw - piw).normalized;
-                Matrix4x4 m = metric;
 
-                return (audioSystem.RapidityOfSound * dispUnit).RapidityToVelocity(m)
-                    .AddVelocity(audioSystem.WorldSoundMediumRapidity.RapidityToVelocity(m));
+                return (audioSystem.RapidityOfSound * dispUnit).RapidityToVelocity(metric)
+                    .AddVelocity(audioSystem.WorldSoundMediumRapidity.RapidityToVelocity(metric));
             }
         }
         protected Vector3 soundPosition
         {
             get
             {
-                return piw + (tisw - soundLightDelayTime) * viw;
+                // opticalPiw is theoretically invariant under velocity changes
+                // and therefore need not be cached
+                return relativisticObject.opticalPiw + soundLightDelayTime * viw;
             }
         }
 
@@ -109,10 +112,10 @@ namespace OpenRelativity.Audio
         {
             get
             {
-                // TODO: Does this need handling for a generalized metric?
-                return (relativisticObject.opticalPiw -
-                    (piw + tisw * Vector3.Project(relativisticObject.viw.AddVelocity(soundVelocity), relativisticObject.viw.normalized))
-                    ).magnitude / state.SpeedOfLight;
+                Vector3 dispUnit = (listenerPiw - piw).normalized;
+
+                return ((Vector3.Dot(audioSystem.WorldSoundMediumRapidity, dispUnit) + audioSystem.RapidityOfSound) * dispUnit)
+                    .RapidityToVelocity(metric).magnitude / state.SpeedOfLight * tisw;
             }
         }
 
@@ -123,9 +126,7 @@ namespace OpenRelativity.Audio
             relativisticObject = GetComponent<RelativisticObject>();
             audioSources = AudioSourceTransform.GetComponents<AudioSource>();
             playTimeHistory = new List<RelativisticAudioSourcePlayTimeHistoryPoint>();
-
-            oldViw = viw;
-            velocityHistory = new List<RelativisticAudioSourceVelocityHistoryPoint>();
+            pvHistory = new List<RelativisticAudioSourceVelocityHistoryPoint>();
 
             pitches = new float[audioSources.Length];
             for (int i = 0; i < audioSources.Length; i++)
@@ -139,30 +140,21 @@ namespace OpenRelativity.Audio
 
         private void Update()
         {
-            metric = relativisticObject.GetMetric();
+            pvHistory.Add(new RelativisticAudioSourceVelocityHistoryPoint(state.TotalTimeWorld - soundLightDelayTime, relativisticObject.piw, relativisticObject.viw));
 
-            if (relativisticObject.viw != oldViw)
+            while (pvHistory.Count > 1)
             {
-                velocityHistory.Add(new RelativisticAudioSourceVelocityHistoryPoint(state.TotalTimeWorld - soundLightDelayTime, viw));
-                oldViw = relativisticObject.viw;
-            }
-
-            if (velocityHistory.Count == 0)
-            {
-                velocityHistory.Add(new RelativisticAudioSourceVelocityHistoryPoint(state.TotalTimeWorld - soundLightDelayTime, viw));
-            }
-
-            while (velocityHistory.Count > 1)
-            {
-                if (velocityHistory[1].WorldSoundTime >= state.TotalTimeWorld)
+                if (pvHistory[1].WorldSoundTime >= state.TotalTimeWorld)
                 {
-                    velocityHistory.RemoveAt(0);
+                    pvHistory.RemoveAt(0);
                 }
                 else
                 {
                     break;
                 }
             }
+
+            metric = SRelativityUtil.GetRindlerMetric(piw);
 
             AudioSourceTransform.position = soundPosition;
 
@@ -190,7 +182,7 @@ namespace OpenRelativity.Audio
 
         public void PlayOnWorldClock(int audioSourceIndex = 0)
         {
-            playTimeHistory.Add(new RelativisticAudioSourcePlayTimeHistoryPoint(piw, audioSourceIndex));
+            playTimeHistory.Add(new RelativisticAudioSourcePlayTimeHistoryPoint(relativisticObject.piw, audioSourceIndex));
         }
     }
 }
