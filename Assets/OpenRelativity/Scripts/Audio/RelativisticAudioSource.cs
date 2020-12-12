@@ -37,7 +37,7 @@ namespace OpenRelativity.Audio
             public RelativisticAudioSourceVelocityHistoryPoint(float t, Vector3 p, Vector3 v)
             {
                 WorldSoundTime = t;
-                piw = v;
+                piw = p;
                 viw = v;
             }
         }
@@ -94,8 +94,8 @@ namespace OpenRelativity.Audio
             {
                 Vector3 dispUnit = (listenerPiw - piw).normalized;
 
-                return (audioSystem.RapidityOfSound * dispUnit).RapidityToVelocity(metric)
-                    .AddVelocity(audioSystem.WorldSoundMediumRapidity.RapidityToVelocity(metric));
+                return (audioSystem.RapidityOfSound * dispUnit + audioSystem.WorldSoundMediumRapidity)
+                    .RapidityToVelocity(metric);
             }
         }
         protected Vector3 soundPosition
@@ -119,23 +119,34 @@ namespace OpenRelativity.Audio
             }
         }
 
+        private bool firstFrame;
+
         // Start is called before the first frame update
         void Start()
         {
             audioSystem = RelativisticAudioSystem.Instance;
             relativisticObject = GetComponent<RelativisticObject>();
-            audioSources = AudioSourceTransform.GetComponents<AudioSource>();
             playTimeHistory = new List<RelativisticAudioSourcePlayTimeHistoryPoint>();
             pvHistory = new List<RelativisticAudioSourceVelocityHistoryPoint>();
 
-            pitches = new float[audioSources.Length];
-            for (int i = 0; i < audioSources.Length; i++)
+            if (audioSources == null || audioSources.Length == 0)
             {
-                pitches[i] = audioSources[i].pitch;
-
-                // Turn off built-in Doppler
-                audioSources[i].dopplerLevel = 0;
+                audioSources = AudioSourceTransform.GetComponents<AudioSource>();
             }
+
+            if (pitches == null || pitches.Length == 0)
+            {
+                pitches = new float[audioSources.Length];
+                for (int i = 0; i < audioSources.Length; i++)
+                {
+                    pitches[i] = audioSources[i].pitch;
+
+                    // Turn off built-in Doppler
+                    audioSources[i].dopplerLevel = 0;
+                }
+            }
+
+            firstFrame = true;
         }
 
         private void Update()
@@ -160,12 +171,12 @@ namespace OpenRelativity.Audio
             float soundWorldTime = state.TotalTimeWorld - soundLightDelayTime;
             if (pvHistory.Count == 0 || pvHistory[0].WorldSoundTime < soundWorldTime)
             {
-                pvHistory.Add(new RelativisticAudioSourceVelocityHistoryPoint(state.TotalTimeWorld - soundLightDelayTime, relativisticObject.piw, relativisticObject.viw));
+                pvHistory.Add(new RelativisticAudioSourceVelocityHistoryPoint(state.TotalTimeWorld + soundLightDelayTime, relativisticObject.piw, relativisticObject.viw));
             }
 
             while (pvHistory.Count > 1)
             {
-                if (pvHistory[1].WorldSoundTime >= state.TotalTimeWorld)
+                if (pvHistory[1].WorldSoundTime > state.TotalTimeWorld)
                 {
                     pvHistory.RemoveAt(0);
                 }
@@ -180,6 +191,13 @@ namespace OpenRelativity.Audio
             AudioSourceTransform.position = soundPosition;
 
             audioSystem.WorldSoundDopplerShift(this);
+
+            if (firstFrame)
+            {
+                // TODO: The exact first history update is wrong. Can we fix it?
+                pvHistory.Clear();
+                firstFrame = false;
+            }
 
             if (playTimeHistory.Count == 0)
             {
