@@ -176,7 +176,7 @@ namespace OpenRelativity.Audio
 
             while (pvHistory.Count > 1)
             {
-                if (pvHistory[1].WorldSoundTime > state.TotalTimeWorld)
+                if (pvHistory[1].WorldSoundTime < (state.TotalTimeWorld + soundLightDelayTime))
                 {
                     pvHistory.RemoveAt(0);
                 }
