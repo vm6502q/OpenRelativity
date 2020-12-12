@@ -28,27 +28,11 @@ namespace OpenRelativity.Audio
 
         protected List<RelativisticAudioSourcePlayTimeHistoryPoint> playTimeHistory;
 
-        protected class RelativisticAudioSourceVelocityHistoryPoint
-        {
-            public float WorldSoundTime { get; set; }
-            public Vector3 viw { get; set; }
-            public Vector3 piw { get; set; }
-
-            public RelativisticAudioSourceVelocityHistoryPoint(float t, Vector3 p, Vector3 v)
-            {
-                WorldSoundTime = t;
-                piw = p;
-                viw = v;
-            }
-        }
-
-        protected List<RelativisticAudioSourceVelocityHistoryPoint> pvHistory;
-
         public Vector3 piw
         {
             get
             {
-                return ((pvHistory != null) && (pvHistory.Count > 0)) ? pvHistory[0].piw : relativisticObject.piw;
+                return relativisticObject.piw;
             }
         }
 
@@ -56,7 +40,7 @@ namespace OpenRelativity.Audio
         {
             get
             {
-                return ((pvHistory != null) && (pvHistory.Count > 0)) ? pvHistory[0].viw : relativisticObject.viw;
+                return relativisticObject.viw;
             }
         }
 
@@ -127,7 +111,6 @@ namespace OpenRelativity.Audio
             audioSystem = RelativisticAudioSystem.Instance;
             relativisticObject = GetComponent<RelativisticObject>();
             playTimeHistory = new List<RelativisticAudioSourcePlayTimeHistoryPoint>();
-            pvHistory = new List<RelativisticAudioSourceVelocityHistoryPoint>();
 
             if (audioSources == null || audioSources.Length == 0)
             {
@@ -151,53 +134,13 @@ namespace OpenRelativity.Audio
 
         private void Update()
         {
-            // Note that pvHistory points are (retrospectively) speculative, not guaranteed points in the history.
-            // The discontinuities in the speculative history are exactly at the points of change in world-frame velocity.
-            // The same is true, basically verbatim, for "piw" as we have handled it elsewhere in the physics module,
-            // including in collision.
-            //
-            // It is the "OPTICAL" position which must maintain continuity under instantaneous changes in velocity,
-            // which correspond with non-integrable jumps in "piw" and now also "soundPosition." (Think about this.
-            // This maintains the integrability of the continuous "image" world-line of the object at any distance
-            // and observer relative velocity.)
-            //
-            // Hence, if (rapidity-based) "sound history points" of world-frame position and velocity introduce a
-            // prediction of EARLIER world-frame history points after velocity change than what is already foremost on
-            // the history, then this speculative history is KNOWN to be discontinuous from the point where velocity
-            // changed. The true history would correspond with some (instantaneous) pitch distortion of the history
-            // points recorded earlier, hence we just want to "fast-forward" past any speculative points that are not
-            // monotonically increasing over world-frame time in the history. These were an incorrect "prediction."
-
             float soundWorldTime = state.TotalTimeWorld - soundLightDelayTime;
-            if (pvHistory.Count == 0 || pvHistory[0].WorldSoundTime < soundWorldTime)
-            {
-                pvHistory.Add(new RelativisticAudioSourceVelocityHistoryPoint(state.TotalTimeWorld + soundLightDelayTime, relativisticObject.piw, relativisticObject.viw));
-            }
-
-            while (pvHistory.Count > 1)
-            {
-                if (pvHistory[1].WorldSoundTime < (state.TotalTimeWorld + soundLightDelayTime))
-                {
-                    pvHistory.RemoveAt(0);
-                }
-                else
-                {
-                    break;
-                }
-            }
 
             metric = SRelativityUtil.GetRindlerMetric(piw);
 
             AudioSourceTransform.position = soundPosition;
 
             audioSystem.WorldSoundDopplerShift(this);
-
-            if (firstFrame)
-            {
-                // TODO: The exact first history update is wrong. Can we fix it?
-                pvHistory.Clear();
-                firstFrame = false;
-            }
 
             if (playTimeHistory.Count == 0)
             {
