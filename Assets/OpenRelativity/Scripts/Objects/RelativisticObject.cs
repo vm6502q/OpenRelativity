@@ -1123,10 +1123,10 @@ namespace OpenRelativity.Objects
             }
 
             //Get the vertices of our mesh
-            if ((meshFilter != null) && meshFilter.mesh.isReadable)
+            if ((meshFilter != null) && meshFilter.sharedMesh.isReadable)
             {
-                rawVertsBufferLength = meshFilter.mesh.vertices.Length;
-                rawVertsBuffer = meshFilter.mesh.vertices;
+                rawVertsBufferLength = meshFilter.sharedMesh.vertices.Length;
+                rawVertsBuffer = meshFilter.sharedMesh.vertices;
             }
             else
             {
