@@ -1105,11 +1105,11 @@ namespace OpenRelativity.Objects
             }
             meshFilter = GetComponent<MeshFilter>();
 
-            if (myColliders != null)
+            if (myColliderIsMesh && (myColliders != null))
             {
                 for (int i = 0; i < myColliders.Length; i++)
                 {
-                    if (myColliderIsMesh && ((MeshCollider)myColliders[i]).sharedMesh != null)
+                    if (((MeshCollider)myColliders[i]).sharedMesh != null)
                     {
                         ((MeshCollider)myColliders[i]).sharedMesh.MarkDynamic();
                     }
