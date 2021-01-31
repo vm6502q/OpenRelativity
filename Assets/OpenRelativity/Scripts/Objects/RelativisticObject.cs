@@ -272,7 +272,7 @@ namespace OpenRelativity.Objects
         {
             get
             {
-                _properAccel = monopoleAccel ? nonGravAccel + frameDragAccel : nonGravAccel;
+                _properAccel = isMonopoleAccel ? nonGravAccel + frameDragAccel : nonGravAccel;
 
                 if (SleepTimer > 0)
                 {
@@ -310,7 +310,7 @@ namespace OpenRelativity.Objects
                 }
 
                 nonGravAccel = accel;
-                _properAccel = monopoleAccel ? accel - frameDragAccel : accel;
+                _properAccel = isMonopoleAccel ? accel - frameDragAccel : accel;
             }
         }
 
@@ -457,7 +457,7 @@ namespace OpenRelativity.Objects
 
         // Based on Strano 2019, (preprint).
         // (I will always implement potentially "cranky" features so you can toggle them off, but I might as well.)
-        public bool monopoleAccel = false;
+        public bool isMonopoleAccel = false;
         private Vector3 frameDragAccel;
         #endregion
 
@@ -1377,7 +1377,7 @@ namespace OpenRelativity.Objects
 
             #region rigidbody
 
-            if (monopoleAccel)
+            if (isMonopoleAccel)
             {
                 Vector3 myAccel = properAccel;
                 Vector3 pAccel = state.PlayerAccelerationVector;
@@ -1402,7 +1402,7 @@ namespace OpenRelativity.Objects
                     // (For video game purposes, there's maybe no easy way to precisely model the mass flow, so just control it with an editor variable.)
                     Vector3 gravAccel = useGravity ? -Physics.gravity : Vector3.zero;
                     gravAccel += state.conformalMap == null ? Vector3.zero : state.conformalMap.GetRindlerAcceleration(piw);
-                    myRigidbody.mass -= state.monopoleFluxFactor * myRigidbody.mass * Math.Abs((gravAccel + frameDragAccel).magnitude  / state.planckAccel) * (deltaTime / state.planckTime);
+                    myRigidbody.mass -= myRigidbody.mass * Math.Abs((gravAccel + frameDragAccel).magnitude / state.planckAccel) * (deltaTime / state.planckTime);
                 }
                 //... But just turn "doDegradeAccel" off, if you don't want this effect for any reason.
                 // (We ignore the "little bit" of acceleration from collisions, but maybe we could add that next.)
