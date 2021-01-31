@@ -70,6 +70,9 @@ namespace OpenRelativity
             }
         }
 
+        // In Planck units
+        public float gravityBackgroundTemperature = 2.53466e-31f;
+
         //Use this to determine the state of the color shader. If it's True, all you'll see is the lorenz transform.
         private bool shaderOff = false;
 
