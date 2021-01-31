@@ -63,7 +63,7 @@ namespace OpenRelativity
         {
             get
             {
-                return myRigidbody == null ? 0 : (myRigidbody.mass + frameDragMass) / averageMolarMass;
+                return myRigidbody == null ? 0 : (myRigidbody.mass + frameDragMass) / averageMolarMass * SRelativityUtil.avogadroNumber;
             }
         }
 
@@ -277,10 +277,10 @@ namespace OpenRelativity
                         // then it will spontaneously emit this excitation, with a coupling constant proportional to the
                         // gravitational constant "G" times (baryon) constituent particle rest mass.
                         // (For video game purposes, there's maybe no easy way to precisely model the mass flow, so just control it with an editor variable.)
-                        float bdm = myRigidbody.mass * Mathf.Abs((totalAccel + frameDragAccelRemainder).magnitude / state.planckAccel) * (state.DeltaTimePlayer / state.planckTime) / baryonCount;
+                        float bdm = (myRigidbody.mass / state.planckMass) * Mathf.Abs((totalAccel + frameDragAccelRemainder).magnitude / state.planckAccel) * (state.DeltaTimePlayer / state.planckTime) / baryonCount;
                         float myTemperature = Mathf.Pow(bdm / (SRelativityUtil.sigmaPlanck / 2), 0.25f);
 
-                        float surfaceArea = meshFilter.sharedMesh.SurfaceArea();
+                        float surfaceArea = meshFilter.sharedMesh.SurfaceArea() / (state.planckLength * state.planckLength);
                         float dm = SRelativityUtil.sigmaPlanck * surfaceArea * gravitonEmissivity * (Mathf.Pow(myTemperature, 4) - Mathf.Pow(state.gravityBackgroundTemperature, 4));
 
                         frameDragMass += dm;

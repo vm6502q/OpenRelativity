@@ -179,7 +179,7 @@ namespace OpenRelativity.Objects
         {
             get
             {
-                return myRigidbody == null ? 0 : (myRigidbody.mass + frameDragMass) / averageMolarMass;
+                return myRigidbody == null ? 0 : (myRigidbody.mass + frameDragMass) / averageMolarMass * SRelativityUtil.avogadroNumber;
             }
         }
 
@@ -1420,11 +1420,11 @@ namespace OpenRelativity.Objects
                         // (For video game purposes, there's maybe no easy way to precisely model the mass flow, so just control it with an editor variable.)
                         Vector3 gravAccel = useGravity ? -Physics.gravity : Vector3.zero;
                         gravAccel += state.conformalMap == null ? Vector3.zero : state.conformalMap.GetRindlerAcceleration(piw);
-                        float bdm =  Mathf.Abs((gravAccel + frameDragAccel).magnitude / state.planckAccel) * (deltaTime / state.planckTime) / baryonCount;
+                        float bdm = (myRigidbody.mass / state.planckMass) * Mathf.Abs((gravAccel + frameDragAccel).magnitude / state.planckAccel) * (deltaTime / state.planckTime) / baryonCount;
                         myTemperature = Mathf.Pow(bdm / (SRelativityUtil.sigmaPlanck / 2), 0.25f);
                     }
 
-                    float surfaceArea = meshFilter.sharedMesh.SurfaceArea();
+                    float surfaceArea = meshFilter.sharedMesh.SurfaceArea() / (state.planckLength * state.planckLength);
                     float dm = SRelativityUtil.sigmaPlanck * surfaceArea * gravitonEmissivity * (Mathf.Pow(myTemperature, 4) - Mathf.Pow(state.gravityBackgroundTemperature, 4));
 
                     frameDragMass += dm;

@@ -13,6 +13,8 @@ namespace OpenRelativity
 
         public static float sigmaPlanck { get { return 8 * Mathf.Pow(Mathf.PI, 5) / (15 * Mathf.Pow(2 * Mathf.PI, 3)); } }
 
+        public static float avogadroNumber = 6.02214e23f;
+
         private static GameState state
         {
             get
