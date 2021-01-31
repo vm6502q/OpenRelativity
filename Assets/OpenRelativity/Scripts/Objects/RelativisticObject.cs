@@ -1400,9 +1400,9 @@ namespace OpenRelativity.Objects
                     // then it will spontaneously emit this excitation, with a coupling constant proportional to the
                     // gravitational constant "G" times (baryon) constituent particle rest mass.
                     // (For video game purposes, there's maybe no easy way to precisely model the mass flow, so just control it with an editor variable.)
-                    float gravAccel = useGravity ? -Physics.gravity.magnitude : 0;
-                    gravAccel += state.conformalMap == null ? 0 : state.conformalMap.GetRindlerAcceleration(piw).magnitude;
-                    myRigidbody.mass -= state.monopoleFluxFactor * myRigidbody.mass * Math.Abs(gravAccel  / state.planckAccel) * (deltaTime / state.planckTime);
+                    Vector3 gravAccel = useGravity ? -Physics.gravity : Vector3.zero;
+                    gravAccel += state.conformalMap == null ? Vector3.zero : state.conformalMap.GetRindlerAcceleration(piw);
+                    myRigidbody.mass -= state.monopoleFluxFactor * myRigidbody.mass * Math.Abs((gravAccel + frameDragAccel).magnitude  / state.planckAccel) * (deltaTime / state.planckTime);
                 }
                 //... But just turn "doDegradeAccel" off, if you don't want this effect for any reason.
                 // (We ignore the "little bit" of acceleration from collisions, but maybe we could add that next.)
