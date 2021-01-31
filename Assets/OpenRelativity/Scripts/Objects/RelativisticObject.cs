@@ -1404,13 +1404,13 @@ namespace OpenRelativity.Objects
                 frameDragAccel += da;
                 myAccel += da;
 
+                float myTemperature = 0;
+
                 // Per Strano 2019, due to the interaction with the thermal graviton gas radiated by the Rindler horizon,
                 // there is also a change in mass. However, the monopole waves responsible for this are seen from a first-person perspective,
                 // (i.e. as due to "player" acceleration).
                 if ((myRigidbody != null) && (SleepTimer == 0))
                 {
-                    float myTemperature = 0;
-
                     if (SleepTimer == 0)
                     {
                         // If a gravitating body this RO is attracted to is already excited above the rest mass vacuum,
@@ -1423,15 +1423,15 @@ namespace OpenRelativity.Objects
                         float bdm = (myRigidbody.mass / state.planckMass) * Mathf.Abs((gravAccel + frameDragAccel).magnitude / state.planckAccel) * (deltaTime / state.planckTime) / baryonCount;
                         myTemperature = Mathf.Pow(bdm / (SRelativityUtil.sigmaPlanck / 2), 0.25f);
                     }
-
-                    float surfaceArea = meshFilter.sharedMesh.SurfaceArea() / (state.planckLength * state.planckLength);
-                    float dm = SRelativityUtil.sigmaPlanck * surfaceArea * gravitonEmissivity * (Mathf.Pow(myTemperature, 4) - Mathf.Pow(state.gravityBackgroundTemperature, 4));
-
-                    frameDragMass += dm;
-                    myRigidbody.mass -= dm;
                 }
                 //... But just turn "doDegradeAccel" off, if you don't want this effect for any reason.
                 // (We ignore the "little bit" of acceleration from collisions, but maybe we could add that next.)
+
+                float surfaceArea = meshFilter.sharedMesh.SurfaceArea() / (state.planckLength * state.planckLength);
+                float dm = SRelativityUtil.sigmaPlanck * surfaceArea * gravitonEmissivity * (Mathf.Pow(myTemperature, 4) - Mathf.Pow(state.gravityBackgroundTemperature, 4));
+
+                frameDragMass += dm;
+                myRigidbody.mass -= dm;
 
                 properAccel = myAccel;
             }
