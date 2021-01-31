@@ -1402,7 +1402,7 @@ namespace OpenRelativity.Objects
                     // (For video game purposes, there's maybe no easy way to precisely model the mass flow, so just control it with an editor variable.)
                     Vector3 gravAccel = useGravity ? -Physics.gravity : Vector3.zero;
                     gravAccel += state.conformalMap == null ? Vector3.zero : state.conformalMap.GetRindlerAcceleration(piw);
-                    myRigidbody.mass -= myRigidbody.mass * Math.Abs((gravAccel + frameDragAccel).magnitude / state.planckAccel) * (deltaTime / state.planckTime);
+                    myRigidbody.mass -= myRigidbody.mass * Mathf.Abs((gravAccel + frameDragAccel).magnitude / state.planckAccel) * (deltaTime / state.planckTime);
                 }
                 //... But just turn "doDegradeAccel" off, if you don't want this effect for any reason.
                 // (We ignore the "little bit" of acceleration from collisions, but maybe we could add that next.)

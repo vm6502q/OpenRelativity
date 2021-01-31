@@ -253,6 +253,8 @@ namespace OpenRelativity
 
                         // The "AUTO SLOW DOWN CODE BLOCK" above gives a qualitative "drag" effect, (as by friction with air or the floor,)
                         // that should ultimately "lock" the player's frame of accelerated rest back to "world coordinates," at the limit.
+
+                        myRigidbody.mass -= myRigidbody.mass * Mathf.Abs((totalAccel + frameDragAccelRemainder).magnitude / state.planckAccel) * (state.DeltaTimePlayer / state.planckTime);
                     }
                 }
 
