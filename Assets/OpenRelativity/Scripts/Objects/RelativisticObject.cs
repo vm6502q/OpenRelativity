@@ -1391,18 +1391,18 @@ namespace OpenRelativity.Objects
                 frameDragAccel += da;
                 myAccel += da;
                 // Per Strano 2019, due to the interaction with the thermal graviton gas radiated by the Rindler horizon,
-                // there is also a change in mass. However, the monopole waves responsible for this is seen from a first-person perspective,
+                // there is also a change in mass. However, the monopole waves responsible for this are seen from a first-person perspective,
                 // (i.e. as due to "player" acceleration).
-                if (myRigidbody != null)
+                if ((myRigidbody != null) && (SleepTimer == 0))
                 {
                     // If a gravitating body this RO is attracted to is already excited above the rest mass vacuum,
                     // (which seems to imply the Higgs field vacuum)
                     // then it will spontaneously emit this excitation, with a coupling constant proportional to the
                     // gravitational constant "G" times (baryon) constituent particle rest mass.
                     // (For video game purposes, there's maybe no easy way to precisely model the mass flow, so just control it with an editor variable.)
-                    float gravAccel = useGravity ? Physics.gravity.magnitude : 0;
+                    float gravAccel = useGravity ? -Physics.gravity.magnitude : 0;
                     gravAccel += state.conformalMap == null ? 0 : state.conformalMap.GetRindlerAcceleration(piw).magnitude;
-                    myRigidbody.mass += state.planckMass * (state.gConst * myRigidbody.mass / state.planckMass) * ((state.fluxPerAccel * gravAccel - pAccel.magnitude) / state.planckAccel) * (deltaTime / state.planckTime);
+                    myRigidbody.mass -= state.monopoleFluxFactor * myRigidbody.mass * Math.Abs(gravAccel  / state.planckAccel) * (deltaTime / state.planckTime);
                 }
                 //... But just turn "doDegradeAccel" off, if you don't want this effect for any reason.
                 // (We ignore the "little bit" of acceleration from collisions, but maybe we could add that next.)
