@@ -1417,7 +1417,6 @@ namespace OpenRelativity.Objects
                         // (which seems to imply the Higgs field vacuum)
                         // then it will spontaneously emit this excitation, with a coupling constant proportional to the
                         // gravitational constant "G" times (baryon) constituent particle rest mass.
-                        // (For video game purposes, there's maybe no easy way to precisely model the mass flow, so just control it with an editor variable.)
                         Vector3 gravAccel = useGravity ? -Physics.gravity : Vector3.zero;
                         gravAccel += state.conformalMap == null ? Vector3.zero : state.conformalMap.GetRindlerAcceleration(piw);
                         float bdm = (myRigidbody.mass / state.planckMass) * Mathf.Abs((gravAccel + frameDragAccel).magnitude / state.planckAccel) * (deltaTime / state.planckTime) / baryonCount;
