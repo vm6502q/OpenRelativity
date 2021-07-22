@@ -1,4 +1,5 @@
 ﻿#if OPEN_RELATIVITY_INCLUDED
+using OpenRelativity;
 using OpenRelativity.Objects;
 using System;
 #endif
@@ -8,7 +9,11 @@ using UnityEngine;
 
 namespace Qrack
 {
+#if OPEN_RELATIVITY_INCLUDED
+    public class QuantumSystem : RelativisticBehavior
+#else
     public class QuantumSystem : MonoBehaviour
+#endif
     {
 
         public uint QubitCount = 1;
@@ -55,7 +60,7 @@ namespace Qrack
             get
             {
 #if OPEN_RELATIVITY_INCLUDED
-                return ClockOffset + myRO.GetLocalTime();
+                return ClockOffset + (myRO ? myRO.GetLocalTime() : state.TotalTimeWorld);
 #else
                 return ClockOffset + Time.time;
 #endif
@@ -67,7 +72,7 @@ namespace Qrack
             get
             {
 #if OPEN_RELATIVITY_INCLUDED
-                return (float)myRO.localDeltaTime;
+                return (float)(myRO ? myRO.localDeltaTime : state.DeltaTimeWorld);
 #else
                 return Time.deltaTime;
 #endif
@@ -79,7 +84,7 @@ namespace Qrack
             get
             {
 #if OPEN_RELATIVITY_INCLUDED
-                return (float)myRO.localFixedDeltaTime;
+                return (float)(myRO ? myRO.localFixedDeltaTime : state.FixedDeltaTimeWorld);
 #else
                 return Time.fixedDeltaTime;
 #endif
@@ -91,7 +96,7 @@ namespace Qrack
             get
             {
 #if OPEN_RELATIVITY_INCLUDED
-                return ClockOffset + myRO.GetVisualTime();
+                return ClockOffset + (myRO ? myRO.GetVisualTime() : state.TotalTimeWorld);
 #else
                 return ClockOffset + Time.time;
 #endif
@@ -517,6 +522,13 @@ namespace Qrack
             }
 
             return (float)QuantumManager.Prob(SystemId, GetSystemIndex(targetId));
+        }
+
+        public float PermutationExpectation(uint[] bits)
+        {
+            uint[] mappedBits = MapQubits(bits);
+
+            return (float)QuantumManager.PermutationExpectation(SystemId, (uint)mappedBits.Length, mappedBits);
         }
 
         public void SetBit(uint targetID, bool tOrF)

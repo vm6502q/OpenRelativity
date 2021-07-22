@@ -1,10 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Qrack
 {
     public class QuantumFourierTransform : RealTimeQasmProgram
     {
+        public OpenRelativity.GameState state;
+
+        public float layerTimeInterval = 0.5f;
         public int maxQubits = 28;
+
+        protected class QftHistoryPoint
+        {
+            public float Time { get; set; }
+            public float Radius { get; set; }
+        }
+
+        protected List<QftHistoryPoint> expectationFrames = new List<QftHistoryPoint>();
+        protected List<uint> bits = new List<uint>();
+
         // Prepare a Bell pair for Alice and Bob to share
         protected override void StartProgram()
         {
@@ -15,10 +29,18 @@ namespace Qrack
                 {
                     QuantumSystem qs = x.QuantumSystem;
                     qs.H(0);
+
+                    bits.Add(0);
+
+                    /*expectationFrames.Add(new QftHistoryPoint
+                    {
+                        Time = state.TotalTimeWorld,
+                        Radius = qs.PermutationExpectation(bits.ToArray())
+                    });*/
                 }
             });
 
-            for (uint i = 0; i < maxQubits; i++)
+            for (uint i = 1; i < maxQubits; i++)
             {
                 AddLayer(i);
             }
@@ -28,7 +50,7 @@ namespace Qrack
         {
             ProgramInstructions.Add(new RealTimeQasmInstruction()
             {
-                DeltaTime = 1.0f,
+                DeltaTime = layerTimeInterval,
                 quantumProgramUpdate = (x, y) =>
                 {
                     QuantumSystem qs = x.QuantumSystem;
@@ -48,6 +70,16 @@ namespace Qrack
                         qs.MCU(c, t, 0, 0, lambda);
                     }
                     qs.H(i);
+
+                    bits.Add(bits[bits.Count - 1] + 1);
+                    List<uint> expBits = bits;
+                    expBits.Reverse();
+
+                    /*expectationFrames.Add(new QftHistoryPoint
+                    {
+                        Time = state.TotalTimeWorld + qs.ClockOffset,
+                        Radius = qs.PermutationExpectation(expBits.ToArray())
+                    });*/
                 }
             });
         }
