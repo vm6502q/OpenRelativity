@@ -8,8 +8,17 @@ namespace Qrack
         // Prepare a Bell pair for Alice and Bob to share
         protected override void StartProgram()
         {
-            uint i;
-            for (i = 0; i < maxQubits; i++)
+            ProgramInstructions.Add(new RealTimeQasmInstruction()
+            {
+                DeltaTime = 0.0f,
+                quantumProgramUpdate = (x, y) =>
+                {
+                    QuantumSystem qs = x.QuantumSystem;
+                    qs.H(0);
+                }
+            });
+
+            for (uint i = 0; i < maxQubits; i++)
             {
                 AddLayer(i);
             }
