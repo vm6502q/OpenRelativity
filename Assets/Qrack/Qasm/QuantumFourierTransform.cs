@@ -18,8 +18,6 @@ namespace Qrack
 
         protected List<QftHistoryPoint> expectationFrames = new List<QftHistoryPoint>();
         protected List<uint> bits = new List<uint>();
-
-        // Prepare a Bell pair for Alice and Bob to share
         protected override void StartProgram()
         {
             ProgramInstructions.Add(new RealTimeQasmInstruction()
@@ -32,11 +30,15 @@ namespace Qrack
 
                     bits.Add(0);
 
-                    /*expectationFrames.Add(new QftHistoryPoint
+                    expectationFrames.Add(new QftHistoryPoint
                     {
                         Time = state.TotalTimeWorld,
                         Radius = qs.PermutationExpectation(bits.ToArray())
-                    });*/
+                    });
+
+                    if (qs.QubitCount < maxQubits) {
+                        qs.QubitCount++;
+                    }
                 }
             });
 
@@ -50,7 +52,7 @@ namespace Qrack
         {
             ProgramInstructions.Add(new RealTimeQasmInstruction()
             {
-                DeltaTime = layerTimeInterval,
+                DeltaTime = layerTimeInterval * (float)Math.Pow(2, i),
                 quantumProgramUpdate = (x, y) =>
                 {
                     QuantumSystem qs = x.QuantumSystem;
@@ -75,11 +77,16 @@ namespace Qrack
                     List<uint> expBits = bits;
                     expBits.Reverse();
 
-                    /*expectationFrames.Add(new QftHistoryPoint
+                    expectationFrames.Add(new QftHistoryPoint
                     {
                         Time = state.TotalTimeWorld + qs.ClockOffset,
                         Radius = qs.PermutationExpectation(expBits.ToArray())
-                    });*/
+                    });
+
+                    if (qs.QubitCount < maxQubits)
+                    {
+                        qs.QubitCount++;
+                    }
                 }
             });
         }

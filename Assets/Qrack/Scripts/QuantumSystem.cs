@@ -132,6 +132,11 @@ namespace Qrack
 
             if (lastQubitCount < QubitCount)
             {
+                if (Debug.isDebugBuild)
+                {
+                    Debug.Log("Automatically allocated qubits in system " + SystemId + ", original: " + lastQubitCount + ", new: " + QubitCount);
+                }
+
                 for (uint i = lastQubitCount; i < QubitCount; i++)
                 {
                     QuantumManager.AllocateQubit(SystemId, i);
@@ -140,6 +145,11 @@ namespace Qrack
 
             if (lastQubitCount > QubitCount)
             {
+                if (Debug.isDebugBuild)
+                {
+                    Debug.Log("Automatically deallocated qubits in system " + SystemId + ", original: " + lastQubitCount + ", new: " + QubitCount);
+                }
+
                 for (uint i = (lastQubitCount - 1); i >= QubitCount; i--)
                 {
                     QuantumManager.ReleaseQubit(SystemId, i);
@@ -195,7 +205,6 @@ namespace Qrack
                     Debug.Log("Automatically allocated qubits in system " + SystemId + ", original: " + QubitCount + ", new: " + (highBit + 1));
                 }
 
-                lastQubitCount = QubitCount;
                 QubitCount = highBit + 1;
 
                 for (uint i = lastQubitCount; i < QubitCount; i++)
@@ -527,6 +536,8 @@ namespace Qrack
         public float PermutationExpectation(uint[] bits)
         {
             uint[] mappedBits = MapQubits(bits);
+            List<uint> mappedList = new List<uint>(mappedBits);
+            CheckAlloc(mappedList);
 
             return (float)QuantumManager.PermutationExpectation(SystemId, (uint)mappedBits.Length, mappedBits);
         }
