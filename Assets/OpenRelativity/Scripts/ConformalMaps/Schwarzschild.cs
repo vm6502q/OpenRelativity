@@ -10,6 +10,11 @@ namespace OpenRelativity.ConformalMaps
         public bool doEvaporate = true;
         public float radius = 1;
 
+        // (Reverse) evaporation shouldn't necessarily stop, when approach the event horizon radius.
+        // A value of 0.5, here, for Planck units simulation, implies that we don't care how much
+        // closer we are to the event horizon, internally, than 1/2 a Planck length.
+        public float horizonEpsilon = 0.5f;
+
         public void Start()
         {
             float dist = state.playerTransform.position.magnitude;
@@ -100,6 +105,11 @@ namespace OpenRelativity.ConformalMaps
 
         void Update()
         {
+            if (!isExterior && (state.TotalTimeWorld >= (radius - horizonEpsilon)))
+            {
+                state.TotalTimeWorld = (radius - horizonEpsilon);
+            }
+
             if (radius <= 0 || !doEvaporate || state.isMovementFrozen)
             {
                 return;
