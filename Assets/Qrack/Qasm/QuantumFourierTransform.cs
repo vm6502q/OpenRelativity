@@ -103,7 +103,7 @@ namespace Qrack
                 return;
             }
 
-            schwarzschild.EnforceHorizonEpsilon();
+            schwarzschild.EnforceHorizon();
 
             int nextFrame = 1;
 
@@ -115,7 +115,6 @@ namespace Qrack
             if (nextFrame >= expectationFrames.Count)
             {
                 schwarzschild.radius = expectationFrames[expectationFrames.Count - 1].Radius;
-                schwarzschild.doEvaporate = true;
                 return;
             }
 
@@ -128,9 +127,8 @@ namespace Qrack
             float t = state.TotalTimeWorld;
 
             schwarzschild.radius = r0 + t * (r1 - r0) / (t1 - t0);
-            schwarzschild.doEvaporate = false;
 
-            schwarzschild.EnforceHorizonEpsilon();
+            schwarzschild.EnforceHorizon();
         }
     }
 }
