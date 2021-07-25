@@ -151,10 +151,15 @@ namespace Qrack
                 return;
             }
 
+            int lastFrame = nextFrame - 1;
+
+            float r0 = expectationFrames[lastFrame].Radius;
+            float t0 = expectationFrames[lastFrame].Time;
             float r1 = expectationFrames[nextFrame].Radius;
             float t1 = expectationFrames[nextFrame].Time;
+            float t = state.TotalTimeWorld;
 
-            schwarzschild.radius -= state.DeltaTimeWorld * (r1 - schwarzschild.radius) / (t1 - state.TotalTimeWorld);
+            schwarzschild.radius = r0 + t * (r1 - r0) / (t1 - t0);
             schwarzschild.doEvaporate = false;
         }
     }
