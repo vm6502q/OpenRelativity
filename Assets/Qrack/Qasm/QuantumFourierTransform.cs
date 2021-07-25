@@ -49,6 +49,8 @@ namespace Qrack
                         Radius = qs.PermutationExpectation(bits.ToArray())
                     });
 
+                    schwarzschild.radius = expectationFrames[0].Radius;
+
                     if (qs.QubitCount < maxQubits)
                     {
                         qs.QubitCount++;
@@ -127,7 +129,7 @@ namespace Qrack
         {
             base.Update();
 
-            if ((expectationFrames.Count == 0) || (state.DeltaTimeWorld <= 0))
+            if (state.isMovementFrozen || (expectationFrames.Count == 0) || (state.DeltaTimeWorld <= 0))
             {
                 return;
             }
@@ -145,17 +147,14 @@ namespace Qrack
             {
                 schwarzschild.radius = expectationFrames[expectationFrames.Count - 1].Radius;
                 schwarzschild.doEvaporate = true;
+                state.isMovementFrozen = true;
                 return;
             }
 
-            int lastFrame = nextFrame - 1;
-
-            float r0 = expectationFrames[lastFrame].Radius;
-            float t0 = expectationFrames[lastFrame].Time;
             float r1 = expectationFrames[nextFrame].Radius;
             float t1 = expectationFrames[nextFrame].Time;
 
-            schwarzschild.radius -= state.DeltaTimeWorld * (r1 - r0) / (t1 - t0);
+            schwarzschild.radius -= state.DeltaTimeWorld * (r1 - schwarzschild.radius) / (t1 - state.TotalTimeWorld);
             schwarzschild.doEvaporate = false;
         }
     }
