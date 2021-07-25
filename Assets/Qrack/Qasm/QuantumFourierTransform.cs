@@ -78,7 +78,9 @@ namespace Qrack
                     {
                         expBits.Add(bit);
                     }
-                    expBits.Reverse();
+                    // For the output terms of the DFT, X_k, lower wavenumber "k" has longer wavelength.
+                    // However, the QFT _ALREADY_ reverses the output order of the (inverse) DFT.
+                    // expBits.Reverse();
 
                     expectationFrames.Add(new QftHistoryPoint
                     {
