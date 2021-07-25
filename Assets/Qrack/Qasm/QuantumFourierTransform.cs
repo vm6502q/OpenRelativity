@@ -52,8 +52,8 @@ namespace Qrack
             // We need to calculate 1 time ahead of the current fold.
             // We also need to calculate all folds before the starting TotalTimeWorld.
             float totTime = (float)(state.planckTime * Math.Pow(2, i));
-            float deltaTime = totTime / 2 - state.TotalTimeWorld;
-            if (deltaTime < 0)
+            float deltaTime = totTime / 2;
+            if (deltaTime < state.TotalTimeWorld)
             {
                 deltaTime = 0;
             }
