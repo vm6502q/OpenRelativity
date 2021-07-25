@@ -103,12 +103,17 @@ namespace OpenRelativity.ConformalMaps
             return Vector3.zero;
         }
 
-        void Update()
+        public void EnforceHorizonEpsilon()
         {
             if (!isExterior && (state.TotalTimeWorld >= (radius - horizonEpsilon)))
             {
                 state.TotalTimeWorld = (horizonEpsilon > radius) ? 0 : (radius - horizonEpsilon);
             }
+        }
+
+        void Update()
+        {
+            EnforceHorizonEpsilon();
 
             if (radius <= 0 || !doEvaporate || state.isMovementFrozen)
             {
