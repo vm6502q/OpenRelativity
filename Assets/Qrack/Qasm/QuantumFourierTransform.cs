@@ -35,7 +35,7 @@ namespace Qrack
 
             expectationFrames.Add(new QftHistoryPoint
             {
-                Time = 1.0f,
+                Time = state.planckTime,
                 Radius = QuantumSystem.PermutationExpectation(bits)
             });
 
@@ -51,7 +51,7 @@ namespace Qrack
         {
             // We need to calculate 1 time ahead of the current fold.
             // We also need to calculate all folds before the starting TotalTimeWorld.
-            float totTime = Mathf.Pow(2, i);
+            float totTime = (float)(state.planckTime * Math.Pow(2, i));
             float deltaTime = totTime / 2 - state.TotalTimeWorld;
             if (deltaTime < 0)
             {
