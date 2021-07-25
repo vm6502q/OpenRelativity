@@ -9,7 +9,6 @@ namespace Qrack
         public OpenRelativity.GameState state;
         public OpenRelativity.ConformalMaps.Schwarzschild schwarzschild;
 
-        public float layerTimeInterval = 0.5f;
         public int maxQubits = 28;
 
         protected class QftHistoryPoint
@@ -28,60 +27,21 @@ namespace Qrack
         }
 
         protected List<QftHistoryPoint> expectationFrames = new List<QftHistoryPoint>();
-        protected List<uint> bits = new List<uint>();
         protected override void StartProgram()
         {
-            ProgramInstructions.Add(new RealTimeQasmInstruction()
+            InitRandomQubit(QuantumSystem, 0);
+            QuantumSystem.H(0);
+            uint[] bits = new uint[1] { 0 };
+
+            expectationFrames.Add(new QftHistoryPoint
             {
-                DeltaTime = 0.0f,
-                quantumProgramUpdate = (x, y) =>
-                {
-                    QuantumSystem qs = x.QuantumSystem;
-                    InitRandomQubit(qs, 0);
-
-                    qs.H(0);
-
-                    bits.Add(0);
-
-                    expectationFrames.Add(new QftHistoryPoint
-                    {
-                        Time = state.TotalTimeWorld,
-                        Radius = qs.PermutationExpectation(bits.ToArray())
-                    });
-
-                    schwarzschild.radius = expectationFrames[0].Radius;
-
-                    if (qs.QubitCount < maxQubits)
-                    {
-                        qs.QubitCount++;
-
-                        InitRandomQubit(qs, 1);
-
-                        uint[] c = new uint[1] { 1 };
-                        uint t = 0;
-                        double lambda = 2 * Math.PI;
-                        qs.MCU(c, t, 0, 0, lambda);
-                        qs.H(1);
-
-                        bits.Add(1);
-                        List<uint> expBits = bits;
-                        expBits.Reverse();
-
-                        expectationFrames.Add(new QftHistoryPoint
-                        {
-                            Time = state.TotalTimeWorld + layerTimeInterval,
-                            Radius = qs.PermutationExpectation(expBits.ToArray())
-                        });
-
-                        if (qs.QubitCount < maxQubits)
-                        {
-                            qs.QubitCount++;
-                        }
-                    }
-                }
+                Time = 1.0f,
+                Radius = QuantumSystem.PermutationExpectation(bits)
             });
 
-            for (uint i = 2; i < maxQubits; i++)
+            schwarzschild.radius = expectationFrames[0].Radius / 2;
+
+            for (uint i = 1; i < maxQubits; i++)
             {
                 AddLayer(i);
             }
@@ -89,10 +49,17 @@ namespace Qrack
 
         private void AddLayer(uint i)
         {
-            float foldTime = layerTimeInterval * (float)Math.Pow(2, i - 1);
+            // We need to calculate 1 time ahead of the current fold.
+            // We also need to calculate all folds before the starting TotalTimeWorld.
+            float totTime = Mathf.Pow(2, i);
+            float deltaTime = totTime / 2 - state.TotalTimeWorld;
+            if (deltaTime < 0)
+            {
+                deltaTime = 0;
+            }
             ProgramInstructions.Add(new RealTimeQasmInstruction()
             {
-                DeltaTime = foldTime,
+                DeltaTime = deltaTime,
                 quantumProgramUpdate = (x, y) =>
                 {
                     QuantumSystem qs = x.QuantumSystem;
@@ -106,14 +73,16 @@ namespace Qrack
                         qs.MCU(c, t, 0, 0, lambda);
                     }
                     qs.H(i);
-
-                    bits.Add(bits[bits.Count - 1] + 1);
-                    List<uint> expBits = bits;
+                    List<uint> expBits = new List<uint>();
+                    for (uint bit = 0; bit <= i; bit++)
+                    {
+                        expBits.Add(bit);
+                    }
                     expBits.Reverse();
 
                     expectationFrames.Add(new QftHistoryPoint
                     {
-                        Time = state.TotalTimeWorld + foldTime,
+                        Time = totTime,
                         Radius = qs.PermutationExpectation(expBits.ToArray())
                     });
 
@@ -129,7 +98,7 @@ namespace Qrack
         {
             base.Update();
 
-            if (state.isMovementFrozen || (expectationFrames.Count == 0) || (state.DeltaTimeWorld <= 0))
+            if (state.isMovementFrozen || (expectationFrames.Count == 0))
             {
                 return;
             }
@@ -147,7 +116,6 @@ namespace Qrack
             {
                 schwarzschild.radius = expectationFrames[expectationFrames.Count - 1].Radius;
                 schwarzschild.doEvaporate = true;
-                state.isMovementFrozen = true;
                 return;
             }
 
@@ -161,6 +129,8 @@ namespace Qrack
 
             schwarzschild.radius = r0 + t * (r1 - r0) / (t1 - t0);
             schwarzschild.doEvaporate = false;
+
+            schwarzschild.EnforceHorizonEpsilon();
         }
     }
 }

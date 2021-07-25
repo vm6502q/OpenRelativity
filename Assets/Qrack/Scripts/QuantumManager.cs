@@ -144,12 +144,7 @@ namespace Qrack
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TimeEvolve")]
         public static extern void TimeEvolve(uint simId, double t, uint n, TimeEvolveOpHeader[] teos, uint mn, double[] mtrx);
 
-        private List<uint> SimulatorIds;
-
-        private void Awake()
-        {
-            SimulatorIds = new List<uint>();
-        }
+        private List<uint> SimulatorIds = new List<uint>();
 
         private void OnDestroy()
         {

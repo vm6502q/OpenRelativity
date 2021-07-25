@@ -107,7 +107,7 @@ namespace OpenRelativity.ConformalMaps
         {
             if (!isExterior && (state.TotalTimeWorld >= (radius - horizonEpsilon)))
             {
-                state.TotalTimeWorld = (horizonEpsilon > radius) ? 0 : (radius - horizonEpsilon);
+                state.TotalTimeWorld = (horizonEpsilon > radius) ? 0 : (radius - horizonEpsilon) / state.SpeedOfLight;
             }
         }
 

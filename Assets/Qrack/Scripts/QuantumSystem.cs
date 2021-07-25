@@ -103,8 +103,8 @@ namespace Qrack
             }
         }
 
-        // Start is called before the first frame update
-        void Start()
+        // Awake() is called before Start()
+        void Awake()
         {
             SystemId = qMan.AllocateSimulator(QubitCount);
             lastQubitCount = QubitCount;
