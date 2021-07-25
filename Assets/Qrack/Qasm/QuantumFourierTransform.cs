@@ -112,11 +112,13 @@ namespace Qrack
                 nextFrame++;
             }
 
-            if (nextFrame >= expectationFrames.Count)
+            if ((nextFrame >= expectationFrames.Count) || (expectationFrames[nextFrame].Time >= state.TotalTimeWorld))
             {
-                schwarzschild.radius = expectationFrames[expectationFrames.Count - 1].Radius;
+                schwarzschild.doEvaporate = true;
                 return;
             }
+
+            schwarzschild.doEvaporate = false;
 
             int lastFrame = nextFrame - 1;
 
