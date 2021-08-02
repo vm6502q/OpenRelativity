@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace OpenRelativity.ConformalMaps
 {
@@ -10,7 +9,7 @@ namespace OpenRelativity.ConformalMaps
         public bool doEvaporate = true;
         public float radius = 0.5f;
 
-        public void Start()
+        virtual public void Start()
         {
             float dist = state.playerTransform.position.magnitude;
             isExterior = (dist > radius);
@@ -107,7 +106,7 @@ namespace OpenRelativity.ConformalMaps
             }
         }
 
-        void Update()
+        virtual public void Update()
         {
             EnforceHorizon();
 
