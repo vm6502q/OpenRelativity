@@ -23,11 +23,11 @@ namespace OpenRelativity.ConformalMaps
 
             float a = spinMomentum / (radius * state.planckMass / state.planckLength);
             float aSqr = a * a;
-            float cosTheta = Mathf.Cos(azi);
-            float sigma = rSqr + aSqr * cosTheta * cosTheta;
+            float cosAzi = Mathf.Cos(azi);
+            float sigma = rSqr + aSqr * cosAzi * cosAzi;
 
-            float sinPhi = Mathf.Cos(inc);
-            float omega = (radius * r * a * state.SpeedOfLight) / (sigma * (rSqr + aSqr) + radius * r * aSqr * sinPhi * sinPhi);
+            float cosInc = Mathf.Cos(inc);
+            float omega = (radius * r * a * state.SpeedOfLight) / (sigma * (rSqr + aSqr) + radius * r * aSqr * cosInc * cosInc);
 
             return omega;
         }
