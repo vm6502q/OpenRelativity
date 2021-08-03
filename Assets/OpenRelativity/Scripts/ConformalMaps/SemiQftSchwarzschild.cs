@@ -13,17 +13,7 @@ namespace OpenRelativity.ConformalMaps
             {
                 float tf = startFold + (isExterior ? -1 : 1) * Mathf.Log(state.TotalTimeWorld / state.planckTime) / Mathf.Log(2);
                 float rf = Mathf.Log(radius / state.planckLength) / Mathf.Log(2);
-                if (rf > tf)
-                {
-                    if (isExterior)
-                    {
-                        SetStartFold();
-                    }
-
-                    return rf;
-                }
-
-                return tf;
+                return (rf > tf) ? rf : tf;
             }
         }
 
