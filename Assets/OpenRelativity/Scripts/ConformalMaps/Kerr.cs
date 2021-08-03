@@ -12,17 +12,22 @@ namespace OpenRelativity.ConformalMaps
             Quaternion rot = Quaternion.FromToRotation(spinAxis, Vector3.up);
             piw = rot * piw;
             float rSqr = piw.sqrMagnitude;
+
+            // Radius:
             float r = Mathf.Sqrt(rSqr);
-            float theta = Mathf.Acos(piw.z / r);
-            float phi = Mathf.Atan2(piw.y, piw.x);
+            // Inclination:
+            float inc = Mathf.Acos(piw.z / r);
+            // Azimuth:
+            float azi = Mathf.Atan2(piw.y, piw.x);
+            // Time: piw.w
 
             float a = spinMomentum / (radius * state.planckMass / state.planckLength);
             float aSqr = a * a;
-            float cosTheta = Mathf.Cos(theta);
+            float cosTheta = Mathf.Cos(azi);
             float sigma = rSqr + aSqr * cosTheta * cosTheta;
 
-            float cosPhi = Mathf.Cos(phi);
-            float omega = (radius * r * a * state.SpeedOfLight) / (sigma * (rSqr + aSqr) + radius * r * aSqr * cosPhi * cosPhi);
+            float sinPhi = Mathf.Abs(Mathf.Sin(inc));
+            float omega = (radius * r * a * state.SpeedOfLight) / (sigma * (rSqr + aSqr) + radius * r * aSqr * sinPhi * sinPhi);
 
             return omega;
         }
