@@ -26,7 +26,7 @@ namespace OpenRelativity.ConformalMaps
             float cosTheta = Mathf.Cos(azi);
             float sigma = rSqr + aSqr * cosTheta * cosTheta;
 
-            float sinPhi = Mathf.Abs(Mathf.Sin(inc));
+            float sinPhi = Mathf.Cos(inc);
             float omega = (radius * r * a * state.SpeedOfLight) / (sigma * (rSqr + aSqr) + radius * r * aSqr * sinPhi * sinPhi);
 
             return omega;
