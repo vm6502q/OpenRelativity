@@ -78,9 +78,11 @@ namespace OpenRelativity.ConformalMaps
                 return;
             }
 
-            float extremalFrac = (spinMomentum / state.planckAngularMomentum) / (radius / state.planckLength);
+            float constRatio = state.planckAngularMomentum / state.planckLength;
 
-            spinMomentum += extremalFrac * deltaRadius;
+            float extremalFrac = spinMomentum / (radius * constRatio);
+
+            spinMomentum += extremalFrac * deltaRadius * constRatio;
         }
     }
 }
