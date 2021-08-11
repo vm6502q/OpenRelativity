@@ -347,7 +347,7 @@ namespace OpenRelativity.Objects
 
                 Vector3 _aiw = nonGravAccel;
 
-                if (useGravity)
+                if (useGravity && isNonrelativisticShader)
                 {
                     _aiw += Physics.gravity;
                 }
@@ -358,7 +358,7 @@ namespace OpenRelativity.Objects
             {
                 Vector3 _aiw = value;
 
-                if (useGravity)
+                if (useGravity && isNonrelativisticShader)
                 {
                     _aiw -= Physics.gravity;
                 }
