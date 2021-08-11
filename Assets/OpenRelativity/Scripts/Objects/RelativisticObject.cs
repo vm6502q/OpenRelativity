@@ -1492,14 +1492,7 @@ namespace OpenRelativity.Objects
                 piw += deltaTime * peculiarVelocity;
 
                 // Update velocity after position so as not to double-count comovement.
-                if (state.conformalMap == null)
-                {
-                    peculiarVelocity += aiw * deltaTime;
-                }
-                else
-                {
-                    peculiarVelocity = state.conformalMap.GetFreeFallVelocity(piw).AddVelocity(peculiarVelocity + aiw * deltaTime);
-                }
+                peculiarVelocity += aiw * deltaTime;
 
                 transform.parent = null;
                 Vector3 opiw = opticalPiw;
