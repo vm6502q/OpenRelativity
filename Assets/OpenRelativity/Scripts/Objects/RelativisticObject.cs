@@ -340,9 +340,14 @@ namespace OpenRelativity.Objects
         {
             get
             {
+                if (SleepTimer <= 0)
+                {
+                    return Vector3.zero;
+                }
+
                 Vector3 _aiw = nonGravAccel;
 
-                if (useGravity && !myRigidbody.useGravity)
+                if (useGravity)
                 {
                     _aiw += Physics.gravity;
                 }
@@ -353,7 +358,7 @@ namespace OpenRelativity.Objects
             {
                 Vector3 _aiw = value;
 
-                if (useGravity && !myRigidbody.useGravity)
+                if (useGravity)
                 {
                     _aiw -= Physics.gravity;
                 }
@@ -1223,11 +1228,14 @@ namespace OpenRelativity.Objects
                 return;
             }
 
-            if (!isNonrelativisticShader && isPhysicsUpdateFrame)
+            if (isPhysicsUpdateFrame)
             {
                 // Get the position and rotation after the physics update:
-                riw = myRigidbody.rotation;
-                piw = myRigidbody.position;
+                if (!isNonrelativisticShader)
+                {
+                    riw = myRigidbody.rotation;
+                    piw = myRigidbody.position;
+                }
 
                 // Now, update the velocity and angular velocity based on the collision result:
                 peculiarVelocity = myRigidbody.velocity.RapidityToVelocity(updateMetric);
@@ -1464,19 +1472,9 @@ namespace OpenRelativity.Objects
                 return;
             }
 
-            // Update viw from acceleration.
-            if (state.conformalMap == null)
-            {
-                peculiarVelocity += aiw * deltaTime;
-            }
-            else if (nonGravAccel.sqrMagnitude > SRelativityUtil.divByZeroCutoff)
-            {
-                // Use viw setter:
-                viw = state.conformalMap.GetFreeFallVelocity(piw).AddVelocity(peculiarVelocity + nonGravAccel * deltaTime);
-            }
-
             if (isNonrelativisticShader)
             {
+                // Update riw
                 float aviwMag = aviw.magnitude;
                 Quaternion diffRot;
                 if (aviwMag <= SRelativityUtil.divByZeroCutoff)
@@ -1492,10 +1490,17 @@ namespace OpenRelativity.Objects
 
                 // Update piw from "peculiar velocity" in free fall coordinates.
                 piw += deltaTime * peculiarVelocity;
-            }
 
-            if (isNonrelativisticShader)
-            {
+                // Update velocity after position so as not to double-count comovement.
+                if (state.conformalMap == null)
+                {
+                    peculiarVelocity += aiw * deltaTime;
+                }
+                else
+                {
+                    peculiarVelocity = state.conformalMap.GetFreeFallVelocity(piw).AddVelocity(peculiarVelocity + aiw * deltaTime);
+                }
+
                 transform.parent = null;
                 Vector3 opiw = opticalPiw;
                 if (!IsNaNOrInf(opiw.sqrMagnitude))
@@ -1506,6 +1511,18 @@ namespace OpenRelativity.Objects
                 transform.parent = contractor;
                 transform.localPosition = Vector3.zero;
                 ContractLength();
+            }
+            else if (nonGravAccel.sqrMagnitude > SRelativityUtil.divByZeroCutoff)
+            {
+                // Use viw setter:
+                if (state.conformalMap == null)
+                {
+                    viw += nonGravAccel * deltaTime;
+                }
+                else
+                {
+                    viw = state.conformalMap.GetFreeFallVelocity(piw).AddVelocity(peculiarVelocity + nonGravAccel * deltaTime);
+                }
             }
             #endregion
 
