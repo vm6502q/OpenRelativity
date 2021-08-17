@@ -1049,9 +1049,14 @@ namespace OpenRelativity.Objects
                 return;
             }
 
-            float gamma = GetTimeFactor();
-            myRigidbody.velocity = viw * gamma;
-            myRigidbody.angularVelocity = _aviw * gamma;
+            float inverseGamma = GetTimeFactor();
+            myRigidbody.velocity = viw * inverseGamma;
+            myRigidbody.angularVelocity = _aviw * inverseGamma;
+            foreach (Collider collider in myColliders)
+            {
+                collider.material.staticFriction = collider.material.staticFriction / inverseGamma;
+                collider.material.dynamicFriction = collider.material.dynamicFriction / inverseGamma;
+            }
         }
         #endregion
 
@@ -1100,6 +1105,12 @@ namespace OpenRelativity.Objects
             UpdateCollider();
 
             MarkStaticColliderPos();
+
+            foreach (Collider collider in myColliders)
+            {
+                // Friction needs a relativistic correction, so we need variable PhysicMaterial parameters.
+                collider.material = Instantiate(collider.material);
+            }
 
             //Get the meshfilter
             if (isParent)
@@ -1450,9 +1461,14 @@ namespace OpenRelativity.Objects
             #endregion
 
             // FOR THE PHYSICS UPDATE ONLY, we give our rapidity to the Rigidbody
-            float gamma = GetTimeFactor();
-            myRigidbody.velocity = gamma * peculiarVelocity;
-            myRigidbody.angularVelocity = gamma * aviw;
+            float inverseGamma = GetTimeFactor();
+            myRigidbody.velocity = inverseGamma * peculiarVelocity;
+            myRigidbody.angularVelocity = inverseGamma * aviw;
+            foreach (Collider collider in myColliders)
+            {
+                collider.material.staticFriction = inverseGamma * collider.material.staticFriction;
+                collider.material.dynamicFriction = inverseGamma * collider.material.dynamicFriction;
+            }
 
             oldViw = viw;
             lastFixedUpdateDeltaTime = deltaTime;
