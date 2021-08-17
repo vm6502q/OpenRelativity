@@ -116,7 +116,7 @@ namespace OpenRelativity.Objects
             else
             {
                 Matrix4x4 intrinsicMetric = state.conformalMap.GetMetric(piw);
-                return intrinsicMetric.inverse * metric * intrinsicMetric;
+                return intrinsicMetric * metric * intrinsicMetric.inverse;
             }
         }
 
