@@ -216,7 +216,13 @@ namespace OpenRelativity.Objects
             // such as this RO's own velocity.
             Matrix4x4 metric = GetMetric();
 
-            return pVel.Value.InverseGamma(metric);
+            float toRet = pVel.Value.InverseGamma(metric);
+            if ((toRet == 0) || IsNaNOrInf(toRet))
+            {
+                toRet = 1;
+            }
+
+            return toRet;
         }
         #endregion
 
@@ -956,7 +962,15 @@ namespace OpenRelativity.Objects
                 SetUpContractor();
             }
 
-            contractor.position = opticalPiw;
+            if (myRigidbody2D)
+            {
+                Vector3 op = opticalPiw;
+                contractor.position = new Vector3(op.x, op.y, contractor.position.z);
+            }
+            else
+            {
+                contractor.position = opticalPiw;
+            }
             transform.localPosition = Vector3.zero;
             ContractLength();
         }
@@ -1545,7 +1559,7 @@ namespace OpenRelativity.Objects
                     _piw = myRigidbody.position;
                 } else {
                     riw = Quaternion.AngleAxis(myRigidbody2D.rotation, Vector3.forward);
-                    _piw = myRigidbody2D.position;
+                    _piw = new Vector3(myRigidbody2D.position.x, myRigidbody2D.position.y, _piw.z);
                 }
             }
 
@@ -1748,7 +1762,7 @@ namespace OpenRelativity.Objects
                     contractor.position = myRigidbody.position;
                 } else {
                     myRigidbody2D.MovePosition(opticalPiw);
-                    contractor.position = myRigidbody2D.position;
+                    contractor.position = new Vector3(myRigidbody2D.position.x, myRigidbody2D.position.y, contractor.position.z);
                 }
                 transform.parent = contractor;
                 transform.localPosition = Vector3.zero;
@@ -1901,7 +1915,8 @@ namespace OpenRelativity.Objects
                     _piw = ((Vector4)myRigidbody.position).OpticalToWorld(peculiarVelocity, updateWorld4Acceleration);
                 } else {
                     riw = Quaternion.AngleAxis(myRigidbody2D.rotation, Vector3.forward);
-                    _piw = ((Vector4)myRigidbody2D.position).OpticalToWorld(peculiarVelocity, updateWorld4Acceleration);
+                    Vector4 p = ((Vector4)myRigidbody2D.position).OpticalToWorld(peculiarVelocity, updateWorld4Acceleration);
+                    _piw = new Vector3(p.x, p.y, _piw.z);
                 }
             }
 
