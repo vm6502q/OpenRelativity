@@ -224,6 +224,7 @@ namespace OpenRelativity.Objects
         private bool wasKinematic;
         private CollisionDetectionMode collisionDetectionMode;
         private PhysicMaterial[] origPhysicMaterials;
+        private PhysicsMaterial2D[] origPhysicMaterials2D;
 
         private Vector3 oldVelocity;
         private float lastFixedUpdateDeltaTime;
@@ -585,16 +586,31 @@ namespace OpenRelativity.Objects
 
         //If we have a collider to transform, we cache it here
         private Collider[] myColliders;
+
+        private Collider2D[] myColliders2D;
         private Vector3[] colliderPiw { get; set; }
         public void MarkStaticColliderPos()
         {
-            if (isMyColliderGeneral && myColliders != null)
+            if (isMyColliderGeneral)
             {
                 List<Vector3> sttcPosList = new List<Vector3>();
-                for (int i = 0; i < myColliders.Length; i++)
+
+                if (myColliders != null)
                 {
-                    sttcPosList.Add(((Collider)myColliders[i]).transform.localPosition);
+                    for (int i = 0; i < myColliders.Length; i++)
+                    {
+                        sttcPosList.Add(myColliders[i].transform.localPosition);
+                    }
                 }
+
+                if (myColliders2D != null)
+                {
+                    for (int i = 0; i < myColliders2D.Length; i++)
+                    {
+                        sttcPosList.Add(myColliders2D[i].transform.localPosition);
+                    }
+                }
+
                 colliderPiw = sttcPosList.ToArray();
             }
         }
@@ -797,25 +813,41 @@ namespace OpenRelativity.Objects
                 }
             }
 
-            if (myColliders == null)
+            if ((myColliders == null) && (myColliders2D == null))
             {
                 return;
             }
 
-            List<PhysicMaterial> origMaterials = new List<PhysicMaterial>();
-            for (int i = 0; i < myColliders.Length; i++)
+            if (myColliders != null)
             {
-                // Friction needs a relativistic correction, so we need variable PhysicMaterial parameters.
-                Collider collider = myColliders[i];
-                origMaterials.Add(collider.material);
-                collider.material = Instantiate(collider.material);
+                List<PhysicMaterial> origMaterials = new List<PhysicMaterial>();
+                for (int i = 0; i < myColliders.Length; i++)
+                {
+                    // Friction needs a relativistic correction, so we need variable PhysicMaterial parameters.
+                    Collider collider = myColliders[i];
+                    origMaterials.Add(collider.material);
+                    collider.material = Instantiate(collider.material);
+                }
+                origPhysicMaterials = origMaterials.ToArray();
             }
-            origPhysicMaterials = origMaterials.ToArray();
+
+            if (myColliders2D != null)
+            {
+                List<PhysicsMaterial2D> origMaterials2D = new List<PhysicsMaterial2D>();
+                for (int i = 0; i < myColliders2D.Length; i++)
+                {
+                    // Friction needs a relativistic correction, so we need variable PhysicMaterial parameters.
+                    Collider2D collider = myColliders2D[i];
+                    origMaterials2D.Add(collider.sharedMaterial);
+                    collider.sharedMaterial = Instantiate(collider.sharedMaterial);
+                }
+                origPhysicMaterials2D = origMaterials2D.ToArray();
+            }
         }
 
         public void UpdateColliderPosition()
         {
-            if (isMyColliderVoxel || isNonrelativisticShader || myColliders == null || myColliders.Length == 0)
+            if (isMyColliderVoxel || isNonrelativisticShader || ((myColliders == null || myColliders.Length == 0) && (myColliders2D == null || myColliders2D.Length == 0)))
             {
                 return;
             }
@@ -829,16 +861,23 @@ namespace OpenRelativity.Objects
             else if (isMyColliderGeneral)
             {
                 Vector4 aiw4 = GetComoving4Acceleration();
-                Vector3 pos;
-                Collider collider;
-                Vector3 testPos;
-                float testMag;
-                for (int i = 0; i < myColliders.Length; i++)
+                int offset = 0;
+                if (myColliders != null)
                 {
-                    collider = (Collider)myColliders[i];
-                    pos = transform.TransformPoint((Vector4)colliderPiw[i]);
-                    testPos = transform.InverseTransformPoint(((Vector4)pos).WorldToOptical(peculiarVelocity, aiw4));
-                    testMag = testPos.sqrMagnitude;
+                    offset = myColliders.Length;
+                    for (int i = 0; i < offset; i++)
+                    {
+                        Collider collider = myColliders[i];
+                        Vector3 pos = transform.TransformPoint((Vector4)colliderPiw[i]);
+                        Vector3 testPos = transform.InverseTransformPoint(((Vector4)pos).WorldToOptical(peculiarVelocity, aiw4));
+                        collider.transform.localPosition = testPos;
+                    }
+                }
+                for (int i = 0; i < myColliders2D.Length; i++)
+                {
+                    Collider2D collider = myColliders2D[i];
+                    Vector3 pos = transform.TransformPoint((Vector4)colliderPiw[i + offset]);
+                    Vector3 testPos = transform.InverseTransformPoint(((Vector4)pos).WorldToOptical(peculiarVelocity, aiw4));
                     collider.transform.localPosition = testPos;
                 }
             }
@@ -1331,22 +1370,40 @@ namespace OpenRelativity.Objects
                 myRigidbody2D.angularDrag = unityAngularDrag / gamma;
             }
 
-            if (myColliders == null)
+            if ((myColliders == null) && (myColliders2D == null))
             {
                 return;
             }
 
-            for (int i = 0; i < myColliders.Length; i++)
+            if (myColliders != null)
             {
-                Collider collider = myColliders[i];
+                for (int i = 0; i < myColliders.Length; i++)
+                {
+                    Collider collider = myColliders[i];
 
-                // Energy dissipation goes like mu * F_N * d.
-                // d "already looks like" d / gamma, to player,
-                // so multiply gamma * mu.
-                collider.material.staticFriction = gamma * origPhysicMaterials[i].staticFriction;
-                collider.material.dynamicFriction = gamma * origPhysicMaterials[i].dynamicFriction;
-                // vel_after / vel_before - Doesn't seem to need an adjustment.
-                collider.material.bounciness = origPhysicMaterials[i].bounciness / gamma;
+                    // Energy dissipation goes like mu * F_N * d.
+                    // d "already looks like" d / gamma, to player,
+                    // so multiply gamma * mu.
+                    collider.material.staticFriction = gamma * origPhysicMaterials[i].staticFriction;
+                    collider.material.dynamicFriction = gamma * origPhysicMaterials[i].dynamicFriction;
+                    // vel_after / vel_before - Doesn't seem to need an adjustment.
+                    collider.material.bounciness = origPhysicMaterials[i].bounciness / gamma;
+                }
+            }
+
+            if (myColliders2D != null)
+            {
+                for (int i = 0; i < myColliders2D.Length; i++)
+                {
+                    Collider2D collider = myColliders2D[i];
+
+                    // Energy dissipation goes like mu * F_N * d.
+                    // d "already looks like" d / gamma, to player,
+                    // so multiply gamma * mu.
+                    collider.sharedMaterial.friction = gamma * origPhysicMaterials2D[i].friction;
+                    // vel_after / vel_before - Doesn't seem to need an adjustment.
+                    collider.sharedMaterial.bounciness = origPhysicMaterials2D[i].bounciness / gamma;
+                }
             }
         }
         #endregion
@@ -1807,7 +1864,7 @@ namespace OpenRelativity.Objects
         #region Rigidbody mechanics
         public void OnCollision(Collision collision)
         {
-            if (((myRigidbody == null) && (myRigidbody2D == null)) || myColliders == null || isKinematic || state.isMovementFrozen)
+            if (isKinematic || state.isMovementFrozen || ((myRigidbody == null) && (myRigidbody2D == null)) || ((myColliders == null) && (myColliders2D == null)))
             {
                 return;
             }    
