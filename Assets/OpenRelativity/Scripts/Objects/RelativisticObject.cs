@@ -540,19 +540,24 @@ namespace OpenRelativity.Objects
         }
         //If we specifically have a mesh collider, we need to know to transform the verts of the mesh itself.
         private bool isMyColliderMesh;
-        private bool isMyColliderBox;
         private bool isMyColliderVoxel;
+        private bool isMyColliderGeneral {
+            get {
+                return !isMyColliderMesh && !isMyColliderVoxel;
+            }
+        }
+
         //If we have a collider to transform, we cache it here
         private Collider[] myColliders;
         private Vector3[] colliderPiw { get; set; }
         public void MarkStaticColliderPos()
         {
-            if (isMyColliderBox && myColliders != null)
+            if (isMyColliderGeneral && myColliders != null)
             {
                 List<Vector3> sttcPosList = new List<Vector3>();
                 for (int i = 0; i < myColliders.Length; i++)
                 {
-                    sttcPosList.Add(((BoxCollider)myColliders[i]).center);
+                    sttcPosList.Add(((Collider)myColliders[i]).transform.localPosition);
                 }
                 colliderPiw = sttcPosList.ToArray();
             }
@@ -725,7 +730,6 @@ namespace OpenRelativity.Objects
             if (GetComponent<ObjectBoxColliderDensity>())
             {
                 isMyColliderVoxel = true;
-                isMyColliderBox = false;
                 isMyColliderMesh = false;
             }
             else
@@ -734,13 +738,10 @@ namespace OpenRelativity.Objects
                 if (myColliders.Length > 0)
                 {
                     isMyColliderMesh = true;
-                    isMyColliderBox = false;
                     isMyColliderVoxel = false;
                 }
                 else
                 {
-                    myColliders = GetComponents<BoxCollider>();
-                    isMyColliderBox = (myColliders.Length > 0);
                     isMyColliderMesh = false;
                     isMyColliderVoxel = false;
                 }
@@ -774,21 +775,21 @@ namespace OpenRelativity.Objects
             {
                 UpdateMeshCollider((MeshCollider)myColliders[0]);
             }
-            //If we have a BoxCollider, transform its center to its optical position
-            else if (isMyColliderBox)
+            //If we have a Collider, transform its center to its optical position
+            else if (isMyColliderGeneral)
             {
                 Vector4 aiw4 = GetComoving4Acceleration();
                 Vector3 pos;
-                BoxCollider collider;
+                Collider collider;
                 Vector3 testPos;
                 float testMag;
                 for (int i = 0; i < myColliders.Length; i++)
                 {
-                    collider = (BoxCollider)myColliders[i];
+                    collider = (Collider)myColliders[i];
                     pos = transform.TransformPoint((Vector4)colliderPiw[i]);
                     testPos = transform.InverseTransformPoint(((Vector4)pos).WorldToOptical(peculiarVelocity, aiw4));
                     testMag = testPos.sqrMagnitude;
-                    collider.center = testPos;
+                    collider.transform.localPosition = testPos;
                 }
             }
         }
