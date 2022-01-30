@@ -686,7 +686,7 @@ namespace OpenRelativity.Objects
                     {
                         wasKinematic = myRigidbody2D.isKinematic;
                         collisionDetectionMode = (CollisionDetectionMode)(myRigidbody2D.collisionDetectionMode);
-                        myRigidbody2D.collisionDetectionMode = (CollisionDetectionMode2D)(CollisionDetectionMode.Continuous);
+                        myRigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
                         myRigidbody2D.isKinematic = true;
                     }
                 }
@@ -1317,7 +1317,7 @@ namespace OpenRelativity.Objects
                     }
                     if (properAccel.sqrMagnitude > SRelativityUtil.FLT_EPSILON)
                     {
-                        myRigidbody2D.AddForce(gamma * (Vector2)properAccel, ForceMode2D.Impulse);
+                        myRigidbody2D.AddForce(mass * state.FixedDeltaTimeWorld * gamma * (Vector2)properAccel, ForceMode2D.Impulse);
                     }
                 }
 
@@ -1586,7 +1586,7 @@ namespace OpenRelativity.Objects
                         }
                         else if (myRigidbody2D)
                         {
-                            myRigidbody2D.MovePosition((Vector2)piw);
+                            myRigidbody2D.MovePosition(piw);
                         }
                     }
                 }
@@ -1684,8 +1684,8 @@ namespace OpenRelativity.Objects
                     myRigidbody.MovePosition(opticalPiw);
                     contractor.position = myRigidbody.position;
                 } else {
-                    myRigidbody2D.MovePosition((Vector2)opticalPiw);
-                    contractor.position = (Vector3)myRigidbody2D.position;
+                    myRigidbody2D.MovePosition(opticalPiw);
+                    contractor.position = myRigidbody2D.position;
                 }
                 transform.parent = contractor;
                 transform.localPosition = Vector3.zero;
@@ -1807,7 +1807,7 @@ namespace OpenRelativity.Objects
         #region Rigidbody mechanics
         public void OnCollision(Collision collision)
         {
-            if ((myRigidbody == null && myRigidbody2D == null) || myColliders == null || isKinematic || state.isMovementFrozen)
+            if (((myRigidbody == null) && (myRigidbody2D == null)) || myColliders == null || isKinematic || state.isMovementFrozen)
             {
                 return;
             }    
