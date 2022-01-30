@@ -1596,6 +1596,12 @@ namespace OpenRelativity.Objects
 
         void FixedUpdate()
         {
+            if (isPhysicsUpdateFrame)
+            {
+                AfterPhysicsUpdate();
+            }
+            isPhysicsUpdateFrame = false;
+
             if (!isPhysicsCacheValid)
             {
                 UpdatePhysicsCaches();
