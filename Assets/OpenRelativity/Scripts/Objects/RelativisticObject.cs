@@ -1544,8 +1544,11 @@ namespace OpenRelativity.Objects
             // The rest of the updates are for objects with Rigidbodies that move and aren't asleep.
             if (isKinematic || !myRigidbody || myRigidbody.IsSleeping())
             {
-                myRigidbody.velocity = Vector3.zero;
-                myRigidbody.angularVelocity = Vector3.zero;
+                if (myRigidbody)
+                {
+                    myRigidbody.velocity = Vector3.zero;
+                    myRigidbody.angularVelocity = Vector3.zero;
+                }
 
                 if (!isKinematic)
                 {
