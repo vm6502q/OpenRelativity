@@ -307,6 +307,10 @@ namespace OpenRelativity.Objects
             }
             set
             {
+                if ((value - _piw).sqrMagnitude <= SRelativityUtil.FLT_EPSILON) {
+                    return;
+                }
+
                 _piw = value;
                 UpdatePhysicsCaches();
             }
@@ -325,7 +329,8 @@ namespace OpenRelativity.Objects
 
         public void ResetPiw()
         {
-            piw = isNonrelativisticShader ? (Vector3)((Vector4)transform.position).OpticalToWorld(peculiarVelocity, GetComoving4Acceleration()) : transform.position;
+            Vector3 p = isNonrelativisticShader ? (Vector3)((Vector4)transform.position).OpticalToWorld(peculiarVelocity, GetComoving4Acceleration()) : transform.position;
+            piw = myRigidbody2D ? new Vector3(p.x, p.y, _piw.z) : p;
         }
         //Store rotation quaternion
         public Quaternion riw { get; set; }
@@ -548,7 +553,8 @@ namespace OpenRelativity.Objects
 
             float timeFac = GetTimeFactor();
 
-            _piw = ((Vector4)((Vector4)piw).WorldToOptical(pvi, ai.ProperToWorldAccel(pvi, timeFac))).OpticalToWorld(pvf, comovingAccel.ProperToWorldAccel(pvf, timeFac));
+            Vector3 p = ((Vector4)((Vector4)piw).WorldToOptical(pvi, ai.ProperToWorldAccel(pvi, timeFac))).OpticalToWorld(pvf, comovingAccel.ProperToWorldAccel(pvf, timeFac));
+            _piw = myRigidbody2D ? new Vector3(p.x, p.y, _piw.z) : p;
 
             if (isNonrelativisticShader)
             {
@@ -819,36 +825,28 @@ namespace OpenRelativity.Objects
                 }
             }
 
-            if ((myColliders == null) && (myColliders2D == null))
-            {
-                return;
-            }
+            myColliders = GetComponents<Collider>();
+            myColliders2D = GetComponents<Collider2D>();
 
-            if (myColliders != null)
+            List<PhysicMaterial> origMaterials = new List<PhysicMaterial>();
+            for (int i = 0; i < myColliders.Length; i++)
             {
-                List<PhysicMaterial> origMaterials = new List<PhysicMaterial>();
-                for (int i = 0; i < myColliders.Length; i++)
-                {
-                    // Friction needs a relativistic correction, so we need variable PhysicMaterial parameters.
-                    Collider collider = myColliders[i];
-                    origMaterials.Add(collider.material);
-                    collider.material = Instantiate(collider.material);
-                }
-                origPhysicMaterials = origMaterials.ToArray();
+                // Friction needs a relativistic correction, so we need variable PhysicMaterial parameters.
+                Collider collider = myColliders[i];
+                origMaterials.Add(collider.material);
+                collider.material = Instantiate(collider.material);
             }
+            origPhysicMaterials = origMaterials.ToArray();
 
-            if (myColliders2D != null)
+            List<PhysicsMaterial2D> origMaterials2D = new List<PhysicsMaterial2D>();
+            for (int i = 0; i < myColliders2D.Length; i++)
             {
-                List<PhysicsMaterial2D> origMaterials2D = new List<PhysicsMaterial2D>();
-                for (int i = 0; i < myColliders2D.Length; i++)
-                {
-                    // Friction needs a relativistic correction, so we need variable PhysicMaterial parameters.
-                    Collider2D collider = myColliders2D[i];
-                    origMaterials2D.Add(collider.sharedMaterial);
-                    collider.sharedMaterial = Instantiate(collider.sharedMaterial);
-                }
-                origPhysicMaterials2D = origMaterials2D.ToArray();
+                // Friction needs a relativistic correction, so we need variable PhysicMaterial parameters.
+                Collider2D collider = myColliders2D[i];
+                origMaterials2D.Add(collider.sharedMaterial);
+                collider.sharedMaterial = Instantiate(collider.sharedMaterial);
             }
+            origPhysicMaterials2D = origMaterials2D.ToArray();
         }
 
         public void UpdateColliderPosition()
@@ -879,12 +877,15 @@ namespace OpenRelativity.Objects
                         collider.transform.localPosition = testPos;
                     }
                 }
-                for (int i = 0; i < myColliders2D.Length; i++)
+                if (myColliders2D != null)
                 {
-                    Collider2D collider = myColliders2D[i];
-                    Vector3 pos = transform.TransformPoint((Vector4)colliderPiw[i + offset]);
-                    Vector3 testPos = transform.InverseTransformPoint(((Vector4)pos).WorldToOptical(peculiarVelocity, aiw4));
-                    collider.transform.localPosition = testPos;
+                    for (int i = 0; i < myColliders2D.Length; i++)
+                    {
+                        Collider2D collider = myColliders2D[i];
+                        Vector3 pos = transform.TransformPoint((Vector4)colliderPiw[i + offset]);
+                        Vector3 testPos = transform.InverseTransformPoint(((Vector4)pos).WorldToOptical(peculiarVelocity, aiw4));
+                        collider.transform.localPosition = new Vector3(testPos.x, testPos.y, collider.transform.localPosition.z);
+                    }
                 }
             }
         }
@@ -896,7 +897,6 @@ namespace OpenRelativity.Objects
             _localScale = transform.localScale;
             if (contractor)
             {
-                Transform prnt = contractor.parent;
                 contractor.parent = null;
                 contractor.localScale = new Vector3(1.0f, 1.0f, 1.0f);
                 transform.parent = null;
@@ -962,15 +962,8 @@ namespace OpenRelativity.Objects
                 SetUpContractor();
             }
 
-            if (myRigidbody2D)
-            {
-                Vector3 op = opticalPiw;
-                contractor.position = new Vector3(op.x, op.y, contractor.position.z);
-            }
-            else
-            {
-                contractor.position = opticalPiw;
-            }
+            Vector3 op = opticalPiw;
+            contractor.position = myRigidbody2D ? new Vector3(op.x, op.y, contractor.position.z) : op;
             transform.localPosition = Vector3.zero;
             ContractLength();
         }
@@ -1458,7 +1451,8 @@ namespace OpenRelativity.Objects
                 baryonCount = mass * SRelativityUtil.avogadroNumber / initialAverageMolarMass;
             }
 
-            _piw = isNonrelativisticShader ? (Vector3)((Vector4)transform.position).OpticalToWorld(peculiarVelocity, GetComoving4Acceleration()) : transform.position;
+            Vector3 p = isNonrelativisticShader ? (Vector3)((Vector4)transform.position).OpticalToWorld(peculiarVelocity, GetComoving4Acceleration()) : transform.position;
+            _piw = myRigidbody2D ? new Vector3(p.x, p.y, _piw.z) : p;
             riw = transform.rotation;
             checkSpeed();
             UpdatePhysicsCaches();
@@ -1567,7 +1561,9 @@ namespace OpenRelativity.Objects
             if (myRigidbody) {
                 _peculiarVelocity = myRigidbody.velocity.RapidityToVelocity(updateMetric);
                 aviw = myRigidbody.angularVelocity / updatePlayerViwTimeFactor;
-            } else {
+            }
+            else if (!isPhysicsUpdateFrame)
+            {
                 _peculiarVelocity = myRigidbody2D.velocity.RapidityToVelocity(updateMetric);
                 aviw = (myRigidbody2D.angularVelocity / updatePlayerViwTimeFactor) * Vector3.forward;
             }
@@ -1724,7 +1720,15 @@ namespace OpenRelativity.Objects
                 }
                 else
                 {
-                    transform.position = isNonrelativisticShader ? opticalPiw : piw;
+                    Vector3 p = isNonrelativisticShader ? opticalPiw : piw;
+                    if (myRigidbody2D)
+                    {
+                        transform.position = new Vector3(p.x, p.y, transform.position.z);
+                    }
+                    else
+                    {
+                        transform.position = p;
+                    }
                 }
 
                 UpdateShaderParams();
@@ -1747,9 +1751,12 @@ namespace OpenRelativity.Objects
                     diffRot = Quaternion.AngleAxis(Mathf.Rad2Deg * deltaTime * aviwMag, aviw / aviwMag);
                 }
                 riw = riw * diffRot;
-                if (myRigidbody) {
+                if (myRigidbody)
+                {
                     myRigidbody.MoveRotation(riw);
-                } else {
+                }
+                else
+                {
                     myRigidbody2D.MoveRotation(riw.eulerAngles.z);
                 }
 
@@ -1867,38 +1874,43 @@ namespace OpenRelativity.Objects
 
         public void OnCollisionEnter(Collision collision)
         {
-            OnCollision(collision);
+            OnCollision();
         }
 
         public void OnCollisionStay(Collision collision)
         {
-            OnCollision(collision);
+            OnCollision();
         }
 
         public void OnCollisionExit(Collision collision)
         {
             
         }
+
+        public void OnCollisionEnter2D(Collision2D collision)
+        {
+            OnCollision();
+        }
+
+        public void OnCollisionStay2D(Collision2D collision)
+        {
+            OnCollision();
+        }
+
+        public void OnCollisionExit2D(Collision2D collision)
+        {
+
+        }
         #endregion
 
         #region Rigidbody mechanics
-        public void OnCollision(Collision collision)
+        public void OnCollision()
         {
-            if (isKinematic || state.isMovementFrozen || ((myRigidbody == null) && (myRigidbody2D == null)) || ((myColliders == null) && (myColliders2D == null)))
+            if (isKinematic || state.isMovementFrozen || (((myRigidbody == null) || (myColliders == null)) && ((myRigidbody2D == null) || (myColliders2D == null))))
             {
                 return;
-            }    
+            }
 
-            // Let's start simple:
-            // At low enough velocities, where the Newtonian approximation is reasonable,
-            // PhysX is probably MORE accurate for even relativistic collision than the hacky relativistic collision we had
-            // (which is still in the commit history, for reference).
-            EnforceCollision(collision);
-            // EnforceCollision() might opt not to set didCollide
-        }
-
-        private void EnforceCollision(Collision collision)
-        {
             isPhysicsUpdateFrame = false;
 
             // Like how Rigidbody components are co-opted for efficient relativistic motion,
@@ -1910,10 +1922,13 @@ namespace OpenRelativity.Objects
 
             if (isNonrelativisticShader)
             {
-                if (myRigidbody) {
+                if (myRigidbody)
+                {
                     riw = myRigidbody.rotation;
                     _piw = ((Vector4)myRigidbody.position).OpticalToWorld(peculiarVelocity, updateWorld4Acceleration);
-                } else {
+                }
+                else
+                {
                     riw = Quaternion.AngleAxis(myRigidbody2D.rotation, Vector3.forward);
                     Vector4 p = ((Vector4)myRigidbody2D.position).OpticalToWorld(peculiarVelocity, updateWorld4Acceleration);
                     _piw = new Vector3(p.x, p.y, _piw.z);
