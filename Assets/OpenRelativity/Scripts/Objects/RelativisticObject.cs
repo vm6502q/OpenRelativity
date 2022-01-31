@@ -1299,6 +1299,11 @@ namespace OpenRelativity.Objects
 
         private void UpdateRigidbodyVelocity()
         {
+            if (isPhysicsUpdateFrame)
+            {
+                return;
+            }
+
             float gamma = GetTimeFactor();
 
             if (myRigidbody)
@@ -1911,8 +1916,6 @@ namespace OpenRelativity.Objects
                 return;
             }
 
-            isPhysicsUpdateFrame = false;
-
             // Like how Rigidbody components are co-opted for efficient relativistic motion,
             // it's feasible to get (at least reasonable, if not exact) relativistic collision
             // handling by transforming the end state after PhysX collisions.
@@ -1935,7 +1938,9 @@ namespace OpenRelativity.Objects
                 }
             }
 
+            isPhysicsUpdateFrame = true;
             AfterPhysicsUpdate();
+            isPhysicsUpdateFrame = false;
         }
         #endregion
 
