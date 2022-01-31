@@ -212,7 +212,6 @@ namespace OpenRelativity.Objects
         private bool wasKinematic;
         private CollisionDetectionMode collisionDetectionMode;
         private PhysicMaterial[] origPhysicMaterials;
-        private PhysicsMaterial2D[] origPhysicMaterials2D;
 
         private Vector3 oldVelocity;
         private float lastFixedUpdateDeltaTime;
@@ -566,7 +565,6 @@ namespace OpenRelativity.Objects
         //If we have a collider to transform, we cache it here
         private Collider[] myColliders;
 
-        private Collider2D[] myColliders2D;
         private Vector3[] colliderPiw { get; set; }
         public void MarkStaticColliderPos()
         {
@@ -579,14 +577,6 @@ namespace OpenRelativity.Objects
                     for (int i = 0; i < myColliders.Length; i++)
                     {
                         sttcPosList.Add(myColliders[i].transform.localPosition);
-                    }
-                }
-
-                if (myColliders2D != null)
-                {
-                    for (int i = 0; i < myColliders2D.Length; i++)
-                    {
-                        sttcPosList.Add(myColliders2D[i].transform.localPosition);
                     }
                 }
 
@@ -778,7 +768,6 @@ namespace OpenRelativity.Objects
             }
 
             myColliders = GetComponents<Collider>();
-            myColliders2D = GetComponents<Collider2D>();
 
             List<PhysicMaterial> origMaterials = new List<PhysicMaterial>();
             for (int i = 0; i < myColliders.Length; i++)
@@ -789,21 +778,11 @@ namespace OpenRelativity.Objects
                 collider.material = Instantiate(collider.material);
             }
             origPhysicMaterials = origMaterials.ToArray();
-
-            List<PhysicsMaterial2D> origMaterials2D = new List<PhysicsMaterial2D>();
-            for (int i = 0; i < myColliders2D.Length; i++)
-            {
-                // Friction needs a relativistic correction, so we need variable PhysicMaterial parameters.
-                Collider2D collider = myColliders2D[i];
-                origMaterials2D.Add(collider.sharedMaterial);
-                collider.sharedMaterial = Instantiate(collider.sharedMaterial);
-            }
-            origPhysicMaterials2D = origMaterials2D.ToArray();
         }
 
         public void UpdateColliderPosition()
         {
-            if (isMyColliderVoxel || isNonrelativisticShader || ((myColliders == null || myColliders.Length == 0) && (myColliders2D == null || myColliders2D.Length == 0)))
+            if (isMyColliderVoxel || isNonrelativisticShader || (myColliders == null) || (myColliders.Length == 0))
             {
                 return;
             }
@@ -827,16 +806,6 @@ namespace OpenRelativity.Objects
                         Vector3 pos = transform.TransformPoint((Vector4)colliderPiw[i]);
                         Vector3 testPos = transform.InverseTransformPoint(((Vector4)pos).WorldToOptical(peculiarVelocity, aiw4));
                         collider.transform.localPosition = testPos;
-                    }
-                }
-                if (myColliders2D != null)
-                {
-                    for (int i = 0; i < myColliders2D.Length; i++)
-                    {
-                        Collider2D collider = myColliders2D[i];
-                        Vector3 pos = transform.TransformPoint((Vector4)colliderPiw[i + offset]);
-                        Vector3 testPos = transform.InverseTransformPoint(((Vector4)pos).WorldToOptical(peculiarVelocity, aiw4));
-                        collider.transform.localPosition = new Vector3(testPos.x, testPos.y, collider.transform.localPosition.z);
                     }
                 }
             }
@@ -1736,21 +1705,6 @@ namespace OpenRelativity.Objects
         public void OnCollisionExit(Collision collision)
         {
             
-        }
-
-        public void OnCollisionEnter2D(Collision2D collision)
-        {
-            OnCollision();
-        }
-
-        public void OnCollisionStay2D(Collision2D collision)
-        {
-            OnCollision();
-        }
-
-        public void OnCollisionExit2D(Collision2D collision)
-        {
-
         }
         #endregion
 
