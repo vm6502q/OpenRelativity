@@ -15,6 +15,8 @@ namespace OpenRelativity {
         public double latticeRapidityOfSound = 8433.0;
         // Coupling between flux and probability of noise (inverse of defect energy)
         public double fluxCouplingConstant = 6.022e23 / 293000;
+        // Multiplicative attentuation relative topological radius
+        public double attenuationPerMeter = 1000.0;
 
         public List<Qrack.QuantumSystem> myQubits;
 
