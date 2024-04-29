@@ -82,7 +82,9 @@ namespace OpenRelativity {
             if (prob >= Random.Range(0.0f, 1.0f)) {
                 // Cosmic ray event occurs
                 // Pick a (uniformly) random point on the surface.
-                Vector3 pos = new Vector3(Random.Range(0.0f, 1.0f) * lwh.x, 0.0f, Random.Range(0.0f, 1.0f) * lwh.z);
+                float r = Random.Range(0.0f, lwh.magnitude);
+                float p = Random.Range(0.0f, 2 * Mathf.PI);
+                Vector3 pos = new Vector3(r * Mathf.Cos(p), 0.0f, r * Mathf.Sin(p));
                 myCosmicRayEvents.Add(new CosmicRayEvent(state.TotalTimeWorld, pos));
             }
         }
