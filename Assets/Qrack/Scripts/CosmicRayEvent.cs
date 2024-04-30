@@ -2,9 +2,11 @@ using UnityEngine;
 
 namespace OpenRelativity {
     public class CosmicRayEvent {
-        public float originTime { get; set; }
+        public double joules { get; set; }
+        public double originTime { get; set; }
         public Vector3 originLocalPosition { get; set; }
-        public CosmicRayEvent(float t, Vector3 p) {
+        public CosmicRayEvent(double e, double t, Vector3 p) {
+            joules = e;
             originTime = t;
             originLocalPosition = p;
         }

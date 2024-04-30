@@ -5,10 +5,6 @@ using UnityEngine;
 namespace OpenRelativity {
     public class CosmicRaySubstrate : RelativisticBehavior
     {
-        // Frequency per area of cosmic ray events
-        public double HzPerSquareMeter = 84.3;
-        // Joules per cosmic ray impact
-        public double JoulesPerEvent = 3.66;
         // Lattice parameter of substrate crystal
         public double latticeMeters = 5.43e-10;
         // Speed of sound in substrate crystal
@@ -21,6 +17,16 @@ namespace OpenRelativity {
         public List<Qrack.QuantumSystem> myQubits;
 
         protected List<CosmicRayEvent> myCosmicRayEvents;
+
+        // Integrate the spectrum at the edge of earth's atmosphere,
+        // and choose the constant so 10^11 eV occurs ~1Hz/m^2
+        protected float HzPerSquareMeter(float logEv) {
+            return Mathf.Pow(10.0f, (22.0f * logEv - 2.0f * logEv * logEv) / 3.0f);
+        }
+
+        protected float JoulesPerEvent(float logEv) {
+            return Mathf.Pow(10.0f, logEv) / 6.242e18f;
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -44,7 +50,7 @@ namespace OpenRelativity {
                     double dist = (qubitRO.piw - transform.TransformPoint(evnt.originLocalPosition)).magnitude;
                     if ((minRadius < dist) && (maxRadius >= dist)) {
                         // Spreads out as if in a topological system, proportional to the perimeter.
-                        double intensity = JoulesPerEvent / (2 * Mathf.PI * dist);
+                        double intensity = evnt.joules / (2 * Mathf.PI * dist);
                         if (myIntensities.ContainsKey(qubit)) {
                             myIntensities[qubit] += intensity;
                         } else {
@@ -78,14 +84,17 @@ namespace OpenRelativity {
 
             Vector3 lwh = transform.localScale;
             double surfaceArea = Mathf.PI * (lwh.x * lwh.z);
-            double prob = HzPerSquareMeter * surfaceArea * state.DeltaTimeWorld;
-            if (prob >= Random.Range(0.0f, 1.0f)) {
-                // Cosmic ray event occurs
-                // Pick a (uniformly) random point on the surface.
-                float r = Random.Range(0.0f, lwh.magnitude);
-                float p = Random.Range(0.0f, 2 * Mathf.PI);
-                Vector3 pos = new Vector3(r * Mathf.Cos(p), 0.0f, r * Mathf.Sin(p));
-                myCosmicRayEvents.Add(new CosmicRayEvent(state.TotalTimeWorld, pos));
+            // This should approach continuous sampling, but we're doing it discretely.
+            for (int logEv = 11; logEv < 15; ++logEv) {
+                double prob = HzPerSquareMeter(logEv) * surfaceArea * state.DeltaTimeWorld;
+                if (prob >= Random.Range(0.0f, 1.0f)) {
+                    // Cosmic ray event occurs
+                    // Pick a (uniformly) random point on the surface.
+                    float r = Random.Range(0.0f, lwh.magnitude);
+                    float p = Random.Range(0.0f, 2 * Mathf.PI);
+                    Vector3 pos = new Vector3(r * Mathf.Cos(p), 0.0f, r * Mathf.Sin(p));
+                    myCosmicRayEvents.Add(new CosmicRayEvent(JoulesPerEvent(logEv), state.TotalTimeWorld, pos));
+                }
             }
         }
     }
