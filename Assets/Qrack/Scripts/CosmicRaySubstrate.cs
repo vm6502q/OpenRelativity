@@ -9,10 +9,10 @@ namespace OpenRelativity {
         public double latticeMeters = 5.43e-10;
         // Speed of sound in substrate crystal
         public double latticeRapidityOfSound = 8433.0;
-        // Coupling between flux and probability of noise (inverse of defect energy)
-        public double fluxCouplingConstant = 6.022e23 / 293000;
-        // Assume elemental Si is completely melted by the energy
-        public double attenuationPerRadialMeter = 7.34e9;
+        // Coupling between flux and probability of noise (inverse of defect energy, times 1000)
+        public double fluxCouplingConstant = 6.022e23 / 293000 * 1000;
+        // Assume elemental Si substrate is 0.5 mm thick and is completely melted by the energy
+        public double attenuationPerRadialMeter = 3.67e9;
 
         public List<Qrack.QuantumSystem> myQubits;
 
