@@ -52,10 +52,12 @@ namespace OpenRelativity {
                     if ((minRadius < dist) && (maxRadius >= dist)) {
                         // Spreads out as if in a topological system, proportional to the perimeter.
                         double intensity = (evnt.joules - dist * attenuationPerRadialMeter) / (2 * Mathf.PI * dist);
-                        if (myIntensities.ContainsKey(qubit)) {
-                            myIntensities[qubit] += intensity;
-                        } else {
-                            myIntensities[qubit] = intensity;
+                        if (intensity > 0) {
+                            if (myIntensities.ContainsKey(qubit)) {
+                                myIntensities[qubit] += intensity;
+                            } else {
+                                myIntensities[qubit] = intensity;
+                            }
                         }
                     }
                     if (dist >= minRadius) {
