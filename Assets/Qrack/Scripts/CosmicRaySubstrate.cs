@@ -14,7 +14,7 @@ namespace OpenRelativity {
         // Coupling between flux and probability of noise (inverse of energy level separatation)
         public double fluxCouplingConstant = 6.2415e22;
         // 2 the negative power of unshielded frequency
-        public double shieldingFactor = 14.0;
+        public double shieldingFactor = 16.0;
         // Qubits potentially affected by this substrat
         public List<Qrack.QuantumSystem> myQubits;
 
