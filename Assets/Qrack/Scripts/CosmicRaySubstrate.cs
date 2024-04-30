@@ -12,11 +12,9 @@ namespace OpenRelativity {
         // Coupling between flux and probability of noise (inverse of energy level separatation)
         public double fluxCouplingConstant = 6.2415e22;
         // 2 the negative power of unshielded frequency
-        public double shieldingFactor = 10.0;
-        // For 1.0, wavefront only spreads out radially.
-        public double attentuationScale = 1.0;
+        public double shieldingFactor = 12.0;
         // Heat capacity of thin film
-        public double specificHeatPerSquareMeter = 4000.0;
+        public double specificHeatPerSquareMeter = 8000.0;
         // Qubits potentially affected by this substrat
         public List<Qrack.QuantumSystem> myQubits;
 
@@ -52,23 +50,27 @@ namespace OpenRelativity {
                 double time = (state.TotalTimeWorld - evnt.originTime);
                 double minRadius = (time - state.DeltaTimeWorld) * latticeRapidityOfSound;
                 double maxRadius = time * latticeRapidityOfSound;
+                double area = Mathf.PI * maxRadius * maxRadius;
+                double temp = (evnt.joules * area) / specificHeatPerSquareMeter;
+                evnt.joules = evnt.joules - stefanBoltzmann * area * state.DeltaTimeWorld * temp * temp * temp * temp;
                 bool isDone = true;
                 for (int j = 0; j < myQubits.Count; ++j) {
                     Qrack.QuantumSystem qubit = myQubits[j];
                     Objects.RelativisticObject qubitRO = qubit.GetComponent<Objects.RelativisticObject>();
                     double dist = (qubitRO.piw - transform.TransformPoint(evnt.originLocalPosition)).magnitude;
                     // Spreads out as if in a topological system, proportional to the perimeter.
-                    double area = Mathf.PI * dist * dist;
-                    double tPow4 = (evnt.joules * area) / (stefanBoltzmann * time * specificHeatPerSquareMeter);
-                    double intensity = (evnt.joules - stefanBoltzmann * area * time * tPow4) / (2 * Mathf.PI * dist * attentuationScale);
-                    if ((minRadius < dist) && (maxRadius >= dist) && (intensity > 0)) {
+                    double intensity = evnt.joules / (2 * Mathf.PI * dist);
+                    if (intensity <= 0) {
+                        continue;
+                    }
+                    if ((minRadius < dist) && (maxRadius >= dist)) {
                         if (myIntensities.ContainsKey(qubit)) {
                             myIntensities[qubit] += intensity;
                         } else {
                             myIntensities[qubit] = intensity;
                         }
                     }
-                    if ((intensity > 0) && (dist >= minRadius)) {
+                    if (dist >= minRadius) {
                         isDone = false;
                     }
                 }
