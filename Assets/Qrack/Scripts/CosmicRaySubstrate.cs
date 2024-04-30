@@ -11,8 +11,10 @@ namespace OpenRelativity {
         public double latticeRapidityOfSound = 8433.0;
         // Coupling between flux and probability of noise (inverse of defect energy, times 1000)
         public double fluxCouplingConstant = 6.022e23 / 293000 * 1000;
+        // 2 the negative power of unshielded frequency
+        public double shieldingFactor = 12.0;
         // For 1.0, wavefront only spreads out radially.
-        public double attentuationScale = 1e15;
+        public double attentuationScale = 1.0;
 
         public List<Qrack.QuantumSystem> myQubits;
 
@@ -22,7 +24,7 @@ namespace OpenRelativity {
         // and choose the additive constant in the exponent so
         // 10^11 eV occurs ~1Hz/m^2
         protected float HzPerSquareMeter(float logEv) {
-            return Mathf.Pow(10, (44 - 4 * logEv) / 3);
+            return Mathf.Pow(10, (44 - 4 * logEv) / 3) * Mathf.Pow(2, (float)(-shieldingFactor));
         }
 
         protected float JoulesPerEvent(float logEv) {
