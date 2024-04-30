@@ -15,8 +15,13 @@ namespace OpenRelativity {
         public double shieldingFactor = 12.0;
         // For 1.0, wavefront only spreads out radially.
         public double attentuationScale = 1.0;
-
+        // Rate at which heat is radiated
+        public double radiationFactor = 1.0;
+        // Qubits potentially affected by this substrat
         public List<Qrack.QuantumSystem> myQubits;
+
+        // Stefan-Boltzmann constant in W m^-2 K^-4
+        protected double stefanBoltzmann = 5.67037321e-8;
 
         protected List<CosmicRayEvent> myCosmicRayEvents;
 
@@ -44,8 +49,9 @@ namespace OpenRelativity {
             List<CosmicRayEvent> nMyCosmicRayEvents = new List<CosmicRayEvent>();
             for (int i = 0; i < myCosmicRayEvents.Count; ++i) {
                 CosmicRayEvent evnt = myCosmicRayEvents[i];
-                double minRadius = (state.TotalTimeWorld - (evnt.originTime + state.DeltaTimeWorld)) * latticeRapidityOfSound;
-                double maxRadius = (state.TotalTimeWorld - evnt.originTime) * latticeRapidityOfSound;
+                double time = (state.TotalTimeWorld - evnt.originTime);
+                double minRadius = (time - state.DeltaTimeWorld) * latticeRapidityOfSound;
+                double maxRadius = time * latticeRapidityOfSound;
                 bool isDone = true;
                 for (int j = 0; j < myQubits.Count; ++j) {
                     Qrack.QuantumSystem qubit = myQubits[j];
@@ -53,7 +59,8 @@ namespace OpenRelativity {
                     double dist = (qubitRO.piw - transform.TransformPoint(evnt.originLocalPosition)).magnitude;
                     if ((minRadius < dist) && (maxRadius >= dist)) {
                         // Spreads out as if in a topological system, proportional to the perimeter.
-                        double intensity = evnt.joules / (2 * Mathf.PI * dist * attentuationScale);
+                        double area = 2 * Mathf.PI * dist;
+                        double intensity = (evnt.joules - stefanBoltzmann * radiationFactor * time) / (area * attentuationScale);
                         if (intensity > 0) {
                             if (myIntensities.ContainsKey(qubit)) {
                                 myIntensities[qubit] += intensity;
