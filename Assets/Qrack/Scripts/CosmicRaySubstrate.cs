@@ -11,8 +11,8 @@ namespace OpenRelativity {
         public double latticeRapidityOfSound = 8433.0;
         // Coupling between flux and probability of noise (inverse of defect energy)
         public double fluxCouplingConstant = 6.022e23 / 293000;
-        // Multiplicative attentuation relative topological radius
-        public double attenuationPerMeter = 1000.0;
+        // Assume elemental Si is completely melted by the energy
+        public double attenuationPerRadialMeter = 7.34e9;
 
         public List<Qrack.QuantumSystem> myQubits;
 
@@ -51,7 +51,7 @@ namespace OpenRelativity {
                     double dist = (qubitRO.piw - transform.TransformPoint(evnt.originLocalPosition)).magnitude;
                     if ((minRadius < dist) && (maxRadius >= dist)) {
                         // Spreads out as if in a topological system, proportional to the perimeter.
-                        double intensity = evnt.joules / (2 * Mathf.PI * dist);
+                        double intensity = (evnt.joules - dist * attenuationPerRadialMeter) / (2 * Mathf.PI * dist);
                         if (myIntensities.ContainsKey(qubit)) {
                             myIntensities[qubit] += intensity;
                         } else {
@@ -86,7 +86,7 @@ namespace OpenRelativity {
             Vector3 lwh = transform.localScale;
             double surfaceArea = Mathf.PI * (lwh.x * lwh.z);
             // This should approach continuous sampling, but we're doing it discretely.
-            for (int logEv = 11; logEv < 15; ++logEv) {
+            for (int logEv = 10; logEv < 15; ++logEv) {
                 // Riemann sum step:
                 double prob = (HzPerSquareMeter(logEv + 0.5f) + HzPerSquareMeter(logEv - 0.5f)) * surfaceArea * state.DeltaTimeWorld / 2;
                 while ((prob > 1) || ((prob > 0) && prob >= Random.Range(0.0f, 1.0f))) {
