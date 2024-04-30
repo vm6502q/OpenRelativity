@@ -6,19 +6,19 @@ namespace OpenRelativity {
     public class CosmicRaySubstrate : RelativisticBehavior
     {
         // Substrate molar mass
-        public double latticeMolarMass = 2.80855e-2;
+        public double latticeKgPerMol = 2.80855e-2;
         // Substrate density (kg / m^3)
-        public double latticeDensity = 2329.085;
+        public double latticeKgPerCubedMeter = 2329.085;
         // Heat capacity of thin film (J / K)
-        public double latticeSpecificHeatPerSquareMeter = 8200.0;
+        public double latticeSquareMeterJoulesPerKelvin = 8200.0;
         // Melting point of substrate (K)
-        public double latticeMeltingPoint = 1687.0;
+        public double latticeMeltingPointK = 1687.0;
         // Boiling point of substrate (K)
-        public double latticeBoilingPoint = 3538.0;
+        public double latticeBoilingPointK = 3538.0;
         // Heat of Fusion of substrate (J / mol)
-        public double latticeHeatOfFusion = 50210.0;
+        public double latticeHeatOfFusionJPerMol = 50210.0;
         // Heat of Vaporization of substrate (J / mol)
-        public double latticeHeatOfVaporization = 383000.0;
+        public double latticeHeatOfVaporizationJPerMol = 383000.0;
         // Speed of sound in substrate crystal
         public double latticeSoundMetersPerSecond = 8433.0;
         // Lattice parameter of substrate crystal
@@ -81,14 +81,14 @@ namespace OpenRelativity {
                 if (oArea > filmSurfaceArea) {
                     oArea = filmSurfaceArea;
                 }
-                double temp = (evnt.joules * area) / latticeSpecificHeatPerSquareMeter;
+                double temp = (evnt.joules * area) / latticeSquareMeterJoulesPerKelvin;
                 evnt.joules -= stefanBoltzmann * (2 * area) * state.DeltaTimeWorld * temp * temp * temp * temp;
-                if (temp > latticeBoilingPoint) {
+                if (temp > latticeBoilingPointK) {
                     // Since this area is vaporized, the heat is immediately permanently lost to the cryogenic vacuum.
-                    evnt.joules -= (latticeHeatOfFusion + latticeHeatOfVaporization) * latticeDensity * (area - oArea) * lwh.y / latticeMolarMass;
-                } else if (temp > latticeMeltingPoint) {
+                    evnt.joules -= (latticeHeatOfFusionJPerMol + latticeHeatOfVaporizationJPerMol) * latticeKgPerCubedMeter * (area - oArea) * lwh.y / latticeKgPerMol;
+                } else if (temp > latticeMeltingPointK) {
                     // Since this area is melted, energy is deposited from the wave front into the heat of fusion (and then eventually refreezes).
-                    evnt.joules -= latticeHeatOfFusion * latticeDensity * (area - oArea) * lwh.y / latticeMolarMass;
+                    evnt.joules -= latticeHeatOfFusionJPerMol * latticeKgPerCubedMeter * (area - oArea) * lwh.y / latticeKgPerMol;
                 }
                 bool isDone = true;
                 for (int j = 0; j < myQubits.Count; ++j) {
