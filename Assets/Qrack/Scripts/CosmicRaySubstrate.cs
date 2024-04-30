@@ -14,7 +14,7 @@ namespace OpenRelativity {
         // Coupling between flux and probability of noise (inverse of energy level separatation)
         public double fluxCouplingConstant = 6.2415e22;
         // 2 the negative power of unshielded frequency
-        public double shieldingFactor = 10.0;
+        public double shieldingFactor = 14.0;
         // Qubits potentially affected by this substrat
         public List<Qrack.QuantumSystem> myQubits;
 
@@ -52,9 +52,8 @@ namespace OpenRelativity {
             for (int i = 0; i < myCosmicRayEvents.Count; ++i) {
                 CosmicRayEvent evnt = myCosmicRayEvents[i];
                 double time = (state.TotalTimeWorld - evnt.originTime);
-                double minRadius = (time - state.DeltaTimeWorld) * latticeSpeedOfSound;
-                double maxRadius = time * latticeSpeedOfSound;
-                double area = Mathf.PI * maxRadius * maxRadius;
+                double radius = time * latticeSpeedOfSound;
+                double area = Mathf.PI * radius * radius;
                 if (area > filmSurfaceArea) {
                     // We don't simulate bouncing off the film boundaries,
                     // but this is the limit of uniform distribution,
@@ -69,19 +68,17 @@ namespace OpenRelativity {
                     Objects.RelativisticObject qubitRO = qubit.GetComponent<Objects.RelativisticObject>();
                     double dist = (qubitRO.piw - transform.TransformPoint(evnt.originLocalPosition)).magnitude;
                     // Spreads out as if in a topological system, proportional to the perimeter.
-                    double intensity = evnt.joules / (2 * Mathf.PI * dist);
+                    double intensity = evnt.joules / area;
                     if (intensity <= 0) {
                         continue;
                     }
-                    if ((minRadius < dist) && (maxRadius >= dist)) {
+                    isDone = false;
+                    if (radius >= dist) {
                         if (myIntensities.ContainsKey(qubit)) {
                             myIntensities[qubit] += intensity;
                         } else {
                             myIntensities[qubit] = intensity;
                         }
-                    }
-                    if (dist >= minRadius) {
-                        isDone = false;
                     }
                 }
                 if (!isDone) {
