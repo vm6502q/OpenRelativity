@@ -88,7 +88,7 @@ namespace OpenRelativity {
             // This should approach continuous sampling, but we're doing it discretely.
             for (int logEv = 11; logEv < 15; ++logEv) {
                 // Riemann sum step:
-                double prob = (HzPerSquareMeter(logEv + 0.5f) * HzPerSquareMeter(logEv - 0.5f)) * surfaceArea * state.DeltaTimeWorld;
+                double prob = (HzPerSquareMeter(logEv + 0.5f) + HzPerSquareMeter(logEv - 0.5f)) * surfaceArea * state.DeltaTimeWorld / 2;
                 if (prob >= Random.Range(0.0f, 1.0f)) {
                     // Cosmic ray event occurs
                     // Pick a (uniformly) random point on the surface.
