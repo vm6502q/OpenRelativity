@@ -12,7 +12,7 @@ namespace OpenRelativity {
         // Coupling between flux and probability of noise (inverse of energy level separatation)
         public double fluxCouplingConstant = 6.2415e22;
         // 2 the negative power of unshielded frequency
-        public double shieldingFactor = 12.0;
+        public double shieldingFactor = 10.0;
         // Heat capacity of thin film
         public double specificHeatPerSquareMeter = 8000;
         // Qubits potentially affected by this substrat
@@ -20,6 +20,8 @@ namespace OpenRelativity {
 
         // Stefan-Boltzmann constant in W m^-2 K^-4
         protected double stefanBoltzmann = 5.67037321e-8;
+        // Step of Riemann sum for event frequency
+        protected float logEvStep = 0.1f;
 
         protected List<CosmicRayEvent> myCosmicRayEvents;
 
@@ -98,9 +100,9 @@ namespace OpenRelativity {
             Vector3 lwh = transform.localScale;
             double surfaceArea = Mathf.PI * (lwh.x * lwh.z);
             // This should approach continuous sampling, but we're doing it discretely.
-            for (int logEv = 10; logEv < 15; ++logEv) {
+            for (float logEv = 10; logEv < 15; logEv = logEv + logEvStep) {
                 // Riemann sum step:
-                double prob = (HzPerSquareMeter(logEv + 0.5f) + HzPerSquareMeter(logEv - 0.5f)) * surfaceArea * state.DeltaTimeWorld / 2;
+                double prob = logEvStep * (HzPerSquareMeter(logEv + logEvStep / 2) + HzPerSquareMeter(logEv - logEvStep / 2)) * surfaceArea * state.DeltaTimeWorld / 2;
                 while ((prob > 1) || ((prob > 0) && prob >= Random.Range(0.0f, 1.0f))) {
                     // Cosmic ray event occurs
                     // Pick a (uniformly) random point on the surface.
