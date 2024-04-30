@@ -59,7 +59,6 @@ namespace OpenRelativity {
         // Update is called once per frame
         void Update()
         {
-            double maxPhononE = planck * latticeSoundMetersPerSecond / latticeParameterMeters;
             Vector3 lwh = transform.lossyScale;
             double filmSurfaceArea = Mathf.PI * (lwh.x * lwh.z);
             Dictionary<Qrack.QuantumSystem, double> myIntensities = new Dictionary<Qrack.QuantumSystem, double>();
@@ -68,27 +67,26 @@ namespace OpenRelativity {
                 CosmicRayEvent evnt = myCosmicRayEvents[i];
                 double time = (state.TotalTimeWorld - evnt.originTime);
                 Vector3 pos = transform.TransformPoint(evnt.originLocalPosition);
-                double radius = time * latticeSoundMetersPerSecond;
-                double area = Mathf.PI * radius * radius;
-                if (area > filmSurfaceArea) {
+                double tRadius = time * latticeSoundMetersPerSecond;
+                double tArea = Mathf.PI * tRadius * tRadius;
+                double oRadius = (time - state.DeltaTimeWorld) * latticeSoundMetersPerSecond;
+                double oArea = Mathf.PI * oRadius * oRadius;
+                double wRadius = tRadius - latticeParameterMeters;
+                double wArea = Mathf.PI * (tRadius * tRadius - wRadius * wRadius);
+                if (wArea > filmSurfaceArea) {
                     // We don't simulate bouncing off the film boundaries,
                     // but this is the limit of uniform distribution,
                     // before radiative wicking.
-                    area = filmSurfaceArea;
+                    wArea = filmSurfaceArea;
                 }
-                double oRadius = (time - state.DeltaTimeWorld) * latticeSoundMetersPerSecond;
-                double oArea = Mathf.PI * oRadius * oRadius;
-                if (oArea > filmSurfaceArea) {
-                    oArea = filmSurfaceArea;
-                }
-                double temp = (evnt.joules * area) / latticeSquareMeterJoulesPerKelvin;
-                evnt.joules -= stefanBoltzmann * (2 * area) * state.DeltaTimeWorld * temp * temp * temp * temp;
+                double temp = (evnt.joules * wArea) / latticeSquareMeterJoulesPerKelvin;
+                evnt.joules -= stefanBoltzmann * (2 * wArea) * state.DeltaTimeWorld * temp * temp * temp * temp;
                 if (temp > latticeBoilingPointK) {
                     // Since this area is vaporized, the heat is immediately permanently lost to the cryogenic vacuum.
-                    evnt.joules -= (latticeHeatOfFusionJPerMol + latticeHeatOfVaporizationJPerMol) * latticeKgPerCubedMeter * (area - oArea) * lwh.y / latticeKgPerMol;
+                    evnt.joules -= (latticeHeatOfFusionJPerMol + latticeHeatOfVaporizationJPerMol) * latticeKgPerCubedMeter * (tArea - oArea) * lwh.y / latticeKgPerMol;
                 } else if (temp > latticeMeltingPointK) {
                     // Since this area is melted, energy is deposited from the wave front into the heat of fusion (and then eventually refreezes).
-                    evnt.joules -= latticeHeatOfFusionJPerMol * latticeKgPerCubedMeter * (area - oArea) * lwh.y / latticeKgPerMol;
+                    evnt.joules -= latticeHeatOfFusionJPerMol * latticeKgPerCubedMeter * (tArea - oArea) * lwh.y / latticeKgPerMol;
                 }
                 bool isDone = true;
                 for (int j = 0; j < myQubits.Count; ++j) {
@@ -101,7 +99,7 @@ namespace OpenRelativity {
                         continue;
                     }
                     isDone = false;
-                    if ((radius >= dist) && (oRadius < dist)) {
+                    if ((tRadius >= dist) && (oRadius < dist)) {
                         if (myIntensities.ContainsKey(qubit)) {
                             myIntensities[qubit] += intensity;
                         } else {
