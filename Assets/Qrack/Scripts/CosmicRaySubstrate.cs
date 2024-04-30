@@ -89,13 +89,14 @@ namespace OpenRelativity {
             for (int logEv = 11; logEv < 15; ++logEv) {
                 // Riemann sum step:
                 double prob = (HzPerSquareMeter(logEv + 0.5f) + HzPerSquareMeter(logEv - 0.5f)) * surfaceArea * state.DeltaTimeWorld / 2;
-                if (prob >= Random.Range(0.0f, 1.0f)) {
+                while ((prob > 1) || ((prob > 0) && prob >= Random.Range(0.0f, 1.0f))) {
                     // Cosmic ray event occurs
                     // Pick a (uniformly) random point on the surface.
                     float r = Random.Range(0.0f, lwh.magnitude);
                     float p = Random.Range(0.0f, 2 * Mathf.PI);
                     Vector3 pos = new Vector3(r * Mathf.Cos(p), 0.0f, r * Mathf.Sin(p));
                     myCosmicRayEvents.Add(new CosmicRayEvent(JoulesPerEvent(logEv), state.TotalTimeWorld, pos));
+                    prob = prob - 1;
                 }
             }
         }
