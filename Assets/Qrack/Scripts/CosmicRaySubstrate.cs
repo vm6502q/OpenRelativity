@@ -60,7 +60,6 @@ namespace OpenRelativity {
         void Update()
         {
             Vector3 lwh = transform.lossyScale;
-            double filmSurfaceArea = Mathf.PI * (lwh.x * lwh.z);
             Dictionary<Qrack.QuantumSystem, double> myIntensities = new Dictionary<Qrack.QuantumSystem, double>();
             List<CosmicRayEvent> nMyCosmicRayEvents = new List<CosmicRayEvent>();
             for (int i = 0; i < myCosmicRayEvents.Count; ++i) {
@@ -73,12 +72,6 @@ namespace OpenRelativity {
                 double oArea = Mathf.PI * oRadius * oRadius;
                 double wRadius = tRadius - latticeParameterMeters;
                 double wArea = Mathf.PI * (tRadius * tRadius - wRadius * wRadius);
-                if (wArea > filmSurfaceArea) {
-                    // We don't simulate bouncing off the film boundaries,
-                    // but this is the limit of uniform distribution,
-                    // before radiative wicking.
-                    wArea = filmSurfaceArea;
-                }
                 double temp = (evnt.joules * wArea) / latticeSquareMeterJoulesPerKelvin;
                 evnt.joules -= stefanBoltzmann * (2 * wArea) * state.DeltaTimeWorld * temp * temp * temp * temp;
                 if (temp > latticeBoilingPointK) {
@@ -128,12 +121,13 @@ namespace OpenRelativity {
                 }
             }
 
+            double filmSurfaceArea = Mathf.PI * (lwh.x * lwh.z);
             // This should approach continuous sampling, but we're doing it discretely.
             for (float logEv = 10; logEv < 15; logEv = logEv + logEvStep) {
                 // Riemann sum step:
                 double prob = filmSurfaceArea * state.DeltaTimeWorld * logEvStep * (HzPerSquareMeter(logEv + logEvStep / 2) + HzPerSquareMeter(logEv - logEvStep / 2)) / 2;
                 while ((prob > 1) || ((prob > 0) && prob >= Random.Range(0.0f, 1.0f))) {
-                    // Cosmic ray event occurs
+                    // Cosmic ray event occurs.
                     // Pick a (uniformly) random point on the surface.
                     float r = Random.Range(0.0f, lwh.x * lwh.x + lwh.z * lwh.z);
                     float p = Random.Range(0.0f, 2 * Mathf.PI);
