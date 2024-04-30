@@ -5,19 +5,33 @@ using UnityEngine;
 namespace OpenRelativity {
     public class CosmicRaySubstrate : RelativisticBehavior
     {
-        // Heat capacity of thin film
-        public double latticeSpecificHeatPerSquareMeter = 8000;
-        // Lattice parameter of substrate crystal
-        public double latticeMeters = 5.43e-10;
+        // Substrate molar mass
+        public double latticeMolarMass = 2.80855e-2;
+        // Substrate density (kg / m^3)
+        public double latticeDensity = 2329.085;
+        // Heat capacity of thin film (J / K)
+        public double latticeSpecificHeatPerSquareMeter = 8200.0;
+        // Melting point of substrate (K)
+        public double latticeMeltingPoint = 1687.0;
+        // Boiling point of substrate (K)
+        public double latticeBoilingPoint = 3538.0;
+        // Heat of Fusion of substrate (J / mol)
+        public double latticeHeatOfFusion = 50210.0;
+        // Heat of Vaporization of substrate (J / mol)
+        public double latticeHeatOfVaporization = 383000.0;
         // Speed of sound in substrate crystal
-        public double latticeSpeedOfSound = 8433.0;
+        public double latticeSoundMetersPerSecond = 8433.0;
+        // Lattice parameter of substrate crystal
+        public double latticeParameterMeters = 5.43e-10;
         // Coupling between flux and probability of noise (inverse of energy level separatation)
-        public double fluxCouplingConstant = 6.2415e22;
+        public double fluxCouplingConstant = 5e22;
         // 2 the negative power of unshielded frequency
-        public double shieldingFactor = 16.0;
+        public double shieldingFactor = 4.0;
         // Qubits potentially affected by this substrat
         public List<Qrack.QuantumSystem> myQubits;
 
+        // Planck's constant in J / Hz
+        protected double planck = 6.62607015e-34;
         // Stefan-Boltzmann constant in W m^-2 K^-4
         protected double stefanBoltzmann = 5.67037321e-8;
         // Step of Riemann sum for event frequency
@@ -45,14 +59,16 @@ namespace OpenRelativity {
         // Update is called once per frame
         void Update()
         {
-            Vector3 lwh = transform.localScale;
+            double maxPhononE = planck * latticeSoundMetersPerSecond / latticeParameterMeters;
+            Vector3 lwh = transform.lossyScale;
             double filmSurfaceArea = Mathf.PI * (lwh.x * lwh.z);
             Dictionary<Qrack.QuantumSystem, double> myIntensities = new Dictionary<Qrack.QuantumSystem, double>();
             List<CosmicRayEvent> nMyCosmicRayEvents = new List<CosmicRayEvent>();
             for (int i = 0; i < myCosmicRayEvents.Count; ++i) {
                 CosmicRayEvent evnt = myCosmicRayEvents[i];
                 double time = (state.TotalTimeWorld - evnt.originTime);
-                double radius = time * latticeSpeedOfSound;
+                Vector3 pos = transform.TransformPoint(evnt.originLocalPosition);
+                double radius = time * latticeSoundMetersPerSecond;
                 double area = Mathf.PI * radius * radius;
                 if (area > filmSurfaceArea) {
                     // We don't simulate bouncing off the film boundaries,
@@ -60,20 +76,32 @@ namespace OpenRelativity {
                     // before radiative wicking.
                     area = filmSurfaceArea;
                 }
+                double oRadius = (time - state.DeltaTimeWorld) * latticeSoundMetersPerSecond;
+                double oArea = Mathf.PI * oRadius * oRadius;
+                if (oArea > filmSurfaceArea) {
+                    oArea = filmSurfaceArea;
+                }
                 double temp = (evnt.joules * area) / latticeSpecificHeatPerSquareMeter;
-                evnt.joules = evnt.joules - stefanBoltzmann * 2 * area * state.DeltaTimeWorld * temp * temp * temp * temp;
+                evnt.joules -= stefanBoltzmann * (2 * area) * state.DeltaTimeWorld * temp * temp * temp * temp;
+                if (temp > latticeBoilingPoint) {
+                    // Since this area is vaporized, the heat is immediately permanently lost to the cryogenic vacuum.
+                    evnt.joules -= (latticeHeatOfFusion + latticeHeatOfVaporization) * latticeDensity * (area - oArea) * lwh.y / latticeMolarMass;
+                } else if (temp > latticeMeltingPoint) {
+                    // Since this area is melted, energy is deposited from the wave front into the heat of fusion (and then eventually refreezes).
+                    evnt.joules -= latticeHeatOfFusion * latticeDensity * (area - oArea) * lwh.y / latticeMolarMass;
+                }
                 bool isDone = true;
                 for (int j = 0; j < myQubits.Count; ++j) {
                     Qrack.QuantumSystem qubit = myQubits[j];
                     Objects.RelativisticObject qubitRO = qubit.GetComponent<Objects.RelativisticObject>();
-                    double dist = (qubitRO.piw - transform.TransformPoint(evnt.originLocalPosition)).magnitude;
+                    double dist = (qubitRO.piw - pos).magnitude;
                     // Spreads out as if in a topological system, proportional to the perimeter.
-                    double intensity = evnt.joules / area;
+                    double intensity = evnt.joules / (2 * Mathf.PI * dist);
                     if (intensity <= 0) {
                         continue;
                     }
                     isDone = false;
-                    if (radius >= dist) {
+                    if ((radius >= dist) && (oRadius < dist)) {
                         if (myIntensities.ContainsKey(qubit)) {
                             myIntensities[qubit] += intensity;
                         } else {
@@ -109,7 +137,7 @@ namespace OpenRelativity {
                 while ((prob > 1) || ((prob > 0) && prob >= Random.Range(0.0f, 1.0f))) {
                     // Cosmic ray event occurs
                     // Pick a (uniformly) random point on the surface.
-                    float r = Random.Range(0.0f, lwh.magnitude);
+                    float r = Random.Range(0.0f, lwh.x * lwh.x + lwh.z * lwh.z);
                     float p = Random.Range(0.0f, 2 * Mathf.PI);
                     Vector3 pos = new Vector3(r * Mathf.Cos(p), 0.0f, r * Mathf.Sin(p));
                     myCosmicRayEvents.Add(new CosmicRayEvent(JoulesPerEvent(logEv), state.TotalTimeWorld, pos));
