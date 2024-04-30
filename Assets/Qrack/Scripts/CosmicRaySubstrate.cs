@@ -9,8 +9,8 @@ namespace OpenRelativity {
         public double latticeMeters = 5.43e-10;
         // Speed of sound in substrate crystal
         public double latticeRapidityOfSound = 8433.0;
-        // Coupling between flux and probability of noise (inverse of defect energy, times 1000)
-        public double fluxCouplingConstant = 6.022e23 / 293000 * 1000;
+        // Coupling between flux and probability of noise (inverse of energy level separatation)
+        public double fluxCouplingConstant = 6.2415e22;
         // 2 the negative power of unshielded frequency
         public double shieldingFactor = 12.0;
         // For 1.0, wavefront only spreads out radially.
