@@ -18,10 +18,11 @@ namespace OpenRelativity {
 
         protected List<CosmicRayEvent> myCosmicRayEvents;
 
-        // Integrate the spectrum at the edge of earth's atmosphere,
-        // and choose the constant so 10^11 eV occurs ~1Hz/m^2
+        // Approximate the spectrum at the edge of earth's atmosphere,
+        // and choose the additive constant in the exponent so
+        // 10^11 eV occurs ~1Hz/m^2
         protected float HzPerSquareMeter(float logEv) {
-            return Mathf.Pow(10.0f, (22.0f * logEv - 2.0f * logEv * logEv) / 3.0f);
+            return Mathf.Pow(10, (44 - 4 * logEv) / 3);
         }
 
         protected float JoulesPerEvent(float logEv) {
@@ -86,7 +87,8 @@ namespace OpenRelativity {
             double surfaceArea = Mathf.PI * (lwh.x * lwh.z);
             // This should approach continuous sampling, but we're doing it discretely.
             for (int logEv = 11; logEv < 15; ++logEv) {
-                double prob = HzPerSquareMeter(logEv) * surfaceArea * state.DeltaTimeWorld;
+                // Riemann sum step:
+                double prob = (HzPerSquareMeter(logEv + 0.5f) * HzPerSquareMeter(logEv - 0.5f)) * surfaceArea * state.DeltaTimeWorld;
                 if (prob >= Random.Range(0.0f, 1.0f)) {
                     // Cosmic ray event occurs
                     // Pick a (uniformly) random point on the surface.
