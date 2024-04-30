@@ -60,6 +60,22 @@ namespace OpenRelativity {
         void Update()
         {
             Vector3 lwh = transform.lossyScale;
+            double filmSurfaceArea = Mathf.PI * (lwh.x * lwh.z);
+            // This should approach continuous sampling, but we're doing it discretely.
+            for (float logEv = 10; logEv < 15; logEv = logEv + logEvStep) {
+                // Riemann sum step:
+                double prob = filmSurfaceArea * state.DeltaTimeWorld * logEvStep * (HzPerSquareMeter(logEv + logEvStep / 2) + HzPerSquareMeter(logEv - logEvStep / 2)) / 2;
+                while ((prob > 1) || ((prob > 0) && prob >= Random.Range(0.0f, 1.0f))) {
+                    // Cosmic ray event occurs.
+                    // Pick a (uniformly) random point on the surface.
+                    float r = Random.Range(0.0f, lwh.x * lwh.x + lwh.z * lwh.z);
+                    float p = Random.Range(0.0f, 2 * Mathf.PI);
+                    Vector3 pos = new Vector3(r * Mathf.Cos(p), 0.0f, r * Mathf.Sin(p));
+                    myCosmicRayEvents.Add(new CosmicRayEvent(JoulesPerEvent(logEv), state.TotalTimeWorld - state.DeltaTimeWorld, pos));
+                    prob = prob - 1;
+                }
+            }
+
             Dictionary<Qrack.QuantumSystem, double> myIntensities = new Dictionary<Qrack.QuantumSystem, double>();
             List<CosmicRayEvent> nMyCosmicRayEvents = new List<CosmicRayEvent>();
             for (int i = 0; i < myCosmicRayEvents.Count; ++i) {
@@ -118,22 +134,6 @@ namespace OpenRelativity {
                 if (p >= Random.Range(0.0f, 1.0f)) {
                     // Bit-flip event occurs
                     qubit.Z(0);
-                }
-            }
-
-            double filmSurfaceArea = Mathf.PI * (lwh.x * lwh.z);
-            // This should approach continuous sampling, but we're doing it discretely.
-            for (float logEv = 10; logEv < 15; logEv = logEv + logEvStep) {
-                // Riemann sum step:
-                double prob = filmSurfaceArea * state.DeltaTimeWorld * logEvStep * (HzPerSquareMeter(logEv + logEvStep / 2) + HzPerSquareMeter(logEv - logEvStep / 2)) / 2;
-                while ((prob > 1) || ((prob > 0) && prob >= Random.Range(0.0f, 1.0f))) {
-                    // Cosmic ray event occurs.
-                    // Pick a (uniformly) random point on the surface.
-                    float r = Random.Range(0.0f, lwh.x * lwh.x + lwh.z * lwh.z);
-                    float p = Random.Range(0.0f, 2 * Mathf.PI);
-                    Vector3 pos = new Vector3(r * Mathf.Cos(p), 0.0f, r * Mathf.Sin(p));
-                    myCosmicRayEvents.Add(new CosmicRayEvent(JoulesPerEvent(logEv), state.TotalTimeWorld, pos));
-                    prob = prob - 1;
                 }
             }
         }
