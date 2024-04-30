@@ -11,8 +11,8 @@ namespace OpenRelativity {
         public double latticeRapidityOfSound = 8433.0;
         // Coupling between flux and probability of noise (inverse of defect energy, times 1000)
         public double fluxCouplingConstant = 6.022e23 / 293000 * 1000;
-        // Assume elemental Si substrate is 0.5 mm thick and is completely melted by the energy
-        public double attenuationPerRadialMeter = 3.67e9;
+        // For 1.0, wavefront only spreads out radially.
+        public double attentuationScale = 1e15;
 
         public List<Qrack.QuantumSystem> myQubits;
 
@@ -51,7 +51,7 @@ namespace OpenRelativity {
                     double dist = (qubitRO.piw - transform.TransformPoint(evnt.originLocalPosition)).magnitude;
                     if ((minRadius < dist) && (maxRadius >= dist)) {
                         // Spreads out as if in a topological system, proportional to the perimeter.
-                        double intensity = (evnt.joules - dist * attenuationPerRadialMeter) / (2 * Mathf.PI * dist);
+                        double intensity = evnt.joules / (2 * Mathf.PI * dist * attentuationScale);
                         if (intensity > 0) {
                             if (myIntensities.ContainsKey(qubit)) {
                                 myIntensities[qubit] += intensity;
