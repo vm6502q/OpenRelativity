@@ -305,3 +305,19 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+========================================================================
+Received Import Request.
+  Time since last request: 77.979962 seconds.
+  path: Assets/Qrack/Prefabs/Yorktown.prefab
+  artifactKey: Guid(91214f1e87a20d9e38b980460e068c21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Qrack/Prefabs/Yorktown.prefab using Guid(91214f1e87a20d9e38b980460e068c21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '232e1a3897dee3622d4c635ead4c2086') in 0.068208 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 238
+========================================================================
+Received Import Request.
+  Time since last request: 9.975800 seconds.
+  path: Assets/Qrack/Prefabs/QubitIndicator.prefab
+  artifactKey: Guid(914c1f264fe93651ca2a02b2c28df3e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Qrack/Prefabs/QubitIndicator.prefab using Guid(914c1f264fe93651ca2a02b2c28df3e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '78c04b772a9dcc00ac9cb4cd33f3b263') in 0.014759 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 46
