@@ -95,6 +95,7 @@ namespace OpenRelativity {
                     evnt.joules -= (latticeHeatOfFusionJPerMol + latticeHeatOfVaporizationJPerMol) * latticeKgPerCubedMeter * (tArea - oArea) * lwh.y / latticeKgPerMol;
                 } else if (temp > latticeMeltingPointK) {
                     // Since this area is melted, energy is deposited from the wave front into the heat of fusion (and then eventually refreezes).
+                    // Upon refreezing, the energy lost from the wave front has been given up to entropy and is no longer coherent with the original wave front.
                     evnt.joules -= latticeHeatOfFusionJPerMol * latticeKgPerCubedMeter * (tArea - oArea) * lwh.y / latticeKgPerMol;
                 }
                 bool isDone = true;
