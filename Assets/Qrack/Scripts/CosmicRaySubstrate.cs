@@ -5,6 +5,8 @@ using UnityEngine;
 namespace OpenRelativity {
     public class CosmicRaySubstrate : RelativisticBehavior
     {
+        // Heat capacity of thin film
+        public double latticeSpecificHeatPerSquareMeter = 8000;
         // Lattice parameter of substrate crystal
         public double latticeMeters = 5.43e-10;
         // Speed of sound in substrate crystal
@@ -13,8 +15,6 @@ namespace OpenRelativity {
         public double fluxCouplingConstant = 6.2415e22;
         // 2 the negative power of unshielded frequency
         public double shieldingFactor = 10.0;
-        // Heat capacity of thin film
-        public double specificHeatPerSquareMeter = 8000;
         // Qubits potentially affected by this substrat
         public List<Qrack.QuantumSystem> myQubits;
 
@@ -45,6 +45,8 @@ namespace OpenRelativity {
         // Update is called once per frame
         void Update()
         {
+            Vector3 lwh = transform.localScale;
+            double filmSurfaceArea = Mathf.PI * (lwh.x * lwh.z);
             Dictionary<Qrack.QuantumSystem, double> myIntensities = new Dictionary<Qrack.QuantumSystem, double>();
             List<CosmicRayEvent> nMyCosmicRayEvents = new List<CosmicRayEvent>();
             for (int i = 0; i < myCosmicRayEvents.Count; ++i) {
@@ -53,7 +55,13 @@ namespace OpenRelativity {
                 double minRadius = (time - state.DeltaTimeWorld) * latticeSpeedOfSound;
                 double maxRadius = time * latticeSpeedOfSound;
                 double area = Mathf.PI * maxRadius * maxRadius;
-                double temp = (evnt.joules * area) / specificHeatPerSquareMeter;
+                if (area > filmSurfaceArea) {
+                    // We don't simulate bouncing off the film boundaries,
+                    // but this is the limit of uniform distribution,
+                    // before radiative wicking.
+                    area = filmSurfaceArea;
+                }
+                double temp = (evnt.joules * area) / latticeSpecificHeatPerSquareMeter;
                 evnt.joules = evnt.joules - stefanBoltzmann * 2 * area * state.DeltaTimeWorld * temp * temp * temp * temp;
                 bool isDone = true;
                 for (int j = 0; j < myQubits.Count; ++j) {
@@ -97,12 +105,10 @@ namespace OpenRelativity {
                 }
             }
 
-            Vector3 lwh = transform.localScale;
-            double surfaceArea = Mathf.PI * (lwh.x * lwh.z);
             // This should approach continuous sampling, but we're doing it discretely.
             for (float logEv = 10; logEv < 15; logEv = logEv + logEvStep) {
                 // Riemann sum step:
-                double prob = surfaceArea * state.DeltaTimeWorld * logEvStep * (HzPerSquareMeter(logEv + logEvStep / 2) + HzPerSquareMeter(logEv - logEvStep / 2)) / 2;
+                double prob = filmSurfaceArea * state.DeltaTimeWorld * logEvStep * (HzPerSquareMeter(logEv + logEvStep / 2) + HzPerSquareMeter(logEv - logEvStep / 2)) / 2;
                 while ((prob > 1) || ((prob > 0) && prob >= Random.Range(0.0f, 1.0f))) {
                     // Cosmic ray event occurs
                     // Pick a (uniformly) random point on the surface.
