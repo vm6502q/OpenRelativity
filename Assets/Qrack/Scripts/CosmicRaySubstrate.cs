@@ -15,8 +15,8 @@ namespace OpenRelativity {
         public double shieldingFactor = 12.0;
         // For 1.0, wavefront only spreads out radially.
         public double attentuationScale = 1.0;
-        // Rate at which heat is radiated
-        public double radiationFactor = 1.0;
+        // Heat capacity of thin film
+        public double specificHeatPerSquareMeter = 4000.0;
         // Qubits potentially affected by this substrat
         public List<Qrack.QuantumSystem> myQubits;
 
@@ -57,19 +57,18 @@ namespace OpenRelativity {
                     Qrack.QuantumSystem qubit = myQubits[j];
                     Objects.RelativisticObject qubitRO = qubit.GetComponent<Objects.RelativisticObject>();
                     double dist = (qubitRO.piw - transform.TransformPoint(evnt.originLocalPosition)).magnitude;
-                    if ((minRadius < dist) && (maxRadius >= dist)) {
-                        // Spreads out as if in a topological system, proportional to the perimeter.
-                        double area = 2 * Mathf.PI * dist;
-                        double intensity = (evnt.joules - stefanBoltzmann * radiationFactor * time) / (area * attentuationScale);
-                        if (intensity > 0) {
-                            if (myIntensities.ContainsKey(qubit)) {
-                                myIntensities[qubit] += intensity;
-                            } else {
-                                myIntensities[qubit] = intensity;
-                            }
+                    // Spreads out as if in a topological system, proportional to the perimeter.
+                    double area = 2 * Mathf.PI * dist;
+                    double tPow4 = (evnt.joules * area) / (stefanBoltzmann * time * specificHeatPerSquareMeter);
+                    double intensity = (evnt.joules - stefanBoltzmann * area * time * tPow4) / (area * attentuationScale);
+                    if ((minRadius < dist) && (maxRadius >= dist) && (intensity > 0)) {
+                        if (myIntensities.ContainsKey(qubit)) {
+                            myIntensities[qubit] += intensity;
+                        } else {
+                            myIntensities[qubit] = intensity;
                         }
                     }
-                    if (dist >= minRadius) {
+                    if ((intensity > 0) && (dist >= minRadius)) {
                         isDone = false;
                     }
                 }
