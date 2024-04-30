@@ -8,7 +8,7 @@ namespace OpenRelativity {
         // Lattice parameter of substrate crystal
         public double latticeMeters = 5.43e-10;
         // Speed of sound in substrate crystal
-        public double latticeRapidityOfSound = 8433.0;
+        public double latticeSpeedOfSound = 8433.0;
         // Coupling between flux and probability of noise (inverse of energy level separatation)
         public double fluxCouplingConstant = 6.2415e22;
         // 2 the negative power of unshielded frequency
@@ -50,8 +50,8 @@ namespace OpenRelativity {
             for (int i = 0; i < myCosmicRayEvents.Count; ++i) {
                 CosmicRayEvent evnt = myCosmicRayEvents[i];
                 double time = (state.TotalTimeWorld - evnt.originTime);
-                double minRadius = (time - state.DeltaTimeWorld) * latticeRapidityOfSound;
-                double maxRadius = time * latticeRapidityOfSound;
+                double minRadius = (time - state.DeltaTimeWorld) * latticeSpeedOfSound;
+                double maxRadius = time * latticeSpeedOfSound;
                 double area = Mathf.PI * maxRadius * maxRadius;
                 double temp = (evnt.joules * area) / specificHeatPerSquareMeter;
                 evnt.joules = evnt.joules - stefanBoltzmann * 2 * area * state.DeltaTimeWorld * temp * temp * temp * temp;
