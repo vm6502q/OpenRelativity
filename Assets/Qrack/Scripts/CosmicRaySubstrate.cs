@@ -12,7 +12,7 @@ namespace OpenRelativity {
         // Coupling between flux and probability of noise (inverse of energy level separatation)
         public double fluxCouplingConstant = 6.2415e22;
         // 2 the negative power of unshielded frequency
-        public double shieldingFactor = 12.0;
+        public double shieldingFactor = 10.0;
         // For 1.0, wavefront only spreads out radially.
         public double attentuationScale = 1.0;
         // Heat capacity of thin film
@@ -58,9 +58,9 @@ namespace OpenRelativity {
                     Objects.RelativisticObject qubitRO = qubit.GetComponent<Objects.RelativisticObject>();
                     double dist = (qubitRO.piw - transform.TransformPoint(evnt.originLocalPosition)).magnitude;
                     // Spreads out as if in a topological system, proportional to the perimeter.
-                    double area = 2 * Mathf.PI * dist;
+                    double area = Mathf.PI * dist * dist;
                     double tPow4 = (evnt.joules * area) / (stefanBoltzmann * time * specificHeatPerSquareMeter);
-                    double intensity = (evnt.joules - stefanBoltzmann * area * time * tPow4) / (area * attentuationScale);
+                    double intensity = (evnt.joules - stefanBoltzmann * area * time * tPow4) / (2 * Mathf.PI * dist * attentuationScale);
                     if ((minRadius < dist) && (maxRadius >= dist) && (intensity > 0)) {
                         if (myIntensities.ContainsKey(qubit)) {
                             myIntensities[qubit] += intensity;
