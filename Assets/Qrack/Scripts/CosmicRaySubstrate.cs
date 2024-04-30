@@ -14,7 +14,7 @@ namespace OpenRelativity {
         // 2 the negative power of unshielded frequency
         public double shieldingFactor = 12.0;
         // Heat capacity of thin film
-        public double specificHeatPerSquareMeter = 8000.0;
+        public double specificHeatPerSquareMeter = 8000;
         // Qubits potentially affected by this substrat
         public List<Qrack.QuantumSystem> myQubits;
 
@@ -31,7 +31,7 @@ namespace OpenRelativity {
         }
 
         protected float JoulesPerEvent(float logEv) {
-            return Mathf.Pow(10.0f, logEv) / 6.242e18f;
+            return Mathf.Pow(10.0f, logEv) * 1.60218e-19f;
         }
 
         // Start is called before the first frame update
@@ -52,7 +52,7 @@ namespace OpenRelativity {
                 double maxRadius = time * latticeRapidityOfSound;
                 double area = Mathf.PI * maxRadius * maxRadius;
                 double temp = (evnt.joules * area) / specificHeatPerSquareMeter;
-                evnt.joules = evnt.joules - stefanBoltzmann * area * state.DeltaTimeWorld * temp * temp * temp * temp;
+                evnt.joules = evnt.joules - stefanBoltzmann * 2 * area * state.DeltaTimeWorld * temp * temp * temp * temp;
                 bool isDone = true;
                 for (int j = 0; j < myQubits.Count; ++j) {
                     Qrack.QuantumSystem qubit = myQubits[j];
