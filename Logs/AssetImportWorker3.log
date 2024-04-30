@@ -297,3 +297,19 @@ Received Import Request.
 Start importing Assets/Qrack/Prefabs/Yorktown.prefab using Guid(91214f1e87a20d9e38b980460e068c21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2c23792ee77854e387fbc033f281967d') in 0.078121 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 238
+========================================================================
+Received Import Request.
+  Time since last request: 45.202177 seconds.
+  path: Assets/Qrack/Prefabs/Yorktown.prefab
+  artifactKey: Guid(91214f1e87a20d9e38b980460e068c21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Qrack/Prefabs/Yorktown.prefab using Guid(91214f1e87a20d9e38b980460e068c21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '188b7ae95a6d160678d1eadebb3b0f49') in 0.013459 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 238
+========================================================================
+Received Import Request.
+  Time since last request: 6.920171 seconds.
+  path: Assets/Qrack/Prefabs/Yorktown.prefab
+  artifactKey: Guid(91214f1e87a20d9e38b980460e068c21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Qrack/Prefabs/Yorktown.prefab using Guid(91214f1e87a20d9e38b980460e068c21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ac83d04fa30a97be822d3e5b356f73c') in 0.016501 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 238

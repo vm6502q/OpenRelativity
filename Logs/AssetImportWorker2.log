@@ -321,3 +321,19 @@ Received Import Request.
 Start importing Assets/Qrack/Prefabs/QubitIndicator.prefab using Guid(914c1f264fe93651ca2a02b2c28df3e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '78c04b772a9dcc00ac9cb4cd33f3b263') in 0.014759 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 46
+========================================================================
+Received Import Request.
+  Time since last request: 45.265668 seconds.
+  path: Assets/Qrack/Prefabs/QubitIndicator.prefab
+  artifactKey: Guid(914c1f264fe93651ca2a02b2c28df3e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Qrack/Prefabs/QubitIndicator.prefab using Guid(914c1f264fe93651ca2a02b2c28df3e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77834ce379e26a9ea91846e134a90deb') in 0.009696 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 46
+========================================================================
+Received Import Request.
+  Time since last request: 6.924063 seconds.
+  path: Assets/Qrack/Prefabs/QubitIndicator.prefab
+  artifactKey: Guid(914c1f264fe93651ca2a02b2c28df3e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Qrack/Prefabs/QubitIndicator.prefab using Guid(914c1f264fe93651ca2a02b2c28df3e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6cf477094bd6554d0215b655113cc68e') in 0.011819 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 46
