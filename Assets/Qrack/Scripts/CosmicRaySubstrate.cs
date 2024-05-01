@@ -10,7 +10,7 @@ namespace OpenRelativity {
         // Substrate density (kg / m^3)
         public double latticeKgPerCubedMeter = 2329.085;
         // Heat capacity of thin film (J / K)
-        public double latticeSquareMeterJoulesPerKelvin = 8200.0;
+        public double latticeSquareMeterJPerK = 8200.0;
         // Melting point of substrate (K)
         public double latticeMeltingPointK = 1687.0;
         // Boiling point of substrate (K)
@@ -50,7 +50,7 @@ namespace OpenRelativity {
             // Joules per log(eV)
             double j = Mathf.Pow(10.0f, logEv) * 1.60218e-19f;
             double area = Mathf.PI * (latticeParameterMeters * latticeParameterMeters);
-            double temp = j * area / latticeSquareMeterJoulesPerKelvin;
+            double temp = j * area / latticeSquareMeterJPerK;
             Vector3 lwh = transform.lossyScale;
             if (temp >= latticeBoilingPointK) {
                 // Since this area is vaporized, the heat is immediately permanently lost to the cryogenic vacuum.
@@ -86,7 +86,7 @@ namespace OpenRelativity {
                 double oArea = Mathf.PI * oRadius * oRadius;
                 double wRadius = tRadius - latticeParameterMeters;
                 double wArea = Mathf.PI * (tRadius * tRadius - wRadius * wRadius);
-                double temp = (evnt.joules * wArea) / latticeSquareMeterJoulesPerKelvin;
+                double temp = (evnt.joules * wArea) / latticeSquareMeterJPerK;
                 evnt.joules -= stefanBoltzmann * (2 * wArea) * state.DeltaTimeWorld * temp * temp * temp * temp;
                 if (temp >= latticeBoilingPointK) {
                     // Since this area is vaporized, the heat is immediately permanently lost to the cryogenic vacuum.
