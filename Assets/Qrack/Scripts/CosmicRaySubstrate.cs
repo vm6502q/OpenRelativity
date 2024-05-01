@@ -52,10 +52,10 @@ namespace OpenRelativity {
             double area = Mathf.PI * (latticeParameterMeters * latticeParameterMeters);
             double temp = j * area / latticeSquareMeterJoulesPerKelvin;
             Vector3 lwh = transform.lossyScale;
-            if (temp > latticeBoilingPointK) {
+            if (temp >= latticeBoilingPointK) {
                 // Since this area is vaporized, the heat is immediately permanently lost to the cryogenic vacuum.
                 j -= (latticeHeatOfFusionJPerMol + latticeHeatOfVaporizationJPerMol) * latticeKgPerCubedMeter * area * lwh.y / latticeKgPerMol;
-            } else if (temp > latticeMeltingPointK) {
+            } else if (temp >= latticeMeltingPointK) {
                 // Since this area is melted, energy is deposited from the wave front into the heat of fusion (and then eventually refreezes).
                 // Upon refreezing, the energy lost from the wave front has been given up to entropy and is no longer coherent with the original wave front.
                 j -= latticeHeatOfFusionJPerMol * latticeKgPerCubedMeter * area * lwh.y / latticeKgPerMol;
@@ -88,10 +88,10 @@ namespace OpenRelativity {
                 double wArea = Mathf.PI * (tRadius * tRadius - wRadius * wRadius);
                 double temp = (evnt.joules * wArea) / latticeSquareMeterJoulesPerKelvin;
                 evnt.joules -= stefanBoltzmann * (2 * wArea) * state.DeltaTimeWorld * temp * temp * temp * temp;
-                if (temp > latticeBoilingPointK) {
+                if (temp >= latticeBoilingPointK) {
                     // Since this area is vaporized, the heat is immediately permanently lost to the cryogenic vacuum.
                     evnt.joules -= (latticeHeatOfFusionJPerMol + latticeHeatOfVaporizationJPerMol) * latticeKgPerCubedMeter * (tArea - oArea) * lwh.y / latticeKgPerMol;
-                } else if (temp > latticeMeltingPointK) {
+                } else if (temp >= latticeMeltingPointK) {
                     // Since this area is melted, energy is deposited from the wave front into the heat of fusion (and then eventually refreezes).
                     // Upon refreezing, the energy lost from the wave front has been given up to entropy and is no longer coherent with the original wave front.
                     evnt.joules -= latticeHeatOfFusionJPerMol * latticeKgPerCubedMeter * (tArea - oArea) * lwh.y / latticeKgPerMol;
