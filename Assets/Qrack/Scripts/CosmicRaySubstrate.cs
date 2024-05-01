@@ -26,7 +26,7 @@ namespace OpenRelativity {
         // Coupling between flux and probability of noise (inverse of energy level separatation)
         public double fluxCouplingConstant = 5e22;
         // 2 the negative power of unshielded frequency
-        public double shieldingFactor = 4.0;
+        public double shieldingFactor = 6.0;
         // Qubits potentially affected by this substrat
         public List<Qrack.QuantumSystem> myQubits;
 
@@ -35,7 +35,7 @@ namespace OpenRelativity {
         // Stefan-Boltzmann constant in W m^-2 K^-4
         protected double stefanBoltzmann = 5.67037321e-8;
         // Step of Riemann sum for event frequency
-        protected float logEvStep = 0.1f;
+        protected float logEvStep = 0.025f;
 
         protected List<CosmicRayEvent> myCosmicRayEvents;
 
@@ -138,7 +138,7 @@ namespace OpenRelativity {
 
             double filmSurfaceArea = Mathf.PI * (lwh.x * lwh.z);
             // This should approach continuous sampling, but we're doing it discretely.
-            for (float logEv = 10; logEv < 15; logEv = logEv + logEvStep) {
+            for (float logEv = 9.5f; logEv < 15.0f; logEv = logEv + logEvStep) {
                 // Riemann sum step:
                 double prob = filmSurfaceArea * state.DeltaTimeWorld * logEvStep * (HzPerSquareMeter(logEv + logEvStep / 2) + HzPerSquareMeter(logEv - logEvStep / 2)) / 2;
                 while ((prob > 1) || ((prob > 0) && prob >= Random.Range(0.0f, 1.0f))) {
