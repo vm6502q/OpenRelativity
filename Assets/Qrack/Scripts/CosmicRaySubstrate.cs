@@ -40,6 +40,7 @@ namespace OpenRelativity {
         protected float logEvStep = 0.025f;
 
         protected SphereCollider myCollider;
+        protected Objects.RelativisticObject myRO;
         protected List<CosmicRayEvent> myCosmicRayEvents;
 
         // Approximate the spectrum at the edge of earth's atmosphere,
@@ -73,6 +74,7 @@ namespace OpenRelativity {
         // Start is called before the first frame update
         void Start()
         {
+            myRO = GetComponent<Objects.RelativisticObject>();
             myCollider = GetComponent<SphereCollider>();
             myCosmicRayEvents = new List<CosmicRayEvent>();
         }
@@ -80,21 +82,23 @@ namespace OpenRelativity {
         // Update is called once per frame
         void Update()
         {
-            float height = transform.lossyScale.y;
+            float height = transform.localScale.y;
             Dictionary<Qrack.QuantumSystem, double> myIntensities = new Dictionary<Qrack.QuantumSystem, double>();
             List<CosmicRayEvent> nMyCosmicRayEvents = new List<CosmicRayEvent>();
+            float localTime = myRO.GetLocalTime();
+            float localDeltaTime = myRO.localDeltaTime;
             for (int i = 0; i < myCosmicRayEvents.Count; ++i) {
                 CosmicRayEvent evnt = myCosmicRayEvents[i];
-                double time = (state.TotalTimeWorld - evnt.originTime);
+                double time = (localTime - evnt.originTime);
                 Vector3 pos = transform.TransformPoint(evnt.originLocalPosition);
                 double tRadius = time * latticeSoundMetersPerSecond;
                 double tArea = Mathf.PI * tRadius * tRadius;
-                double oRadius = (time - state.DeltaTimeWorld) * latticeSoundMetersPerSecond;
+                double oRadius = (time - localDeltaTime) * latticeSoundMetersPerSecond;
                 double oArea = Mathf.PI * oRadius * oRadius;
                 double wRadius = tRadius - latticeParameterMeters;
                 double wArea = Mathf.PI * (tRadius * tRadius - wRadius * wRadius);
                 double temp = (evnt.joules * wArea) / latticeSquareMeterJPerK;
-                evnt.joules -= stefanBoltzmann * (2 * wArea) * state.DeltaTimeWorld * temp * temp * temp * temp;
+                evnt.joules -= stefanBoltzmann * (2 * wArea) * localDeltaTime * temp * temp * temp * temp;
                 evnt.joules = Melt(evnt.joules, tArea - oArea);
                 bool isDone = true;
                 for (int j = 0; j < myQubits.Count; ++j) {
@@ -142,7 +146,7 @@ namespace OpenRelativity {
             // This should approach continuous sampling, but we're doing it discretely.
             for (float logEv = 9.5f; logEv < 15.0f; logEv = logEv + logEvStep) {
                 // Riemann sum step:
-                double prob = filmSurfaceArea * state.DeltaTimeWorld * logEvStep * (HzPerSquareMeter(logEv + logEvStep / 2) + HzPerSquareMeter(logEv - logEvStep / 2)) / 2;
+                double prob = filmSurfaceArea * myRO.localDeltaTime * logEvStep * (HzPerSquareMeter(logEv + logEvStep / 2) + HzPerSquareMeter(logEv - logEvStep / 2)) / 2;
                 while ((prob > 1) || ((prob > 0) && prob >= Random.Range(0.0f, 1.0f))) {
                     // Cosmic ray event occurs.
                     // Pick a (uniformly) random point on the surface.
@@ -150,7 +154,7 @@ namespace OpenRelativity {
                     float p = Random.Range(0.0f, 2 * Mathf.PI);
                     Vector3 pos = new Vector3(r * Mathf.Cos(p), 0.0f, r * Mathf.Sin(p));
                     double e = JoulesPerEvent(logEv);
-                    double t = state.TotalTimeWorld + latticeParameterMeters / latticeSoundMetersPerSecond;
+                    double t = myRO.GetLocalTime() + latticeParameterMeters / latticeSoundMetersPerSecond;
                     myCosmicRayEvents.Add(new CosmicRayEvent(e, t, pos));
                     prob = prob - 1;
 
