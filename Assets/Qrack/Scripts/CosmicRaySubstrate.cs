@@ -27,6 +27,8 @@ namespace OpenRelativity {
         public double fluxCouplingConstant = 5e22;
         // 2 to the negative power of unshielded frequency
         public double shieldingFactor = 6.0;
+        // Number of reflection bounces
+        public int reflectionBounces = 2;
         // Qubits potentially affected by this substrate
         public List<Qrack.QuantumSystem> myQubits;
 
@@ -37,6 +39,7 @@ namespace OpenRelativity {
         // Step of Riemann sum for event frequency
         protected float logEvStep = 0.025f;
 
+        protected SphereCollider myCollider;
         protected List<CosmicRayEvent> myCosmicRayEvents;
 
         // Approximate the spectrum at the edge of earth's atmosphere,
@@ -70,6 +73,7 @@ namespace OpenRelativity {
         // Start is called before the first frame update
         void Start()
         {
+            myCollider = GetComponent<SphereCollider>();
             myCosmicRayEvents = new List<CosmicRayEvent>();
         }
 
@@ -133,7 +137,8 @@ namespace OpenRelativity {
             }
 
             Vector3 lwh = transform.localScale;
-            double filmSurfaceArea = Mathf.PI * (lwh.x * lwh.z);
+            float filmRadius = Mathf.Sqrt(lwh.x * lwh.x + lwh.z * lwh.z);
+            float filmSurfaceArea = Mathf.PI * (lwh.x * lwh.z);
             // This should approach continuous sampling, but we're doing it discretely.
             for (float logEv = 9.5f; logEv < 15.0f; logEv = logEv + logEvStep) {
                 // Riemann sum step:
@@ -141,11 +146,32 @@ namespace OpenRelativity {
                 while ((prob > 1) || ((prob > 0) && prob >= Random.Range(0.0f, 1.0f))) {
                     // Cosmic ray event occurs.
                     // Pick a (uniformly) random point on the surface.
-                    float r = Random.Range(0.0f, lwh.x * lwh.x + lwh.z * lwh.z);
+                    float r = Random.Range(0.0f, filmRadius);
                     float p = Random.Range(0.0f, 2 * Mathf.PI);
                     Vector3 pos = new Vector3(r * Mathf.Cos(p), 0.0f, r * Mathf.Sin(p));
-                    myCosmicRayEvents.Add(new CosmicRayEvent(JoulesPerEvent(logEv), state.TotalTimeWorld + latticeParameterMeters / latticeSoundMetersPerSecond, pos));
+                    double e = JoulesPerEvent(logEv);
+                    double t = state.TotalTimeWorld + latticeParameterMeters / latticeSoundMetersPerSecond;
+                    myCosmicRayEvents.Add(new CosmicRayEvent(e, t, pos));
                     prob = prob - 1;
+
+                    if (reflectionBounces <= 0) {
+                        continue;
+                    }
+
+                    Vector3 closest = myCollider.ClosestPoint(transform.TransformPoint(pos));
+                    Vector3 f = closest.normalized;
+                    Vector3 opposite = (2 * filmRadius - closest.magnitude) * f;
+                    closest = 2 * closest;
+                    opposite = 2 * opposite;
+                    f = 2 * filmRadius * f;
+
+                    for (int bounceCount = 0; bounceCount < reflectionBounces; ++bounceCount) {
+                        myCosmicRayEvents.Add(new CosmicRayEvent(e, t, transform.InverseTransformPoint(2 * closest)));
+                        myCosmicRayEvents.Add(new CosmicRayEvent(e, t, transform.InverseTransformPoint(2 * opposite)));
+
+                        closest += f;
+                        opposite -= f;
+                    }
                 }
             }
         }
