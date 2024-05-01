@@ -147,7 +147,7 @@ namespace OpenRelativity {
                     float r = Random.Range(0.0f, lwh.x * lwh.x + lwh.z * lwh.z);
                     float p = Random.Range(0.0f, 2 * Mathf.PI);
                     Vector3 pos = new Vector3(r * Mathf.Cos(p), 0.0f, r * Mathf.Sin(p));
-                    myCosmicRayEvents.Add(new CosmicRayEvent(JoulesPerEvent(logEv), state.TotalTimeWorld, pos));
+                    myCosmicRayEvents.Add(new CosmicRayEvent(JoulesPerEvent(logEv), state.TotalTimeWorld + latticeParameterMeters / latticeSoundMetersPerSecond, pos));
                     prob = prob - 1;
                 }
             }
