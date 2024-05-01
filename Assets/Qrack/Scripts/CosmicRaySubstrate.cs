@@ -25,9 +25,9 @@ namespace OpenRelativity {
         public double latticeParameterMeters = 5.43e-10;
         // Coupling between flux and probability of noise (inverse of energy level separatation)
         public double fluxCouplingConstant = 5e22;
-        // 2 the negative power of unshielded frequency
+        // 2 to the negative power of unshielded frequency
         public double shieldingFactor = 6.0;
-        // Qubits potentially affected by this substrat
+        // Qubits potentially affected by this substrate
         public List<Qrack.QuantumSystem> myQubits;
 
         // Planck's constant in J / Hz
@@ -48,20 +48,23 @@ namespace OpenRelativity {
 
         protected float JoulesPerEvent(float logEv) {
             // Joules per log(eV)
-            double j = Mathf.Pow(10.0f, logEv) * 1.60218e-19f;
+            float j = Mathf.Pow(10.0f, logEv) * 1.60218e-19f;
             double area = Mathf.PI * (latticeParameterMeters * latticeParameterMeters);
+            return (float)Melt(j, area);
+        }
+
+        protected double Melt(double j, double area) {
             double temp = j * area / latticeSquareMeterJPerK;
-            Vector3 lwh = transform.lossyScale;
+            double height = transform.lossyScale.y;
             if (temp >= latticeBoilingPointK) {
                 // Since this area is vaporized, the heat is immediately permanently lost to the cryogenic vacuum.
-                j -= (latticeHeatOfFusionJPerMol + latticeHeatOfVaporizationJPerMol) * latticeKgPerCubedMeter * area * lwh.y / latticeKgPerMol;
+                j -= (latticeHeatOfFusionJPerMol + latticeHeatOfVaporizationJPerMol) * latticeKgPerCubedMeter * area * height / latticeKgPerMol;
             } else if (temp >= latticeMeltingPointK) {
                 // Since this area is melted, energy is deposited from the wave front into the heat of fusion (and then eventually refreezes).
                 // Upon refreezing, the energy lost from the wave front has been given up to entropy and is no longer coherent with the original wave front.
-                j -= latticeHeatOfFusionJPerMol * latticeKgPerCubedMeter * area * lwh.y / latticeKgPerMol;
+                j -= latticeHeatOfFusionJPerMol * latticeKgPerCubedMeter * area * height / latticeKgPerMol;
             }
-
-            return Mathf.Pow(10.0f, logEv) * 1.60218e-19f;
+            return j;
         }
 
         // Start is called before the first frame update
@@ -73,7 +76,7 @@ namespace OpenRelativity {
         // Update is called once per frame
         void Update()
         {
-            Vector3 lwh = transform.lossyScale;
+            float height = transform.lossyScale.y;
             Dictionary<Qrack.QuantumSystem, double> myIntensities = new Dictionary<Qrack.QuantumSystem, double>();
             List<CosmicRayEvent> nMyCosmicRayEvents = new List<CosmicRayEvent>();
             for (int i = 0; i < myCosmicRayEvents.Count; ++i) {
@@ -88,14 +91,7 @@ namespace OpenRelativity {
                 double wArea = Mathf.PI * (tRadius * tRadius - wRadius * wRadius);
                 double temp = (evnt.joules * wArea) / latticeSquareMeterJPerK;
                 evnt.joules -= stefanBoltzmann * (2 * wArea) * state.DeltaTimeWorld * temp * temp * temp * temp;
-                if (temp >= latticeBoilingPointK) {
-                    // Since this area is vaporized, the heat is immediately permanently lost to the cryogenic vacuum.
-                    evnt.joules -= (latticeHeatOfFusionJPerMol + latticeHeatOfVaporizationJPerMol) * latticeKgPerCubedMeter * (tArea - oArea) * lwh.y / latticeKgPerMol;
-                } else if (temp >= latticeMeltingPointK) {
-                    // Since this area is melted, energy is deposited from the wave front into the heat of fusion (and then eventually refreezes).
-                    // Upon refreezing, the energy lost from the wave front has been given up to entropy and is no longer coherent with the original wave front.
-                    evnt.joules -= latticeHeatOfFusionJPerMol * latticeKgPerCubedMeter * (tArea - oArea) * lwh.y / latticeKgPerMol;
-                }
+                evnt.joules = Melt(evnt.joules, tArea - oArea);
                 bool isDone = true;
                 for (int j = 0; j < myQubits.Count; ++j) {
                     Qrack.QuantumSystem qubit = myQubits[j];
@@ -136,6 +132,7 @@ namespace OpenRelativity {
                 }
             }
 
+            Vector3 lwh = transform.localScale;
             double filmSurfaceArea = Mathf.PI * (lwh.x * lwh.z);
             // This should approach continuous sampling, but we're doing it discretely.
             for (float logEv = 9.5f; logEv < 15.0f; logEv = logEv + logEvStep) {
