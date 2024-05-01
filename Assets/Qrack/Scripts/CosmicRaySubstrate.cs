@@ -83,10 +83,10 @@ namespace OpenRelativity {
         void Update()
         {
             float height = transform.localScale.y;
-            Dictionary<Qrack.QuantumSystem, double> myIntensities = new Dictionary<Qrack.QuantumSystem, double>();
-            List<CosmicRayEvent> nMyCosmicRayEvents = new List<CosmicRayEvent>();
             float localTime = myRO.GetLocalTime();
             float localDeltaTime = myRO.localDeltaTime;
+            Dictionary<Qrack.QuantumSystem, double> myIntensities = new Dictionary<Qrack.QuantumSystem, double>();
+            List<CosmicRayEvent> nMyCosmicRayEvents = new List<CosmicRayEvent>();
             for (int i = 0; i < myCosmicRayEvents.Count; ++i) {
                 CosmicRayEvent evnt = myCosmicRayEvents[i];
                 double time = (localTime - evnt.originTime);
@@ -146,7 +146,7 @@ namespace OpenRelativity {
             // This should approach continuous sampling, but we're doing it discretely.
             for (float logEv = 9.5f; logEv < 15.0f; logEv = logEv + logEvStep) {
                 // Riemann sum step:
-                double prob = filmSurfaceArea * myRO.localDeltaTime * logEvStep * (HzPerSquareMeter(logEv + logEvStep / 2) + HzPerSquareMeter(logEv - logEvStep / 2)) / 2;
+                double prob = filmSurfaceArea * localDeltaTime * logEvStep * (HzPerSquareMeter(logEv + logEvStep / 2) + HzPerSquareMeter(logEv - logEvStep / 2)) / 2;
                 while ((prob > 1) || ((prob > 0) && prob >= Random.Range(0.0f, 1.0f))) {
                     // Cosmic ray event occurs.
                     // Pick a (uniformly) random point on the surface.
@@ -154,7 +154,7 @@ namespace OpenRelativity {
                     float p = Random.Range(0.0f, 2 * Mathf.PI);
                     Vector3 pos = new Vector3(r * Mathf.Cos(p), 0.0f, r * Mathf.Sin(p));
                     double e = JoulesPerEvent(logEv);
-                    double t = myRO.GetLocalTime() + latticeParameterMeters / latticeSoundMetersPerSecond;
+                    double t = localTime + latticeParameterMeters / latticeSoundMetersPerSecond;
                     myCosmicRayEvents.Add(new CosmicRayEvent(e, t, pos));
                     prob = prob - 1;
 
