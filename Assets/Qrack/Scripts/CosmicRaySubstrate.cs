@@ -24,9 +24,9 @@ namespace OpenRelativity {
         // Lattice parameter of substrate crystal
         public double latticeParameterMeters = 5.43e-10;
         // Coupling between flux and probability of noise (inverse of energy level separatation)
-        public double fluxCouplingConstant = 5e22;
+        public double fluxCouplingConstant = 1e23;
         // 2 to the negative power of unshielded frequency
-        public double shieldingFactor = 1.0;
+        public double shieldingFactor = 1.5;
         // Number of reflection bounces
         public int reflectionBounces = 2;
         // Qubits potentially affected by this substrate
