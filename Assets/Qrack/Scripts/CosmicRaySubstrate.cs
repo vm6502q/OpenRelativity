@@ -10,7 +10,7 @@ namespace OpenRelativity {
         // Substrate density (kg / m^3)
         public double latticeKgPerCubedMeter = 2329.085;
         // Heat capacity of thin film (J / K)
-        public double latticeSquareMeterJPerK = 8200.0;
+        public double latticeSquareMeterJPerK = 826.825175;
         // Melting point of substrate (K)
         public double latticeMeltingPointK = 1687.0;
         // Boiling point of substrate (K)
