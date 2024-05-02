@@ -26,7 +26,7 @@ namespace OpenRelativity {
         // Coupling between flux and probability of noise (inverse of energy level separatation)
         public double fluxCouplingConstant = 5e22;
         // 2 to the negative power of unshielded frequency
-        public double shieldingFactor = 0.0;
+        public double shieldingFactor = 1.0;
         // Number of reflection bounces
         public int reflectionBounces = 2;
         // Qubits potentially affected by this substrate
