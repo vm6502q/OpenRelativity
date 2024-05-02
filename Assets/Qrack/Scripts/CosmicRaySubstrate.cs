@@ -145,7 +145,7 @@ namespace OpenRelativity {
             Vector3 lwh = transform.lossyScale;
             float filmSurfaceArea = Mathf.PI * (lwh.x * lwh.z);
             // This should approach continuous sampling, but we're doing it discretely.
-            for (float logEv = 9.5f; logEv < 15.0f; logEv = logEv + logEvStep) {
+            for (float logEv = 9.0f; logEv < 15.0f; logEv = logEv + logEvStep) {
                 // Riemann sum step:
                 double prob = filmSurfaceArea * localDeltaTime * logEvStep * (HzPerSquareMeter(logEv + logEvStep / 2) + HzPerSquareMeter(logEv - logEvStep / 2)) / 2;
                 while ((prob > 1) || ((prob > 0) && prob >= Random.Range(0.0f, 1.0f))) {
