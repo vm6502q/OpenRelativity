@@ -26,7 +26,7 @@ namespace OpenRelativity {
         // Coupling between flux and probability of noise (inverse of energy level separatation)
         public double fluxCouplingConstant = 5e22;
         // 2 to the negative power of unshielded frequency
-        public double shieldingFactor = 6.0;
+        public double shieldingFactor = 0.0;
         // Number of reflection bounces
         public int reflectionBounces = 2;
         // Qubits potentially affected by this substrate
@@ -140,8 +140,9 @@ namespace OpenRelativity {
                 }
             }
 
-            Vector3 lwh = transform.localScale;
-            float filmRadius = Mathf.Sqrt(lwh.x * lwh.x + lwh.z * lwh.z);
+            Vector3 localLwh = transform.localScale;
+            float filmRadius = Mathf.Sqrt(localLwh.x * localLwh.x + localLwh.z * localLwh.z);
+            Vector3 lwh = transform.lossyScale;
             float filmSurfaceArea = Mathf.PI * (lwh.x * lwh.z);
             // This should approach continuous sampling, but we're doing it discretely.
             for (float logEv = 9.5f; logEv < 15.0f; logEv = logEv + logEvStep) {
