@@ -245,7 +245,7 @@ namespace OpenRelativity.Objects
 
                     if (myRO != null && !isParticle)
                     {
-                        myRO.velocity = tempViw;
+                        myRO.linearVelocity = tempViw;
                     }
                     else if (isParticle)
                     {
@@ -256,7 +256,7 @@ namespace OpenRelativity.Objects
             //If nothing is null, then set the object to standstill, but make sure its rigidbody actually has a velocity.
             else if (meshFilter != null && tempRenderer != null && GetComponent<Rigidbody>() != null)
             {
-                GetComponent<Rigidbody>().velocity = Vector3.zero;
+                GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
             }
 
             //This time transformation goes from world time to this objects personal time

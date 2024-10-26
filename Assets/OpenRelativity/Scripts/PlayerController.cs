@@ -178,9 +178,9 @@ namespace OpenRelativity
 
             if (!isFalling)
             {
-                if (myRigidbody.velocity.y < 0)
+                if (myRigidbody.linearVelocity.y < 0)
                 {
-                    myRigidbody.velocity = new Vector3(myRigidbody.velocity.x, 0, myRigidbody.velocity.z);
+                    myRigidbody.linearVelocity = new Vector3(myRigidbody.linearVelocity.x, 0, myRigidbody.linearVelocity.z);
                 }
             }
 
@@ -570,7 +570,7 @@ namespace OpenRelativity
                         Vector3 totalVel = state.PlayerVelocityVector;
                         state.PlayerVelocityVector = new Vector3(totalVel.x, 0, totalVel.z);
                         Rigidbody myRB = transform.parent.GetComponent<Rigidbody>();
-                        myRB.velocity = new Vector3(myRB.velocity.x, 0, myRB.velocity.z);
+                        myRB.linearVelocity = new Vector3(myRB.linearVelocity.x, 0, myRB.linearVelocity.z);
                     }
 
                     dist = extents.y / 2 - hitInfo.distance;

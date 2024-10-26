@@ -199,9 +199,9 @@ namespace Tachyoid
 
             if (!isFalling)
                 {
-                if (myRigidbody.velocity.y < 0)
+                if (myRigidbody.linearVelocity.y < 0)
                 {
-                    myRigidbody.velocity = new Vector3(myRigidbody.velocity.x, 0, myRigidbody.velocity.z);
+                    myRigidbody.linearVelocity = new Vector3(myRigidbody.linearVelocity.x, 0, myRigidbody.linearVelocity.z);
                 }
             }
 

@@ -287,7 +287,7 @@ namespace OpenRelativity
                         case UnityEngine.LightType.Directional: LightmapperUtils.Extract(l, ref dLight); LightmapperUtils.Extract(l, out cookie); ld.Init(ref dLight, ref cookie); break;
                         case UnityEngine.LightType.Point: LightmapperUtils.Extract(l, ref point); LightmapperUtils.Extract(l, out cookie); ld.Init(ref point, ref cookie); break;
                         case UnityEngine.LightType.Spot: LightmapperUtils.Extract(l, ref spot); LightmapperUtils.Extract(l, out cookie); ld.Init(ref spot, ref cookie); break;
-                        case UnityEngine.LightType.Area: LightmapperUtils.Extract(l, ref rect); LightmapperUtils.Extract(l, out cookie); ld.Init(ref rect, ref cookie); break;
+                        case UnityEngine.LightType.Rectangle: LightmapperUtils.Extract(l, ref rect); LightmapperUtils.Extract(l, out cookie); ld.Init(ref rect, ref cookie); break;
                         case UnityEngine.LightType.Disc: LightmapperUtils.Extract(l, ref disc); LightmapperUtils.Extract(l, out cookie); ld.Init(ref disc, ref cookie); break;
                         default: ld.InitNoBake(l.GetInstanceID()); break;
                     }
@@ -316,7 +316,7 @@ namespace OpenRelativity
             else
             {
                 //When we pause, set our velocity to zero, show the cursor and unlock it.
-                GameObject.FindGameObjectWithTag(Tags.playerRigidbody).GetComponent<Rigidbody>().velocity = Vector3.zero;
+                GameObject.FindGameObjectWithTag(Tags.playerRigidbody).GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
                 isMovementFrozen = true;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
@@ -470,15 +470,15 @@ namespace OpenRelativity
                 }
 
                 Vector3 pVel = -PlayerVelocityVector;
-                playerRB.velocity = pVel / SqrtOneMinusVSquaredCWDividedByCSquared;
-                pVel = playerRB.velocity;
+                playerRB.linearVelocity = pVel / SqrtOneMinusVSquaredCWDividedByCSquared;
+                pVel = playerRB.linearVelocity;
                 if (!IsPlayerFalling && (-pVel .y <= Physics.bounceThreshold)) {
                     Vector3 pVelPerp = new Vector3(pVel.x, 0, pVel.z);
-                    playerRB.velocity = pVel.AddVelocity(new Vector3(0, -pVel.y * pVelPerp.Gamma(), 0));
+                    playerRB.linearVelocity = pVel.AddVelocity(new Vector3(0, -pVel.y * pVelPerp.Gamma(), 0));
                 }
             } else
             {
-                playerRB.velocity = Vector3.zero;
+                playerRB.linearVelocity = Vector3.zero;
             }
         }
         #region Matrix/Quat math

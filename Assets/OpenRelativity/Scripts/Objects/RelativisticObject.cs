@@ -190,7 +190,7 @@ namespace OpenRelativity.Objects
         #region Rigid body physics
         private bool wasKinematic;
         private CollisionDetectionMode collisionDetectionMode;
-        private PhysicMaterial[] origPhysicMaterials;
+        private PhysicsMaterial[] origPhysicMaterials;
 
         private Vector3 oldVelocity;
         private float lastFixedUpdateDeltaTime;
@@ -750,7 +750,7 @@ namespace OpenRelativity.Objects
             myCapsuleColliders = GetComponents<CapsuleCollider>();
 
             myColliders = GetComponents<Collider>();
-            List<PhysicMaterial> origMaterials = new List<PhysicMaterial>();
+            List<PhysicsMaterial> origMaterials = new List<PhysicsMaterial>();
             for (int i = 0; i < myColliders.Length; ++i)
             {
                 // Friction needs a relativistic correction, so we need variable PhysicMaterial parameters.
@@ -1265,14 +1265,14 @@ namespace OpenRelativity.Objects
                 // If we're in an invalid state, (such as before full initialization,) set to zero.
                 if (state.isMovementFrozen)
                 {
-                    myRigidbody.velocity = Vector3.zero;
+                    myRigidbody.linearVelocity = Vector3.zero;
                     myRigidbody.angularVelocity = Vector3.zero;
                 }
                 else
                 {
                     // Factor of gamma corrects for length-contraction, (which goes like 1/gamma).
                     // Effectively, this replaces Time.DeltaTime with Time.DeltaTime / gamma.
-                    myRigidbody.velocity = gamma * peculiarVelocity;
+                    myRigidbody.linearVelocity = gamma * peculiarVelocity;
                     myRigidbody.angularVelocity = gamma * aviw;
 
                     Vector3 properAccel = nonGravAccel + leviCivitaDevAccel;
@@ -1293,8 +1293,8 @@ namespace OpenRelativity.Objects
                 // Unity's (physically inaccurate) drag formula is something like,
                 // velocity = velocity * (1 - drag * Time.deltaTime),
                 // where we counterbalance the time-dilation factor above, for observer path invariance.
-                myRigidbody.drag = unityDrag / gamma;
-                myRigidbody.angularDrag = unityAngularDrag / gamma;
+                myRigidbody.linearDamping = unityDrag / gamma;
+                myRigidbody.angularDamping = unityAngularDrag / gamma;
             } else {
                 nonGravAccel = Vector3.zero;
             }
@@ -1354,8 +1354,8 @@ namespace OpenRelativity.Objects
 
             if (myRigidbody)
             {
-                myRigidbody.drag = unityDrag;
-                myRigidbody.angularDrag = unityAngularDrag;
+                myRigidbody.linearDamping = unityDrag;
+                myRigidbody.angularDamping = unityAngularDrag;
                 baryonCount = mass * SRelativityUtil.avogadroNumber / initialAverageMolarMass;
             }
             
@@ -1428,7 +1428,7 @@ namespace OpenRelativity.Objects
 
                 // Now, update the velocity and angular velocity based on the collision result:
                 _aviw = myRigidbody.angularVelocity / updatePlayerViwTimeFactor;
-                peculiarVelocity = myRigidbody.velocity.RapidityToVelocity(updateMetric);
+                peculiarVelocity = myRigidbody.linearVelocity.RapidityToVelocity(updateMetric);
             }
 
             if (isNonrelativisticShader)
@@ -1558,7 +1558,7 @@ namespace OpenRelativity.Objects
                 if (myRigidbody && !myRigidbody.isKinematic)
                 {
                     myRigidbody.angularVelocity = Vector3.zero;
-                    myRigidbody.velocity = Vector3.zero;
+                    myRigidbody.linearVelocity = Vector3.zero;
 
                     if (!isKinematic)
                     {

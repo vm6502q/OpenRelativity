@@ -50,7 +50,7 @@ namespace Tachyoid {
             else
             {
                 //When we pause, set our velocity to zero, show the cursor and unlock it.
-                GameObject.FindGameObjectWithTag(Tags.playerRigidbody).GetComponent<Rigidbody>().velocity = Vector3.zero;
+                GameObject.FindGameObjectWithTag(Tags.playerRigidbody).GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
                 isMovementFrozen = true;
 
                 justReversedTime = false;

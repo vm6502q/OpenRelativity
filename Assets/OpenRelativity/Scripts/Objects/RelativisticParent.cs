@@ -290,7 +290,7 @@ namespace OpenRelativity.Objects
                 if (GetComponent<Rigidbody>() != null)
                 {
                     float timeFac = GetTimeFactor();
-                    GetComponent<Rigidbody>().velocity = viw / timeFac;
+                    GetComponent<Rigidbody>().linearVelocity = viw / timeFac;
                 }
             }
         }
