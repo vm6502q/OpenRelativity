@@ -22,15 +22,9 @@ namespace OpenRelativity.Audio
         protected AudioListener playerAudioListener;
 
         // Start is called before the first frame update
-        void Start()
+        protected void Start()
         {
             playerAudioListener = GetComponent<AudioListener>();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }

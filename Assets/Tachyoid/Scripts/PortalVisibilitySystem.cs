@@ -22,7 +22,7 @@ namespace Tachyoid {
         private bool isFirstFrame;
 
         // Use this for initialization
-        void Start() {
+        protected void Start() {
             myCollider = GetComponent<BoxCollider>();
             isInRoom1 = true;
             isBetweenRooms = false;
@@ -30,7 +30,7 @@ namespace Tachyoid {
             isFirstFrame = true;
         }
 
-        private void OnDisable()
+        protected void OnDisable()
         {
             if (isFirstFrame)
             {
@@ -43,7 +43,7 @@ namespace Tachyoid {
         }
 
         // Update is called once per frame
-        void Update() {
+        protected void Update() {
             if (isFirstFrame)
             {
                 for (int i = 0; i < room2.Count; i++)
@@ -107,12 +107,7 @@ namespace Tachyoid {
             }
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-
-        }
-
-        private void OnTriggerExit(Collider other)
+        protected void OnTriggerExit(Collider other)
         {
             if (other.gameObject.tag == "Player")
             {
@@ -133,7 +128,7 @@ namespace Tachyoid {
 
         public void ReverseTime()
         {
-            FTLPlayerController playerCtrl = FindObjectOfType<FTLPlayerController>();
+            FTLPlayerController playerCtrl = FindFirstObjectByType<FTLPlayerController>();
             if (playerCtrl.pvsInstanceID.HasValue && playerCtrl.pvsInstanceID.Value == gameObject.GetInstanceID())
             {
                 isInRoom1 = !isInRoom1;

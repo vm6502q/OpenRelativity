@@ -23,7 +23,7 @@ namespace OpenRelativity.Objects
         private float constant = 16;
 
         // Use this for initialization, before relativistic object CombineParent() starts.
-        void Awake()
+        protected void Awake()
         {
             //Grab the meshfilter, and if it's not null, keep going
             BoxCollider[] origBoxColliders = GetComponents<BoxCollider>();
@@ -41,12 +41,12 @@ namespace OpenRelativity.Objects
             }
         }
 
-        private void OnEnable()
+        protected void OnEnable()
         {
             TakeQueueNumber();
         }
 
-        void OnDisable()
+        protected void OnDisable()
         {
             ReturnQueueNumber();
         }
@@ -137,7 +137,7 @@ namespace OpenRelativity.Objects
             return change;
         }
 
-        void OnDestroy()
+        protected void OnDestroy()
         {
             for (int i = 0; i < original.Length; ++i)
             {

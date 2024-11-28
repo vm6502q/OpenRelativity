@@ -6,7 +6,7 @@ namespace OpenRelativity
     {
         public Camera playerCam;
         // Start is called before the first frame update
-        void Start()
+        protected void Start()
         {
             ManualUpdate();
         }

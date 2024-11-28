@@ -10,7 +10,7 @@ namespace OpenRelativity
     {
         public static StaticVoxelSystem Instance { get; private set; }
 
-        private void Awake()
+        protected void Awake()
         {
             if (Instance != null && Instance != this)
             {
@@ -58,7 +58,7 @@ namespace OpenRelativity
         private ShaderParams colliderShaderParams;
 
         // Use this for initialization
-        private void Start()
+        protected void Start()
         {
             finishedCoroutine = true;
             dispatchedShader = false;
@@ -117,7 +117,7 @@ namespace OpenRelativity
             finishedCoroutine = true;
         }
 
-        void OnDisable()
+        protected void OnDisable()
         {
             StopTransformCoroutine();
         }
@@ -196,7 +196,7 @@ namespace OpenRelativity
             return true;
         }
 
-        private void Update()
+        protected void Update()
         {
             UpdatePositions();
         }
@@ -362,7 +362,7 @@ namespace OpenRelativity
                 return;
             }
 
-            RelativisticObject[] ros = FindObjectsOfType<RelativisticObject>();
+            RelativisticObject[] ros = FindObjectsByType<RelativisticObject>(FindObjectsSortMode.None);
             List<Vector3> rosPiw = new List<Vector3>();
             for (int i = 0; i < ros.Length; ++i)
             {
@@ -416,7 +416,7 @@ namespace OpenRelativity
             }
         }
 
-        private void OnDestroy()
+        protected void OnDestroy()
         {
             if (dispatchedShader)
             {

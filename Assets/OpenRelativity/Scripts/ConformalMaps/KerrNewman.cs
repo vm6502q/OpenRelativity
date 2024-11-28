@@ -32,7 +32,7 @@ namespace OpenRelativity.ConformalMaps
             base.ResetSchwarschildRadius();
         }
 
-        override public void Start()
+        override protected void Start()
         {
             float dist = state.playerTransform.position.magnitude;
             float chargeRadius = (float)Math.Sqrt(electricCharge * electricCharge * state.gConst / (4 * Math.PI * state.vacuumPermittivity * state.SpeedOfLightSqrd * state.SpeedOfLightSqrd));
@@ -59,7 +59,7 @@ namespace OpenRelativity.ConformalMaps
             }
         }
 
-        override public void Update()
+        override protected void Update()
         {
             EnforceHorizon();
 

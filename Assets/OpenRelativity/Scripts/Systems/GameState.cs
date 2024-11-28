@@ -15,7 +15,7 @@ namespace OpenRelativity
         #region Static Variables
         // We want a "System" (in Entity-Component-Systems) to be unique.
         private static GameState _instance;
-        public static GameState Instance { get { return _instance ? _instance : FindObjectOfType<GameState>(); } }
+        public static GameState Instance { get { return _instance ? _instance : FindFirstObjectByType<GameState>(); } }
         #endregion
 
         #region Member Variables
@@ -210,7 +210,7 @@ namespace OpenRelativity
         public const int splitDistance = 21000;
         #endregion
 
-        public void OnEnable()
+        protected void OnEnable()
         {
             // Ensure a singleton
             if (_instance != null && _instance != this)
@@ -298,7 +298,7 @@ namespace OpenRelativity
             };
             Lightmapping.SetDelegate(testDel);
         }
-        void OnDisable()
+        protected void OnDisable()
         {
             Lightmapping.ResetDelegate();
         }
@@ -325,7 +325,7 @@ namespace OpenRelativity
         }
 
         //We set this in late update because of timing issues with collisions
-        public virtual void LateUpdate()
+        virtual protected void LateUpdate()
         {
             SpeedOfLightSqrd = (float)(_c * _c);
 
@@ -451,7 +451,7 @@ namespace OpenRelativity
             _isInitDone = true;
         }
 
-        void FixedUpdate()
+        protected void FixedUpdate()
         {
             Rigidbody playerRB = GameObject.FindGameObjectWithTag(Tags.playerRigidbody).GetComponent<Rigidbody>();
 

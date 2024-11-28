@@ -20,7 +20,7 @@ namespace Tachyoid
         private float soundTimer;
 
         // Use this for initialization
-        void Start()
+        protected void Start()
         {
             myRenderer = GetComponent<Renderer>();
             origMaterial = myRenderer.material;
@@ -28,12 +28,12 @@ namespace Tachyoid
             selectAudio = GetComponent<AudioSource>();
         }
 
-        private void OnEnable()
+        protected void OnEnable()
         {
             soundTimer = soundDelay;
         }
 
-        private void Update()
+        protected void Update()
         {
             if (soundTimer > 0)
             {

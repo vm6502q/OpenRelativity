@@ -74,7 +74,7 @@ namespace Qrack
             ResetProgram();
         }
 
-        protected virtual void Update()
+        virtual protected void Update()
         {
             while ((HistoryPoints.Count > 0) && (HistoryPoints[0].WorldTime <= QuantumSystem.VisualTime))
             {

@@ -11,12 +11,12 @@ namespace Qrack
         public Transform playerTransform;
 #endif
         // Use this for initialization
-        void Awake()
+        protected void Awake()
         {
             SetState(false);
         }
 
-        private void Update()
+        protected void Update()
         {
 #if OPEN_RELATIVITY_INCLUDED
             transform.LookAt(state.playerTransform, transform.up);

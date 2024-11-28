@@ -214,7 +214,7 @@ namespace OpenRelativity.ConformalMaps
             return totalAccel;
         }
 
-        override public void Update()
+        override protected void Update()
         {
             EnforceHorizon();
 

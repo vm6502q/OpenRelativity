@@ -77,7 +77,7 @@ namespace Tachyoid
 
         private const float MOUSE_RESET_SPEED = 2.0f;
 
-        public override void Start()
+        override protected void Start()
         {
             base.Start();
 
@@ -159,7 +159,7 @@ namespace Tachyoid
         }
 
         //Again, use LateUpdate to solve some collision issues.
-        public override void LateUpdate()
+        override protected void LateUpdate()
         {
             if (frames <= INIT_FRAME_WAIT)
             {
@@ -656,7 +656,7 @@ namespace Tachyoid
             }
 
             float carriedLimit = timeTravelPosDif.magnitude;
-            ParadoxSphere[] paradoxSpheres = FindObjectsOfType<ParadoxSphere>();
+            ParadoxSphere[] paradoxSpheres = FindObjectsByType<ParadoxSphere>(FindObjectsSortMode.None);
             float a, b, c, d, t1, t2, loopCount, r;
             bool legalTestPoint;
             Vector3 testPoint;

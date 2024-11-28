@@ -27,14 +27,14 @@ namespace Tachyoid
         public bool ovrrideFadeIn { get { return _ovrrideFadeIn; } set { if (value) _ovrrideFadeOut = false; _ovrrideFadeIn = value; } }
 
 
-        private void Start ()
+        protected void Start ()
 	    {
             // Speed is distance (zero alpha to one alpha) divided by time (duration).
             m_FadeSpeed = 1f / fadeDuration;
 	    }
 
 
-        private void Update()
+        protected void Update()
         {
             // The vector in which the player should be facing is the forward direction of the transform specified or world space.
             Vector3 desiredForward = m_DesiredDirection == null ? Vector3.forward : m_DesiredDirection.forward;

@@ -9,7 +9,7 @@ namespace Tachyoid
         public FTLPlayerController playerCtrl;
         private TachyoidGameState state;
 
-        void Start()
+        protected void Start()
         {
             state = playerCtrl.GetComponent<TachyoidGameState>();
         }

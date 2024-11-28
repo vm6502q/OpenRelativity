@@ -22,7 +22,7 @@ namespace Tachyoid
         }
 
         // Update is called once per frame
-        void Update()
+        protected void Update()
         {
         }
 

@@ -8,7 +8,7 @@ namespace OpenRelativity.Audio
 
         public static RelativisticAudioListener PlayerAudioListener;
 
-        private void Awake()
+        protected void Awake()
         {
             if (Instance != null && Instance != this)
             {

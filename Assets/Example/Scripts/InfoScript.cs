@@ -10,7 +10,7 @@ namespace OpenRelativity.UI
         //Gamestate reference for quick access
         GameState state;
         // Use this for initialization
-        void Start()
+        protected void Start()
         {
             GameObject canvas = GameObject.Find("Canvas");
             if (canvas != null)
@@ -26,7 +26,7 @@ namespace OpenRelativity.UI
         }
 
         //just print out a bunch of information onto the screen.
-        void Update()
+        protected void Update()
         {
             string msg = "Current C: " + state.SpeedOfLight
                 + "\nIncrease/Decrease with N/M"

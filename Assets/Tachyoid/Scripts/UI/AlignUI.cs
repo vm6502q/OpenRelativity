@@ -7,8 +7,7 @@ namespace Tachyoid
     public class AlignUI : MonoBehaviour
     {
         public Transform camTransform;
-
-        private void Update()
+        protected void Update()
         {
             transform.localEulerAngles = new Vector3(90f, camTransform.eulerAngles.y, 0);
         }

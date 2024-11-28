@@ -14,7 +14,7 @@ namespace Tachyoid {
 
         public RelativisticObject myRO { get; set; }
         
-        void Awake() {
+        protected void Awake() {
             head.localRotation = Quaternion.identity;
             myRO = GetComponent<RelativisticObject>();
 		}
@@ -32,12 +32,12 @@ namespace Tachyoid {
 			}
 		}
 
-        void OnEnable()
+        protected void OnEnable()
         {
             SetImageEnabled(true);
         }
 
-        void OnDisable()
+        protected void OnDisable()
         {
             SetImageEnabled(false);
         }

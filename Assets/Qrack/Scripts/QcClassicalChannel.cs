@@ -56,7 +56,7 @@ namespace Qrack
             emittedVU.transform.position = source.RelativisticObject.opticalPiw;
         }
 
-        public void FixedUpdate()
+        protected void FixedUpdate()
         {
             if (!state.isMovementFrozen)
             {

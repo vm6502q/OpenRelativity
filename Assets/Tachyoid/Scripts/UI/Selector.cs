@@ -18,13 +18,13 @@ namespace Tachyoid
 
         private float inputTimer;
 
-        private void OnEnable()
+        protected void OnEnable()
         {
             inputTimer = inputWait;
         }
 
         // Update is called once per frame
-        void Update()
+        protected void Update()
         {
             Vector3 testFwd = Vector3.ProjectOnPlane(camTransform.forward, Vector3.up).normalized;
             if (testFwd == Vector3.zero) testFwd = Vector3.ProjectOnPlane(camTransform.up, Vector3.up).normalized;

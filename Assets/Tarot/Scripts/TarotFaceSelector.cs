@@ -22,7 +22,7 @@ namespace PastInfinity
         const float offsetY = 128.0f / 13848.0f;
 
         // Use this for initialization, before relativistic object CombineParent() starts.
-        void Awake()
+        protected void Awake()
         {
             oldCatalogCardIndex = catalogCardIndex;
 
@@ -59,7 +59,7 @@ namespace PastInfinity
             meshFilter.mesh = change;
         }
 
-        private void Update()
+        protected void Update()
         {
             if (catalogCardIndex != oldCatalogCardIndex)
             {

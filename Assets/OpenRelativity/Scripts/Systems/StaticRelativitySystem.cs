@@ -6,7 +6,7 @@ namespace OpenRelativity {
     {
         public static StaticRelativitySystem Instance { get; private set; }
 
-        private void Awake()
+        protected void Awake()
         {
             if (Instance != null && Instance != this)
             {
@@ -42,7 +42,7 @@ namespace OpenRelativity {
         }
 
         // Update is called once per frame
-        void FixedUpdate()
+        protected void FixedUpdate()
         {
             UpdateShaderParams();
         }

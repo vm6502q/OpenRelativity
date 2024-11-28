@@ -1321,14 +1321,14 @@ namespace OpenRelativity.Objects
         #endregion
 
         #region Unity lifecycle
-        void OnDestroy()
+        protected void OnDestroy()
         {
             if (paramsBuffer != null) paramsBuffer.Release();
             if (vertBuffer != null) vertBuffer.Release();
             if (Application.isPlaying && (contractor != null)) Destroy(contractor.gameObject);
         }
 
-        void OnEnable() {
+        protected void OnEnable() {
             //Also get the meshrenderer so that we can give it a unique material
             if (myRenderer == null)
             {
@@ -1341,13 +1341,13 @@ namespace OpenRelativity.Objects
             }
         }
 
-        void Awake()
+        protected void Awake()
         {
             _localScale = transform.localScale;
             myRigidbody = GetComponent<Rigidbody>();
         }
 
-        void Start()
+        protected void Start()
         {
             hasStarted = false;
             isPhysicsUpdateFrame = false;
@@ -1458,7 +1458,7 @@ namespace OpenRelativity.Objects
             UpdateColliderPosition();
         }
 
-        void Update()
+        protected void Update()
         {
             if (isPhysicsUpdateFrame)
             {
@@ -1467,12 +1467,12 @@ namespace OpenRelativity.Objects
             isPhysicsUpdateFrame = false;
         }
 
-        private void LateUpdate()
+        protected void LateUpdate()
         {
             oldLocalTimeUpdate = GetLocalTime();
         }
 
-        void FixedUpdate()
+        protected void FixedUpdate()
         {
             if (isPhysicsUpdateFrame)
             {

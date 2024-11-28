@@ -29,7 +29,7 @@ namespace OpenRelativity.Objects
         float timer = 0;
 
         //This is in case you implement memory pools for generated objects. Whenever they are re enabled they should activate again
-        void OnEnable()
+        protected void OnEnable()
         {
             timer = startTimer;
             ResetDeathTime();
@@ -117,7 +117,7 @@ namespace OpenRelativity.Objects
             deathTime = (float)state.TotalTimeWorld;
         }
         //Standard update, taken out of Relativistic Object
-        public void Update()
+        protected void Update()
         {
             //Grab our renderer.
             MeshRenderer tempRenderer = GetComponent<MeshRenderer>();

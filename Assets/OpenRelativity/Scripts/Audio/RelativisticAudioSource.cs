@@ -157,7 +157,7 @@ namespace OpenRelativity.Audio
             viwHistory.Add(new RelativisticAudioSourcePVHistoryPoint(viw, float.NegativeInfinity));
         }
 
-        private void Update()
+        protected void Update()
         {
             if (state.isMovementFrozen)
             {

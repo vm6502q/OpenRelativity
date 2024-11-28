@@ -7,18 +7,12 @@ public class StandButton : MonoBehaviour
     public AudioSource sound;
 
     // Use this for initialization
-    void Start()
+    protected void Start()
     {
         sound = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    void OnTriggerEnter(Collider collider)
+    protected void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag.Contains("Player"))
         {

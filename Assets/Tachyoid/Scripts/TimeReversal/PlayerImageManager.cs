@@ -98,7 +98,7 @@ namespace Tachyoid {
             myParadoxSphere.isBlockingTRev = enabled;
         }
 
-        void FixedUpdate()
+        protected void FixedUpdate()
         {
             Vector3 playerPos = state.playerTransform.position;
 
@@ -332,7 +332,7 @@ namespace Tachyoid {
             SetParadoxSphereEnabled(false);
         }
 
-        void OnDestroy()
+        protected void OnDestroy()
         {
             if ((warpEntranceFlash != null)) Destroy(warpEntranceFlash.gameObject);
             if ((warpExitFlash != null)) Destroy(warpExitFlash.gameObject);

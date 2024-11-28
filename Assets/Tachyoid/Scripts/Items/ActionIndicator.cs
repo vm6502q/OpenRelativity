@@ -8,7 +8,7 @@ namespace Tachyoid.Objects
     public class ActionIndicator : MonoBehaviour
     {
         // Use this for initialization
-        void Awake()
+        protected void Awake()
         {
             SetState(false);
         }

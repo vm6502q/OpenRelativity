@@ -72,7 +72,7 @@ namespace OpenRelativity {
         }
 
         // Start is called before the first frame update
-        void Start()
+        protected void Start()
         {
             myRO = GetComponent<Objects.RelativisticObject>();
             myCollider = GetComponent<SphereCollider>();
@@ -80,7 +80,7 @@ namespace OpenRelativity {
         }
 
         // Update is called once per frame
-        void Update()
+        protected void Update()
         {
             float height = transform.localScale.y;
             float localTime = myRO.GetLocalTime();

@@ -34,7 +34,7 @@ namespace Tachyoid.Objects
         public ButtonController[] lockIndicatorTriggers = new ButtonController[1];
 
         // Use this for initialization
-        protected override void Start()
+        override protected void Start()
         {
             base.Start();
 
@@ -186,7 +186,7 @@ namespace Tachyoid.Objects
             openTimer = ClampRange(openTimer, 0.0f, openTime);
         }
 
-        protected override void FixedUpdate()
+        override protected void FixedUpdate()
         {
             base.FixedUpdate();
 

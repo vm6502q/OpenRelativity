@@ -23,7 +23,7 @@ namespace PastInfinity
         const float offsetY = 128.0f / 13848.0f;
 
         // Use this for initialization, before relativistic object CombineParent() starts.
-        void Awake()
+        protected void Awake()
         {
             //Grab the meshfilter, and if it's not null, keep going
             MeshFilter meshFilter = GetComponent<MeshFilter>();

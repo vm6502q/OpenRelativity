@@ -10,8 +10,10 @@ public class SchwarzschildLens : GravityLens
     public Material interiorMaterial;
     private Material origLensMaterial;
 
-    private void Start()
+    override protected void Start()
     {
+        base.Start();
+
         origLensMaterial = lensMaterial;
 
         if (isSkybox)
@@ -21,7 +23,7 @@ public class SchwarzschildLens : GravityLens
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         schwarzschild.SetEffectiveRadius(cam.transform.position);
 

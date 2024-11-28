@@ -20,7 +20,7 @@ namespace Tachyoid.Objects
         //private float origTime;
 
         // Use this for initialization
-        void Awake()
+        protected void Awake()
         {
             myRO = GetComponent<RelativisticObject>();
             oldPeculiarVel = myRO.peculiarVelocity;
@@ -47,7 +47,7 @@ namespace Tachyoid.Objects
         }
 
         // Update is called once per frame
-        void Update()
+        protected void Update()
         {
             if (!state.isMovementFrozen)
             {

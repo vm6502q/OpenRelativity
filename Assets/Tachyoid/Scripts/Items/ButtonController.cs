@@ -53,7 +53,7 @@ namespace Tachyoid.Objects
         //private GameObject exitingTriggerGO;
 
         // Use this for initialization
-        protected override void Start()
+        override protected void Start()
         {
             base.Start();
 
@@ -237,7 +237,7 @@ namespace Tachyoid.Objects
             UpdatePosition();
         }
 
-        public void TriggerExit()
+        protected void TriggerExit()
         {
             if (btnSoundReverse != null && !btnSoundReverse.isPlaying)
             {
@@ -263,7 +263,7 @@ namespace Tachyoid.Objects
             }
         }
 
-        protected override void FixedUpdate()
+        override protected void FixedUpdate()
         {
             base.FixedUpdate();
 
@@ -315,7 +315,7 @@ namespace Tachyoid.Objects
             return anyTrigger;
         }
 
-        void OnTriggerEnter(Collider collider)
+        protected void OnTriggerEnter(Collider collider)
         {
             int layerID = collider.gameObject.layer;
             LayerMask layerMask = (1 << LayerMask.NameToLayer("No Button Trigger")) | (1 << LayerMask.NameToLayer("Paradox Sphere"));
@@ -343,7 +343,7 @@ namespace Tachyoid.Objects
             }
         }
 
-        public void TriggerEnter()
+        protected void TriggerEnter()
         {
             if (btnSound != null && !btnSound.isPlaying)
             {
@@ -353,7 +353,7 @@ namespace Tachyoid.Objects
             pressState = ButtonState.Pressing;
         }
 
-        void OnTriggerStay(Collider collider)
+        protected void OnTriggerStay(Collider collider)
         {
             int layerID = collider.gameObject.layer;
             LayerMask layerMask = (1 << LayerMask.NameToLayer("No Button Trigger")) | (1 << LayerMask.NameToLayer("Paradox Sphere"));
@@ -364,7 +364,7 @@ namespace Tachyoid.Objects
             }
         }
 
-        void OnTriggerExit(Collider collider)
+        protected void OnTriggerExit(Collider collider)
         {
             gameObjectsOnButton.RemoveAll(go => go.GetInstanceID() == collider.gameObject.GetInstanceID());
             if (!ignoreExit 

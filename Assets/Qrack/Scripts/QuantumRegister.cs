@@ -19,19 +19,15 @@ namespace Qrack
             QuantumSystem.CheckAlloc(bits);
         }
 
-        void Start()
+        protected void Start()
         {
             lastQubitCount = QubitCount;
         }
 
-        void Update()
+        override protected void Update()
         {
+            base.Update();
             SystemId = QuantumSystem.SystemId;
-        }
-
-        void OnDestroy()
-        {
-            
         }
     }
 }

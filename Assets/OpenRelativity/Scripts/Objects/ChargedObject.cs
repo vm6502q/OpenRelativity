@@ -89,19 +89,13 @@ namespace OpenRelativity.Objects {
             return 2 * (lwh.x * lwh.y + lwh.x * lwh.z + lwh.y * lwh.z);
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
-
         // FixedUpdate is called once before physics update
-        void FixedUpdate()
+        protected void FixedUpdate()
         {
             AddElectromagneticForces();
         }
 
-        public void OnCollisionEnter(Collision collision)
+        protected void OnCollisionEnter(Collision collision)
         {
             if (!combineChargeOnCollide) {
                 return;

@@ -23,7 +23,7 @@ namespace OpenRelativity
         private float constant = 8;
 
         // Use this for initialization, before relativistic object CombineParent() starts.
-        void Awake()
+        protected void Awake()
         {
             //Grab the meshfilter, and if it's not null, keep going
             MeshFilter meshFilter = GetComponent<MeshFilter>();

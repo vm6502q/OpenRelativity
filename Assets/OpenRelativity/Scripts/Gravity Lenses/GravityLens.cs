@@ -13,7 +13,7 @@ public class GravityLens : MonoBehaviour
     protected bool wasBlit;
     protected List<RenderTexture> lensPass;
 
-    private void Start()
+    virtual protected void Start()
     {
         doBlit = true;
         wasBlit = false;
@@ -23,7 +23,7 @@ public class GravityLens : MonoBehaviour
         }
     }
 
-    void OnRenderImage(RenderTexture src, RenderTexture dest)
+    protected void OnRenderImage(RenderTexture src, RenderTexture dest)
     {
         if (isSkybox)
         {

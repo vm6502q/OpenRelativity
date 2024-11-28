@@ -33,7 +33,7 @@ namespace Qrack
             {
                 if (_qMan == null)
                 {
-                    _qMan = FindObjectOfType<QuantumManager>();
+                    _qMan = FindFirstObjectByType<QuantumManager>();
                 }
 
                 return _qMan;
@@ -114,7 +114,7 @@ namespace Qrack
         }
 
         // Awake() is called before Start()
-        void Awake()
+        protected void Awake()
         {
             if (ApproximationLevel > 1) {
                 if (Debug.isDebugBuild)
@@ -147,7 +147,7 @@ namespace Qrack
             lastApproximationLevel = ApproximationLevel;
         }
 
-        void Update()
+        virtual protected void Update()
         {
             if (QubitCount < 1)
             {
@@ -202,7 +202,7 @@ namespace Qrack
             lastApproximationLevel = ApproximationLevel;
         }
 
-        public void OnDestroy()
+        protected void OnDestroy()
         {
             if (qMan != null)
             {
@@ -871,7 +871,7 @@ namespace Qrack
             }
         }
 
-        public void MultiBitGate(ulong[] targets, Action<ulong, ulong, ulong[]> func)
+        protected void MultiBitGate(ulong[] targets, Action<ulong, ulong, ulong[]> func)
         {
             ulong[] mappedTargets = MapQubits(targets);
             List<ulong> bits = new List<ulong>();
@@ -1118,7 +1118,7 @@ namespace Qrack
             BoolGate(qInput1, qInput2, qOutput, QuantumManager.XNOR);
         }
 
-        public void SemiBoolGate(bool cInput, ulong qInput, ulong qOutput, Action<ulong, bool, ulong, ulong> func)
+        protected void SemiBoolGate(bool cInput, ulong qInput, ulong qOutput, Action<ulong, bool, ulong, ulong> func)
         {
             qInput = GetSystemIndex(qInput);
             qOutput = GetSystemIndex(qOutput);
@@ -1260,6 +1260,17 @@ namespace Qrack
             }
 
             return toRet;
+        }
+
+        public void Separate(ulong[] q)
+        {
+            ulong[] mappedQ = MapQubits(q);
+            QuantumManager.Separate(SystemId, (ulong)mappedQ.Length, mappedQ);
+
+            if (GetError() != 0)
+            {
+                throw new InvalidOperationException("QrackSimulator C++ library raised exception.");
+            }
         }
 
         public double GetFidelity() {

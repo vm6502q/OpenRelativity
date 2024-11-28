@@ -59,7 +59,7 @@ namespace Tachyoid {
 
         }
 
-        public override void LateUpdate()
+        override protected void LateUpdate()
         {
             if (ReversingTime) {
                 return;

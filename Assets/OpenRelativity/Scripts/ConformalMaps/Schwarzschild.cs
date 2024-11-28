@@ -34,7 +34,7 @@ namespace OpenRelativity.ConformalMaps
             }
         }
 
-        virtual public void Start()
+        virtual protected void Start()
         {
             float dist = state.playerTransform.position.magnitude;
             isExterior = (dist > schwarzschildRadius);
@@ -178,7 +178,7 @@ namespace OpenRelativity.ConformalMaps
             }
         }
 
-        virtual public void Update()
+        virtual protected void Update()
         {
             EnforceHorizon();
 

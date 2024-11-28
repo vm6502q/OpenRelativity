@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-
 using UnityEngine;
 
 namespace Qrack
@@ -254,6 +253,9 @@ namespace Qrack
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TrySeparateTol")]
         public static extern bool TrySeparateTol(ulong simId, ulong n, ulong[] q, double error_tol);
 
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Separate")]
+        public static extern void Separate(ulong simId, ulong n, ulong[] q);
+
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "GetUnitaryFidelity")]
         public static extern double GetUnitaryFidelity(ulong simId);
 
@@ -273,7 +275,7 @@ namespace Qrack
 
         private static Dictionary<ulong, float> SimulatorSdrps = new Dictionary<ulong, float>();
 
-        public void OnDestroy()
+        protected void OnDestroy()
         {
             for (int i = 0; i < SimulatorIds.Count; ++i)
             {

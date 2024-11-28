@@ -128,7 +128,7 @@ namespace OpenRelativity
         //Keep track of our own Mesh Filter
         private MeshFilter meshFilter;
 
-        public virtual void Start()
+        virtual protected void Start()
         {
             collidersBelow = new List<Collider>();
 
@@ -160,7 +160,7 @@ namespace OpenRelativity
             }
         }
         //Again, use LateUpdate to solve some collision issues.
-        public virtual void LateUpdate()
+        virtual protected void LateUpdate()
         {
             if (state.isMovementFrozen)
             {
@@ -519,12 +519,12 @@ namespace OpenRelativity
             }
         }
 
-        void OnTriggerEnter(Collider collider)
+        protected void OnTriggerEnter(Collider collider)
         {
             OnTrigger(collider);
         }
 
-        void OnTriggerStay(Collider collider)
+        protected void OnTriggerStay(Collider collider)
         {
             OnTrigger(collider);
         }

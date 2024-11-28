@@ -72,7 +72,7 @@ namespace Tachyoid.Objects {
             public int ImageIndex { get; set; }
         }
 
-        void Awake()
+        protected void Awake()
         {
             GameObject playerGO = GameObject.FindGameObjectWithTag("Player");
             state = playerGO.GetComponent<GameState>();
@@ -88,13 +88,13 @@ namespace Tachyoid.Objects {
         }
 
         // Use this for initialization
-        void Start()
+        protected void Start()
         {
             
         }
 
         // Update is called once per frame
-        void Update()
+        protected void Update()
         {
             //Only let this flag stay for one frame.
             //didReverseTime = false;
@@ -447,7 +447,7 @@ namespace Tachyoid.Objects {
             return dupeGraspable;
         }
 
-        void OnEnable()
+        protected void OnEnable()
         {
             gameObject.SetActive(true);
         }

@@ -12,14 +12,14 @@ namespace Tachyoid
         private Transform playerTransform;
 
         // Use this for initialization
-        void Start()
+        protected void Start()
         {
-            state = FindObjectOfType<GameState>();
+            state = FindFirstObjectByType<GameState>();
             playerTransform = state.playerTransform;
             resetRadius = GetComponent<SphereCollider>().radius * transform.lossyScale.x;
         }
 
-        void Update()
+        protected void Update()
         {
             if ((playerTransform.position - transform.position).sqrMagnitude > (resetRadius * resetRadius))
             {
