@@ -202,7 +202,7 @@ namespace Qrack
             lastApproximationLevel = ApproximationLevel;
         }
 
-        void OnDestroy()
+        public void OnDestroy()
         {
             if (qMan != null)
             {

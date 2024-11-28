@@ -39,7 +39,7 @@ namespace Qrack
 #elif UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
         public const string QRACKSIM_DLL_NAME = @"/usr/lib/qrack/libqrack_pinvoke.dylib";
 #elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
-        public const string QRACKSIM_DLL_NAME = @"C:\\Program Files\\Qrack\\bin\\qrack_pinvoke.dll";
+        public const string QRACKSIM_DLL_NAME = @"C:\\Program Files\\libqrack 9.13.1\\bin\\qrack_pinvoke.dll";
 #else
         public const string QRACKSIM_DLL_NAME = @"qrack_pinvoke";
 #endif
@@ -273,11 +273,11 @@ namespace Qrack
 
         private static Dictionary<ulong, float> SimulatorSdrps = new Dictionary<ulong, float>();
 
-        private void OnDestroy()
+        public void OnDestroy()
         {
             for (int i = 0; i < SimulatorIds.Count; ++i)
             {
-                Destroy(SimulatorIds[i]);
+                DeallocateSimulator(SimulatorIds[i]);
             }
         }
 
