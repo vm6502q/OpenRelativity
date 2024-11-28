@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -34,13 +35,11 @@ namespace Qrack
     public class QuantumManager : MonoBehaviour
     {
 #if UNITY_EDITOR_LINUX || UNITY_STANDALONE_LINUX
-        public const string QRACKSIM_DLL_NAME = @"/usr/lib/qrack/libqrack_pinvoke.so";
+        public const string QRACKSIM_DLL_NAME = @"libqrack_pinvoke.so";
 #elif UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
-        public const string QRACKSIM_DLL_NAME = @"/usr/lib/qrack/libqrack_pinvoke.dylib";
+        public const string QRACKSIM_DLL_NAME = @"libqrack_pinvoke.dylib";
 #elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
-        public const string QRACKSIM_DLL_NAME = @"C:\\Program Files\\libqrack 9.13.1\\bin\\qrack_pinvoke.dll";
-#else
-        public const string QRACKSIM_DLL_NAME = @"qrack_pinvoke";
+        public const string QRACKSIM_DLL_NAME = @"qrack_pinvoke.dll";
 #endif
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "get_error")]
