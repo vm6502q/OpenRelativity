@@ -117,6 +117,12 @@
         "net.qrack.qrack": "0.1.0"
       }
     },
+    "net.qrack.tarot": {
+      "version": "file:net.qrack.tarot",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
       "depth": 0,
