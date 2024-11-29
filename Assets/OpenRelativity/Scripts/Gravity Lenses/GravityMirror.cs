@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace OpenRelativity
+namespace OpenRelativity.GravityLenses
 {
     public class GravityMirror : MonoBehaviour
     {

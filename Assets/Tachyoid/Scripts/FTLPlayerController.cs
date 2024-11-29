@@ -4,6 +4,7 @@ using Google.XR.Cardboard;
 using System.Collections;
 using System.Collections.Generic;
 using OpenRelativity;
+using OpenRelativity.GravityLenses;
 using Tachyoid.Objects;
 
 namespace Tachyoid

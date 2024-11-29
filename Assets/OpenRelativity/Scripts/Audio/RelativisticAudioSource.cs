@@ -129,7 +129,7 @@ namespace OpenRelativity.Audio
         protected Vector3 collisionOpticalPos;
 
         // Start is called before the first frame update
-        void Start()
+        protected void Start()
         {
             audioSystem = RelativisticAudioSystem.Instance;
             relativisticObject = GetComponent<RelativisticObject>();

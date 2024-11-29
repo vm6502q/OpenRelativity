@@ -9,11 +9,11 @@ C:\Program Files\Unity\Hub\Editor\6000.0.28f1\Editor\Unity.exe
 -batchMode
 -noUpm
 -name
-AssetImportWorker1
+AssetImportWorker2
 -projectPath
 C:/Users/jerse/OneDrive/Documents/GitHub/OpenRelativity
 -logFile
-Logs/AssetImportWorker1.log
+Logs/AssetImportWorker2.log
 -srvPort
 65100
 -job-worker-count
@@ -59,14 +59,14 @@ C:/Users/jerse/OneDrive/Documents/GitHub/OpenRelativity
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [18892]  Target information:
+Player connection [10352]  Target information:
 
-Player connection [18892]  * "[IP] 172.27.96.1 [Port] 0 [Flags] 2 [Guid] 2413992115 [EditorId] 2413992115 [Version] 1048832 [Id] WindowsEditor(7,Horus) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [10352]  * "[IP] 172.27.96.1 [Port] 0 [Flags] 2 [Guid] 3694515045 [EditorId] 3694515045 [Version] 1048832 [Id] WindowsEditor(7,Horus) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [18892]  * "[IP] 192.168.1.194 [Port] 0 [Flags] 2 [Guid] 2413992115 [EditorId] 2413992115 [Version] 1048832 [Id] WindowsEditor(7,Horus) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [10352]  * "[IP] 192.168.1.194 [Port] 0 [Flags] 2 [Guid] 3694515045 [EditorId] 3694515045 [Version] 1048832 [Id] WindowsEditor(7,Horus) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [18892] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [18892] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [10352] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [10352] Host joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 15
 [Physics::Module] Initialized fallback backend.
 [Physics::Module] Id: 0xdecafbad
@@ -77,7 +77,7 @@ Library Redirect Path: Library/
 [Physics::Module] SDK Version: 4.1.2
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Multi-Threaded
-Refreshing native plugins compatible for Editor in 2.32 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 2.59 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 6000.0.28f1 (f336aca0cab5)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.0.28f1/Editor/Data/Resources/UnitySubsystems
@@ -93,19 +93,19 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.0.28f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.0.28f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.0.28f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56104
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56952
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.28f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.28f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.003628 seconds.
-- Loaded All Assemblies, in  0.293 seconds
+Registered in 0.002561 seconds.
+- Loaded All Assemblies, in  0.292 seconds
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.243 seconds
-Domain Reload Profiling: 535ms
-	BeginReloadAssembly (102ms)
+- Finished resetting the current domain, in  0.249 seconds
+Domain Reload Profiling: 540ms
+	BeginReloadAssembly (100ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
@@ -113,25 +113,25 @@ Domain Reload Profiling: 535ms
 		CreateAndSetChildDomain (1ms)
 	RebuildCommonClasses (27ms)
 	RebuildNativeTypeToScriptingClass (8ms)
-	initialDomainReloadingComplete (37ms)
-	LoadAllAssembliesAndSetupDomain (117ms)
-		LoadAssemblies (100ms)
+	initialDomainReloadingComplete (38ms)
+	LoadAllAssembliesAndSetupDomain (118ms)
+		LoadAssemblies (98ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (113ms)
-			TypeCache.Refresh (112ms)
+		AnalyzeDomain (116ms)
+			TypeCache.Refresh (114ms)
 				TypeCache.ScanAssembly (102ms)
 			BuildScriptInfoCaches (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (243ms)
+	FinalizeReload (250ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (220ms)
+		SetupLoadedEditorAssemblies (224ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (18ms)
-			SetLoadedEditorAssemblies (3ms)
-			BeforeProcessingInitializeOnLoad (4ms)
-			ProcessInitializeOnLoadAttributes (148ms)
-			ProcessInitializeOnLoadMethodAttributes (45ms)
+			InitializePlatformSupportModulesInManaged (20ms)
+			SetLoadedEditorAssemblies (4ms)
+			BeforeProcessingInitializeOnLoad (6ms)
+			ProcessInitializeOnLoadAttributes (149ms)
+			ProcessInitializeOnLoadMethodAttributes (43ms)
 			AfterProcessingInitializeOnLoad (2ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -140,8 +140,8 @@ Domain Reload Profiling: 535ms
 Worker process is ready to serve import requests
 Import Worker Mode flag is 0x00
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.486 seconds
-Refreshing native plugins compatible for Editor in 2.39 ms, found 1 plugins.
+- Loaded All Assemblies, in  0.475 seconds
+Refreshing native plugins compatible for Editor in 2.13 ms, found 1 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 Package Manager log level set to [2]
@@ -155,92 +155,84 @@ Mono: successfully reloaded assembly
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.357 seconds
-Domain Reload Profiling: 842ms
-	BeginReloadAssembly (298ms)
+- Finished resetting the current domain, in  0.365 seconds
+Domain Reload Profiling: 838ms
+	BeginReloadAssembly (289ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (4ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (22ms)
-	RebuildCommonClasses (27ms)
-	RebuildNativeTypeToScriptingClass (9ms)
-	initialDomainReloadingComplete (25ms)
-	LoadAllAssembliesAndSetupDomain (125ms)
-		LoadAssemblies (173ms)
+	RebuildCommonClasses (28ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (24ms)
+	LoadAllAssembliesAndSetupDomain (124ms)
+		LoadAssemblies (169ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
 		AnalyzeDomain (31ms)
 			TypeCache.Refresh (20ms)
 				TypeCache.ScanAssembly (13ms)
 			BuildScriptInfoCaches (7ms)
 			ResolveRequiredComponents (2ms)
-	FinalizeReload (358ms)
+	FinalizeReload (365ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (202ms)
+		SetupLoadedEditorAssemblies (204ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (2ms)
-			SetLoadedEditorAssemblies (2ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			SetLoadedEditorAssemblies (3ms)
 			BeforeProcessingInitializeOnLoad (38ms)
 			ProcessInitializeOnLoadAttributes (133ms)
-			ProcessInitializeOnLoadMethodAttributes (21ms)
+			ProcessInitializeOnLoadMethodAttributes (22ms)
 			AfterProcessingInitializeOnLoad (5ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (7ms)
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
-Refreshing native plugins compatible for Editor in 2.02 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 2.40 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 20 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 977 unused Assets / (0.7 MB). Loaded Objects now: 1575.
-Memory consumption went from 95.1 MB to 94.4 MB.
-Total: 4.272600 ms (FindLiveObjects: 0.082300 ms CreateObjectMapping: 0.021400 ms MarkObjects: 3.598100 ms  DeleteObjects: 0.569700 ms)
+Unloading 977 unused Assets / (377.8 KB). Loaded Objects now: 1575.
+Memory consumption went from 95.2 MB to 94.8 MB.
+Total: 4.239700 ms (FindLiveObjects: 0.155200 ms CreateObjectMapping: 0.042800 ms MarkObjects: 3.777600 ms  DeleteObjects: 0.262900 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 158029.360469 seconds.
-  path: Assets/OpenRelativity/Scripts/SRelativityUtil.cs
-  artifactKey: Guid(3a96bf8e67acfcb4db2cd28a485cb109) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/OpenRelativity/Scripts/SRelativityUtil.cs using Guid(3a96bf8e67acfcb4db2cd28a485cb109) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd548a1fa996869c5a32dca8e13061663') in 0.0040741 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000012 seconds.
-  path: Assets/OpenRelativity/Scripts/PlayerController.cs
-  artifactKey: Guid(afe53cba7abc30f45a8e4f209b6731fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/OpenRelativity/Scripts/PlayerController.cs using Guid(afe53cba7abc30f45a8e4f209b6731fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e6d18ee0a30342240c020c55efefc640') in 0.0003492 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000158 seconds.
-  path: Assets/OpenRelativity/Materials/SchwarzschildLens.mat
-  artifactKey: Guid(dc805960d0458bd4088933828bca33a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/OpenRelativity/Materials/SchwarzschildLens.mat using Guid(dc805960d0458bd4088933828bca33a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '83dfdf47c470e519d6dc258dce85053e') in 0.083334 seconds
+  Time since last request: 158029.404555 seconds.
+  path: Assets/OpenRelativity/Materials/SchwarzschildInteriorSkybox.mat
+  artifactKey: Guid(f0036f0ed5c8ff5478881d6322b859a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/OpenRelativity/Materials/SchwarzschildInteriorSkybox.mat using Guid(f0036f0ed5c8ff5478881d6322b859a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '270f2cca717dc95c44539ef3deca37b1') in 0.1187048 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.646178 seconds.
-  path: Assets/OpenRelativity/Scripts/Audio/RelativisticAudioSystem.cs
-  artifactKey: Guid(9b4839315df99614b828b81feddda89b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/OpenRelativity/Scripts/Audio/RelativisticAudioSystem.cs using Guid(9b4839315df99614b828b81feddda89b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'bbfa48e29f33f1dc285e156574e0c47d') in 0.0004873 seconds
+  Time since last request: 0.510298 seconds.
+  path: Assets/OpenRelativity/Scripts/Audio
+  artifactKey: Guid(2f63d60ca063bcf4388674489fc5a9a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/OpenRelativity/Scripts/Audio using Guid(2f63d60ca063bcf4388674489fc5a9a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0c76436c1437a93f93156acc32f0c599') in 0.0003713 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Import Request.
-  Time since last request: 10.281043 seconds.
-  path: Assets/OpenRelativity/Scripts/ConformalMaps/KerrNewman.cs
-  artifactKey: Guid(c126fc2684a3ef7479f072857fadc4e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/OpenRelativity/Scripts/ConformalMaps/KerrNewman.cs using Guid(c126fc2684a3ef7479f072857fadc4e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '49d4555b3853b56403804d0dc4890b1b') in 0.0003692 seconds
+  Time since last request: 0.059938 seconds.
+  path: Assets/OpenRelativity/Scripts/Audio/RelativisticAudioListener.cs
+  artifactKey: Guid(8f2474f5bade5f04fb502247d2804e7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/OpenRelativity/Scripts/Audio/RelativisticAudioListener.cs using Guid(8f2474f5bade5f04fb502247d2804e7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a715d11b2fec7385a8b004eeee04dcfb') in 0.0005096 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000370 seconds.
-  path: Assets/OpenRelativity/Scripts/ConformalMaps/Schwarzschild.cs
-  artifactKey: Guid(dd2cf541d09885f49ba34f196ddbde82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/OpenRelativity/Scripts/ConformalMaps/Schwarzschild.cs using Guid(dd2cf541d09885f49ba34f196ddbde82) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b9fc4769269700eeb1776e43d297d2f4') in 0.0002758 seconds
+  Time since last request: 10.281101 seconds.
+  path: Assets/OpenRelativity/Scripts/ConformalMaps/ConformalMap.cs
+  artifactKey: Guid(d018443336012b04f8fdf17aa35fe3f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/OpenRelativity/Scripts/ConformalMaps/ConformalMap.cs using Guid(d018443336012b04f8fdf17aa35fe3f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a6f4f2ca9eac2f5e6e23ec59bddc6a81') in 0.0004864 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000290 seconds.
+  path: Assets/OpenRelativity/Scripts/ConformalMaps/ReissnerNordstroem.cs
+  artifactKey: Guid(9601f5989f371bb459628feaa408d0f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/OpenRelativity/Scripts/ConformalMaps/ReissnerNordstroem.cs using Guid(9601f5989f371bb459628feaa408d0f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6c4165a4af589cad98412e3465b7903e') in 0.0002742 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
