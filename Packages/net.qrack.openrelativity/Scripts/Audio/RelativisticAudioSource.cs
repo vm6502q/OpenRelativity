@@ -90,7 +90,7 @@ namespace OpenRelativity.Audio
 
                 if (dispUnit.sqrMagnitude < 0.5f)
                 {
-                    return dispUnit = audioSystem.WorldSoundMediumRapidity.normalized;
+                    return audioSystem.WorldSoundMediumRapidity.normalized;
                 }
 
                 return (audioSystem.RapidityOfSound * dispUnit + audioSystem.WorldSoundMediumRapidity)

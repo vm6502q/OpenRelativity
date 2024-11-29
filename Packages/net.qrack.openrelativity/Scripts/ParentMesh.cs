@@ -12,7 +12,7 @@ namespace OpenRelativity
     [RequireComponent(typeof(MeshRenderer))]
     public class ParentMesh : MonoBehaviour
     {
-        void Start()
+        protected void Start()
         {
             MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
             CombineInstance[] combine = new CombineInstance[meshFilters.Length];

@@ -102,7 +102,7 @@ namespace Qrack {
                 evnt.joules = Melt(evnt.joules, tArea - oArea);
                 bool isDone = true;
                 for (int j = 0; j < myQubits.Count; ++j) {
-                    Qrack.QuantumSystem qubit = myQubits[j];
+                    QuantumSystem qubit = myQubits[j];
                     RelativisticObject qubitRO = qubit.GetComponent<RelativisticObject>();
                     double dist = (qubitRO.piw - pos).magnitude;
                     // Spreads out as if in a topological system, proportional to the perimeter.
@@ -125,7 +125,7 @@ namespace Qrack {
             }
             myCosmicRayEvents = nMyCosmicRayEvents;
             for (int i = 0; i < myQubits.Count; ++i) {
-                Qrack.QuantumSystem qubit = myQubits[i];
+                QuantumSystem qubit = myQubits[i];
                 if (!myIntensities.ContainsKey(qubit)) {
                     continue;
                 }

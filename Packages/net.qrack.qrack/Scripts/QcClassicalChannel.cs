@@ -105,28 +105,23 @@ namespace Qrack
 #endif
         }
 
-        private void TranslateSignals(float deltaWordTime)
+        private void TranslateSignals(float deltaWorldTime)
         {
             Vector3 cameraPos = playerTransform.position;
             Vector3 destPos = destination.RelativisticObject.opticalPiw;
-            Vector3 vuPos, dispUnit, velUnit;
-            float perspectiveFactor;
             int vuIndex = 0;
             int signalIndex = 0;
             while (vuIndex < visualUnitsActive.Count) {
                 ActionIndicator vu = visualUnitsActive[vuIndex];
-#if OPEN_RELATIVITY_INCLUDED
-                RelativisticObject vuRO = vu.GetComponent<RelativisticObject>();
-#endif
-                vuPos = vu.transform.position;
-                dispUnit = (destPos - vuPos).normalized;
-                velUnit = speed * dispUnit;
-                perspectiveFactor = Mathf.Pow(2, Vector3.Dot((cameraPos - vuPos).normalized, dispUnit));
+                Vector3 vuPos = vu.transform.position;
+                Vector3 dispUnit = (destPos - vuPos).normalized;
+                float perspectiveFactor = Mathf.Pow(2, Vector3.Dot((cameraPos - vuPos).normalized, dispUnit));
                 float cameraDispChange = (oldCameraPos - vuPos).magnitude - (cameraPos - vuPos).magnitude;
 #if OPEN_RELATIVITY_INCLUDED
-                Vector3 disp = (vuRO.GetTimeFactor() * deltaWordTime * velUnit + cameraDispChange * dispUnit) * perspectiveFactor;
+                RelativisticObject vuRO = vu.GetComponent<RelativisticObject>();
+                Vector3 disp = perspectiveFactor * (vuRO.GetTimeFactor() * deltaWorldTime * speed + cameraDispChange) * dispUnit;
 #else
-                Vector3 disp = (deltaWordTime * velUnit + cameraDispChange * dispUnit) * perspectiveFactor;
+                Vector3 disp = perspectiveFactor * (deltaWordTime * speed + cameraDispChange) * dispUnit;
 #endif
 
                 if (disp.sqrMagnitude > (destPos - vuPos).sqrMagnitude)

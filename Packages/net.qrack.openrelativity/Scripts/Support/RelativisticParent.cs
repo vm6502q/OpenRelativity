@@ -45,7 +45,7 @@ namespace OpenRelativity.Support
             }
         }
         // Use this for initialization
-        void Start()
+        protected void Start()
         {
             if (GetComponent<ObjectMeshDensity>())
             {

@@ -67,6 +67,7 @@ namespace OpenRelativity
             Vector3 perp = toAdd - parra;
             perp = orig.InverseGamma() * perp / (1 + Vector3.Dot(orig, parra) / cSqrd);
             parra = (parra + orig) / (1 + Vector3.Dot(orig, parra) / cSqrd);
+
             return parra + perp;
         }
 
@@ -81,6 +82,7 @@ namespace OpenRelativity
             Quaternion rot = Quaternion.FromToRotation(velocity / Mathf.Sqrt(speedSqr), Vector3.forward);
             Vector3 rotInt = rot * interval;
             rotInt = new Vector3(rotInt.x, rotInt.y, rotInt.z * invGamma);
+
             return Quaternion.Inverse(rot) * rotInt;
         }
 
@@ -126,14 +128,12 @@ namespace OpenRelativity
             float avpMagSqr = avp.sqrMagnitude;
             Vector3 angVec = avpMagSqr <= FLT_EPSILON ? Vector3.zero : 2 * angFac / (c * avpMagSqr) * avp.normalized;
 
-            Matrix4x4 metric = new Matrix4x4(
+            return new Matrix4x4(
                 new Vector4(-1, 0, 0, -angVec.x),
                 new Vector4(0, -1, 0, -angVec.y),
                 new Vector4(0, 0, -1, -angVec.z),
                 new Vector4(-angVec.x, -angVec.y, -angVec.z, (linFac * (1 - angFac) - angFac))
             );
-
-            return metric;
         }
 
         public static float GetTisw(this Vector3 stpiw, Vector3 velocity, Vector4 aiw)
@@ -190,7 +190,7 @@ namespace OpenRelativity
             {
                 riwTransformed = riwTransformed - aiwTransformed * cSqrd * (Mathf.Sqrt(1 + sqrtArg * aiwMagSqr / cSqrd) - 1) / aiwMag;
             }
-            riwTransformed.w = (float)tisw;
+            riwTransformed.w = tisw;
             //Inverse Lorentz transform the position:
             viwLorentzMatrix = viwLorentzMatrix.inverse;
             riw = viwLorentzMatrix * riwTransformed;
@@ -252,17 +252,17 @@ namespace OpenRelativity
             {
                 riwTransformed = riwTransformed - aiwTransformed * cSqrd * (Mathf.Sqrt(1 + sqrtArg * aiwMagSqr / cSqrd) - 1) / aiwMag;
             }
-            riwTransformed.w = (float)tisw;
+            riwTransformed.w = tisw;
             //Inverse Lorentz transform the position:
             viwLorentzMatrix = viwLorentzMatrix.inverse;
             riw = viwLorentzMatrix * riwTransformed;
             tisw = riw.w;
-            riw = (Vector3)riw + (float)tisw * velocity;
+            riw = (Vector3)riw + tisw * velocity;
 
             float speed = vpc.magnitude;
             if (speed > FLT_EPSILON)
             {
-                float newz = speed * c * (float)tisw;
+                float newz = speed * c * tisw;
                 Vector4 vpcUnit = vpc / speed;
                 newz = (Vector4.Dot(riw, vpcUnit) + newz) / Mathf.Sqrt(1 - vpc.sqrMagnitude);
                 riw = riw + (newz - Vector4.Dot(riw, vpcUnit)) * vpcUnit;

@@ -158,13 +158,11 @@ namespace OpenRelativity
             StopTransformCoroutine();
 
             int startIndex = 0;
-            Guid guid;
             for (int i = 0; i < batchSizeDict.Count; ++i)
             {
                 if (!serialQueue[i].Equals(qn))
                 {
-                    guid = serialQueue[i];
-                    startIndex += batchSizeDict[guid];
+                    startIndex += batchSizeDict[serialQueue[i]];
                 }
                 else
                 {

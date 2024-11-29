@@ -137,7 +137,7 @@ namespace OpenRelativity
             //Assume we are in free fall
             isFalling = true;
             //If we have gravity, this factors into transforming to optical space.
-            if (useGravity) state.HasWorldGravity = true;
+            state.HasWorldGravity = useGravity;
 
             //Lock and hide cursor
             Cursor.lockState = CursorLockMode.Locked;
@@ -172,9 +172,8 @@ namespace OpenRelativity
             //We assume that the world "down" direction is the direction of gravity.
             Vector3 playerPos = state.playerTransform.position;
             Ray rayDown = new Ray(playerPos + extents.y * Vector3.down / 2, Vector3.down);
-            RaycastHit hitInfo;
             // TODO: Layer mask
-            isFalling = !Physics.Raycast(rayDown, out hitInfo, extents.y / 2);
+            isFalling = !Physics.Raycast(rayDown, out RaycastHit hitInfo, extents.y / 2);
 
             if (!isFalling)
             {
@@ -323,12 +322,10 @@ namespace OpenRelativity
                 totalVel = new Vector3(totalVel.x, 0, totalVel.z);
             }
 
-            float tvMag = totalVel.magnitude;
-
-            if (tvMag >= state.maxPlayerSpeed - .01f)
+            if (totalVel.magnitude >= state.maxPlayerSpeed)
             {
                 float gamma = totalVel.Gamma();
-                Vector3 diff = totalVel.normalized * (state.maxPlayerSpeed - .01f) - totalVel;
+                Vector3 diff = totalVel.normalized * state.maxPlayerSpeed - totalVel;
                 totalVel += diff;
                 totalAccel += diff * gamma;
             }
@@ -556,9 +553,7 @@ namespace OpenRelativity
             Ray rayRight = new Ray(playerPos + extents.x * Vector3.left, Vector3.right);
             Ray rayForward = new Ray(playerPos + extents.z * Vector3.back, Vector3.forward);
             Ray rayBack = new Ray(playerPos + extents.z * Vector3.forward, Vector3.back);
-            RaycastHit hitInfo;
-            float dist;
-            if (collider.Raycast(rayDown, out hitInfo, extents.y / 2))
+            if (collider.Raycast(rayDown, out RaycastHit hitInfo, extents.y / 2))
             {
                 if (frames > INIT_FRAME_WAIT)
                 {
@@ -573,7 +568,7 @@ namespace OpenRelativity
                         myRB.linearVelocity = new Vector3(myRB.linearVelocity.x, 0, myRB.linearVelocity.z);
                     }
 
-                    dist = extents.y / 2 - hitInfo.distance;
+                    float dist = extents.y / 2 - hitInfo.distance;
                     if (dist > 0.05f)
                     {
                         Vector3 pos = state.playerTransform.position;
