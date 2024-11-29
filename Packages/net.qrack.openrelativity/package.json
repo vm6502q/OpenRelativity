@@ -9,7 +9,8 @@
   "dependencies": {},
   "keywords": [
     "physics",
-    "relativity"
+    "relativity",
+    "shaders"
   ],
   "author": {
     "name": "Daniel Strano, adapted from MIT Game Lab's OpenRelativity",

@@ -8,9 +8,9 @@
   "licensesUrl": "https://github.com/vm6502q/OpenRelativity/blob/main/MITLicense.md",
   "dependencies": {},
   "keywords": [
+    "cards"
     "magic",
     "tarot",
-    "cards"
   ],
   "author": {
     "name": "Daniel Strano, adapted from Public Domain lithographs",
