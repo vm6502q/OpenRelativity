@@ -204,3 +204,205 @@ Received Import Request.
 Start importing Packages/net.qrack.tarot/package.json using Guid(1c75463e3671b10419c8c0cd57d83501) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '15d64be1e996501a7efe70675d936450') in 0.0141594 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
 
+========================================================================
+Received Import Request.
+  Time since last request: 73.591051 seconds.
+  path: Packages/net.qrack.openrelativity/package.json
+  artifactKey: Guid(eaada278bee57bf46b74f305fc0291aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/package.json using Guid(eaada278bee57bf46b74f305fc0291aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '40638d1f7c4cddf76f6634892fd8398a') in 0.0008754 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.272 seconds
+Refreshing native plugins compatible for Editor in 1.98 ms, found 1 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  0.283 seconds
+Domain Reload Profiling: 553ms
+	BeginReloadAssembly (121ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (3ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (18ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (16ms)
+	LoadAllAssembliesAndSetupDomain (103ms)
+		LoadAssemblies (152ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (22ms)
+			TypeCache.Refresh (4ms)
+				TypeCache.ScanAssembly (1ms)
+			BuildScriptInfoCaches (13ms)
+			ResolveRequiredComponents (2ms)
+	FinalizeReload (283ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (151ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (2ms)
+			SetLoadedEditorAssemblies (4ms)
+			BeforeProcessingInitializeOnLoad (18ms)
+			ProcessInitializeOnLoadAttributes (105ms)
+			ProcessInitializeOnLoadMethodAttributes (17ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 1.76 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 973 unused Assets / (253.0 KB). Loaded Objects now: 1578.
+Memory consumption went from 89.3 MB to 89.1 MB.
+Total: 2.995700 ms (FindLiveObjects: 0.079700 ms CreateObjectMapping: 0.019100 ms MarkObjects: 2.698500 ms  DeleteObjects: 0.197900 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 12.186768 seconds.
+  path: Packages/net.qrack.openrelativity/Example/Audio/151908__carroll27__metronome-even.aiff
+  artifactKey: Guid(f7e930026a4002141a801162961cc3f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/Example/Audio/151908__carroll27__metronome-even.aiff using Guid(f7e930026a4002141a801162961cc3f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fd00ae7e2d9d13d7c4c72224a92ba84b') in 0.1044365 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.897993 seconds.
+  path: Packages/net.qrack.openrelativity/Example/Audio/source_attribution.txt
+  artifactKey: Guid(3104d614235e8e84f875511d10bf7ee3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/Example/Audio/source_attribution.txt using Guid(3104d614235e8e84f875511d10bf7ee3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ccbdb6aefa6ee4bfad97ad0c92395f78') in 0.0008027 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.600237 seconds.
+  path: Packages/net.qrack.openrelativity/Example/Materials/DefaultPhysic.physicMaterial
+  artifactKey: Guid(45ce7002213212f4d93fc6903e7b2cb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/Example/Materials/DefaultPhysic.physicMaterial using Guid(45ce7002213212f4d93fc6903e7b2cb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '793695915fdde251e1863f35d2adfef6') in 0.0005955 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.007163 seconds.
+  path: Packages/net.qrack.openrelativity/Example/Materials/relativityColorOnly.mat
+  artifactKey: Guid(3b3c60c5e54e74d44bc320cd504e75f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/Example/Materials/relativityColorOnly.mat using Guid(3b3c60c5e54e74d44bc320cd504e75f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '73affd3f4b40b4536e02476853eb18e5') in 0.0400428 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.083013 seconds.
+  path: Packages/net.qrack.openrelativity/Example/Materials/relativityUnlit.mat
+  artifactKey: Guid(5f4239d5502bd30499611de1c5b6693e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/Example/Materials/relativityUnlit.mat using Guid(5f4239d5502bd30499611de1c5b6693e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7bf19370f47e33903346972aa2858384') in 0.0197527 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 5
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000010 seconds.
+  path: Packages/net.qrack.openrelativity/Example/Materials/Specular.mat
+  artifactKey: Guid(b9db8aebe1d640c4c8fc9e66f75fe31f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/Example/Materials/Specular.mat using Guid(b9db8aebe1d640c4c8fc9e66f75fe31f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c4059c45233ebca53e59592647116ed6') in 0.1742799 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.067660 seconds.
+  path: Packages/net.qrack.openrelativity/Example/Models/cube.fbx
+  artifactKey: Guid(b4421849ad06e4b4284a9fce215ebb3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/Example/Models/cube.fbx using Guid(b4421849ad06e4b4284a9fce215ebb3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5a295e4d3b4f5e505a627ef348e91510') in 0.101995 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 18
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Packages/net.qrack.openrelativity/Example/Models/sphereTEx.fbx
+  artifactKey: Guid(d960366646406d94e8edaac8e2953fe7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/Example/Models/sphereTEx.fbx using Guid(d960366646406d94e8edaac8e2953fe7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '33ef5604da5774563062fec3723ef1c8') in 0.0475694 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 18
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Packages/net.qrack.openrelativity/Example/Models/relativitylogo.fbx
+  artifactKey: Guid(f1451be7fc56abc4da66d32724fe208e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/Example/Models/relativitylogo.fbx using Guid(f1451be7fc56abc4da66d32724fe208e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6ef989132cbc8edf6c402ed4b6ac73ce') in 0.0344014 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 12
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.917947 seconds.
+  path: Packages/net.qrack.openrelativity/Example/Resources/GameObjects/RigidBox.prefab
+  artifactKey: Guid(2a3c7c4c589a1cc468ab846576d4b754) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/Example/Resources/GameObjects/RigidBox.prefab using Guid(2a3c7c4c589a1cc468ab846576d4b754) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '807411a8d3d75469dc46265eca08f33f') in 0.0237263 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 14
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.263 seconds
+Refreshing native plugins compatible for Editor in 2.91 ms, found 1 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  0.335 seconds
+Domain Reload Profiling: 597ms
+	BeginReloadAssembly (123ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (3ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (21ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (17ms)
+	LoadAllAssembliesAndSetupDomain (90ms)
+		LoadAssemblies (144ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (19ms)
+			TypeCache.Refresh (3ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (13ms)
+			ResolveRequiredComponents (2ms)
+	FinalizeReload (335ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (192ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (2ms)
+			SetLoadedEditorAssemblies (3ms)
+			BeforeProcessingInitializeOnLoad (21ms)
+			ProcessInitializeOnLoadAttributes (131ms)
+			ProcessInitializeOnLoadMethodAttributes (27ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (8ms)
+Refreshing native plugins compatible for Editor in 2.01 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 973 unused Assets / (233.9 KB). Loaded Objects now: 1624.
+Memory consumption went from 91.5 MB to 91.3 MB.
+Total: 3.409000 ms (FindLiveObjects: 0.137100 ms CreateObjectMapping: 0.027400 ms MarkObjects: 3.004600 ms  DeleteObjects: 0.239300 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

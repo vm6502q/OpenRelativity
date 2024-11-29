@@ -1,0 +1,594 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9A2F9229-6C93-C142-9696-77C2EB16B910}|Assembly-CSharp.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\assets\\tachyoid\\scripts\\timereversal\\playerhistoryrecorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A2F9229-6C93-C142-9696-77C2EB16B910}|Assembly-CSharp.csproj|solutionrelative:assets\\tachyoid\\scripts\\timereversal\\playerhistoryrecorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A2F9229-6C93-C142-9696-77C2EB16B910}|Assembly-CSharp.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\assets\\tachyoid\\scripts\\timereversal\\generic\\timereversibleobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A2F9229-6C93-C142-9696-77C2EB16B910}|Assembly-CSharp.csproj|solutionrelative:assets\\tachyoid\\scripts\\timereversal\\generic\\timereversibleobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\QuantumFourierTransform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Packages\\net.qrack.qrack\\Qasm\\QuantumFourierTransform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\packages\\net.qrack.openrelativity\\scripts\\systems\\gamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|solutionrelative:packages\\net.qrack.openrelativity\\scripts\\systems\\gamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7DA12F5-F9F6-2945-5A2B-32FAD8F89911}|net.qrack.qrack.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\packages\\net.qrack.qrack\\scripts\\quantumsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7DA12F5-F9F6-2945-5A2B-32FAD8F89911}|net.qrack.qrack.csproj|solutionrelative:packages\\net.qrack.qrack\\scripts\\quantumsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7DA12F5-F9F6-2945-5A2B-32FAD8F89911}|net.qrack.qrack.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Scripts\\QcClassicalChannel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7DA12F5-F9F6-2945-5A2B-32FAD8F89911}|net.qrack.qrack.csproj|solutionrelative:Packages\\net.qrack.qrack\\Scripts\\QcClassicalChannel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7DA12F5-F9F6-2945-5A2B-32FAD8F89911}|net.qrack.qrack.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\YorktownCouplers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7DA12F5-F9F6-2945-5A2B-32FAD8F89911}|net.qrack.qrack.csproj|solutionrelative:Packages\\net.qrack.qrack\\Qasm\\YorktownCouplers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7DA12F5-F9F6-2945-5A2B-32FAD8F89911}|net.qrack.qrack.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\TeleportBob.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7DA12F5-F9F6-2945-5A2B-32FAD8F89911}|net.qrack.qrack.csproj|solutionrelative:Packages\\net.qrack.qrack\\Qasm\\TeleportBob.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7DA12F5-F9F6-2945-5A2B-32FAD8F89911}|net.qrack.qrack.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\TeleportAlice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7DA12F5-F9F6-2945-5A2B-32FAD8F89911}|net.qrack.qrack.csproj|solutionrelative:Packages\\net.qrack.qrack\\Qasm\\TeleportAlice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7DA12F5-F9F6-2945-5A2B-32FAD8F89911}|net.qrack.qrack.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\Random1Qubit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7DA12F5-F9F6-2945-5A2B-32FAD8F89911}|net.qrack.qrack.csproj|solutionrelative:Packages\\net.qrack.qrack\\Qasm\\Random1Qubit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\packages\\net.qrack.openrelativity\\relativisticobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|solutionrelative:packages\\net.qrack.openrelativity\\relativisticobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A2F9229-6C93-C142-9696-77C2EB16B910}|Assembly-CSharp.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\assets\\example\\scripts\\audiosendertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A2F9229-6C93-C142-9696-77C2EB16B910}|Assembly-CSharp.csproj|solutionrelative:assets\\example\\scripts\\audiosendertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Objects\\SupportScripts\\ObjectBoxColliderDensity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Packages\\net.qrack.openrelativity\\Scripts\\Objects\\SupportScripts\\ObjectBoxColliderDensity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A2F9229-6C93-C142-9696-77C2EB16B910}|Assembly-CSharp.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\assets\\tachyoid\\scripts\\ftlplayercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A2F9229-6C93-C142-9696-77C2EB16B910}|Assembly-CSharp.csproj|solutionrelative:assets\\tachyoid\\scripts\\ftlplayercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\OpenRelativity\\Scripts\\ConformalMap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\OpenRelativity\\Scripts\\ConformalMap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\ConformalMap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\ConformalMap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\RelativisticBehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\RelativisticBehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\GravityMirror.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\GravityMirror.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\SchwarzschildLens.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\SchwarzschildLens.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\GravityLens.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\GravityLens.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Support\\ObjectBoxColliderDensity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|solutionrelative:Packages\\net.qrack.openrelativity\\Scripts\\Support\\ObjectBoxColliderDensity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Support\\RelativisticParent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|solutionrelative:Packages\\net.qrack.openrelativity\\Scripts\\Support\\RelativisticParent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Scripts\\RealTimeQubit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Qrack\\Scripts\\RealTimeQubit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Scripts\\CosmicRaySubstrate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Qrack\\Scripts\\CosmicRaySubstrate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Scripts\\RealTimeQasmProgram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Qrack\\Scripts\\RealTimeQasmProgram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\GravityMirror.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|solutionrelative:Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\GravityMirror.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\SchwarzschildLens.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|solutionrelative:Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\SchwarzschildLens.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\net.qrack.openrelativity.asmdef||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|solutionrelative:Packages\\net.qrack.openrelativity\\net.qrack.openrelativity.asmdef||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\RelativisticBehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|solutionrelative:Packages\\net.qrack.openrelativity\\Scripts\\RelativisticBehavior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\Schwarzschild.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|solutionrelative:Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\Schwarzschild.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\GravityLens.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|solutionrelative:Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\GravityLens.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7DA12F5-F9F6-2945-5A2B-32FAD8F89911}|net.qrack.qrack.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\TripletOxygen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B7DA12F5-F9F6-2945-5A2B-32FAD8F89911}|net.qrack.qrack.csproj|solutionrelative:Packages\\net.qrack.qrack\\Qasm\\TripletOxygen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Scripts\\QcClassicalChannel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Qrack\\Scripts\\QcClassicalChannel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Scripts\\QuantumSystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Qrack\\Scripts\\QuantumSystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Qasm\\TeleportBob.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Qrack\\Qasm\\TeleportBob.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\csc.rsp||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\csc.rsp||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "QuantumFourierTransform.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\QuantumFourierTransform.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.qrack\\Qasm\\QuantumFourierTransform.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\QuantumFourierTransform.cs",
+              "RelativeToolTip": "Packages\\net.qrack.qrack\\Qasm\\QuantumFourierTransform.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:33:52.029Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TimeReversibleObject.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Tachyoid\\Scripts\\TimeReversal\\Generic\\TimeReversibleObject.cs",
+              "RelativeDocumentMoniker": "Assets\\Tachyoid\\Scripts\\TimeReversal\\Generic\\TimeReversibleObject.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Tachyoid\\Scripts\\TimeReversal\\Generic\\TimeReversibleObject.cs",
+              "RelativeToolTip": "Assets\\Tachyoid\\Scripts\\TimeReversal\\Generic\\TimeReversibleObject.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:23:57.646Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AudioSenderTest.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Example\\Scripts\\AudioSenderTest.cs",
+              "RelativeDocumentMoniker": "Assets\\Example\\Scripts\\AudioSenderTest.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Example\\Scripts\\AudioSenderTest.cs",
+              "RelativeToolTip": "Assets\\Example\\Scripts\\AudioSenderTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:23:24.279Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RelativisticObject.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\RelativisticObject.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.openrelativity\\RelativisticObject.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\RelativisticObject.cs",
+              "RelativeToolTip": "Packages\\net.qrack.openrelativity\\RelativisticObject.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:22:23.23Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Random1Qubit.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\Random1Qubit.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.qrack\\Qasm\\Random1Qubit.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\Random1Qubit.cs",
+              "RelativeToolTip": "Packages\\net.qrack.qrack\\Qasm\\Random1Qubit.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "TeleportAlice.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\TeleportAlice.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.qrack\\Qasm\\TeleportAlice.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\TeleportAlice.cs",
+              "RelativeToolTip": "Packages\\net.qrack.qrack\\Qasm\\TeleportAlice.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlayerHistoryRecorder.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Tachyoid\\Scripts\\TimeReversal\\PlayerHistoryRecorder.cs",
+              "RelativeDocumentMoniker": "Assets\\Tachyoid\\Scripts\\TimeReversal\\PlayerHistoryRecorder.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Tachyoid\\Scripts\\TimeReversal\\PlayerHistoryRecorder.cs",
+              "RelativeToolTip": "Assets\\Tachyoid\\Scripts\\TimeReversal\\PlayerHistoryRecorder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:24:38.657Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "QuantumSystem.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Scripts\\QuantumSystem.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.qrack\\Scripts\\QuantumSystem.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Scripts\\QuantumSystem.cs",
+              "RelativeToolTip": "Packages\\net.qrack.qrack\\Scripts\\QuantumSystem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:33:42.919Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GameState.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Systems\\GameState.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.openrelativity\\Scripts\\Systems\\GameState.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Systems\\GameState.cs",
+              "RelativeToolTip": "Packages\\net.qrack.openrelativity\\Scripts\\Systems\\GameState.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:34:42.679Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TeleportBob.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\TeleportBob.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.qrack\\Qasm\\TeleportBob.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\TeleportBob.cs",
+              "RelativeToolTip": "Packages\\net.qrack.qrack\\Qasm\\TeleportBob.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.98Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "YorktownCouplers.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\YorktownCouplers.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.qrack\\Qasm\\YorktownCouplers.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\YorktownCouplers.cs",
+              "RelativeToolTip": "Packages\\net.qrack.qrack\\Qasm\\YorktownCouplers.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.978Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "QcClassicalChannel.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Scripts\\QcClassicalChannel.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.qrack\\Scripts\\QcClassicalChannel.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Scripts\\QcClassicalChannel.cs",
+              "RelativeToolTip": "Packages\\net.qrack.qrack\\Scripts\\QcClassicalChannel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.975Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "RealTimeQubit.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Scripts\\RealTimeQubit.cs",
+              "RelativeDocumentMoniker": "Assets\\Qrack\\Scripts\\RealTimeQubit.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Scripts\\RealTimeQubit.cs",
+              "RelativeToolTip": "Assets\\Qrack\\Scripts\\RealTimeQubit.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:24:27.742Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "RelativisticParent.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Support\\RelativisticParent.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.openrelativity\\Scripts\\Support\\RelativisticParent.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Support\\RelativisticParent.cs",
+              "RelativeToolTip": "Packages\\net.qrack.openrelativity\\Scripts\\Support\\RelativisticParent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:27:09.854Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ObjectBoxColliderDensity.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Support\\ObjectBoxColliderDensity.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.openrelativity\\Scripts\\Support\\ObjectBoxColliderDensity.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Support\\ObjectBoxColliderDensity.cs",
+              "RelativeToolTip": "Packages\\net.qrack.openrelativity\\Scripts\\Support\\ObjectBoxColliderDensity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:27:27.429Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ObjectBoxColliderDensity.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Objects\\SupportScripts\\ObjectBoxColliderDensity.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.openrelativity\\Scripts\\Objects\\SupportScripts\\ObjectBoxColliderDensity.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Objects\\SupportScripts\\ObjectBoxColliderDensity.cs",
+              "RelativeToolTip": "Packages\\net.qrack.openrelativity\\Scripts\\Objects\\SupportScripts\\ObjectBoxColliderDensity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:23:07.485Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "CosmicRaySubstrate.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Scripts\\CosmicRaySubstrate.cs",
+              "RelativeDocumentMoniker": "Assets\\Qrack\\Scripts\\CosmicRaySubstrate.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Scripts\\CosmicRaySubstrate.cs",
+              "RelativeToolTip": "Assets\\Qrack\\Scripts\\CosmicRaySubstrate.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAlwGkAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:20:04.444Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ConformalMap.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\ConformalMap.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\ConformalMap.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\ConformalMap.cs",
+              "RelativeToolTip": "Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\ConformalMap.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.964Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "RealTimeQasmProgram.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Scripts\\RealTimeQasmProgram.cs",
+              "RelativeDocumentMoniker": "Assets\\Qrack\\Scripts\\RealTimeQasmProgram.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Scripts\\RealTimeQasmProgram.cs",
+              "RelativeToolTip": "Assets\\Qrack\\Scripts\\RealTimeQasmProgram.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.984Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ConformalMap.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\OpenRelativity\\Scripts\\ConformalMap.cs",
+              "RelativeDocumentMoniker": "Assets\\OpenRelativity\\Scripts\\ConformalMap.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\OpenRelativity\\Scripts\\ConformalMap.cs",
+              "RelativeToolTip": "Assets\\OpenRelativity\\Scripts\\ConformalMap.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:06.104Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "GravityMirror.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\GravityMirror.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\GravityMirror.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\GravityMirror.cs",
+              "RelativeToolTip": "Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\GravityMirror.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.967Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "SchwarzschildLens.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\SchwarzschildLens.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\SchwarzschildLens.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\SchwarzschildLens.cs",
+              "RelativeToolTip": "Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\SchwarzschildLens.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.97Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "net.qrack.openrelativity.asmdef",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\net.qrack.openrelativity.asmdef",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.openrelativity\\net.qrack.openrelativity.asmdef",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\net.qrack.openrelativity.asmdef",
+              "RelativeToolTip": "Packages\\net.qrack.openrelativity\\net.qrack.openrelativity.asmdef",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001874|",
+              "WhenOpened": "2024-11-29T16:11:05.971Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "RelativisticBehavior.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\RelativisticBehavior.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.openrelativity\\Scripts\\RelativisticBehavior.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\RelativisticBehavior.cs",
+              "RelativeToolTip": "Packages\\net.qrack.openrelativity\\Scripts\\RelativisticBehavior.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T15:32:06.414Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "FTLPlayerController.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Tachyoid\\Scripts\\FTLPlayerController.cs",
+              "RelativeDocumentMoniker": "Assets\\Tachyoid\\Scripts\\FTLPlayerController.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Tachyoid\\Scripts\\FTLPlayerController.cs",
+              "RelativeToolTip": "Assets\\Tachyoid\\Scripts\\FTLPlayerController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T14:47:25.094Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "RelativisticBehavior.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\RelativisticBehavior.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\RelativisticBehavior.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\RelativisticBehavior.cs",
+              "RelativeToolTip": "Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\RelativisticBehavior.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T15:57:54.089Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Schwarzschild.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\Schwarzschild.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\Schwarzschild.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\Schwarzschild.cs",
+              "RelativeToolTip": "Packages\\net.qrack.openrelativity\\Scripts\\ConformalMaps\\Schwarzschild.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMUAAABgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.924Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "GravityLens.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\GravityLens.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\GravityLens.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\GravityLens.cs",
+              "RelativeToolTip": "Packages\\net.qrack.openrelativity\\Scripts\\Gravity Lenses\\GravityLens.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.975Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "TripletOxygen.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\TripletOxygen.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.qrack\\Qasm\\TripletOxygen.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\TripletOxygen.cs",
+              "RelativeToolTip": "Packages\\net.qrack.qrack\\Qasm\\TripletOxygen.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.978Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "QcClassicalChannel.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Scripts\\QcClassicalChannel.cs",
+              "RelativeDocumentMoniker": "Assets\\Qrack\\Scripts\\QcClassicalChannel.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Scripts\\QcClassicalChannel.cs",
+              "RelativeToolTip": "Assets\\Qrack\\Scripts\\QcClassicalChannel.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.984Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "QuantumSystem.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Scripts\\QuantumSystem.cs",
+              "RelativeDocumentMoniker": "Assets\\Qrack\\Scripts\\QuantumSystem.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Scripts\\QuantumSystem.cs",
+              "RelativeToolTip": "Assets\\Qrack\\Scripts\\QuantumSystem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.984Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "TeleportBob.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Qasm\\TeleportBob.cs",
+              "RelativeDocumentMoniker": "Assets\\Qrack\\Qasm\\TeleportBob.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Qrack\\Qasm\\TeleportBob.cs",
+              "RelativeToolTip": "Assets\\Qrack\\Qasm\\TeleportBob.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.986Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "csc.rsp",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\csc.rsp",
+              "RelativeDocumentMoniker": "Assets\\csc.rsp",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\csc.rsp",
+              "RelativeToolTip": "Assets\\csc.rsp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-29T16:11:05.986Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "GravityMirror.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\GravityMirror.cs",
+              "RelativeDocumentMoniker": "Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\GravityMirror.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\GravityMirror.cs",
+              "RelativeToolTip": "Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\GravityMirror.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.986Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "SchwarzschildLens.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\SchwarzschildLens.cs",
+              "RelativeDocumentMoniker": "Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\SchwarzschildLens.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\SchwarzschildLens.cs",
+              "RelativeToolTip": "Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\SchwarzschildLens.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.986Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "GravityLens.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\GravityLens.cs",
+              "RelativeDocumentMoniker": "Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\GravityLens.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\GravityLens.cs",
+              "RelativeToolTip": "Assets\\OpenRelativity\\Scripts\\Gravity Lenses\\GravityLens.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:11:05.988Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
