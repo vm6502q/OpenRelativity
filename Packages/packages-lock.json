@@ -94,6 +94,29 @@
       },
       "url": "https://packages.unity.com"
     },
+    "net.qrack.openrelativity": {
+      "version": "file:net.qrack.openrelativity",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "net.qrack.qrack": {
+      "version": "file:net.qrack.qrack",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "net.qrack.openrelativity": "0.1.0"
+      }
+    },
+    "net.qrack.tachyoid": {
+      "version": "file:net.qrack.tachyoid",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "net.qrack.openrelativity": "0.1.0",
+        "net.qrack.qrack": "0.1.0"
+      }
+    },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
       "depth": 0,

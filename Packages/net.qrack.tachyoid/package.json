@@ -1,0 +1,22 @@
+{
+  "name": "net.qrack.tachyoid",
+  "version": "0.1.0",
+  "displayName": "Tachyoid",
+  "description": "Tachyoid time travel, for use with vm6502q fork of OpenRelativity",
+  "unity": "6000.0",
+  "documentationUrl": "https://github.com/vm6502q/OpenRelativity",
+  "licensesUrl": "https://github.com/vm6502q/OpenRelativity/blob/main/MITLicense.md",
+  "dependencies": {
+    "net.qrack.openrelativity": "0.1.0",
+    "net.qrack.qrack": "0.1.0"
+  },
+  "keywords": [
+    "physics",
+    "relativity"
+  ],
+  "author": {
+    "name": "Daniel Strano",
+    "email": "stranoj@gmail.com",
+    "url": "https://github.com/WrathfulSpatula/"
+  }
+}

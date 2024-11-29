@@ -1,0 +1,22 @@
+{
+  "name": "net.qrack.qrack",
+  "version": "0.1.0",
+  "displayName": "Qrack",
+  "description": "Qrack quantum computer simulator, for use with vm6502q fork of OpenRelativity",
+  "unity": "6000.0",
+  "documentationUrl": "https://github.com/vm6502q/OpenRelativity",
+  "licensesUrl": "https://github.com/vm6502q/OpenRelativity/blob/main/MITLicense.md",
+  "dependencies": {
+    "net.qrack.openrelativity": "0.1.0"
+  },
+  "keywords": [
+    "physics",
+    "quantum",
+    "relativity"
+  ],
+  "author": {
+    "name": "Daniel Strano and the Qrack Contributors",
+    "email": "stranoj@gmail.com",
+    "url": "https://github.com/WrathfulSpatula/"
+  }
+}

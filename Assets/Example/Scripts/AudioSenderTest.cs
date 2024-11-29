@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using OpenRelativity.Objects;
+﻿using UnityEngine;
+using OpenRelativity;
 
 public class AudioSenderTest : MonoBehaviour
 {

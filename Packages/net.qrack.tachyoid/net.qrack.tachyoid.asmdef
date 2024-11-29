@@ -1,0 +1,18 @@
+{
+    "name": "net.qrack.tachyoid",
+    "rootNamespace": "",
+    "references": [
+        "GUID:17eed10f3dcfb4a41a44155b9db3d0a0",
+        "GUID:74209c0d8f829cd4599c3589a74f8d2e",
+        "GUID:2f52f0b6cfdc94464bcc067a11c8e1b6"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

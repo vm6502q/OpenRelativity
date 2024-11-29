@@ -1,0 +1,19 @@
+{
+  "name": "net.qrack.openrelativity",
+  "version": "0.1.0",
+  "displayName": "OpenRelativity",
+  "description": "vm6502q fork of OpenRelativity",
+  "unity": "6000.0",
+  "documentationUrl": "https://github.com/vm6502q/OpenRelativity",
+  "licensesUrl": "https://github.com/vm6502q/OpenRelativity/blob/main/MITLicense.md",
+  "dependencies": {},
+  "keywords": [
+    "physics",
+    "relativity"
+  ],
+  "author": {
+    "name": "Daniel Strano, adapted from MIT Game Lab's OpenRelativity",
+    "email": "stranoj@gmail.com",
+    "url": "https://github.com/WrathfulSpatula/"
+  }
+}
