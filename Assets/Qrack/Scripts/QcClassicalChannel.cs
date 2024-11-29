@@ -1,12 +1,18 @@
-﻿#if OPEN_RELATIVITY_INCLUDED
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
+
+#if OPEN_RELATIVITY_INCLUDED
 using OpenRelativity;
 using OpenRelativity.Objects;
+#endif
 
 namespace Qrack
 {
+#if OPEN_RELATIVITY_INCLUDED
     public class QcClassicalChannel : RelativisticBehavior
+#else
+    public class QcClassicalChannel : MonoBehaviour
+#endif
     {
         public ActionIndicator visualUnitPrefab;
         private List<ActionIndicator> visualUnitsActive;
@@ -17,8 +23,41 @@ namespace Qrack
         public RealTimeQasmProgram destination;
         public float emissionInterval = 1;
         public float historyLength = 50;
+#if !OPEN_RELATIVITY_INCLUDED
+        public float IndicatorSpeed = 100;
+#endif
 
         private Vector3 oldCameraPos;
+#if !OPEN_RELATIVITY_INCLUDED
+        private Transform _playerTransform = null;
+#endif
+
+        protected float speed
+        {
+            get
+            {
+#if OPEN_RELATIVITY_INCLUDED
+                return state.SpeedOfLight;
+#else
+                return IndicatorSpeed;
+#endif
+            }
+        }
+
+        protected Transform playerTransform
+        {
+            get
+            {
+#if OPEN_RELATIVITY_INCLUDED
+                return state.playerTransform;
+#else
+                if (_playerTransform == null) {
+                    _playerTrasnform = GameObject.FindGameObjectWithTag("Player").transform;
+                }
+                return _playerTrasnform;
+#endif
+            }
+        }
 
         public class QcClassicalSignal
         {
@@ -32,8 +71,7 @@ namespace Qrack
             visualUnitsActive = new List<ActionIndicator>();
             visualUnitsFree = new List<ActionIndicator>();
             transmittingSignals = new Dictionary<int, QcClassicalSignal>();
-
-            oldCameraPos = state.playerTransform.position;
+            oldCameraPos = playerTransform.position;
         }
 
         public void EmitBit(int sourceIndex, int destIndex)
@@ -58,18 +96,19 @@ namespace Qrack
 
         protected void FixedUpdate()
         {
+#if OPEN_RELATIVITY_INCLUDED
             if (!state.isMovementFrozen)
             {
                 TranslateSignals(state.FixedDeltaTimeWorld);
             }
+#else
+            TranslateSignals(Time.fixedDeltaTime);
+#endif
         }
 
         private void TranslateSignals(float deltaWordTime)
         {
-            Vector3 cameraPos = state.playerTransform.position;
-
-            float cameraDispChange;
-            float gtt;
+            Vector3 cameraPos = playerTransform.position;
             Vector3 destPos = destination.RelativisticObject.opticalPiw;
             Vector3 vuPos, dispUnit, velUnit;
             float perspectiveFactor;
@@ -77,14 +116,20 @@ namespace Qrack
             int signalIndex = 0;
             while (vuIndex < visualUnitsActive.Count) {
                 ActionIndicator vu = visualUnitsActive[vuIndex];
+#if OPEN_RELATIVITY_INCLUDED
                 RelativisticObject vuRO = vu.GetComponent<RelativisticObject>();
+#endif
                 vuPos = vu.transform.position;
                 dispUnit = (destPos - vuPos).normalized;
-                velUnit = state.SpeedOfLight * dispUnit;
+                velUnit = speed * dispUnit;
                 perspectiveFactor = Mathf.Pow(2, Vector3.Dot((cameraPos - vuPos).normalized, dispUnit));
-                cameraDispChange = (oldCameraPos - vuPos).magnitude - (cameraPos - vuPos).magnitude;
-                gtt = vuRO.GetTimeFactor();
-                Vector3 disp = (gtt * deltaWordTime * velUnit + cameraDispChange * dispUnit) * perspectiveFactor;
+                float cameraDispChange = (oldCameraPos - vuPos).magnitude - (cameraPos - vuPos).magnitude;
+#if OPEN_RELATIVITY_INCLUDED
+                Vector3 disp = (vuRO.GetTimeFactor() * deltaWordTime * velUnit + cameraDispChange * dispUnit) * perspectiveFactor;
+#else
+                Vector3 disp = (deltaWordTime * velUnit + cameraDispChange * dispUnit) * perspectiveFactor;
+#endif
+
                 if (disp.sqrMagnitude > (destPos - vuPos).sqrMagnitude)
                 {
                     visualUnitsActive.Remove(vu);
@@ -98,7 +143,9 @@ namespace Qrack
                 else
                 {
                     vu.transform.position = vuPos + disp;
+#if OPEN_RELATIVITY_INCLUDED
                     vuRO.piw = vu.transform.position;
+#endif
                     ++vuIndex;
                 }
                 ++signalIndex;
@@ -107,4 +154,3 @@ namespace Qrack
         }
     }
 }
-#endif
