@@ -18,5 +18,10 @@
     "name": "Daniel Strano and the Qrack Contributors",
     "email": "stranoj@gmail.com",
     "url": "https://github.com/WrathfulSpatula/"
-  }
+  },
+  "samples": [{
+    "displayName": "Example",
+    "description": "Contains example scene",
+    "path": "Samples~/Example"
+  }]
 }

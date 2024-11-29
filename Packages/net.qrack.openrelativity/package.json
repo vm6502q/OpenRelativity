@@ -16,5 +16,10 @@
     "name": "Daniel Strano, adapted from MIT Game Lab's OpenRelativity",
     "email": "stranoj@gmail.com",
     "url": "https://github.com/WrathfulSpatula/"
-  }
+  },
+  "samples": [{
+    "displayName": "Example",
+    "description": "Contains example scenes",
+    "path": "Samples~/Example"
+  }]
 }
