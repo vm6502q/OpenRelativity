@@ -19,5 +19,10 @@
     "name": "Daniel Strano",
     "email": "stranoj@gmail.com",
     "url": "https://github.com/WrathfulSpatula/"
-  }
+  },
+  "samples": [{
+    "displayName": "Example",
+    "description": "Contains example scenes",
+    "path": "Samples~/Example"
+  }]
 }
