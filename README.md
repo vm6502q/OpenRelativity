@@ -18,6 +18,18 @@ Since Dan is also lead developer of the Qrack quantum computer simulation framew
 
 Just download the project and open the Unity scene. Everything should work out of the box.
 
+Alternatively, to use the work in this project Unity packages in a new or existing project, add the following dependency URLs to `Packages/manifest.json`:
+
+```json
+{
+  "dependencies": {
+    "net.qrack.openrelativity": "https://github.com/vm6502q/OpenRelativity.git?path=/Packages/net.qrack.openrelativity",
+    "net.qrack.qrack": "https://github.com/vm6502q/OpenRelativity.git?path=/Packages/net.qrack.qrack",
+    "net.qrack.tarot": "https://github.com/vm6502q/OpenRelativity.git?path=/Packages/net.qrack.tarot"
+  }
+}
+```
+
 ### Prerequisities
 
 The only necessary component is Unity3D, available at [their website](https://unity3d.com/get-unity/download).
