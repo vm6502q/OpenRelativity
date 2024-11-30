@@ -18,7 +18,7 @@ Since Dan is also lead developer of the Qrack quantum computer simulation framew
 
 Just download the project and open the Unity scene. Everything should work out of the box.
 
-Alternatively, to use the work in this project Unity packages in a new or existing project, add the following dependency URLs to `Packages/manifest.json`:
+Alternatively, to use the work in this project as isolated Unity packages in a new or existing project, add the following dependency URLs to `Packages/manifest.json`:
 
 ```json
 {
