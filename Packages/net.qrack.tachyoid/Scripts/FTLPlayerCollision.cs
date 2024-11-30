@@ -55,12 +55,12 @@ namespace Tachyoid
             return contactPoint;
         }
 
-        void OnCollisionEnter(Collision collision)
+        protected void OnCollisionEnter(Collision collision)
         {
             OnCollision(collision);
         }
 
-        void OnCollisionStay(Collision collision)
+        protected void OnCollisionStay(Collision collision)
         {
             OnCollision(collision);
         }
@@ -119,7 +119,7 @@ namespace Tachyoid
             }
         }
 
-        void OnCollisionExit(Collision collision)
+        protected void OnCollisionExit(Collision collision)
         {
             playerCtrl.collidersBelow.Remove(collision.collider);
             if (playerCtrl.collidersBelow.Count == 0)

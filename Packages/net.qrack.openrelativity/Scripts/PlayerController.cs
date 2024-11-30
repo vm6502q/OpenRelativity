@@ -186,6 +186,9 @@ namespace OpenRelativity
             //If we're not paused, update speed and rotation using player input.
             state.deltaRotation = Vector3.zero;
 
+            #region ControlScheme
+
+#if false
             //If they press the Y button, invert all Y axes
             if (Input.GetAxis("Invert Button") > 0 && !invertKeyDown)
             {
@@ -197,8 +200,7 @@ namespace OpenRelativity
             {
                 invertKeyDown = false;
             }
-
-            #region ControlScheme
+#endif
 
             //PLAYER MOVEMENT
 
@@ -333,6 +335,7 @@ namespace OpenRelativity
             state.PlayerVelocityVector = totalVel;
             state.PlayerAccelerationVector = totalAccel;
 
+#if false
             //CHANGE the speed of light
 
             //Get our input axis (DEFAULT N, M) value to determine how much to change the speed of light
@@ -365,6 +368,7 @@ namespace OpenRelativity
             {
                 state.SpeedOfLight = speedOfLightTarget;
             }
+#endif
 
             //MOUSE CONTROLS
             //Current position of the mouse
@@ -414,7 +418,7 @@ namespace OpenRelativity
             }
 
 
-            #endregion
+#endregion
 
             //Send current speed of light to the shader
             Shader.SetGlobalFloat("_spdOfLight", state.SpeedOfLight);
