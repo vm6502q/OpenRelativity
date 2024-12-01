@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\packages\\net.qrack.openrelativity\\scripts\\systems\\gamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|solutionrelative:packages\\net.qrack.openrelativity\\scripts\\systems\\gamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Library\\PackageCache\\com.unity.ugui\\Runtime\\UGUI\\EventSystem\\InputModules\\BaseInput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.ugui\\Runtime\\UGUI\\EventSystem\\InputModules\\BaseInput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\QuantumFourierTransform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Packages\\net.qrack.qrack\\Qasm\\QuantumFourierTransform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\packages\\net.qrack.openrelativity\\scripts\\systems\\gamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{36C35C2D-F595-4C2F-3951-38027EE692F7}|net.qrack.openrelativity.csproj|solutionrelative:packages\\net.qrack.openrelativity\\scripts\\systems\\gamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B7DA12F5-F9F6-2945-5A2B-32FAD8F89911}|net.qrack.qrack.csproj|C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\packages\\net.qrack.qrack\\scripts\\quantumsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -166,55 +166,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BaseInput.cs",
-              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Library\\PackageCache\\com.unity.ugui\\Runtime\\UGUI\\EventSystem\\InputModules\\BaseInput.cs",
-              "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.ugui\\Runtime\\UGUI\\EventSystem\\InputModules\\BaseInput.cs",
-              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Library\\PackageCache\\com.unity.ugui\\Runtime\\UGUI\\EventSystem\\InputModules\\BaseInput.cs",
-              "RelativeToolTip": "Library\\PackageCache\\com.unity.ugui\\Runtime\\UGUI\\EventSystem\\InputModules\\BaseInput.cs",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAlwIUAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T17:15:39.624Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "StaticRelativitySystem.cs",
-              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Systems\\StaticRelativitySystem.cs",
-              "RelativeDocumentMoniker": "Packages\\net.qrack.openrelativity\\Scripts\\Systems\\StaticRelativitySystem.cs",
-              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Systems\\StaticRelativitySystem.cs",
-              "RelativeToolTip": "Packages\\net.qrack.openrelativity\\Scripts\\Systems\\StaticRelativitySystem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAABPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T11:49:11.282Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AudioSenderTest.cs",
-              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Samples\\OpenRelativity\\0.1.0\\Examples\\Scripts\\AudioSenderTest.cs",
-              "RelativeDocumentMoniker": "Assets\\Samples\\OpenRelativity\\0.1.0\\Examples\\Scripts\\AudioSenderTest.cs",
-              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Samples\\OpenRelativity\\0.1.0\\Examples\\Scripts\\AudioSenderTest.cs",
-              "RelativeToolTip": "Assets\\Samples\\OpenRelativity\\0.1.0\\Examples\\Scripts\\AudioSenderTest.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T21:01:53.775Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "QuantumFourierTransform.cs",
-              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\QuantumFourierTransform.cs",
-              "RelativeDocumentMoniker": "Packages\\net.qrack.qrack\\Qasm\\QuantumFourierTransform.cs",
-              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\QuantumFourierTransform.cs",
-              "RelativeToolTip": "Packages\\net.qrack.qrack\\Qasm\\QuantumFourierTransform.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T16:33:52.029Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 37,
@@ -277,7 +230,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "PlayerHistoryRecorder.cs",
               "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Tachyoid\\Scripts\\TimeReversal\\PlayerHistoryRecorder.cs",
               "RelativeDocumentMoniker": "Assets\\Tachyoid\\Scripts\\TimeReversal\\PlayerHistoryRecorder.cs",
@@ -285,6 +238,66 @@
               "RelativeToolTip": "Assets\\Tachyoid\\Scripts\\TimeReversal\\PlayerHistoryRecorder.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-29T16:24:38.657Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GameState.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Systems\\GameState.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.openrelativity\\Scripts\\Systems\\GameState.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Systems\\GameState.cs",
+              "RelativeToolTip": "Packages\\net.qrack.openrelativity\\Scripts\\Systems\\GameState.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAANYAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:34:42.679Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "QuantumFourierTransform.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\QuantumFourierTransform.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.qrack\\Qasm\\QuantumFourierTransform.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.qrack\\Qasm\\QuantumFourierTransform.cs",
+              "RelativeToolTip": "Packages\\net.qrack.qrack\\Qasm\\QuantumFourierTransform.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T16:33:52.029Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AudioSenderTest.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Samples\\OpenRelativity\\0.1.0\\Examples\\Scripts\\AudioSenderTest.cs",
+              "RelativeDocumentMoniker": "Assets\\Samples\\OpenRelativity\\0.1.0\\Examples\\Scripts\\AudioSenderTest.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Assets\\Samples\\OpenRelativity\\0.1.0\\Examples\\Scripts\\AudioSenderTest.cs",
+              "RelativeToolTip": "Assets\\Samples\\OpenRelativity\\0.1.0\\Examples\\Scripts\\AudioSenderTest.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T21:01:53.775Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StaticRelativitySystem.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Systems\\StaticRelativitySystem.cs",
+              "RelativeDocumentMoniker": "Packages\\net.qrack.openrelativity\\Scripts\\Systems\\StaticRelativitySystem.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Systems\\StaticRelativitySystem.cs",
+              "RelativeToolTip": "Packages\\net.qrack.openrelativity\\Scripts\\Systems\\StaticRelativitySystem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-30T11:49:11.282Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BaseInput.cs",
+              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Library\\PackageCache\\com.unity.ugui\\Runtime\\UGUI\\EventSystem\\InputModules\\BaseInput.cs",
+              "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.ugui\\Runtime\\UGUI\\EventSystem\\InputModules\\BaseInput.cs",
+              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Library\\PackageCache\\com.unity.ugui\\Runtime\\UGUI\\EventSystem\\InputModules\\BaseInput.cs",
+              "RelativeToolTip": "Library\\PackageCache\\com.unity.ugui\\Runtime\\UGUI\\EventSystem\\InputModules\\BaseInput.cs",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAlwIUAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-30T17:15:39.624Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -297,18 +310,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-29T16:33:42.919Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GameState.cs",
-              "DocumentMoniker": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Systems\\GameState.cs",
-              "RelativeDocumentMoniker": "Packages\\net.qrack.openrelativity\\Scripts\\Systems\\GameState.cs",
-              "ToolTip": "C:\\Users\\jerse\\OneDrive\\Documents\\GitHub\\OpenRelativity\\Packages\\net.qrack.openrelativity\\Scripts\\Systems\\GameState.cs",
-              "RelativeToolTip": "Packages\\net.qrack.openrelativity\\Scripts\\Systems\\GameState.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T16:34:42.679Z"
             },
             {
               "$type": "Document",
