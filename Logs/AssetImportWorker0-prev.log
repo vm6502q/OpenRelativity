@@ -15,7 +15,7 @@ C:/Users/jerse/OneDrive/Documents/GitHub/OpenRelativity
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-53335
+57761
 -job-worker-count
 15
 -background-job-worker-count
@@ -59,14 +59,14 @@ C:/Users/jerse/OneDrive/Documents/GitHub/OpenRelativity
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [12560]  Target information:
+Player connection [47796]  Target information:
 
-Player connection [12560]  * "[IP] 172.27.96.1 [Port] 0 [Flags] 2 [Guid] 2410327422 [EditorId] 2410327422 [Version] 1048832 [Id] WindowsEditor(7,Horus) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [47796]  * "[IP] 172.27.96.1 [Port] 0 [Flags] 2 [Guid] 3840709317 [EditorId] 3840709317 [Version] 1048832 [Id] WindowsEditor(7,Horus) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [12560]  * "[IP] 192.168.1.194 [Port] 0 [Flags] 2 [Guid] 2410327422 [EditorId] 2410327422 [Version] 1048832 [Id] WindowsEditor(7,Horus) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [47796]  * "[IP] 192.168.1.194 [Port] 0 [Flags] 2 [Guid] 3840709317 [EditorId] 3840709317 [Version] 1048832 [Id] WindowsEditor(7,Horus) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [12560] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [12560] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [47796] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [47796] Host joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 15
 [Physics::Module] Initialized fallback backend.
 [Physics::Module] Id: 0xdecafbad
@@ -77,7 +77,7 @@ Library Redirect Path: Library/
 [Physics::Module] SDK Version: 4.1.2
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Multi-Threaded
-Refreshing native plugins compatible for Editor in 3.54 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 3.85 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 6000.0.28f1 (f336aca0cab5)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.0.28f1/Editor/Data/Resources/UnitySubsystems
@@ -93,45 +93,45 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.0.28f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.0.28f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.0.28f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56152
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56312
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.28f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.28f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.002579 seconds.
-- Loaded All Assemblies, in  0.271 seconds
+Registered in 0.002680 seconds.
+- Loaded All Assemblies, in  0.274 seconds
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.220 seconds
-Domain Reload Profiling: 490ms
-	BeginReloadAssembly (96ms)
+- Finished resetting the current domain, in  0.219 seconds
+Domain Reload Profiling: 491ms
+	BeginReloadAssembly (95ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (25ms)
-	RebuildNativeTypeToScriptingClass (9ms)
+		CreateAndSetChildDomain (0ms)
+	RebuildCommonClasses (26ms)
+	RebuildNativeTypeToScriptingClass (8ms)
 	initialDomainReloadingComplete (34ms)
-	LoadAllAssembliesAndSetupDomain (106ms)
+	LoadAllAssembliesAndSetupDomain (109ms)
 		LoadAssemblies (94ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (104ms)
-			TypeCache.Refresh (103ms)
-				TypeCache.ScanAssembly (93ms)
+		AnalyzeDomain (106ms)
+			TypeCache.Refresh (105ms)
+				TypeCache.ScanAssembly (95ms)
 			BuildScriptInfoCaches (0ms)
 			ResolveRequiredComponents (0ms)
 	FinalizeReload (220ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (198ms)
+		SetupLoadedEditorAssemblies (197ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (16ms)
+			InitializePlatformSupportModulesInManaged (17ms)
 			SetLoadedEditorAssemblies (3ms)
 			BeforeProcessingInitializeOnLoad (5ms)
-			ProcessInitializeOnLoadAttributes (133ms)
-			ProcessInitializeOnLoadMethodAttributes (39ms)
+			ProcessInitializeOnLoadAttributes (132ms)
+			ProcessInitializeOnLoadMethodAttributes (38ms)
 			AfterProcessingInitializeOnLoad (2ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -140,8 +140,8 @@ Domain Reload Profiling: 490ms
 Worker process is ready to serve import requests
 Import Worker Mode flag is 0x00
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.456 seconds
-Refreshing native plugins compatible for Editor in 3.54 ms, found 1 plugins.
+- Loaded All Assemblies, in  0.459 seconds
+Refreshing native plugins compatible for Editor in 4.12 ms, found 1 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 Package Manager log level set to [2]
@@ -155,302 +155,212 @@ Mono: successfully reloaded assembly
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.308 seconds
-Domain Reload Profiling: 763ms
-	BeginReloadAssembly (279ms)
+- Finished resetting the current domain, in  0.313 seconds
+Domain Reload Profiling: 770ms
+	BeginReloadAssembly (281ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (4ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (22ms)
+		CreateAndSetChildDomain (21ms)
 	RebuildCommonClasses (26ms)
 	RebuildNativeTypeToScriptingClass (8ms)
-	initialDomainReloadingComplete (22ms)
-	LoadAllAssembliesAndSetupDomain (120ms)
-		LoadAssemblies (166ms)
+	initialDomainReloadingComplete (25ms)
+	LoadAllAssembliesAndSetupDomain (117ms)
+		LoadAssemblies (161ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (29ms)
+		AnalyzeDomain (30ms)
 			TypeCache.Refresh (18ms)
 				TypeCache.ScanAssembly (11ms)
-			BuildScriptInfoCaches (7ms)
+			BuildScriptInfoCaches (8ms)
 			ResolveRequiredComponents (2ms)
-	FinalizeReload (308ms)
+	FinalizeReload (314ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (167ms)
+		SetupLoadedEditorAssemblies (172ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (2ms)
 			SetLoadedEditorAssemblies (3ms)
-			BeforeProcessingInitializeOnLoad (18ms)
-			ProcessInitializeOnLoadAttributes (119ms)
+			BeforeProcessingInitializeOnLoad (26ms)
+			ProcessInitializeOnLoadAttributes (116ms)
 			ProcessInitializeOnLoadMethodAttributes (20ms)
 			AfterProcessingInitializeOnLoad (5ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (6ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
-Refreshing native plugins compatible for Editor in 7.21 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 3.33 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 19 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 986 unused Assets / (388.2 KB). Loaded Objects now: 1577.
-Memory consumption went from 93.5 MB to 93.1 MB.
-Total: 5.991800 ms (FindLiveObjects: 0.148200 ms CreateObjectMapping: 0.042600 ms MarkObjects: 5.401300 ms  DeleteObjects: 0.398500 ms)
+Unloading 986 unused Assets / (332.1 KB). Loaded Objects now: 1577.
+Memory consumption went from 93.5 MB to 93.2 MB.
+Total: 3.865100 ms (FindLiveObjects: 0.086900 ms CreateObjectMapping: 0.022400 ms MarkObjects: 3.430800 ms  DeleteObjects: 0.324100 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 864935.801389 seconds.
+  Time since last request: 915800.283595 seconds.
+  path: Assets/Plugins/Android/arm64-v8a/libqrack_pinvoke.so
+  artifactKey: Guid(5e670af3f7db35145ae620bd5b022180) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Android/arm64-v8a/libqrack_pinvoke.so using Guid(5e670af3f7db35145ae620bd5b022180) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
+ -> (artifact id: 'dd1816b3147b60dc85c0a4d51f05474b') in 0.0150699 seconds
+  ERROR: Import of 'Assets/Plugins/Android/arm64-v8a/libqrack_pinvoke.so' had errors: Could not generate preview image
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.756348 seconds.
   path: Assets/Plugins/Android/armeabi-v7a/libqrack_pinvoke.so
   artifactKey: Guid(241006f69a1af6c41a803b24f74718c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Plugins/Android/armeabi-v7a/libqrack_pinvoke.so using Guid(241006f69a1af6c41a803b24f74718c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
- -> (artifact id: '8a96a0432e0b8d9448f8c24a696dd1e3') in 0.0177577 seconds
+ -> (artifact id: '37fd219f3be57e88cc1637402268b3bd') in 0.0114873 seconds
   ERROR: Import of 'Assets/Plugins/Android/armeabi-v7a/libqrack_pinvoke.so' had errors: Could not generate preview image
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Import Request.
-  Time since last request: 2.296391 seconds.
+  Time since last request: 2.145473 seconds.
   path: Assets/Plugins/Android/x86/libqrack_pinvoke.so
   artifactKey: Guid(915c92ebc113b0f46898a8692bb827a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Plugins/Android/x86/libqrack_pinvoke.so using Guid(915c92ebc113b0f46898a8692bb827a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
- -> (artifact id: '8ad3a1c8d35427c01474a03d082bab16') in 0.0340373 seconds
+ -> (artifact id: '3ba5378ec256b9acaee9786734343080') in 0.025983 seconds
   ERROR: Import of 'Assets/Plugins/Android/x86/libqrack_pinvoke.so' had errors: Could not generate preview image
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Import Request.
-  Time since last request: 1.909850 seconds.
+  Time since last request: 1.602524 seconds.
   path: Assets/Plugins/Android/x86_64/libqrack_pinvoke.so
   artifactKey: Guid(aae903189362cd34cb9f5dd6056ff411) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Plugins/Android/x86_64/libqrack_pinvoke.so using Guid(aae903189362cd34cb9f5dd6056ff411) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
- -> (artifact id: '29b633def4ed610a5364589d0720a62f') in 0.0239549 seconds
+ -> (artifact id: '2c6611af8c2e9c6863228b0931a8502b') in 0.0137176 seconds
   ERROR: Import of 'Assets/Plugins/Android/x86_64/libqrack_pinvoke.so' had errors: Could not generate preview image
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Import Request.
-  Time since last request: 3.261747 seconds.
+  Time since last request: 2.125999 seconds.
   path: Assets/Plugins/iOS/ARM64/libqrack_pinvoke.dylib
   artifactKey: Guid(1569dc3ccaf561f41b2c70a91be5ca8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Plugins/iOS/ARM64/libqrack_pinvoke.dylib using Guid(1569dc3ccaf561f41b2c70a91be5ca8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
- -> (artifact id: '291c42abde4c378a0a32a881b1e06c86') in 0.0181129 seconds
+ -> (artifact id: '068dbabe5c2df55024b9e7dd235455f2') in 0.0148014 seconds
   ERROR: Import of 'Assets/Plugins/iOS/ARM64/libqrack_pinvoke.dylib' had errors: Could not generate preview image
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Import Request.
-  Time since last request: 1.539277 seconds.
-  path: Assets/Plugins/iOS/ARM64/libqrack_pinvoke.9.13.8.dylib
-  artifactKey: Guid(4e2e0a40cdee0b749a2240f75c7e3992) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/iOS/ARM64/libqrack_pinvoke.9.13.8.dylib using Guid(4e2e0a40cdee0b749a2240f75c7e3992) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
- -> (artifact id: '5dddb86211dce2be1593f88f2d5e0e9f') in 0.015462 seconds
-  ERROR: Import of 'Assets/Plugins/iOS/ARM64/libqrack_pinvoke.9.13.8.dylib' had errors: Could not generate preview image
+  Time since last request: 1.513243 seconds.
+  path: Assets/Plugins/iOS/ARM64/libqrack_pinvoke.9.13.9.dylib
+  artifactKey: Guid(f100f7b28d449204eaa6cfe87a9e671b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/iOS/ARM64/libqrack_pinvoke.9.13.9.dylib using Guid(f100f7b28d449204eaa6cfe87a9e671b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
+ -> (artifact id: 'afb66457f2125486e1cbea71775b7a43') in 0.0139217 seconds
+  ERROR: Import of 'Assets/Plugins/iOS/ARM64/libqrack_pinvoke.9.13.9.dylib' had errors: Could not generate preview image
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Import Request.
-  Time since last request: 4.954944 seconds.
+  Time since last request: 2.598309 seconds.
   path: Assets/Plugins/Linux/x86_64/libqrack_pinvoke.so
   artifactKey: Guid(def77cd7262f9d74fa9d18359b98e650) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Plugins/Linux/x86_64/libqrack_pinvoke.so using Guid(def77cd7262f9d74fa9d18359b98e650) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
- -> (artifact id: 'c27584e0d99eaccd10f87eed472240f9') in 0.0156186 seconds
+ -> (artifact id: '1c0dd16d14a35a0a57c82c40cc7fffc4') in 0.0201669 seconds
   ERROR: Import of 'Assets/Plugins/Linux/x86_64/libqrack_pinvoke.so' had errors: Could not generate preview image
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Import Request.
-  Time since last request: 8.804314 seconds.
-  path: Assets/Plugins/Linux/x86_64/libqrack_pinvoke.so.9.13.8
-  artifactKey: Guid(c9e60e817645cf74e87f46222e616741) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Linux/x86_64/libqrack_pinvoke.so.9.13.8 using Guid(c9e60e817645cf74e87f46222e616741) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
- -> (artifact id: '9170507fe9201039922239b5980b05cd') in 0.0217657 seconds
-  ERROR: Import of 'Assets/Plugins/Linux/x86_64/libqrack_pinvoke.so.9.13.8' had errors: Could not generate preview image
+  Time since last request: 5.347008 seconds.
+  path: Assets/Plugins/Linux/x86_64/libqrack_pinvoke.so.9.13.9
+  artifactKey: Guid(59f46a289af981249b5f87bac87da313) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Linux/x86_64/libqrack_pinvoke.so.9.13.9 using Guid(59f46a289af981249b5f87bac87da313) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
+ -> (artifact id: '7f7ee41a2c3196b65599a31cb8b14d2e') in 0.0144633 seconds
+  ERROR: Import of 'Assets/Plugins/Linux/x86_64/libqrack_pinvoke.so.9.13.9' had errors: Could not generate preview image
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Prepare
-Refreshing native plugins compatible for Editor in 3.52 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 3.71 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 956 unused Assets / (254.4 KB). Loaded Objects now: 1575.
+Unloading 956 unused Assets / (331.6 KB). Loaded Objects now: 1575.
 Memory consumption went from 89.2 MB to 88.9 MB.
-Total: 3.839700 ms (FindLiveObjects: 0.074900 ms CreateObjectMapping: 0.020600 ms MarkObjects: 3.544900 ms  DeleteObjects: 0.198400 ms)
+Total: 3.366600 ms (FindLiveObjects: 0.080900 ms CreateObjectMapping: 0.020800 ms MarkObjects: 3.026300 ms  DeleteObjects: 0.237800 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Import Request.
-  Time since last request: 11.274974 seconds.
-  path: Assets/Plugins/Linux/x86_64/libqrack_pinvoke.so.9.13.8
-  artifactKey: Guid(c9e60e817645cf74e87f46222e616741) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Linux/x86_64/libqrack_pinvoke.so.9.13.8 using Guid(c9e60e817645cf74e87f46222e616741) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
- -> (artifact id: '5130bf07ee4465c3710ad90098d63e58') in 0.0026293 seconds
-  ERROR: Import of 'Assets/Plugins/Linux/x86_64/libqrack_pinvoke.so.9.13.8' had errors: Could not generate preview image
+  Time since last request: 7.898531 seconds.
+  path: Assets/Plugins/Linux/x86_64/libqrack_pinvoke.so.9.13.9
+  artifactKey: Guid(59f46a289af981249b5f87bac87da313) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Linux/x86_64/libqrack_pinvoke.so.9.13.9 using Guid(59f46a289af981249b5f87bac87da313) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
+ -> (artifact id: '49944be3d77b1761c926b810c332a390') in 0.0021621 seconds
+  ERROR: Import of 'Assets/Plugins/Linux/x86_64/libqrack_pinvoke.so.9.13.9' had errors: Could not generate preview image
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Import Request.
-  Time since last request: 7.585809 seconds.
+  Time since last request: 8.547095 seconds.
   path: Assets/Plugins/MacOS/ARM64/libqrack_pinvoke.dylib
   artifactKey: Guid(ce2c69d50abd44c48a917dc7dabacf99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Plugins/MacOS/ARM64/libqrack_pinvoke.dylib using Guid(ce2c69d50abd44c48a917dc7dabacf99) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
- -> (artifact id: '71d993d1f0d5bf12cfc636bd7aba3046') in 0.0182575 seconds
+ -> (artifact id: 'd015e59b883b5b4308a254a36c20fb94') in 0.0172086 seconds
   ERROR: Import of 'Assets/Plugins/MacOS/ARM64/libqrack_pinvoke.dylib' had errors: Could not generate preview image
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 3.41 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 956 unused Assets / (267.9 KB). Loaded Objects now: 1575.
-Memory consumption went from 89.2 MB to 88.9 MB.
-Total: 3.292000 ms (FindLiveObjects: 0.099500 ms CreateObjectMapping: 0.020800 ms MarkObjects: 2.968000 ms  DeleteObjects: 0.203200 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 3.09 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 956 unused Assets / (261.1 KB). Loaded Objects now: 1575.
-Memory consumption went from 89.2 MB to 88.9 MB.
-Total: 3.117800 ms (FindLiveObjects: 0.072100 ms CreateObjectMapping: 0.020300 ms MarkObjects: 2.845600 ms  DeleteObjects: 0.179000 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
 Received Import Request.
-  Time since last request: 18.920168 seconds.
-  path: Assets/Plugins/MacOS/ARM64/libqrack_pinvoke.9.13.8.dylib
-  artifactKey: Guid(8ab7a33d8492d28469ff6417c358c609) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/MacOS/ARM64/libqrack_pinvoke.9.13.8.dylib using Guid(8ab7a33d8492d28469ff6417c358c609) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
- -> (artifact id: 'da043565af49184574f8e86069f8198b') in 0.0179888 seconds
-  ERROR: Import of 'Assets/Plugins/MacOS/ARM64/libqrack_pinvoke.9.13.8.dylib' had errors: Could not generate preview image
+  Time since last request: 5.000590 seconds.
+  path: Assets/Plugins/MacOS/ARM64/libqrack_pinvoke.9.13.9.dylib
+  artifactKey: Guid(e3490902e498c1b42aedf984d97645f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/MacOS/ARM64/libqrack_pinvoke.9.13.9.dylib using Guid(e3490902e498c1b42aedf984d97645f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
+ -> (artifact id: '3ddaca10ac553d8f3791224ce59ffb71') in 0.0141207 seconds
+  ERROR: Import of 'Assets/Plugins/MacOS/ARM64/libqrack_pinvoke.9.13.9.dylib' had errors: Could not generate preview image
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Prepare
-Refreshing native plugins compatible for Editor in 3.46 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 3.64 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 956 unused Assets / (251.7 KB). Loaded Objects now: 1575.
-Memory consumption went from 89.2 MB to 88.9 MB.
-Total: 3.328500 ms (FindLiveObjects: 0.097600 ms CreateObjectMapping: 0.021500 ms MarkObjects: 2.979700 ms  DeleteObjects: 0.228500 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 3.16 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 956 unused Assets / (254.4 KB). Loaded Objects now: 1575.
-Memory consumption went from 89.2 MB to 88.9 MB.
-Total: 3.215700 ms (FindLiveObjects: 0.107200 ms CreateObjectMapping: 0.021800 ms MarkObjects: 2.887300 ms  DeleteObjects: 0.197400 ms)
+Unloading 956 unused Assets / (222.9 KB). Loaded Objects now: 1575.
+Memory consumption went from 89.2 MB to 89.0 MB.
+Total: 3.370300 ms (FindLiveObjects: 0.085100 ms CreateObjectMapping: 0.029100 ms MarkObjects: 3.040300 ms  DeleteObjects: 0.215200 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Import Request.
-  Time since last request: 13.092517 seconds.
-  path: Assets/Plugins/MacOS/ARM64/libqrack_pinvoke.9.13.8.dylib
-  artifactKey: Guid(8ab7a33d8492d28469ff6417c358c609) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/MacOS/ARM64/libqrack_pinvoke.9.13.8.dylib using Guid(8ab7a33d8492d28469ff6417c358c609) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
- -> (artifact id: '124d575e57411bf4f92102de0a2d9d18') in 0.0035784 seconds
-  ERROR: Import of 'Assets/Plugins/MacOS/ARM64/libqrack_pinvoke.9.13.8.dylib' had errors: Could not generate preview image
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.466903 seconds.
+  Time since last request: 15.467797 seconds.
   path: Assets/Plugins/MacOS/x86_64/libqrack_pinvoke.dylib
   artifactKey: Guid(bfefdde3a048070409ba3f50f8d6a753) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Plugins/MacOS/x86_64/libqrack_pinvoke.dylib using Guid(bfefdde3a048070409ba3f50f8d6a753) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
- -> (artifact id: '477a32a911b66f6c2ee313cfd823261b') in 0.0125394 seconds
-  ERROR: Import of 'Assets/Plugins/MacOS/x86_64/libqrack_pinvoke.dylib' had errors: Could not generate preview image
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 4.04 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 956 unused Assets / (267.7 KB). Loaded Objects now: 1575.
-Memory consumption went from 89.2 MB to 88.9 MB.
-Total: 3.680400 ms (FindLiveObjects: 0.084500 ms CreateObjectMapping: 0.023700 ms MarkObjects: 3.349400 ms  DeleteObjects: 0.222100 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 3.42 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 956 unused Assets / (245.8 KB). Loaded Objects now: 1575.
-Memory consumption went from 89.2 MB to 88.9 MB.
-Total: 3.136900 ms (FindLiveObjects: 0.091200 ms CreateObjectMapping: 0.021700 ms MarkObjects: 2.832100 ms  DeleteObjects: 0.191000 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Import Request.
-  Time since last request: 8.357763 seconds.
-  path: Assets/Plugins/MacOS/x86_64/libqrack_pinvoke.dylib
-  artifactKey: Guid(bfefdde3a048070409ba3f50f8d6a753) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/MacOS/x86_64/libqrack_pinvoke.dylib using Guid(bfefdde3a048070409ba3f50f8d6a753) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
- -> (artifact id: '059295bf44f4e1f8bb03bdd4172c2a71') in 0.0034822 seconds
+ -> (artifact id: '416b51e8035219009b23977c53c4910c') in 0.0138631 seconds
   ERROR: Import of 'Assets/Plugins/MacOS/x86_64/libqrack_pinvoke.dylib' had errors: Could not generate preview image
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Import Request.
-  Time since last request: 1.684462 seconds.
-  path: Assets/Plugins/MacOS/x86_64/libqrack_pinvoke.9.13.8.dylib
-  artifactKey: Guid(fa85210c16fb7774a8b822f80dad40de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/MacOS/x86_64/libqrack_pinvoke.9.13.8.dylib using Guid(fa85210c16fb7774a8b822f80dad40de) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
- -> (artifact id: '1818b6401e7b29842166a3a95f9cda1f') in 0.0145537 seconds
-  ERROR: Import of 'Assets/Plugins/MacOS/x86_64/libqrack_pinvoke.9.13.8.dylib' had errors: Could not generate preview image
+  Time since last request: 4.807741 seconds.
+  path: Assets/Plugins/MacOS/x86_64/libqrack_pinvoke.9.13.9.dylib
+  artifactKey: Guid(4ca189a0de575084fbf376e6cc32d367) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/MacOS/x86_64/libqrack_pinvoke.9.13.9.dylib using Guid(4ca189a0de575084fbf376e6cc32d367) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter)Could not generate preview image
+ -> (artifact id: 'f9feca963725e8cf75d51033f6edfbe3') in 0.0201217 seconds
+  ERROR: Import of 'Assets/Plugins/MacOS/x86_64/libqrack_pinvoke.9.13.9.dylib' had errors: Could not generate preview image
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Prepare
-Refreshing native plugins compatible for Editor in 3.28 ms, found 1 plugins.
+Refreshing native plugins compatible for Editor in 3.13 ms, found 1 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 956 unused Assets / (238.9 KB). Loaded Objects now: 1575.
-Memory consumption went from 89.2 MB to 88.9 MB.
-Total: 3.409800 ms (FindLiveObjects: 0.074700 ms CreateObjectMapping: 0.020900 ms MarkObjects: 3.101100 ms  DeleteObjects: 0.212300 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 3.22 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 956 unused Assets / (247.7 KB). Loaded Objects now: 1575.
-Memory consumption went from 89.2 MB to 88.9 MB.
-Total: 3.248300 ms (FindLiveObjects: 0.084800 ms CreateObjectMapping: 0.023800 ms MarkObjects: 2.968300 ms  DeleteObjects: 0.170500 ms)
+Unloading 956 unused Assets / (198.6 KB). Loaded Objects now: 1575.
+Memory consumption went from 89.2 MB to 89.0 MB.
+Total: 3.322000 ms (FindLiveObjects: 0.097200 ms CreateObjectMapping: 0.020800 ms MarkObjects: 3.010900 ms  DeleteObjects: 0.192200 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Import Request.
-  Time since last request: 15.911861 seconds.
+  Time since last request: 16.829273 seconds.
   path: Assets/Plugins/Windows/x86_64/qrack_pinvoke.dll
   artifactKey: Guid(5ca606316b4d0914bba3c1fa16271b49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Plugins/Windows/x86_64/qrack_pinvoke.dll using Guid(5ca606316b4d0914bba3c1fa16271b49) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3606ef5ea65dc2504bcaaa6715aa9f59') in 0.00251 seconds
+Start importing Assets/Plugins/Windows/x86_64/qrack_pinvoke.dll using Guid(5ca606316b4d0914bba3c1fa16271b49) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6fc69ea1b5669c35805079feb54dd1c7') in 0.0011421 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 3.23 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 956 unused Assets / (243.8 KB). Loaded Objects now: 1575.
-Memory consumption went from 89.2 MB to 88.9 MB.
-Total: 3.194600 ms (FindLiveObjects: 0.076700 ms CreateObjectMapping: 0.021400 ms MarkObjects: 2.869700 ms  DeleteObjects: 0.225200 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 3.10 ms, found 1 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 956 unused Assets / (261.3 KB). Loaded Objects now: 1575.
-Memory consumption went from 89.2 MB to 88.9 MB.
-Total: 3.023900 ms (FindLiveObjects: 0.078400 ms CreateObjectMapping: 0.019400 ms MarkObjects: 2.741900 ms  DeleteObjects: 0.183600 ms)
-
-Prepare: number of updated asset objects reloaded= 0
