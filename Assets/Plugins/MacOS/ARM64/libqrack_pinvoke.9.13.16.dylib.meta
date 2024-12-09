@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4ca189a0de575084fbf376e6cc32d367
+guid: d0ee1eb48dd1bcf45a95b9dac7a579ce
 PluginImporter:
   externalObjects: {}
   serializedVersion: 3
@@ -12,34 +12,37 @@ PluginImporter:
   validateReferences: 1
   platformData:
     Any:
-      enabled: 0
+      enabled: 1
       settings:
         Exclude Editor: 0
-        Exclude Linux64: 1
+        Exclude Linux64: 0
         Exclude OSXUniversal: 0
-        Exclude WebGL: 1
-        Exclude Win: 1
-        Exclude Win64: 1
+        Exclude WebGL: 0
+        Exclude Win: 0
+        Exclude Win64: 0
     Editor:
       enabled: 1
       settings:
-        CPU: x86_64
+        CPU: ARM64
         DefaultValueInitialized: true
         OS: OSX
     Linux64:
-      enabled: 0
+      enabled: 1
       settings:
-        CPU: x86_64
+        CPU: None
     OSXUniversal:
       enabled: 1
       settings:
-        CPU: x86_64
+        CPU: ARM64
+    WebGL:
+      enabled: 1
+      settings: {}
     Win:
-      enabled: 0
+      enabled: 1
       settings:
-        CPU: x86
+        CPU: None
     Win64:
-      enabled: 0
+      enabled: 1
       settings:
         CPU: None
   userData: 

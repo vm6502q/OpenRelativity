@@ -969,7 +969,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Plugins/Windows/x86_64
+    - Assets/Plugins/MacOS/ARM64
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -979,15 +979,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Plugins/Windows/x86_64
+  - Assets/Plugins/MacOS/ARM64
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\jerse\OneDrive\Documents\GitHub\OpenRelativity
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 111}
-    m_SelectedIDs: 6c590000
-    m_LastClickedID: 22892
+    m_SelectedIDs: 68590000
+    m_LastClickedID: 22888
     m_ExpandedIDs: 00000000a6580000a8580000aa580000ac580000ae580000b0580000b2580000b4580000b6580000b8580000ba580000bc580000be580000c0580000c2580000c4580000c6580000c8580000ca580000cc580000ce580000d0580000d2580000d4580000d6580000d8580000da580000dc580000de580000e0580000e2580000e4580000e6580000e8580000ea580000ec580000ee580000f0580000f2580000f4580000f658000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1043,8 +1043,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: a4590000
+    m_LastClickedInstanceID: 22948
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c623000030580000
     m_RenameOverlay:
@@ -1181,7 +1181,7 @@ MonoBehaviour:
     m_CachedPref: 160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
+  m_LastInspectedObjectInstanceID: 22948
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
