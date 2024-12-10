@@ -87,13 +87,13 @@ Relativistic Object is the base code for all the non-player objects in the scene
 
 Relativistic Parent is much the same as Relativistic Object. However, for complex parented objects with many smaller parts, each with their own materials, it vastly increases the speed of the engine if they are all kept on a single object. This code takes all the meshes of the parent object's children and combines them with its own, attaching the materials and textures necessary to the correct submeshes. There is one important problem: I do not combine the colliders of the child objects, so it is important that the parent object's collider contains within it all of the child objects, or else the player will be able to clip through their meshes as only the parent's collider remains after the combining of all the meshes.
 
-### Movement Scripts
+### Player Controllers
 
-Movement Scripts is what takes player input for the mouse and keyboard and moves the player accordingly. This code covers player movement, camera movement, and change in the speed of light. The movement follows a formula for relativistic velocity addition, which is included in the comments before the movement code. It is also currently set for free movement in three dimensions. If you wish to constrain the player to a flat ground plane (the X-Z plane, in Unity) then there are a couple lines of code that are marked for easy change. 
+The Player Controllers are what takes player input for the mouse and keyboard and moves the player accordingly. This code covers player movement, camera movement, and change in the speed of light. The movement follows a formula for relativistic velocity addition, which is included in the comments before the movement code. It works for free movement in three dimensions, but physical relativistic gravity can hold the player to the ground. 
 
 ### Game State
 
-Game State is the brain of the Open Relativity code, ("singleton"). It stores important variables for relativistic effects and keeps track of changes in the player's status. Relativistic Object and Movement Scripts rely on being able to find Game State and access its information. It also keeps track of the pause state of the game, letting all other objects query game state rather than keeping track of it themselves.
+Game State is the brain of the Open Relativity code, ("singleton"). It stores important variables for relativistic effects and keeps track of changes in the player's status. Relativistic Object and the Player Controllers rely on being able to find Game State and access its information. It also keeps track of the pause state of the game, letting all other objects query game state rather than keeping track of it themselves.
 
 ### Object Mesh Density
 
