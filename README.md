@@ -32,7 +32,7 @@ Alternatively, to use the work in this project as isolated Unity packages in a n
 }
 ```
 
-`net.qrack.qrack` and `net.qrack.tachyoid` depend on `net.qrack.openrelatvity`. (`net.qrack.tarot` is fully stand-alone.) `net.qrack.tachyoid` also depends on `com.google.xr.cardboard`, for a Google Cardboard VR player controller that could be replaced by custom user code. However, `net.qrack.qrack` was designed specifically for dual use as a stand-alone project or with `net.qrack.openrelativity`: see its README for details on the minor modifications that need to be made to that package to let it work without `net.qrack.openrelativity`.
+`net.qrack.qrack` and `net.qrack.tachyoid` depend on `net.qrack.openrelativity`. (`net.qrack.tarot` is fully stand-alone.) `net.qrack.tachyoid` also depends on `com.google.xr.cardboard`, for a Google Cardboard VR player controller that could be replaced by custom user code. However, `net.qrack.qrack` was designed specifically for dual use as a stand-alone project or with `net.qrack.openrelativity`: see its README for details on the minor modifications that need to be made to that package to let it work without `net.qrack.openrelativity`.
 
 ### Prerequisities
 
