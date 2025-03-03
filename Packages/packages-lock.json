@@ -43,7 +43,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.4.5",
+      "version": "1.4.6",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -73,7 +73,7 @@
       }
     },
     "com.unity.xr.legacyinputhelpers": {
-      "version": "2.1.11",
+      "version": "2.1.12",
       "depth": 1,
       "source": "registry",
       "dependencies": {
