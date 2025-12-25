@@ -31,7 +31,7 @@ public class AcceleratedRelativityGUI : ShaderGUI
                 }
             }
 
-            if ((property.flags & MaterialProperty.PropFlags.HideInInspector) == 0)
+            if ((property.propertyFlags & UnityEngine.Rendering.ShaderPropertyFlags.HideInInspector) == 0)
             {
                 materialEditor.ShaderProperty(property, property.displayName);
             }

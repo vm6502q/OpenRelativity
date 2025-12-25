@@ -49,7 +49,7 @@ namespace Qrack
         public static extern ulong InitType(ulong numQubits, bool tensorNet, bool decomposeMulti, bool decompose, bool stabilizer, bool bdt, bool pager, bool fusion, bool hybrid, bool opencl, bool hostPointer);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "init_count")]
-        public static extern ulong Init(ulong numQubits, bool hostPointer);
+        public static extern ulong Init(ulong numQubits, bool hostPointer, bool isSparse);
 
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "init_clone")]
         public static extern ulong Clone(ulong simId);
@@ -288,7 +288,7 @@ namespace Qrack
                 throw new ArgumentException(String.Format("In QuantumManager.AllocateSimulator(): {0} SDRP approximation level argument is not between 0 and 1!", sdrp));
             }
 
-            ulong simId = Init(numQubits, false);
+            ulong simId = Init(numQubits, false, false);
             SetSdrp(simId, sdrp);
             SimulatorIds.Add(simId);
             SimulatorSdrps[simId] = sdrp;

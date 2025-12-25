@@ -126,3 +126,14 @@ Update Mode: updateDependencies
 
 The following packages were updated:
   com.unity.toolchain.linux-x86_64 from version 2.0.9 to 2.0.10
+
+=== Thu Dec 25 01:54:36 2025
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were added:
+  com.unity.modules.adaptiveperformance@1.0.0
+  com.unity.modules.vectorgraphics@1.0.0
+The following packages were updated:
+  com.unity.ide.visualstudio from version 2.0.22 to 2.0.25
