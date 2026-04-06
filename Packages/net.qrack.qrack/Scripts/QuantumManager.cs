@@ -270,6 +270,12 @@ namespace Qrack
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TimeEvolve")]
         public static extern void TimeEvolve(ulong simId, double t, ulong n, Support.TimeEvolveOpHeader[] teos, ulong mn, double[] mtrx);
 
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lossy_out_to_file")]
+        public static extern void LossyOutToFile(ulong sid, string f, int p, int b);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lossy_in_from_file")]
+        public static extern void LossyInFromFile(ulong sid, string f);
+
         private static List<ulong> SimulatorIds = new List<ulong>();
 
         private static Dictionary<ulong, float> SimulatorSdrps = new Dictionary<ulong, float>();

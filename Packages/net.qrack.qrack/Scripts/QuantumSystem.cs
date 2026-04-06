@@ -1294,6 +1294,26 @@ namespace Qrack
             }
         }
 
+        public void LossyOutToFile(string f, int p, int b)
+        {
+            QuantumManager.LossyOutToFile(SystemId, f, p, b);
+
+            if (GetError() != 0)
+            {
+                throw new InvalidOperationException("QrackSimulator C++ library raised exception.");
+            }
+        }
+
+        public void LossyInFromFile(string f)
+        {
+            QuantumManager.LossyInFromFile(SystemId, f);
+
+            if (GetError() != 0)
+            {
+                throw new InvalidOperationException("QrackSimulator C++ library raised exception.");
+            }
+        }
+
         public ulong Measure(ulong[] bases, ulong[] qubits)
         {
             ulong[] mappedQ = MapQubits(qubits);

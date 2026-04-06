@@ -7,18 +7,18 @@ Distro version:          #37~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Nov 20 10:25
 Kernel version:          6.14.0-37-generic
 Architecture:            x86_64
 Available memory:        63983 MB
-Date:                    2026-01-08T00:52:51Z
+Date:                    2026-01-08T01:59:43Z
 [Licensing::Module] Trying to connect to existing licensing client channel...
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu" at "2026-01-08T00:52:51.982853Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu" at "2026-01-08T01:59:43.355281Z"
 [SignatureVerifier] Application signature verification not supported on this platform.
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.17.4+4293ba1
-  Session Id:              942a5e22c9d14a8e96359cca502e5d9a
+  Session Id:              7319f0aeaed9466c92cc913ba7bd289b
   Correlation Id:          6ebe0e761f6501db5d53c7828d1675b7
-  External correlation Id: 6220465953216217723
+  External correlation Id: 2462221037667619904
   Machine Id:              rcXw45DWKUrxR1kylvBqwOaJrjI=
 [Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-iamu" (connect: 0.00s, validation: 0.00s, handshake: 0.00s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-notifications" at "2026-01-08T00:52:51.985278Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-notifications" at "2026-01-08T01:59:43.356473Z"
 [Licensing::Module] Licensing Background thread has ended after 0.00s
 Selected window backend: (null) 
 Desktop is 2560 x 1600 @ 60 Hz
@@ -36,7 +36,7 @@ AssetImportWorker0
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-40745
+41679
 -licensingIpc
 LicenseClient-iamu
 -job-worker-count
@@ -82,12 +82,12 @@ Successfully changed project path to: /home/iamu/GitHub/OpenRelativity
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [127584471280448]  Target information:
+Player connection [138795372129088]  Target information:
 
-Player connection [127584471280448]  * "[IP] 192.168.1.195 [Port] 0 [Flags] 2 [Guid] 3982484540 [EditorId] 3982484540 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.195) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
+Player connection [138795372129088]  * "[IP] 192.168.1.195 [Port] 0 [Flags] 2 [Guid] 1703037086 [EditorId] 1703037086 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.195) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
 
-Player connection [127584471280448] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [127584471280448] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [138795372129088] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [138795372129088] Host joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 15
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
@@ -99,7 +99,7 @@ Library Redirect Path: Library/
 [Physics::Module] SDK Version: 4.1.2
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Multi-Threaded
-Refreshing native plugins compatible for Editor in 1.12 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 1.17 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 6000.3.2f1 (a9779f353c9b)
 [Subsystems] Discovering subsystems at path /home/iamu/Unity/Hub/Editor/6000.3.2f1/Editor/Data/Resources/UnitySubsystems
@@ -118,12 +118,12 @@ L_ARB_texture_border_clamp GL_ARB_texture_buffer_object GL_ARB_texture_buffer_ob
 _10_10_10_rev GL_ARB_viewport_array GL_ATI_blend_equation_separate GL_ATI_texture_float GL_EXT_EGL_image_storage GL_EXT_EGL_image_storage_compression GL_EXT_EGL_sync GL_EXT_abgr GL_EXT_blend_equation_separate GL_EXT_debug_label GL_EXT_demote_to_helper_invocation GL_EXT_depth_bounds_test GL_EXT_draw_buffers2 GL_EXT_draw_instanced GL_EXT_framebuffer_blit GL_EXT_framebuffer_multisample GL_EXT_framebuffer_multisample_blit_scaled GL_EXT_framebuffer_object GL_EXT_framebuffer_sRGB GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_packed_depth_stencil GL_EXT_packed_float GL_EXT_pixel_buffer_object GL_EXT_polygon_offset_clamp GL_EXT_provoking_vertex GL_EXT_semaphore GL_EXT_semaphore_fd GL_EXT_shader_framebuffer_fetch GL_EXT_shader_framebuffer_fetch_non_coherent GL_EXT_shader_integer_mix GL_EXT_shader_samples_identical GL_EXT_texture_array GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc GL_EXT_texture_compression_s3tc GL_EXT_texture_filter_anisotropic GL_EXT_texture_integer GL_EXT_texture_sRGB GL_EXT
 _texture_sRGB_R8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_shared_exponent GL_EXT_texture_snorm GL_EXT_texture_storage GL_EXT_texture_swizzle GL_EXT_timer_query GL_EXT_transform_feedback GL_EXT_vertex_array_bgra GL_EXT_vertex_attrib_64bit GL_IBM_multimode_draw_arrays GL_INTEL_blackhole_render GL_INTEL_conservative_rasterization GL_INTEL_performance_query GL_INTEL_shader_atomic_float_minmax GL_INTEL_shader_integer_functions2 GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_KHR_context_flush_control GL_KHR_debug GL_KHR_no_error GL_KHR_parallel_shader_compile GL_KHR_robust_buffer_access_behavior GL_KHR_robustness GL_KHR_texture_compression_astc_ldr GL_KHR_texture_compression_astc_sliced_3d GL_MESA_framebuffer_flip_y GL_MESA_pack_invert GL_MESA_shader_integer_functions GL_MESA_texture_const_bandwidth GL_MESA_texture_signed_rgba GL_NV_alpha_to_coverage_dither_control GL_NV_compute_shader_derivatives GL_NV_conditional_render GL_NV_copy_image GL_NV_depth_clamp GL_N
 V_fragment_shader_interlock GL_NV_packed_depth_stencil GL_NV_texture_barrier GL_OES_EGL_image GL_S3_s3tc
-OPENGL LOG: Creating OpenGL 4.6 graphics device ; Context level  <OpenGL 4.5> ; Context handle 1528703376
+OPENGL LOG: Creating OpenGL 4.6 graphics device ; Context level  <OpenGL 4.5> ; Context handle -2065405504
 Initialize mono
 Mono path[0] = '/home/iamu/Unity/Hub/Editor/6000.3.2f1/Editor/Data/Managed'
 Mono path[1] = '/home/iamu/Unity/Hub/Editor/6000.3.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-linux'
 Mono config path = '/home/iamu/Unity/Hub/Editor/6000.3.2f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56343
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56373
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 [Licensing::Client] Successfully resolved entitlement details
@@ -134,45 +134,45 @@ Registering precompiled unity dll's ...
   Expiration: Unlimited
 Register platform support module: /home/iamu/Unity/Hub/Editor/6000.3.2f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: /home/iamu/Unity/Hub/Editor/6000.3.2f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.001998 seconds.
+Registered in 0.001522 seconds.
 - Loaded All Assemblies, in  0.227 seconds
 Native extension for LinuxStandalone target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 123 ms
+Android Extension - Scanning For ADB Devices 131 ms
 Package Manager log level set to [2]
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.414 seconds
-Domain Reload Profiling: 641ms
-	BeginReloadAssembly (50ms)
+- Finished resetting the current domain, in  0.412 seconds
+Domain Reload Profiling: 639ms
+	BeginReloadAssembly (51ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (0ms)
-	RebuildCommonClasses (25ms)
-	RebuildNativeTypeToScriptingClass (6ms)
-	initialDomainReloadingComplete (34ms)
-	LoadAllAssembliesAndSetupDomain (113ms)
-		LoadAssemblies (50ms)
+	RebuildCommonClasses (24ms)
+	RebuildNativeTypeToScriptingClass (5ms)
+	initialDomainReloadingComplete (33ms)
+	LoadAllAssembliesAndSetupDomain (114ms)
+		LoadAssemblies (51ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (111ms)
-			TypeCache.Refresh (110ms)
-				TypeCache.ScanAssembly (101ms)
+		AnalyzeDomain (112ms)
+			TypeCache.Refresh (111ms)
+				TypeCache.ScanAssembly (102ms)
 			BuildScriptInfoCaches (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (414ms)
+	FinalizeReload (412ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
 		SetupLoadedEditorAssemblies (389ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (186ms)
+			InitializePlatformSupportModulesInManaged (195ms)
 			SetLoadedEditorAssemblies (3ms)
 			BeforeProcessingInitializeOnLoad (55ms)
-			ProcessInitializeOnLoadAttributes (95ms)
-			ProcessInitializeOnLoadMethodAttributes (50ms)
+			ProcessInitializeOnLoadAttributes (89ms)
+			ProcessInitializeOnLoadMethodAttributes (46ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -182,8 +182,8 @@ Worker process is ready to serve import requests
 Import Worker Mode flag is 0x00
 Begin MonoManager ReloadAssembly
 [Licensing::Client] Successfully resolved entitlement details
-- Loaded All Assemblies, in  0.249 seconds
-Refreshing native plugins compatible for Editor in 0.41 ms, found 2 plugins.
+- Loaded All Assemblies, in  0.253 seconds
+Refreshing native plugins compatible for Editor in 0.39 ms, found 2 plugins.
 Native extension for LinuxStandalone target not found
 Native extension for Android target not found
 Mono: successfully reloaded assembly
@@ -193,53 +193,53 @@ Mono: successfully reloaded assembly
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.274 seconds
-Domain Reload Profiling: 524ms
-	BeginReloadAssembly (95ms)
+- Finished resetting the current domain, in  0.261 seconds
+Domain Reload Profiling: 514ms
+	BeginReloadAssembly (99ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (4ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (25ms)
-	RebuildCommonClasses (24ms)
+		CreateAndSetChildDomain (31ms)
+	RebuildCommonClasses (23ms)
 	RebuildNativeTypeToScriptingClass (5ms)
-	initialDomainReloadingComplete (25ms)
-	LoadAllAssembliesAndSetupDomain (100ms)
-		LoadAssemblies (110ms)
+	initialDomainReloadingComplete (24ms)
+	LoadAllAssembliesAndSetupDomain (101ms)
+		LoadAssemblies (111ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
 		AnalyzeDomain (29ms)
 			TypeCache.Refresh (21ms)
 				TypeCache.ScanAssembly (15ms)
 			BuildScriptInfoCaches (5ms)
 			ResolveRequiredComponents (2ms)
-	FinalizeReload (275ms)
+	FinalizeReload (261ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (199ms)
+		SetupLoadedEditorAssemblies (186ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (13ms)
-			SetLoadedEditorAssemblies (2ms)
-			BeforeProcessingInitializeOnLoad (68ms)
-			ProcessInitializeOnLoadAttributes (86ms)
+			InitializePlatformSupportModulesInManaged (11ms)
+			SetLoadedEditorAssemblies (3ms)
+			BeforeProcessingInitializeOnLoad (67ms)
+			ProcessInitializeOnLoadAttributes (76ms)
 			ProcessInitializeOnLoadMethodAttributes (27ms)
 			AfterProcessingInitializeOnLoad (2ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (2ms)
 AutoLocale: current locale expects 'C' but got 'en_US.UTF-8'Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
-Refreshing native plugins compatible for Editor in 0.44 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 0.43 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1147 unused Assets / (175.2 KB). Loaded Objects now: 1742.
-Memory consumption went from 67.5 MB to 67.3 MB.
-Total: 4.506050 ms (FindLiveObjects: 0.107505 ms CreateObjectMapping: 0.034248 ms MarkObjects: 3.915685 ms  DeleteObjects: 0.447146 ms)
+Unloading 1147 unused Assets / (447.2 KB). Loaded Objects now: 1747.
+Memory consumption went from 68.4 MB to 67.9 MB.
+Total: 4.755488 ms (FindLiveObjects: 0.114614 ms CreateObjectMapping: 0.029446 ms MarkObjects: 4.083406 ms  DeleteObjects: 0.526970 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 21716.980819 seconds.
-  path: Packages/net.qrack.qrack/Plugin/Android/arm64-v8a/libqrack_pinvoke.so
-  artifactKey: Guid(6f81ac5526141df46b8fa3382e9811fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/Android/arm64-v8a/libqrack_pinvoke.so using Guid(6f81ac5526141df46b8fa3382e9811fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5a576dad84d43458de8700318616947a') in 0.00502563 seconds
+  Time since last request: 25731.654803 seconds.
+  path: Packages/net.qrack.qrack/Plugin/iOS/ARM64/libqrack_pinvoke.9.35.5.dylib
+  artifactKey: Guid(81d0f960d9eaa33fea46782f29614699) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.qrack/Plugin/iOS/ARM64/libqrack_pinvoke.9.35.5.dylib using Guid(81d0f960d9eaa33fea46782f29614699) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '72b7b8fb2226ca2910e0673a5e9e3f22') in 0.005357598 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
@@ -247,351 +247,16 @@ Received Prepare
 Refreshing native plugins compatible for Editor in 0.46 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1131 unused Assets / (73.9 KB). Loaded Objects now: 1740.
-Memory consumption went from 67.7 MB to 67.7 MB.
-Total: 4.317124 ms (FindLiveObjects: 0.112073 ms CreateObjectMapping: 0.030015 ms MarkObjects: 3.949104 ms  DeleteObjects: 0.225362 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 0.39 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1131 unused Assets / (64.1 KB). Loaded Objects now: 1740.
-Memory consumption went from 67.7 MB to 67.7 MB.
-Total: 3.828590 ms (FindLiveObjects: 0.095646 ms CreateObjectMapping: 0.031469 ms MarkObjects: 3.547840 ms  DeleteObjects: 0.152883 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 0.39 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1131 unused Assets / (64.1 KB). Loaded Objects now: 1740.
-Memory consumption went from 67.7 MB to 67.7 MB.
-Total: 3.859983 ms (FindLiveObjects: 0.077413 ms CreateObjectMapping: 0.027289 ms MarkObjects: 3.602598 ms  DeleteObjects: 0.152318 ms)
+Unloading 1131 unused Assets / (212.0 KB). Loaded Objects now: 1745.
+Memory consumption went from 68.6 MB to 68.4 MB.
+Total: 3.835904 ms (FindLiveObjects: 0.080219 ms CreateObjectMapping: 0.027645 ms MarkObjects: 3.549784 ms  DeleteObjects: 0.177779 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Import Request.
-  Time since last request: 54.711813 seconds.
-  path: Packages/net.qrack.qrack/Plugin/Android/armeabi-v7a/libqrack_pinvoke.so
-  artifactKey: Guid(7fcd475a8e33ce548826626dbee6e412) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/Android/armeabi-v7a/libqrack_pinvoke.so using Guid(7fcd475a8e33ce548826626dbee6e412) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e2f1848ce00f1dda72bd541b17b4ad5a') in 0.001672457 seconds
+  Time since last request: 14.978431 seconds.
+  path: Packages/net.qrack.qrack/Plugin/iOS/ARM64/libqrack_pinvoke.9.35.5.dylib
+  artifactKey: Guid(81d0f960d9eaa33fea46782f29614699) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.qrack/Plugin/iOS/ARM64/libqrack_pinvoke.9.35.5.dylib using Guid(81d0f960d9eaa33fea46782f29614699) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2bb15fdb1ec3ea03a15df566a7d35813') in 0.001168032 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 0.45 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1131 unused Assets / (64.1 KB). Loaded Objects now: 1740.
-Memory consumption went from 67.7 MB to 67.7 MB.
-Total: 3.734980 ms (FindLiveObjects: 0.078509 ms CreateObjectMapping: 0.029049 ms MarkObjects: 3.471866 ms  DeleteObjects: 0.155055 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Import Request.
-  Time since last request: 5.773614 seconds.
-  path: Packages/net.qrack.qrack/Plugin/Android/armeabi-v7a/libqrack_pinvoke.so
-  artifactKey: Guid(7fcd475a8e33ce548826626dbee6e412) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/Android/armeabi-v7a/libqrack_pinvoke.so using Guid(7fcd475a8e33ce548826626dbee6e412) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a10adb5a6e46ae3ad2ebb3700b2ec9ed') in 0.000859592 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 0.42 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1131 unused Assets / (64.2 KB). Loaded Objects now: 1740.
-Memory consumption went from 67.7 MB to 67.7 MB.
-Total: 3.879496 ms (FindLiveObjects: 0.081021 ms CreateObjectMapping: 0.030401 ms MarkObjects: 3.600361 ms  DeleteObjects: 0.167157 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 0.45 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1131 unused Assets / (64.1 KB). Loaded Objects now: 1740.
-Memory consumption went from 67.7 MB to 67.7 MB.
-Total: 4.236304 ms (FindLiveObjects: 0.102914 ms CreateObjectMapping: 0.033189 ms MarkObjects: 3.933710 ms  DeleteObjects: 0.164886 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Import Request.
-  Time since last request: 3.854877 seconds.
-  path: Packages/net.qrack.qrack/Plugin/Android/armeabi-v7a/libqrack_pinvoke.so
-  artifactKey: Guid(7fcd475a8e33ce548826626dbee6e412) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/Android/armeabi-v7a/libqrack_pinvoke.so using Guid(7fcd475a8e33ce548826626dbee6e412) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '65a1bf7fe5b3caa448b628082a8c0a3f') in 0.001066242 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 5.034737 seconds.
-  path: Packages/net.qrack.qrack/Plugin/Android/x86/libqrack_pinvoke.so
-  artifactKey: Guid(377607e2e9d79ff4ea6362c8c5a1c534) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/Android/x86/libqrack_pinvoke.so using Guid(377607e2e9d79ff4ea6362c8c5a1c534) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd5404fb482b64a0c22b746f1c85794b1') in 0.000257336 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 0.42 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1131 unused Assets / (64.1 KB). Loaded Objects now: 1740.
-Memory consumption went from 67.7 MB to 67.7 MB.
-Total: 4.810753 ms (FindLiveObjects: 0.086457 ms CreateObjectMapping: 0.028926 ms MarkObjects: 4.535845 ms  DeleteObjects: 0.158792 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 0.42 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1131 unused Assets / (64.1 KB). Loaded Objects now: 1740.
-Memory consumption went from 67.7 MB to 67.7 MB.
-Total: 3.895629 ms (FindLiveObjects: 0.077807 ms CreateObjectMapping: 0.027215 ms MarkObjects: 3.642773 ms  DeleteObjects: 0.147357 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Import Request.
-  Time since last request: 10.724617 seconds.
-  path: Packages/net.qrack.qrack/Plugin/Android/x86/libqrack_pinvoke.so
-  artifactKey: Guid(377607e2e9d79ff4ea6362c8c5a1c534) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/Android/x86/libqrack_pinvoke.so using Guid(377607e2e9d79ff4ea6362c8c5a1c534) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9b061b2f49f622547783d0585bad1be1') in 0.000973594 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.350557 seconds.
-  path: Packages/net.qrack.qrack/Plugin/Android/x86_64/libqrack_pinvoke.so
-  artifactKey: Guid(ff62a232155ff804ca7a7b617a7b958e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/Android/x86_64/libqrack_pinvoke.so using Guid(ff62a232155ff804ca7a7b617a7b958e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '18ccf64adce0df9325386d7644ee266c') in 0.000275661 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 0.45 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1131 unused Assets / (143.6 KB). Loaded Objects now: 1740.
-Memory consumption went from 67.7 MB to 67.6 MB.
-Total: 3.989079 ms (FindLiveObjects: 0.078340 ms CreateObjectMapping: 0.028503 ms MarkObjects: 3.629518 ms  DeleteObjects: 0.252142 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Import Request.
-  Time since last request: 6.709138 seconds.
-  path: Packages/net.qrack.qrack/Plugin/Android/x86_64/libqrack_pinvoke.so
-  artifactKey: Guid(ff62a232155ff804ca7a7b617a7b958e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/Android/x86_64/libqrack_pinvoke.so using Guid(ff62a232155ff804ca7a7b617a7b958e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ad4cbf8a4ad84a48e9ca8750b8f9ba16') in 0.000850356 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 0.41 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1131 unused Assets / (64.2 KB). Loaded Objects now: 1740.
-Memory consumption went from 67.7 MB to 67.7 MB.
-Total: 4.208948 ms (FindLiveObjects: 0.085876 ms CreateObjectMapping: 0.045036 ms MarkObjects: 3.905757 ms  DeleteObjects: 0.171665 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 0.46 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1131 unused Assets / (64.1 KB). Loaded Objects now: 1740.
-Memory consumption went from 67.7 MB to 67.7 MB.
-Total: 4.159016 ms (FindLiveObjects: 0.086770 ms CreateObjectMapping: 0.031958 ms MarkObjects: 3.887565 ms  DeleteObjects: 0.152116 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Import Request.
-  Time since last request: 4.544887 seconds.
-  path: Packages/net.qrack.qrack/Plugin/Android/x86_64/libqrack_pinvoke.so
-  artifactKey: Guid(ff62a232155ff804ca7a7b617a7b958e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/Android/x86_64/libqrack_pinvoke.so using Guid(ff62a232155ff804ca7a7b617a7b958e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4d0643885b0879e66fe079ca6472782e') in 0.000986192 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 18.953902 seconds.
-  path: Packages/net.qrack.qrack/Plugin/Linux/x86_64/libqrack_pinvoke.so
-  artifactKey: Guid(e187f8c5b6892a844af4eb42a19a5417) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/Linux/x86_64/libqrack_pinvoke.so using Guid(e187f8c5b6892a844af4eb42a19a5417) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0789f2c96b2c0843a0fb5252338d4564') in 0.000248746 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 14.802044 seconds.
-  path: Packages/net.qrack.qrack/Plugin/MacOS/ARM64/libqrack_pinvoke.dylib
-  artifactKey: Guid(5e728d0e29cdd684c856319700e74e70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/MacOS/ARM64/libqrack_pinvoke.dylib using Guid(5e728d0e29cdd684c856319700e74e70) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2e8e1145b0ccaf6539f76fdfabbcaea1') in 0.000269253 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 12.253842 seconds.
-  path: Packages/net.qrack.qrack/Plugin/MacOS/ARM64/libqrack_pinvoke.9.35.2.dylib
-  artifactKey: Guid(dfcf363ce39430e28a7169b8fb8745bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/MacOS/ARM64/libqrack_pinvoke.9.35.2.dylib using Guid(dfcf363ce39430e28a7169b8fb8745bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5a2ece56a485132ba2b7c683c0d18d56') in 0.000257415 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 0.44 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1131 unused Assets / (64.1 KB). Loaded Objects now: 1740.
-Memory consumption went from 67.7 MB to 67.7 MB.
-Total: 4.016216 ms (FindLiveObjects: 0.078440 ms CreateObjectMapping: 0.029056 ms MarkObjects: 3.754351 ms  DeleteObjects: 0.154005 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Import Request.
-  Time since last request: 7.455226 seconds.
-  path: Packages/net.qrack.qrack/Plugin/MacOS/ARM64/libqrack_pinvoke.9.35.2.dylib
-  artifactKey: Guid(dfcf363ce39430e28a7169b8fb8745bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/MacOS/ARM64/libqrack_pinvoke.9.35.2.dylib using Guid(dfcf363ce39430e28a7169b8fb8745bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '20a6110034d557f860a8be4ff36b38c9') in 0.000937153 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 0.40 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1131 unused Assets / (64.2 KB). Loaded Objects now: 1740.
-Memory consumption went from 67.7 MB to 67.7 MB.
-Total: 3.807433 ms (FindLiveObjects: 0.077523 ms CreateObjectMapping: 0.028870 ms MarkObjects: 3.544650 ms  DeleteObjects: 0.155807 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Import Request.
-  Time since last request: 5.291519 seconds.
-  path: Packages/net.qrack.qrack/Plugin/MacOS/ARM64/libqrack_pinvoke.9.35.2.dylib
-  artifactKey: Guid(dfcf363ce39430e28a7169b8fb8745bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/MacOS/ARM64/libqrack_pinvoke.9.35.2.dylib using Guid(dfcf363ce39430e28a7169b8fb8745bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f236fb11562f02a66c31ee7bc1c02c3f') in 0.000745283 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.405903 seconds.
-  path: Packages/net.qrack.qrack/Plugin/MacOS/x86_64/libqrack_pinvoke.dylib
-  artifactKey: Guid(a33320f0c951e984585459289f6baed2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/MacOS/x86_64/libqrack_pinvoke.dylib using Guid(a33320f0c951e984585459289f6baed2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '605e512bdccd26f5432ac05a387c416e') in 0.00026049 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.537890 seconds.
-  path: Packages/net.qrack.qrack/Plugin/MacOS/x86_64/libqrack_pinvoke.9.35.2.dylib
-  artifactKey: Guid(c3ffc076a5002735b827668687e6fe07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/MacOS/x86_64/libqrack_pinvoke.9.35.2.dylib using Guid(c3ffc076a5002735b827668687e6fe07) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '71a80726f7954184f6823d3a9f61cc2e') in 0.000257529 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 0.45 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1131 unused Assets / (64.1 KB). Loaded Objects now: 1740.
-Memory consumption went from 67.7 MB to 67.7 MB.
-Total: 4.088222 ms (FindLiveObjects: 0.083234 ms CreateObjectMapping: 0.029699 ms MarkObjects: 3.796326 ms  DeleteObjects: 0.178087 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Import Request.
-  Time since last request: 10.936096 seconds.
-  path: Packages/net.qrack.qrack/Plugin/MacOS/x86_64/libqrack_pinvoke.9.35.2.dylib
-  artifactKey: Guid(c3ffc076a5002735b827668687e6fe07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/MacOS/x86_64/libqrack_pinvoke.9.35.2.dylib using Guid(c3ffc076a5002735b827668687e6fe07) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b569f36db4b5bfd817a74b16fb977eed') in 0.000702478 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 4.647531 seconds.
-  path: Packages/net.qrack.qrack/Plugin/Windows/x86_64/qrack_pinvoke.dll
-  artifactKey: Guid(b2c0b32244d24f5428e2d59e146f564a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/Windows/x86_64/qrack_pinvoke.dll using Guid(b2c0b32244d24f5428e2d59e146f564a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ef64e5e345884b20ab41327cdc1eb4e0') in 0.000257529 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 15.281540 seconds.
-  path: Packages/net.qrack.qrack/Plugin/Windows/x86_64/qrack_cl_precompile.exe
-  artifactKey: Guid(57232bbb321fe7f4b9f12038bac04a6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/net.qrack.qrack/Plugin/Windows/x86_64/qrack_cl_precompile.exe using Guid(57232bbb321fe7f4b9f12038bac04a6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '53ca26bd9d1289d3a916910c77e7b730') in 0.010608968 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 16.771968 seconds.
-  path: Assets/Example/Scenes
-  artifactKey: Guid(eb3864b372f168849936c05f7041b86c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Example/Scenes using Guid(eb3864b372f168849936c05f7041b86c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b7f34a90b20290a20eff632b964714d3') in 0.00024214 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 7.205829 seconds.
-  path: Assets/Example/Scenes/newFeatures.unity
-  artifactKey: Guid(453d231c07ce5ad4aa47440fad53898c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Example/Scenes/newFeatures.unity using Guid(453d231c07ce5ad4aa47440fad53898c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd3e09340473acee6f3b1c4932359bfcf') in 0.000277475 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-[Licensing::Client] Successfully resolved entitlement details
-- Loaded All Assemblies, in  0.221 seconds
-Refreshing native plugins compatible for Editor in 0.36 ms, found 2 plugins.
-Native extension for LinuxStandalone target not found
-Native extension for Android target not found
-Mono: successfully reloaded assembly
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.241 seconds
-Domain Reload Profiling: 463ms
-	BeginReloadAssembly (94ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (3ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (25ms)
-	RebuildCommonClasses (24ms)
-	RebuildNativeTypeToScriptingClass (5ms)
-	initialDomainReloadingComplete (15ms)
-	LoadAllAssembliesAndSetupDomain (84ms)
-		LoadAssemblies (101ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (19ms)
-			TypeCache.Refresh (3ms)
-				TypeCache.ScanAssembly (0ms)
-			BuildScriptInfoCaches (13ms)
-			ResolveRequiredComponents (2ms)
-	FinalizeReload (242ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (174ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (10ms)
-			SetLoadedEditorAssemblies (3ms)
-			BeforeProcessingInitializeOnLoad (63ms)
-			ProcessInitializeOnLoadAttributes (72ms)
-			ProcessInitializeOnLoadMethodAttributes (24ms)
-			AfterProcessingInitializeOnLoad (2ms)
-			EditorAssembliesLoaded (0ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (2ms)
-Refreshing native plugins compatible for Editor in 0.42 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1145 unused Assets / (97.2 KB). Loaded Objects now: 1745.
-Memory consumption went from 67.9 MB to 67.8 MB.
-Total: 3.992414 ms (FindLiveObjects: 0.076064 ms CreateObjectMapping: 0.027809 ms MarkObjects: 3.725346 ms  DeleteObjects: 0.162654 ms)
-
-Prepare: number of updated asset objects reloaded= 0
