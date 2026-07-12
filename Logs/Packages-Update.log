@@ -137,3 +137,11 @@ The following packages were added:
   com.unity.modules.vectorgraphics@1.0.0
 The following packages were updated:
   com.unity.ide.visualstudio from version 2.0.22 to 2.0.25
+
+=== Sun Jul 12 09:13:04 2026
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.ide.visualstudio from version 2.0.25 to 2.0.26

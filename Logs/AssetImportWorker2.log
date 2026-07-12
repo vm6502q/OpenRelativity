@@ -10,23 +10,23 @@ Window Protocol:         Wayland (XWayland)
 Available memory:        62697 MB
 Date:                    2026-07-12T13:13:20Z
 [Licensing::Module] Trying to connect to existing licensing client channel...
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu" at "2026-07-12T13:13:20.477412Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu" at "2026-07-12T13:13:20.495898Z"
 [SignatureVerifier] Application signature verification not supported on this platform.
 [Licensing::Client] Error: HandshakeResponse reported an error:
 	ResponseCode: 505
 	ResponseStatus: Unsupported protocol version '1.18.1'.
 [Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-iamu"
 [Licensing::IpcConnector] LicenseClient-iamu channel disconnected successfully.
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-6000.3.19" at "2026-07-12T13:13:20.478493Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-6000.3.19" at "2026-07-12T13:13:20.496948Z"
 [SignatureVerifier] Application signature verification not supported on this platform.
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.18.1+9fbee8e
-  Session Id:              702322bd1f2d4b47adb7f93e353383a8
+  Session Id:              9212699f46414dda859acc7d97bbd8f4
   Correlation Id:          0d7a5743ee32439962c63be1f50cac31
-  External correlation Id: 6968305239824028016
+  External correlation Id: 4908002927757145878
   Machine Id:              43wg+E17xIfqaJGvjFdzFsaP8xY=
 [Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-iamu-6000.3.19" (connect: 0.00s, validation: 0.00s, handshake: 0.00s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-6000.3.19-notifications" at "2026-07-12T13:13:20.480164Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-6000.3.19-notifications" at "2026-07-12T13:13:20.497967Z"
 [Licensing::Module] Licensing Background thread has ended after 0.00s
 Selected window backend: (null) 
 Desktop is 4096 x 2560 @ 60 Hz
@@ -38,11 +38,11 @@ Unity
 -batchMode
 -noUpm
 -name
-AssetImportWorker1
+AssetImportWorker2
 -projectPath
 /home/iamu/GitHub/OpenRelativity
 -logFile
-Logs/AssetImportWorker1.log
+Logs/AssetImportWorker2.log
 -srvPort
 46729
 -parentPid
@@ -98,12 +98,12 @@ Successfully changed project path to: /home/iamu/GitHub/OpenRelativity
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [125263166041472]  Target information:
+Player connection [134589941869952]  Target information:
 
-Player connection [125263166041472]  * "[IP] 192.168.1.194 [Port] 0 [Flags] 2 [Guid] 120233484 [EditorId] 120233484 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.194) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
+Player connection [134589941869952]  * "[IP] 192.168.1.194 [Port] 0 [Flags] 2 [Guid] 974446222 [EditorId] 974446222 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.194) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
 
-Player connection [125263166041472] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [125263166041472] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [134589941869952] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [134589941869952] Host joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 15
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
@@ -115,7 +115,7 @@ Library Redirect Path: Library/
 [Physics::Module] SDK Version: 4.1.2
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Multi-Threaded
-Refreshing native plugins compatible for Editor in 0.87 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 0.99 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 6000.3.19f1 (7689f4515d75)
 [Subsystems] Discovering subsystems at path /home/iamu/Unity/Hub/Editor/6000.3.19f1/Editor/Data/Resources/UnitySubsystems
@@ -134,12 +134,12 @@ L_ARB_texture_border_clamp GL_ARB_texture_buffer_object GL_ARB_texture_buffer_ob
 _11f_rev GL_ARB_vertex_type_2_10_10_10_rev GL_ARB_viewport_array GL_ATI_blend_equation_separate GL_ATI_texture_float GL_EXT_EGL_image_storage GL_EXT_EGL_image_storage_compression GL_EXT_EGL_sync GL_EXT_abgr GL_EXT_blend_equation_separate GL_EXT_debug_label GL_EXT_demote_to_helper_invocation GL_EXT_depth_bounds_test GL_EXT_draw_buffers2 GL_EXT_draw_instanced GL_EXT_framebuffer_blit GL_EXT_framebuffer_multisample GL_EXT_framebuffer_multisample_blit_scaled GL_EXT_framebuffer_object GL_EXT_framebuffer_sRGB GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_packed_depth_stencil GL_EXT_packed_float GL_EXT_pixel_buffer_object GL_EXT_polygon_offset_clamp GL_EXT_provoking_vertex GL_EXT_semaphore GL_EXT_semaphore_fd GL_EXT_shader_clock GL_EXT_shader_framebuffer_fetch GL_EXT_shader_framebuffer_fetch_non_coherent GL_EXT_shader_integer_mix GL_EXT_shader_samples_identical GL_EXT_texture_array GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc GL_EXT_texture_compression_s3tc GL_EXT_texture_filter_anisotropic 
 GL_EXT_texture_integer GL_EXT_texture_sRGB GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_shared_exponent GL_EXT_texture_snorm GL_EXT_texture_storage GL_EXT_texture_swizzle GL_EXT_timer_query GL_EXT_transform_feedback GL_EXT_vertex_array_bgra GL_EXT_vertex_attrib_64bit GL_IBM_multimode_draw_arrays GL_INTEL_blackhole_render GL_INTEL_conservative_rasterization GL_INTEL_performance_query GL_INTEL_shader_atomic_float_minmax GL_INTEL_shader_integer_functions2 GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_KHR_context_flush_control GL_KHR_debug GL_KHR_no_error GL_KHR_parallel_shader_compile GL_KHR_robust_buffer_access_behavior GL_KHR_robustness GL_KHR_shader_subgroup GL_KHR_texture_compression_astc_ldr GL_KHR_texture_compression_astc_sliced_3d GL_MESA_framebuffer_flip_y GL_MESA_pack_invert GL_MESA_shader_integer_functions GL_MESA_texture_const_bandwidth GL_MESA_texture_signed_rgba GL_NV_alpha_to_coverage_dither_control GL_NV_compute_shader_deri
 vatives GL_NV_conditional_render GL_NV_copy_image GL_NV_depth_clamp GL_NV_fragment_shader_interlock GL_NV_packed_depth_stencil GL_NV_texture_barrier GL_OES_EGL_image GL_S3_s3tc
-OPENGL LOG: Creating OpenGL 4.6 graphics device ; Context level  <OpenGL 4.5> ; Context handle 370962000
+OPENGL LOG: Creating OpenGL 4.6 graphics device ; Context level  <OpenGL 4.5> ; Context handle -1396387712
 Initialize mono
 Mono path[0] = '/home/iamu/Unity/Hub/Editor/6000.3.19f1/Editor/Data/Managed'
 Mono path[1] = '/home/iamu/Unity/Hub/Editor/6000.3.19f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-linux'
 Mono config path = '/home/iamu/Unity/Hub/Editor/6000.3.19f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56520
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56533
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 [Licensing::Client] Successfully resolved entitlement details
@@ -150,7 +150,7 @@ Registering precompiled unity dll's ...
   Expiration: Unlimited
 Register platform support module: /home/iamu/Unity/Hub/Editor/6000.3.19f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: /home/iamu/Unity/Hub/Editor/6000.3.19f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.001305 seconds.
+Registered in 0.001486 seconds.
 - Loaded All Assemblies, in  0.229 seconds
 Native extension for LinuxStandalone target not found
 Package Manager log level set to [2]
@@ -169,8 +169,8 @@ Native extension for Android target not found
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.267 seconds
-Domain Reload Profiling: 496ms
+- Finished resetting the current domain, in  0.287 seconds
+Domain Reload Profiling: 516ms
 	BeginReloadAssembly (51ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
@@ -188,16 +188,16 @@ Domain Reload Profiling: 496ms
 				TypeCache.ScanAssembly (98ms)
 			BuildScriptInfoCaches (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (268ms)
+	FinalizeReload (287ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (239ms)
+		SetupLoadedEditorAssemblies (255ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (42ms)
+			InitializePlatformSupportModulesInManaged (40ms)
 			SetLoadedEditorAssemblies (3ms)
-			BeforeProcessingInitializeOnLoad (55ms)
-			ProcessInitializeOnLoadAttributes (94ms)
-			ProcessInitializeOnLoadMethodAttributes (45ms)
+			BeforeProcessingInitializeOnLoad (61ms)
+			ProcessInitializeOnLoadAttributes (104ms)
+			ProcessInitializeOnLoadMethodAttributes (46ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -207,8 +207,8 @@ Domain Reload Profiling: 496ms
 Worker process is ready to serve import requests
 Import Worker Mode flag is 0x00
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.236 seconds
-Refreshing native plugins compatible for Editor in 0.37 ms, found 2 plugins.
+- Loaded All Assemblies, in  0.245 seconds
+Refreshing native plugins compatible for Editor in 0.40 ms, found 2 plugins.
 Native extension for LinuxStandalone target not found
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
@@ -228,248 +228,309 @@ Mono: successfully reloaded assembly
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.247 seconds
-Domain Reload Profiling: 483ms
-	BeginReloadAssembly (82ms)
+- Finished resetting the current domain, in  0.258 seconds
+Domain Reload Profiling: 503ms
+	BeginReloadAssembly (88ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (3ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (19ms)
-	RebuildCommonClasses (23ms)
+		CreateAndSetChildDomain (23ms)
+	RebuildCommonClasses (27ms)
 	RebuildNativeTypeToScriptingClass (6ms)
-	initialDomainReloadingComplete (24ms)
-	LoadAllAssembliesAndSetupDomain (101ms)
-		LoadAssemblies (108ms)
+	initialDomainReloadingComplete (22ms)
+	LoadAllAssembliesAndSetupDomain (102ms)
+		LoadAssemblies (109ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
 		AnalyzeDomain (29ms)
-			TypeCache.Refresh (21ms)
+			TypeCache.Refresh (20ms)
 				TypeCache.ScanAssembly (14ms)
 			BuildScriptInfoCaches (6ms)
 			ResolveRequiredComponents (2ms)
-	FinalizeReload (247ms)
+	FinalizeReload (258ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (178ms)
+		SetupLoadedEditorAssemblies (183ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (11ms)
-			SetLoadedEditorAssemblies (3ms)
+			InitializePlatformSupportModulesInManaged (12ms)
+			SetLoadedEditorAssemblies (2ms)
 			BeforeProcessingInitializeOnLoad (62ms)
-			ProcessInitializeOnLoadAttributes (76ms)
-			ProcessInitializeOnLoadMethodAttributes (24ms)
+			ProcessInitializeOnLoadAttributes (77ms)
+			ProcessInitializeOnLoadMethodAttributes (27ms)
 			AfterProcessingInitializeOnLoad (2ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (2ms)
 AutoLocale: current locale expects 'C' but got 'en_US.UTF-8'Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
-Refreshing native plugins compatible for Editor in 0.39 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 0.41 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
 Curl error 3: URL rejected: Error
-Unloading 1156 unused Assets / (207.6 KB). Loaded Objects now: 1752.
-Memory consumption went from 71.6 MB to 71.4 MB.
-Total: 4.987392 ms (FindLiveObjects: 0.091747 ms CreateObjectMapping: 0.050646 ms MarkObjects: 4.372824 ms  DeleteObjects: 0.471434 ms)
+Unloading 1156 unused Assets / (165.3 KB). Loaded Objects now: 1752.
+Memory consumption went from 71.7 MB to 71.5 MB.
+Total: 4.968892 ms (FindLiveObjects: 0.102769 ms CreateObjectMapping: 0.049789 ms MarkObjects: 4.361022 ms  DeleteObjects: 0.454667 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 467624.493970 seconds.
-  path: Assets/XR/Loaders/XRLoader.asset
-  artifactKey: Guid(1df26eaa3c6583fcc817a5661ff2d493) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/XR/Loaders/XRLoader.asset using Guid(1df26eaa3c6583fcc817a5661ff2d493) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '9ff4a4bcfe03c420a558b98db9c25e73') in 0.059362859 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000213 seconds.
-  path: Assets/Example/Scripts/InfoScript.cs
-  artifactKey: Guid(027949b0715da744b915b40c6917e11e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Example/Scripts/InfoScript.cs using Guid(027949b0715da744b915b40c6917e11e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'a61e54f2543461e1614643c749d03a0e') in 0.004820922 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000254 seconds.
-  path: Assets/Samples/OpenRelativity/0.1.0/Example/Scripts/AudioSenderTest.cs
-  artifactKey: Guid(38969e49e03ccad4a82cfb90665c50db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Scripts/AudioSenderTest.cs using Guid(38969e49e03ccad4a82cfb90665c50db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'b84f51688bd9e5db1ac97795d1189aca') in 0.000848408 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000164 seconds.
-  path: Assets/Samples/Tachyoid/0.1.0/Example/Models/CubeHighLOD.obj
-  artifactKey: Guid(a55862eb51951f64a8bc71381e4250aa) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/Tachyoid/0.1.0/Example/Models/CubeHighLOD.obj using Guid(a55862eb51951f64a8bc71381e4250aa) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'c6240f2d3857cb24c8b06ec54d372d45') in 0.028462164 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000184 seconds.
-  path: Assets/Samples/Qrack/0.1.0/Example/Audio/DopplerScene.mixer
-  artifactKey: Guid(f4cf6e26440d144478a8989540239746) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/Qrack/0.1.0/Example/Audio/DopplerScene.mixer using Guid(f4cf6e26440d144478a8989540239746) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter)Refreshing native plugins compatible for Editor in 0.39 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
- -> (artifact id: 'fbbdb1b2631ed26a0fc11ae9407ae00f') in 0.004718488 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 5
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/real_constants/LightingData.asset
-  artifactKey: Guid(0674ded713945151bb4156cb1c4a59a1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/real_constants/LightingData.asset using Guid(0674ded713945151bb4156cb1c4a59a1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'b5d221b6c0aa05305521e69c6b7ece82') in 0.040204573 seconds
+  Time since last request: 467624.548276 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/UVMAP.mat
+  artifactKey: Guid(074f499876cc0a04db91119ac9237977) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/UVMAP.mat using Guid(074f499876cc0a04db91119ac9237977) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'bca101eea51518923ba27c7c48569749') in 0.08733973 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000139 seconds.
-  path: Assets/Samples/Tachyoid/0.1.0/Example/Models/cube.fbx
-  artifactKey: Guid(fe450a5b15a0c914abbc0bc564bb57c6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/Tachyoid/0.1.0/Example/Models/cube.fbx using Guid(fe450a5b15a0c914abbc0bc564bb57c6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '27a32d15cca55348e2c918c8151842ae') in 0.011121676 seconds
+  Time since last request: 0.000008 seconds.
+  path: Assets/Samples/Qrack/0.1.0/Example/Materials/Textures/gray.png
+  artifactKey: Guid(18f5f57ef5588f7469d0f85055ec8280) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/Qrack/0.1.0/Example/Materials/Textures/gray.png using Guid(18f5f57ef5588f7469d0f85055ec8280) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '6764cbe8d6798f35223152d5e47278c4') in 0.029922148 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000059 seconds.
+  path: Assets/Samples/Qrack/0.1.0/Example/Materials/Textures/Red.png
+  artifactKey: Guid(22b75137505694249ac0958cf7315e9c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/Qrack/0.1.0/Example/Materials/Textures/Red.png using Guid(22b75137505694249ac0958cf7315e9c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '57d09abbc7cc36e52142a4d7d72a2795') in 0.002770455 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/real_constants/ReflectionProbe-0.exr
+  artifactKey: Guid(2774f8a2a21134e138070a285b9cf287) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/real_constants/ReflectionProbe-0.exr using Guid(2774f8a2a21134e138070a285b9cf287) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '3cf8c73ff558a40af01557f773e1bb54') in 0.005146839 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000080 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/Example_Lighting_Settings.lighting
+  artifactKey: Guid(e13ac42435bc006fc8703f845d2b0f08) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/Example_Lighting_Settings.lighting using Guid(e13ac42435bc006fc8703f845d2b0f08) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '93190102060ea3e0b914e0a277f191a6') in 0.00649129 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/UVCube.mat
+  artifactKey: Guid(5e0aa2334a23606449c26d3f053de6f8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/UVCube.mat using Guid(5e0aa2334a23606449c26d3f053de6f8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '928ddb81910f73e68e758cc04b1b5314') in 0.001586538 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000006 seconds.
+  path: Assets/XR/XRGeneralSettingsPerBuildTarget.asset
+  artifactKey: Guid(985c82d2c8d495e4ba300ad4937bd0e3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/XR/XRGeneralSettingsPerBuildTarget.asset using Guid(985c82d2c8d495e4ba300ad4937bd0e3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '11e9c34cc397d02bce13218ba84dd499') in 0.01420166 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Samples/Tachyoid/0.1.0/Example/Models/sphereTEx.fbx
+  artifactKey: Guid(ee77c4c4748b20e46a743ebcf838d71b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/Tachyoid/0.1.0/Example/Models/sphereTEx.fbx using Guid(ee77c4c4748b20e46a743ebcf838d71b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '595aac290f7430c6165fd8d858815f76') in 0.029249354 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 16
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000091 seconds.
-  path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/charged_spinning_skybox.unity
-  artifactKey: Guid(5bcd03d237c4eba4e85a4c8099a24bc4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/charged_spinning_skybox.unity using Guid(5bcd03d237c4eba4e85a4c8099a24bc4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '837a55afc070fc2c7105f10c31993cb8') in 0.001097361 seconds
+  Time since last request: 0.000024 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/rindlerFeatures/ReflectionProbe-0.exr
+  artifactKey: Guid(4d223677e0494a300800f7e369dc9ab1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/rindlerFeatures/ReflectionProbe-0.exr using Guid(4d223677e0494a300800f7e369dc9ab1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '35fd22d76230012aa7730be0d7619a00') in 0.00397905 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000035 seconds.
-  path: Assets/Samples/Qrack/0.1.0/Example/Materials/Textures/Teal.png
-  artifactKey: Guid(388fa992bcaa3ad4da846bfcc6a3bf54) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/Qrack/0.1.0/Example/Materials/Textures/Teal.png using Guid(388fa992bcaa3ad4da846bfcc6a3bf54) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '1cbfbb0e7e43ca11f3a57ab8cc92681a') in 0.023933695 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000143 seconds.
-  path: Assets/Example/Scenes/newFeatures/Lightmap-1_comp_dir.png
-  artifactKey: Guid(de093f221e9b45642a5ce4b6e669af87) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Example/Scenes/newFeatures/Lightmap-1_comp_dir.png using Guid(de093f221e9b45642a5ce4b6e669af87) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '8b55dd4c2cf2c6cd4337dc3358511e54') in 0.003928083 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000098 seconds.
-  path: Assets/Example/Scenes/newFeatures/ReflectionProbe-1.exr
-  artifactKey: Guid(cfd1577d0443d1a4dbb6eedad891d8b2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Example/Scenes/newFeatures/ReflectionProbe-1.exr using Guid(cfd1577d0443d1a4dbb6eedad891d8b2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'd7528d71470dddcc47cb3833886642db') in 0.006825878 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000155 seconds.
-  path: Assets/Samples/Qrack/0.1.0/Example/Materials/Skybox.mat
-  artifactKey: Guid(290ff36d29c1e9146be8ccd428f16595) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/Qrack/0.1.0/Example/Materials/Skybox.mat using Guid(290ff36d29c1e9146be8ccd428f16595) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '5796a76876449c5bc0a566a2f7041831') in 0.005909111 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000104 seconds.
-  path: Assets/Samples/OpenRelativity/0.1.0/Example/Resources/GameObjects/RigidMesh.prefab
-  artifactKey: Guid(d06cda7025ea23349aa1ea1b5e1cd6f0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Resources/GameObjects/RigidMesh.prefab using Guid(d06cda7025ea23349aa1ea1b5e1cd6f0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '18d8db8cba3e1bd35a8d6b5c63c68720') in 0.020965513 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 12
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000170 seconds.
-  path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/rindlerFeatures.unity
-  artifactKey: Guid(86698db5947cd8946989118a41bde3ef) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/rindlerFeatures.unity using Guid(86698db5947cd8946989118a41bde3ef) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'a3eb86dc3b5db5edb5d5a7f4ba93e0d6') in 0.001416375 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000211 seconds.
-  path: Assets/Samples/Qrack/0.1.0/Example/Models/relativitylogo.fbx
-  artifactKey: Guid(ba8a509b35fa4fd4782fa1b2fb300053) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/Qrack/0.1.0/Example/Models/relativitylogo.fbx using Guid(ba8a509b35fa4fd4782fa1b2fb300053) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'e4e127f7aa50b97b5723aa0fa459951e') in 0.007658935 seconds
+  Time since last request: 0.000065 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Resources/GameObjects/Wall.prefab
+  artifactKey: Guid(abd73cde6c1ca34429d14c30089fe3e4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Resources/GameObjects/Wall.prefab using Guid(abd73cde6c1ca34429d14c30089fe3e4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '9a2b5899dbbf2fe43f209d766793519b') in 0.002629509 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 11
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000013 seconds.
-  path: Assets/Samples/Qrack/0.1.0/Example/Materials/Textures/IR.png
-  artifactKey: Guid(5ccf5d698d72a744581cdd3eb2fbb047) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/Qrack/0.1.0/Example/Materials/Textures/IR.png using Guid(5ccf5d698d72a744581cdd3eb2fbb047) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '832de7044ab34e723f4806b77ba4a75d') in 0.002982842 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000072 seconds.
-  path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/charged_skybox.unity
-  artifactKey: Guid(a9b02e917e770ee6196d7ea0d51f21c1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/charged_skybox.unity using Guid(a9b02e917e770ee6196d7ea0d51f21c1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'dc394311ad4aff22418e82951339fc97') in 0.001065794 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000053 seconds.
-  path: Assets/Samples/Qrack/0.1.0/Example/Materials/Textures/rgb3panel.png
-  artifactKey: Guid(d0cefeb2b4556ea40b49e53e3e9e8bcc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/Qrack/0.1.0/Example/Materials/Textures/rgb3panel.png using Guid(d0cefeb2b4556ea40b49e53e3e9e8bcc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'c9742d56cfafa384dc166e80b6b1a863') in 0.003895914 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000038 seconds.
-  path: Assets/Example/Scenes/newFeatures/Lightmap-0_comp_dir.png
-  artifactKey: Guid(50691b1eba5288346a3aed71182cb3e8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Example/Scenes/newFeatures/Lightmap-0_comp_dir.png using Guid(50691b1eba5288346a3aed71182cb3e8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '2c05cc0cee886df06af411997be1627a') in 0.003951235 seconds
+  Time since last request: 0.000049 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/defaultMat.mat
+  artifactKey: Guid(c7d69920825ab7c4f845e81c67413a1b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/defaultMat.mat using Guid(c7d69920825ab7c4f845e81c67413a1b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'd2583fc4fa2b2e84dbb6d20749ac67b6') in 0.001320234 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000048 seconds.
-  path: Assets/Example/Scenes/Example_Lighting_Settings.lighting
-  artifactKey: Guid(695a8050e782b86438e9f78124eb9c48) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Example/Scenes/Example_Lighting_Settings.lighting using Guid(695a8050e782b86438e9f78124eb9c48) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'd21649c2bf28a47417dc38f802eedb58') in 0.005359424 seconds
+  path: Assets/Samples/Qrack/0.1.0/Example/Scenes/yorktown.unity
+  artifactKey: Guid(1080c9385bac2a24eb765488e6194530) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/Qrack/0.1.0/Example/Scenes/yorktown.unity using Guid(1080c9385bac2a24eb765488e6194530) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '8c1a81aee4a052f484bceb1492b31b04') in 0.001533139 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000057 seconds.
-  path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/real_constants.unity
-  artifactKey: Guid(d94708e4a6659464fbb21ba50545c78d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/real_constants.unity using Guid(d94708e4a6659464fbb21ba50545c78d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'e9cbd2ccd5f77f561f1fffe40cfd33fc') in 0.002603185 seconds
+  Time since last request: 0.000024 seconds.
+  path: Assets/Example/Scenes/newFeatures/Lightmap-1_comp_light.exr
+  artifactKey: Guid(25830d2c457eb294b81f3bbaa3d62390) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Example/Scenes/newFeatures/Lightmap-1_comp_light.exr using Guid(25830d2c457eb294b81f3bbaa3d62390) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '33ebc63da7a1a65ab047141dd754da05') in 0.004002239 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Models/CubeHighLOD.obj
+  artifactKey: Guid(bf1499cb06455a04cba8ebf846e49765) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Models/CubeHighLOD.obj using Guid(bf1499cb06455a04cba8ebf846e49765) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '244219158721ca329e0858375f1d0cc9') in 0.00263029 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000011 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Models/RoomHighLOD.obj
+  artifactKey: Guid(bf3009c9ece472f489bc328e320f7b96) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Models/RoomHighLOD.obj using Guid(bf3009c9ece472f489bc328e320f7b96) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '4c8e616bb33f452d2ea341658dc46223') in 0.00378383 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/rindlerFeatures/ReflectionProbe-1.exr
+  artifactKey: Guid(6cef325241b41d9ffa31d382d9842c92) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/rindlerFeatures/ReflectionProbe-1.exr using Guid(6cef325241b41d9ffa31d382d9842c92) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'd2ea97cd221aea3482980601bb249408') in 0.003081419 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Samples/Tachyoid/0.1.0/Example/Models/relativitylogo.fbx
+  artifactKey: Guid(fcada8838dd650c4db546c2cfd105c2e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/Tachyoid/0.1.0/Example/Models/relativitylogo.fbx using Guid(fcada8838dd650c4db546c2cfd105c2e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '50ffde81307c9a506d38623bfd454284') in 0.01400305 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 11
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000150 seconds.
+  path: Assets/Example/Scenes/newFeatures/ReflectionProbe-0.exr
+  artifactKey: Guid(fc3e50e4b52c5e34d97104d4e3fa8877) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Example/Scenes/newFeatures/ReflectionProbe-0.exr using Guid(fc3e50e4b52c5e34d97104d4e3fa8877) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'b19e87f840328e20ba3ecfff70b5f2f6') in 0.002623172 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Example/Scripts/AudioSenderTest.cs
+  artifactKey: Guid(198dc27536d198043b280929f10bc4c6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Example/Scripts/AudioSenderTest.cs using Guid(198dc27536d198043b280929f10bc4c6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'd515da7e50f56835863c13c06283d87d') in 0.001189387 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000107 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/monopole.unity
+  artifactKey: Guid(cc8f31867774a9b4486849e81364f55f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/monopole.unity using Guid(cc8f31867774a9b4486849e81364f55f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'fd48a651206e2168ab06cad3930b1c24') in 0.002609612 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000103 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Models/Room.obj
+  artifactKey: Guid(8c481693fcf88ec4d829fc26e9ff43ad) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Models/Room.obj using Guid(8c481693fcf88ec4d829fc26e9ff43ad) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'bd74868d01af4360b9dc7ced4f1fc66d') in 0.002978731 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/rindlerFeatures/Lightmap-0_comp_dir.png
+  artifactKey: Guid(0efb90408d82ab32ba303804563505e7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/rindlerFeatures/Lightmap-0_comp_dir.png using Guid(0efb90408d82ab32ba303804563505e7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '4de2fdc1df1b6d576c2c3e28b7c3504b') in 0.003770218 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000154 seconds.
+  path: Assets/Samples/Qrack/0.1.0/Example/Materials/Textures/White.png
+  artifactKey: Guid(127dc37461d282a4cafbce8fafd3c3a2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/Qrack/0.1.0/Example/Materials/Textures/White.png using Guid(127dc37461d282a4cafbce8fafd3c3a2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '4c3ee244ac9cadb6e2c5c193fc18e8c1') in 0.002919337 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000092 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Models/relativityTEXT.fbx
+  artifactKey: Guid(a291371c993734443a6bfaa27d872a91) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Models/relativityTEXT.fbx using Guid(a291371c993734443a6bfaa27d872a91) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'fa0a6230d4a37bba152da2da3ab2886d') in 0.005665103 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 11
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000007 seconds.
+  path: Assets/Samples/Qrack/0.1.0/Example/Models/cube.fbx
+  artifactKey: Guid(250a59182ec3aff49b45f7f0b0e59512) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/Qrack/0.1.0/Example/Models/cube.fbx using Guid(250a59182ec3aff49b45f7f0b0e59512) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '81b7ea151ce551320c1a74d2190d2a26') in 0.004335566 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 16
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/rindlerFeatures/Lightmap-1_comp_light.exr
+  artifactKey: Guid(deb6a31b0b350ef448fbc68afcac9642) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/rindlerFeatures/Lightmap-1_comp_light.exr using Guid(deb6a31b0b350ef448fbc68afcac9642) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '2b5a5ad5cae62b513fe5ba3def6be800') in 0.00378244 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000031 seconds.
-  path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/rindlerFeatures/LightingData.asset
-  artifactKey: Guid(dd4bc9b4ae8f96ea1b17da9376cc0c60) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/rindlerFeatures/LightingData.asset using Guid(dd4bc9b4ae8f96ea1b17da9376cc0c60) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'ca7c5f94979fd5cbd2688851cc8041b4') in 0.041735685 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000182 seconds.
-  path: Assets/Samples/OpenRelativity/0.1.0/Example/Audio/151908__carroll27__metronome-even.aiff
-  artifactKey: Guid(f7e930026a4002141a801162961cc3f2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Audio/151908__carroll27__metronome-even.aiff using Guid(f7e930026a4002141a801162961cc3f2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '3e52076e2d07328996001d76a54d7d22') in 0.06243923 seconds
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/No Name.mat
+  artifactKey: Guid(e31116d3d9223e34d83df37d5a662f14) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/No Name.mat using Guid(e31116d3d9223e34d83df37d5a662f14) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'ff974750306033962283d79ef13d9a5d') in 0.001227174 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.071614 seconds.
-  path: Assets/Samples/Qrack/0.1.0/Example/Models/Materials/UVMAP.mat
-  artifactKey: Guid(c86662c5467d755409e0cacdcfede4ae) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
-Start importing Assets/Samples/Qrack/0.1.0/Example/Models/Materials/UVMAP.mat using Guid(c86662c5467d755409e0cacdcfede4ae) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'f11988e3079437ef405f175f4aa252ee') in 0.030443364 seconds
+  Time since last request: 0.118060 seconds.
+  path: Assets/Samples/Qrack/0.1.0/Example/Models/Materials/UV2.mat
+  artifactKey: Guid(83dc0db8546eec24aac8947ac6c7374e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/Qrack/0.1.0/Example/Models/Materials/UV2.mat using Guid(83dc0db8546eec24aac8947ac6c7374e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '77cdd992e5fdd163ca17ae393b05d341') in 0.003015838 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000361 seconds.
+  path: Assets/Samples/Tachyoid/0.1.0/Example/Models/Materials/UVMAP.mat
+  artifactKey: Guid(2691eb6e0f7a1c840adf211cd73ec8a1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/Tachyoid/0.1.0/Example/Models/Materials/UVMAP.mat using Guid(2691eb6e0f7a1c840adf211cd73ec8a1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '27b24bc952fbd9d47f08531395156863') in 0.003130161 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000163 seconds.
+  path: Assets/Samples/Tachyoid/0.1.0/Example/Models/Materials/UV2.mat
+  artifactKey: Guid(d5f722004e50e0d40b04f9a92a758933) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Samples/Tachyoid/0.1.0/Example/Models/Materials/UV2.mat using Guid(d5f722004e50e0d40b04f9a92a758933) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'a7cba5a6bee0f0137568a740be4fe6e7') in 0.002286841 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.811671 seconds.
+  path: Assets/Example/Scenes
+  artifactKey: Guid(eb3864b372f168849936c05f7041b86c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Example/Scenes using Guid(eb3864b372f168849936c05f7041b86c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b7f34a90b20290a20eff632b964714d3') in 0.00024977 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.289788 seconds.
+  path: Assets/Example/Scenes/newFeatures.unity
+  artifactKey: Guid(453d231c07ce5ad4aa47440fad53898c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Example/Scenes/newFeatures.unity using Guid(453d231c07ce5ad4aa47440fad53898c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd3e09340473acee6f3b1c4932359bfcf') in 0.000288321 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Prepare
 Begin MonoManager ReloadAssembly
-ADTM: Control thread waiting for realtime thread timed out, have to lock...
-- Loaded All Assemblies, in  1.221 seconds
-Refreshing native plugins compatible for Editor in 0.33 ms, found 2 plugins.
+- Loaded All Assemblies, in  0.226 seconds
+Refreshing native plugins compatible for Editor in 0.35 ms, found 2 plugins.
 Native extension for LinuxStandalone target not found
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
@@ -486,44 +547,44 @@ Mono: successfully reloaded assembly
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.250 seconds
-Domain Reload Profiling: 1471ms
-	BeginReloadAssembly (1088ms)
+- Finished resetting the current domain, in  0.225 seconds
+Domain Reload Profiling: 451ms
+	BeginReloadAssembly (99ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (3ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (1020ms)
-	RebuildCommonClasses (22ms)
-	RebuildNativeTypeToScriptingClass (6ms)
-	initialDomainReloadingComplete (16ms)
-	LoadAllAssembliesAndSetupDomain (90ms)
-		LoadAssemblies (108ms)
+		CreateAndSetChildDomain (31ms)
+	RebuildCommonClasses (21ms)
+	RebuildNativeTypeToScriptingClass (5ms)
+	initialDomainReloadingComplete (15ms)
+	LoadAllAssembliesAndSetupDomain (87ms)
+		LoadAssemblies (102ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
 		AnalyzeDomain (19ms)
-			TypeCache.Refresh (3ms)
+			TypeCache.Refresh (4ms)
 				TypeCache.ScanAssembly (0ms)
 			BuildScriptInfoCaches (13ms)
 			ResolveRequiredComponents (2ms)
-	FinalizeReload (250ms)
+	FinalizeReload (225ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (179ms)
+		SetupLoadedEditorAssemblies (164ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (13ms)
-			SetLoadedEditorAssemblies (4ms)
-			BeforeProcessingInitializeOnLoad (63ms)
-			ProcessInitializeOnLoadAttributes (73ms)
-			ProcessInitializeOnLoadMethodAttributes (24ms)
+			InitializePlatformSupportModulesInManaged (10ms)
+			SetLoadedEditorAssemblies (2ms)
+			BeforeProcessingInitializeOnLoad (59ms)
+			ProcessInitializeOnLoadAttributes (69ms)
+			ProcessInitializeOnLoadMethodAttributes (22ms)
 			AfterProcessingInitializeOnLoad (2ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (2ms)
-Refreshing native plugins compatible for Editor in 0.38 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 0.36 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1154 unused Assets / (116.5 KB). Loaded Objects now: 1756.
-Memory consumption went from 71.8 MB to 71.7 MB.
-Total: 3.934424 ms (FindLiveObjects: 0.085098 ms CreateObjectMapping: 0.035652 ms MarkObjects: 3.668306 ms  DeleteObjects: 0.144875 ms)
+Unloading 1154 unused Assets / (83.2 KB). Loaded Objects now: 1756.
+Memory consumption went from 72.6 MB to 72.5 MB.
+Total: 3.641966 ms (FindLiveObjects: 0.072523 ms CreateObjectMapping: 0.027488 ms MarkObjects: 3.408871 ms  DeleteObjects: 0.132574 ms)
 
 Prepare: number of updated asset objects reloaded= 0
