@@ -8,25 +8,25 @@ Kernel version:          7.0.0-27-generic
 Architecture:            x86_64
 Window Protocol:         Wayland (XWayland)
 Available memory:        62697 MB
-Date:                    2026-07-12T14:38:28Z
+Date:                    2026-07-15T04:54:48Z
 [Licensing::Module] Trying to connect to existing licensing client channel...
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu" at "2026-07-12T14:38:28.811048Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu" at "2026-07-15T04:54:48.537413Z"
 [SignatureVerifier] Application signature verification not supported on this platform.
 [Licensing::Client] Error: HandshakeResponse reported an error:
 	ResponseCode: 505
 	ResponseStatus: Unsupported protocol version '1.18.1'.
 [Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-iamu"
 [Licensing::IpcConnector] LicenseClient-iamu channel disconnected successfully.
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-6000.3.19" at "2026-07-12T14:38:28.812207Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-6000.3.19" at "2026-07-15T04:54:48.538461Z"
 [SignatureVerifier] Application signature verification not supported on this platform.
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.18.1+9fbee8e
-  Session Id:              321518b2158e4992b01784080ecf0b7b
-  Correlation Id:          431ed84fb518703002e8bf69545044c7
-  External correlation Id: 3411953070271854443
+  Session Id:              bfe0ab6ce615428aa1c84ad281c3ae7f
+  Correlation Id:          fb6d42a41b75a8b15f357bca3c1654c1
+  External correlation Id: 7336716341276804051
   Machine Id:              43wg+E17xIfqaJGvjFdzFsaP8xY=
 [Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-iamu-6000.3.19" (connect: 0.00s, validation: 0.00s, handshake: 0.00s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-6000.3.19-notifications" at "2026-07-12T14:38:28.814102Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-6000.3.19-notifications" at "2026-07-15T04:54:48.540266Z"
 [Licensing::Module] Licensing Background thread has ended after 0.00s
 Selected window backend: (null) 
 Desktop is 4096 x 2560 @ 60 Hz
@@ -44,9 +44,9 @@ AssetImportWorker1
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-36863
+37981
 -parentPid
-1468640
+377966
 -analyticsCloudUserId
 1128121
 -analyticsCloudProjectId
@@ -98,12 +98,12 @@ Successfully changed project path to: /home/iamu/GitHub/OpenRelativity
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [136878936644992]  Target information:
+Player connection [124708631047552]  Target information:
 
-Player connection [136878936644992]  * "[IP] 192.168.1.194 [Port] 0 [Flags] 2 [Guid] 2294272039 [EditorId] 2294272039 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.194) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
+Player connection [124708631047552]  * "[IP] 192.168.1.194 [Port] 0 [Flags] 2 [Guid] 126971392 [EditorId] 126971392 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.194) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
 
-Player connection [136878936644992] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [136878936644992] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [124708631047552] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [124708631047552] Host joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 15
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
@@ -134,12 +134,12 @@ L_ARB_texture_border_clamp GL_ARB_texture_buffer_object GL_ARB_texture_buffer_ob
 _11f_rev GL_ARB_vertex_type_2_10_10_10_rev GL_ARB_viewport_array GL_ATI_blend_equation_separate GL_ATI_texture_float GL_EXT_EGL_image_storage GL_EXT_EGL_image_storage_compression GL_EXT_EGL_sync GL_EXT_abgr GL_EXT_blend_equation_separate GL_EXT_debug_label GL_EXT_demote_to_helper_invocation GL_EXT_depth_bounds_test GL_EXT_draw_buffers2 GL_EXT_draw_instanced GL_EXT_framebuffer_blit GL_EXT_framebuffer_multisample GL_EXT_framebuffer_multisample_blit_scaled GL_EXT_framebuffer_object GL_EXT_framebuffer_sRGB GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_packed_depth_stencil GL_EXT_packed_float GL_EXT_pixel_buffer_object GL_EXT_polygon_offset_clamp GL_EXT_provoking_vertex GL_EXT_semaphore GL_EXT_semaphore_fd GL_EXT_shader_clock GL_EXT_shader_framebuffer_fetch GL_EXT_shader_framebuffer_fetch_non_coherent GL_EXT_shader_integer_mix GL_EXT_shader_samples_identical GL_EXT_texture_array GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc GL_EXT_texture_compression_s3tc GL_EXT_texture_filter_anisotropic 
 GL_EXT_texture_integer GL_EXT_texture_sRGB GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_shared_exponent GL_EXT_texture_snorm GL_EXT_texture_storage GL_EXT_texture_swizzle GL_EXT_timer_query GL_EXT_transform_feedback GL_EXT_vertex_array_bgra GL_EXT_vertex_attrib_64bit GL_IBM_multimode_draw_arrays GL_INTEL_blackhole_render GL_INTEL_conservative_rasterization GL_INTEL_performance_query GL_INTEL_shader_atomic_float_minmax GL_INTEL_shader_integer_functions2 GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_KHR_context_flush_control GL_KHR_debug GL_KHR_no_error GL_KHR_parallel_shader_compile GL_KHR_robust_buffer_access_behavior GL_KHR_robustness GL_KHR_shader_subgroup GL_KHR_texture_compression_astc_ldr GL_KHR_texture_compression_astc_sliced_3d GL_MESA_framebuffer_flip_y GL_MESA_pack_invert GL_MESA_shader_integer_functions GL_MESA_texture_const_bandwidth GL_MESA_texture_signed_rgba GL_NV_alpha_to_coverage_dither_control GL_NV_compute_shader_deri
 vatives GL_NV_conditional_render GL_NV_copy_image GL_NV_depth_clamp GL_NV_fragment_shader_interlock GL_NV_packed_depth_stencil GL_NV_texture_barrier GL_OES_EGL_image GL_S3_s3tc
-OPENGL LOG: Creating OpenGL 4.6 graphics device ; Context level  <OpenGL 4.5> ; Context handle 501127792
+OPENGL LOG: Creating OpenGL 4.6 graphics device ; Context level  <OpenGL 4.5> ; Context handle -1489796192
 Initialize mono
 Mono path[0] = '/home/iamu/Unity/Hub/Editor/6000.3.19f1/Editor/Data/Managed'
 Mono path[1] = '/home/iamu/Unity/Hub/Editor/6000.3.19f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-linux'
 Mono config path = '/home/iamu/Unity/Hub/Editor/6000.3.19f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56288
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56494
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 [Licensing::Client] Successfully resolved entitlement details
@@ -150,8 +150,8 @@ Registering precompiled unity dll's ...
   Expiration: Unlimited
 Register platform support module: /home/iamu/Unity/Hub/Editor/6000.3.19f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: /home/iamu/Unity/Hub/Editor/6000.3.19f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.001639 seconds.
-- Loaded All Assemblies, in  0.233 seconds
+Registered in 0.001842 seconds.
+- Loaded All Assemblies, in  0.246 seconds
 Native extension for LinuxStandalone target not found
 Package Manager log level set to [2]
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
@@ -169,35 +169,35 @@ Native extension for Android target not found
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.274 seconds
-Domain Reload Profiling: 507ms
+- Finished resetting the current domain, in  0.281 seconds
+Domain Reload Profiling: 527ms
 	BeginReloadAssembly (54ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (24ms)
-	RebuildNativeTypeToScriptingClass (5ms)
-	initialDomainReloadingComplete (35ms)
-	LoadAllAssembliesAndSetupDomain (115ms)
+	RebuildCommonClasses (30ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (36ms)
+	LoadAllAssembliesAndSetupDomain (121ms)
 		LoadAssemblies (53ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (112ms)
-			TypeCache.Refresh (111ms)
-				TypeCache.ScanAssembly (101ms)
+		AnalyzeDomain (118ms)
+			TypeCache.Refresh (117ms)
+				TypeCache.ScanAssembly (104ms)
 			BuildScriptInfoCaches (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (274ms)
+	FinalizeReload (281ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (249ms)
+		SetupLoadedEditorAssemblies (257ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (40ms)
+			InitializePlatformSupportModulesInManaged (42ms)
 			SetLoadedEditorAssemblies (3ms)
-			BeforeProcessingInitializeOnLoad (57ms)
-			ProcessInitializeOnLoadAttributes (98ms)
-			ProcessInitializeOnLoadMethodAttributes (51ms)
+			BeforeProcessingInitializeOnLoad (58ms)
+			ProcessInitializeOnLoadAttributes (102ms)
+			ProcessInitializeOnLoadMethodAttributes (52ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -207,7 +207,7 @@ Domain Reload Profiling: 507ms
 Worker process is ready to serve import requests
 Import Worker Mode flag is 0x00
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.265 seconds
+- Loaded All Assemblies, in  0.243 seconds
 Refreshing native plugins compatible for Editor in 0.34 ms, found 2 plugins.
 Native extension for LinuxStandalone target not found
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
@@ -228,63 +228,52 @@ Mono: successfully reloaded assembly
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.271 seconds
-Domain Reload Profiling: 535ms
-	BeginReloadAssembly (83ms)
+- Finished resetting the current domain, in  0.257 seconds
+Domain Reload Profiling: 500ms
+	BeginReloadAssembly (87ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (3ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (20ms)
-	RebuildCommonClasses (22ms)
+		CreateAndSetChildDomain (23ms)
+	RebuildCommonClasses (23ms)
 	RebuildNativeTypeToScriptingClass (5ms)
-	initialDomainReloadingComplete (23ms)
-	LoadAllAssembliesAndSetupDomain (131ms)
-		LoadAssemblies (137ms)
+	initialDomainReloadingComplete (22ms)
+	LoadAllAssembliesAndSetupDomain (104ms)
+		LoadAssemblies (111ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (29ms)
+		AnalyzeDomain (30ms)
 			TypeCache.Refresh (21ms)
 				TypeCache.ScanAssembly (14ms)
 			BuildScriptInfoCaches (6ms)
 			ResolveRequiredComponents (2ms)
-	FinalizeReload (271ms)
+	FinalizeReload (257ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (193ms)
+		SetupLoadedEditorAssemblies (181ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (13ms)
-			SetLoadedEditorAssemblies (5ms)
-			BeforeProcessingInitializeOnLoad (65ms)
-			ProcessInitializeOnLoadAttributes (81ms)
-			ProcessInitializeOnLoadMethodAttributes (27ms)
+			SetLoadedEditorAssemblies (3ms)
+			BeforeProcessingInitializeOnLoad (59ms)
+			ProcessInitializeOnLoadAttributes (80ms)
+			ProcessInitializeOnLoadMethodAttributes (25ms)
 			AfterProcessingInitializeOnLoad (2ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (2ms)
 AutoLocale: current locale expects 'C' but got 'en_US.UTF-8'Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
-Refreshing native plugins compatible for Editor in 0.39 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 0.35 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
 Curl error 3: URL rejected: Error
-Unloading 1156 unused Assets / (156.9 KB). Loaded Objects now: 1757.
-Memory consumption went from 72.6 MB to 72.4 MB.
-Total: 4.967711 ms (FindLiveObjects: 0.080414 ms CreateObjectMapping: 0.029964 ms MarkObjects: 4.405303 ms  DeleteObjects: 0.451442 ms)
-
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 0.33 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1142 unused Assets / (138.8 KB). Loaded Objects now: 1753.
-Memory consumption went from 72.1 MB to 71.9 MB.
-Total: 4.078591 ms (FindLiveObjects: 0.074800 ms CreateObjectMapping: 0.026744 ms MarkObjects: 3.834273 ms  DeleteObjects: 0.142344 ms)
+Unloading 1156 unused Assets / (117.6 KB). Loaded Objects now: 1757.
+Memory consumption went from 72.6 MB to 72.5 MB.
+Total: 5.028427 ms (FindLiveObjects: 0.138131 ms CreateObjectMapping: 0.037497 ms MarkObjects: 4.451142 ms  DeleteObjects: 0.400212 ms)
 
-Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Prepare
 Begin MonoManager ReloadAssembly
-[Licensing::Client] Successfully resolved entitlement details
-- Loaded All Assemblies, in  0.220 seconds
+- Loaded All Assemblies, in  0.225 seconds
 Refreshing native plugins compatible for Editor in 0.34 ms, found 2 plugins.
 Native extension for LinuxStandalone target not found
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
@@ -302,34 +291,34 @@ Mono: successfully reloaded assembly
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.236 seconds
-Domain Reload Profiling: 456ms
-	BeginReloadAssembly (90ms)
+- Finished resetting the current domain, in  0.240 seconds
+Domain Reload Profiling: 465ms
+	BeginReloadAssembly (86ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (3ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (22ms)
+		CreateAndSetChildDomain (19ms)
 	RebuildCommonClasses (21ms)
 	RebuildNativeTypeToScriptingClass (5ms)
-	initialDomainReloadingComplete (14ms)
-	LoadAllAssembliesAndSetupDomain (90ms)
-		LoadAssemblies (106ms)
+	initialDomainReloadingComplete (15ms)
+	LoadAllAssembliesAndSetupDomain (97ms)
+		LoadAssemblies (113ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
 		AnalyzeDomain (20ms)
-			TypeCache.Refresh (5ms)
-				TypeCache.ScanAssembly (1ms)
+			TypeCache.Refresh (4ms)
+				TypeCache.ScanAssembly (0ms)
 			BuildScriptInfoCaches (13ms)
 			ResolveRequiredComponents (2ms)
-	FinalizeReload (236ms)
+	FinalizeReload (240ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
 		SetupLoadedEditorAssemblies (173ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (10ms)
 			SetLoadedEditorAssemblies (3ms)
-			BeforeProcessingInitializeOnLoad (62ms)
-			ProcessInitializeOnLoadAttributes (73ms)
+			BeforeProcessingInitializeOnLoad (60ms)
+			ProcessInitializeOnLoadAttributes (74ms)
 			ProcessInitializeOnLoadMethodAttributes (24ms)
 			AfterProcessingInitializeOnLoad (2ms)
 			EditorAssembliesLoaded (0ms)
@@ -338,78 +327,240 @@ Domain Reload Profiling: 456ms
 Refreshing native plugins compatible for Editor in 0.37 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1154 unused Assets / (64.1 KB). Loaded Objects now: 1757.
-Memory consumption went from 72.2 MB to 72.1 MB.
-Total: 3.715381 ms (FindLiveObjects: 0.075685 ms CreateObjectMapping: 0.030025 ms MarkObjects: 3.474562 ms  DeleteObjects: 0.134622 ms)
+Unloading 1154 unused Assets / (175.4 KB). Loaded Objects now: 1757.
+Memory consumption went from 72.2 MB to 72.0 MB.
+Total: 4.207202 ms (FindLiveObjects: 0.093465 ms CreateObjectMapping: 0.048911 ms MarkObjects: 3.805528 ms  DeleteObjects: 0.258306 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.202 seconds
-Refreshing native plugins compatible for Editor in 0.34 ms, found 2 plugins.
-Native extension for LinuxStandalone target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Native extension for Android target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
-Mono: successfully reloaded assembly
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.234 seconds
-Domain Reload Profiling: 436ms
-	BeginReloadAssembly (77ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (3ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (15ms)
-	RebuildCommonClasses (21ms)
-	RebuildNativeTypeToScriptingClass (5ms)
-	initialDomainReloadingComplete (13ms)
-	LoadAllAssembliesAndSetupDomain (86ms)
-		LoadAssemblies (98ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (19ms)
-			TypeCache.Refresh (3ms)
-				TypeCache.ScanAssembly (0ms)
-			BuildScriptInfoCaches (13ms)
-			ResolveRequiredComponents (2ms)
-	FinalizeReload (234ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (169ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (11ms)
-			SetLoadedEditorAssemblies (3ms)
-			BeforeProcessingInitializeOnLoad (59ms)
-			ProcessInitializeOnLoadAttributes (71ms)
-			ProcessInitializeOnLoadMethodAttributes (23ms)
-			AfterProcessingInitializeOnLoad (2ms)
-			EditorAssembliesLoaded (0ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (2ms)
-Refreshing native plugins compatible for Editor in 0.39 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1154 unused Assets / (96.9 KB). Loaded Objects now: 1757.
-Memory consumption went from 72.2 MB to 72.1 MB.
-Total: 4.131868 ms (FindLiveObjects: 0.097414 ms CreateObjectMapping: 0.040056 ms MarkObjects: 3.844899 ms  DeleteObjects: 0.148899 ms)
+Received Import Request.
+  Time since last request: 146835.021860 seconds.
+  path: Packages/net.qrack.qrack/Materials/Blue.mat
+  artifactKey: Guid(236daa907b19bcf43bb43783c80d6923) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.qrack/Materials/Blue.mat using Guid(236daa907b19bcf43bb43783c80d6923) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '75c4f36a7f84ed6c251a614a129915a4') in 0.054362218 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
 
-Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.000008 seconds.
+  path: Packages/com.google.xr.cardboard/Runtime/Materials/CardboardReticlePointer.mat
+  artifactKey: Guid(f3068f7dc08c34e788155cc3c62b9f50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.google.xr.cardboard/Runtime/Materials/CardboardReticlePointer.mat using Guid(f3068f7dc08c34e788155cc3c62b9f50) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '33222323e7c38d47e66bc4d1e711a2b5') in 0.002897796 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000251 seconds.
+  path: Packages/net.qrack.qrack/Materials/Green.mat
+  artifactKey: Guid(3ea25f93531c0dd46ba7be38b19e0e06) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.qrack/Materials/Green.mat using Guid(3ea25f93531c0dd46ba7be38b19e0e06) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'dcd4cb10e8a105d2c4458ee345daa1e5') in 0.00325337 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000244 seconds.
+  path: Packages/net.qrack.qrack/Materials/qubitIndicator.mat
+  artifactKey: Guid(855200e319fc8114d9dd9fcb40f3c19b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.qrack/Materials/qubitIndicator.mat using Guid(855200e319fc8114d9dd9fcb40f3c19b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7bcca6eca8f0ddc07b49dc66179d50d2') in 0.002804728 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000146 seconds.
+  path: Packages/net.qrack.openrelativity/Materials/relativityLitNoLorentz.mat
+  artifactKey: Guid(213f08bec79fd764ba78baad75c47ca4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/Materials/relativityLitNoLorentz.mat using Guid(213f08bec79fd764ba78baad75c47ca4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3bdb5cada74fe694ef29a6337abf73ef') in 0.109675066 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000115 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/UVMAP.mat
+  artifactKey: Guid(074f499876cc0a04db91119ac9237977) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/UVMAP.mat using Guid(074f499876cc0a04db91119ac9237977) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '360504574847dbad85bade9950cbd34e') in 0.124707937 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000220 seconds.
+  path: Packages/net.qrack.openrelativity/Materials/relativityLit.mat
+  artifactKey: Guid(d6ef81b29722c0c4fb8cb6d315a52df6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/Materials/relativityLit.mat using Guid(d6ef81b29722c0c4fb8cb6d315a52df6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6f626957975c7fa3ccb99b995a6e14b1') in 0.00493699 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000204 seconds.
+  path: Packages/net.qrack.openrelativity/Materials/relativityUnlit.mat
+  artifactKey: Guid(c3e3864b8bbaf764bbbda887c89a2fd3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/Materials/relativityUnlit.mat using Guid(c3e3864b8bbaf764bbbda887c89a2fd3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a84e36edb0ed12bb773496a99c8533c0') in 0.003706183 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 5
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/Samples/Tachyoid/0.1.0/Example/Models/Materials/UVCube.mat
+  artifactKey: Guid(43c502d0f9d47bc42a8225423675c1a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/Tachyoid/0.1.0/Example/Models/Materials/UVCube.mat using Guid(43c502d0f9d47bc42a8225423675c1a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '370bb498ec39c83b2df92f00d50b3f83') in 0.004907078 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000109 seconds.
+  path: Packages/net.qrack.tachyoid/Prefabs/Materials/PlayerMaterial.mat
+  artifactKey: Guid(ca75ba9780269a1418c85f06bd39436d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.tachyoid/Prefabs/Materials/PlayerMaterial.mat using Guid(ca75ba9780269a1418c85f06bd39436d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '702575f78843f82bd4da3b5b16a566fc') in 0.004500578 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000217 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/No Name.mat
+  artifactKey: Guid(e31116d3d9223e34d83df37d5a662f14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/No Name.mat using Guid(e31116d3d9223e34d83df37d5a662f14) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f8b9725507936772f711e9d2919246aa') in 0.005652056 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Samples/Qrack/0.1.0/Example/Materials/relativityUnlit.mat
+  artifactKey: Guid(5f4239d5502bd30499611de1c5b6693e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/Qrack/0.1.0/Example/Materials/relativityUnlit.mat using Guid(5f4239d5502bd30499611de1c5b6693e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '36abf9e5338ea4b027bf7d760e3d1e07') in 0.005112133 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 5
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000010 seconds.
+  path: Assets/Samples/Qrack/0.1.0/Example/Models/Materials/UVMAP.mat
+  artifactKey: Guid(c86662c5467d755409e0cacdcfede4ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/Qrack/0.1.0/Example/Models/Materials/UVMAP.mat using Guid(c86662c5467d755409e0cacdcfede4ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2a3e0fb08b105485c37f4136f4b0adf1') in 0.008071369 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000086 seconds.
+  path: Assets/Samples/Qrack/0.1.0/Example/Models/Materials/No Name.mat
+  artifactKey: Guid(2f34e773d7e501440b8d8091b7896540) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/Qrack/0.1.0/Example/Models/Materials/No Name.mat using Guid(2f34e773d7e501440b8d8091b7896540) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd696694af5b9a96f1590c6f8044120c3') in 0.004941976 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000107 seconds.
+  path: Packages/net.qrack.tachyoid/Materials/HUD.mat
+  artifactKey: Guid(f735df341bf10174db724ab61d020d41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.tachyoid/Materials/HUD.mat using Guid(f735df341bf10174db724ab61d020d41) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3bc0bd48038f69432606e214c7fe4163') in 0.026379702 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000176 seconds.
+  path: Packages/net.qrack.openrelativity/Materials/SchwarzschildInterior.mat
+  artifactKey: Guid(395d4aa0addf90842bc766897cac87ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/Materials/SchwarzschildInterior.mat using Guid(395d4aa0addf90842bc766897cac87ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b7dc3384c14a356183ab6de97c3667e1') in 0.005384417 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000216 seconds.
+  path: Assets/Samples/Tachyoid/0.1.0/Example/Models/Materials/defaultMat.mat
+  artifactKey: Guid(fee4553677158ea4da32345589345bcd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/Tachyoid/0.1.0/Example/Models/Materials/defaultMat.mat using Guid(fee4553677158ea4da32345589345bcd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a0c4052c8235c61db49b6895cc1b3c15') in 0.004042502 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000347 seconds.
+  path: Packages/net.qrack.openrelativity/Materials/SchwarzschildInteriorSkybox.mat
+  artifactKey: Guid(f0036f0ed5c8ff5478881d6322b859a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/Materials/SchwarzschildInteriorSkybox.mat using Guid(f0036f0ed5c8ff5478881d6322b859a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '15884c31e2cc4beb58fe58a709d661b4') in 0.005419235 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000123 seconds.
+  path: Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/UVCube.mat
+  artifactKey: Guid(5e0aa2334a23606449c26d3f053de6f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/UVCube.mat using Guid(5e0aa2334a23606449c26d3f053de6f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2524a1200e0b498004ad78d3f05c63cd') in 0.003646903 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000140 seconds.
+  path: Assets/Samples/Qrack/0.1.0/Example/Models/Materials/defaultMat.mat
+  artifactKey: Guid(1c981d5e4cfd22f4e971467bc8a250d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/Qrack/0.1.0/Example/Models/Materials/defaultMat.mat using Guid(1c981d5e4cfd22f4e971467bc8a250d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '311d5754748bf8042b979e4a3f6a0d77') in 0.005387452 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000084 seconds.
+  path: Assets/Samples/Qrack/0.1.0/Example/Materials/relativityLit.mat
+  artifactKey: Guid(9a0edf3903a63504bb6b02635b626f0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/Qrack/0.1.0/Example/Materials/relativityLit.mat using Guid(9a0edf3903a63504bb6b02635b626f0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '249fb683382b15a00adf43396efaaf70') in 0.005321837 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000221 seconds.
+  path: Assets/Samples/Qrack/0.1.0/Example/Materials/Skybox.mat
+  artifactKey: Guid(290ff36d29c1e9146be8ccd428f16595) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/Qrack/0.1.0/Example/Materials/Skybox.mat using Guid(290ff36d29c1e9146be8ccd428f16595) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '41fb4d2fee5fd19eb847ac8a30efd9b4') in 0.007787507 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000076 seconds.
+  path: Assets/Samples/Qrack/0.1.0/Example/Models/Materials/UVCube.mat
+  artifactKey: Guid(c53d6cc32db8e124192aa8a7bc0ad173) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/Qrack/0.1.0/Example/Models/Materials/UVCube.mat using Guid(c53d6cc32db8e124192aa8a7bc0ad173) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7e644a1fd3552bcef7ad8bf9cadc781b') in 0.00643116 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Packages/net.qrack.openrelativity/Materials/rgb3panel.mat
+  artifactKey: Guid(5c6ecce29961ceb57806fd61ff2466f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/Materials/rgb3panel.mat using Guid(5c6ecce29961ceb57806fd61ff2466f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4b14fdc9ad8d91f7ee26f655eb69294a') in 0.015265373 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Samples/Tachyoid/0.1.0/Example/Models/Materials/No Name.mat
+  artifactKey: Guid(de7bcd7787efe6341aa36683f5e73c45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/Tachyoid/0.1.0/Example/Models/Materials/No Name.mat using Guid(de7bcd7787efe6341aa36683f5e73c45) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7e52288984109789683f548ce4cc99d0') in 0.00602488 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Samples/Tachyoid/0.1.0/Example/Models/Materials/UV2.mat
+  artifactKey: Guid(d5f722004e50e0d40b04f9a92a758933) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/Tachyoid/0.1.0/Example/Models/Materials/UV2.mat using Guid(d5f722004e50e0d40b04f9a92a758933) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd87c1cbab327a81196e90663eb9cbe83') in 0.007314848 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000008 seconds.
+  path: Assets/Samples/Qrack/0.1.0/Example/Models/Materials/UV2.mat
+  artifactKey: Guid(83dc0db8546eec24aac8947ac6c7374e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/Qrack/0.1.0/Example/Models/Materials/UV2.mat using Guid(83dc0db8546eec24aac8947ac6c7374e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '51d08e5d62cf5df6d5b8d08a9282b894') in 0.003979204 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000008 seconds.
+  path: Packages/net.qrack.openrelativity/Materials/relativityColorOnly.mat
+  artifactKey: Guid(ffbd317323d327444ae32345d5e32474) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/net.qrack.openrelativity/Materials/relativityColorOnly.mat using Guid(ffbd317323d327444ae32345d5e32474) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '870fcdf99b0366740542154d20e0a449') in 0.076773287 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
 ========================================================================
 Received Prepare
 Begin MonoManager ReloadAssembly
 [Licensing::Client] Successfully resolved entitlement details
-- Loaded All Assemblies, in  0.205 seconds
+- Loaded All Assemblies, in  0.248 seconds
 Refreshing native plugins compatible for Editor in 0.35 ms, found 2 plugins.
 Native extension for LinuxStandalone target not found
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
@@ -427,44 +578,50 @@ Mono: successfully reloaded assembly
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.228 seconds
-Domain Reload Profiling: 433ms
-	BeginReloadAssembly (76ms)
+- Finished resetting the current domain, in  0.243 seconds
+Domain Reload Profiling: 492ms
+	BeginReloadAssembly (100ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (3ms)
+		DisableScriptedObjects (4ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (16ms)
+		CreateAndSetChildDomain (22ms)
 	RebuildCommonClasses (22ms)
 	RebuildNativeTypeToScriptingClass (6ms)
 	initialDomainReloadingComplete (14ms)
-	LoadAllAssembliesAndSetupDomain (88ms)
-		LoadAssemblies (96ms)
+	LoadAllAssembliesAndSetupDomain (106ms)
+		LoadAssemblies (122ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (20ms)
+		AnalyzeDomain (21ms)
 			TypeCache.Refresh (4ms)
-				TypeCache.ScanAssembly (1ms)
-			BuildScriptInfoCaches (13ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (14ms)
 			ResolveRequiredComponents (2ms)
-	FinalizeReload (228ms)
+	FinalizeReload (244ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (167ms)
+		SetupLoadedEditorAssemblies (176ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (10ms)
+			InitializePlatformSupportModulesInManaged (11ms)
 			SetLoadedEditorAssemblies (3ms)
-			BeforeProcessingInitializeOnLoad (56ms)
-			ProcessInitializeOnLoadAttributes (74ms)
-			ProcessInitializeOnLoadMethodAttributes (22ms)
+			BeforeProcessingInitializeOnLoad (61ms)
+			ProcessInitializeOnLoadAttributes (73ms)
+			ProcessInitializeOnLoadMethodAttributes (27ms)
 			AfterProcessingInitializeOnLoad (2ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (2ms)
-Refreshing native plugins compatible for Editor in 0.38 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 0.69 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1154 unused Assets / (64.2 KB). Loaded Objects now: 1757.
-Memory consumption went from 72.2 MB to 72.1 MB.
-Total: 3.881073 ms (FindLiveObjects: 0.076185 ms CreateObjectMapping: 0.028420 ms MarkObjects: 3.646934 ms  DeleteObjects: 0.129009 ms)
+Unloading 1156 unused Assets / (368.9 KB). Loaded Objects now: 1799.
+Memory consumption went from 73.6 MB to 73.2 MB.
+Total: 5.824253 ms (FindLiveObjects: 0.160000 ms CreateObjectMapping: 0.053782 ms MarkObjects: 5.273900 ms  DeleteObjects: 0.335993 ms)
 
 Prepare: number of updated asset objects reloaded= 0
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+
+SDL leaked 2 allocations
+Internal: Possible leak. All render target surfaces should be removed from IdMap when destructed using RenderTargetMap::Remove(RenderSurfaceBase* rs).
