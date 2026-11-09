@@ -132,9 +132,12 @@ namespace OpenRelativity.ConformalMaps
 
         public void EnforceHorizon()
         {
-            if (!isExterior && (state.TotalTimeWorld >= schwarzschildRadius))
+            // Interior time runs over the same span as the radius (divided by c), per Start(); compare like with like.
+            // (Previously compared a time against a length, which froze at the wrong moment whenever c != 1.)
+            float horizonTime = schwarzschildRadius / state.SpeedOfLight;
+            if (!isExterior && (state.TotalTimeWorld >= horizonTime))
             {
-                state.TotalTimeWorld = schwarzschildRadius / state.SpeedOfLight;
+                state.TotalTimeWorld = horizonTime;
                 state.isMovementFrozen = true;
             }
         }
