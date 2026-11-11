@@ -1,8 +1,8 @@
 diff --git a/Packages/net.qrack.openrelativity/Scripts/PlayerController.cs b/Packages/net.qrack.openrelativity/Scripts/PlayerController.cs
-index 7d24adf..5e3a423 100644
+index 7d24adf..a8a977a 100644
 --- a/Packages/net.qrack.openrelativity/Scripts/PlayerController.cs
 +++ b/Packages/net.qrack.openrelativity/Scripts/PlayerController.cs
-@@ -80,6 +80,19 @@ namespace OpenRelativity
+@@ -80,6 +80,14 @@ namespace OpenRelativity
          }
          public Vector3 leviCivitaDevAccel = Vector3.zero;
  
@@ -13,16 +13,11 @@ index 7d24adf..5e3a423 100644
 +        public double monopoleRadiatedEnergy = 0;
 +        private Vector3 lastMonopoleAccel = Vector3.zero;
 +        private bool hasLastMonopoleAccel = false;
-+        // Optional, independent of the jerk reaction: restore the Strano 2019 thermal-field postulate, in which the
-+        // Rindler horizon of a constantly accelerated frame evaporates and the proper acceleration slowly decays
-+        // (a choice of "Unruh-like" quantum state for the monopole scalar; off = Minkowski vacuum, i.e. equilibrium).
-+        public bool isMonopoleHorizonEvaporation = false;
-+        private Vector3 horizonDevAccel = Vector3.zero;
 +
          public float baryonCount { get; set; }
  
          public float monopoleTemperature
-@@ -437,22 +450,47 @@ namespace OpenRelativity
+@@ -437,22 +445,48 @@ namespace OpenRelativity
  
          protected void EvaporateMonopole(float deltaTime, Vector3 myAccel)
          {
@@ -51,14 +46,16 @@ index 7d24adf..5e3a423 100644
 +            // rest mass is unchanged in flat spacetime), and is tallied in monopoleRadiatedEnergy.
 +            // For realistic constants (G, c, kg-scale masses, monopoleCoupling <~ 1e-5 from Cassini and binary pulsars)
 +            // tau0 is ~1e-35 s and the effect is invisible; raise monopoleCoupling (or gConst) to see it.
-+            // isMonopoleHorizonEvaporation (below) optionally adds the original 2019 horizon-evaporation rule.
 +
 +            // (The player's caller passes the acceleration before leviCivitaDevAccel is added, i.e. already external.)
 +            Vector3 extAccel = myAccel;
-+            Vector3 jerkDevAccel = Vector3.zero;
 +            if (hasLastMonopoleAccel && (deltaTime > SRelativityUtil.FLT_EPSILON))
 +            {
-+                jerkDevAccel = SRelativityUtil.MonopoleSelfAccel(extAccel, lastMonopoleAccel, deltaTime, (myRigidbody != null ? myRigidbody.mass : 0), monopoleCoupling);
++                leviCivitaDevAccel = SRelativityUtil.MonopoleSelfAccel(extAccel, lastMonopoleAccel, deltaTime, (myRigidbody != null ? myRigidbody.mass : 0), monopoleCoupling);
++            }
++            else
++            {
++                leviCivitaDevAccel = Vector3.zero;
 +            }
 +            lastMonopoleAccel = extAccel;
 +            hasLastMonopoleAccel = true;
@@ -66,9 +63,8 @@ index 7d24adf..5e3a423 100644
 +
 +            // Thermal exchange of any rest-mass excitation ("monopole temperature") with the ambient bath: the Unruh
 +            // temperature of the current proper acceleration (equivalently, the Hawking temperature of a Schwarzschild
-+            // horizon with the same surface gravity), combined with the background graviton temperature. With the
-+            // default (Minkowski-vacuum) state, the horizon itself does not shrink: at constant acceleration this is an
-+            // equilibrium, not an evaporation.
++            // horizon with the same surface gravity), combined with the background graviton temperature. The horizon
++            // itself does not shrink: at constant acceleration this is an equilibrium, not an evaporation.
 +            double alpha = extAccel.magnitude;
              bool isNonZeroTemp = alpha > SRelativityUtil.FLT_EPSILON;
  
@@ -81,71 +77,33 @@ index 7d24adf..5e3a423 100644
                  r = state.SpeedOfLightSqrd / (2 * alpha);
                  r = SRelativityUtil.EffectiveRaditiativeRadius((float)r, state.gravityBackgroundPlanckTemperature);
              }
-@@ -463,20 +501,49 @@ namespace OpenRelativity
+@@ -463,20 +497,7 @@ namespace OpenRelativity
                  r = state.planckLength;
              }
  
 -            if (!double.IsInfinity(r) && !double.IsNaN(r))
-+            isNonZeroTemp = !double.IsInfinity(r) && !double.IsNaN(r);
-+
-+            if (isMonopoleHorizonEvaporation)
-             {
+-            {
 -                isNonZeroTemp = true;
 -                r += SRelativityUtil.SchwarzschildRadiusDecay(deltaTime, r);
 -                if (r <= SRelativityUtil.FLT_EPSILON)
-+                // Optional: Strano 2019 thermal-field postulate (the original update rule, restored as written).
-+                // Choose the "Unruh-like" state for the scalar instead of the Minkowski vacuum: the accelerated frame's
-+                // Rindler horizon radiates into a cold exterior and evaporates as a Schwarzschild horizon of the same
-+                // surface gravity would (E_P / (2 r_s) per Planck time), so constant proper acceleration slowly decays.
-+                // Independent of, and additive with, the jerk (Abraham-Lorentz) reaction above.
-+                double alphaH = myAccel.magnitude;
-+                if (alphaH > SRelativityUtil.FLT_EPSILON)
-                 {
+-                {
 -                    leviCivitaDevAccel += myAccel;
 -                }
 -                else
 -                {
 -                    double alphaF = state.SpeedOfLightSqrd / (2 * r);
 -                    leviCivitaDevAccel += (float)(alpha - alphaF) * myAccel.normalized;
-+                    double rH = state.SpeedOfLightSqrd / (2 * alphaH);
-+                    rH = SRelativityUtil.EffectiveRaditiativeRadius((float)rH, state.gravityBackgroundPlanckTemperature);
-+                    if (rH < state.planckLength)
-+                    {
-+                        rH = state.planckLength;
-+                    }
-+
-+                    if (!double.IsInfinity(rH) && !double.IsNaN(rH))
-+                    {
-+                        rH += SRelativityUtil.SchwarzschildRadiusDecay(deltaTime, rH);
-+                        if (rH <= SRelativityUtil.FLT_EPSILON)
-+                        {
-+                            horizonDevAccel += myAccel;
-+                        }
-+                        else
-+                        {
-+                            double alphaF = state.SpeedOfLightSqrd / (2 * rH);
-+                            horizonDevAccel += (float)(alphaH - alphaF) * myAccel.normalized;
-+                        }
-+                        // The ambient (horizon) temperature follows the evaporating horizon, as in the original rule.
-+                        r = rH;
-+                        isNonZeroTemp = true;
-+                    }
-                 }
-             }
-+            else
-+            {
-+                horizonDevAccel = Vector3.zero;
-+            }
-+
-+            leviCivitaDevAccel = jerkDevAccel + horizonDevAccel;
+-                }
+-            }
++            isNonZeroTemp = !double.IsInfinity(r) && !double.IsNaN(r);
  
              if (myRigidbody != null)
              {
 diff --git a/Packages/net.qrack.openrelativity/Scripts/RelativisticObject.cs b/Packages/net.qrack.openrelativity/Scripts/RelativisticObject.cs
-index e670098..74b4f79 100644
+index e670098..0e0a788 100644
 --- a/Packages/net.qrack.openrelativity/Scripts/RelativisticObject.cs
 +++ b/Packages/net.qrack.openrelativity/Scripts/RelativisticObject.cs
-@@ -481,6 +481,19 @@ namespace OpenRelativity
+@@ -481,6 +481,14 @@ namespace OpenRelativity
  
          public Vector3 leviCivitaDevAccel = Vector3.zero;
  
@@ -156,16 +114,11 @@ index e670098..74b4f79 100644
 +        public double monopoleRadiatedEnergy = 0;
 +        private Vector3 lastMonopoleAccel = Vector3.zero;
 +        private bool hasLastMonopoleAccel = false;
-+        // Optional, independent of the jerk reaction: restore the Strano 2019 thermal-field postulate, in which the
-+        // Rindler horizon of a constantly accelerated frame evaporates and the proper acceleration slowly decays
-+        // (a choice of "Unruh-like" quantum state for the monopole scalar; off = Minkowski vacuum, i.e. equilibrium).
-+        public bool isMonopoleHorizonEvaporation = false;
-+        private Vector3 horizonDevAccel = Vector3.zero;
 +
          public void UpdateMotion(Vector3 pvf, Vector3 af)
          {
              // Changing velocities lose continuity of position,
-@@ -1619,22 +1632,46 @@ namespace OpenRelativity
+@@ -1619,22 +1627,47 @@ namespace OpenRelativity
  
          protected void EvaporateMonopole(float deltaTime, Vector3 myAccel)
          {
@@ -194,13 +147,15 @@ index e670098..74b4f79 100644
 +            // rest mass is unchanged in flat spacetime), and is tallied in monopoleRadiatedEnergy.
 +            // For realistic constants (G, c, kg-scale masses, monopoleCoupling <~ 1e-5 from Cassini and binary pulsars)
 +            // tau0 is ~1e-35 s and the effect is invisible; raise monopoleCoupling (or gConst) to see it.
-+            // isMonopoleHorizonEvaporation (below) optionally adds the original 2019 horizon-evaporation rule.
 +
 +            Vector3 extAccel = myAccel - leviCivitaDevAccel;
-+            Vector3 jerkDevAccel = Vector3.zero;
 +            if (hasLastMonopoleAccel && (deltaTime > SRelativityUtil.FLT_EPSILON))
 +            {
-+                jerkDevAccel = SRelativityUtil.MonopoleSelfAccel(extAccel, lastMonopoleAccel, deltaTime, mass, monopoleCoupling);
++                leviCivitaDevAccel = SRelativityUtil.MonopoleSelfAccel(extAccel, lastMonopoleAccel, deltaTime, mass, monopoleCoupling);
++            }
++            else
++            {
++                leviCivitaDevAccel = Vector3.zero;
 +            }
 +            lastMonopoleAccel = extAccel;
 +            hasLastMonopoleAccel = true;
@@ -208,9 +163,8 @@ index e670098..74b4f79 100644
 +
 +            // Thermal exchange of any rest-mass excitation ("monopole temperature") with the ambient bath: the Unruh
 +            // temperature of the current proper acceleration (equivalently, the Hawking temperature of a Schwarzschild
-+            // horizon with the same surface gravity), combined with the background graviton temperature. With the
-+            // default (Minkowski-vacuum) state, the horizon itself does not shrink: at constant acceleration this is an
-+            // equilibrium, not an evaporation.
++            // horizon with the same surface gravity), combined with the background graviton temperature. The horizon
++            // itself does not shrink: at constant acceleration this is an equilibrium, not an evaporation.
 +            double alpha = extAccel.magnitude;
              bool isNonZeroTemp = alpha > SRelativityUtil.FLT_EPSILON;
  
@@ -223,15 +177,12 @@ index e670098..74b4f79 100644
                  r = state.SpeedOfLightSqrd / (2 * alpha);
                  r = SRelativityUtil.EffectiveRaditiativeRadius((float)r, state.gravityBackgroundPlanckTemperature);
              }
-@@ -1645,20 +1682,49 @@ namespace OpenRelativity
+@@ -1645,20 +1678,7 @@ namespace OpenRelativity
                  r = state.planckLength;
              }
  
 -            if (!double.IsInfinity(r) && !double.IsNaN(r))
-+            isNonZeroTemp = !double.IsInfinity(r) && !double.IsNaN(r);
-+
-+            if (isMonopoleHorizonEvaporation)
-             {
+-            {
 -                isNonZeroTemp = true;
 -                r += SRelativityUtil.SchwarzschildRadiusDecay(deltaTime, r);
 -                if (r <= SRelativityUtil.FLT_EPSILON)
@@ -239,47 +190,12 @@ index e670098..74b4f79 100644
 -                    leviCivitaDevAccel += myAccel;
 -                }
 -                else
-+                // Optional: Strano 2019 thermal-field postulate (the original update rule, restored as written).
-+                // Choose the "Unruh-like" state for the scalar instead of the Minkowski vacuum: the accelerated frame's
-+                // Rindler horizon radiates into a cold exterior and evaporates as a Schwarzschild horizon of the same
-+                // surface gravity would (E_P / (2 r_s) per Planck time), so constant proper acceleration slowly decays.
-+                // Independent of, and additive with, the jerk (Abraham-Lorentz) reaction above.
-+                double alphaH = myAccel.magnitude;
-+                if (alphaH > SRelativityUtil.FLT_EPSILON)
-                 {
+-                {
 -                    double alphaF = state.SpeedOfLightSqrd / (2 * r);
 -                    leviCivitaDevAccel += (float)(alpha - alphaF) * myAccel.normalized;
-+                    double rH = state.SpeedOfLightSqrd / (2 * alphaH);
-+                    rH = SRelativityUtil.EffectiveRaditiativeRadius((float)rH, state.gravityBackgroundPlanckTemperature);
-+                    if (rH < state.planckLength)
-+                    {
-+                        rH = state.planckLength;
-+                    }
-+
-+                    if (!double.IsInfinity(rH) && !double.IsNaN(rH))
-+                    {
-+                        rH += SRelativityUtil.SchwarzschildRadiusDecay(deltaTime, rH);
-+                        if (rH <= SRelativityUtil.FLT_EPSILON)
-+                        {
-+                            horizonDevAccel += myAccel;
-+                        }
-+                        else
-+                        {
-+                            double alphaF = state.SpeedOfLightSqrd / (2 * rH);
-+                            horizonDevAccel += (float)(alphaH - alphaF) * myAccel.normalized;
-+                        }
-+                        // The ambient (horizon) temperature follows the evaporating horizon, as in the original rule.
-+                        r = rH;
-+                        isNonZeroTemp = true;
-+                    }
-                 }
-             }
-+            else
-+            {
-+                horizonDevAccel = Vector3.zero;
-+            }
-+
-+            leviCivitaDevAccel = jerkDevAccel + horizonDevAccel;
+-                }
+-            }
++            isNonZeroTemp = !double.IsInfinity(r) && !double.IsNaN(r);
  
              if (myRigidbody)
              {
