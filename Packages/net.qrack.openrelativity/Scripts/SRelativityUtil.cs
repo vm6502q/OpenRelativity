@@ -403,6 +403,43 @@ namespace OpenRelativity
         }
 
         // Strano 2019 monopole methods
+        // Self-acceleration of a body carrying monopole (scalar, rest-mass-coupled) charge, in Landau-Lifshitz reduced
+        // order: tau0 times the proper jerk of the external acceleration. Zero for constant acceleration.
+        public static Vector3 MonopoleSelfAccel(Vector3 extAccel, Vector3 lastExtAccel, double deltaTime, double mass, double coupling)
+        {
+            double tau0 = MonopoleTimeConstant(mass, coupling);
+            return (float)(tau0 / deltaTime) * (extAccel - lastExtAccel);
+        }
+
+        // tau0 = coupling * G * m / c^3: the monopole analogue of the Abraham-Lorentz time constant 2 q^2 / (3 m c^3).
+        public static double MonopoleTimeConstant(double mass, double coupling)
+        {
+            return coupling * state.gConst * mass / Math.Pow(c, 3);
+        }
+
+        // Mass change over deltaTime from black-body exchange of a body's rest-mass excitation with its ambient bath.
+        // myTemperature is in simulation units (k_B-scaled kelvin, as from monopoleTemperature); ambientPlanckTemperature
+        // is already in Planck units. Power in Planck units is emissivity * (A / l_P^2) * sigma_P * (T^4 - T_amb^4);
+        // times the Planck power and deltaTime gives energy, over c^2 gives mass. Positive = net loss.
+        public static double MonopoleThermalMassChange(double emissivity, double surfaceArea, double myTemperature, double ambientPlanckTemperature, double deltaTime)
+        {
+            double myPlanckTemperature = myTemperature / state.planckTemperature;
+            double planckPowerOut = emissivity * (surfaceArea / state.planckArea) * sigmaPlanck *
+                (Math.Pow(myPlanckTemperature, 4) - Math.Pow(ambientPlanckTemperature, 4));
+
+            return planckPowerOut * state.planckPower * deltaTime / state.SpeedOfLightSqrd;
+        }
+
+        // Larmor-like power radiated into monopole waves at proper acceleration a: m * tau0 * a^2.
+        public static double MonopoleRadiatedPower(double mass, double accel, double coupling)
+        {
+            return mass * MonopoleTimeConstant(mass, coupling) * accel * accel;
+        }
+
+        // LEGACY (Strano 2019): dr/dt = -2 sqrt(hbar c^7 / G) / r, i.e. emitted power ~ 1/M. Kept only to reproduce the 2019
+        // results. As a radiation law it exceeds the black-body bound for the horizon's temperature by a factor ~ M/m_P
+        // (Second Law), and as written it has units of power rather than of dr/dt unless G = c = 1. Prefer
+        // MonopoleHorizonRadiusDecay(), below.
         public static double SchwarzschildRadiusDecay(double deltaTime, double r)
         {
             double origR = r;
@@ -422,10 +459,29 @@ namespace OpenRelativity
             return deltaR;
         }
 
+        // Hawking evaporation per massless channel (geometric-optics/black-body estimate, grey-body factor ~ 1):
+        // dM/dt = -hbar c^4 / (15360 pi G^2 M^2), and with r = 2 G M / c^2,  dr/dt = -hbar G / (1920 pi r^2 c^2).
+        // (Previously hbar / (1920 pi r^2 c^6), which agrees only when G c^4 = 1.)
         public static double HawkingSchwarzschildRadiusDecay(double deltaTime, double r)
         {
-            double deltaR = -deltaTime * state.hbar / (1920 * Math.PI * r * r * Math.Pow(c, 6));
+            double deltaR = -deltaTime * state.hbar * state.gConst / (1920 * Math.PI * r * r * c * c);
 
+            if ((r + deltaR) < 0)
+            {
+                deltaR = -r;
+            }
+
+            return deltaR;
+        }
+
+        // Monopole (scalar) channel of horizon evaporation at the thermodynamic limit: the same black-body law as Hawking
+        // emission, per massless scalar degree of freedom, so P ~ 1/M^2 (P = hbar a^2 / (1920 pi c^2) per channel at
+        // surface gravity a). "channels" counts massless scalar modes (1 for the gravitational monopole), times any
+        // grey-body factor. This is the corrected order of the 2019 law (1/M -> 1/M^2) with its coefficient fixed by
+        // the Second Law rather than left free.
+        public static double MonopoleHorizonRadiusDecay(double deltaTime, double r, double channels)
+        {
+            double deltaR = channels * HawkingSchwarzschildRadiusDecay(deltaTime, r);
             if ((r + deltaR) < 0)
             {
                 deltaR = -r;

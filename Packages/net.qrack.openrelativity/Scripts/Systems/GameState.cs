@@ -132,6 +132,10 @@ namespace OpenRelativity
         // In Planck units
         public float gravityBackgroundPlanckTemperature = 2.53466e-31f;
 
+        // Range (Compton wavelength) of the optional monopole-scalar "fifth force" between RelativisticObjects,
+        // in world units; 0 = unscreened (infinite range). See RelativisticObject.monopoleFifthForceCoupling.
+        public float monopoleFifthForceRange = 0;
+
         //Use this to determine the state of the color shader. If it's True, all you'll see is the lorenz transform.
         private bool shaderOff = false;
 
