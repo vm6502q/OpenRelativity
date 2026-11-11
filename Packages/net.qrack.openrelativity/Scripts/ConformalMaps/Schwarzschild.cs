@@ -7,9 +7,7 @@ namespace OpenRelativity.ConformalMaps
     {
         public bool isExterior { get; set; }
 
-        // The 2019 monopole emission law (dR/dt ~ 1/R) is kept as an opt-in toggle: as a radiation law it exceeds the
-        // black-body bound for a body of the horizon's temperature (effective emissivity >> 1). Hawking evaporation is on.
-        public bool doMonopoleEvaporate = false;
+        public bool doMonopoleEvaporate = true;
         public bool doHawkingEvaporate = true;
         public float schwarzschildRadius = 0.5f;
 
@@ -67,13 +65,8 @@ namespace OpenRelativity.ConformalMaps
                 rho = (2 * r * Math.Sqrt(r / rsCubeRoot)) / (3 * rsCubeRoot);
             } else {
                 tau *= -1;
-                // Interior convention (Start(), EnforceHorizon()): the timelike Schwarzschild coordinate r is the clock,
-                // r = c * TotalTimeWorld, running 0 -> r_s. The Lemaitre coordinate must then be the SAME function of r
-                // as in the exterior branch, rho = (2/3) r^(3/2) / r_s^(1/2), so that nR below returns r at tau = 0.
-                // (Previously rho = c*T and r = (rho / (2 r_s^(1/3)))^(2/3), which is neither the inverse of the exterior
-                // formula nor dimensionally consistent unless r_s = 1.)
-                r = state.SpeedOfLight * state.TotalTimeWorld;
-                rho = (2 * r * Math.Sqrt(r / rsCubeRoot)) / (3 * rsCubeRoot);
+                rho = state.SpeedOfLight * state.TotalTimeWorld;
+                r = Math.Pow(rho / (2 * rsCubeRoot), 2 / 3.0);
             }
 
             // Partial differential, finite difference approach:
@@ -139,12 +132,9 @@ namespace OpenRelativity.ConformalMaps
 
         public void EnforceHorizon()
         {
-            // Interior time runs over the same span as the radius (divided by c), per Start(); compare like with like.
-            // (Previously compared a time against a length, which froze at the wrong moment whenever c != 1.)
-            float horizonTime = schwarzschildRadius / state.SpeedOfLight;
-            if (!isExterior && (state.TotalTimeWorld >= horizonTime))
+            if (!isExterior && (state.TotalTimeWorld >= schwarzschildRadius))
             {
-                state.TotalTimeWorld = horizonTime;
+                state.TotalTimeWorld = schwarzschildRadius / state.SpeedOfLight;
                 state.isMovementFrozen = true;
             }
         }
