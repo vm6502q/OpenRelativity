@@ -65,7 +65,9 @@ namespace OpenRelativity
 
             Vector3 parra = Vector3.Project(toAdd, orig);
             Vector3 perp = toAdd - parra;
-            perp = orig.InverseGamma() * perp / (1 + Vector3.Dot(orig, parra) / cSqrd);
+            // Transverse part is slowed by 1/gamma(orig) = sqrt(1 - v^2/c^2) for a coordinate velocity orig.
+            // (Previously orig.InverseGamma() = 1/sqrt(1 + v^2/c^2), the factor for a celerity, not a velocity.)
+            perp = Mathf.Sqrt(Mathf.Max(1 - orig.sqrMagnitude / cSqrd, 0)) * perp / (1 + Vector3.Dot(orig, parra) / cSqrd);
             parra = (parra + orig) / (1 + Vector3.Dot(orig, parra) / cSqrd);
 
             return parra + perp;
@@ -349,6 +351,21 @@ namespace OpenRelativity
         public static float InverseGamma(this Vector3 velocity, Matrix4x4 metric)
         {
             return 1 / Mathf.Sqrt(1 + (Vector4.Dot(velocity, metric * velocity) / cSqrd));
+        }
+
+        // World-time rate of change of celerity u = gamma v produced by a proper (rest-frame) acceleration:
+        // du_parallel/dt = alpha_parallel, du_perp/dt = alpha_perp / gamma. (Equivalently F_world / m.)
+        public static Vector3 ProperAccelToCelerityRate(this Vector3 properAccel, Vector3 velocity, float gamma)
+        {
+            if (velocity.sqrMagnitude <= FLT_EPSILON || gamma <= FLT_EPSILON)
+            {
+                return properAccel;
+            }
+
+            Vector3 vHat = velocity.normalized;
+            Vector3 par = Vector3.Dot(properAccel, vHat) * vHat;
+
+            return par + (properAccel - par) / gamma;
         }
 
         public static Vector3 RapidityToVelocity(this Vector3 rapidity)

@@ -8,19 +8,19 @@ Kernel version:          7.0.0-43-generic
 Architecture:            x86_64
 Window Protocol:         Wayland (XWayland)
 Available memory:        62697 MB
-Date:                    2026-11-11T19:49:57Z
+Date:                    2026-11-11T22:38:53Z
 [Licensing::Module] Trying to connect to existing licensing client channel...
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu" at "2026-11-11T19:49:57.406905Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu" at "2026-11-11T22:38:53.51499Z"
 [SignatureVerifier] Application signature verification not supported on this platform.
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.18.3+d7ffd15
-  Session Id:              90ac37e7fcaf4f5eb11de20e897017fb
+  Session Id:              2d33c2a71a3f41bb936029f672ed6748
   Correlation Id:          9fd2a1fc4ba85f935e04d0be8a6373b5
-  External correlation Id: 766319402551074715
+  External correlation Id: 8623088341685791992
   Machine Id:              43wg+E17xIfqaJGvjFdzFsaP8xY=
-[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-iamu" (connect: 0.00s, validation: 0.00s, handshake: 0.00s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-notifications" at "2026-11-11T19:49:57.408354Z"
-[Licensing::Module] Licensing Background thread has ended after 0.00s
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-iamu" (connect: 0.00s, validation: 0.01s, handshake: 0.00s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-notifications" at "2026-11-11T22:38:53.527686Z"
+[Licensing::Module] Licensing Background thread has ended after 0.01s
 Selected window backend: (null) 
 Initialising UDS system complete:
   - System type: Client
@@ -46,11 +46,11 @@ AssetImportWorkerHW0
 -logFile
 Logs/AssetImportWorkerHW0.log
 -srvPort
-34567
+43847
 -parentPid
-11760
+28818
 -analyticsCloudUserId
-anonymous
+1128121
 -analyticsLocalProjectId
 9d740346507f4174fbe3c7847671dcce
 -editorAnalyticsEnabled
@@ -108,12 +108,12 @@ Successfully changed project path to: /home/iamu/GitHub/OpenRelativity
     "memorysetup-job-temp-allocator-block-size=2097152"
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
-Player connection [125836445879296]  Target information:
+Player connection [133578432941056]  Target information:
 
-Player connection [125836445879296]  * "[IP] 192.168.1.194 [Port] 0 [Flags] 2 [Guid] 2602296274 [EditorId] 2602296274 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.194) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
+Player connection [133578432941056]  * "[IP] 192.168.1.194 [Port] 0 [Flags] 2 [Guid] 2639645488 [EditorId] 2639645488 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.194) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
 
-Player connection [125836445879296] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [125836445879296] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [133578432941056] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [133578432941056] Host joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 15
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
@@ -169,8 +169,8 @@ GfxDevice: creating device client; kGfxThreadingModeThreaded
 [vulkan] Loaded instance function vkGetPhysicalDeviceProperties
 [vulkan] Loaded instance function vkEnumeratePhysicalDevices
 [Vulkan init] SelectPhysicalDevice requestedDeviceIndex=-1 xrDevice=(nil)
-[Vulkan init] Physical Device 0x5680be319360 [0]: "Intel(R) Graphics (RPL-S)" deviceType=1 vendorID=8086 deviceID=a788
-[Vulkan init] Physical Device 0x5680be3197d0 [1]: "llvmpipe (LLVM 21.1.8, 256 bits)" deviceType=4 vendorID=10005 deviceID=0
+[Vulkan init] Physical Device 0x565407f838a0 [0]: "Intel(R) Graphics (RPL-S)" deviceType=1 vendorID=8086 deviceID=a788
+[Vulkan init] Physical Device 0x565407f83d10 [1]: "llvmpipe (LLVM 21.1.8, 256 bits)" deviceType=4 vendorID=10005 deviceID=0
 Vulkan detection: 2
 [Vulkan init] extensions: count=27
 [Vulkan init] extensions: name=VK_EXT_acquire_drm_display [enabled=0, external=0]
@@ -262,9 +262,9 @@ Vulkan detection: 2
 [vulkan] Loaded instance function vkCmdEndDebugUtilsLabelEXT
 [vulkan] Loaded instance function vkCmdInsertDebugUtilsLabelEXT
 [Vulkan init] SelectPhysicalDevice requestedDeviceIndex=-1 xrDevice=(nil)
-[Vulkan init] Physical Device 0x5680be0e4a60 [0]: "Intel(R) Graphics (RPL-S)" deviceType=1 vendorID=8086 deviceID=a788
-[Vulkan init] Physical Device 0x5680be0e4ed0 [1]: "llvmpipe (LLVM 21.1.8, 256 bits)" deviceType=4 vendorID=10005 deviceID=0
-[Vulkan init] Selected physical device 0x5680be0e4a60
+[Vulkan init] Physical Device 0x565407fa3ad0 [0]: "Intel(R) Graphics (RPL-S)" deviceType=1 vendorID=8086 deviceID=a788
+[Vulkan init] Physical Device 0x565407f9cf10 [1]: "llvmpipe (LLVM 21.1.8, 256 bits)" deviceType=4 vendorID=10005 deviceID=0
+[Vulkan init] Selected physical device 0x565407fa3ad0
 [Vulkan init] Graphics queue count=1
 [Vulkan init] extensions: count=185
 [Vulkan init] extensions: name=VK_AMD_buffer_marker [enabled=0, external=0]
@@ -602,13 +602,13 @@ Vulkan renderer=[Intel(R) Graphics (RPL-S)] id=[a788]
 Vulkan device type 1
 Vulkan driverversion=[26.0.8 (0x06800008)] uint=[109051912]
 Vulkan driverLibraryString=[Intel open-source Mesa driver (6), Mesa 26.0.8-1ubuntu0.3]
-Vulkan PSO: cache data not found [path=/tmp/DefaultCompany/openrelativity/vulkan_pso_cache.bin]
+Vulkan PSO: Cache data successfully loaded [size=42693,path=/tmp/DefaultCompany/openrelativity/vulkan_pso_cache.bin]
 Initialize mono
 Mono path[0] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed'
 Mono path[1] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
 Mono path[2] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-linux'
 Mono config path = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56269
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56137
 CodeReloadManager initialized
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
@@ -620,7 +620,7 @@ Registering precompiled unity dll's ...
   Expiration: Unlimited
 Register platform support module: /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.001508 seconds.
+Registered in 0.001369 seconds.
 Native extension for LinuxStandalone target not found
 Package Manager log level set to [2]
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
@@ -638,23 +638,23 @@ Native extension for Android target not found
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Scripting: successfully reloaded assembly
-- Finished resetting the current domain, in  0.298 seconds
-Domain Reload Profiling: 592ms
+- Finished resetting the current domain, in  0.292 seconds
+Domain Reload Profiling: 597ms
 	BeginReloadAssembly (48ms)
 	RebuildCommonClasses (3ms)
 	RebuildNativeTypeToScriptingClass (7ms)
-	initialDomainReloadingComplete (39ms)
+	initialDomainReloadingComplete (49ms)
 	LoadAllAssembliesAndSetupDomain (197ms)
-		LoadAssemblies (47ms)
-		TypeCache.Refresh (134ms)
+		LoadAssemblies (48ms)
+		TypeCache.Refresh (133ms)
 			TypeCache.ScanAssembly (124ms)
 		AnalyzeDomain (0ms)
-	FinalizeReload (299ms)
+	FinalizeReload (292ms)
 		SetupLoadedEditorAssemblies (0ms)
 			InitializePlatformSupportModulesInManaged (7ms)
-			BeforeProcessingInitializeOnLoad (67ms)
-			ProcessInitializeOnLoadAttributes (62ms)
-			ProcessInitializeOnLoadMethodAttributes (106ms)
+			BeforeProcessingInitializeOnLoad (64ms)
+			ProcessInitializeOnLoadAttributes (58ms)
+			ProcessInitializeOnLoadMethodAttributes (104ms)
 Initializing Unity extensions:
 [Licensing::Client] Successfully resolved entitlement details
 ========================================================================
@@ -680,106 +680,34 @@ Scripting: successfully reloaded assembly
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.263 seconds
-Domain Reload Profiling: 562ms
-	BeginReloadAssembly (109ms)
+- Finished resetting the current domain, in  0.279 seconds
+Domain Reload Profiling: 578ms
+	BeginReloadAssembly (105ms)
 		DisableScriptedObjects (4ms)
-		CreateAndSetChildDomain (19ms)
+		CreateAndSetChildDomain (26ms)
 	RebuildCommonClasses (5ms)
 	RebuildNativeTypeToScriptingClass (7ms)
 	initialDomainReloadingComplete (21ms)
-	LoadAllAssembliesAndSetupDomain (157ms)
-		LoadAssemblies (102ms)
-		TypeCache.Refresh (20ms)
-			TypeCache.ScanAssembly (14ms)
+	LoadAllAssembliesAndSetupDomain (160ms)
+		LoadAssemblies (100ms)
+		TypeCache.Refresh (24ms)
+			TypeCache.ScanAssembly (17ms)
 		AnalyzeDomain (9ms)
 			BuildScriptInfoCaches (7ms)
-	FinalizeReload (264ms)
+	FinalizeReload (280ms)
 		SetupLoadedEditorAssemblies (0ms)
 			InitializePlatformSupportModulesInManaged (10ms)
-			BeforeProcessingInitializeOnLoad (69ms)
-			ProcessInitializeOnLoadAttributes (45ms)
-			ProcessInitializeOnLoadMethodAttributes (26ms)
-		AwakeInstancesAfterBackupRestoration (6ms)
+			BeforeProcessingInitializeOnLoad (63ms)
+			ProcessInitializeOnLoadAttributes (48ms)
+			ProcessInitializeOnLoadMethodAttributes (33ms)
+		AwakeInstancesAfterBackupRestoration (4ms)
 AcceleratorClientConnectionCallback - disconnected - :0
 AutoLocale: current locale expects 'C' but got 'en_US.UTF-8'Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1190 unused Assets / (198.2 KB). Loaded Objects now: 1949.
-Memory consumption went from 141.3 MB to 141.1 MB.
-Total: 6.294767 ms (FindLiveObjects: 0.150385 ms CreateObjectMapping: 0.164523 ms MarkObjects: 5.547436 ms  DeleteObjects: 0.357998 ms)
+Unloading 1190 unused Assets / (141.7 KB). Loaded Objects now: 1949.
+Memory consumption went from 143.1 MB to 143.0 MB.
+Total: 6.680461 ms (FindLiveObjects: 0.147583 ms CreateObjectMapping: 0.072363 ms MarkObjects: 6.060120 ms  DeleteObjects: 0.337369 ms)
 
-========================================================================
-Received Prepare
-AcceleratorClientConnectionCallback - disconnected - :0
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1 unused Assets / (46.4 KB). Loaded Objects now: 1949.
-Memory consumption went from 140.2 MB to 140.1 MB.
-Total: 3.935699 ms (FindLiveObjects: 0.091051 ms CreateObjectMapping: 0.020614 ms MarkObjects: 3.749522 ms  DeleteObjects: 0.017222 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Import Request.
-  Time of request: 2026-11-11T19:50:39.991395Z
-  Time since last request: 266.89828418600001 seconds.
-  importAddress: GUID: bd55ced2fb566da45a11233369c097ed - Path: Assets/Example/Scenes/newFeatures/LightingData.asset - Importer: PreviewImporter
-Importing 'GUID: bd55ced2fb566da45a11233369c097ed - Path: Assets/Example/Scenes/newFeatures/LightingData.asset - Importer: PreviewImporter' with importer (PreviewImporter)
-Imported 'GUID: bd55ced2fb566da45a11233369c097ed' -> (Import Result ID: '86f448db911cd9ff944e5ac97b8f5215') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6a84ec240403a2dfd05113dbfe4867d9 DependenciesID=cd2feb6e15c55657d7e06bbe43c97c67 StaticDependenciesID=17c00f56d8e6f564949cda951e6cbe12 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time of request: 2026-11-11T19:50:40.024333Z
-  Time since last request: 0.02060246 seconds.
-  importAddress: GUID: 25830d2c457eb294b81f3bbaa3d62390 - Path: Assets/Example/Scenes/newFeatures/Lightmap-1_comp_light.exr - Importer: PreviewImporter
-Importing 'GUID: 25830d2c457eb294b81f3bbaa3d62390 - Path: Assets/Example/Scenes/newFeatures/Lightmap-1_comp_light.exr - Importer: PreviewImporter' with importer (PreviewImporter)
-Imported 'GUID: 25830d2c457eb294b81f3bbaa3d62390' -> (Import Result ID: '5048aa969e66ff793da5332ca0cef722') in 0.041 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c55afbf792493f92dcbe370346e8ba09 DependenciesID=9f66efeb8e224b4766e8557ecd52f22d StaticDependenciesID=dc1f4f3444c2ee1435bdd073d0c05f3a 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time of request: 2026-11-11T19:50:40.067325Z
-  Time since last request: 0.000017264 seconds.
-  importAddress: GUID: a13fb55bd4a810e4489412bb11ff5778 - Path: Assets/Example/Scenes/newFeatures/Lightmap-0_comp_light.exr - Importer: PreviewImporter
-Importing 'GUID: a13fb55bd4a810e4489412bb11ff5778 - Path: Assets/Example/Scenes/newFeatures/Lightmap-0_comp_light.exr - Importer: PreviewImporter' with importer (PreviewImporter)
-Imported 'GUID: a13fb55bd4a810e4489412bb11ff5778' -> (Import Result ID: '23b689e5ee9521df619c679b20a2e10e') in 0.004 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=87754cc2fcb367ba61f787203484f4bf DependenciesID=efcaed1047b191cae0adb507cb90c746 StaticDependenciesID=80cb60fdf9693901a9137266eb25008f 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time of request: 2026-11-11T19:50:40.07166Z
-  Time since last request: 0.000328337 seconds.
-  importAddress: GUID: 50691b1eba5288346a3aed71182cb3e8 - Path: Assets/Example/Scenes/newFeatures/Lightmap-0_comp_dir.png - Importer: PreviewImporter
-Importing 'GUID: 50691b1eba5288346a3aed71182cb3e8 - Path: Assets/Example/Scenes/newFeatures/Lightmap-0_comp_dir.png - Importer: PreviewImporter' with importer (PreviewImporter)
-Imported 'GUID: 50691b1eba5288346a3aed71182cb3e8' -> (Import Result ID: '00f3b456cb566dde6107169238843384') in 0.006 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=de75323e1254a2d07ff3d1c6536cf859 DependenciesID=7ba591c8ac6705b0df8c43feb9520a8c StaticDependenciesID=8a343f988b874a771b058a83809b4f56 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time of request: 2026-11-11T19:50:40.078202Z
-  Time since last request: 0.000247492 seconds.
-  importAddress: GUID: cfd1577d0443d1a4dbb6eedad891d8b2 - Path: Assets/Example/Scenes/newFeatures/ReflectionProbe-1.exr - Importer: PreviewImporter
-Importing 'GUID: cfd1577d0443d1a4dbb6eedad891d8b2 - Path: Assets/Example/Scenes/newFeatures/ReflectionProbe-1.exr - Importer: PreviewImporter' with importer (PreviewImporter)
-Imported 'GUID: cfd1577d0443d1a4dbb6eedad891d8b2' -> (Import Result ID: '83e5784639981b6d34144d19d47f6cdb') in 0.032 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=20faffb1bf00744526ed0a4b047b5c80 DependenciesID=4b20b977a5d191f6320bdaddb9703624 StaticDependenciesID=d2ed22b5b6aee5852381aa2668a3cf63 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
-========================================================================
-Received Import Request.
-  Time of request: 2026-11-11T19:50:40.111406Z
-  Time since last request: 0.000018968 seconds.
-  importAddress: GUID: fc3e50e4b52c5e34d97104d4e3fa8877 - Path: Assets/Example/Scenes/newFeatures/ReflectionProbe-0.exr - Importer: PreviewImporter
-Importing 'GUID: fc3e50e4b52c5e34d97104d4e3fa8877 - Path: Assets/Example/Scenes/newFeatures/ReflectionProbe-0.exr - Importer: PreviewImporter' with importer (PreviewImporter)
-Imported 'GUID: fc3e50e4b52c5e34d97104d4e3fa8877' -> (Import Result ID: '1de9f288cf2df0bc40b088652a3723ed') in 0.005 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=350b8f681a09a1ea30bf6c1915267c94 DependenciesID=e27f461c7d7b78dc54916c52b0a62e14 StaticDependenciesID=647c546786f10354d60f224df7280bd0 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
-========================================================================
-Received Import Request.
-  Time of request: 2026-11-11T19:50:40.116937Z
-  Time since last request: 0.00026385 seconds.
-  importAddress: GUID: de093f221e9b45642a5ce4b6e669af87 - Path: Assets/Example/Scenes/newFeatures/Lightmap-1_comp_dir.png - Importer: PreviewImporter
-Importing 'GUID: de093f221e9b45642a5ce4b6e669af87 - Path: Assets/Example/Scenes/newFeatures/Lightmap-1_comp_dir.png - Importer: PreviewImporter' with importer (PreviewImporter)
-Imported 'GUID: de093f221e9b45642a5ce4b6e669af87' -> (Import Result ID: '1993834bd1543b3ea18f272bbd6f4c4d') in 0.008 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=da813349b58210df2f62df325bc9fda7 DependenciesID=d6e609945a7c21a6ec0e1a79d070b583 StaticDependenciesID=2b8f4b3dc3ecebcd6d34e56703bdf7a9 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
 ========================================================================
 Received Prepare
 AcceleratorClientConnectionCallback - disconnected - :0
@@ -800,48 +728,37 @@ Scripting: successfully reloaded assembly
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.270 seconds
-Domain Reload Profiling: 586ms
-	BeginReloadAssembly (126ms)
+- Finished resetting the current domain, in  0.243 seconds
+Domain Reload Profiling: 522ms
+	BeginReloadAssembly (111ms)
 		DisableScriptedObjects (4ms)
-		CreateAndSetChildDomain (29ms)
-	RebuildCommonClasses (8ms)
-	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (26ms)
-	LoadAllAssembliesAndSetupDomain (143ms)
-		LoadAssemblies (117ms)
+		CreateAndSetChildDomain (23ms)
+	RebuildCommonClasses (5ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (21ms)
+	LoadAllAssembliesAndSetupDomain (134ms)
+		LoadAssemblies (104ms)
 		TypeCache.Refresh (3ms)
 		AnalyzeDomain (2ms)
-	FinalizeReload (270ms)
+	FinalizeReload (244ms)
 		SetupLoadedEditorAssemblies (0ms)
 			InitializePlatformSupportModulesInManaged (9ms)
-			BeforeProcessingInitializeOnLoad (63ms)
-			ProcessInitializeOnLoadAttributes (45ms)
-			ProcessInitializeOnLoadMethodAttributes (39ms)
-		AwakeInstancesAfterBackupRestoration (5ms)
+			BeforeProcessingInitializeOnLoad (60ms)
+			ProcessInitializeOnLoadAttributes (41ms)
+			ProcessInitializeOnLoadMethodAttributes (25ms)
+		AwakeInstancesAfterBackupRestoration (4ms)
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1188 unused Assets / (257.5 KB). Loaded Objects now: 1986.
-Memory consumption went from 142.3 MB to 142.1 MB.
-Total: 6.004080 ms (FindLiveObjects: 0.145515 ms CreateObjectMapping: 0.039888 ms MarkObjects: 5.508320 ms  DeleteObjects: 0.228694 ms)
+Unloading 1188 unused Assets / (121.7 KB). Loaded Objects now: 1949.
+Memory consumption went from 142.3 MB to 142.2 MB.
+Total: 4.063841 ms (FindLiveObjects: 0.108005 ms CreateObjectMapping: 0.036373 ms MarkObjects: 3.731982 ms  DeleteObjects: 0.121098 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Prepare
 AcceleratorClientConnectionCallback - disconnected - :0
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1 unused Assets / (37.0 KB). Loaded Objects now: 1986.
+Unloading 1 unused Assets / (31.3 KB). Loaded Objects now: 1949.
 Memory consumption went from 142.0 MB to 141.9 MB.
-Total: 4.290825 ms (FindLiveObjects: 0.091104 ms CreateObjectMapping: 0.018655 ms MarkObjects: 4.076706 ms  DeleteObjects: 0.022738 ms)
+Total: 4.196475 ms (FindLiveObjects: 0.098901 ms CreateObjectMapping: 0.015511 ms MarkObjects: 4.001630 ms  DeleteObjects: 0.019823 ms)
 
 Prepare: number of updated asset objects reloaded= 0
-Editor requested this worker to shutdown with reason: Editor is closing down
-AcceleratorClientConnectionCallback - disconnected - :0
-AssetImportWorker is now disconnected from the server
-Process exiting
-[ExitDontLaunchBugReporter] Exiting without the bug reporter. Application will exit with return code 0
-
-SDL leaked 2 allocations
-Turn on UNITY_SDL_ALLOCATION_TRACKING for detailed information.
-Vulkan PSO: data extracted [new size=42693, old size=0, incomplete=0]
-Vulkan PSO: Saved size[42693] path[/tmp/DefaultCompany/openrelativity/vulkan_pso_cache.bin] success=1 headerChanged=1 sizeChanged=1
-Internal: Possible leak. All render target surfaces should be removed from IdMap when destructed using RenderTargetMap::Remove(RenderSurfaceBase* rs).

@@ -8,23 +8,23 @@ Kernel version:          7.0.0-43-generic
 Architecture:            x86_64
 Window Protocol:         Wayland (XWayland)
 Available memory:        62697 MB
-Date:                    2026-11-11T19:49:37Z
-VBCSCompilerPreWarmer: watching VBCSCompiler (PID 11796)
-VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 11798)
-VBCSCompiler prewarm took 6.38 ms
+Date:                    2026-11-11T22:37:28Z
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 28854)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 28856)
+VBCSCompiler prewarm took 6.48 ms
 [Licensing::Module] Trying to connect to existing licensing client channel...
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu" at "2026-11-11T19:49:37.736586Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu" at "2026-11-11T22:37:28.321234Z"
 [SignatureVerifier] Application signature verification not supported on this platform.
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.18.3+d7ffd15
-  Session Id:              839a1aee9f184eb98d6678890b289270
+  Session Id:              fa2977ba316a4d1bb83351d15d07973c
   Correlation Id:          9fd2a1fc4ba85f935e04d0be8a6373b5
-  External correlation Id: 7960337874798758531
+  External correlation Id: 776273040652733048
   Machine Id:              43wg+E17xIfqaJGvjFdzFsaP8xY=
 [Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-iamu" (connect: 0.00s, validation: 0.00s, handshake: 0.00s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-notifications" at "2026-11-11T19:49:37.737925Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-notifications" at "2026-11-11T22:37:28.322299Z"
 [Licensing::Client] Successfully updated the access token
-[Licensing::Module] Successfully updated the access token dgmkeQrsHB...
+[Licensing::Module] Successfully updated the access token F2rrA3TD0o...
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Module] License group:
   Id: 1128121-UnityPersXXXX
@@ -52,7 +52,7 @@ LicenseClient-iamu
 -hubSessionId
 0535f465-5cff-4717-add3-ae08528764e8
 -accessToken
-dgmkeQrsHBe4Os-4mGVdKOBDBnS6YVZkMBeElXbniJk002f
+F2rrA3TD0o8U4MrrO09v1FYZ-aDqLit6nWwrBPnjomE002f
 Successfully changed project path to: /home/iamu/GitHub/OpenRelativity
 /home/iamu/GitHub/OpenRelativity
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -92,19 +92,15 @@ Successfully changed project path to: /home/iamu/GitHub/OpenRelativity
     "memorysetup-job-temp-allocator-block-size=2097152"
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
-Player connection [126927820340224]  Target information:
+Player connection [129271155461120]  Target information:
 
-Player connection [126927820340224]  * "[IP] 192.168.1.194 [Port] 55504 [Flags] 2 [Guid] 724884088 [EditorId] 724884088 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.194) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
+Player connection [129271155461120]  * "[IP] 192.168.1.194 [Port] 55504 [Flags] 2 [Guid] 1657868005 [EditorId] 1657868005 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.194) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
 
-Player connection [126927820340224] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [126927820340224] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [129271155461120] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [129271155461120] Host joined alternative multi-casting on [225.0.0.222:34997]...
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
 [Physics::Module] Id: 0xdecafbad
-[Package Manager] Connected to IPC stream "Upm-11760" after 0.0 seconds.
-[Licensing::Client] Successfully resolved entitlement details
-Library Redirect Path: Library/
-[Warning] Acquired exclusive lock but discovered existing shared memory pool, destroying and reinitialising
 Initialising UDS system complete:
   - System type: Client
   - Resource namespace: 6f552ceda695996b8e64e227f44bbbdb
@@ -113,6 +109,9 @@ Initialising UDS system complete:
   - Command buffer size: 8192
   - Hashmap size: 4194304
   - Service connected: false
+[Package Manager] Connected to IPC stream "Upm-28818" after 0.1 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
 Launching Unity Data Store - /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Tools/Unity.DataStore 
 Unity Data Store artifact dir = Library/DataStore, working dir = /home/iamu/GitHub/OpenRelativityOpenGL ES 2.0 has been removed.
 Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
@@ -151,13 +150,13 @@ L_ARB_texture_border_clamp GL_ARB_texture_buffer_object GL_ARB_texture_buffer_ob
 _11f_rev GL_ARB_vertex_type_2_10_10_10_rev GL_ARB_viewport_array GL_ATI_blend_equation_separate GL_ATI_texture_float GL_EXT_EGL_image_storage GL_EXT_EGL_image_storage_compression GL_EXT_EGL_sync GL_EXT_abgr GL_EXT_blend_equation_separate GL_EXT_debug_label GL_EXT_demote_to_helper_invocation GL_EXT_depth_bounds_test GL_EXT_draw_buffers2 GL_EXT_draw_instanced GL_EXT_framebuffer_blit GL_EXT_framebuffer_multisample GL_EXT_framebuffer_multisample_blit_scaled GL_EXT_framebuffer_object GL_EXT_framebuffer_sRGB GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_packed_depth_stencil GL_EXT_packed_float GL_EXT_pixel_buffer_object GL_EXT_polygon_offset_clamp GL_EXT_provoking_vertex GL_EXT_semaphore GL_EXT_semaphore_fd GL_EXT_shader_clock GL_EXT_shader_framebuffer_fetch GL_EXT_shader_framebuffer_fetch_non_coherent GL_EXT_shader_integer_mix GL_EXT_shader_samples_identical GL_EXT_texture_array GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc GL_EXT_texture_compression_s3tc GL_EXT_texture_filter_anisotropic 
 GL_EXT_texture_integer GL_EXT_texture_sRGB GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_shared_exponent GL_EXT_texture_snorm GL_EXT_texture_storage GL_EXT_texture_swizzle GL_EXT_timer_query GL_EXT_transform_feedback GL_EXT_vertex_array_bgra GL_EXT_vertex_attrib_64bit GL_IBM_multimode_draw_arrays GL_INTEL_blackhole_render GL_INTEL_conservative_rasterization GL_INTEL_performance_query GL_INTEL_shader_atomic_float_minmax GL_INTEL_shader_integer_functions2 GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_KHR_context_flush_control GL_KHR_debug GL_KHR_no_error GL_KHR_parallel_shader_compile GL_KHR_robust_buffer_access_behavior GL_KHR_robustness GL_KHR_shader_subgroup GL_KHR_texture_compression_astc_ldr GL_KHR_texture_compression_astc_sliced_3d GL_MESA_framebuffer_flip_y GL_MESA_pack_invert GL_MESA_shader_integer_functions GL_MESA_texture_const_bandwidth GL_MESA_texture_signed_rgba GL_NV_alpha_to_coverage_dither_control GL_NV_compute_shader_deri
 vatives GL_NV_conditional_render GL_NV_copy_image GL_NV_depth_clamp GL_NV_fragment_shader_interlock GL_NV_packed_depth_stencil GL_NV_texture_barrier GL_OES_EGL_image GL_S3_s3tc
-OPENGL LOG: Creating OpenGL 4.6 graphics device ; Context level  <OpenGL 4.5> ; Context handle -828736112
+OPENGL LOG: Creating OpenGL 4.6 graphics device ; Context level  <OpenGL 4.5> ; Context handle -1739295104
 Initialize mono
 Mono path[0] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed'
 Mono path[1] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
 Mono path[2] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-linux'
 Mono config path = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56760
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56818
 CodeReloadManager initialized
 ImportWorker Server TCP listen port: 0
 AcceleratorClientConnectionCallback - disconnected - :0
@@ -166,7 +165,7 @@ Registering precompiled unity dll's ...
 [Licensing::Client] Successfully resolved entitlement details
 Register platform support module: /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.001521 seconds.
+Registered in 0.001637 seconds.
 Native extension for LinuxStandalone target not found
 Package Manager log level set to [2]
 Native extension for Android target not found
@@ -175,24 +174,24 @@ Native extension for Android target not found
 [Licensing::Client] Successfully resolved entitlement details
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Scripting: successfully reloaded assembly
-- Finished resetting the current domain, in  1.277 seconds
-Domain Reload Profiling: 1576ms
-	BeginReloadAssembly (60ms)
-		CreateAndSetChildDomain (11ms)
+- Finished resetting the current domain, in  2.094 seconds
+Domain Reload Profiling: 2403ms
+	BeginReloadAssembly (58ms)
+		CreateAndSetChildDomain (9ms)
 	RebuildCommonClasses (3ms)
-	RebuildNativeTypeToScriptingClass (6ms)
-	initialDomainReloadingComplete (38ms)
-	LoadAllAssembliesAndSetupDomain (192ms)
-		LoadAssemblies (48ms)
-		TypeCache.Refresh (129ms)
-			TypeCache.ScanAssembly (120ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (47ms)
+	LoadAllAssembliesAndSetupDomain (194ms)
+		LoadAssemblies (49ms)
+		TypeCache.Refresh (131ms)
+			TypeCache.ScanAssembly (122ms)
 		AnalyzeDomain (0ms)
-	FinalizeReload (1277ms)
+	FinalizeReload (2094ms)
 		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (44ms)
-			BeforeProcessingInitializeOnLoad (64ms)
-			ProcessInitializeOnLoadAttributes (62ms)
-			ProcessInitializeOnLoadMethodAttributes (995ms)
+			InitializePlatformSupportModulesInManaged (42ms)
+			BeforeProcessingInitializeOnLoad (65ms)
+			ProcessInitializeOnLoadAttributes (68ms)
+			ProcessInitializeOnLoadMethodAttributes (1802ms)
 [Licensing::Client] Successfully resolved entitlement details
 Application.AssetDatabase Initial Refresh Start
 [Package Manager] Restoring resolved packages state from cache
@@ -281,39 +280,542 @@ UnityEditor.Shaders.RenderPipelineSubShaderStripping:GetActiveRenderPipelineShad
 
 [/home/bokken/build/output/unity/unity/Editor/Mono/Shaders/RenderPipelineSubShaderStripping.cs line 71]
 
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
 Starting: /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Tools/BuildPipeline/bee_backend --ipc --defer-dag-verification --dagfile="Library/Bee/2400b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
 WorkingDir: /home/iamu/GitHub/OpenRelativity
-ExitCode: 0 Duration: 0s64ms
-[347/426    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
-*** Tundra build success (0.05 seconds), 1 items updated, 426 evaluated
+ExitCode: 3 Duration: 0s359ms
+[           0s] Csc Library/Bee/artifacts/2400b0aE.dag/net.qrack.openrelativity.dll (+2 others) [CacheMiss 68aaa06f55b72ec0f72b23d94b389e5100000000000000000000000000000006]
+[343/426    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[410/426    0s] Csc Library/Bee/artifacts/2400b0aE.dag/net.qrack.openrelativity.dll (+2 others)
+##### CommandLine
+"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/DotNetSdk/dotnet" exec "/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/DotNetSdk/sdk/8.0.318/Roslyn/bincore/csc.dll" /nostdlib /noconfig /shared "@Library/Bee/artifacts/2400b0aE.dag/net.qrack.openrelativity.rsp" "@Library/Bee/artifacts/2400b0aE.dag/net.qrack.openrelativity.rsp2"
+##### Contents of Library/Bee/artifacts/2400b0aE.dag/net.qrack.openrelativity.rsp
+-target:library
+-out:"Library/Bee/artifacts/2400b0aE.dag/net.qrack.openrelativity.dll"
+-refout:"Library/Bee/artifacts/2400b0aE.dag/net.qrack.openrelativity.ref.dll"
+-define:UNITY_6000_6_8
+-define:UNITY_6000_6
+-define:UNITY_6000
+-define:UNITY_5_3_OR_NEWER
+-define:UNITY_5_4_OR_NEWER
+-define:UNITY_5_5_OR_NEWER
+-define:UNITY_5_6_OR_NEWER
+-define:UNITY_2017_1_OR_NEWER
+-define:UNITY_2017_2_OR_NEWER
+-define:UNITY_2017_3_OR_NEWER
+-define:UNITY_2017_4_OR_NEWER
+-define:UNITY_2018_1_OR_NEWER
+-define:UNITY_2018_2_OR_NEWER
+-define:UNITY_2018_3_OR_NEWER
+-define:UNITY_2018_4_OR_NEWER
+-define:UNITY_2019_1_OR_NEWER
+-define:UNITY_2019_2_OR_NEWER
+-define:UNITY_2019_3_OR_NEWER
+-define:UNITY_2019_4_OR_NEWER
+-define:UNITY_2020_1_OR_NEWER
+-define:UNITY_2020_2_OR_NEWER
+-define:UNITY_2020_3_OR_NEWER
+-define:UNITY_2021_1_OR_NEWER
+-define:UNITY_2021_2_OR_NEWER
+-define:UNITY_2021_3_OR_NEWER
+-define:UNITY_2022_1_OR_NEWER
+-define:UNITY_2022_2_OR_NEWER
+-define:UNITY_2022_3_OR_NEWER
+-define:UNITY_2023_1_OR_NEWER
+-define:UNITY_2023_2_OR_NEWER
+-define:UNITY_2023_3_OR_NEWER
+-define:UNITY_6000_0_OR_NEWER
+-define:UNITY_6000_1_OR_NEWER
+-define:UNITY_6000_2_OR_NEWER
+-define:UNITY_6000_3_OR_NEWER
+-define:UNITY_6000_4_OR_NEWER
+-define:UNITY_6000_5_OR_NEWER
+-define:UNITY_6000_6_OR_NEWER
+-define:PLATFORM_ARCH_64
+-define:UNITY_64
+-define:UNITY_INCLUDE_TESTS
+-define:ENABLE_AUDIO
+-define:ENABLE_AUDIO_SCRIPTABLE_PIPELINE
+-define:ENABLE_BURST
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_MICROPHONE
+-define:ENABLE_MULTIPLE_DISPLAYS
+-define:ENABLE_PHYSICS
+-define:ENABLE_TEXTURE_STREAMING
+-define:ENABLE_VIRTUALTEXTURING
+-define:ENABLE_LZMA
+-define:ENABLE_UNITYEVENTS
+-define:ENABLE_VR
+-define:ENABLE_WEBCAM
+-define:ENABLE_UNITYWEBREQUEST
+-define:ENABLE_WWW
+-define:ENABLE_CLOUD_SERVICES
+-define:ENABLE_CLOUD_SERVICES_ADS
+-define:ENABLE_CLOUD_SERVICES_USE_WEBREQUEST
+-define:ENABLE_UNITY_CONSENT
+-define:ENABLE_UNITY_CLOUD_IDENTIFIERS
+-define:ENABLE_CLOUD_SERVICES_CRASH_REPORTING
+-define:ENABLE_CLOUD_SERVICES_PURCHASING
+-define:ENABLE_CLOUD_SERVICES_ANALYTICS
+-define:ENABLE_CLOUD_SERVICES_BUILD
+-define:ENABLE_EDITOR_GAME_SERVICES
+-define:ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT
+-define:ENABLE_CLOUD_LICENSE
+-define:ENABLE_EDITOR_HUB_LICENSE
+-define:ENABLE_WEBSOCKET_CLIENT
+-define:ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API
+-define:ENABLE_DIRECTOR_AUDIO
+-define:ENABLE_DIRECTOR_TEXTURE
+-define:ENABLE_MANAGED_JOBS
+-define:ENABLE_MANAGED_TRANSFORM_JOBS
+-define:ENABLE_MANAGED_ANIMATION_JOBS
+-define:ENABLE_MANAGED_AUDIO_JOBS
+-define:ENABLE_MANAGED_UNITYTLS
+-define:INCLUDE_DYNAMIC_GI
+-define:ENABLE_SCRIPTING_GC_WBARRIERS
+-define:PLATFORM_SUPPORTS_MONO
+-define:RENDER_SOFTWARE_CURSOR
+-define:ENABLE_MARSHALLING_TESTS
+-define:ENABLE_VIDEO
+-define:ENABLE_NAVIGATION_OFFMESHLINK_TO_NAVMESHLINK
+-define:ENABLE_ACCELERATOR_CLIENT_DEBUGGING
+-define:TEXTCORE_1_0_OR_NEWER
+-define:EDITOR_ONLY_NAVMESH_BUILDER_DEPRECATED
+-define:INCLUDE_UNIFIED_RAYTRACING_COMPUTE_BACKEND
+-define:INCLUDE_UNIFIED_RAYTRACING_HARDWARE_BACKEND
+-define:PLATFORM_STANDALONE_LINUX
+-define:PLATFORM_STANDALONE
+-define:UNITY_STANDALONE_LINUX
+-define:UNITY_STANDALONE
+-define:UNITY_STANDALONE_LINUX_API
+-define:ENABLE_RUNTIME_GI
+-define:ENABLE_MOVIES
+-define:ENABLE_NETWORK
+-define:ENABLE_CRUNCH_TEXTURE_COMPRESSION
+-define:ENABLE_CLUSTER_SYNC
+-define:ENABLE_CLUSTERINPUT
+-define:ENABLE_SPATIALTRACKING
+-define:ENABLE_MODULAR_UNITYENGINE_ASSEMBLIES
+-define:PLATFORM_SUPPORTS_SPLIT_GRAPHICS_JOBS
+-define:PLATFORM_USES_EXPLICIT_MEMORY_MANAGER_INITIALIZER
+-define:PLATFORM_SUPPORTS_DISPLAYINFO_API
+-define:ENABLE_MONO
+-define:NET_STANDARD_2_0
+-define:NET_STANDARD
+-define:NET_STANDARD_2_1
+-define:NETSTANDARD
+-define:NETSTANDARD2_1
+-define:ENABLE_PROFILER
+-define:UNITY_INCLUDE_INSTRUMENTATION
+-define:DEBUG
+-define:TRACE
+-define:UNITY_ASSERTIONS
+-define:UNITY_ENABLE_CHECKS
+-define:UNITY_EDITOR
+-define:UNITY_EDITOR_64
+-define:UNITY_EDITOR_LINUX
+-define:ENABLE_UNITY_COLLECTIONS_CHECKS
+-define:ENABLE_BURST_AOT
+-define:UNITY_TEAM_LICENSE
+-define:ENABLE_CUSTOM_RENDER_TEXTURE
+-define:ENABLE_DIRECTOR
+-define:ENABLE_LOCALIZATION
+-define:ENABLE_SPRITES
+-define:ENABLE_TERRAIN
+-define:ENABLE_TILEMAP
+-define:ENABLE_TIMELINE
+-define:ENABLE_LEGACY_INPUT_MANAGER
+-define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
+-define:TEXTCORE_TEXT_ENGINE_1_5_OR_NEWER
+-define:TEXTCORE_FONT_ENGINE_1_6_OR_NEWER
+-define:CSHARP_7_OR_LATER
+-define:CSHARP_7_3_OR_NEWER
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/Microsoft.Bcl.AsyncInterfaces.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/Microsoft.Extensions.DependencyInjection.Abstractions.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/Microsoft.Extensions.Logging.Abstractions.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Collections.Immutable.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Diagnostics.DiagnosticSource.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.IO.Hashing.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Reflection.Metadata.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Runtime.CompilerServices.Unsafe.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Text.Encodings.Web.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Text.Json.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/Bootstrap/Unity.Scripting.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.AIModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.AccessibilityModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.AdaptivePerformanceModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.AnimationWindowModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.AssetComplianceModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.BuildAnalysisModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.BuildProfileModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.BurstModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.ClothModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.ContentLoadModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreBusinessMetricsModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.DiagnosticsModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.EditorToolbarModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.EmbreeModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.GIModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.GenericRemoteModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.GraphToolkitModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.GraphViewModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.GraphicsStateCollectionSerializerModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.GridAndSnapModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.GridModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.HierarchyModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.LightingModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.MathematicsModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.MediaModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.MultiplayerModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.Physics2DModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.PhysicsCore2DModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.PhysicsModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.PlayModeModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.PresetsUIModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.ProjectAuditorModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.PropertiesModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.QuickInstallModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.QuickSearchModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.SafeModeModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.SceneTemplateModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.SceneViewModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.ShaderBuildSettingsModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.ShaderCompilationModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.ShaderFoundryModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.ShaderPreprocessorModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.SketchUpModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.SpriteMaskModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.SpriteShapeModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.SubstanceModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.SyntaxTreeModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.TerrainModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.TextCoreFontEngineModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.TextCoreTextEngineModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.TextRenderingModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.TilemapModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.TimelineFoundationModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.TreeModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.U2DModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIAutomationModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIBuilderModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIElementsModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIElementsSamplesModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIToolkitAuthoringModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.UmbraModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.VFXModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.VectorGraphicsModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.VideoModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.XRModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AccessibilityModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AdaptivePerformanceModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AndroidJNIModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AnimationModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.AudioModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.BurstModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterInputModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterRendererModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.ContentLoadModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.CrashReportingModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.DSPGraphModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.DirectorModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.GIModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.GameCenterModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.GraphicsStateCollectionSerializerModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.GridModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.HierarchyCoreModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.HotReloadModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.IMGUIModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.IdentifiersModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.ImageConversionModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputForUIModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputLegacyModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.JSONSerializeModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.LocalizationModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.ManagedKernelModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.MarshallingModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.MathematicsModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.MultiplayerModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.ParticleSystemModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.PerformanceReportingModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.Physics2DModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.PhysicsBackendPhysXModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.PhysicsCore2DModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.PhysicsModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.PropertiesModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.RenderAs2DModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.ScriptingModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.ShaderVariantAnalyticsModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteShapeModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.StreamingModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.SubstanceModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.SubsystemsModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.TLSModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.TetgenModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.TextCoreFontEngineModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.TextCoreTextEngineModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.TextRenderingModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.TimelineFoundationModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.U2DRuntimeModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.UIElementsModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.UIModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityAnalyticsCommonModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityConnectModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityConsentModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityCurlModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.VFXModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.VectorGraphicsModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.VideoModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.VirtualTexturingModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/Extensions/2.0.0/System.Runtime.InteropServices.WindowsRuntime.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.ComponentModel.Composition.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Core.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Data.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Drawing.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.IO.Compression.FileSystem.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Net.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Numerics.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Runtime.Serialization.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.ServiceModel.Web.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Transactions.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Web.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Windows.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Xml.Linq.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Xml.Serialization.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.Xml.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/System.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/mscorlib.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/Microsoft.Win32.Primitives.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.AppContext.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Buffers.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Collections.Concurrent.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Collections.NonGeneric.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Collections.Specialized.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Collections.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.ComponentModel.EventBasedAsync.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.ComponentModel.Primitives.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.ComponentModel.TypeConverter.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.ComponentModel.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Console.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Data.Common.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.Contracts.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.Debug.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.FileVersionInfo.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.Process.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.StackTrace.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.TextWriterTraceListener.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.Tools.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.TraceSource.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Diagnostics.Tracing.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Drawing.Primitives.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Dynamic.Runtime.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Globalization.Calendars.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Globalization.Extensions.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Globalization.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.Compression.ZipFile.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.Compression.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.FileSystem.DriveInfo.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.FileSystem.Primitives.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.FileSystem.Watcher.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.FileSystem.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.IsolatedStorage.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.MemoryMappedFiles.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.Pipes.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.UnmanagedMemoryStream.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.IO.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Linq.Expressions.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Linq.Parallel.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Linq.Queryable.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Linq.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Memory.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Http.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.NameResolution.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.NetworkInformation.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Ping.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Primitives.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Requests.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Security.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.Sockets.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.WebHeaderCollection.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.WebSockets.Client.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Net.WebSockets.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Numerics.Vectors.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.ObjectModel.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.DispatchProxy.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.Emit.ILGeneration.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.Emit.Lightweight.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.Emit.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.Extensions.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.Primitives.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Reflection.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Resources.Reader.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Resources.ResourceManager.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Resources.Writer.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.CompilerServices.VisualC.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Extensions.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Handles.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.InteropServices.RuntimeInformation.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.InteropServices.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Numerics.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Serialization.Formatters.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Serialization.Json.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Serialization.Primitives.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.Serialization.Xml.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Runtime.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Claims.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Cryptography.Algorithms.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Cryptography.Csp.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Cryptography.Encoding.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Cryptography.Primitives.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Cryptography.X509Certificates.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Security.Principal.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Security.SecureString.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Text.Encoding.Extensions.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Text.Encoding.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Text.RegularExpressions.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Overlapped.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Tasks.Extensions.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Tasks.Parallel.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Tasks.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Thread.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.ThreadPool.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.Timer.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Threading.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.ValueTuple.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.ReaderWriter.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XDocument.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XPath.XDocument.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XPath.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XmlDocument.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XmlSerializer.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/NetStandard/ref/2.1.0/netstandard.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/PlaybackEngines/AndroidPlayer/Unity.Android.Gradle.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/PlaybackEngines/AndroidPlayer/Unity.Android.Types.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll"
+-r:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll"
+-r:"Library/PackageCache/com.unity.ext.nunit@508b95ff9afe/net472/unity-custom/nunit.framework.dll"
+-r:"Library/Bee/artifacts/2400b0aE.dag/UnityEditor.UI.ref.dll"
+-r:"Library/Bee/artifacts/2400b0aE.dag/UnityEngine.UI.ref.dll"
+-analyzer:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/analyzers/dotnet/roslyn4.0/cs/Microsoft.Extensions.Logging.Generators.dll"
+-analyzer:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/analyzers/dotnet/roslyn4.0/cs/System.Text.Json.SourceGeneration.dll"
+-analyzer:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Tools/BuildPipeline/Unity.Analyzers/Unity.Analyzers.Common.dll"
+-analyzer:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Tools/BuildPipeline/Unity.Analyzers/Unity.Analyzers.LongLiving.dll"
+-analyzer:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
+-analyzer:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.SourceGenerators.dll"
+-analyzer:"/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
+"Packages/net.qrack.openrelativity/Scripts/Audio/RelativisticAudioListener.cs"
+"Packages/net.qrack.openrelativity/Scripts/Audio/RelativisticAudioSource.cs"
+"Packages/net.qrack.openrelativity/Scripts/Audio/RelativisticAudioSystem.cs"
+"Packages/net.qrack.openrelativity/Scripts/ChargedObject.cs"
+"Packages/net.qrack.openrelativity/Scripts/ConformalMap.cs"
+"Packages/net.qrack.openrelativity/Scripts/ConformalMaps/Kerr.cs"
+"Packages/net.qrack.openrelativity/Scripts/ConformalMaps/KerrNewman.cs"
+"Packages/net.qrack.openrelativity/Scripts/ConformalMaps/Minkowski.cs"
+"Packages/net.qrack.openrelativity/Scripts/ConformalMaps/ReissnerNordstroem.cs"
+"Packages/net.qrack.openrelativity/Scripts/ConformalMaps/RindlerGravity.cs"
+"Packages/net.qrack.openrelativity/Scripts/ConformalMaps/Schwarzschild.cs"
+"Packages/net.qrack.openrelativity/Scripts/Gravity Lenses/GravityLens.cs"
+"Packages/net.qrack.openrelativity/Scripts/Gravity Lenses/GravityMirror.cs"
+"Packages/net.qrack.openrelativity/Scripts/Gravity Lenses/SchwarzschildLens.cs"
+"Packages/net.qrack.openrelativity/Scripts/ParentMesh.cs"
+"Packages/net.qrack.openrelativity/Scripts/PlayerController.cs"
+"Packages/net.qrack.openrelativity/Scripts/RelativisticBehavior.cs"
+"Packages/net.qrack.openrelativity/Scripts/RelativisticObject.cs"
+"Packages/net.qrack.openrelativity/Scripts/SRelativityUtil.cs"
+"Packages/net.qrack.openrelativity/Scripts/Support/ObjectBoxColliderDensity.cs"
+"Packages/net.qrack.openrelativity/Scripts/Support/RelativisticParent.cs"
+"Packages/net.qrack.openrelativity/Scripts/Systems/GameState.cs"
+"Packages/net.qrack.openrelativity/Scripts/Systems/StaticRelativitySystem.cs"
+"Packages/net.qrack.openrelativity/Scripts/Systems/StaticVoxelSystem.cs"
+"Packages/net.qrack.openrelativity/Scripts/Tags.cs"
+"Packages/net.qrack.openrelativity/Shaders/SupportScripts/ColorCorrectionEffect.cs"
+"Packages/net.qrack.openrelativity/Shaders/SupportScripts/Editor/AcceleratedRelativityGUI.cs"
+"Packages/net.qrack.openrelativity/Shaders/SupportScripts/Editor/ColorOnlyRelativityGUI.cs"
+"Packages/net.qrack.openrelativity/Shaders/SupportScripts/Editor/StandardRelativityGUI.cs"
+"Packages/net.qrack.openrelativity/Shaders/SupportScripts/ImageEffectBase.cs"
+"Packages/net.qrack.openrelativity/Shaders/SupportScripts/ObjectMeshDensity.cs"
+"Packages/net.qrack.openrelativity/Shaders/SupportScripts/ShaderParams.cs"
+-langversion:9.0
+/deterministic
+/optimize+
+/debug:portable
+/nologo
+/RuntimeMetadataVersion:v4.0.30319
+/nowarn:0169
+/nowarn:0649
+/nowarn:0282
+/nowarn:1701
+/nowarn:1702
+/utf8output
+/preferreduilang:en-US
+/additionalfile:"Library/Bee/artifacts/2400b0aE.dag/net.qrack.openrelativity.UnityAdditionalFile.txt"
+##### Custom Environment Variables
+DOTNET_HOST_PATH=/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/DotNetSdk/dotnet
+DOTNET_MULTILEVEL_LOOKUP=0
+DOTNET_SYSTEM_GLOBALIZATION_USENLS=1
+##### ExitCode
+1
+##### Output
+Packages/net.qrack.openrelativity/Scripts/Systems/GameState.cs(15,81): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Packages/net.qrack.openrelativity/Scripts/Systems/StaticVoxelSystem.cs(363,78): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Packages/net.qrack.openrelativity/Scripts/Systems/StaticVoxelSystem.cs(363,40): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Packages/net.qrack.openrelativity/Scripts/RelativisticObject.cs(1883,17): error CS0619: 'Object.GetInstanceID()' is obsolete: 'Use GetEntityId instead.'
+Packages/net.qrack.openrelativity/Scripts/RelativisticObject.cs(1883,35): error CS0619: 'Object.GetInstanceID()' is obsolete: 'Use GetEntityId instead.'
+*** Tundra build failed (0.35 seconds), 2 items updated, 426 evaluated
+## Script Compilation Error for: Csc Library/Bee/artifacts/2400b0aE.dag/net.qrack.openrelativity.dll (+2 others)
+## CmdLine: "/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/DotNetSdk/dotnet" exec "/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/DotNetSdk/sdk/8.0.318/Roslyn/bincore/csc.dll" /nostdlib /noconfig /shared "@Library/Bee/artifacts/2400b0aE.dag/net.qrack.openrelativity.rsp" "@Library/Bee/artifacts/2400b0aE.dag/net.qrack.openrelativity.rsp2"
+## Output:
+Packages/net.qrack.openrelativity/Scripts/Systems/GameState.cs(15,81): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Packages/net.qrack.openrelativity/Scripts/Systems/StaticVoxelSystem.cs(363,78): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Packages/net.qrack.openrelativity/Scripts/Systems/StaticVoxelSystem.cs(363,40): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Packages/net.qrack.openrelativity/Scripts/RelativisticObject.cs(1883,17): error CS0619: 'Object.GetInstanceID()' is obsolete: 'Use GetEntityId instead.'
+Packages/net.qrack.openrelativity/Scripts/RelativisticObject.cs(1883,35): error CS0619: 'Object.GetInstanceID()' is obsolete: 'Use GetEntityId instead.'
+
 Total cache size 10581424
-AssetDatabase: script compilation time: 0.269804s
-Total cache size after purge 10581424, took 00:00:00.0086175
+Packages/net.qrack.openrelativity/Scripts/Systems/GameState.cs(15,81): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Packages/net.qrack.openrelativity/Scripts/Systems/StaticVoxelSystem.cs(363,78): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Packages/net.qrack.openrelativity/Scripts/Systems/StaticVoxelSystem.cs(363,40): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Packages/net.qrack.openrelativity/Scripts/RelativisticObject.cs(1883,17): error CS0619: 'Object.GetInstanceID()' is obsolete: 'Use GetEntityId instead.'
+Packages/net.qrack.openrelativity/Scripts/RelativisticObject.cs(1883,35): error CS0619: 'Object.GetInstanceID()' is obsolete: 'Use GetEntityId instead.'
+Total cache size after purge 10581424, took 00:00:00.0096843
+AssetDatabase: script compilation time: 0.587870s
+Safe Mode: Only loading a subset of assemblies
 Begin MonoManager ReloadAssembly
 Native extension for LinuxStandalone target not found
 Native extension for Android target not found
-ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Scripting: successfully reloaded assembly
-- Finished resetting the current domain, in  0.302 seconds
-Domain Reload Profiling: 637ms
-	BeginReloadAssembly (139ms)
-		DisableScriptedObjects (10ms)
-		CreateAndSetChildDomain (47ms)
+- Finished resetting the current domain, in  0.280 seconds
+Domain Reload Profiling: 576ms
+	BeginReloadAssembly (124ms)
+		DisableScriptedObjects (9ms)
+		CreateAndSetChildDomain (40ms)
 	RebuildCommonClasses (5ms)
-	RebuildNativeTypeToScriptingClass (7ms)
-	initialDomainReloadingComplete (23ms)
-	LoadAllAssembliesAndSetupDomain (161ms)
-		LoadAssemblies (117ms)
-		TypeCache.Refresh (19ms)
-			TypeCache.ScanAssembly (14ms)
-		AnalyzeDomain (10ms)
-			BuildScriptInfoCaches (8ms)
-	FinalizeReload (303ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (22ms)
+	LoadAllAssembliesAndSetupDomain (138ms)
+		LoadAssemblies (95ms)
+		TypeCache.Refresh (9ms)
+			TypeCache.ScanAssembly (5ms)
+		AnalyzeDomain (2ms)
+	FinalizeReload (281ms)
 		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (13ms)
+			InitializePlatformSupportModulesInManaged (9ms)
 			BeforeProcessingInitializeOnLoad (63ms)
-			ProcessInitializeOnLoadAttributes (58ms)
-			ProcessInitializeOnLoadMethodAttributes (26ms)
+			ProcessInitializeOnLoadAttributes (56ms)
+			ProcessInitializeOnLoadMethodAttributes (22ms)
 		AwakeInstancesAfterBackupRestoration (13ms)
 Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
 Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
@@ -326,64 +828,366 @@ Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the
 Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
 Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
 Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
-Starting new worker id: 0 with log in /home/iamu/GitHub/OpenRelativity/Logs/AssetImportWorkerHW0.log
 
-Asset Pipeline Refresh (id=66ac8a66d4afed350bd4f30a6b7616e9): Total: 1.192 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+Asset Pipeline Refresh (id=3c2296821d28a2a61b3fe4649bdf6c32): Total: 5.419 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
 	(Values over 0.05ms)
 	Summary:
 		Imports: total=0 (actual=0, local cache=0, cache server=0)
-		Asset DB Process Time: managed=0 ms, native=548 ms
-		Asset DB Callback time: managed=12 ms, native=4 ms
-		Scripting: domain reloads=1, domain reload time=347 ms, compile time=271 ms, other=8 ms
+		Asset DB Process Time: managed=0 ms, native=4507 ms
+		Asset DB Callback time: managed=0 ms, native=3 ms
+		Scripting: domain reloads=1, domain reload time=309 ms, compile time=589 ms, other=8 ms
 		Project Asset Count: scripts=418, non-scripts=311
-		Asset File Changes: new=0, changed=0, moved=0, deleted=0
+		Asset File Changes: new=0, changed=2, moved=0, deleted=0
 		Scan Filter Count: 1
-	InvokePackagesCallback: 4.433ms
-	ApplyChangesToAssetFolders: 0.147ms
-	Scan: 155.102ms
-	Collect global state as custom dependencies: 4.197ms
-	CategorizeScriptCompilationAssets: 4.381ms
-	ProcessAssetsWithTransientArtifactChanges: 10.828ms
-	CategorizeAssets: 4.391ms
-	CompileScripts: 271.180ms
-	ImportOutOfDateAssets: 329.411ms (304.400ms without children)
-		UnloadImportedAssets: 0.166ms
-		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.113ms
-		ImportSchedulerStart: 24.723ms
-	PostProcessAllAssets: 12.537ms
-		MonoPostProcessAllAssets: 12.486ms
-			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 5.239ms
-			EditModeScopePostprocessor.OnPostprocessAllAssets 0.584ms
-			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.489ms
-			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.187ms
-			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.137ms
-			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.110ms
-			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.055ms
-	UnloadStreamsBegin: 1.135ms
-	GenerateScriptTypeHashes: 0.681ms
-	GenerateScriptTypeSerializationHashes: 1.296ms
-	Untracked: 393.573ms
+	InvokePackagesCallback: 3.472ms
+	ApplyChangesToAssetFolders: 0.159ms
+	Scan: 114.312ms
+	Collect global state as custom dependencies: 4.101ms
+	OnSourceAssetsModified: 0.370ms
+	CategorizeScriptCompilationAssets: 4.324ms
+	ProcessAssetsWithTransientArtifactChanges: 3.899ms
+	CategorizeAssets: 3.813ms
+	CompileScripts: 589.199ms
+	ImportOutOfDateAssets: 282.720ms (282.486ms without children)
+		UnloadImportedAssets: 0.160ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.070ms
+	UnloadStreamsBegin: 1.197ms
+	PersistCurrentRevisions: 0.073ms
+	GenerateScriptTypeHashes: 0.223ms
+	GenerateScriptTypeSerializationHashes: 0.525ms
+	Untracked: 4410.747ms
 
 Application.AssetDatabase Initial Refresh End
 AutoLocale: current locale expects 'C' but got 'en_US.UTF-8'Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
-Scanning for USB devices : 3.576ms
+Scanning for USB devices : 4.999ms
 Initializing Unity extensions:
-UpdateMenuTitleForLanguage: 10
 [MODES] ModeService[none].Initialize
 [MODES] ModeService[none].LoadModes
 [MODES] Loading mode Default (0) for mode-current-id-openrelativity
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-Loaded scene 'Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/blackhole_interior.unity'
-	Deserialize:            5.077 ms
-	Integration:            28.822 ms
-	Integration of assets:  0.012 ms
-	Thread Wait Time:       0.113 ms
-	Total Operation Time:   34.023 ms
-Unloading 1214 unused Assets / (0.9 MB). Loaded Objects now: 2210.
-Memory consumption went from 137.0 MB to 136.1 MB.
-Total: 5.851683 ms (FindLiveObjects: 0.126487 ms CreateObjectMapping: 0.068172 ms MarkObjects: 5.165815 ms  DeleteObjects: 0.425593 ms)
+[MODES] ModeService[default].ChangeMode(safe_mode)
+[MODES] ModeService[safe_mode].RaiseModeChanged(default, safe_mode)
+[MODES] ModeService[safe_mode].OnModeChangeUpdate
+UpdateMenuTitleForLanguage: 10
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+[Project] Loading completed in 9.145 seconds
+	Project init time: 				8.371 seconds
+		Template init time: 		0.000 seconds
+		Package Manager init time: 		0.115 seconds
+		Asset Database init time: 		0.113 seconds
+		Global illumination init time: 	0.004 seconds
+		Assemblies load time: 			2.419 seconds
+		Unity extensions init time: 	0.004 seconds
+		Asset Database refresh time: 	5.419 seconds
+	Scene opening time: 			0.391 seconds
+##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1794436657453,"processId":28818,"projectLoad":9.145137759999999,"projectInit":8.371472562,"templateInit":0.0,"packageManagerInit":0.115209202,"assetDatabaseInit":0.113387291,"globalIlluminationInit":0.003811273,"assembliesLoad":2.419048024,"unityExtensionsInit":0.003514637,"assetDatabaseRefresh":5.419152675,"sceneOpening":0.391162828}
+##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1794436657453,"processId":28818,"editorVersion":"6000.6.8f1 (237b6593792b)","branch":"6000.6/respin/6000.6.8f1-b6138bef9630","buildType":"Release","platform":"Linux"}
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Asset Pipeline Refresh (id=5236c777ff92208b190b8547f7849ac1): Total: 0.054 seconds - Initiated by RefreshV2(AllowForceSynchronousImport)
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Asset Pipeline Refresh (id=bd88c5e26f05e6ab59e05abb894bcee2): Total: 0.014 seconds - Initiated by RefreshV2(ForceSynchronousImport)
+Created GICache directory at /home/iamu/.cache/unity3d/GiCache. Took: 0.001s, timestamps: [9.254 - 9.255]
+[Licensing::Client] Successfully resolved entitlement details
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Asset Pipeline Refresh (id=6e7adbf7ee2e926cf8d8b06e209cd874): Total: 0.023 seconds - Initiated by RefreshV2(ForceSynchronousImport)
+[Licensing::Client] Successfully resolved entitlement details
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Asset Pipeline Refresh (id=2d91f14f615382bfcad5b52951cfd82b): Total: 0.019 seconds - Initiated by RefreshV2(ForceSynchronousImport)
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully updated the access token
+[Licensing::Module] Successfully updated access token: "F2rrA3TD"... (expires: 2026-11-11T23:25:23Z)
+Android Extension - Scanning For ADB Devices 742 ms
+Android Extension - Scanning For ADB Devices 137 ms
+[Licensing::Client] Successfully resolved entitlement details
+Attempted to call .Dispose on an already disposed CancellationTokenSource
+Android Extension - Scanning For ADB Devices 137 ms
+Android Extension - Scanning For ADB Devices 132 ms
+EditorHelper: Unable to use the external script editor. Trying the internal script editor now.
+Opening Default ApplicationEditorHelper: Unable to use the external script editor. Trying the internal script editor now.
+Opening Default ApplicationEditorHelper: Unable to use the external script editor. Trying the internal script editor now.
+Opening Default ApplicationTrimDiskCacheJob: Current cache size 0mb
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Asset Pipeline Refresh (id=6ec4c11c0b1314932b45a1406680b04f): Total: 0.021 seconds - Initiated by RefreshV2(AllowForceSynchronousImport)
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+[Licensing::Client] Successfully resolved entitlement details
+Starting: /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Tools/BuildPipeline/bee_backend --ipc --defer-dag-verification --dagfile="Library/Bee/2400b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: /home/iamu/GitHub/OpenRelativity
+ExitCode: 0 Duration: 0s992ms
+[           0s] Csc Library/Bee/artifacts/2400b0aE.dag/net.qrack.openrelativity.dll (+2 others) [CacheMiss 68aaa06f55b72ec0f72b23d92f791c3500000000000000000000000000000006]
+[343/426    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[410/426    0s] Csc Library/Bee/artifacts/2400b0aE.dag/net.qrack.openrelativity.dll (+2 others)
+Packages/net.qrack.openrelativity/Scripts/Systems/GameState.cs(15,81): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Packages/net.qrack.openrelativity/Scripts/Systems/StaticVoxelSystem.cs(363,78): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Packages/net.qrack.openrelativity/Scripts/Systems/StaticVoxelSystem.cs(363,40): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+[           0s] Csc Library/Bee/artifacts/2400b0aE.dag/net.qrack.openrelativity.dll (+2 others) [CacheWrite 68aaa06f55b72ec0f72b23d92f791c3500000000000000000000000000000006]
+[           0s] Csc Library/Bee/artifacts/2400b0aE.dag/net.qrack.qrack.dll (+2 others) [CacheMiss dbb0b4ef5fffb1ad737dfb6af4687f6600000000000000000000000000000006]
+[411/426    0s] ILPostProcess Library/Bee/artifacts/2400b0aE.dag/post-processed/net.qrack.openrelativity.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2400b0aE.dag/net.qrack.openrelativity.dll, with 138 defines and 277 references
+processors: zzzUnity.Burst.CodeGen.BurstILPostProcessor
+1 processor(s) skipped this assembly
+[412/426    0s] CopyFiles Library/ScriptAssemblies/net.qrack.openrelativity.dll
+[413/426    0s] CopyFiles Library/ScriptAssemblies/net.qrack.openrelativity.pdb
+[414/426    0s] Csc Library/Bee/artifacts/2400b0aE.dag/net.qrack.qrack.dll (+2 others)
+Packages/net.qrack.qrack/Scripts/QuantumSystem.cs(35,29): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+[           0s] Csc Library/Bee/artifacts/2400b0aE.dag/net.qrack.qrack.dll (+2 others) [CacheWrite dbb0b4ef5fffb1ad737dfb6af4687f6600000000000000000000000000000006]
+[           0s] Csc Library/Bee/artifacts/2400b0aE.dag/net.qrack.tachyoid.dll (+2 others) [CacheMiss 6f29d1ba2924b41883f6addb8733e1f700000000000000000000000000000006]
+[415/426    0s] ILPostProcess Library/Bee/artifacts/2400b0aE.dag/post-processed/net.qrack.qrack.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2400b0aE.dag/net.qrack.qrack.dll, with 138 defines and 278 references
+processors: zzzUnity.Burst.CodeGen.BurstILPostProcessor
+1 processor(s) skipped this assembly
+[416/426    0s] CopyFiles Library/ScriptAssemblies/net.qrack.qrack.dll
+[417/426    0s] CopyFiles Library/ScriptAssemblies/net.qrack.qrack.pdb
+[418/426    0s] Csc Library/Bee/artifacts/2400b0aE.dag/net.qrack.tachyoid.dll (+2 others)
+Packages/net.qrack.tachyoid/Scripts/ResetBounds.cs(17,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Packages/net.qrack.tachyoid/Scripts/PortalVisibilitySystem.cs(131,46): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Packages/net.qrack.tachyoid/Scripts/FTLPlayerController.cs(660,79): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Packages/net.qrack.tachyoid/Scripts/FTLPlayerController.cs(660,46): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Packages/net.qrack.tachyoid/Scripts/TimeReversal/PlayerHistoryRecorder.cs(20,35): warning UAC1001: Field 'history' type 'Tachyoid.PlayerHistoryPoint' is skipped by serialization (missing the [Serializable] attribute). Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1001)
+Packages/net.qrack.tachyoid/Scripts/TimeReversal/PlayerImageManager.cs(22,41): warning UAC1001: Field 'history' type 'Tachyoid.PlayerHistoryPoint' is skipped by serialization (missing the [Serializable] attribute). Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1001)
+[           0s] Csc Library/Bee/artifacts/2400b0aE.dag/net.qrack.tachyoid.dll (+2 others) [CacheWrite 6f29d1ba2924b41883f6addb8733e1f700000000000000000000000000000006]
+[419/426    0s] ILPostProcess Library/Bee/artifacts/2400b0aE.dag/post-processed/net.qrack.tachyoid.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2400b0aE.dag/net.qrack.tachyoid.dll, with 138 defines and 280 references
+processors: zzzUnity.Burst.CodeGen.BurstILPostProcessor
+1 processor(s) skipped this assembly
+[420/426    0s] CopyFiles Library/ScriptAssemblies/net.qrack.tachyoid.dll
+[421/426    0s] CopyFiles Library/ScriptAssemblies/net.qrack.tachyoid.pdb
+[422/426    0s] Csc Library/Bee/artifacts/2400b0aE.dag/Assembly-CSharp.dll (+2 others)
+[423/426    0s] ILPostProcess Library/Bee/artifacts/2400b0aE.dag/post-processed/Assembly-CSharp.dll (+pdb)
+Processing assembly Library/Bee/artifacts/2400b0aE.dag/Assembly-CSharp.dll, with 138 defines and 296 references
+processors: zzzUnity.Burst.CodeGen.BurstILPostProcessor
+1 processor(s) skipped this assembly
+[424/426    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.dll
+[425/426    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.pdb
+*** Tundra build success (0.98 seconds), 17 items updated, 426 evaluated
+Total cache size 11030813
+Packages/net.qrack.openrelativity/Scripts/Systems/GameState.cs(15,81): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Packages/net.qrack.openrelativity/Scripts/Systems/StaticVoxelSystem.cs(363,78): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Packages/net.qrack.openrelativity/Scripts/Systems/StaticVoxelSystem.cs(363,40): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Packages/net.qrack.qrack/Scripts/QuantumSystem.cs(35,29): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Packages/net.qrack.tachyoid/Scripts/ResetBounds.cs(17,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Packages/net.qrack.tachyoid/Scripts/PortalVisibilitySystem.cs(131,46): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Packages/net.qrack.tachyoid/Scripts/FTLPlayerController.cs(660,79): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Packages/net.qrack.tachyoid/Scripts/FTLPlayerController.cs(660,46): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Packages/net.qrack.tachyoid/Scripts/TimeReversal/PlayerHistoryRecorder.cs(20,35): warning UAC1001: Field 'history' type 'Tachyoid.PlayerHistoryPoint' is skipped by serialization (missing the [Serializable] attribute). Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1001)
+Packages/net.qrack.tachyoid/Scripts/TimeReversal/PlayerImageManager.cs(22,41): warning UAC1001: Field 'history' type 'Tachyoid.PlayerHistoryPoint' is skipped by serialization (missing the [Serializable] attribute). Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1001)
+Packages/net.qrack.tachyoid/Scripts/PortalVisibilitySystem.cs(131,46): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Packages/net.qrack.tachyoid/Scripts/FTLPlayerController.cs(660,79): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Packages/net.qrack.tachyoid/Scripts/FTLPlayerController.cs(660,46): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Packages/net.qrack.tachyoid/Scripts/TimeReversal/PlayerHistoryRecorder.cs(20,35): warning UAC1001: Field 'history' type 'Tachyoid.PlayerHistoryPoint' is skipped by serialization (missing the [Serializable] attribute). Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1001)
+Packages/net.qrack.tachyoid/Scripts/TimeReversal/PlayerImageManager.cs(22,41): warning UAC1001: Field 'history' type 'Tachyoid.PlayerHistoryPoint' is skipped by serialization (missing the [Serializable] attribute). Refer to the Serialization rules analyzer reference. (https://docs.unity3d.com/6000.6/Documentation/Manual/script-serialization-analyzer.html#uac1001)
+Total cache size after purge 11030813, took 00:00:00.0099562
+Reloading assemblies after forced synchronous recompile.
+Attempted to call .Dispose on an already disposed CancellationTokenSource
+Begin MonoManager ReloadAssembly
+[Licensing::Client] Successfully resolved entitlement details
+Native extension for LinuxStandalone target not found
+Native extension for Android target not found
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+Unhandled description string [
+Unhandled description string ]
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Scripting: successfully reloaded assembly
+Unhandled description string [
+Unhandled description string ]
+- Finished resetting the current domain, in  0.541 seconds
+Domain Reload Profiling: 845ms
+	BeginReloadAssembly (163ms)
+		DisableScriptedObjects (32ms)
+		CreateAndSetChildDomain (42ms)
+	RebuildCommonClasses (5ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (22ms)
+	LoadAllAssembliesAndSetupDomain (107ms)
+		LoadAssemblies (49ms)
+		TypeCache.Refresh (14ms)
+			TypeCache.ScanAssembly (9ms)
+		AnalyzeDomain (10ms)
+			BuildScriptInfoCaches (8ms)
+	FinalizeReload (541ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (12ms)
+			BeforeProcessingInitializeOnLoad (99ms)
+			ProcessInitializeOnLoadAttributes (60ms)
+			ProcessInitializeOnLoadMethodAttributes (23ms)
+		AwakeInstancesAfterBackupRestoration (117ms)
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Starting new worker id: 0 with log in /home/iamu/GitHub/OpenRelativity/Logs/AssetImportWorkerHW0.log
+Importing 'GUID: d06cda7025ea23349aa1ea1b5e1cd6f0 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Resources/GameObjects/RigidMesh.prefab' with importer (PrefabImporter)
+Imported 'GUID: d06cda7025ea23349aa1ea1b5e1cd6f0' -> (Import Result ID: 'e6478b4967cf88e613844fa5c9590008') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c6b084db23f41fb7006476024b940ef5 DependenciesID=d5a0beafe811be893d667d45037b729d StaticDependenciesID=9f1d28dc233ea48dfb37d322fc0a5385 
+Importing 'GUID: 914c1f264fe93651ca2a02b2c28df3e4 - Path: Packages/net.qrack.qrack/Prefabs/QubitIndicator.prefab' with importer (PrefabImporter)
+Imported 'GUID: 914c1f264fe93651ca2a02b2c28df3e4' -> (Import Result ID: 'bbe0318fe9ef646eaa5640f2aab417c8') in 0.005 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e9b8e3431ce5910cd402edbdae30c78e DependenciesID=374e9602a135a414300a2962ed990a7d StaticDependenciesID=ef2a3e2500112fd59150c44fa7ea3f31 
+Importing 'GUID: 91214f1e87a20d9e38b980460e068c21 - Path: Packages/net.qrack.qrack/Prefabs/Yorktown.prefab' with importer (PrefabImporter)
+Imported 'GUID: 91214f1e87a20d9e38b980460e068c21' -> (Import Result ID: '9a9bcf529177d5ed4f837e116162fc53') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c60025d874ef069def7b91ab359fb2da DependenciesID=4408273fbe97445c4c7e69db7c6b7f7b StaticDependenciesID=e6cda5dda47d0326489305a008fd0e82 
+Importing 'GUID: a320393e6ccbc3649a06f56a998e51a0 - Path: Packages/net.qrack.tachyoid/Prefabs/Cube.prefab' with importer (PrefabImporter)
+Imported 'GUID: a320393e6ccbc3649a06f56a998e51a0' -> (Import Result ID: 'b291d1ffcc05a7b2aae4e4aaa2941359') in 0.001 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9cb7604913173089aaf03588639fd71d DependenciesID=52f9d017d25e9ce4066b223ad69b1c2c StaticDependenciesID=b84795e90f178672b3847d2add21ebb6 
+Importing 'GUID: 3706f00c06a9bf84e940b608ff0feb9f - Path: Packages/net.qrack.tachyoid/Prefabs/ActionIndicator.prefab' with importer (PrefabImporter)
+Imported 'GUID: 3706f00c06a9bf84e940b608ff0feb9f' -> (Import Result ID: '1fe04a8a4014c23cbce3f3a4f1b46fe1') in 0.001 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b4859e259c27eee7187b37535f17f6ab DependenciesID=c266d17bbbf1a02741b64800ce988f73 StaticDependenciesID=1d6d3dcbf2948faaf1462d0c25d5cd0f 
+Importing 'GUID: 98bde0e736b132b408087e7a57ce7fef - Path: Packages/net.qrack.qrack/Prefabs/ActionIndicator.prefab' with importer (PrefabImporter)
+Imported 'GUID: 98bde0e736b132b408087e7a57ce7fef' -> (Import Result ID: '90f4e0f68648774fc962b9eefc1f9104') in 0.001 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1a7e1f749dfcca4d9f157e74350e0b6b DependenciesID=4c2fa06eadb3ad56041bb146a7e49400 StaticDependenciesID=5e98f67a72cf6a5ace3e83f86aa9d0cd 
+Importing 'GUID: b97c7498f0a3f9448a4f6832a39f3e63 - Path: Packages/net.qrack.tachyoid/Prefabs/PlayerDupe.prefab' with importer (PrefabImporter)
+Imported 'GUID: b97c7498f0a3f9448a4f6832a39f3e63' -> (Import Result ID: '60794e85fee6167e357154815f253547') in 0.001 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=aa5badc9ccd33b3284437d8a2ad8a533 DependenciesID=a19f3e111e18e0aecfdf1b39f1a761a3 StaticDependenciesID=a9168c2ad1c1614daaa57021a6971df7 
+Importing 'GUID: 2a3c7c4c589a1cc468ab846576d4b754 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Resources/GameObjects/RigidBox.prefab' with importer (PrefabImporter)
+Imported 'GUID: 2a3c7c4c589a1cc468ab846576d4b754' -> (Import Result ID: '4c5c9bc4a62699b6969fc987c95f91ec') in 0.001 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8c547a9fd04854e8ca6d7b93e508431e DependenciesID=572c7c9c8164626f2779690fca10d19d StaticDependenciesID=046dec53c8b64d6109d159d702aa9814 
+Importing 'GUID: abd73cde6c1ca34429d14c30089fe3e4 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Resources/GameObjects/Wall.prefab' with importer (PrefabImporter)
+Imported 'GUID: abd73cde6c1ca34429d14c30089fe3e4' -> (Import Result ID: 'd9b83e6ddd119cb762ac4cef785e6152') in 0.001 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e83d5251fa57c5e2b109a9337c5c4012 DependenciesID=4a8f12672cb9ea0e396609d07624af1c StaticDependenciesID=862c94b1686e7be1b0b49e5b4333a39a 
+Importing 'GUID: 6ed322d278315614f8323c7561298ebd - Path: Packages/net.qrack.tachyoid/Prefabs/PlayerImageManager.prefab' with importer (PrefabImporter)
+Imported 'GUID: 6ed322d278315614f8323c7561298ebd' -> (Import Result ID: 'f5244e56924a9c35c8c1b215eeb1d2be') in 0.001 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6aa37e3711fd5a3fd84ae9b563358c4a DependenciesID=8e37d747a7d649e35ec0f29eb4987ef9 StaticDependenciesID=490144e86298739d605b6f02cb5d8b59 
 
-[LAYOUT] About to load UserSettings/Layouts/default-6000.dwlt, keepMainWindow=False
+Asset Pipeline Refresh (id=3d151b2d5d6963e4bbc497f6cd38ee1c): Total: 2.252 seconds - Initiated by RefreshV2(AllowForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=34 (actual=10, local cache=24, cache server=0)
+		Asset DB Process Time: managed=1 ms, native=742 ms
+		Asset DB Callback time: managed=60 ms, native=50 ms
+		Scripting: domain reloads=1, domain reload time=314 ms, compile time=1082 ms, other=0 ms
+		Project Asset Count: scripts=418, non-scripts=311
+		Asset File Changes: new=0, changed=1, moved=0, deleted=0
+		Scan Filter Count: 1
+	InvokePackagesCallback: 0.579ms
+	ApplyChangesToAssetFolders: 0.153ms
+	Scan: 108.811ms
+	Collect global state as custom dependencies: 0.277ms
+	OnSourceAssetsModified: 0.441ms
+	ProcessAssetsWithTransientArtifactChanges: 12.262ms
+	CategorizeAssets: 4.618ms
+	CompileScripts: 1082.091ms
+	ImportOutOfDateAssets: 606.713ms (542.507ms without children)
+		ImportManagerImport: 29.843ms (1.620ms without children)
+			UpdateCategorizedAssets: 0.057ms
+		UnloadImportedAssets: 1.032ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.112ms
+		ImportSchedulerStart: 33.206ms
+	PostProcessAllAssets: 67.540ms
+		PostProcessCallbackCreateDeferredMaterials 1.567ms
+		PostprocessAssetsUpdateCachedIcon 1.523ms
+		ShaderAssetModifiedCallback 0.764ms
+		RaytracingShaderImportPostprocess 0.693ms
+		ComputeShaderImportPostprocess 0.600ms
+		SpeedTreeImporter.PostprocessAllAssets 0.519ms
+		LocalizationDatabase.AssetDatabasePostprocessCallback 0.311ms
+		BlockShaderImporter.PostprocessAllAssets 0.307ms
+		XRBuildSystem.XRAssetImported 0.285ms
+		AssemblyValidation.PostprocessAllAssets 0.274ms
+		MonoPostProcessAllAssets: 56.204ms
+			AssetPostprocessor.OnPostprocessAllAssets 16.972ms
+			AssetCallbacks.OnPostprocessAllAssets 6.321ms
+			AssetChangedListener.OnPostprocessAllAssets 5.830ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 5.817ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 4.388ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 4.203ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 1.949ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 0.795ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.704ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.580ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.379ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.377ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.177ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.169ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.142ms
+			AssetEvents.OnPostprocessAllAssets 0.135ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.127ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.115ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.107ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.085ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.074ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.059ms
+	PostAssetChangesProfiler: 42.410ms
+	GatherAllCurrentPrimaryImportResultRevisions: 0.058ms
+	PersistCurrentRevisions: 0.062ms
+	GenerateScriptTypeHashes: 1.103ms
+	GenerateScriptTypeSerializationHashes: 2.103ms
+	Untracked: 325.214ms
+
+Unhandled description string [
+Unhandled description string ]
+Unloading 9 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Example/Scenes/newFeatures.unity'
+	Deserialize:            5.852 ms
+	Integration:            31.668 ms
+	Integration of assets:  0.462 ms
+	Thread Wait Time:       0.002 ms
+	Total Operation Time:   37.984 ms
+Unloading 1277 unused Assets / (17.1 MB). Loaded Objects now: 3431.
+Memory consumption went from 231.0 MB to 213.9 MB.
+Total: 9.577904 ms (FindLiveObjects: 0.190684 ms CreateObjectMapping: 0.053873 ms MarkObjects: 5.909959 ms  DeleteObjects: 3.350953 ms)
+
+[LAYOUT] About to load UserSettings/Layouts/default-6000.dwlt, keepMainWindow=True
 Unhandled description string [
 Unhandled description string ]
 GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
@@ -394,129 +1198,45 @@ GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_cre
 GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
 [LAYOUT] About to save layout /home/iamu/GitHub/OpenRelativity/UserSettings/Layouts/default-6000.dwlt
 [LAYOUT] About to save layout /home/iamu/.config/unity3d/Preferences/Editor-5.x/Layouts/current/default-6000.dwlt
-[MODES] ModeService[default].InitializeCurrentMode
-[MODES] ModeService[default].RaiseModeChanged(default, default)
 This project uses Input Manager, which is marked for deprecation. To manage input in your project, use the <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@latest">Input System package</a> instead.
 Unhandled description string [
 Unhandled description string ]
-[Project] Loading completed in 20.701 seconds
-	Project init time: 				19.461 seconds
-		Template init time: 		0.000 seconds
-		Package Manager init time: 		0.002 seconds
-		Asset Database init time: 		0.133 seconds
-		Global illumination init time: 	0.006 seconds
-		Assemblies load time: 			1.593 seconds
-		Unity extensions init time: 	0.004 seconds
-		Asset Database refresh time: 	1.197 seconds
-	Scene opening time: 			0.840 seconds
-##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1794426598427,"processId":11760,"projectLoad":20.701460339,"projectInit":19.46083413,"templateInit":0.0,"packageManagerInit":0.001609563,"assetDatabaseInit":0.132994422,"globalIlluminationInit":0.005988881,"assembliesLoad":1.593027017,"unityExtensionsInit":0.003685821,"assetDatabaseRefresh":1.197419244,"sceneOpening":0.839826889}
-##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1794426598427,"processId":11760,"editorVersion":"6000.6.8f1 (237b6593792b)","branch":"6000.6/respin/6000.6.8f1-b6138bef9630","buildType":"Release","platform":"Linux"}
+[Licensing::Client] Successfully resolved entitlement details
 Worker ready: AssetImportWorkerHW0 0
-Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
-Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
-Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
-Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
-Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
-Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
-Asset Pipeline Refresh (id=85cd843231d8e1121930a2e4df1a7b85): Total: 0.086 seconds - Initiated by RefreshV2(AllowForceSynchronousImport)
-Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
-Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
-Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
-Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
-Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
-Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
-Asset Pipeline Refresh (id=dc0d03b42c5327aa09cab340d3b62eb7): Total: 0.024 seconds - Initiated by RefreshV2(ForceSynchronousImport)
-Android Extension - Scanning For ADB Devices 105 ms
 Start Indexing on Editor startup
 [Indexing] Starting Initial Indexing for Assets
-Created GICache directory at /home/iamu/.cache/unity3d/GiCache. Took: 0.001s, timestamps: [20.805 - 20.806]
-[Licensing::Client] Successfully resolved entitlement details
-Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
-Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
-Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
-Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
-Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
-Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
-Asset Pipeline Refresh (id=97acfae4668e1fec0a296b179c3825b9): Total: 0.029 seconds - Initiated by RefreshV2(ForceSynchronousImport)
-[Licensing::Client] Successfully resolved entitlement details
-Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
-Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
-Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
-Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
-Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
-Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
-Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
-Asset Pipeline Refresh (id=6fd7878755e2f1af19cbd088efe6859e): Total: 0.022 seconds - Initiated by RefreshV2(ForceSynchronousImport)
-[Licensing::Client] Successfully resolved entitlement details
-[Licensing::Client] Successfully updated the access token
-[Licensing::Module] Successfully updated access token: "dgmkeQrs"... (expires: 2026-11-11T21:26:05Z)
-[Licensing::Client] Successfully resolved entitlement details
-[Licensing::Client] Successfully resolved entitlement details
-[Licensing::Client] Successfully resolved entitlement details
 Unhandled description string [
 Unhandled description string ]
-Android Extension - Scanning For ADB Devices 83 ms
 [Licensing::Client] Successfully resolved entitlement details
-Attempted to call .Dispose on an already disposed CancellationTokenSource
-Android Extension - Scanning For ADB Devices 85 ms
-Android Extension - Scanning For ADB Devices 86 ms
-TrimDiskCacheJob: Current cache size 0mb
-Starting new worker id: 1 with log in /home/iamu/GitHub/OpenRelativity/Logs/AssetImportWorkerHW1.log
-Starting new worker id: 2 with log in /home/iamu/GitHub/OpenRelativity/Logs/AssetImportWorkerHW2.log
-[Worker0] Imported GUID: bd55ced2fb566da45a11233369c097ed - Path: Assets/Example/Scenes/newFeatures/LightingData.asset - Importer: PreviewImporter -> (ImportResultId: '86f448db911cd9ff944e5ac97b8f5215') in 0.012081402 seconds
-[Worker0] Imported GUID: 25830d2c457eb294b81f3bbaa3d62390 - Path: Assets/Example/Scenes/newFeatures/Lightmap-1_comp_light.exr - Importer: PreviewImporter -> (ImportResultId: '5048aa969e66ff793da5332ca0cef722') in 0.041617505 seconds
-[Worker0] Imported GUID: a13fb55bd4a810e4489412bb11ff5778 - Path: Assets/Example/Scenes/newFeatures/Lightmap-0_comp_light.exr - Importer: PreviewImporter -> (ImportResultId: '23b689e5ee9521df619c679b20a2e10e') in 0.003669169 seconds
-[Worker0] Imported GUID: 50691b1eba5288346a3aed71182cb3e8 - Path: Assets/Example/Scenes/newFeatures/Lightmap-0_comp_dir.png - Importer: PreviewImporter -> (ImportResultId: '00f3b456cb566dde6107169238843384') in 0.006056458 seconds
-[Worker0] Imported GUID: cfd1577d0443d1a4dbb6eedad891d8b2 - Path: Assets/Example/Scenes/newFeatures/ReflectionProbe-1.exr - Importer: PreviewImporter -> (ImportResultId: '83e5784639981b6d34144d19d47f6cdb') in 0.031760404 seconds
-[Worker0] Imported GUID: fc3e50e4b52c5e34d97104d4e3fa8877 - Path: Assets/Example/Scenes/newFeatures/ReflectionProbe-0.exr - Importer: PreviewImporter -> (ImportResultId: '1de9f288cf2df0bc40b088652a3723ed') in 0.004895185 seconds
-[Worker0] Imported GUID: de093f221e9b45642a5ce4b6e669af87 - Path: Assets/Example/Scenes/newFeatures/Lightmap-1_comp_dir.png - Importer: PreviewImporter -> (ImportResultId: '1993834bd1543b3ea18f272bbd6f4c4d') in 0.008250159 seconds
-Worker ready: AssetImportWorkerHW1 1
-Worker ready: AssetImportWorkerHW2 2
-[Worker2] Imported GUID: 453d231c07ce5ad4aa47440fad53898c - Path: Assets/Example/Scenes/newFeatures.unity - Importer: PreviewImporter -> (ImportResultId: 'e6497796056cd02b9069deb1877edde8') in 0.00279313 seconds
-Opening scene 'Assets/Example/Scenes/newFeatures.unity'
-Unloading 30 Unused Serialized files (Serialized files now loaded: 0)
-Loaded scene 'Assets/Example/Scenes/newFeatures.unity'
-	Deserialize:            5.570 ms
-	Integration:            51.528 ms
-	Integration of assets:  1.890 ms
-	Thread Wait Time:       0.076 ms
-	Total Operation Time:   59.063 ms
-Unloading 103 unused Assets / (15.8 MB). Loaded Objects now: 3608.
-Memory consumption went from 304.2 MB to 288.3 MB.
-Total: 16.435344 ms (FindLiveObjects: 0.189760 ms CreateObjectMapping: 0.075447 ms MarkObjects: 13.129259 ms  DeleteObjects: 2.964144 ms)
-
-Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
-Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
-Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
-Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
-Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
-Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
-Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
-Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
-Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
-Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Asset Pipeline Refresh (id=c01c8650ea9603932bda74a601506211): Total: 0.044 seconds - Initiated by RefreshV2(ForceSynchronousImport)
+[Licensing::Client] Successfully resolved entitlement details
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Asset Pipeline Refresh (id=cf8877878c66a7d5384250d5cfcfb3fa): Total: 0.021 seconds - Initiated by RefreshV2(ForceSynchronousImport)
 Reloading assemblies for play mode.
 Reloading assemblies after forced synchronous recompile.
-Attempted to call .Dispose on an already disposed CancellationTokenSource
 Begin MonoManager ReloadAssembly
 Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
 Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
@@ -539,104 +1259,88 @@ Unhandled description string [
 Unhandled description string ]
 Unhandled description string [
 Unhandled description string ]
-- Finished resetting the current domain, in  0.812 seconds
-Domain Reload Profiling: 1134ms
-	BeginReloadAssembly (209ms)
-		DisableScriptedObjects (40ms)
-		CreateAndSetChildDomain (85ms)
+- Finished resetting the current domain, in  0.799 seconds
+Domain Reload Profiling: 1091ms
+	BeginReloadAssembly (168ms)
+		DisableScriptedObjects (30ms)
+		CreateAndSetChildDomain (61ms)
 	RebuildCommonClasses (6ms)
-	RebuildNativeTypeToScriptingClass (6ms)
-	initialDomainReloadingComplete (21ms)
-	LoadAllAssembliesAndSetupDomain (80ms)
-		LoadAssemblies (50ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (24ms)
+	LoadAllAssembliesAndSetupDomain (86ms)
+		LoadAssemblies (46ms)
 		TypeCache.Refresh (3ms)
 		AnalyzeDomain (2ms)
-	FinalizeReload (812ms)
+	FinalizeReload (800ms)
 		SetupLoadedEditorAssemblies (0ms)
 			InitializePlatformSupportModulesInManaged (12ms)
 			BeforeProcessingInitializeOnLoad (58ms)
-			ProcessInitializeOnLoadAttributes (49ms)
-			ProcessInitializeOnLoadMethodAttributes (45ms)
-		AwakeInstancesAfterBackupRestoration (358ms)
-No restricted APIs configured; Validation skipped.
-Checking 1 assemblies for restricted APIs found 0 usage(s) in 2 ms
+			ProcessInitializeOnLoadAttributes (46ms)
+			ProcessInitializeOnLoadMethodAttributes (44ms)
+		AwakeInstancesAfterBackupRestoration (345ms)
 
-Asset Pipeline Refresh (id=d2e1ba62c006d678e8d5fd743075c3e0): Total: 1.257 seconds - Initiated by StopAssetImportingV2(ForceSynchronousImport | ForceDomainReload)
+Asset Pipeline Refresh (id=522b871bf9b78145aaae66f7225eca9e): Total: 1.139 seconds - Initiated by StopAssetImportingV2(ForceSynchronousImport | ForceDomainReload)
 	(Values over 0.05ms)
 	Summary:
 		Imports: total=0 (actual=0, local cache=0, cache server=0)
-		Asset DB Process Time: managed=0 ms, native=855 ms
-		Asset DB Callback time: managed=44 ms, native=22 ms
-		Scripting: domain reloads=1, domain reload time=333 ms, compile time=1 ms, other=0 ms
+		Asset DB Process Time: managed=0 ms, native=825 ms
+		Asset DB Callback time: managed=9 ms, native=0 ms
+		Scripting: domain reloads=1, domain reload time=302 ms, compile time=1 ms, other=0 ms
 		Project Asset Count: scripts=418, non-scripts=311
 		Asset File Changes: new=0, changed=0, moved=0, deleted=0
 		Scan Filter Count: 0
-	InvokePackagesCallback: 0.387ms
-	ApplyChangesToAssetFolders: 0.101ms
-	Collect global state as custom dependencies: 0.150ms
-	ProcessAssetsWithTransientArtifactChanges: 15.252ms
-	CategorizeAssets: 3.277ms
-	CompileScripts: 1.247ms
-	ImportOutOfDateAssets: 815.133ms (813.690ms without children)
-		CollectScriptTypesHashes: 0.071ms
-		ReloadNativeAssets: 0.061ms
-		UnloadImportedAssets: 0.980ms
-		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.100ms
-		ImportSchedulerStart: 0.294ms
-	PostProcessAllAssets: 59.208ms
-		PostProcessCallbackCreateDeferredMaterials 1.484ms
-		PostprocessAssetsUpdateCachedIcon 1.373ms
-		AssemblyValidation.PostprocessAllAssets 1.177ms
-		ShaderAssetModifiedCallback 0.774ms
-		RaytracingShaderImportPostprocess 0.687ms
-		ComputeShaderImportPostprocess 0.636ms
-		SpeedTreeImporter.PostprocessAllAssets 0.542ms
-		LocalizationDatabase.AssetDatabasePostprocessCallback 0.320ms
-		XRBuildSystem.XRAssetImported 0.293ms
-		BlockShaderImporter.PostprocessAllAssets 0.283ms
-		MonoPostProcessAllAssets: 43.344ms
-			AssetPostprocessor.OnPostprocessAllAssets 14.700ms
-			BuilderAssetPostprocessor.OnPostprocessAllAssets 3.932ms
-			AssetCallbacks.OnPostprocessAllAssets 3.738ms
-			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 3.126ms
-			AssetChangedListener.OnPostprocessAllAssets 2.996ms
-			TextAssetPostProcessor.OnPostprocessAllAssets 2.130ms
-			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 0.817ms
-			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.766ms
-			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.343ms
-			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.198ms
-			AudioMixerPostprocessor.OnPostprocessAllAssets 0.180ms
-			EditModeScopePostprocessor.OnPostprocessAllAssets 0.171ms
-			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.162ms
-			SpeedTreePostProcessor.OnPostprocessAllAssets 0.159ms
-			StyleCatalogPostProcessor.OnPostprocessAllAssets 0.134ms
-			AssetEvents.OnPostprocessAllAssets 0.119ms
-			ThemePostprocessor.OnPostprocessAllAssets 0.110ms
-			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.092ms
-			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.091ms
-			ConfigAssetsTracker.OnPostprocessAllAssets 0.072ms
-			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.070ms
-			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.058ms
-			SyncVS.PostprocessSyncProject 0.055ms
-	PostAssetChangesProfiler: 7.531ms
-	UnloadStreamsBegin: 1.733ms
-	GenerateScriptTypeHashes: 0.611ms
-	GenerateScriptTypeSerializationHashes: 1.127ms
-	Untracked: 352.512ms
+	InvokePackagesCallback: 0.361ms
+	ApplyChangesToAssetFolders: 0.126ms
+	Collect global state as custom dependencies: 0.147ms
+	CategorizeAssets: 3.529ms
+	CompileScripts: 1.141ms
+	ImportOutOfDateAssets: 801.858ms (801.296ms without children)
+		CollectScriptTypesHashes: 0.068ms
+		ReloadNativeAssets: 0.062ms
+		UnloadImportedAssets: 0.096ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.081ms
+		ImportSchedulerStart: 0.313ms
+	PostProcessAllAssets: 9.119ms
+		MonoPostProcessAllAssets: 9.117ms
+			AssetPostprocessor.OnPostprocessAllAssets 16.972ms
+			AssetCallbacks.OnPostprocessAllAssets 6.321ms
+			AssetChangedListener.OnPostprocessAllAssets 5.830ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 5.817ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 4.203ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 3.057ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 1.949ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 0.795ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.465ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.379ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.377ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.177ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.165ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.160ms
+			AssetEvents.OnPostprocessAllAssets 0.135ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.127ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.115ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.090ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.088ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.085ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.074ms
+	UnloadStreamsBegin: 1.332ms
+	GenerateScriptTypeHashes: 0.642ms
+	GenerateScriptTypeSerializationHashes: 1.192ms
+	Untracked: 320.841ms
 
 Device #0, Loaded binary from: /home/iamu/.qrack/qrack_ocl_dev_Intel(R)_UHD_Graphics.ir
 Loaded scene 'Temp/__Backupscenes/0.backup'
-	Deserialize:            10.940 ms
-	Integration:            620.236 ms
-	Integration of assets:  0.035 ms
-	Thread Wait Time:       0.078 ms
-	Total Operation Time:   631.287 ms
+	Deserialize:            12.455 ms
+	Integration:            497.153 ms
+	Integration of assets:  0.128 ms
+	Thread Wait Time:       0.055 ms
+	Total Operation Time:   509.791 ms
 GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
 [Licensing::Client] Successfully resolved entitlement details
 Unhandled description string [
 Unhandled description string ]
-[Licensing::Client] Successfully resolved entitlement details
-[Licensing::Client] Successfully resolved entitlement details
 Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
 Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
 Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
@@ -648,18 +1352,19 @@ Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the
 Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
 Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
 Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
-Asset Pipeline Refresh (id=f5f358ea0e9c5b3c2b3fefe4bc5d74de): Total: 0.021 seconds - Initiated by RefreshV2(ForceSynchronousImport)
+Asset Pipeline Refresh (id=c2b730a5f6ebf0719938cab27f408a83): Total: 0.016 seconds - Initiated by RefreshV2(ForceSynchronousImport)
 Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
 Loaded scene 'Temp/__Backupscenes/0.backup'
-	Deserialize:            3.114 ms
-	Integration:            13.301 ms
-	Integration of assets:  0.007 ms
-	Thread Wait Time:       0.088 ms
-	Total Operation Time:   16.510 ms
-Unloading 979 unused Assets / (0.9 MB). Loaded Objects now: 3580.
-Memory consumption went from 303.0 MB to 302.1 MB.
-Total: 10.496533 ms (FindLiveObjects: 0.176991 ms CreateObjectMapping: 0.035962 ms MarkObjects: 9.978979 ms  DeleteObjects: 0.230471 ms)
+	Deserialize:            3.625 ms
+	Integration:            12.245 ms
+	Integration of assets:  0.005 ms
+	Thread Wait Time:       0.013 ms
+	Total Operation Time:   15.888 ms
+Unloading 41 unused Assets / (21.8 KB). Loaded Objects now: 3582.
+Memory consumption went from 300.2 MB to 300.1 MB.
+Total: 9.898765 ms (FindLiveObjects: 0.166281 ms CreateObjectMapping: 0.032299 ms MarkObjects: 9.553878 ms  DeleteObjects: 0.067654 ms)
 
+[Licensing::Client] Successfully resolved entitlement details
 GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
 GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
 GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
@@ -678,11 +1383,9 @@ Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the
 Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
 Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
 Importing 'GUID: 213f08bec79fd764ba78baad75c47ca4 - Path: Packages/net.qrack.openrelativity/Materials/relativityLitNoLorentz.mat' with importer (NativeFormatImporter)
-Imported 'GUID: 213f08bec79fd764ba78baad75c47ca4' -> (Import Result ID: '847831071ebe11655395ab55e6700bc0') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=ae64976cb06d8aefabc198896f1b4fd7 DependenciesID=61371a723d743dc7b3025539b9c34c6c StaticDependenciesID=913d7ff8322821ca03a01bd28351e666 
+Imported 'GUID: 213f08bec79fd764ba78baad75c47ca4' -> (Import Result ID: '847831071ebe11655395ab55e6700bc0') in 0.003 seconds [static dependencies only]. Details - ImportResultOutputID=ae64976cb06d8aefabc198896f1b4fd7 DependenciesID=61371a723d743dc7b3025539b9c34c6c StaticDependenciesID=913d7ff8322821ca03a01bd28351e666 
 Importing 'GUID: 236daa907b19bcf43bb43783c80d6923 - Path: Packages/net.qrack.qrack/Materials/Blue.mat' with importer (NativeFormatImporter)
 Imported 'GUID: 236daa907b19bcf43bb43783c80d6923' -> (Import Result ID: '2853211a982c0f9fae97905a96f63211') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=087a6b8c299a27c8971edb15ac41821f DependenciesID=dfb0e35e1a18072cbf45ab0b559dabcf StaticDependenciesID=2504872568dd8eeabdc319901e669364 
-Importing 'GUID: c3e3864b8bbaf764bbbda887c89a2fd3 - Path: Packages/net.qrack.openrelativity/Materials/relativityUnlit.mat' with importer (NativeFormatImporter)
-Imported 'GUID: c3e3864b8bbaf764bbbda887c89a2fd3' -> (Import Result ID: '9de0c62ab44575f87e8da7c7b2b490a7') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=26c613e2249583d2f394e088aa761da6 DependenciesID=5e6c4f99334ddfcf6895d5af2ea442af StaticDependenciesID=9642c3b43feca6571afc2f80491a836b 
 Importing 'GUID: 855200e319fc8114d9dd9fcb40f3c19b - Path: Packages/net.qrack.qrack/Materials/qubitIndicator.mat' with importer (NativeFormatImporter)
 Imported 'GUID: 855200e319fc8114d9dd9fcb40f3c19b' -> (Import Result ID: '707bd501865da4c9dbedc913c1566092') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=357ef9597883674364800c109e2c586c DependenciesID=4fd856155e2e544b0314e7b6b1d921d2 StaticDependenciesID=679d8ec558b508bb3c4834e6bc5d39d5 
 Importing 'GUID: d6ef81b29722c0c4fb8cb6d315a52df6 - Path: Packages/net.qrack.openrelativity/Materials/relativityLit.mat' with importer (NativeFormatImporter)
@@ -690,42 +1393,13 @@ Imported 'GUID: d6ef81b29722c0c4fb8cb6d315a52df6' -> (Import Result ID: 'c3e4893
 Importing 'GUID: 685dfb06f47afc24c97ff11ef5ab6e38 - Path: Packages/net.qrack.qrack/Materials/ActionIndicator.mat' with importer (NativeFormatImporter)
 Imported 'GUID: 685dfb06f47afc24c97ff11ef5ab6e38' -> (Import Result ID: 'e32798c6747619e44b0b1c8f8fb0835a') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=012d0f3e1654aa773de305a484825df4 DependenciesID=849b7e43b5f0ccfa3817c5d13b411595 StaticDependenciesID=9ec7f981e054f69089ed6e8a6c586669 
 Importing 'GUID: a97cdfc6697d1df4d9991bfc274940cc - Path: Packages/net.qrack.openrelativity/Materials/Specular.mat' with importer (NativeFormatImporter)
-Imported 'GUID: a97cdfc6697d1df4d9991bfc274940cc' -> (Import Result ID: 'a9d58089653996559ae92c1d0d7e4bca') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=5245696df74a93cc9f963526002d72fe DependenciesID=480577660c5c5e6e84e49535a64136f8 StaticDependenciesID=df8615aabd38136e52c353bf12e6f983 
+Imported 'GUID: a97cdfc6697d1df4d9991bfc274940cc' -> (Import Result ID: 'f79f3ecd844901255bc68b8200d64da5') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=5245696df74a93cc9f963526002d72fe DependenciesID=c8ec621a42f535125aa78696507d5252 StaticDependenciesID=37b9a2d7642bef84cc1e74f175d0734c 
 Importing 'GUID: 3d0dab55692d934479a0f4a2047c1ff1 - Path: Packages/net.qrack.qrack/Materials/Red.mat' with importer (NativeFormatImporter)
 Imported 'GUID: 3d0dab55692d934479a0f4a2047c1ff1' -> (Import Result ID: 'c2d375d40c81b5c599d97e07f0032bd2') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=a16943cc491d3a1e62e435a6bec61066 DependenciesID=6f7357f98804114eb389058554afa20f StaticDependenciesID=2e1a6addc771030dcfa1db5dcf1c6f22 
 Importing 'GUID: 3ea25f93531c0dd46ba7be38b19e0e06 - Path: Packages/net.qrack.qrack/Materials/Green.mat' with importer (NativeFormatImporter)
 Imported 'GUID: 3ea25f93531c0dd46ba7be38b19e0e06' -> (Import Result ID: '40f7e6ff06bc2a46b31c6300c6166c68') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=0c895c291932ac58b55357cba6031038 DependenciesID=14152e2180619bef8378f975c41bd7a4 StaticDependenciesID=4113ee2ef3228c83693b1e37a4c15193 
 Importing 'GUID: 5f7bf1bc182bb5f46b6e83252d2eacff - Path: Packages/net.qrack.qrack/Materials/Clear.mat' with importer (NativeFormatImporter)
 Imported 'GUID: 5f7bf1bc182bb5f46b6e83252d2eacff' -> (Import Result ID: 'e3de859a509699476aa8cbfd9db96c9f') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=f56eaa91f409e050372bc2a272211928 DependenciesID=ce7260abd3587789a279fa1ef1233eb0 StaticDependenciesID=6efa7359ec385b823ed034594993e2de 
-Asset Pipeline Refresh (id=fc53b043755242c49b0cca625810ea93): Total: 0.019 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
-MonoPathRemapper: Attempts to remap: 6808; Successful remaps: 1596
-Serialized file version minimum: 9, current 23
-[LAYOUT] About to save layout /home/iamu/GitHub/OpenRelativity/UserSettings/Layouts/default-6000.dwlt
-[LAYOUT] About to save layout /home/iamu/.config/unity3d/Preferences/Editor-5.x/Layouts/current/default-6000.dwlt
-Killing ADB server in 0.030066 seconds.
-[Physics::Module] Cleanup current backend.
-[Physics::Module] Id: 0xf2b8ea05
-Input System module state changed to: ShutdownInProgress.
-Input Polling Thread exited.
-Input System module state changed to: Shutdown.
-[Licensing::IpcConnector] LicenseClient-iamu-notifications channel disconnected successfully.
-[Licensing::IpcConnector] LicenseClient-iamu channel disconnected successfully.
-Default platform: Intel(R) OpenCL Graphics
-Default device: #0, Intel(R) UHD Graphics
-OpenCL device #0: Intel(R) UHD Graphics
-Shut down UDS service system complete
-Lingering sessions upon destruction of worker manager
-Unity Data Store service was successfully shut down
-UDS shutting down local client system
-AcceleratorClientConnectionCallback - disconnected - :0
-debugger-agent: Unable to listen on 129
-Cleanup mono
-CodeReloadManager destroyed
-
-SDL leaked 2 allocations
-Turn on UNITY_SDL_ALLOCATION_TRACKING for detailed information.
-VBCSCompilerPreWarmer: requested VBCSCompiler shutdown
-Checking for leaked weakptr:
-  Found no leaked weakptrs.
-[Package Manager] Server process was shutdown
-##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1794426671489,"processId":11760,"allocatedMemory":8226405,"memoryLabels":[{"Default":215910},{"Permanent":16152},{"Thread":1052296},{"Manager":50385},{"VertexData":8},{"Geometry":416},{"Shader":846572},{"Material":132},{"TextureCache":912},{"GfxDevice":36824},{"Animation":1016},{"FreeType":8},{"FontEngine":736},{"Physics":1970},{"Physics2D":16},{"Serialization":40800},{"Input":60256},{"JobScheduler":256},{"TextLib":48043},{"Mono":80},{"ScriptingNativeRuntime":155088},{"BaseObject":51816},{"Resource":1268},{"Renderer":2496},{"Transform":4757},{"File":39944},{"WebCam":80},{"Culling":32},{"Terrain":11346},{"Wind":24},{"String":917893},{"StaticString":3808},{"Utility":2683952},{"PoolAlloc":1960},{"AI":80},{"TypeTree":19821},{"ScriptManager":18984},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7408},{"Director":8280},{"CloudService":8432},{"WebRequest":4964},{"VR":49698},{"SceneManager":640},{"Video":64},{"LazyScriptCache":32},{"Camera":729},{"Secure":8049},{"SerializationCache":9256},{"APIUpdating":10320},{"Subsystems":192},{"VirtualTexturing":57552},{"StaticSafetyDebugInfo":278528},{"Analytics":592},{"Hierarchy":1436},{"UIElements":40},{"CoreStats":14456},{"Identifiers":7152},{"EntityIdStore":33088},{"Gui":242},{"EditorUtility":145809},{"VersionControl":8},{"Undo":963},{"AssetDatabase":1234496},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":36942},{"Upm":1836},{"UpmDiagnostics":8},{"AssetCompliance":96},{"DrivenProperties":72},{"LocalIPC":196},{"ProfilerEditor":9746},{"CoreBusinessMetrics":2704},{"Windowing":480},{"Licensing":12716},{"AssetReference":32},{"IPCStream":32}]}
+Importing 'GUID: 985c82d2c8d495e4ba300ad4937bd0e3 - Path: Assets/XR/XRGeneralSettingsPerBuildTarget.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 985c82d2c8d495e4ba300ad4937bd0e3' -> (Import Result ID: '8ca738ffc7a3ab7f3ad764aa07a48a15') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=7e8ae73cd264c04160fd3dfdaf12ef6d DependenciesID=94db0ea5f3a460623da76b247540ceef StaticDependenciesID=cd72bb3c2446963ed4c0af392c9cdad9 
+Asset Pipeline Refresh (id=cbc85f8714c82f06ab92bc916ebde275): Total: 0.029 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)

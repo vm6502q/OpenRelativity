@@ -1,4 +1,3 @@
-[Warning] Acquired exclusive lock but discovered existing shared memory pool, destroying and reinitialising
 Initialising UDS system complete:
   - System type: Client
   - Resource namespace: 6f552ceda695996b8e64e227f44bbbdb
@@ -7,4 +6,3 @@ Initialising UDS system complete:
   - Command buffer size: 8192
   - Hashmap size: 4194304
   - Service connected: false
-Shut down UDS service system complete

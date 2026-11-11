@@ -194,6 +194,18 @@ namespace OpenRelativity
         private PhysicsMaterial[] origPhysicMaterials;
 
         private Vector3 oldVelocity;
+        // Celerity (gamma v) handed to PhysX at the start of the current physics step, for collision correction.
+        private Vector3 preStepCelerity;
+        // Physics time at which this object last read its state back from PhysX.
+        private float afterPhysicsStamp = -1;
+        // PhysX resolves collisions conserving m*u (exactly relativistic momentum) but also the Newtonian energy
+        // m u^2 / 2, which is not relativistic energy: elastic collisions between unequal masses then create or
+        // destroy energy at relativistic speed. With this on, the normal part of each RelativisticObject pair
+        // collision is redone in the pair's centre-of-momentum frame (PhysX's restitution and friction kept).
+        public bool relativisticCollisions = true;
+        // In an inelastic relativistic collision the dissipated kinetic energy becomes internal energy, i.e. rest
+        // mass; momentum is only conserved if rest mass absorbs it. Off: rest mass fixed (energy simply lost).
+        public bool collisionHeatToRestMass = true;
         private float lastFixedUpdateDeltaTime;
 
         public float baryonCount { get; set; }
@@ -235,10 +247,12 @@ namespace OpenRelativity
             switch (mode)
             {
                 case ForceMode.Impulse:
-                    peculiarVelocity += force / mass;
+                    // Rest-frame impulse J changes rest-frame celerity by J/m; compose relativistically.
+                    peculiarVelocity = peculiarVelocity.AddVelocity((force / mass).RapidityToVelocity());
                     break;
                 case ForceMode.VelocityChange:
-                    peculiarVelocity += force;
+                    // Rest-frame velocity change (|force| < c), composed relativistically.
+                    peculiarVelocity = peculiarVelocity.AddVelocity(force);
                     break;
                 case ForceMode.Force:
                     nonGravAccel += force / mass;
@@ -1298,16 +1312,19 @@ namespace OpenRelativity
                     // Effectively, this replaces Time.DeltaTime with Time.DeltaTime / gamma.
                     myRigidbody.linearVelocity = gamma * peculiarVelocity;
                     myRigidbody.angularVelocity = gamma * aviw;
+                    preStepCelerity = myRigidbody.linearVelocity;
 
-                    Vector3 properAccel = nonGravAccel + leviCivitaDevAccel;
+                    // PhysX integrates celerity u = gamma v in world time. A proper (rest-frame) acceleration alpha
+                    // changes it at du/dt = alpha_par + alpha_perp / gamma (= F_world / m), with no overall gamma.
+                    Vector3 celerityRate = (nonGravAccel + leviCivitaDevAccel).ProperAccelToCelerityRate(peculiarVelocity, gamma);
                     if (comoveViaAcceleration)
                     {
-                        // This is not actually "proper acceleration," with this option active.
-                        properAccel += state.conformalMap.GetRindlerAcceleration(piw);
+                        // Coordinate (Rindler) acceleration: handling unchanged from the original.
+                        celerityRate += gamma * state.conformalMap.GetRindlerAcceleration(piw);
                     }
-                    if (properAccel.sqrMagnitude > SRelativityUtil.FLT_EPSILON)
+                    if (celerityRate.sqrMagnitude > SRelativityUtil.FLT_EPSILON)
                     {
-                        myRigidbody.AddForce(gamma * properAccel, ForceMode.Acceleration);
+                        myRigidbody.AddForce(celerityRate, ForceMode.Acceleration);
                     }
                 }
 
@@ -1449,6 +1466,7 @@ namespace OpenRelativity
 
         protected void AfterPhysicsUpdate()
         {
+            afterPhysicsStamp = Time.fixedTime;
             oldLocalTimeFixedUpdate = GetLocalTime();
 
             if (myRigidbody)
@@ -1461,7 +1479,10 @@ namespace OpenRelativity
                 }
 
                 // Now, update the velocity and angular velocity based on the collision result:
-                _aviw = myRigidbody.angularVelocity / updatePlayerViwTimeFactor;
+                // Same factor as written in UpdateRigidbodyVelocity() (this object's, cached before the step),
+                // so a torque-free spin is unchanged by the round trip. (Previously the player's factor: the spin
+                // was rescaled by gamma_object / gamma_player every physics step.)
+                _aviw = myRigidbody.angularVelocity / updateViwTimeFactor;
                 peculiarVelocity = myRigidbody.linearVelocity.RapidityToVelocity(updateMetric);
             }
 
@@ -1824,6 +1845,7 @@ namespace OpenRelativity
 
         public void OnCollisionEnter(Collision collision)
         {
+            RelativisticCollisionCorrection(collision);
             OnCollision();
         }
 
@@ -1839,6 +1861,134 @@ namespace OpenRelativity
         #endregion
 
         #region Rigidbody mechanics
+        // Redo the normal part of a RelativisticObject-RelativisticObject collision relativistically, in the pair's
+        // centre-of-momentum frame, keeping PhysX's restitution (inferred from its own result) and its tangential
+        // (friction) change. Exactly conserves relativistic momentum and energy (heat into rest mass if inelastic);
+        // reduces to PhysX's result at low speed. Collisions with static or non-relativistic bodies are left to PhysX
+        // (reflection off a body at rest in world coordinates is already exact).
+        private void RelativisticCollisionCorrection(Collision collision)
+        {
+            if (!relativisticCollisions || isKinematic || state.isMovementFrozen || !myRigidbody || (collision.contactCount < 1))
+            {
+                return;
+            }
+
+            RelativisticObject other = collision.gameObject.GetComponent<RelativisticObject>();
+            if (!other || (other == this) || other.isKinematic || !other.myRigidbody || !other.relativisticCollisions)
+            {
+                return;
+            }
+
+            // One object of the pair does the work for both.
+            if (GetEntityId() > other.GetEntityId())
+            {
+                return;
+            }
+
+            double cc = SRelativityUtil.c;
+            double mA = mass, mB = other.mass;
+            if ((mA <= 0) || (mB <= 0))
+            {
+                return;
+            }
+
+            double[] n = D(collision.GetContact(0).normal);
+            double nn = Math.Sqrt(Dot(n, n));
+            if (nn <= 0)
+            {
+                return;
+            }
+            n = Scale(n, 1 / nn);
+
+            double[] uA0 = D(preStepCelerity), uB0 = D(other.preStepCelerity);
+            double[] uA1 = D(myRigidbody.linearVelocity), uB1 = D(other.myRigidbody.linearVelocity);
+
+            double rel0 = Dot(Sub(uA0, uB0), n), rel1 = Dot(Sub(uA1, uB1), n);
+            if (rel0 >= 0)
+            {
+                return; // not approaching along the normal before the step: nothing to correct
+            }
+            double e = Math.Min(Math.Max(-rel1 / rel0, 0), 1);
+
+            // PhysX's tangential (friction) changes, kept as they are.
+            double[] dA = Sub(uA1, uA0), dB = Sub(uB1, uB0);
+            double[] tA = Sub(dA, Scale(n, Dot(dA, n))), tB = Sub(dB, Scale(n, Dot(dB, n)));
+
+            // 4-momenta (E/c, p), with p = m u.
+            double[] pA = Scale(uA0, mA), pB = Scale(uB0, mB);
+            double EA = Math.Sqrt(mA * mA * cc * cc + Dot(pA, pA)), EB = Math.Sqrt(mB * mB * cc * cc + Dot(pB, pB));
+            double[] beta = Scale(Add(pA, pB), 1 / (EA + EB));
+            double b2 = Dot(beta, beta);
+            if (b2 >= 1)
+            {
+                return;
+            }
+            double gb = 1 / Math.Sqrt(1 - b2);
+
+            double EAs = Boost(EA, pA, beta, gb, out double[] pAs);
+            double EBs = Boost(EB, pB, beta, gb, out double[] _);
+
+            // Centre-of-momentum frame: reverse the normal component, scaled by the restitution.
+            double[] pAs2 = Sub(pAs, Scale(n, (1 + e) * Dot(pAs, n)));
+            double[] pBs2 = Scale(pAs2, -1);
+
+            // Each body keeps its CM-frame energy; any dissipated kinetic energy becomes rest mass.
+            double mA2 = mA, mB2 = mB;
+            if (collisionHeatToRestMass)
+            {
+                mA2 = Math.Sqrt(Math.Max(EAs * EAs - Dot(pAs2, pAs2), 0)) / cc;
+                mB2 = Math.Sqrt(Math.Max(EBs * EBs - Dot(pBs2, pBs2), 0)) / cc;
+            }
+            else
+            {
+                EAs = Math.Sqrt(mA * mA * cc * cc + Dot(pAs2, pAs2));
+                EBs = Math.Sqrt(mB * mB * cc * cc + Dot(pBs2, pBs2));
+            }
+
+            double[] betaBack = Scale(beta, -1);
+            Boost(EAs, pAs2, betaBack, gb, out double[] pA2);
+            Boost(EBs, pBs2, betaBack, gb, out double[] pB2);
+
+            Vector3 uA = V(Add(Scale(pA2, 1 / mA2), tA));
+            Vector3 uB = V(Add(Scale(pB2, 1 / mB2), tB));
+
+            if (collisionHeatToRestMass)
+            {
+                mass = (float)mA2;
+                other.mass = (float)mB2;
+            }
+
+            myRigidbody.linearVelocity = uA;
+            other.myRigidbody.linearVelocity = uB;
+
+            // If the other object already read its state back this step, update it directly.
+            if (other.afterPhysicsStamp == Time.fixedTime)
+            {
+                other._peculiarVelocity = uB.RapidityToVelocity(other.GetMetric());
+            }
+        }
+
+        // Lorentz boost of (E, p) by velocity beta (in units of c): returns E', sets p'.
+        private static double Boost(double E, double[] p, double[] beta, double g, out double[] pOut)
+        {
+            double b2 = Dot(beta, beta);
+            if (b2 <= 1e-30)
+            {
+                pOut = (double[])p.Clone();
+                return E;
+            }
+            double bp = Dot(beta, p);
+            pOut = Add(p, Scale(beta, (g - 1) * bp / b2 - g * E));
+            return g * (E - bp);
+        }
+
+        private static double[] D(Vector3 v) { return new double[] { v.x, v.y, v.z }; }
+        private static Vector3 V(double[] v) { return new Vector3((float)v[0], (float)v[1], (float)v[2]); }
+        private static double Dot(double[] a, double[] b) { return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]; }
+        private static double[] Add(double[] a, double[] b) { return new double[] { a[0] + b[0], a[1] + b[1], a[2] + b[2] }; }
+        private static double[] Sub(double[] a, double[] b) { return new double[] { a[0] - b[0], a[1] - b[1], a[2] - b[2] }; }
+        private static double[] Scale(double[] a, double s) { return new double[] { a[0] * s, a[1] * s, a[2] * s }; }
+
         public void OnCollision()
         {
             if (isKinematic || state.isMovementFrozen || !myRigidbody)
