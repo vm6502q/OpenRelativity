@@ -1,10 +1,4 @@
-Base path: '/home/iamu/Unity/Hub/Editor/6000.3.19f1/Editor/Data', plugins path '/home/iamu/Unity/Hub/Editor/6000.3.19f1/Editor/Data/PlaybackEngines', jobs: y
-Cmd: initializeCompiler
-
-Cmd: initializeCompiler
-
-Cmd: initializeCompiler
-
+Base path: '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data', plugins path '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/PlaybackEngines', jobs: y
 Cmd: initializeCompiler
 
 Cmd: initializeCompiler

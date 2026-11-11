@@ -1,0 +1,21 @@
+
+Server arguments:
+  --memory-size 1073741824
+  --shared-postfix 6f552ceda695996b8e64e227f44bbbdb
+  --working-directory Library/DataStore
+  --silent-console
+  --shutdown-grace 0
+  --client-process-check 0
+  --uds-log-file /home/iamu/GitHub/OpenRelativity/Logs/UDS-Service.log
+  --debug-log 2
+
+Initialising UDS system complete:
+  - System type: Service
+  - Resource namespace: 6f552ceda695996b8e64e227f44bbbdb
+  - Shared memory size: 1073741824
+  - Command buffer id: 1052624
+  - Command buffer size: 8192
+  - Hashmap size: 4194304
+Starting Unity Data Store Application
+Unity Data Store Application Complete
+Shut down UDS service system complete

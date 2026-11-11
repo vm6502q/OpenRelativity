@@ -1,0 +1,731 @@
+Unity Editor version:    6000.6.8f1 (237b6593792b)
+Branch:                  6000.6/respin/6000.6.8f1-b6138bef9630
+Build type:              Release
+Batch mode:              NO
+System name:             Linux
+Distro version:          #43-Ubuntu SMP PREEMPT_DYNAMIC Fri Oct 23 13:25:25 UTC 2026
+Kernel version:          7.0.0-43-generic
+Architecture:            x86_64
+Window Protocol:         Wayland (XWayland)
+Available memory:        62697 MB
+Date:                    2026-11-11T19:49:37Z
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 11796)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 11798)
+VBCSCompiler prewarm took 6.38 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu" at "2026-11-11T19:49:37.736586Z"
+[SignatureVerifier] Application signature verification not supported on this platform.
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.3+d7ffd15
+  Session Id:              839a1aee9f184eb98d6678890b289270
+  Correlation Id:          9fd2a1fc4ba85f935e04d0be8a6373b5
+  External correlation Id: 7960337874798758531
+  Machine Id:              43wg+E17xIfqaJGvjFdzFsaP8xY=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-iamu" (connect: 0.00s, validation: 0.00s, handshake: 0.00s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-notifications" at "2026-11-11T19:49:37.737925Z"
+[Licensing::Client] Successfully updated the access token
+[Licensing::Module] Successfully updated the access token dgmkeQrsHB...
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 1128121-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.00s
+Selected window backend: (null) 
+Desktop is 4096 x 2560 @ 60 Hz
+Initialize udev device monitor.
+
+COMMAND LINE ARGUMENTS:
+/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/unityhub-unity-editor-6000.6.8f1
+-projectpath
+/home/iamu/GitHub/OpenRelativity
+-acceptSoftwareTermsForThisRunOnly
+-useHub
+-hubIPC
+-cloudEnvironment
+production
+-licensingIpc
+LicenseClient-iamu
+-hubSessionId
+0535f465-5cff-4717-add3-ae08528764e8
+-accessToken
+dgmkeQrsHBe4Os-4mGVdKOBDBnS6YVZkMBeElXbniJk002f
+Successfully changed project path to: /home/iamu/GitHub/OpenRelativity
+/home/iamu/GitHub/OpenRelativity
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Player connection [126927820340224]  Target information:
+
+Player connection [126927820340224]  * "[IP] 192.168.1.194 [Port] 55504 [Flags] 2 [Guid] 724884088 [EditorId] 724884088 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.194) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
+
+Player connection [126927820340224] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [126927820340224] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-11760" after 0.0 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+[Warning] Acquired exclusive lock but discovered existing shared memory pool, destroying and reinitialising
+Initialising UDS system complete:
+  - System type: Client
+  - Resource namespace: 6f552ceda695996b8e64e227f44bbbdb
+  - Shared memory size: 1073741824
+  - Command buffer id: 1052624
+  - Command buffer size: 8192
+  - Hashmap size: 4194304
+  - Service connected: false
+Launching Unity Data Store - /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Tools/Unity.DataStore 
+Unity Data Store artifact dir = Library/DataStore, working dir = /home/iamu/GitHub/OpenRelativityOpenGL ES 2.0 has been removed.
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Unity Data Store running and initialised
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.6.8f1 (237b6593792b)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=262144, entitiesPerBlock=1024, blocksPerSlotPage=0, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /home/iamu/GitHub/OpenRelativity/Assets
+kGfxThreadingModeThreaded is not supported on OpenGL Core. Reverting to kGfxThreadingModeDirect instead.
+GfxDevice: creating device client; kGfxThreadingModeDirect
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+Renderer: Mesa Intel(R) Graphics (RPL-S)
+Vendor:   Intel
+Version:  4.6 (Core Profile) Mesa 26.0.8-1ubuntu0.3
+GLES:     0
+ GL_3DFX_texture_compression_FXT1 GL_AMD_conservative_depth GL_AMD_depth_clamp_separate GL_AMD_draw_buffers_blend GL_AMD_gpu_shader_int64 GL_AMD_multi_draw_indirect GL_AMD_performance_monitor GL_AMD_pinned_memory GL_AMD_query_buffer_object GL_AMD_seamless_cubemap_per_texture GL_AMD_shader_stencil_export GL_AMD_shader_trinary_minmax GL_AMD_texture_texture4 GL_AMD_vertex_shader_layer GL_AMD_vertex_shader_viewport_index GL_ANGLE_texture_compression_dxt3 GL_ANGLE_texture_compression_dxt5 GL_ARB_ES2_compatibility GL_ARB_ES3_1_compatibility GL_ARB_ES3_2_compatibility GL_ARB_ES3_compatibility GL_ARB_arrays_of_arrays GL_ARB_base_instance GL_ARB_blend_func_extended GL_ARB_buffer_storage GL_ARB_clear_buffer_object GL_ARB_clear_texture GL_ARB_clip_control GL_ARB_compressed_texture_pixel_storage GL_ARB_compute_shader GL_ARB_compute_variable_group_size GL_ARB_conditional_render_inverted GL_ARB_conservative_depth GL_ARB_copy_buffer GL_ARB_copy_image GL_ARB_cull_distance GL_ARB_debug_output GL_ARB_depth_buffer_float GL_ARB
+_depth_clamp GL_ARB_derivative_control GL_ARB_direct_state_access GL_ARB_draw_buffers GL_ARB_draw_buffers_blend GL_ARB_draw_elements_base_vertex GL_ARB_draw_indirect GL_ARB_draw_instanced GL_ARB_enhanced_layouts GL_ARB_explicit_attrib_location GL_ARB_explicit_uniform_location GL_ARB_fragment_coord_conventions GL_ARB_fragment_layer_viewport GL_ARB_fragment_shader GL_ARB_fragment_shader_interlock GL_ARB_framebuffer_no_attachments GL_ARB_framebuffer_object GL_ARB_framebuffer_sRGB GL_ARB_get_program_binary GL_ARB_get_texture_sub_image GL_ARB_gl_spirv GL_ARB_gpu_shader5 GL_ARB_gpu_shader_fp64 GL_ARB_gpu_shader_int64 GL_ARB_half_float_pixel GL_ARB_half_float_vertex GL_ARB_indirect_parameters GL_ARB_instanced_arrays GL_ARB_internalformat_query GL_ARB_internalformat_query2 GL_ARB_invalidate_subdata GL_ARB_map_buffer_alignment GL_ARB_map_buffer_range GL_ARB_multi_bind GL_ARB_multi_draw_indirect GL_ARB_occlusion_query2 GL_ARB_parallel_shader_compile GL_ARB_pipeline_statistics_query GL_ARB_pixel_buffer_object GL_ARB_po
+int_sprite GL_ARB_polygon_offset_clamp GL_ARB_post_depth_coverage GL_ARB_program_interface_query GL_ARB_provoking_vertex GL_ARB_query_buffer_object GL_ARB_robust_buffer_access_behavior GL_ARB_robustness GL_ARB_sample_shading GL_ARB_sampler_objects GL_ARB_seamless_cube_map GL_ARB_seamless_cubemap_per_texture GL_ARB_separate_shader_objects GL_ARB_shader_atomic_counter_ops GL_ARB_shader_atomic_counters GL_ARB_shader_ballot GL_ARB_shader_bit_encoding GL_ARB_shader_clock GL_ARB_shader_draw_parameters GL_ARB_shader_group_vote GL_ARB_shader_image_load_store GL_ARB_shader_image_size GL_ARB_shader_objects GL_ARB_shader_precision GL_ARB_shader_stencil_export GL_ARB_shader_storage_buffer_object GL_ARB_shader_subroutine GL_ARB_shader_texture_image_samples GL_ARB_shader_texture_lod GL_ARB_shader_viewport_layer_array GL_ARB_shading_language_420pack GL_ARB_shading_language_include GL_ARB_shading_language_packing GL_ARB_spirv_extensions GL_ARB_stencil_texturing GL_ARB_sync GL_ARB_tessellation_shader GL_ARB_texture_barrier G
+L_ARB_texture_border_clamp GL_ARB_texture_buffer_object GL_ARB_texture_buffer_object_rgb32 GL_ARB_texture_buffer_range GL_ARB_texture_compression_bptc GL_ARB_texture_compression_rgtc GL_ARB_texture_cube_map_array GL_ARB_texture_filter_anisotropic GL_ARB_texture_filter_minmax GL_ARB_texture_float GL_ARB_texture_gather GL_ARB_texture_mirror_clamp_to_edge GL_ARB_texture_multisample GL_ARB_texture_non_power_of_two GL_ARB_texture_query_levels GL_ARB_texture_query_lod GL_ARB_texture_rectangle GL_ARB_texture_rg GL_ARB_texture_rgb10_a2ui GL_ARB_texture_stencil8 GL_ARB_texture_storage GL_ARB_texture_storage_multisample GL_ARB_texture_swizzle GL_ARB_texture_view GL_ARB_timer_query GL_ARB_transform_feedback2 GL_ARB_transform_feedback3 GL_ARB_transform_feedback_instanced GL_ARB_transform_feedback_overflow_query GL_ARB_uniform_buffer_object GL_ARB_vertex_array_bgra GL_ARB_vertex_array_object GL_ARB_vertex_attrib_64bit GL_ARB_vertex_attrib_binding GL_ARB_vertex_buffer_object GL_ARB_vertex_shader GL_ARB_vertex_type_10f_11f
+_11f_rev GL_ARB_vertex_type_2_10_10_10_rev GL_ARB_viewport_array GL_ATI_blend_equation_separate GL_ATI_texture_float GL_EXT_EGL_image_storage GL_EXT_EGL_image_storage_compression GL_EXT_EGL_sync GL_EXT_abgr GL_EXT_blend_equation_separate GL_EXT_debug_label GL_EXT_demote_to_helper_invocation GL_EXT_depth_bounds_test GL_EXT_draw_buffers2 GL_EXT_draw_instanced GL_EXT_framebuffer_blit GL_EXT_framebuffer_multisample GL_EXT_framebuffer_multisample_blit_scaled GL_EXT_framebuffer_object GL_EXT_framebuffer_sRGB GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_packed_depth_stencil GL_EXT_packed_float GL_EXT_pixel_buffer_object GL_EXT_polygon_offset_clamp GL_EXT_provoking_vertex GL_EXT_semaphore GL_EXT_semaphore_fd GL_EXT_shader_clock GL_EXT_shader_framebuffer_fetch GL_EXT_shader_framebuffer_fetch_non_coherent GL_EXT_shader_integer_mix GL_EXT_shader_samples_identical GL_EXT_texture_array GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc GL_EXT_texture_compression_s3tc GL_EXT_texture_filter_anisotropic 
+GL_EXT_texture_integer GL_EXT_texture_sRGB GL_EXT_texture_sRGB_R8 GL_EXT_texture_sRGB_decode GL_EXT_texture_shadow_lod GL_EXT_texture_shared_exponent GL_EXT_texture_snorm GL_EXT_texture_storage GL_EXT_texture_swizzle GL_EXT_timer_query GL_EXT_transform_feedback GL_EXT_vertex_array_bgra GL_EXT_vertex_attrib_64bit GL_IBM_multimode_draw_arrays GL_INTEL_blackhole_render GL_INTEL_conservative_rasterization GL_INTEL_performance_query GL_INTEL_shader_atomic_float_minmax GL_INTEL_shader_integer_functions2 GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_KHR_context_flush_control GL_KHR_debug GL_KHR_no_error GL_KHR_parallel_shader_compile GL_KHR_robust_buffer_access_behavior GL_KHR_robustness GL_KHR_shader_subgroup GL_KHR_texture_compression_astc_ldr GL_KHR_texture_compression_astc_sliced_3d GL_MESA_framebuffer_flip_y GL_MESA_pack_invert GL_MESA_shader_integer_functions GL_MESA_texture_const_bandwidth GL_MESA_texture_signed_rgba GL_NV_alpha_to_coverage_dither_control GL_NV_compute_shader_deri
+vatives GL_NV_conditional_render GL_NV_copy_image GL_NV_depth_clamp GL_NV_fragment_shader_interlock GL_NV_packed_depth_stencil GL_NV_texture_barrier GL_OES_EGL_image GL_S3_s3tc
+OPENGL LOG: Creating OpenGL 4.6 graphics device ; Context level  <OpenGL 4.5> ; Context handle -828736112
+Initialize mono
+Mono path[0] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed'
+Mono path[1] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-linux'
+Mono config path = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56760
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+[Licensing::Client] Successfully resolved entitlement details
+Register platform support module: /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+Registered in 0.001521 seconds.
+Native extension for LinuxStandalone target not found
+Package Manager log level set to [2]
+Native extension for Android target not found
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  1.277 seconds
+Domain Reload Profiling: 1576ms
+	BeginReloadAssembly (60ms)
+		CreateAndSetChildDomain (11ms)
+	RebuildCommonClasses (3ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (38ms)
+	LoadAllAssembliesAndSetupDomain (192ms)
+		LoadAssemblies (48ms)
+		TypeCache.Refresh (129ms)
+			TypeCache.ScanAssembly (120ms)
+		AnalyzeDomain (0ms)
+	FinalizeReload (1277ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (44ms)
+			BeforeProcessingInitializeOnLoad (64ms)
+			ProcessInitializeOnLoadAttributes (62ms)
+			ProcessInitializeOnLoadMethodAttributes (995ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 38 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.ide.visualstudio@2.0.26 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.sdk.linux-x86_64@1.1.1 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.sdk.linux-x86_64@920bc08129cd)
+    com.unity.toolchain.linux-x86_64-linux@1.1.1 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.toolchain.linux-x86_64-linux@95ffda8fe8d9)
+    com.unity.sysroot.base@1.1.1 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.sysroot.base@0a249da1e1ab)
+    com.unity.xr.management@4.7.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.xr.management@2ad85c7dd480)
+    com.unity.xr.legacyinputhelpers@3.0.1 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.xr.legacyinputhelpers@3f62d634f63b)
+    com.unity.xr.core-utils@2.6.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.xr.core-utils@a8b900321199)
+  Built-in packages:
+    com.unity.ugui@2.6.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.ugui@b0f69f485d8c)
+    com.unity.modules.accessibility@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.adaptiveperformance)
+    com.unity.modules.androidjni@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.animation)
+    com.unity.modules.audio@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.audio)
+    com.unity.modules.director@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.director)
+    com.unity.modules.jsonserialize@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.physics)
+    com.unity.modules.physicscore2d@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.physicscore2d)
+    com.unity.modules.tetgen@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.tetgen)
+    com.unity.modules.timelinefoundation@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.timelinefoundation)
+    com.unity.modules.ui@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.ui)
+    com.unity.modules.unitywebrequest@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.unitywebrequest)
+    com.unity.modules.vectorgraphics@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.vectorgraphics)
+    com.unity.modules.video@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.video)
+    com.unity.modules.xr@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.subsystems)
+    com.unity.modules.uielements@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.uielements)
+    com.unity.modules.imageconversion@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.imgui)
+    com.unity.modules.physics2d@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.physics2d)
+    com.unity.test-framework@1.8.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.test-framework@ba1d06c8c02f)
+    com.unity.modules.hierarchycore@1.0.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.1.0 (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.unity.ext.nunit@508b95ff9afe)
+  Embedded packages:
+    net.qrack.openrelativity@file:/home/iamu/GitHub/OpenRelativity/Packages/net.qrack.openrelativity (location: /home/iamu/GitHub/OpenRelativity/Packages/net.qrack.openrelativity)
+    net.qrack.qrack@file:/home/iamu/GitHub/OpenRelativity/Packages/net.qrack.qrack (location: /home/iamu/GitHub/OpenRelativity/Packages/net.qrack.qrack)
+    net.qrack.tachyoid@file:/home/iamu/GitHub/OpenRelativity/Packages/net.qrack.tachyoid (location: /home/iamu/GitHub/OpenRelativity/Packages/net.qrack.tachyoid)
+    net.qrack.tarot@file:/home/iamu/GitHub/OpenRelativity/Packages/net.qrack.tarot (location: /home/iamu/GitHub/OpenRelativity/Packages/net.qrack.tarot)
+  Git packages:
+    com.google.xr.cardboard@https://github.com/googlevr/cardboard-xr-plugin.git (location: /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.google.xr.cardboard@0d822d2031c3)
+[Subsystems] Looking for new subsystems at path /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.google.xr.cardboard@0d822d2031c3
+[Subsystems] Novel subsystem found at Library/PackageCache/com.google.xr.cardboard@0d822d2031c3/Runtime/UnitySubsystemsManifest.json
+[Subsystems] Discovering subsystems at path /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /home/iamu/GitHub/OpenRelativity/Assets
+[Subsystems] Discovering subsystems at path /home/iamu/GitHub/OpenRelativity/Library/PackageCache/com.google.xr.cardboard@0d822d2031c3
+[Subsystems] No descriptors matched for  examples in Library/PackageCache/com.google.xr.cardboard@0d822d2031c3/Runtime/UnitySubsystemsManifest.json.
+[Subsystems] 1 'inputs' descriptors matched in Library/PackageCache/com.google.xr.cardboard@0d822d2031c3/Runtime/UnitySubsystemsManifest.json
+[Subsystems] 1 'displays' descriptors matched in Library/PackageCache/com.google.xr.cardboard@0d822d2031c3/Runtime/UnitySubsystemsManifest.json
+[Subsystems] No descriptors matched for  meshings in Library/PackageCache/com.google.xr.cardboard@0d822d2031c3/Runtime/UnitySubsystemsManifest.json.
+[Package Manager] Done registering packages in 0.00 seconds
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /home/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEditorInternal.InternalEditorUtility:LoadSerializedFileAndForget (string)
+UnityEditor.Shaders.RenderPipelineSubShaderStripping:InspectPersistentSettings (string,bool,System.Func`2<UnityEngine.Object[], bool>) (at /home/bokken/build/output/unity/unity/Editor/Mono/Shaders/RenderPipelineSubShaderStripping.cs:126)
+UnityEditor.Shaders.RenderPipelineSubShaderStripping:AnyPersistentPerQualityRenderPipelineUnresolved () (at /home/bokken/build/output/unity/unity/Editor/Mono/Shaders/RenderPipelineSubShaderStripping.cs:99)
+UnityEditor.Shaders.RenderPipelineSubShaderStripping:GetActiveRenderPipelineShaderTagsForPlatform (string) (at /home/bokken/build/output/unity/unity/Editor/Mono/Shaders/RenderPipelineSubShaderStripping.cs:34)
+
+[/home/bokken/build/output/unity/unity/Editor/Mono/Shaders/RenderPipelineSubShaderStripping.cs line 99]
+
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace () (at /home/bokken/build/output/unity/unity/Runtime/Export/Scripting/StackTrace.cs:23)
+UnityEditorInternal.InternalEditorUtility:LoadSerializedFileAndForget (string)
+UnityEditor.Shaders.RenderPipelineSubShaderStripping:InspectPersistentSettings (string,bool,System.Func`2<UnityEngine.Object[], bool>) (at /home/bokken/build/output/unity/unity/Editor/Mono/Shaders/RenderPipelineSubShaderStripping.cs:126)
+UnityEditor.Shaders.RenderPipelineSubShaderStripping:TryAddPersistentDefaultRenderPipelineTag (System.Collections.Generic.HashSet`1<string>) (at /home/bokken/build/output/unity/unity/Editor/Mono/Shaders/RenderPipelineSubShaderStripping.cs:71)
+UnityEditor.Shaders.RenderPipelineSubShaderStripping:GetActiveRenderPipelineShaderTagsForPlatform (string) (at /home/bokken/build/output/unity/unity/Editor/Mono/Shaders/RenderPipelineSubShaderStripping.cs:39)
+
+[/home/bokken/build/output/unity/unity/Editor/Mono/Shaders/RenderPipelineSubShaderStripping.cs line 71]
+
+Starting: /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Tools/BuildPipeline/bee_backend --ipc --defer-dag-verification --dagfile="Library/Bee/2400b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: /home/iamu/GitHub/OpenRelativity
+ExitCode: 0 Duration: 0s64ms
+[347/426    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+*** Tundra build success (0.05 seconds), 1 items updated, 426 evaluated
+Total cache size 10581424
+AssetDatabase: script compilation time: 0.269804s
+Total cache size after purge 10581424, took 00:00:00.0086175
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for Android target not found
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  0.302 seconds
+Domain Reload Profiling: 637ms
+	BeginReloadAssembly (139ms)
+		DisableScriptedObjects (10ms)
+		CreateAndSetChildDomain (47ms)
+	RebuildCommonClasses (5ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (23ms)
+	LoadAllAssembliesAndSetupDomain (161ms)
+		LoadAssemblies (117ms)
+		TypeCache.Refresh (19ms)
+			TypeCache.ScanAssembly (14ms)
+		AnalyzeDomain (10ms)
+			BuildScriptInfoCaches (8ms)
+	FinalizeReload (303ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (13ms)
+			BeforeProcessingInitializeOnLoad (63ms)
+			ProcessInitializeOnLoadAttributes (58ms)
+			ProcessInitializeOnLoadMethodAttributes (26ms)
+		AwakeInstancesAfterBackupRestoration (13ms)
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Starting new worker id: 0 with log in /home/iamu/GitHub/OpenRelativity/Logs/AssetImportWorkerHW0.log
+
+Asset Pipeline Refresh (id=66ac8a66d4afed350bd4f30a6b7616e9): Total: 1.192 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=548 ms
+		Asset DB Callback time: managed=12 ms, native=4 ms
+		Scripting: domain reloads=1, domain reload time=347 ms, compile time=271 ms, other=8 ms
+		Project Asset Count: scripts=418, non-scripts=311
+		Asset File Changes: new=0, changed=0, moved=0, deleted=0
+		Scan Filter Count: 1
+	InvokePackagesCallback: 4.433ms
+	ApplyChangesToAssetFolders: 0.147ms
+	Scan: 155.102ms
+	Collect global state as custom dependencies: 4.197ms
+	CategorizeScriptCompilationAssets: 4.381ms
+	ProcessAssetsWithTransientArtifactChanges: 10.828ms
+	CategorizeAssets: 4.391ms
+	CompileScripts: 271.180ms
+	ImportOutOfDateAssets: 329.411ms (304.400ms without children)
+		UnloadImportedAssets: 0.166ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.113ms
+		ImportSchedulerStart: 24.723ms
+	PostProcessAllAssets: 12.537ms
+		MonoPostProcessAllAssets: 12.486ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 5.239ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.584ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.489ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.187ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.137ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.110ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.055ms
+	UnloadStreamsBegin: 1.135ms
+	GenerateScriptTypeHashes: 0.681ms
+	GenerateScriptTypeSerializationHashes: 1.296ms
+	Untracked: 393.573ms
+
+Application.AssetDatabase Initial Refresh End
+AutoLocale: current locale expects 'C' but got 'en_US.UTF-8'Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
+Scanning for USB devices : 3.576ms
+Initializing Unity extensions:
+UpdateMenuTitleForLanguage: 10
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-openrelativity
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/blackhole_interior.unity'
+	Deserialize:            5.077 ms
+	Integration:            28.822 ms
+	Integration of assets:  0.012 ms
+	Thread Wait Time:       0.113 ms
+	Total Operation Time:   34.023 ms
+Unloading 1214 unused Assets / (0.9 MB). Loaded Objects now: 2210.
+Memory consumption went from 137.0 MB to 136.1 MB.
+Total: 5.851683 ms (FindLiveObjects: 0.126487 ms CreateObjectMapping: 0.068172 ms MarkObjects: 5.165815 ms  DeleteObjects: 0.425593 ms)
+
+[LAYOUT] About to load UserSettings/Layouts/default-6000.dwlt, keepMainWindow=False
+Unhandled description string [
+Unhandled description string ]
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+[LAYOUT] About to save layout /home/iamu/GitHub/OpenRelativity/UserSettings/Layouts/default-6000.dwlt
+[LAYOUT] About to save layout /home/iamu/.config/unity3d/Preferences/Editor-5.x/Layouts/current/default-6000.dwlt
+[MODES] ModeService[default].InitializeCurrentMode
+[MODES] ModeService[default].RaiseModeChanged(default, default)
+This project uses Input Manager, which is marked for deprecation. To manage input in your project, use the <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@latest">Input System package</a> instead.
+Unhandled description string [
+Unhandled description string ]
+[Project] Loading completed in 20.701 seconds
+	Project init time: 				19.461 seconds
+		Template init time: 		0.000 seconds
+		Package Manager init time: 		0.002 seconds
+		Asset Database init time: 		0.133 seconds
+		Global illumination init time: 	0.006 seconds
+		Assemblies load time: 			1.593 seconds
+		Unity extensions init time: 	0.004 seconds
+		Asset Database refresh time: 	1.197 seconds
+	Scene opening time: 			0.840 seconds
+##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1794426598427,"processId":11760,"projectLoad":20.701460339,"projectInit":19.46083413,"templateInit":0.0,"packageManagerInit":0.001609563,"assetDatabaseInit":0.132994422,"globalIlluminationInit":0.005988881,"assembliesLoad":1.593027017,"unityExtensionsInit":0.003685821,"assetDatabaseRefresh":1.197419244,"sceneOpening":0.839826889}
+##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1794426598427,"processId":11760,"editorVersion":"6000.6.8f1 (237b6593792b)","branch":"6000.6/respin/6000.6.8f1-b6138bef9630","buildType":"Release","platform":"Linux"}
+Worker ready: AssetImportWorkerHW0 0
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Asset Pipeline Refresh (id=85cd843231d8e1121930a2e4df1a7b85): Total: 0.086 seconds - Initiated by RefreshV2(AllowForceSynchronousImport)
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Asset Pipeline Refresh (id=dc0d03b42c5327aa09cab340d3b62eb7): Total: 0.024 seconds - Initiated by RefreshV2(ForceSynchronousImport)
+Android Extension - Scanning For ADB Devices 105 ms
+Start Indexing on Editor startup
+[Indexing] Starting Initial Indexing for Assets
+Created GICache directory at /home/iamu/.cache/unity3d/GiCache. Took: 0.001s, timestamps: [20.805 - 20.806]
+[Licensing::Client] Successfully resolved entitlement details
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Asset Pipeline Refresh (id=97acfae4668e1fec0a296b179c3825b9): Total: 0.029 seconds - Initiated by RefreshV2(ForceSynchronousImport)
+[Licensing::Client] Successfully resolved entitlement details
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Asset Pipeline Refresh (id=6fd7878755e2f1af19cbd088efe6859e): Total: 0.022 seconds - Initiated by RefreshV2(ForceSynchronousImport)
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully updated the access token
+[Licensing::Module] Successfully updated access token: "dgmkeQrs"... (expires: 2026-11-11T21:26:05Z)
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+Unhandled description string [
+Unhandled description string ]
+Android Extension - Scanning For ADB Devices 83 ms
+[Licensing::Client] Successfully resolved entitlement details
+Attempted to call .Dispose on an already disposed CancellationTokenSource
+Android Extension - Scanning For ADB Devices 85 ms
+Android Extension - Scanning For ADB Devices 86 ms
+TrimDiskCacheJob: Current cache size 0mb
+Starting new worker id: 1 with log in /home/iamu/GitHub/OpenRelativity/Logs/AssetImportWorkerHW1.log
+Starting new worker id: 2 with log in /home/iamu/GitHub/OpenRelativity/Logs/AssetImportWorkerHW2.log
+[Worker0] Imported GUID: bd55ced2fb566da45a11233369c097ed - Path: Assets/Example/Scenes/newFeatures/LightingData.asset - Importer: PreviewImporter -> (ImportResultId: '86f448db911cd9ff944e5ac97b8f5215') in 0.012081402 seconds
+[Worker0] Imported GUID: 25830d2c457eb294b81f3bbaa3d62390 - Path: Assets/Example/Scenes/newFeatures/Lightmap-1_comp_light.exr - Importer: PreviewImporter -> (ImportResultId: '5048aa969e66ff793da5332ca0cef722') in 0.041617505 seconds
+[Worker0] Imported GUID: a13fb55bd4a810e4489412bb11ff5778 - Path: Assets/Example/Scenes/newFeatures/Lightmap-0_comp_light.exr - Importer: PreviewImporter -> (ImportResultId: '23b689e5ee9521df619c679b20a2e10e') in 0.003669169 seconds
+[Worker0] Imported GUID: 50691b1eba5288346a3aed71182cb3e8 - Path: Assets/Example/Scenes/newFeatures/Lightmap-0_comp_dir.png - Importer: PreviewImporter -> (ImportResultId: '00f3b456cb566dde6107169238843384') in 0.006056458 seconds
+[Worker0] Imported GUID: cfd1577d0443d1a4dbb6eedad891d8b2 - Path: Assets/Example/Scenes/newFeatures/ReflectionProbe-1.exr - Importer: PreviewImporter -> (ImportResultId: '83e5784639981b6d34144d19d47f6cdb') in 0.031760404 seconds
+[Worker0] Imported GUID: fc3e50e4b52c5e34d97104d4e3fa8877 - Path: Assets/Example/Scenes/newFeatures/ReflectionProbe-0.exr - Importer: PreviewImporter -> (ImportResultId: '1de9f288cf2df0bc40b088652a3723ed') in 0.004895185 seconds
+[Worker0] Imported GUID: de093f221e9b45642a5ce4b6e669af87 - Path: Assets/Example/Scenes/newFeatures/Lightmap-1_comp_dir.png - Importer: PreviewImporter -> (ImportResultId: '1993834bd1543b3ea18f272bbd6f4c4d') in 0.008250159 seconds
+Worker ready: AssetImportWorkerHW1 1
+Worker ready: AssetImportWorkerHW2 2
+[Worker2] Imported GUID: 453d231c07ce5ad4aa47440fad53898c - Path: Assets/Example/Scenes/newFeatures.unity - Importer: PreviewImporter -> (ImportResultId: 'e6497796056cd02b9069deb1877edde8') in 0.00279313 seconds
+Opening scene 'Assets/Example/Scenes/newFeatures.unity'
+Unloading 30 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Example/Scenes/newFeatures.unity'
+	Deserialize:            5.570 ms
+	Integration:            51.528 ms
+	Integration of assets:  1.890 ms
+	Thread Wait Time:       0.076 ms
+	Total Operation Time:   59.063 ms
+Unloading 103 unused Assets / (15.8 MB). Loaded Objects now: 3608.
+Memory consumption went from 304.2 MB to 288.3 MB.
+Total: 16.435344 ms (FindLiveObjects: 0.189760 ms CreateObjectMapping: 0.075447 ms MarkObjects: 13.129259 ms  DeleteObjects: 2.964144 ms)
+
+Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
+Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
+Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
+Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
+Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
+Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
+Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
+Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
+Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
+Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
+Reloading assemblies for play mode.
+Reloading assemblies after forced synchronous recompile.
+Attempted to call .Dispose on an already disposed CancellationTokenSource
+Begin MonoManager ReloadAssembly
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Native extension for LinuxStandalone target not found
+Native extension for Android target not found
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+Scripting: successfully reloaded assembly
+Unhandled description string [
+Unhandled description string ]
+Unhandled description string [
+Unhandled description string ]
+- Finished resetting the current domain, in  0.812 seconds
+Domain Reload Profiling: 1134ms
+	BeginReloadAssembly (209ms)
+		DisableScriptedObjects (40ms)
+		CreateAndSetChildDomain (85ms)
+	RebuildCommonClasses (6ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (21ms)
+	LoadAllAssembliesAndSetupDomain (80ms)
+		LoadAssemblies (50ms)
+		TypeCache.Refresh (3ms)
+		AnalyzeDomain (2ms)
+	FinalizeReload (812ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (12ms)
+			BeforeProcessingInitializeOnLoad (58ms)
+			ProcessInitializeOnLoadAttributes (49ms)
+			ProcessInitializeOnLoadMethodAttributes (45ms)
+		AwakeInstancesAfterBackupRestoration (358ms)
+No restricted APIs configured; Validation skipped.
+Checking 1 assemblies for restricted APIs found 0 usage(s) in 2 ms
+
+Asset Pipeline Refresh (id=d2e1ba62c006d678e8d5fd743075c3e0): Total: 1.257 seconds - Initiated by StopAssetImportingV2(ForceSynchronousImport | ForceDomainReload)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=855 ms
+		Asset DB Callback time: managed=44 ms, native=22 ms
+		Scripting: domain reloads=1, domain reload time=333 ms, compile time=1 ms, other=0 ms
+		Project Asset Count: scripts=418, non-scripts=311
+		Asset File Changes: new=0, changed=0, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 0.387ms
+	ApplyChangesToAssetFolders: 0.101ms
+	Collect global state as custom dependencies: 0.150ms
+	ProcessAssetsWithTransientArtifactChanges: 15.252ms
+	CategorizeAssets: 3.277ms
+	CompileScripts: 1.247ms
+	ImportOutOfDateAssets: 815.133ms (813.690ms without children)
+		CollectScriptTypesHashes: 0.071ms
+		ReloadNativeAssets: 0.061ms
+		UnloadImportedAssets: 0.980ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.100ms
+		ImportSchedulerStart: 0.294ms
+	PostProcessAllAssets: 59.208ms
+		PostProcessCallbackCreateDeferredMaterials 1.484ms
+		PostprocessAssetsUpdateCachedIcon 1.373ms
+		AssemblyValidation.PostprocessAllAssets 1.177ms
+		ShaderAssetModifiedCallback 0.774ms
+		RaytracingShaderImportPostprocess 0.687ms
+		ComputeShaderImportPostprocess 0.636ms
+		SpeedTreeImporter.PostprocessAllAssets 0.542ms
+		LocalizationDatabase.AssetDatabasePostprocessCallback 0.320ms
+		XRBuildSystem.XRAssetImported 0.293ms
+		BlockShaderImporter.PostprocessAllAssets 0.283ms
+		MonoPostProcessAllAssets: 43.344ms
+			AssetPostprocessor.OnPostprocessAllAssets 14.700ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 3.932ms
+			AssetCallbacks.OnPostprocessAllAssets 3.738ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 3.126ms
+			AssetChangedListener.OnPostprocessAllAssets 2.996ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 2.130ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 0.817ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.766ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.343ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.198ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.180ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.171ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.162ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.159ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 0.134ms
+			AssetEvents.OnPostprocessAllAssets 0.119ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.110ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.092ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.091ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.072ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.070ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.058ms
+			SyncVS.PostprocessSyncProject 0.055ms
+	PostAssetChangesProfiler: 7.531ms
+	UnloadStreamsBegin: 1.733ms
+	GenerateScriptTypeHashes: 0.611ms
+	GenerateScriptTypeSerializationHashes: 1.127ms
+	Untracked: 352.512ms
+
+Device #0, Loaded binary from: /home/iamu/.qrack/qrack_ocl_dev_Intel(R)_UHD_Graphics.ir
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            10.940 ms
+	Integration:            620.236 ms
+	Integration of assets:  0.035 ms
+	Thread Wait Time:       0.078 ms
+	Total Operation Time:   631.287 ms
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+[Licensing::Client] Successfully resolved entitlement details
+Unhandled description string [
+Unhandled description string ]
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Asset Pipeline Refresh (id=f5f358ea0e9c5b3c2b3fefe4bc5d74de): Total: 0.021 seconds - Initiated by RefreshV2(ForceSynchronousImport)
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            3.114 ms
+	Integration:            13.301 ms
+	Integration of assets:  0.007 ms
+	Thread Wait Time:       0.088 ms
+	Total Operation Time:   16.510 ms
+Unloading 979 unused Assets / (0.9 MB). Loaded Objects now: 3580.
+Memory consumption went from 303.0 MB to 302.1 MB.
+Total: 10.496533 ms (FindLiveObjects: 0.176991 ms CreateObjectMapping: 0.035962 ms MarkObjects: 9.978979 ms  DeleteObjects: 0.230471 ms)
+
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+GLX Extensions: GLX_ARB_context_flush_control GLX_ARB_create_context GLX_ARB_create_context_no_error GLX_ARB_create_context_profile GLX_ARB_create_context_robustness GLX_ARB_fbconfig_float GLX_ARB_framebuffer_sRGB GLX_ARB_get_proc_address GLX_ARB_multisample GLX_EXT_buffer_age GLX_EXT_create_context_es2_profile GLX_EXT_create_context_es_profile GLX_EXT_fbconfig_packed_float GLX_EXT_framebuffer_sRGB GLX_EXT_no_config_context GLX_EXT_swap_control GLX_EXT_swap_control_tear GLX_EXT_texture_from_pixmap GLX_EXT_visual_info GLX_EXT_visual_rating GLX_MESA_copy_sub_buffer GLX_MESA_gl_interop GLX_MESA_query_renderer GLX_MESA_swap_control GLX_OML_sync_control GLX_SGIS_multisample GLX_SGIX_fbconfig GLX_SGIX_pbuffer GLX_SGIX_visual_select_group GLX_SGI_make_current_read GLX_SGI_video_sync 
+Unhandled description string [
+Unhandled description string ]
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/AudioManager.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/TimeManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/QualitySettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/EditorSettings.asset"
+Serialized files [version 9] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/NavMeshAreas.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/Physics2DSettings.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/GraphicsSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/UnityConnectSettings.asset"
+Serialized files [version 15] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/ClusterInputManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/PresetManager.asset"
+Serialized files [version 17] before 2019.1 are deprecated. Open and re-save the file: "ProjectSettings/VFXManager.asset"
+Importing 'GUID: 213f08bec79fd764ba78baad75c47ca4 - Path: Packages/net.qrack.openrelativity/Materials/relativityLitNoLorentz.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 213f08bec79fd764ba78baad75c47ca4' -> (Import Result ID: '847831071ebe11655395ab55e6700bc0') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=ae64976cb06d8aefabc198896f1b4fd7 DependenciesID=61371a723d743dc7b3025539b9c34c6c StaticDependenciesID=913d7ff8322821ca03a01bd28351e666 
+Importing 'GUID: 236daa907b19bcf43bb43783c80d6923 - Path: Packages/net.qrack.qrack/Materials/Blue.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 236daa907b19bcf43bb43783c80d6923' -> (Import Result ID: '2853211a982c0f9fae97905a96f63211') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=087a6b8c299a27c8971edb15ac41821f DependenciesID=dfb0e35e1a18072cbf45ab0b559dabcf StaticDependenciesID=2504872568dd8eeabdc319901e669364 
+Importing 'GUID: c3e3864b8bbaf764bbbda887c89a2fd3 - Path: Packages/net.qrack.openrelativity/Materials/relativityUnlit.mat' with importer (NativeFormatImporter)
+Imported 'GUID: c3e3864b8bbaf764bbbda887c89a2fd3' -> (Import Result ID: '9de0c62ab44575f87e8da7c7b2b490a7') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=26c613e2249583d2f394e088aa761da6 DependenciesID=5e6c4f99334ddfcf6895d5af2ea442af StaticDependenciesID=9642c3b43feca6571afc2f80491a836b 
+Importing 'GUID: 855200e319fc8114d9dd9fcb40f3c19b - Path: Packages/net.qrack.qrack/Materials/qubitIndicator.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 855200e319fc8114d9dd9fcb40f3c19b' -> (Import Result ID: '707bd501865da4c9dbedc913c1566092') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=357ef9597883674364800c109e2c586c DependenciesID=4fd856155e2e544b0314e7b6b1d921d2 StaticDependenciesID=679d8ec558b508bb3c4834e6bc5d39d5 
+Importing 'GUID: d6ef81b29722c0c4fb8cb6d315a52df6 - Path: Packages/net.qrack.openrelativity/Materials/relativityLit.mat' with importer (NativeFormatImporter)
+Imported 'GUID: d6ef81b29722c0c4fb8cb6d315a52df6' -> (Import Result ID: 'c3e489319c17a848d62c12977c45aa5f') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=f125ee51270820eaa78d1bec62d1e953 DependenciesID=b76e4f1a0e7bf23c5b3182d3d90ac4d7 StaticDependenciesID=f7d58c78788c31d988b5675a8a970bfb 
+Importing 'GUID: 685dfb06f47afc24c97ff11ef5ab6e38 - Path: Packages/net.qrack.qrack/Materials/ActionIndicator.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 685dfb06f47afc24c97ff11ef5ab6e38' -> (Import Result ID: 'e32798c6747619e44b0b1c8f8fb0835a') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=012d0f3e1654aa773de305a484825df4 DependenciesID=849b7e43b5f0ccfa3817c5d13b411595 StaticDependenciesID=9ec7f981e054f69089ed6e8a6c586669 
+Importing 'GUID: a97cdfc6697d1df4d9991bfc274940cc - Path: Packages/net.qrack.openrelativity/Materials/Specular.mat' with importer (NativeFormatImporter)
+Imported 'GUID: a97cdfc6697d1df4d9991bfc274940cc' -> (Import Result ID: 'a9d58089653996559ae92c1d0d7e4bca') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=5245696df74a93cc9f963526002d72fe DependenciesID=480577660c5c5e6e84e49535a64136f8 StaticDependenciesID=df8615aabd38136e52c353bf12e6f983 
+Importing 'GUID: 3d0dab55692d934479a0f4a2047c1ff1 - Path: Packages/net.qrack.qrack/Materials/Red.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 3d0dab55692d934479a0f4a2047c1ff1' -> (Import Result ID: 'c2d375d40c81b5c599d97e07f0032bd2') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=a16943cc491d3a1e62e435a6bec61066 DependenciesID=6f7357f98804114eb389058554afa20f StaticDependenciesID=2e1a6addc771030dcfa1db5dcf1c6f22 
+Importing 'GUID: 3ea25f93531c0dd46ba7be38b19e0e06 - Path: Packages/net.qrack.qrack/Materials/Green.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 3ea25f93531c0dd46ba7be38b19e0e06' -> (Import Result ID: '40f7e6ff06bc2a46b31c6300c6166c68') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=0c895c291932ac58b55357cba6031038 DependenciesID=14152e2180619bef8378f975c41bd7a4 StaticDependenciesID=4113ee2ef3228c83693b1e37a4c15193 
+Importing 'GUID: 5f7bf1bc182bb5f46b6e83252d2eacff - Path: Packages/net.qrack.qrack/Materials/Clear.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 5f7bf1bc182bb5f46b6e83252d2eacff' -> (Import Result ID: 'e3de859a509699476aa8cbfd9db96c9f') in 0.000 seconds [static dependencies only]. Details - ImportResultOutputID=f56eaa91f409e050372bc2a272211928 DependenciesID=ce7260abd3587789a279fa1ef1233eb0 StaticDependenciesID=6efa7359ec385b823ed034594993e2de 
+Asset Pipeline Refresh (id=fc53b043755242c49b0cca625810ea93): Total: 0.019 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+MonoPathRemapper: Attempts to remap: 6808; Successful remaps: 1596
+Serialized file version minimum: 9, current 23
+[LAYOUT] About to save layout /home/iamu/GitHub/OpenRelativity/UserSettings/Layouts/default-6000.dwlt
+[LAYOUT] About to save layout /home/iamu/.config/unity3d/Preferences/Editor-5.x/Layouts/current/default-6000.dwlt
+Killing ADB server in 0.030066 seconds.
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-iamu-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-iamu channel disconnected successfully.
+Default platform: Intel(R) OpenCL Graphics
+Default device: #0, Intel(R) UHD Graphics
+OpenCL device #0: Intel(R) UHD Graphics
+Shut down UDS service system complete
+Lingering sessions upon destruction of worker manager
+Unity Data Store service was successfully shut down
+UDS shutting down local client system
+AcceleratorClientConnectionCallback - disconnected - :0
+debugger-agent: Unable to listen on 129
+Cleanup mono
+CodeReloadManager destroyed
+
+SDL leaked 2 allocations
+Turn on UNITY_SDL_ALLOCATION_TRACKING for detailed information.
+VBCSCompilerPreWarmer: requested VBCSCompiler shutdown
+Checking for leaked weakptr:
+  Found no leaked weakptrs.
+[Package Manager] Server process was shutdown
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1794426671489,"processId":11760,"allocatedMemory":8226405,"memoryLabels":[{"Default":215910},{"Permanent":16152},{"Thread":1052296},{"Manager":50385},{"VertexData":8},{"Geometry":416},{"Shader":846572},{"Material":132},{"TextureCache":912},{"GfxDevice":36824},{"Animation":1016},{"FreeType":8},{"FontEngine":736},{"Physics":1970},{"Physics2D":16},{"Serialization":40800},{"Input":60256},{"JobScheduler":256},{"TextLib":48043},{"Mono":80},{"ScriptingNativeRuntime":155088},{"BaseObject":51816},{"Resource":1268},{"Renderer":2496},{"Transform":4757},{"File":39944},{"WebCam":80},{"Culling":32},{"Terrain":11346},{"Wind":24},{"String":917893},{"StaticString":3808},{"Utility":2683952},{"PoolAlloc":1960},{"AI":80},{"TypeTree":19821},{"ScriptManager":18984},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7408},{"Director":8280},{"CloudService":8432},{"WebRequest":4964},{"VR":49698},{"SceneManager":640},{"Video":64},{"LazyScriptCache":32},{"Camera":729},{"Secure":8049},{"SerializationCache":9256},{"APIUpdating":10320},{"Subsystems":192},{"VirtualTexturing":57552},{"StaticSafetyDebugInfo":278528},{"Analytics":592},{"Hierarchy":1436},{"UIElements":40},{"CoreStats":14456},{"Identifiers":7152},{"EntityIdStore":33088},{"Gui":242},{"EditorUtility":145809},{"VersionControl":8},{"Undo":963},{"AssetDatabase":1234496},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":36942},{"Upm":1836},{"UpmDiagnostics":8},{"AssetCompliance":96},{"DrivenProperties":72},{"LocalIPC":196},{"ProfilerEditor":9746},{"CoreBusinessMetrics":2704},{"Windowing":480},{"Licensing":12716},{"AssetReference":32},{"IPCStream":32}]}

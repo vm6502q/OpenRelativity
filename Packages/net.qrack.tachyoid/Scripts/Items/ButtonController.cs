@@ -366,7 +366,7 @@ namespace Tachyoid.Objects
 
         protected void OnTriggerExit(Collider collider)
         {
-            gameObjectsOnButton.RemoveAll(go => go.GetInstanceID() == collider.gameObject.GetInstanceID());
+            gameObjectsOnButton.RemoveAll(go => go.GetEntityId() == collider.gameObject.GetEntityId());
             if (!ignoreExit 
                 && gameObjectsOnButton.Count == 0
                 //&& pressState != ButtonState.PressHeld

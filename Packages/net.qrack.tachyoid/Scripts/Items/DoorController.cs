@@ -80,12 +80,12 @@ namespace Tachyoid.Objects
 
         private void TriggerIndicator(ButtonController trigger, bool locked)
         {
-            int instanceId = trigger.GetInstanceID();
+            EntityId instanceId = trigger.GetEntityId();
             int i = 0;
             bool foundTrigger = false;
             while (!foundTrigger && i < lockIndicatorTriggers.Length)
             {
-                if (lockIndicators[i] != null && lockIndicatorTriggers[i].GetInstanceID() == instanceId)
+                if (lockIndicators[i] != null && lockIndicatorTriggers[i].GetEntityId() == instanceId)
                 {
                     lockIndicators[i].SetLockedState(locked);
                     foundTrigger = true;

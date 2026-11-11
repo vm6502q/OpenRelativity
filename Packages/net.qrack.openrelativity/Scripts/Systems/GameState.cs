@@ -290,9 +290,9 @@ namespace OpenRelativity
                         case UnityEngine.LightType.Spot: LightmapperUtils.Extract(l, ref spot); LightmapperUtils.Extract(l, out cookie); ld.Init(ref spot, ref cookie); break;
                         case UnityEngine.LightType.Rectangle: LightmapperUtils.Extract(l, ref rect); LightmapperUtils.Extract(l, out cookie); ld.Init(ref rect, ref cookie); break;
                         case UnityEngine.LightType.Disc: LightmapperUtils.Extract(l, ref disc); LightmapperUtils.Extract(l, out cookie); ld.Init(ref disc, ref cookie); break;
-                        default: ld.InitNoBake(l.GetInstanceID()); break;
+                        default: ld.InitNoBake(l.GetEntityId()); break;
                     }
-                    ld.cookieID = l.cookie?.GetInstanceID() ?? 0;
+                    ld.cookieTextureEntityId = l.cookie?.GetEntityId() ?? new EntityId();
                     ld.falloff = FalloffType.InverseSquared;
                     lightsOutput[i] = ld;
                 }

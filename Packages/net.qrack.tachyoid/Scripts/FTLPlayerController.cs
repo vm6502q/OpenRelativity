@@ -28,7 +28,7 @@ namespace Tachyoid
         public bool allowInput = true;
         public bool verticalLock = false;
         //Let portal visibility system know if we're time traveling through portals:
-        public int? pvsInstanceID { get; set; }
+        public EntityId? pvsInstanceID { get; set; }
 
         //When we time travel, cache our original velocity,
         // and replace it with a time travel prediction
