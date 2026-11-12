@@ -272,7 +272,7 @@ LightingSettings:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Settings.lighting
-  serializedVersion: 9
+  serializedVersion: 10
   m_EnableBakedLightmaps: 0
   m_EnableRealtimeLightmaps: 0
   m_RealtimeEnvironmentLighting: 0
@@ -287,6 +287,12 @@ LightingSettings:
   m_BakeResolution: 64
   m_Padding: 2
   m_LightmapCompression: 2
+  m_LightmapPackingMode: 1
+  m_LightmapPackingMethod: 0
+  m_XAtlasPackingAttempts: 16384
+  m_XAtlasBruteForce: 0
+  m_XAtlasBlockAlign: 0
+  m_XAtlasRepackUnderutilizedLightmaps: 1
   m_AO: 0
   m_AOMaxDistance: 1
   m_CompAOExponent: 0
@@ -326,6 +332,14 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
   m_RespectSceneVisibilityWhenBakingGI: 0
+  m_DirectLightSamplingMode: 2
+  m_DirectRISCandidateCount: 4
+  m_IndirectLightSamplingMode: 1
+  m_IndirectRISCandidateCount: 1
+  m_LightAccelerationStructure: 0
+  m_LightGridMaxCells: 262144
+  m_DirectEmissiveSamplingMode: 2
+  m_IndirectEmissiveSamplingMode: 1
 --- !u!1 &374947433
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,10 +399,17 @@ MonoBehaviour:
   gravitonEmissivity: 0.1
   fundamentalAverageMolarMass: 0.012
   initialAverageMolarMass: 0.012
+  relativisticCollisions: 1
   _peculiarVelocity: {x: 0, y: 0, z: 0}
   _aviw: {x: 0, y: 0, z: 0}
   _nonGravAccel: {x: 0, y: 0, z: 0}
   leviCivitaDevAccel: {x: 0, y: 0, z: 0}
+  monopoleCoupling: 1
+  monopoleRadiatedEnergy: 0
+  isMonopoleHorizonEvaporation: 0
+  monopoleHorizonChannels: 1
+  useLegacy2019PowerLaw: 0
+  monopoleFifthForceCoupling: 0
   _localScale: {x: 0, y: 0, z: 0}
   isMonopoleAccel: 0
   monopoleAccelerationSoften: 0
@@ -435,6 +456,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -456,9 +479,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.25
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &374947438
 MeshFilter:
@@ -516,14 +541,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417605412}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 13
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 500
   m_Range: 200
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -568,7 +593,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -611,10 +636,17 @@ MonoBehaviour:
   gravitonEmissivity: 0.1
   fundamentalAverageMolarMass: 0.012
   initialAverageMolarMass: 0.012
+  relativisticCollisions: 1
   _peculiarVelocity: {x: 0, y: 0, z: 0}
   _aviw: {x: 0, y: 0, z: 0}
   _nonGravAccel: {x: 0, y: 0, z: 0}
   leviCivitaDevAccel: {x: 0, y: 0, z: 0}
+  monopoleCoupling: 1
+  monopoleRadiatedEnergy: 0
+  isMonopoleHorizonEvaporation: 0
+  monopoleHorizonChannels: 1
+  useLegacy2019PowerLaw: 0
+  monopoleFifthForceCoupling: 0
   _localScale: {x: 1, y: 1, z: 1}
   isMonopoleAccel: 0
   monopoleAccelerationSoften: 0
@@ -729,6 +761,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -873,10 +906,17 @@ MonoBehaviour:
   gravitonEmissivity: 0.1
   fundamentalAverageMolarMass: 0.012
   initialAverageMolarMass: 0.012
+  relativisticCollisions: 1
   _peculiarVelocity: {x: 0, y: 0, z: 0}
   _aviw: {x: 0, y: 0, z: 0}
   _nonGravAccel: {x: 0, y: 0, z: 0}
   leviCivitaDevAccel: {x: 0, y: 0, z: 0}
+  monopoleCoupling: 1
+  monopoleRadiatedEnergy: 0
+  isMonopoleHorizonEvaporation: 0
+  monopoleHorizonChannels: 1
+  useLegacy2019PowerLaw: 0
+  monopoleFifthForceCoupling: 0
   _localScale: {x: 0, y: 0, z: 0}
   isMonopoleAccel: 0
   monopoleAccelerationSoften: 0
@@ -923,6 +963,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -944,9 +986,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.25
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &500724642
 MeshFilter:
@@ -1021,20 +1065,7 @@ PhysicsMaterial:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DefaultPhysic (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone)
+  m_Name: DefaultPhysic (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
   serializedVersion: 2
   m_DynamicFriction: 0.1
   m_StaticFriction: 0.1
@@ -1100,10 +1131,17 @@ MonoBehaviour:
   gravitonEmissivity: 0.1
   fundamentalAverageMolarMass: 0.012
   initialAverageMolarMass: 0.012
+  relativisticCollisions: 1
   _peculiarVelocity: {x: 0, y: 0, z: 0}
   _aviw: {x: 0, y: 0, z: 0}
   _nonGravAccel: {x: 0, y: 0, z: 0}
   leviCivitaDevAccel: {x: 0, y: 0, z: 0}
+  monopoleCoupling: 1
+  monopoleRadiatedEnergy: 0
+  isMonopoleHorizonEvaporation: 0
+  monopoleHorizonChannels: 1
+  useLegacy2019PowerLaw: 0
+  monopoleFifthForceCoupling: 0
   _localScale: {x: 0, y: 0, z: 0}
   isMonopoleAccel: 0
   monopoleAccelerationSoften: 0
@@ -1150,6 +1188,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1171,9 +1211,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.25
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &803964196
 MeshFilter:
@@ -1286,10 +1328,17 @@ MonoBehaviour:
   gravitonEmissivity: 0.1
   fundamentalAverageMolarMass: 0.012
   initialAverageMolarMass: 0.012
+  relativisticCollisions: 1
   _peculiarVelocity: {x: 0, y: 0, z: 0}
   _aviw: {x: 0, y: 0, z: 0}
   _nonGravAccel: {x: 0, y: 0, z: 0}
   leviCivitaDevAccel: {x: 0, y: 0, z: 0}
+  monopoleCoupling: 1
+  monopoleRadiatedEnergy: 0
+  isMonopoleHorizonEvaporation: 0
+  monopoleHorizonChannels: 1
+  useLegacy2019PowerLaw: 0
+  monopoleFifthForceCoupling: 0
   _localScale: {x: 1, y: 1, z: 1}
   isMonopoleAccel: 0
   monopoleAccelerationSoften: 0
@@ -1315,6 +1364,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1336,9 +1387,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &813886702
 MeshFilter:
@@ -1418,82 +1471,7 @@ PhysicsMaterial:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DefaultPhysic (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
-    (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
+  m_Name: DefaultPhysic (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone) (Instance)(Clone)
   serializedVersion: 2
   m_DynamicFriction: 0.1
   m_StaticFriction: 0.1
@@ -1527,10 +1505,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1200634619}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
+  m_LinearDamping: 0
+  m_AngularDamping: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1567,6 +1545,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -1588,9 +1568,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &1200634622
 SphereCollider:
@@ -1722,6 +1704,11 @@ MonoBehaviour:
   fundamentalAverageMolarMass: 0.012
   initialAverageMolarMass: 0.012
   leviCivitaDevAccel: {x: 0, y: 0, z: 0}
+  monopoleCoupling: 1
+  monopoleRadiatedEnergy: 0
+  isMonopoleHorizonEvaporation: 0
+  monopoleHorizonChannels: 1
+  useLegacy2019PowerLaw: 0
 --- !u!114 &1426800677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1743,6 +1730,7 @@ MonoBehaviour:
   boltzmannConstant: 1.380649e-23
   vacuumPermeability: 0.0000012566370621219
   gravityBackgroundPlanckTemperature: 0
+  monopoleFifthForceRange: 0
   TotalTimeWorld: 333.8243
   isPlayerComoving: 0
 --- !u!114 &1426800678
@@ -1878,10 +1866,17 @@ MonoBehaviour:
   gravitonEmissivity: 0.1
   fundamentalAverageMolarMass: 0.012
   initialAverageMolarMass: 0.012
+  relativisticCollisions: 1
   _peculiarVelocity: {x: 0, y: 0, z: 0}
   _aviw: {x: 0, y: 0, z: 0}
   _nonGravAccel: {x: 0, y: 0, z: 0}
   leviCivitaDevAccel: {x: 0, y: 0, z: 0}
+  monopoleCoupling: 1
+  monopoleRadiatedEnergy: 0
+  isMonopoleHorizonEvaporation: 0
+  monopoleHorizonChannels: 1
+  useLegacy2019PowerLaw: 0
+  monopoleFifthForceCoupling: 0
   _localScale: {x: 0, y: 0, z: 0}
   isMonopoleAccel: 0
   monopoleAccelerationSoften: 0
@@ -1928,6 +1923,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1949,9 +1946,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.25
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1837796130
 MeshFilter:
@@ -2042,10 +2041,17 @@ MonoBehaviour:
   gravitonEmissivity: 0.1
   fundamentalAverageMolarMass: 0.012
   initialAverageMolarMass: 0.012
+  relativisticCollisions: 1
   _peculiarVelocity: {x: 0, y: 0, z: 0}
   _aviw: {x: 0, y: 0, z: 0}
   _nonGravAccel: {x: 0, y: 0, z: 0}
   leviCivitaDevAccel: {x: 0, y: 0, z: 0}
+  monopoleCoupling: 1
+  monopoleRadiatedEnergy: 0
+  isMonopoleHorizonEvaporation: 0
+  monopoleHorizonChannels: 1
+  useLegacy2019PowerLaw: 0
+  monopoleFifthForceCoupling: 0
   _localScale: {x: 0, y: 0, z: 0}
   isMonopoleAccel: 0
   monopoleAccelerationSoften: 0
@@ -2092,6 +2098,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2113,9 +2121,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.25
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &2008525716
 MeshFilter:
@@ -2238,10 +2248,17 @@ MonoBehaviour:
   gravitonEmissivity: 0.1
   fundamentalAverageMolarMass: 0.012
   initialAverageMolarMass: 0.012
+  relativisticCollisions: 1
   _peculiarVelocity: {x: 0, y: 0, z: 0}
   _aviw: {x: 0, y: 0, z: 0}
   _nonGravAccel: {x: 0, y: 0, z: 0}
   leviCivitaDevAccel: {x: 0, y: 0, z: 0}
+  monopoleCoupling: 1
+  monopoleRadiatedEnergy: 0
+  isMonopoleHorizonEvaporation: 0
+  monopoleHorizonChannels: 1
+  useLegacy2019PowerLaw: 0
+  monopoleFifthForceCoupling: 0
   _localScale: {x: 0, y: 0, z: 0}
   isMonopoleAccel: 0
   monopoleAccelerationSoften: 0
@@ -2288,6 +2305,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2309,9 +2328,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.25
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &2094975504
 MeshFilter:
@@ -2392,10 +2413,17 @@ MonoBehaviour:
   gravitonEmissivity: 0.1
   fundamentalAverageMolarMass: 0.012
   initialAverageMolarMass: 0.012
+  relativisticCollisions: 1
   _peculiarVelocity: {x: 0, y: 0, z: 0}
   _aviw: {x: 0, y: 0, z: 0}
   _nonGravAccel: {x: 0, y: 0, z: 0}
   leviCivitaDevAccel: {x: 0, y: 0, z: 0}
+  monopoleCoupling: 1
+  monopoleRadiatedEnergy: 0
+  isMonopoleHorizonEvaporation: 0
+  monopoleHorizonChannels: 1
+  useLegacy2019PowerLaw: 0
+  monopoleFifthForceCoupling: 0
   _localScale: {x: 1.2, y: 0.0005, z: 1.2}
   isMonopoleAccel: 0
   monopoleAccelerationSoften: 0

@@ -62,6 +62,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -83,9 +85,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &2747571377692546852
 MonoBehaviour:
@@ -110,10 +114,17 @@ MonoBehaviour:
   gravitonEmissivity: 0.1
   fundamentalAverageMolarMass: 0.012
   initialAverageMolarMass: 0.012
+  relativisticCollisions: 1
   _peculiarVelocity: {x: 0, y: 0, z: 0}
   _aviw: {x: 0, y: 0, z: 0}
   _nonGravAccel: {x: 0, y: 0, z: 0}
   leviCivitaDevAccel: {x: 0, y: 0, z: 0}
+  monopoleCoupling: 1
+  monopoleRadiatedEnergy: 0
+  isMonopoleHorizonEvaporation: 0
+  monopoleHorizonChannels: 1
+  useLegacy2019PowerLaw: 0
+  monopoleFifthForceCoupling: 0
   _localScale: {x: 1.2, y: 0.0005, z: 1.2}
   isMonopoleAccel: 0
   monopoleAccelerationSoften: 0
@@ -292,10 +303,17 @@ MonoBehaviour:
   gravitonEmissivity: 0.1
   fundamentalAverageMolarMass: 0.012
   initialAverageMolarMass: 0.012
+  relativisticCollisions: 1
   _peculiarVelocity: {x: 0, y: 0, z: 0}
   _aviw: {x: 0, y: 0, z: 0}
   _nonGravAccel: {x: 0, y: 0, z: 0}
   leviCivitaDevAccel: {x: 0, y: 0, z: 0}
+  monopoleCoupling: 1
+  monopoleRadiatedEnergy: 0
+  isMonopoleHorizonEvaporation: 0
+  monopoleHorizonChannels: 1
+  useLegacy2019PowerLaw: 0
+  monopoleFifthForceCoupling: 0
   _localScale: {x: 1, y: 1, z: 1}
   isMonopoleAccel: 0
   monopoleAccelerationSoften: 0

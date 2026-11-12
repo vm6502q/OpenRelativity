@@ -45,5 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doMonopoleEvaporate: 1
+  monopoleChannels: 1
+  useLegacy2019PowerLaw: 0
   doHawkingEvaporate: 1
   schwarzschildRadius: 0.5

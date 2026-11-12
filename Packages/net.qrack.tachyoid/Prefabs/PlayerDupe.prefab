@@ -23,12 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1041384156023146}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4524128546560072}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1505984869383090
 GameObject:
@@ -56,13 +57,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505984869383090}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4122107196182428}
   m_Father: {fileID: 4824615543627416}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33375828655677726
 MeshFilter:
@@ -83,11 +85,17 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -109,9 +117,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &114929864274822808
 MonoBehaviour:
@@ -130,12 +140,28 @@ MonoBehaviour:
   isParent: 0
   isCombinedColliderParent: 0
   isNonrelativisticShader: 0
-  _viw: {x: 0, y: 0, z: 0}
+  unityDrag: 0
+  unityAngularDrag: 0
+  comoveViaAcceleration: 0
+  gravitonEmissivity: 0.1
+  fundamentalAverageMolarMass: 0.012
+  initialAverageMolarMass: 0.012
+  relativisticCollisions: 1
+  _peculiarVelocity: {x: 0, y: 0, z: 0}
   _aviw: {x: 0, y: 0, z: 0}
   _nonGravAccel: {x: 0, y: 0, z: 0}
-  _localScale: {x: 0, y: 0, z: 0}
-  monopoleAccel: 0
+  leviCivitaDevAccel: {x: 0, y: 0, z: 0}
+  monopoleCoupling: 1
+  monopoleRadiatedEnergy: 0
+  isMonopoleHorizonEvaporation: 0
+  monopoleHorizonChannels: 1
+  useLegacy2019PowerLaw: 0
+  monopoleFifthForceCoupling: 0
+  _localScale: {x: 3, y: 3, z: 3}
+  isMonopoleAccel: 0
+  monopoleAccelerationSoften: 0
   colliderShader: {fileID: 0}
+  colliderShaderMesh: {fileID: 0}
 --- !u!1 &1514493921782736
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,17 +188,18 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1514493921782736}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4524128546560072}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &95713767722955832
 Animator:
-  serializedVersion: 3
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -185,10 +212,13 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &8328656155620998817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,12 +236,28 @@ MonoBehaviour:
   isParent: 0
   isCombinedColliderParent: 0
   isNonrelativisticShader: 0
-  _viw: {x: 0, y: 0, z: 0}
+  unityDrag: 0
+  unityAngularDrag: 0
+  comoveViaAcceleration: 0
+  gravitonEmissivity: 0.1
+  fundamentalAverageMolarMass: 0.012
+  initialAverageMolarMass: 0.012
+  relativisticCollisions: 1
+  _peculiarVelocity: {x: 0, y: 0, z: 0}
   _aviw: {x: 0, y: 0, z: 0}
   _nonGravAccel: {x: 0, y: 0, z: 0}
-  _localScale: {x: 0, y: 0, z: 0}
-  monopoleAccel: 0
+  leviCivitaDevAccel: {x: 0, y: 0, z: 0}
+  monopoleCoupling: 1
+  monopoleRadiatedEnergy: 0
+  isMonopoleHorizonEvaporation: 0
+  monopoleHorizonChannels: 1
+  useLegacy2019PowerLaw: 0
+  monopoleFifthForceCoupling: 0
+  _localScale: {x: 0.3, y: 0.3, z: 0.3}
+  isMonopoleAccel: 0
+  monopoleAccelerationSoften: 0
   colliderShader: {fileID: 0}
+  colliderShaderMesh: {fileID: 0}
 --- !u!114 &114849412375484524
 MonoBehaviour:
   m_ObjectHideFlags: 0

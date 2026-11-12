@@ -27,12 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907665798916602}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33679969695854628
 MeshFilter:
@@ -53,11 +54,17 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,9 +86,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &114700703996887446
 MonoBehaviour:
@@ -112,9 +121,25 @@ MonoBehaviour:
   isParent: 0
   isCombinedColliderParent: 0
   isNonrelativisticShader: 0
-  _viw: {x: 0, y: 0, z: 0}
+  unityDrag: 0
+  unityAngularDrag: 0
+  comoveViaAcceleration: 0
+  gravitonEmissivity: 0.1
+  fundamentalAverageMolarMass: 0.012
+  initialAverageMolarMass: 0.012
+  relativisticCollisions: 1
+  _peculiarVelocity: {x: 0, y: 0, z: 0}
   _aviw: {x: 0, y: 0, z: 0}
   _nonGravAccel: {x: 0, y: 0, z: 0}
-  _localScale: {x: 0, y: 0, z: 0}
-  monopoleAccel: 0
+  leviCivitaDevAccel: {x: 0, y: 0, z: 0}
+  monopoleCoupling: 1
+  monopoleRadiatedEnergy: 0
+  isMonopoleHorizonEvaporation: 0
+  monopoleHorizonChannels: 1
+  useLegacy2019PowerLaw: 0
+  monopoleFifthForceCoupling: 0
+  _localScale: {x: 5, y: 5, z: 5}
+  isMonopoleAccel: 0
+  monopoleAccelerationSoften: 0
   colliderShader: {fileID: 0}
+  colliderShaderMesh: {fileID: 0}
