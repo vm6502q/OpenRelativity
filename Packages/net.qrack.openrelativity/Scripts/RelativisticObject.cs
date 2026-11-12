@@ -1311,9 +1311,12 @@ namespace OpenRelativity
                     myRigidbody.angularVelocity = gamma * aviw;
                     preStepCelerity = myRigidbody.linearVelocity;
 
-                    // PhysX integrates celerity u = gamma v in world time. A proper (rest-frame) acceleration alpha
-                    // changes it at du/dt = alpha_par + alpha_perp / gamma (= F_world / m), with no overall gamma.
-                    Vector3 celerityRate = (nonGravAccel + leviCivitaDevAccel).ProperAccelToCelerityRate(peculiarVelocity, gamma);
+                    // PhysX integrates celerity u = gamma v over Time.fixedDeltaTime (player proper time), and this
+                    // object's world-time step is gamma * fixedDeltaTime (see FixedUpdate). A proper (rest-frame)
+                    // acceleration alpha changes u at du/dt_world = alpha_par + alpha_perp / gamma (= F_world / m), so
+                    // per PhysX step the rate is gamma * that = gamma * alpha_par + alpha_perp. (Previously
+                    // gamma * alpha: right along the motion, too large by gamma across it.)
+                    Vector3 celerityRate = gamma * (nonGravAccel + leviCivitaDevAccel).ProperAccelToCelerityRate(peculiarVelocity, gamma);
                     if (comoveViaAcceleration)
                     {
                         // Coordinate (Rindler) acceleration: handling unchanged from the original.

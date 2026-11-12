@@ -86,7 +86,27 @@ namespace Tachyoid {
             PlayerAccelerationVector = Vector3.zero;
 
             PlayerPositionBeforeReverse = playerTransform.position;
-            playerTransform.position += playerPosChange;
+
+            // Teleport through the player's Rigidbody. With Rigidbody interpolation enabled (as on PlayerMesh), Unity
+            // keeps writing the Transform from the Rigidbody's interpolated pose, so moving only the Transform is undone
+            // on the next frame and the warp lands back at the starting point.
+            GameObject playerRBObject = GameObject.FindGameObjectWithTag(Tags.playerRigidbody);
+            Rigidbody playerRB = playerRBObject ? playerRBObject.GetComponent<Rigidbody>() : null;
+            if (playerRB && ((playerRB.transform == playerTransform) || playerTransform.IsChildOf(playerRB.transform)))
+            {
+                Vector3 rbPos = playerRB.position + playerPosChange;
+                playerRB.position = rbPos;
+                playerRB.transform.position = rbPos;
+            }
+            else
+            {
+                if (playerRB)
+                {
+                    playerRB.position += playerPosChange;
+                }
+                playerTransform.position += playerPosChange;
+            }
+            Physics.SyncTransforms();
             
             DeltaTimeWorld = TotalTimeWorld - WorldTimeBeforeReverse;
 
