@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 
@@ -325,6 +325,21 @@ namespace OpenRelativity
 
         }
 
+        // [ExecuteInEditMode] lets the editor call LateUpdate() on repaints, both in edit mode and while play mode is
+        // paused, with a nonzero Time.deltaTime. Only a genuine new player-loop frame should advance the clocks:
+        // play mode, and Time.frameCount has moved on (true for the editor's "Step" button, false for paused repaints).
+        private int lastClockFrame = -1;
+        protected bool IsNewPlayFrame()
+        {
+            if (!Application.isPlaying || (Time.frameCount == lastClockFrame))
+            {
+                return false;
+            }
+            lastClockFrame = Time.frameCount;
+
+            return true;
+        }
+
         //We set this in late update because of timing issues with collisions
         virtual protected void LateUpdate()
         {
@@ -412,8 +427,8 @@ namespace OpenRelativity
                 //find this constant
                 SqrtOneMinusVSquaredCWDividedByCSquared = Mathf.Sqrt(1 - (playerVelocity * playerVelocity) / SpeedOfLightSqrd);
 
-                //Set by Unity, time since last update
-                DeltaTimePlayer = Time.deltaTime;
+                //Set by Unity, time since last update (zero for editor repaints that are not new play frames)
+                DeltaTimePlayer = IsNewPlayFrame() ? Time.deltaTime : 0;
                 //Get the total time passed of the player and world for display purposes
                 TotalTimePlayer += DeltaTimePlayer;
                 //Get the delta time passed for the world, changed by relativistic effects
