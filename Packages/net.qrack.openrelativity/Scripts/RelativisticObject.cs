@@ -205,6 +205,7 @@ namespace OpenRelativity
         public bool relativisticCollisions = true;
         // In an inelastic relativistic collision the dissipated kinetic energy becomes internal energy, i.e. rest
         // mass; momentum is only conserved if rest mass absorbs it. Off: rest mass fixed (energy simply lost).
+        public bool collisionHeatToRestMass = false;
         private float lastFixedUpdateDeltaTime;
 
         public float baryonCount { get; set; }
@@ -1933,8 +1934,16 @@ namespace OpenRelativity
 
             // Each body keeps its CM-frame energy; any dissipated kinetic energy becomes rest mass.
             double mA2 = mA, mB2 = mB;
-            EAs = Math.Sqrt(mA * mA * cc * cc + Dot(pAs2, pAs2));
-            EBs = Math.Sqrt(mB * mB * cc * cc + Dot(pBs2, pBs2));
+            if (collisionHeatToRestMass)
+            {
+                mA2 = Math.Sqrt(Math.Max(EAs * EAs - Dot(pAs2, pAs2), 0)) / cc;
+                mB2 = Math.Sqrt(Math.Max(EBs * EBs - Dot(pBs2, pBs2), 0)) / cc;
+            }
+            else
+            {
+                EAs = Math.Sqrt(mA * mA * cc * cc + Dot(pAs2, pAs2));
+                EBs = Math.Sqrt(mB * mB * cc * cc + Dot(pBs2, pBs2));
+            }
 
             double[] betaBack = Scale(beta, -1);
             Boost(EAs, pAs2, betaBack, gb, out double[] pA2);
@@ -1942,6 +1951,12 @@ namespace OpenRelativity
 
             Vector3 uA = V(Add(Scale(pA2, 1 / mA2), tA));
             Vector3 uB = V(Add(Scale(pB2, 1 / mB2), tB));
+
+            if (collisionHeatToRestMass)
+            {
+                mass = (float)mA2;
+                other.mass = (float)mB2;
+            }
 
             myRigidbody.linearVelocity = uA;
             other.myRigidbody.linearVelocity = uB;
