@@ -203,9 +203,6 @@ namespace OpenRelativity
         // destroy energy at relativistic speed. With this on, the normal part of each RelativisticObject pair
         // collision is redone in the pair's centre-of-momentum frame (PhysX's restitution and friction kept).
         public bool relativisticCollisions = true;
-        // In an inelastic relativistic collision the dissipated kinetic energy becomes internal energy, i.e. rest
-        // mass; momentum is only conserved if rest mass absorbs it. Off: rest mass fixed (energy simply lost).
-        public bool collisionHeatToRestMass = true;
         private float lastFixedUpdateDeltaTime;
 
         public float baryonCount { get; set; }
@@ -1932,31 +1929,12 @@ namespace OpenRelativity
             double[] pAs2 = Sub(pAs, Scale(n, (1 + e) * Dot(pAs, n)));
             double[] pBs2 = Scale(pAs2, -1);
 
-            // Each body keeps its CM-frame energy; any dissipated kinetic energy becomes rest mass.
-            double mA2 = mA, mB2 = mB;
-            if (collisionHeatToRestMass)
-            {
-                mA2 = Math.Sqrt(Math.Max(EAs * EAs - Dot(pAs2, pAs2), 0)) / cc;
-                mB2 = Math.Sqrt(Math.Max(EBs * EBs - Dot(pBs2, pBs2), 0)) / cc;
-            }
-            else
-            {
-                EAs = Math.Sqrt(mA * mA * cc * cc + Dot(pAs2, pAs2));
-                EBs = Math.Sqrt(mB * mB * cc * cc + Dot(pBs2, pBs2));
-            }
-
             double[] betaBack = Scale(beta, -1);
             Boost(EAs, pAs2, betaBack, gb, out double[] pA2);
             Boost(EBs, pBs2, betaBack, gb, out double[] pB2);
 
-            Vector3 uA = V(Add(Scale(pA2, 1 / mA2), tA));
-            Vector3 uB = V(Add(Scale(pB2, 1 / mB2), tB));
-
-            if (collisionHeatToRestMass)
-            {
-                mass = (float)mA2;
-                other.mass = (float)mB2;
-            }
+            Vector3 uA = V(Add(Scale(pA2, 1 / mA), tA));
+            Vector3 uB = V(Add(Scale(pB2, 1 / mB), tB));
 
             myRigidbody.linearVelocity = uA;
             other.myRigidbody.linearVelocity = uB;
