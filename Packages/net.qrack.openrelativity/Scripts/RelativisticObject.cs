@@ -205,7 +205,7 @@ namespace OpenRelativity
         public bool relativisticCollisions = true;
         // In an inelastic relativistic collision the dissipated kinetic energy becomes internal energy, i.e. rest
         // mass; momentum is only conserved if rest mass absorbs it. Off: rest mass fixed (energy simply lost).
-        public bool collisionHeatToRestMass = false;
+        public bool collisionHeatToRestMass = true;
         private float lastFixedUpdateDeltaTime;
 
         public float baryonCount { get; set; }
