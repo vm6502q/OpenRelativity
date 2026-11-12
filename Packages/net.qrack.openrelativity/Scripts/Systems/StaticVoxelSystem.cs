@@ -360,7 +360,7 @@ namespace OpenRelativity
                 return;
             }
 
-            RelativisticObject[] ros = FindObjectsByType<RelativisticObject>(FindObjectsSortMode.None);
+            RelativisticObject[] ros = FindObjectsByType<RelativisticObject>();
             List<Vector3> rosPiw = new List<Vector3>();
             for (int i = 0; i < ros.Length; ++i)
             {

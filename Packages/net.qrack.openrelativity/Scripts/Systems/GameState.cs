@@ -12,7 +12,7 @@ namespace OpenRelativity
         #region Static Variables
         // We want a "System" (in Entity-Component-Systems) to be unique.
         private static GameState _instance;
-        public static GameState Instance { get { return _instance ? _instance : FindFirstObjectByType<GameState>(); } }
+        public static GameState Instance { get { return _instance ? _instance : FindObjectsByType<GameState>()[0]; } }
         #endregion
 
         #region Member Variables
