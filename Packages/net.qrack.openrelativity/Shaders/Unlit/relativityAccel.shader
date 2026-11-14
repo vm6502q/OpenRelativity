@@ -14,11 +14,9 @@ Shader "Relativity/Unlit/ColorLorentz"
 		[HideInInspector] _lastUpdateSeconds("_lastUpdateSeconds", Range(0, 2500000)) = 0
 	}
 
-		CGINCLUDE
+		HLSLINCLUDE
 
-#pragma exclude_renderers xbox360
-#pragma glsl
-#include "UnityCG.cginc"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
 #define M_PI 3.14159265358979323846f
 
@@ -57,24 +55,38 @@ Shader "Relativity/Unlit/ColorLorentz"
 #define UV_START 0
 
 //Prevent NaN and Inf
+#ifndef FLT_EPSILON
 #define FLT_EPSILON 1.192092896e-07F
+#endif
+
+		//This is the data sent from the application to the vertex shader
+		struct appdata
+		{
+			float4 vertex : POSITION;
+			float2 texcoord : TEXCOORD0;
+			UNITY_VERTEX_INPUT_INSTANCE_ID
+		};
 
 
 		//This is the data sent from the vertex shader to the fragment shader
 		struct v2f
 		{
-			float4 pos : POSITION; //internal, used for display
+			float4 pos : SV_POSITION; //internal, used for display
 			float4 pos2 : TEXCOORD0; //Position in world, relative to player position in world
 			float2 uv1 : TEXCOORD1; //Used to specify what part of the texture to grab in the fragment shader(not relativity specific, general shader variable)
 			float svc : TEXCOORD2; //sqrt( 1 - (v-c)^2), calculated in vertex shader to save operations in fragment. It's a term used often in lorenz and doppler shift calculations, so we need to keep it cached to save computing
+			UNITY_VERTEX_OUTPUT_STEREO
 		};
 
 		//Variables that we use to access texture data
-		sampler2D _MainTex;
+		TEXTURE2D(_MainTex);
+		SAMPLER(sampler_MainTex);
 		uniform float4 _MainTex_ST;
-		sampler2D _IRTex;
+		TEXTURE2D(_IRTex);
+		SAMPLER(sampler_IRTex);
 		uniform float4 _IRTex_ST;
-		sampler2D _UVTex;
+		TEXTURE2D(_UVTex);
+		SAMPLER(sampler_UVTex);
 		uniform float4 _UVTex_ST;
 
 		float _dopplerIntensity;
@@ -88,34 +100,31 @@ Shader "Relativity/Unlit/ColorLorentz"
 		float4x4 _invViwLorentzMatrix;
 		float4x4 _invIntrinsicMetric;
 
-		float4 _viw = float4(0, 0, 0, 0); //velocity of object in synchronous coordinates
-		float4 _pao = float4(0, 0, 0, 0); //acceleration of object in world coordinates
-		float4 _aviw = float4(0, 0, 0, 0); //scaled angular velocity
-		float4 _vpc = float4(0, 0, 0, 0); //velocity of player
-		float4 _pap = float4(0, 0, 0, 0); //acceleration of player
-		float4 _avp = float4(0, 0, 0, 0); //angular velocity of player
-		float4 _playerOffset = float4(0, 0, 0, 0); //player position in world
+		float4 _viw; //velocity of object in synchronous coordinates
+		float4 _pao; //acceleration of object in world coordinates
+		float4 _aviw; //scaled angular velocity
+		float4 _vpc; //velocity of player
+		float4 _pap; //acceleration of player
+		float4 _avp; //angular velocity of player
+		float4 _playerOffset; //player position in world
 		float4 _vr;
-		float _spdOfLight = 100; //current speed of ligh;
+		float _spdOfLight; //current speed of ligh;
 
-		float xyr = 1; // xy ratio
-		float xs = 1; // x scale
+		float xyr; // xy ratio
+		float xs; // x scale
 
 		uniform float4 _MainTex_TexelSize;
 
 		//Per vertex operations
-		v2f vert(appdata_img v)
+		v2f vert(appdata v)
 		{
 			v2f o;
+			UNITY_SETUP_INSTANCE_ID(v);
+			UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-			o.uv1.xy = (v.texcoord + _MainTex_ST.zw) * _MainTex_ST.xy; //get the UV coordinate for the current vertex, will be passed to fragment shader
-			//You need this otherwise the screen flips and weird stuff happens
-#ifdef SHADER_API_D3D9
-			if (_MainTex_TexelSize.y < 0)
-				o.uv1.y = 1 - o.uv1.y;
-#endif 
+			o.uv1.xy = (v.texcoord.xy + _MainTex_ST.zw) * _MainTex_ST.xy; //get the UV coordinate for the current vertex, will be passed to fragment shader
 
-			float4 tempPos = mul(unity_ObjectToWorld, float4(v.vertex.xyz, 1));
+			float4 tempPos = mul(GetObjectToWorldMatrix(), float4(v.vertex.xyz, 1));
 			o.pos = float4(tempPos.xyz / tempPos.w - _playerOffset.xyz, 0);
 
 			float speedSqr = dot(_vpc.xyz, _vpc.xyz);
@@ -199,12 +208,12 @@ Shader "Relativity/Unlit/ColorLorentz"
 			riw += float4(_playerOffset.xyz, 0);
 
 			//Transform the vertex back into local space for the mesh to use
-			tempPos = mul(unity_WorldToObject, float4(riw.xyz, 1));
+			tempPos = mul(GetWorldToObjectMatrix(), float4(riw.xyz, 1));
 			o.pos = float4(tempPos.xyz / tempPos.w, 0);
 
 			o.pos2 = float4(riw.xyz - _playerOffset.xyz, 0);
 
-			o.pos = UnityObjectToClipPos(o.pos);
+			o.pos = TransformObjectToHClip(o.pos.xyz);
 
 			return o;
 		}
@@ -363,13 +372,13 @@ Shader "Relativity/Unlit/ColorLorentz"
 		}
 
 		//Per pixel shader, does color modifications
-		float4 frag(v2f i) : COLOR
+		float4 frag(v2f i) : SV_Target
 		{
 			float shift = 1;
 #if DOPPLER_SHIFT
 			// ( 1 - (v/c)cos(theta) ) / sqrt ( 1 - (v/c)^2 )
 			if ((i.svc.x > FLT_EPSILON) && (dot(_vr.xyz, _vr.xyz) > FLT_EPSILON)) {
-				shift = (1 - dot(normalize(i.pos2), _vr.xyz)) / i.svc.x;
+				shift = (1 - dot(normalize(i.pos2.xyz), _vr.xyz)) / i.svc.x;
 			}
 #endif
 
@@ -384,10 +393,10 @@ Shader "Relativity/Unlit/ColorLorentz"
 			// Light directly from a light bulb, or flame, or LED, would not receive this Doppler factor squaring.
 
 			//Get initial color 
-			float4 data = tex2D(_MainTex, i.uv1);
+			float4 data = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv1);
 #if UV_IR_TEXTURES
-			float UV = tex2D(_UVTex, i.uv1).r;
-			float IR = tex2D(_IRTex, i.uv1).r;
+			float UV = SAMPLE_TEXTURE2D(_UVTex, sampler_UVTex, i.uv1).r;
+			float IR = SAMPLE_TEXTURE2D(_IRTex, sampler_IRTex, i.uv1).r;
 
 			return float4(DopplerShift(data.rgb, UV, IR, shift), data.a);
 #else
@@ -395,23 +404,24 @@ Shader "Relativity/Unlit/ColorLorentz"
 #endif
 		}
 
-			ENDCG
+			ENDHLSL
 
 			Subshader {
 
-				Tags{ "RenderType" = "Transparent" "Queue" = "Transparent" }
+				Tags{ "RenderType" = "Transparent" "Queue" = "Transparent" "RenderPipeline" = "UniversalPipeline" }
 
 				Pass{
+					Name "Unlit"
+					Tags{ "LightMode" = "SRPDefaultUnlit" }
+
 					//Shader properties, for things such as transparency
-					Fog { Mode off } //Fog does not shift properly and there is no way to do so with this fog
+					//(Fog does not shift properly, so this pass ignores scene fog.)
 					ZWrite On
 					ZTest LEqual
-					AlphaTest Greater[_Cutoff]
 					Blend SrcAlpha OneMinusSrcAlpha
 
-					CGPROGRAM
+					HLSLPROGRAM
 
-					#pragma fragmentoption ARB_precision_hint_nicest
 
 					#pragma shader_feature DOPPLER_SHIFT
 					#pragma shader_feature UV_IR_TEXTURES
@@ -419,15 +429,15 @@ Shader "Relativity/Unlit/ColorLorentz"
 
 					#pragma vertex vert
 					#pragma fragment frag
-					#pragma target 3.0
+					#pragma target 3.5
 
-					ENDCG
+					ENDHLSL
 				}
 			}
 
 		CustomEditor "AcceleratedRelativityGUI"
 
-		Fallback "Unlit/Transparent"
+		Fallback Off
 
 } // shader
 

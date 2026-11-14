@@ -19,9 +19,11 @@
 		_cameraScale("Camera Scale", float) = 1
 	}
 
-	CGINCLUDE
-#pragma exclude_renderers xbox360
-#pragma glsl
+	HLSLINCLUDE
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+// (Full-screen passes in the Universal Render Pipeline draw a single triangle, with the source image bound as "_BlitTexture".
+// "Blit.hlsl" supplies both that texture and the matching "Vert" vertex shader, in place of "Graphics.Blit()" and "_MainTex".)
+#include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
 
 #define PI_2 1.57079632679489661923
 
@@ -42,8 +44,8 @@
 #define zb 448.45126344558236
 #define zc 22.357297606503543
 
-	sampler2D _MainTex;
-	sampler2D _lensTex;
+	TEXTURE2D(_lensTex);
+	SAMPLER(sampler_lensTex);
 	float _playerDist, _playerAngle, _lensRadius;
 	float _lensSpinFrac, _lensSpinColat, _lensSpinTilt;
 	float _lensUPos, _lensVPos;
@@ -51,23 +53,6 @@
 	float _isMirror;
 	float _hasEventHorizon;
 	float _cameraScale;
-
-	struct VertexData {
-		float4 vertex : POSITION;
-		float2 uv : TEXCOORD0;
-	};
-
-	struct Interpolators {
-		float4 pos : SV_POSITION;
-		float2 uv : TEXCOORD0;
-	};
-
-	Interpolators vert(VertexData v) {
-		Interpolators i;
-		i.pos = UnityObjectToClipPos(v.vertex);
-		i.uv = v.uv;
-		return i;
-	}
 
 	//Color functions, there's no check for division by 0 which may cause issues on
 	//some graphics cards.
@@ -178,12 +163,14 @@
 
 	};
 
-	float4 frag(Interpolators i) : SV_Target{
+	float4 frag(Varyings i) : SV_Target{
+		UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+
 		float3 sourceColor = float3(0, 0, 0);
 
 		float2 lensUVPos = float2(_lensUPos, _lensVPos);
 		float2 frustumSize = float2(_frustumWidth, _frustumHeight);
-		float2 lensPlaneCoords = (i.uv - lensUVPos) * frustumSize;
+		float2 lensPlaneCoords = (i.texcoord - lensUVPos) * frustumSize;
 		float r = length(lensPlaneCoords);
 
 		// Minimum impact paramater should be the Schwarzschild radius. Anything less would be trapped.
@@ -212,15 +199,15 @@
 				float sinSpin = sin(spinAngle);
 				lensPlaneCoords = float2(cosSpin * lensPlaneCoords.x - sinSpin * lensPlaneCoords.y, sinSpin * lensPlaneCoords.x + cosSpin * lensPlaneCoords.y);
 				float2 uvProj = lensPlaneCoords / frustumSize;
-				float scale = length(i.uv - lensUVPos) / length(uvProj);
+				float scale = length(i.texcoord - lensUVPos) / length(uvProj);
 				uvProj = (uvProj + lensUVPos);
 				uvProj = (uvProj - float2(0.5f, 0.5f)) * _cameraScale + float2(0.5f, 0.5f);
 				uvProj *= scale;
 				float4 s = float4(uvProj, 0, scale);
-				sourceColor = tex2Dproj(_MainTex, UNITY_PROJ_COORD(s)).rgb;
+				sourceColor = SAMPLE_TEXTURE2D_X(_BlitTexture, sampler_LinearClamp, s.xy / s.w).rgb;
 			}
 			else if (_isMirror >= 0.5f) {
-				sourceColor = tex2D(_lensTex, i.uv).rgb;
+				sourceColor = SAMPLE_TEXTURE2D(_lensTex, sampler_lensTex, i.texcoord).rgb;
 			}
 		}
 
@@ -247,23 +234,23 @@
 		return float4(sourceColor, 1);
 	}
 
-	ENDCG
+	ENDHLSL
 
 	Subshader {
+		Tags { "RenderPipeline" = "UniversalPipeline" }
+
 		Pass{
-			Cull Off ZWrite On
-			Fog { Mode off }
-			Blend SrcAlpha OneMinusSrcAlpha
+			Name "Schwarzschild Lens"
 
-			CGPROGRAM
+			Cull Off ZWrite Off ZTest Always
 
-			#pragma fragmentoption ARB_precision_hint_nicest
+			HLSLPROGRAM
 
-			#pragma vertex vert
+			#pragma vertex Vert
 			#pragma fragment frag
-			#pragma target 3.0
+			#pragma target 3.5
 
-			ENDCG
+			ENDHLSL
 		}
 	}
 }

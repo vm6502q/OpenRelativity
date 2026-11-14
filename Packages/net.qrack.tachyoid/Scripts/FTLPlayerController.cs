@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Google.XR.Cardboard;
 using System.Collections;
 using System.Collections.Generic;
 using OpenRelativity;
@@ -206,7 +205,8 @@ namespace Tachyoid
                 }
             }
 
-            bool isPressed = allowInput && (Input.GetMouseButton(0) || Api.IsTriggerPressed);
+            // (The left mouse button, or a touch on the screen, which is also the Cardboard viewer's trigger)
+            bool isPressed = allowInput && RelativityInput.IsPointerPressed;
             bool isTriggered = isPressed && !wasPressed && Time.time > (wasPressedTime + cardboardTriggerCooldown);
             bool isDoubleTriggered = isTriggered && clickTimer > cardboardTriggerCooldown && clickTimer < doubleClickInterval;
             clickTimer = isTriggered ? 0f : clickTimer + Time.deltaTime;
@@ -452,17 +452,17 @@ namespace Tachyoid
                     //Take the position changes and translate them into an amount of rotation
                     if (!timeTravelInitiated)
                     {
-                        if (Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.Z))
+                        if (RelativityInput.IsKeyPressed(UnityEngine.InputSystem.Key.X) || RelativityInput.IsKeyPressed(UnityEngine.InputSystem.Key.Z))
                         {
                             float viewRotX = 0;
                             float viewRotY = 0;
-                            if (Input.GetKey(KeyCode.X))
+                            if (RelativityInput.IsKeyPressed(UnityEngine.InputSystem.Key.X))
                             {
-                                viewRotX = Input.GetAxis("Mouse X") * Time.deltaTime * mouseSensitivity;
+                                viewRotX = RelativityInput.LookX * Time.deltaTime * mouseSensitivity;
                             }
-                            if (Input.GetKey(KeyCode.Z))
+                            if (RelativityInput.IsKeyPressed(UnityEngine.InputSystem.Key.Z))
                             {
-                                viewRotY = -Input.GetAxis("Mouse Y") * Time.deltaTime * mouseSensitivity;
+                                viewRotY = -RelativityInput.LookY * Time.deltaTime * mouseSensitivity;
                             }
 
                             camTransform.Rotate(new Vector3(viewRotY, viewRotX, 0), Space.Self);
@@ -657,7 +657,7 @@ namespace Tachyoid
             }
 
             float carriedLimit = timeTravelPosDif.magnitude;
-            ParadoxSphere[] paradoxSpheres = FindObjectsByType<ParadoxSphere>(FindObjectsSortMode.None);
+            ParadoxSphere[] paradoxSpheres = FindObjectsByType<ParadoxSphere>();
             float a, b, c, d, t1, t2, loopCount, r;
             bool legalTestPoint;
             Vector3 testPoint;

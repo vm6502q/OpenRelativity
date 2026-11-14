@@ -36,6 +36,8 @@ Alternatively, to use the work in this project as isolated Unity packages in a n
 }
 ```
 
+`net.qrack.openrelativity` depends on Unity's Universal Render Pipeline and Input System packages, (which the Package Manager adds for you). Its shaders are written for the Universal Render Pipeline, so your project needs a Universal Render Pipeline asset assigned under **Project Settings > Graphics**, with "Additional Lights" set to "Per Pixel" for point lights to reach the lit relativity shader, and "Active Input Handling" under **Project Settings > Player** set to the Input System package. (This repository's `Assets/Settings` folder has a working example.)
+
 `net.qrack.qrack` and `net.qrack.tachyoid` depend on `net.qrack.openrelativity`. (`net.qrack.tarot` is fully stand-alone.) `net.qrack.tachyoid` also depends on `com.google.xr.cardboard`, for a Google Cardboard VR player controller that could be replaced by custom user code. However, `net.qrack.qrack` was designed specifically for dual use as a stand-alone project or with `net.qrack.openrelativity`: see its README for details on the minor modifications that need to be made to that package to let it work without `net.qrack.openrelativity`.
 
 ### Prerequisities
@@ -116,7 +118,7 @@ This shader implements relativistic Doppler shift on the skybox, because the Lor
 These are shaders similar to the skybox shader. They approximate a black hole's bending of light, for objects far behind the black hole from the player's perspective. They do not work for objects nearby the player, and they assume that the black hole is far enough away from the player and/or small enough to be approximated as point-like. They **must** project the black hole position at Unity world coordinates origin, only, since moving the coordinate origin is very difficult in mathematical relativistic descriptions of black holes.
 
 ## Controller Support
-OpenRelativity has two separate InputManager.asset files that should be switched out depending on your target platform. The standard one (that is already in the project) is designed to work on Windows with an Xbox 360 controller. The file labeled InputManager - OSXPS3 is built to use a PS3 controller on OSX platforms. Simply rename the file "InputManager.asset" and replace the existing InputManager.asset file in the Project Settings folder to change which configuration you use. Again, these configurations are for both separate platforms and separate controllers.
+OpenRelativity reads the keyboard, mouse, and any gamepad through Unity's [Input System package](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest), (via the small static `RelativityInput` class,) so one control scheme covers every platform and controller that the Input System supports. (The project no longer uses the legacy Input Manager, or per-platform `InputManager.asset` files.)
 
 The controls are as follows:
 

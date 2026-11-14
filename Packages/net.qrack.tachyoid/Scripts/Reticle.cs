@@ -28,7 +28,8 @@ namespace Tachyoid
 
         public void ShowYes(Vector3 globalPos, Vector3 forward)
         {
-            myMaterial.SetTexture("_MainTex", yesTexture);
+            // (The main texture property is "_BaseMap" on Universal Render Pipeline shaders, rather than "_MainTex".)
+            myMaterial.mainTexture = yesTexture;
             transform.position = globalPos;
             transform.forward = forward;
             myRenderer.enabled = true;
@@ -37,7 +38,7 @@ namespace Tachyoid
 
         public void ShowNo(Vector3 globalPos, Vector3 forward)
         {
-            myMaterial.SetTexture("_MainTex", noTexture);
+            myMaterial.mainTexture = noTexture;
             transform.position = globalPos;
             transform.forward = forward;
             myRenderer.enabled = true;

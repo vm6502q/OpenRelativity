@@ -128,7 +128,7 @@ namespace Tachyoid {
 
         public void ReverseTime()
         {
-            FTLPlayerController playerCtrl = FindFirstObjectByType<FTLPlayerController>();
+            FTLPlayerController playerCtrl = FindAnyObjectByType<FTLPlayerController>();
             if (playerCtrl.pvsInstanceID.HasValue && (playerCtrl.pvsInstanceID.Value == gameObject.GetEntityId()))
             {
                 isInRoom1 = !isInRoom1;

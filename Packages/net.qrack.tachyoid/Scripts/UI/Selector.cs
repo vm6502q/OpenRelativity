@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Google.XR.Cardboard;
+using OpenRelativity;
 using Tachyoid;
 
 namespace Tachyoid
@@ -58,7 +58,8 @@ namespace Tachyoid
 
             if (inputTimer <= 0.0)
             {
-                bool isPressed = (Input.GetMouseButton(0) || Api.IsTriggerPressed);
+                // (The left mouse button, or a touch on the screen, which is also the Cardboard viewer's trigger)
+                bool isPressed = RelativityInput.IsPointerPressed;
 
                 if (isPressed && !playerCtrl.isMenuUIOn)
                 {

@@ -6,7 +6,10 @@
   "unity": "6000.0",
   "documentationUrl": "https://github.com/vm6502q/OpenRelativity",
   "licensesUrl": "https://github.com/vm6502q/OpenRelativity/blob/main/MITLicense.md",
-  "dependencies": {},
+  "dependencies": {
+    "com.unity.inputsystem": "1.20.0",
+    "com.unity.render-pipelines.universal": "17.6.0"
+  },
   "keywords": [
     "physics",
     "relativity",

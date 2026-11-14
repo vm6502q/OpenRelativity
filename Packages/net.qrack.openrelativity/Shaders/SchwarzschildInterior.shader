@@ -7,9 +7,11 @@
 		_lensRadius("Lens Schwarzschild Radius", float) = 0
 	}
 
-	CGINCLUDE
-#pragma exclude_renderers xbox360
-#pragma glsl
+	HLSLINCLUDE
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+// (Full-screen passes in the Universal Render Pipeline draw a single triangle, with the source image bound as "_BlitTexture".
+// "Blit.hlsl" supplies both that texture and the matching "Vert" vertex shader, in place of "Graphics.Blit()" and "_MainTex".)
+#include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
 
 #define PI_2 1.57079632679489661923
 
@@ -30,26 +32,8 @@
 #define zb 448.45126344558236
 #define zc 22.357297606503543
 
-	sampler2D _MainTex;
 	float _playerDist;
 	float _lensRadius;
-
-	struct VertexData {
-		float4 vertex : POSITION;
-		float2 uv : TEXCOORD0;
-	};
-
-	struct Interpolators {
-		float4 pos : SV_POSITION;
-		float2 uv : TEXCOORD0;
-	};
-
-	Interpolators vert(VertexData v) {
-		Interpolators i;
-		i.pos = UnityObjectToClipPos(v.vertex);
-		i.uv = v.uv;
-		return i;
-	}
 
 	//Color functions, there's no check for division by 0 which may cause issues on
 		//some graphics cards.
@@ -160,8 +144,10 @@
 
 	};
 
-	float4 frag(Interpolators i) : SV_Target{
-		float3 sourceColor = tex2D(_MainTex, i.uv).rgb;
+	float4 frag(Varyings i) : SV_Target{
+		UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+
+		float3 sourceColor = SAMPLE_TEXTURE2D_X(_BlitTexture, sampler_LinearClamp, i.texcoord).rgb;
 		float shift = 1 / sqrt(_lensRadius / _playerDist - 1);
 
 		//Color shift due to doppler, go from RGB -> XYZ, shift, then back to RGB.
@@ -185,23 +171,23 @@
 		return float4(sourceColor, 1);
 	}
 
-	ENDCG
+	ENDHLSL
 
 	Subshader {
+		Tags { "RenderPipeline" = "UniversalPipeline" }
+
 		Pass{
-			Cull Off ZWrite On
-			Fog { Mode off }
-			Blend SrcAlpha OneMinusSrcAlpha
+			Name "Schwarzschild Interior"
 
-			CGPROGRAM
+			Cull Off ZWrite Off ZTest Always
 
-			#pragma fragmentoption ARB_precision_hint_nicest
+			HLSLPROGRAM
 
-			#pragma vertex vert
+			#pragma vertex Vert
 			#pragma fragment frag
-			#pragma target 3.0
+			#pragma target 3.5
 
-			ENDCG
+			ENDHLSL
 		}
 	}
 }

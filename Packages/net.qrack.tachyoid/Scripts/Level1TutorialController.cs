@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using Google.XR.Cardboard;
 using System.Collections;
 
 namespace Tachyoid
@@ -26,7 +25,8 @@ namespace Tachyoid
             yield return FadeTextToFullAlpha(1.0f, text);
 
             timer = 0.0f;
-            while (timer < minTime || !(Input.GetMouseButton(0) || Api.IsTriggerPressed))
+            // (The left mouse button, or a touch on the screen, which is also the Cardboard viewer's trigger)
+            while (timer < minTime || !OpenRelativity.RelativityInput.IsPointerPressed)
             {
                 timer += Time.deltaTime;
                 yield return null;

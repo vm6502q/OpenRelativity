@@ -1,25 +1,16 @@
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
 Shader "Colors/Desaturate" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "" {}
 	}
 	
-	CGINCLUDE
-// Upgrade NOTE: excluded shader from DX11 and Xbox360; has structs without semantics (struct v2f members uv1)
-#pragma exclude_renderers d3d11 xbox360
+	HLSLINCLUDE
 		
-	#include "UnityCG.cginc"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+// (Full-screen passes in the Universal Render Pipeline draw a single triangle, with the source image bound as "_BlitTexture".
+// "Blit.hlsl" supplies both that texture and the matching "Vert" vertex shader, in place of "Graphics.Blit()" and "_MainTex".)
+#include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
 	
-	struct v2f {
-		float4 pos : POSITION;
-		float2 uv1 : TEXCOORD0;
-	};
-		
-	sampler2D _MainTex;
-	sampler2D _CameraDepthTexture;	 
-	uniform float4 _MainTex_TexelSize;
-	uniform float4 _CameraDepthTexture_ST;
 
 	float3 hsv_to_rgb(float3 HSV)
 	{
@@ -43,19 +34,19 @@ Shader "Colors/Desaturate" {
 
 	float3 rgb_to_hsv( float3 rgb )
 	{
-		float min, max, delta;
+		float minC, maxC, delta;
 		float3 hsv;
 
-	    min = rgb.x <= rgb.y ? rgb.x  : rgb.y;
-		min = min <= rgb.z ? min : rgb.z;
-		max = rgb.x >= rgb.y ? rgb.x : rgb.y;
-		max = max >= rgb.z ? max : rgb.z;
+	    minC = rgb.x <= rgb.y ? rgb.x  : rgb.y;
+		minC = minC <= rgb.z ? minC : rgb.z;
+		maxC = rgb.x >= rgb.y ? rgb.x : rgb.y;
+		maxC = maxC >= rgb.z ? maxC : rgb.z;
 
-		hsv.z = max; 
-		delta = max - min;
-		if( max != 0 )
+		hsv.z = maxC; 
+		delta = maxC - minC;
+		if( maxC != 0 )
 		{
-			hsv.y = delta / max;
+			hsv.y = delta / maxC;
 		}
 		else 
 		{
@@ -64,9 +55,9 @@ Shader "Colors/Desaturate" {
 			hsv.x = 0;
 			return hsv;
 		}
-		if( rgb.x == max )
+		if( rgb.x == maxC )
 			hsv.x = ( rgb.y - rgb.z ) / delta;		// between yellow & magenta
-		else if( rgb.y == max )
+		else if( rgb.y == maxC )
 			hsv.x = 2 + ( rgb.z - rgb.x ) / delta;	// between cyan & yellow
 		else
 			hsv.x = 4 + ( rgb.x - rgb.y ) / delta;	// between magenta & cyan
@@ -76,27 +67,13 @@ Shader "Colors/Desaturate" {
 		return hsv;
 	}
 		
-	//For the screen, this function is called a total of 4 times, as the screen renders to a square of 4 verticies.
-	v2f vert( appdata_img v ) {
-		v2f o;
-		
-		o.pos = UnityObjectToClipPos(v.vertex);
-		o.uv1.xy = v.texcoord;
-		
-		//You need this otherwise the screen flips and weird stuff happens
-		#ifdef SHADER_API_D3D9
-		if (_MainTex_TexelSize.y < 0)
-			 o.uv1.y =  o.uv1.y;
-		#endif
-		
-		return o;
-	}
-	
 	//Per pixel or something like that
-	float4 frag(v2f i) : COLOR 
+	float4 frag(Varyings i) : SV_Target 
 	{	
+		UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+
 		//Grab initial color
-		half4 color = (half4)tex2D(_MainTex, i.uv1).rgba;
+		half4 color = (half4)SAMPLE_TEXTURE2D_X(_BlitTexture, sampler_LinearClamp, i.texcoord).rgba;
 
 		float3 hsv = rgb_to_hsv(float3(color.x,color.y,color.z));
 		hsv.y *= 0.5f;
@@ -105,23 +82,25 @@ Shader "Colors/Desaturate" {
 		return float4(rgb.x,rgb.y,rgb.z,0);
 	}
 
-	ENDCG
+	ENDHLSL
 	
 Subshader {
+
+ Tags { "RenderPipeline" = "UniversalPipeline" }
 	
  Pass {
-	  ZTest Always Cull Off ZWrite Off
-	  Fog { Mode off }      
+	  Name "Desaturate"
 
-      CGPROGRAM
+	  ZTest Always Cull Off ZWrite Off
+
+      HLSLPROGRAM
       
-      #pragma fragmentoption ARB_precision_hint_fastest   
       
-      #pragma vertex vert
+      #pragma vertex Vert
       #pragma fragment frag
-	  #pragma target 3.0
+	  #pragma target 3.5
       
-      ENDCG
+      ENDHLSL
   }
 }
 

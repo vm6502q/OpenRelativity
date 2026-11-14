@@ -14,7 +14,7 @@ namespace Tachyoid
         // Use this for initialization
         protected void Start()
         {
-            state = FindFirstObjectByType<GameState>();
+            state = FindAnyObjectByType<GameState>();
             playerTransform = state.playerTransform;
             resetRadius = GetComponent<SphereCollider>().radius * transform.lossyScale.x;
         }

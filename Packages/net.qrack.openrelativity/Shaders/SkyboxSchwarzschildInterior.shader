@@ -13,11 +13,17 @@
         _lensRadius("Lens Schwarzschild Radius", float) = 1.0
     }
 
-    CGINCLUDE
-#pragma exclude_renderers xbox360
-#pragma glsl
+    HLSLINCLUDE
 
-#include "UnityCG.cginc"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/EntityLighting.hlsl"
+
+// (This is the built-in pipeline's "unity_ColorSpaceDouble".)
+#ifdef UNITY_COLORSPACE_GAMMA
+#define COLOR_SPACE_DOUBLE half3(2.0, 2.0, 2.0)
+#else
+#define COLOR_SPACE_DOUBLE half3(4.59479380, 4.59479380, 4.59479380)
+#endif
 
 #define PI_2 1.57079632679489661923
 
@@ -52,23 +58,6 @@
         float _Rotation;
         float _playerDist;
         float _lensRadius;
-
-        struct VertexData {
-            float4 vertex : POSITION;
-            float2 uv : TEXCOORD0;
-        };
-
-        struct Interpolators {
-            float4 pos : SV_POSITION;
-            float2 uv : TEXCOORD0;
-        };
-
-        Interpolators vert(VertexData v) {
-            Interpolators i;
-            i.pos = UnityObjectToClipPos(v.vertex);
-            i.uv = v.uv;
-            return i;
-        }
 
         //Color functions, there's no check for division by 0 which may cause issues on
             //some graphics cards.
@@ -181,7 +170,7 @@
 
         float3 RotateAroundYInDegrees(float3 vertex, float degrees)
         {
-            float alpha = degrees * UNITY_PI / 180.0;
+            float alpha = degrees * PI / 180.0;
             float sina, cosa;
             sincos(alpha, sina, cosa);
             float2x2 m = float2x2(cosa, -sina, sina, cosa);
@@ -203,8 +192,8 @@
             v2f o;
             UNITY_SETUP_INSTANCE_ID(v);
             UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-            float3 rotated = RotateAroundYInDegrees(v.vertex, _Rotation);
-            o.vertex = UnityObjectToClipPos(rotated);
+            float3 rotated = RotateAroundYInDegrees(v.vertex.xyz, _Rotation);
+            o.vertex = TransformObjectToHClip(rotated);
             o.texcoord = v.texcoord;
             return o;
         }
@@ -259,10 +248,10 @@
 			return constrainRGB(XYZToRGBC(pow(1 / shift, 5) * xyz));
 		}
 
-        float4 skybox_frag(v2f i, sampler2D smp, half4 smpDecode) {
-            half4 tex = tex2D(smp, i.texcoord);
-            half3 c = DecodeHDR(tex, smpDecode);
-            c = c * _Tint.rgb * unity_ColorSpaceDouble.rgb;
+        float4 skybox_frag(v2f i, TEXTURE2D_PARAM(tex2d, smp), half4 smpDecode) {
+            half4 tex = SAMPLE_TEXTURE2D(tex2d, smp, i.texcoord);
+            half3 c = DecodeHDREnvironment(tex, smpDecode);
+            c = c * _Tint.rgb * COLOR_SPACE_DOUBLE;
             c *= _Exposure;
 
             float shift = 1 / sqrt(_lensRadius / _playerDist - 1);
@@ -270,71 +259,77 @@
             return float4(DopplerShift(c, bFac * c.b, rFac * c.r, shift), tex.w);
         }
 
-        ENDCG
+        ENDHLSL
 
         Subshader {
             Tags{ "Queue" = "Background" "RenderType" = "Background" "PreviewType" = "Skybox" }
             Cull Off ZWrite Off
             
             Pass {
-                CGPROGRAM
+                HLSLPROGRAM
                 #pragma vertex vert
                 #pragma fragment frag
-                #pragma target 3.0
-                sampler2D _FrontTex;
+                #pragma target 3.5
+                TEXTURE2D(_FrontTex);
+                SAMPLER(sampler_FrontTex);
                 half4 _FrontTex_HDR;
-                half4 frag(v2f i) : SV_Target { return skybox_frag(i,_FrontTex, _FrontTex_HDR); }
-                ENDCG
+                half4 frag(v2f i) : SV_Target { return skybox_frag(i, TEXTURE2D_ARGS(_FrontTex, sampler_FrontTex), _FrontTex_HDR); }
+                ENDHLSL
             }
             Pass{
-                CGPROGRAM
+                HLSLPROGRAM
                 #pragma vertex vert
                 #pragma fragment frag
-                #pragma target 3.0
-                sampler2D _BackTex;
+                #pragma target 3.5
+                TEXTURE2D(_BackTex);
+                SAMPLER(sampler_BackTex);
                 half4 _BackTex_HDR;
-                half4 frag(v2f i) : SV_Target { return skybox_frag(i,_BackTex, _BackTex_HDR); }
-                ENDCG
+                half4 frag(v2f i) : SV_Target { return skybox_frag(i, TEXTURE2D_ARGS(_BackTex, sampler_BackTex), _BackTex_HDR); }
+                ENDHLSL
             }
             Pass{
-                CGPROGRAM
+                HLSLPROGRAM
                 #pragma vertex vert
                 #pragma fragment frag
-                #pragma target 3.0
-                sampler2D _LeftTex;
+                #pragma target 3.5
+                TEXTURE2D(_LeftTex);
+                SAMPLER(sampler_LeftTex);
                 half4 _LeftTex_HDR;
-                half4 frag(v2f i) : SV_Target { return skybox_frag(i,_LeftTex, _LeftTex_HDR); }
-                ENDCG
+                half4 frag(v2f i) : SV_Target { return skybox_frag(i, TEXTURE2D_ARGS(_LeftTex, sampler_LeftTex), _LeftTex_HDR); }
+                ENDHLSL
             }
             Pass{
-                CGPROGRAM
+                HLSLPROGRAM
                 #pragma vertex vert
                 #pragma fragment frag
-                #pragma target 3.0
-                sampler2D _RightTex;
+                #pragma target 3.5
+                TEXTURE2D(_RightTex);
+                SAMPLER(sampler_RightTex);
                 half4 _RightTex_HDR;
-                half4 frag(v2f i) : SV_Target { return skybox_frag(i,_RightTex, _RightTex_HDR); }
-                ENDCG
+                half4 frag(v2f i) : SV_Target { return skybox_frag(i, TEXTURE2D_ARGS(_RightTex, sampler_RightTex), _RightTex_HDR); }
+                ENDHLSL
             }
             Pass{
-                CGPROGRAM
+                HLSLPROGRAM
                 #pragma vertex vert
                 #pragma fragment frag
-                #pragma target 3.0
-                sampler2D _UpTex;
+                #pragma target 3.5
+                TEXTURE2D(_UpTex);
+                SAMPLER(sampler_UpTex);
                 half4 _UpTex_HDR;
-                half4 frag(v2f i) : SV_Target { return skybox_frag(i,_UpTex, _UpTex_HDR); }
-                ENDCG
+                half4 frag(v2f i) : SV_Target { return skybox_frag(i, TEXTURE2D_ARGS(_UpTex, sampler_UpTex), _UpTex_HDR); }
+                ENDHLSL
             }
             Pass{
-                CGPROGRAM
+                HLSLPROGRAM
                 #pragma vertex vert
                 #pragma fragment frag
-                #pragma target 3.0
-                sampler2D _DownTex;
+                #pragma target 3.5
+                TEXTURE2D(_DownTex);
+                SAMPLER(sampler_DownTex);
                 half4 _DownTex_HDR;
-                half4 frag(v2f i) : SV_Target { return skybox_frag(i,_DownTex, _DownTex_HDR); }
-                ENDCG
+                half4 frag(v2f i) : SV_Target { return skybox_frag(i, TEXTURE2D_ARGS(_DownTex, sampler_DownTex), _DownTex_HDR); }
+                ENDHLSL
             }
         }
 }

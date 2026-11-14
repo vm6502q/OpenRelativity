@@ -8,18 +8,18 @@ Kernel version:          7.0.0-43-generic
 Architecture:            x86_64
 Window Protocol:         Wayland (XWayland)
 Available memory:        62697 MB
-Date:                    2026-11-11T23:42:58Z
+Date:                    2026-11-14T14:45:52Z
 [Licensing::Module] Trying to connect to existing licensing client channel...
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu" at "2026-11-11T23:42:58.738898Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu" at "2026-11-14T14:45:52.751376Z"
 [SignatureVerifier] Application signature verification not supported on this platform.
 [Licensing::Client] Handshaking with LicensingClient:
-  Version:                 1.18.3+d7ffd15
-  Session Id:              5e3e423b3873480dbf1ec54b01ec672b
-  Correlation Id:          9fd2a1fc4ba85f935e04d0be8a6373b5
-  External correlation Id: 5870293484882472177
-  Machine Id:              43wg+E17xIfqaJGvjFdzFsaP8xY=
+  Version:                 1.19.0+4cc3dda
+  Session Id:              9415299afcaa492fb874409e9cdef1be
+  Correlation Id:          5424193bb46d3b3c1b53bb0b62b34f5d
+  External correlation Id: 6922553049055859818
+  Machine Id:              MauV1ys7dY8Z/1rIzv0Oz3OVQz4=
 [Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-iamu" (connect: 0.00s, validation: 0.00s, handshake: 0.00s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-notifications" at "2026-11-11T23:42:58.739774Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-notifications" at "2026-11-14T14:45:52.751938Z"
 [Licensing::Module] Licensing Background thread has ended after 0.00s
 Selected window backend: (null) 
 Initialising UDS system complete:
@@ -35,7 +35,7 @@ Desktop is 4096 x 2560 @ 60 Hz
 Initialize udev device monitor.
 
 COMMAND LINE ARGUMENTS:
-unityhub-unity-editor-6000.6.8f1
+Unity
 -adb2
 -batchMode
 -noUpm
@@ -46,9 +46,9 @@ AssetImportWorkerHW2
 -logFile
 Logs/AssetImportWorkerHW2.log
 -srvPort
-32779
+43549
 -parentPid
-46307
+25206
 -analyticsCloudUserId
 1128121
 -analyticsLocalProjectId
@@ -58,7 +58,7 @@ Logs/AssetImportWorkerHW2.log
 -cbmEditorLicense
 0b613689c5eb3dd634a4a96e29c9f25afbc4a1d1
 -cbmMachineId
-43wg+E17xIfqaJGvjFdzFsaP8xY=
+MauV1ys7dY8Z/1rIzv0Oz3OVQz4=
 -licensingIpc
 LicenseClient-iamu
 -noDiagnosticSwitchPersistentStore
@@ -108,12 +108,12 @@ Successfully changed project path to: /home/iamu/GitHub/OpenRelativity
     "memorysetup-job-temp-allocator-block-size=2097152"
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
-Player connection [137570308586496]  Target information:
+Player connection [129579849227264]  Target information:
 
-Player connection [137570308586496]  * "[IP] 192.168.1.194 [Port] 0 [Flags] 2 [Guid] 1109144966 [EditorId] 1109144966 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.194) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
+Player connection [129579849227264]  * "[IP] 192.168.1.194 [Port] 0 [Flags] 2 [Guid] 2781120149 [EditorId] 2781120149 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.194) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
 
-Player connection [137570308586496] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [137570308586496] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [129579849227264] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [129579849227264] Host joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 15
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
@@ -169,8 +169,9 @@ GfxDevice: creating device client; kGfxThreadingModeThreaded
 [vulkan] Loaded instance function vkGetPhysicalDeviceProperties
 [vulkan] Loaded instance function vkEnumeratePhysicalDevices
 [Vulkan init] SelectPhysicalDevice requestedDeviceIndex=-1 xrDevice=(nil)
-[Vulkan init] Physical Device 0x5e942ed35e50 [0]: "Intel(R) Graphics (RPL-S)" deviceType=1 vendorID=8086 deviceID=a788
-[Vulkan init] Physical Device 0x5e942ed2aa90 [1]: "llvmpipe (LLVM 21.1.8, 256 bits)" deviceType=4 vendorID=10005 deviceID=0
+[Vulkan init] Physical Device 0x5e4197ae12a0 [0]: "Intel(R) Graphics (RPL-S)" deviceType=1 vendorID=8086 deviceID=a788
+[Vulkan init] Physical Device 0x5e4197afd280 [1]: "NVIDIA GeForce RTX 4090 Laptop GPU" deviceType=2 vendorID=10de deviceID=2757
+[Vulkan init] Physical Device 0x5e4197afdc20 [2]: "llvmpipe (LLVM 21.1.8, 256 bits)" deviceType=4 vendorID=10005 deviceID=0
 Vulkan detection: 2
 [Vulkan init] extensions: count=27
 [Vulkan init] extensions: name=VK_EXT_acquire_drm_display [enabled=0, external=0]
@@ -262,15 +263,17 @@ Vulkan detection: 2
 [vulkan] Loaded instance function vkCmdEndDebugUtilsLabelEXT
 [vulkan] Loaded instance function vkCmdInsertDebugUtilsLabelEXT
 [Vulkan init] SelectPhysicalDevice requestedDeviceIndex=-1 xrDevice=(nil)
-[Vulkan init] Physical Device 0x5e942ed47c60 [0]: "Intel(R) Graphics (RPL-S)" deviceType=1 vendorID=8086 deviceID=a788
-[Vulkan init] Physical Device 0x5e942ed53450 [1]: "llvmpipe (LLVM 21.1.8, 256 bits)" deviceType=4 vendorID=10005 deviceID=0
-[Vulkan init] Selected physical device 0x5e942ed47c60
+[Vulkan init] Physical Device 0x5e4197b17ce0 [0]: "Intel(R) Graphics (RPL-S)" deviceType=1 vendorID=8086 deviceID=a788
+[Vulkan init] Physical Device 0x5e4197b06100 [1]: "NVIDIA GeForce RTX 4090 Laptop GPU" deviceType=2 vendorID=10de deviceID=2757
+[Vulkan init] Physical Device 0x5e4197b17e90 [2]: "llvmpipe (LLVM 21.1.8, 256 bits)" deviceType=4 vendorID=10005 deviceID=0
+[Vulkan init] Selected physical device 0x5e4197b06100
 [Vulkan init] Graphics queue count=1
-[Vulkan init] extensions: count=185
+[Vulkan init] extensions: count=275
 [Vulkan init] extensions: name=VK_AMD_buffer_marker [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_4444_formats [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_EXT_attachment_feedback_loop_dynamic_state [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_attachment_feedback_loop_layout [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_EXT_blend_operation_advanced [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_border_color_swizzle [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_buffer_device_address [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_calibrated_timestamps [enabled=0, external=0]
@@ -278,20 +281,25 @@ Vulkan detection: 2
 [Vulkan init] extensions: name=VK_EXT_conditional_rendering [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_conservative_rasterization [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_EXT_custom_border_color [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_EXT_custom_resolve [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_depth_bias_control [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_depth_clamp_control [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_depth_clamp_zero_one [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_depth_clip_control [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_depth_clip_enable [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_EXT_depth_range_unrestricted [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_descriptor_buffer [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_EXT_descriptor_heap [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_descriptor_indexing [enabled=0, external=0]
-[Vulkan init] extensions: name=VK_EXT_device_memory_report [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_EXT_device_address_binding_report [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_EXT_device_fault [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_EXT_device_generated_commands [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_EXT_discard_rectangles [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_display_control [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_dynamic_rendering_unused_attachments [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_extended_dynamic_state [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_extended_dynamic_state2 [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_extended_dynamic_state3 [enabled=0, external=0]
-[Vulkan init] extensions: name=VK_EXT_external_memory_acquire_unmodified [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_external_memory_dma_buf [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_external_memory_host [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_EXT_fragment_shader_interlock [enabled=0, external=0]
@@ -308,41 +316,48 @@ Vulkan detection: 2
 [Vulkan init] extensions: name=VK_EXT_image_view_min_lod [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_index_type_uint8 [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_inline_uniform_block [enabled=0, external=0]
-[Vulkan init] extensions: name=VK_EXT_legacy_dithering [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_legacy_vertex_attributes [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_line_rasterization [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_load_store_op_none [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_EXT_map_memory_placed [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_memory_budget [enabled=1, external=0]
+[Vulkan init] extensions: name=VK_EXT_memory_decompression [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_EXT_memory_priority [enabled=1, external=0]
+[Vulkan init] extensions: name=VK_EXT_mesh_shader [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_multi_draw [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_mutable_descriptor_type [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_nested_command_buffer [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_non_seamless_cube_map [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_EXT_opacity_micromap [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_EXT_pageable_device_local_memory [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_pci_bus_info [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_physical_device_drm [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_pipeline_creation_cache_control [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_pipeline_creation_feedback [enabled=0, external=0]
-[Vulkan init] extensions: name=VK_EXT_pipeline_protected_access [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_EXT_pipeline_library_group_handles [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_pipeline_robustness [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_post_depth_coverage [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_EXT_present_mode_fifo_latest_ready [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_EXT_present_timing [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_primitive_topology_list_restart [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_primitives_generated_query [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_private_data [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_provoking_vertex [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_queue_family_foreign [enabled=1, external=0]
+[Vulkan init] extensions: name=VK_EXT_ray_tracing_invocation_reorder [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_robustness2 [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_sample_locations [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_sampler_filter_minmax [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_scalar_block_layout [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_EXT_separate_stencil_usage [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_EXT_shader_64bit_indexing [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_shader_atomic_float [enabled=0, external=0]
-[Vulkan init] extensions: name=VK_EXT_shader_atomic_float2 [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_shader_demote_to_helper_invocation [enabled=1, external=0]
+[Vulkan init] extensions: name=VK_EXT_shader_float8 [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_shader_image_atomic_int64 [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_shader_module_identifier [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_shader_object [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_shader_replicated_composites [enabled=0, external=0]
-[Vulkan init] extensions: name=VK_EXT_shader_stencil_export [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_shader_subgroup_ballot [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_shader_subgroup_vote [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_shader_uniform_buffer_unsized_array [enabled=0, external=0]
@@ -353,20 +368,23 @@ Vulkan detection: 2
 [Vulkan init] extensions: name=VK_EXT_tooling_info [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_transform_feedback [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_vertex_attribute_divisor [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_EXT_vertex_attribute_robustness [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_vertex_input_dynamic_state [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_EXT_ycbcr_2plane_444_formats [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_EXT_ycbcr_image_arrays [enabled=0, external=0]
-[Vulkan init] extensions: name=VK_GOOGLE_decorate_string [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_EXT_zero_initialize_device_memory [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_GOOGLE_hlsl_functionality1 [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_GOOGLE_user_type [enabled=0, external=0]
-[Vulkan init] extensions: name=VK_INTEL_shader_integer_functions2 [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_16bit_storage [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_KHR_8bit_storage [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_acceleration_structure [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_bind_memory2 [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_KHR_buffer_device_address [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_calibrated_timestamps [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_compute_shader_derivatives [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_cooperative_matrix [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_copy_commands2 [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_copy_memory_indirect [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_create_renderpass2 [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_KHR_dedicated_allocation [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_KHR_deferred_host_operations [enabled=0, external=0]
@@ -385,6 +403,7 @@ Vulkan detection: 2
 [Vulkan init] extensions: name=VK_KHR_external_semaphore [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_KHR_external_semaphore_fd [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_KHR_format_feature_flags2 [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_fragment_shader_barycentric [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_fragment_shading_rate [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_KHR_get_memory_requirements2 [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_KHR_global_priority [enabled=0, external=0]
@@ -411,21 +430,28 @@ Vulkan detection: 2
 [Vulkan init] extensions: name=VK_KHR_pipeline_library [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_present_id [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_KHR_present_id2 [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_present_mode_fifo_latest_ready [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_present_wait [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_KHR_present_wait2 [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_push_descriptor [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_ray_query [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_ray_tracing_maintenance1 [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_ray_tracing_pipeline [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_ray_tracing_position_fetch [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_relaxed_block_layout [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_robustness2 [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_sampler_mirror_clamp_to_edge [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_KHR_sampler_ycbcr_conversion [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_KHR_separate_depth_stencil_layouts [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_shader_atomic_int64 [enabled=1, external=0]
+[Vulkan init] extensions: name=VK_KHR_shader_bfloat16 [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_shader_clock [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_shader_draw_parameters [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_shader_expect_assume [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_shader_float16_int8 [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_KHR_shader_float_controls [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_shader_float_controls2 [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_shader_fma [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_shader_integer_dot_product [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_shader_maximal_reconvergence [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_shader_non_semantic_info [enabled=1, external=0]
@@ -436,6 +462,7 @@ Vulkan detection: 2
 [Vulkan init] extensions: name=VK_KHR_shader_subgroup_uniform_control_flow [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_shader_terminate_invocation [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_shader_untyped_pointers [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_shared_presentable_image [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_spirv_1_4 [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_storage_buffer_storage_class [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_KHR_swapchain [enabled=1, external=0]
@@ -443,15 +470,80 @@ Vulkan detection: 2
 [Vulkan init] extensions: name=VK_KHR_swapchain_mutable_format [enabled=1, external=0]
 [Vulkan init] extensions: name=VK_KHR_synchronization2 [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_timeline_semaphore [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_unified_image_layouts [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_uniform_buffer_standard_layout [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_variable_pointers [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_vertex_attribute_divisor [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_video_decode_av1 [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_video_decode_h264 [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_video_decode_h265 [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_video_decode_queue [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_video_decode_vp9 [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_video_encode_av1 [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_video_encode_h264 [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_video_encode_h265 [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_video_encode_intra_refresh [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_video_encode_quantization_map [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_video_encode_queue [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_video_maintenance1 [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_video_maintenance2 [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_KHR_video_queue [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_vulkan_memory_model [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_workgroup_memory_explicit_layout [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_KHR_zero_initialize_workgroup_memory [enabled=0, external=0]
-[Vulkan init] extensions: name=VK_MESA_image_alignment_control [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NVX_binary_import [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NVX_image_view_handle [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NVX_multiview_per_view_attributes [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_clip_space_w_scaling [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_cluster_acceleration_structure [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_compute_occupancy_priority [enabled=0, external=0]
 [Vulkan init] extensions: name=VK_NV_compute_shader_derivatives [enabled=0, external=0]
-[Vulkan init] extensions: name=VK_VALVE_mutable_descriptor_type [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_cooperative_matrix [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_cooperative_matrix2 [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_cooperative_vector [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_copy_memory_indirect [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_corner_sampled_image [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_coverage_reduction_mode [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_cuda_kernel_launch [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_dedicated_allocation [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_dedicated_allocation_image_aliasing [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_descriptor_pool_overallocation [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_device_diagnostic_checkpoints [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_device_diagnostics_config [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_device_generated_commands [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_device_generated_commands_compute [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_disk_cache_utils [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_extended_sparse_address_space [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_fill_rectangle [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_fragment_coverage_to_color [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_fragment_shader_barycentric [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_fragment_shading_rate_enums [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_framebuffer_mixed_samples [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_geometry_shader_passthrough [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_inherited_viewport_scissor [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_internal_nvpresent [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_linear_color_attachment [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_low_latency [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_low_latency2 [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_memory_decompression [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_mesh_shader [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_optical_flow [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_partitioned_acceleration_structure [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_present_metering [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_raw_access_chains [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_ray_tracing [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_ray_tracing_invocation_reorder [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_ray_tracing_motion_blur [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_representative_fragment_test [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_sample_mask_override_coverage [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_scissor_exclusive [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_shader_atomic_float16_vector [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_shader_image_footprint [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_shader_sm_builtins [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_shader_subgroup_partitioned [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_shading_rate_image [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_viewport_array2 [enabled=0, external=0]
+[Vulkan init] extensions: name=VK_NV_viewport_swizzle [enabled=0, external=0]
 [vulkan] Loaded device function vkDestroyDevice
 [vulkan] Loaded device function vkGetDeviceQueue
 [vulkan] Loaded device function vkQueueSubmit
@@ -596,19 +688,20 @@ Vulkan detection: 2
 [vulkan] Loaded instance function vkCmdDebugMarkerEndEXT
 [vulkan] Failed to load device function vkCmdDebugMarkerInsertEXT
 [vulkan] Loaded instance function vkCmdDebugMarkerInsertEXT
-Vulkan API version 1.1.0 (1.4.335 supported by driver, 1.1.0 requested)
-Vulkan vendor=[Intel] id=[8086]
-Vulkan renderer=[Intel(R) Graphics (RPL-S)] id=[a788]
-Vulkan device type 1
-Vulkan driverversion=[26.0.8 (0x06800008)] uint=[109051912]
-Vulkan driverLibraryString=[Intel open-source Mesa driver (6), Mesa 26.0.8-1ubuntu0.3]
-Vulkan PSO: Cache data successfully loaded [size=42693,path=/tmp/DefaultCompany/openrelativity/vulkan_pso_cache.bin]
+Vulkan API version 1.1.0 (1.4.329 supported by driver, 1.1.0 requested)
+Vulkan vendor=[NVIDIA] id=[10de]
+Vulkan renderer=[NVIDIA GeForce RTX 4090 Laptop GPU] id=[2757]
+Vulkan device type 2
+Vulkan driverversion=[595.396.128 (0x94d8c080)] uint=[-1797734272]
+Vulkan driverLibraryString=[NVIDIA (4), 595.99.02]
+Vulkan PSO: Invalid or outdated unity cache header
+Vulkan PSO: Unable to get cache data size [path=/tmp/DefaultCompany/openrelativity/vulkan_pso_cache.bin]
 Initialize mono
 Mono path[0] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed'
 Mono path[1] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
 Mono path[2] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-linux'
 Mono config path = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56237
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56989
 CodeReloadManager initialized
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
@@ -620,7 +713,7 @@ Registering precompiled unity dll's ...
   Expiration: Unlimited
 Register platform support module: /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.001381 seconds.
+Registered in 0.001118 seconds.
 Native extension for LinuxStandalone target not found
 Package Manager log level set to [2]
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
@@ -638,29 +731,31 @@ Native extension for Android target not found
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Scripting: successfully reloaded assembly
-- Finished resetting the current domain, in  0.299 seconds
-Domain Reload Profiling: 594ms
-	BeginReloadAssembly (49ms)
+- Finished resetting the current domain, in  0.309 seconds
+Domain Reload Profiling: 610ms
+	BeginReloadAssembly (50ms)
 	RebuildCommonClasses (3ms)
 	RebuildNativeTypeToScriptingClass (7ms)
-	initialDomainReloadingComplete (39ms)
-	LoadAllAssembliesAndSetupDomain (197ms)
+	initialDomainReloadingComplete (42ms)
+	LoadAllAssembliesAndSetupDomain (199ms)
 		LoadAssemblies (49ms)
-		TypeCache.Refresh (134ms)
+		TypeCache.Refresh (135ms)
 			TypeCache.ScanAssembly (125ms)
 		AnalyzeDomain (0ms)
-	FinalizeReload (299ms)
+	FinalizeReload (310ms)
 		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (7ms)
-			BeforeProcessingInitializeOnLoad (67ms)
-			ProcessInitializeOnLoadAttributes (60ms)
-			ProcessInitializeOnLoadMethodAttributes (106ms)
+			InitializePlatformSupportModulesInManaged (8ms)
+			BeforeProcessingInitializeOnLoad (66ms)
+			ProcessInitializeOnLoadAttributes (63ms)
+			ProcessInitializeOnLoadMethodAttributes (109ms)
 Initializing Unity extensions:
 [Licensing::Client] Successfully resolved entitlement details
 ========================================================================
 Worker process is ready to serve import requests
 Import Worker Mode flag is 0x00
 Begin MonoManager ReloadAssembly
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
 Native extension for LinuxStandalone target not found
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
@@ -680,222 +775,107 @@ Scripting: successfully reloaded assembly
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.265 seconds
-Domain Reload Profiling: 561ms
-	BeginReloadAssembly (105ms)
-		DisableScriptedObjects (4ms)
-		CreateAndSetChildDomain (23ms)
-	RebuildCommonClasses (5ms)
-	RebuildNativeTypeToScriptingClass (7ms)
-	initialDomainReloadingComplete (21ms)
-	LoadAllAssembliesAndSetupDomain (158ms)
-		LoadAssemblies (104ms)
-		TypeCache.Refresh (20ms)
-			TypeCache.ScanAssembly (14ms)
-		AnalyzeDomain (9ms)
-			BuildScriptInfoCaches (7ms)
-	FinalizeReload (266ms)
-		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (10ms)
-			BeforeProcessingInitializeOnLoad (65ms)
-			ProcessInitializeOnLoadAttributes (45ms)
-			ProcessInitializeOnLoadMethodAttributes (27ms)
-		AwakeInstancesAfterBackupRestoration (5ms)
-AcceleratorClientConnectionCallback - disconnected - :0
-AutoLocale: current locale expects 'C' but got 'en_US.UTF-8'Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1190 unused Assets / (267.9 KB). Loaded Objects now: 1949.
-Memory consumption went from 141.3 MB to 141.0 MB.
-Total: 5.000590 ms (FindLiveObjects: 0.141561 ms CreateObjectMapping: 0.060991 ms MarkObjects: 4.362717 ms  DeleteObjects: 0.340945 ms)
-
-========================================================================
-Received Prepare
-AcceleratorClientConnectionCallback - disconnected - :0
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Native extension for Android target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
-Scripting: successfully reloaded assembly
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.283 seconds
-Domain Reload Profiling: 568ms
-	BeginReloadAssembly (113ms)
-		DisableScriptedObjects (4ms)
-		CreateAndSetChildDomain (20ms)
-	RebuildCommonClasses (5ms)
-	RebuildNativeTypeToScriptingClass (7ms)
-	initialDomainReloadingComplete (23ms)
-	LoadAllAssembliesAndSetupDomain (137ms)
-		LoadAssemblies (111ms)
-		TypeCache.Refresh (3ms)
-		AnalyzeDomain (2ms)
-	FinalizeReload (283ms)
-		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (9ms)
-			BeforeProcessingInitializeOnLoad (63ms)
-			ProcessInitializeOnLoadAttributes (58ms)
-			ProcessInitializeOnLoadMethodAttributes (24ms)
-		AwakeInstancesAfterBackupRestoration (5ms)
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1188 unused Assets / (136.6 KB). Loaded Objects now: 1949.
-Memory consumption went from 140.5 MB to 140.3 MB.
-Total: 4.234975 ms (FindLiveObjects: 0.105998 ms CreateObjectMapping: 0.034971 ms MarkObjects: 3.909947 ms  DeleteObjects: 0.128822 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-AcceleratorClientConnectionCallback - disconnected - :0
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Native extension for Android target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
-Scripting: successfully reloaded assembly
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.255 seconds
-Domain Reload Profiling: 535ms
+- Finished resetting the current domain, in  0.402 seconds
+Domain Reload Profiling: 794ms
 	BeginReloadAssembly (100ms)
-		DisableScriptedObjects (4ms)
-		CreateAndSetChildDomain (18ms)
-	RebuildCommonClasses (5ms)
-	RebuildNativeTypeToScriptingClass (7ms)
-	initialDomainReloadingComplete (23ms)
-	LoadAllAssembliesAndSetupDomain (144ms)
-		LoadAssemblies (109ms)
-		TypeCache.Refresh (3ms)
-		AnalyzeDomain (3ms)
-	FinalizeReload (256ms)
-		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (9ms)
-			BeforeProcessingInitializeOnLoad (63ms)
-			ProcessInitializeOnLoadAttributes (45ms)
-			ProcessInitializeOnLoadMethodAttributes (24ms)
-		AwakeInstancesAfterBackupRestoration (5ms)
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1188 unused Assets / (62.2 KB). Loaded Objects now: 1949.
-Memory consumption went from 140.5 MB to 140.5 MB.
-Total: 4.300667 ms (FindLiveObjects: 0.115213 ms CreateObjectMapping: 0.034386 ms MarkObjects: 3.964502 ms  DeleteObjects: 0.127698 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-AcceleratorClientConnectionCallback - disconnected - :0
-[Licensing::Client] Successfully resolved entitlement details
-Begin MonoManager ReloadAssembly
-[Licensing::Client] Successfully resolved entitlement details
-Native extension for LinuxStandalone target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Native extension for Android target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
-Scripting: successfully reloaded assembly
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.256 seconds
-Domain Reload Profiling: 524ms
-	BeginReloadAssembly (99ms)
-		DisableScriptedObjects (4ms)
-		CreateAndSetChildDomain (18ms)
-	RebuildCommonClasses (5ms)
-	RebuildNativeTypeToScriptingClass (7ms)
-	initialDomainReloadingComplete (22ms)
-	LoadAllAssembliesAndSetupDomain (135ms)
-		LoadAssemblies (98ms)
-		TypeCache.Refresh (3ms)
-		AnalyzeDomain (2ms)
-	FinalizeReload (256ms)
-		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (9ms)
-			BeforeProcessingInitializeOnLoad (63ms)
-			ProcessInitializeOnLoadAttributes (44ms)
-			ProcessInitializeOnLoadMethodAttributes (24ms)
-		AwakeInstancesAfterBackupRestoration (4ms)
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1188 unused Assets / (102.6 KB). Loaded Objects now: 1949.
-Memory consumption went from 140.6 MB to 140.5 MB.
-Total: 4.049858 ms (FindLiveObjects: 0.145136 ms CreateObjectMapping: 0.039642 ms MarkObjects: 3.677918 ms  DeleteObjects: 0.127119 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-AcceleratorClientConnectionCallback - disconnected - :0
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Native extension for Android target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
-Scripting: successfully reloaded assembly
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.258 seconds
-Domain Reload Profiling: 529ms
-	BeginReloadAssembly (101ms)
 		DisableScriptedObjects (4ms)
 		CreateAndSetChildDomain (21ms)
 	RebuildCommonClasses (5ms)
 	RebuildNativeTypeToScriptingClass (7ms)
 	initialDomainReloadingComplete (23ms)
-	LoadAllAssembliesAndSetupDomain (135ms)
-		LoadAssemblies (98ms)
-		TypeCache.Refresh (3ms)
-		AnalyzeDomain (2ms)
-	FinalizeReload (258ms)
+	LoadAllAssembliesAndSetupDomain (257ms)
+		LoadAssemblies (126ms)
+		TypeCache.Refresh (58ms)
+			TypeCache.ScanAssembly (49ms)
+		AnalyzeDomain (25ms)
+			BuildScriptInfoCaches (21ms)
+	FinalizeReload (403ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (10ms)
+			BeforeProcessingInitializeOnLoad (64ms)
+			ProcessInitializeOnLoadAttributes (94ms)
+			ProcessInitializeOnLoadMethodAttributes (39ms)
+		AwakeInstancesAfterBackupRestoration (4ms)
+AcceleratorClientConnectionCallback - disconnected - :0
+AutoLocale: current locale expects 'C' but got 'en_US.UTF-8'Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4022 unused Assets / (4.7 MB). Loaded Objects now: 4995.
+Memory consumption went from 206.6 MB to 201.9 MB.
+Total: 7.067330 ms (FindLiveObjects: 0.270046 ms CreateObjectMapping: 0.198970 ms MarkObjects: 5.319008 ms  DeleteObjects: 1.183673 ms)
+
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:45:57.943127Z
+  Time since last request: 6608.91466741000022 seconds.
+  importAddress: GUID: eb3864b372f168849936c05f7041b86c - Path: Assets/Example/Scenes - Importer: PreviewImporter
+Importing 'GUID: eb3864b372f168849936c05f7041b86c - Path: Assets/Example/Scenes - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: eb3864b372f168849936c05f7041b86c' -> (Import Result ID: '9a33a110beea3619d3337c1812b7de82') in 0.001 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=76e7d802504567394636686d005167fc DependenciesID=3d3a5111bf3b1bd3a17e9e5faf8aa277 StaticDependenciesID=1c2e851b4d387dff808604171eeac917 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+[Licensing::Client] Successfully resolved entitlement details
+Begin MonoManager ReloadAssembly
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+[Licensing::Client] Successfully resolved entitlement details
+Native extension for LinuxStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Native extension for Android target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  0.386 seconds
+Domain Reload Profiling: 753ms
+	BeginReloadAssembly (127ms)
+		DisableScriptedObjects (4ms)
+		CreateAndSetChildDomain (27ms)
+	RebuildCommonClasses (5ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (24ms)
+	LoadAllAssembliesAndSetupDomain (203ms)
+		LoadAssemblies (158ms)
+		TypeCache.Refresh (4ms)
+		AnalyzeDomain (4ms)
+	FinalizeReload (387ms)
 		SetupLoadedEditorAssemblies (0ms)
 			InitializePlatformSupportModulesInManaged (9ms)
 			BeforeProcessingInitializeOnLoad (62ms)
-			ProcessInitializeOnLoadAttributes (45ms)
-			ProcessInitializeOnLoadMethodAttributes (24ms)
-		AwakeInstancesAfterBackupRestoration (4ms)
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1188 unused Assets / (73.9 KB). Loaded Objects now: 1949.
-Memory consumption went from 140.6 MB to 140.5 MB.
-Total: 4.320998 ms (FindLiveObjects: 0.142702 ms CreateObjectMapping: 0.040297 ms MarkObjects: 3.950702 ms  DeleteObjects: 0.128085 ms)
+			ProcessInitializeOnLoadAttributes (84ms)
+			ProcessInitializeOnLoadMethodAttributes (38ms)
+		AwakeInstancesAfterBackupRestoration (14ms)
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4020 unused Assets / (5.2 MB). Loaded Objects now: 5046.
+Memory consumption went from 209.4 MB to 204.2 MB.
+Total: 5.931352 ms (FindLiveObjects: 0.307714 ms CreateObjectMapping: 0.130667 ms MarkObjects: 4.717450 ms  DeleteObjects: 0.663487 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Prepare
 AcceleratorClientConnectionCallback - disconnected - :0
-[Licensing::Client] Successfully resolved entitlement details
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 26 unused Assets / (3.0 MB). Loaded Objects now: 5046.
+Memory consumption went from 207.3 MB to 204.3 MB.
+Total: 5.841457 ms (FindLiveObjects: 0.286194 ms CreateObjectMapping: 0.088335 ms MarkObjects: 5.049576 ms  DeleteObjects: 0.327455 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
 Begin MonoManager ReloadAssembly
-[Licensing::Client] Successfully resolved entitlement details
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
 Native extension for LinuxStandalone target not found
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
@@ -912,214 +892,543 @@ Scripting: successfully reloaded assembly
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.268 seconds
-Domain Reload Profiling: 541ms
-	BeginReloadAssembly (99ms)
-		DisableScriptedObjects (4ms)
-		CreateAndSetChildDomain (19ms)
-	RebuildCommonClasses (5ms)
-	RebuildNativeTypeToScriptingClass (7ms)
-	initialDomainReloadingComplete (22ms)
-	LoadAllAssembliesAndSetupDomain (140ms)
-		LoadAssemblies (100ms)
-		TypeCache.Refresh (3ms)
-		AnalyzeDomain (2ms)
-	FinalizeReload (269ms)
-		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (10ms)
-			BeforeProcessingInitializeOnLoad (71ms)
-			ProcessInitializeOnLoadAttributes (45ms)
-			ProcessInitializeOnLoadMethodAttributes (24ms)
-		AwakeInstancesAfterBackupRestoration (5ms)
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1188 unused Assets / (190.8 KB). Loaded Objects now: 1949.
-Memory consumption went from 140.7 MB to 140.5 MB.
-Total: 4.223014 ms (FindLiveObjects: 0.125954 ms CreateObjectMapping: 0.049666 ms MarkObjects: 3.847239 ms  DeleteObjects: 0.137478 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Import Request.
-  Time of request: 2026-11-11T23:48:33.90548Z
-  Time since last request: 14540.61173852899992 seconds.
-  importAddress: GUID: 5d488fbd8e0eb5344a880aaf9d7dc968 - Path: Assets/Example/Scripts - Importer: PreviewImporter
-Importing 'GUID: 5d488fbd8e0eb5344a880aaf9d7dc968 - Path: Assets/Example/Scripts - Importer: PreviewImporter' with importer (PreviewImporter)
-Imported 'GUID: 5d488fbd8e0eb5344a880aaf9d7dc968' -> (Import Result ID: '275ecbe28ffaff378073f1820d88b84f') in 0.001 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5f85b94893c6324bb385efc0197d7a05 DependenciesID=091e83b85a45c6e6ea23ecfa2776fc14 StaticDependenciesID=5f57c8ceccdf59012ee8dac9866e4a8f 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time of request: 2026-11-11T23:48:36.893456Z
-  Time since last request: 2.985451302 seconds.
-  importAddress: GUID: 453d231c07ce5ad4aa47440fad53898c - Path: Assets/Example/Scenes/newFeatures.unity - Importer: PreviewImporter
-Importing 'GUID: 453d231c07ce5ad4aa47440fad53898c - Path: Assets/Example/Scenes/newFeatures.unity - Importer: PreviewImporter' with importer (PreviewImporter)
-Imported 'GUID: 453d231c07ce5ad4aa47440fad53898c' -> (Import Result ID: 'e6497796056cd02b9069deb1877edde8') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9ffb3a69321f6e6ae617cb093aeb2412 DependenciesID=efd7e8450370de07377754a65a3c544f StaticDependenciesID=eb1db3561869a8a0b03184e199fa1cc5 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Prepare
-AcceleratorClientConnectionCallback - disconnected - :0
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1176 unused Assets / (119.9 KB). Loaded Objects now: 1947.
-Memory consumption went from 141.6 MB to 141.5 MB.
-Total: 4.171518 ms (FindLiveObjects: 0.133677 ms CreateObjectMapping: 0.036953 ms MarkObjects: 3.817129 ms  DeleteObjects: 0.122347 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-AcceleratorClientConnectionCallback - disconnected - :0
-[Licensing::Client] Successfully resolved entitlement details
-Begin MonoManager ReloadAssembly
-[Licensing::Client] Successfully resolved entitlement details
-Native extension for LinuxStandalone target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Native extension for Android target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
-Scripting: successfully reloaded assembly
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.268 seconds
-Domain Reload Profiling: 566ms
-	BeginReloadAssembly (106ms)
-		DisableScriptedObjects (7ms)
-		CreateAndSetChildDomain (20ms)
-	RebuildCommonClasses (5ms)
-	RebuildNativeTypeToScriptingClass (7ms)
-	initialDomainReloadingComplete (22ms)
-	LoadAllAssembliesAndSetupDomain (158ms)
-		LoadAssemblies (104ms)
-		TypeCache.Refresh (5ms)
-		AnalyzeDomain (16ms)
-			BuildScriptInfoCaches (14ms)
-	FinalizeReload (269ms)
-		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (9ms)
-			BeforeProcessingInitializeOnLoad (68ms)
-			ProcessInitializeOnLoadAttributes (45ms)
-			ProcessInitializeOnLoadMethodAttributes (23ms)
-		AwakeInstancesAfterBackupRestoration (5ms)
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1188 unused Assets / (125.1 KB). Loaded Objects now: 1951.
-Memory consumption went from 141.9 MB to 141.8 MB.
-Total: 4.453979 ms (FindLiveObjects: 0.141666 ms CreateObjectMapping: 0.040936 ms MarkObjects: 4.043522 ms  DeleteObjects: 0.158503 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Import Request.
-  Time of request: 2026-11-11T23:53:22.120235Z
-  Time since last request: 285.22240915999998 seconds.
-  importAddress: GUID: d94708e4a6659464fbb21ba50545c78d - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/real_constants.unity - Importer: PreviewImporter
-Importing 'GUID: d94708e4a6659464fbb21ba50545c78d - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/real_constants.unity - Importer: PreviewImporter' with importer (PreviewImporter)
-Imported 'GUID: d94708e4a6659464fbb21ba50545c78d' -> (Import Result ID: 'e9e69883bcfdd2574f719b0735d5c839') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e484b718e173b232f835d039e3c76eae DependenciesID=96f668a36f6013bbadde55d09e7dc796 StaticDependenciesID=66860e4a0200d2c39736a43cc663d9b2 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Prepare
-AcceleratorClientConnectionCallback - disconnected - :0
-[Licensing::Client] Successfully resolved entitlement details
-Begin MonoManager ReloadAssembly
-[Licensing::Client] Successfully resolved entitlement details
-Native extension for LinuxStandalone target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Native extension for Android target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
-Scripting: successfully reloaded assembly
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.265 seconds
-Domain Reload Profiling: 543ms
-	BeginReloadAssembly (107ms)
-		DisableScriptedObjects (4ms)
-		CreateAndSetChildDomain (22ms)
-	RebuildCommonClasses (5ms)
-	RebuildNativeTypeToScriptingClass (6ms)
-	initialDomainReloadingComplete (21ms)
-	LoadAllAssembliesAndSetupDomain (137ms)
-		LoadAssemblies (104ms)
-		TypeCache.Refresh (3ms)
-		AnalyzeDomain (2ms)
-	FinalizeReload (266ms)
-		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (12ms)
-			BeforeProcessingInitializeOnLoad (65ms)
-			ProcessInitializeOnLoadAttributes (48ms)
-			ProcessInitializeOnLoadMethodAttributes (24ms)
-		AwakeInstancesAfterBackupRestoration (4ms)
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1188 unused Assets / (183.3 KB). Loaded Objects now: 1951.
-Memory consumption went from 142.0 MB to 141.8 MB.
-Total: 4.395033 ms (FindLiveObjects: 0.145600 ms CreateObjectMapping: 0.033582 ms MarkObjects: 3.979005 ms  DeleteObjects: 0.129085 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-AcceleratorClientConnectionCallback - disconnected - :0
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Native extension for Android target not found
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
-Scripting: successfully reloaded assembly
-[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] Unable to send message (not connected to server process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.265 seconds
-Domain Reload Profiling: 542ms
-	BeginReloadAssembly (105ms)
-		DisableScriptedObjects (4ms)
+- Finished resetting the current domain, in  0.356 seconds
+Domain Reload Profiling: 692ms
+	BeginReloadAssembly (111ms)
+		DisableScriptedObjects (6ms)
 		CreateAndSetChildDomain (23ms)
 	RebuildCommonClasses (5ms)
 	RebuildNativeTypeToScriptingClass (7ms)
-	initialDomainReloadingComplete (21ms)
-	LoadAllAssembliesAndSetupDomain (138ms)
-		LoadAssemblies (103ms)
-		TypeCache.Refresh (3ms)
-		AnalyzeDomain (2ms)
-	FinalizeReload (266ms)
+	initialDomainReloadingComplete (22ms)
+	LoadAllAssembliesAndSetupDomain (190ms)
+		LoadAssemblies (133ms)
+		TypeCache.Refresh (4ms)
+		AnalyzeDomain (4ms)
+	FinalizeReload (357ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (9ms)
+			BeforeProcessingInitializeOnLoad (66ms)
+			ProcessInitializeOnLoadAttributes (89ms)
+			ProcessInitializeOnLoadMethodAttributes (38ms)
+		AwakeInstancesAfterBackupRestoration (14ms)
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4020 unused Assets / (3.9 MB). Loaded Objects now: 5048.
+Memory consumption went from 209.5 MB to 205.6 MB.
+Total: 5.855578 ms (FindLiveObjects: 0.398284 ms CreateObjectMapping: 0.194622 ms MarkObjects: 4.450037 ms  DeleteObjects: 0.690428 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:48:48.853213Z
+  Time since last request: 170.89763959999999 seconds.
+  importAddress: GUID: 61c3fdb0b77abe643b940cae6ee98d4b - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/blackhole_skybox.unity - Importer: PreviewImporter
+Importing 'GUID: 61c3fdb0b77abe643b940cae6ee98d4b - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/blackhole_skybox.unity - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 61c3fdb0b77abe643b940cae6ee98d4b' -> (Import Result ID: 'e56f69361327501efafecedd263c2308') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0c713f9ebe7a06ed79f83b441395d9a2 DependenciesID=c33db339ac4db287f3e8f3930add59a9 StaticDependenciesID=55b3e33ec3ae7cf03ded22dfd06482de 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+[Licensing::Client] Successfully resolved entitlement details
+Begin MonoManager ReloadAssembly
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+[Licensing::Client] Successfully resolved entitlement details
+Native extension for LinuxStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Native extension for Android target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  0.362 seconds
+Domain Reload Profiling: 720ms
+	BeginReloadAssembly (120ms)
+		DisableScriptedObjects (5ms)
+		CreateAndSetChildDomain (25ms)
+	RebuildCommonClasses (5ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (24ms)
+	LoadAllAssembliesAndSetupDomain (202ms)
+		LoadAssemblies (138ms)
+		TypeCache.Refresh (7ms)
+		AnalyzeDomain (4ms)
+	FinalizeReload (363ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (9ms)
+			BeforeProcessingInitializeOnLoad (69ms)
+			ProcessInitializeOnLoadAttributes (93ms)
+			ProcessInitializeOnLoadMethodAttributes (39ms)
+		AwakeInstancesAfterBackupRestoration (14ms)
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4020 unused Assets / (4.0 MB). Loaded Objects now: 5050.
+Memory consumption went from 209.6 MB to 205.6 MB.
+Total: 5.694838 ms (FindLiveObjects: 0.270406 ms CreateObjectMapping: 0.139388 ms MarkObjects: 4.390215 ms  DeleteObjects: 0.760860 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:49:06.832688Z
+  Time since last request: 17.969310836 seconds.
+  importAddress: GUID: 5750de3063fc0bf448c608e461c931f7 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/blackhole_interior.unity - Importer: PreviewImporter
+Importing 'GUID: 5750de3063fc0bf448c608e461c931f7 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/blackhole_interior.unity - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 5750de3063fc0bf448c608e461c931f7' -> (Import Result ID: 'b53ac491c95d8bbd562614fbe4021678') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9c2ea8542e8b9d0981ccb4c67c7f525d DependenciesID=333424a4ab1f34345b2e592ec2424a6f StaticDependenciesID=c5f430dd60f53b9cd297e23971cf3f8a 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Native extension for LinuxStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Native extension for Android target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  0.364 seconds
+Domain Reload Profiling: 711ms
+	BeginReloadAssembly (118ms)
+		DisableScriptedObjects (5ms)
+		CreateAndSetChildDomain (23ms)
+	RebuildCommonClasses (5ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (23ms)
+	LoadAllAssembliesAndSetupDomain (195ms)
+		LoadAssemblies (139ms)
+		TypeCache.Refresh (4ms)
+		AnalyzeDomain (4ms)
+	FinalizeReload (364ms)
 		SetupLoadedEditorAssemblies (0ms)
 			InitializePlatformSupportModulesInManaged (10ms)
-			BeforeProcessingInitializeOnLoad (63ms)
-			ProcessInitializeOnLoadAttributes (50ms)
-			ProcessInitializeOnLoadMethodAttributes (25ms)
-		AwakeInstancesAfterBackupRestoration (5ms)
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1188 unused Assets / (113.2 KB). Loaded Objects now: 1951.
-Memory consumption went from 142.1 MB to 142.0 MB.
-Total: 4.436576 ms (FindLiveObjects: 0.124690 ms CreateObjectMapping: 0.037868 ms MarkObjects: 4.014893 ms  DeleteObjects: 0.158594 ms)
+			BeforeProcessingInitializeOnLoad (62ms)
+			ProcessInitializeOnLoadAttributes (89ms)
+			ProcessInitializeOnLoadMethodAttributes (48ms)
+		AwakeInstancesAfterBackupRestoration (15ms)
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4020 unused Assets / (3.8 MB). Loaded Objects now: 5052.
+Memory consumption went from 209.7 MB to 205.9 MB.
+Total: 5.850273 ms (FindLiveObjects: 0.282700 ms CreateObjectMapping: 0.133964 ms MarkObjects: 4.617671 ms  DeleteObjects: 0.699377 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Prepare
 AcceleratorClientConnectionCallback - disconnected - :0
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 1 unused Assets / (49.9 KB). Loaded Objects now: 1951.
-Memory consumption went from 141.7 MB to 141.7 MB.
-Total: 5.098110 ms (FindLiveObjects: 0.094304 ms CreateObjectMapping: 0.016006 ms MarkObjects: 4.891236 ms  DeleteObjects: 0.016080 ms)
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 26 unused Assets / (3.0 MB). Loaded Objects now: 5052.
+Memory consumption went from 207.6 MB to 204.6 MB.
+Total: 5.440350 ms (FindLiveObjects: 0.275360 ms CreateObjectMapping: 0.076721 ms MarkObjects: 4.657993 ms  DeleteObjects: 0.322256 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:49:34.451079Z
+  Time since last request: 27.607333888 seconds.
+  importAddress: GUID: d94708e4a6659464fbb21ba50545c78d - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/real_constants.unity - Importer: PreviewImporter
+Importing 'GUID: d94708e4a6659464fbb21ba50545c78d - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/real_constants.unity - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: d94708e4a6659464fbb21ba50545c78d' -> (Import Result ID: '5dd974e056e50eaa4712e4ae1a6f408d') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e484b718e173b232f835d039e3c76eae DependenciesID=deb856519f93804784876c5659bba8a8 StaticDependenciesID=0b32160ee67bcac4259141cd571e9014 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:49:53.614812Z
+  Time since last request: 19.154055774 seconds.
+  importAddress: GUID: cc8f31867774a9b4486849e81364f55f - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/monopole.unity - Importer: PreviewImporter
+Importing 'GUID: cc8f31867774a9b4486849e81364f55f - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/monopole.unity - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: cc8f31867774a9b4486849e81364f55f' -> (Import Result ID: '50159bd58a9c190b910f714628c4f12a') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f6a80cc642a1815b6b5b58c9e59528ad DependenciesID=70202807f9d5b338d9e807b7fb67b8f2 StaticDependenciesID=e8908121123981d2f09506631708c0b4 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:50:01.958005Z
+  Time since last request: 8.334700255 seconds.
+  importAddress: GUID: e13ac42435bc006fc8703f845d2b0f08 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/Example_Lighting_Settings.lighting - Importer: PreviewImporter
+Importing 'GUID: e13ac42435bc006fc8703f845d2b0f08 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/Example_Lighting_Settings.lighting - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: e13ac42435bc006fc8703f845d2b0f08' -> (Import Result ID: 'a40364150d1e7b0535737077f793ac0f') in 0.012 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1e90730ac0024e15fe647eac3fb85f84 DependenciesID=00ea1f521cc3a508f8fcafeb58a2b94f StaticDependenciesID=77d6182be37f6635430426a4a36521d6 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:50:07.165074Z
+  Time since last request: 5.186965551 seconds.
+  importAddress: GUID: 8643de78736f3794c83435cd604d5600 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/kerr_skybox.unity - Importer: PreviewImporter
+Importing 'GUID: 8643de78736f3794c83435cd604d5600 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/kerr_skybox.unity - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 8643de78736f3794c83435cd604d5600' -> (Import Result ID: 'c309fa1c12d111466d8560eb99447cfc') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7ef0100c2a406bf5152ccd306b20c02c DependenciesID=5e59a5ba9bef324f27d38c3ebbd7eb45 StaticDependenciesID=cdc1b4a4c081fce90424cc19b48e692c 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:50:14.779397Z
+  Time since last request: 7.606009921 seconds.
+  importAddress: GUID: fc3e50e4b52c5e34d97104d4e3fa8877 - Path: Assets/Example/Scenes/newFeatures/ReflectionProbe-0.exr - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B
+Importing 'GUID: fc3e50e4b52c5e34d97104d4e3fa8877 - Path: Assets/Example/Scenes/newFeatures/ReflectionProbe-0.exr - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B' with importer (ScriptedImporter : UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B)
+[Licensing::Client] Successfully resolved entitlement details
+Imported 'GUID: fc3e50e4b52c5e34d97104d4e3fa8877' -> (Import Result ID: '9c4ed38490ddc42de8709f4cfa46e09a') in 0.058 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b916d7843e51d752e68fffef398514fc DependenciesID=5b395186d1e4e0110bc8e363710647e0 StaticDependenciesID=c8e223eb1a84c9bcf95c540edb7de753 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 26 unused Assets / (3.0 MB). Loaded Objects now: 5053.
+Memory consumption went from 207.7 MB to 204.8 MB.
+Total: 5.830958 ms (FindLiveObjects: 0.246249 ms CreateObjectMapping: 0.074337 ms MarkObjects: 5.105206 ms  DeleteObjects: 0.298907 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:50:28.383256Z
+  Time since last request: 13.538323389 seconds.
+  importAddress: GUID: 0423b28960191dccebdd2d0681a445c5 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/monopole/Lightmap-0_comp_dir.png - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B
+Importing 'GUID: 0423b28960191dccebdd2d0681a445c5 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/monopole/Lightmap-0_comp_dir.png - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B' with importer (ScriptedImporter : UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B)
+Imported 'GUID: 0423b28960191dccebdd2d0681a445c5' -> (Import Result ID: 'd7abada126b0bdf1b244563393c69859') in 0.014 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5abaf82b6801a7d53f337626d0e6aa44 DependenciesID=bae1d0f1b549858d248319e0e91687e4 StaticDependenciesID=7d9ae3c124449f109fc58a6063c8e055 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:50:28.40611Z
+  Time since last request: 0.000015842 seconds.
+  importAddress: GUID: 6dcbe1279f6614b0cbeff10de9df420b - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/monopole/LightingData.asset - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B
+Importing 'GUID: 6dcbe1279f6614b0cbeff10de9df420b - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/monopole/LightingData.asset - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B' with importer (ScriptedImporter : UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B)
+Imported 'GUID: 6dcbe1279f6614b0cbeff10de9df420b' -> (Import Result ID: '2565b20c42dbc295e130bfd9efb71c9a') in 0.003 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=aa45267d35c0cc1f08dbedeab7e70c38 DependenciesID=040e92abfe93b4f7d02c36173c17b600 StaticDependenciesID=75ada148162dcf08c91fd280e1b8a83b 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:50:28.417366Z
+  Time since last request: 0.000213324 seconds.
+  importAddress: GUID: 6f582f69d56fc13b89a3b757dd9c4fa9 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/monopole/Lightmap-0_comp_light.exr - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B
+Importing 'GUID: 6f582f69d56fc13b89a3b757dd9c4fa9 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/monopole/Lightmap-0_comp_light.exr - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B' with importer (ScriptedImporter : UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B)
+Imported 'GUID: 6f582f69d56fc13b89a3b757dd9c4fa9' -> (Import Result ID: 'c319479344b224a31a748a2de3e552ad') in 0.003 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=33a136237416cd9f90f37b9b8cd103b4 DependenciesID=0aba35e1adfc77842dd886af08c73ace StaticDependenciesID=195a9d3ac2a749db3ad66815dd47a736 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+[Licensing::Client] Successfully resolved entitlement details
+Begin MonoManager ReloadAssembly
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Native extension for LinuxStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Native extension for Android target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  0.356 seconds
+Domain Reload Profiling: 702ms
+	BeginReloadAssembly (109ms)
+		DisableScriptedObjects (5ms)
+		CreateAndSetChildDomain (24ms)
+	RebuildCommonClasses (6ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (23ms)
+	LoadAllAssembliesAndSetupDomain (201ms)
+		LoadAssemblies (142ms)
+		TypeCache.Refresh (5ms)
+		AnalyzeDomain (4ms)
+	FinalizeReload (357ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (10ms)
+			BeforeProcessingInitializeOnLoad (62ms)
+			ProcessInitializeOnLoadAttributes (88ms)
+			ProcessInitializeOnLoadMethodAttributes (41ms)
+		AwakeInstancesAfterBackupRestoration (14ms)
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4020 unused Assets / (6.4 MB). Loaded Objects now: 5055.
+Memory consumption went from 210.0 MB to 203.6 MB.
+Total: 6.574488 ms (FindLiveObjects: 0.368743 ms CreateObjectMapping: 0.180499 ms MarkObjects: 4.779369 ms  DeleteObjects: 1.115263 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 26 unused Assets / (3.0 MB). Loaded Objects now: 5055.
+Memory consumption went from 207.9 MB to 204.8 MB.
+Total: 6.980461 ms (FindLiveObjects: 0.337627 ms CreateObjectMapping: 0.089652 ms MarkObjects: 6.144891 ms  DeleteObjects: 0.304351 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:50:55.771412Z
+  Time since last request: 27.342556511 seconds.
+  importAddress: GUID: cc8f31867774a9b4486849e81364f55f - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/monopole.unity - Importer: PreviewImporter
+Importing 'GUID: cc8f31867774a9b4486849e81364f55f - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/monopole.unity - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: cc8f31867774a9b4486849e81364f55f' -> (Import Result ID: '1367cdd4ef8c5c30119168507abd1ce9') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f6a80cc642a1815b6b5b58c9e59528ad DependenciesID=fe57a1d8da881d05f6648d6adf854117 StaticDependenciesID=54eae379528c3cef7442864a1b507672 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 26 unused Assets / (3.0 MB). Loaded Objects now: 5055.
+Memory consumption went from 207.9 MB to 204.9 MB.
+Total: 5.474468 ms (FindLiveObjects: 0.249613 ms CreateObjectMapping: 0.081912 ms MarkObjects: 4.727477 ms  DeleteObjects: 0.308462 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:51:21.389129Z
+  Time since last request: 25.607425563 seconds.
+  importAddress: GUID: d94708e4a6659464fbb21ba50545c78d - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/real_constants.unity - Importer: PreviewImporter
+Importing 'GUID: d94708e4a6659464fbb21ba50545c78d - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/real_constants.unity - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: d94708e4a6659464fbb21ba50545c78d' -> (Import Result ID: '02638d0c9f06968ceb05c10a392609ef') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e484b718e173b232f835d039e3c76eae DependenciesID=ea2182a28e9cf0118f0832e168adcb60 StaticDependenciesID=87c6ad49f23dc3f99ea81dca960b7c63 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:51:26.451112Z
+  Time since last request: 5.05260993 seconds.
+  importAddress: GUID: d94708e4a6659464fbb21ba50545c78d - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/real_constants.unity - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B
+Importing 'GUID: d94708e4a6659464fbb21ba50545c78d - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/real_constants.unity - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B' with importer (ScriptedImporter : UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B)
+Imported 'GUID: d94708e4a6659464fbb21ba50545c78d' -> (Import Result ID: '5d4640edea1505e84c4587d54d87cdda') in 0.035 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cb9f570094fcfa3e62ef0c00746f1980 DependenciesID=7d7c6bd6ce81fb3302c081a73b70fbbd StaticDependenciesID=4b6d3c3ceac2f3e1f8aab5d023886e1f 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:53:05.99708Z
+  Time since last request: 99.50185713499999 seconds.
+  importAddress: GUID: 1ce089e7d707f747296392525cb7bff7 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/monopole - Importer: PreviewImporter
+Importing 'GUID: 1ce089e7d707f747296392525cb7bff7 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/monopole - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 1ce089e7d707f747296392525cb7bff7' -> (Import Result ID: '14d09246fb3ed3af1b392f27e4cbcfb4') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c5555f1c1419b58abe0f8c8ca59c7659 DependenciesID=9eeae6d4adc8a2af22ef4041bc2c21fe StaticDependenciesID=a9d7653d78fbdf16db7a369b3eae7d7f 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:53:26.10927Z
+  Time since last request: 20.10090432 seconds.
+  importAddress: GUID: dc68ce4adfc231aeb8bb0db8e4053d97 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/rindlerFeatures - Importer: PreviewImporter
+Importing 'GUID: dc68ce4adfc231aeb8bb0db8e4053d97 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/rindlerFeatures - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: dc68ce4adfc231aeb8bb0db8e4053d97' -> (Import Result ID: 'dbee89eeaab6a5244866e0f248b4910c') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cf30da1126eedc7185602a73166c6c1f DependenciesID=78225ae2c779eca3370d2ad7029004b3 StaticDependenciesID=d774a834fda688cbeea3f49d2b42a33d 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:53:36.559321Z
+  Time since last request: 10.435861943 seconds.
+  importAddress: GUID: 86698db5947cd8946989118a41bde3ef - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/rindlerFeatures.unity - Importer: PreviewImporter
+Importing 'GUID: 86698db5947cd8946989118a41bde3ef - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/rindlerFeatures.unity - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 86698db5947cd8946989118a41bde3ef' -> (Import Result ID: '37c5aae7aeb150c66c00c24b47ed3c3f') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=abf9c81e42a5251b3b64a1caca7a2b90 DependenciesID=193e56e931bb090287a812a9f3d67da6 StaticDependenciesID=0d096ca9333ec7b24d277f07c2ec5527 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+[Licensing::Client] Successfully resolved entitlement details
+Begin MonoManager ReloadAssembly
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+[Licensing::Client] Successfully resolved entitlement details
+Native extension for LinuxStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Native extension for Android target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  0.365 seconds
+Domain Reload Profiling: 726ms
+	BeginReloadAssembly (108ms)
+		DisableScriptedObjects (4ms)
+		CreateAndSetChildDomain (23ms)
+	RebuildCommonClasses (6ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (23ms)
+	LoadAllAssembliesAndSetupDomain (217ms)
+		LoadAssemblies (160ms)
+		TypeCache.Refresh (4ms)
+		AnalyzeDomain (4ms)
+	FinalizeReload (366ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (10ms)
+			BeforeProcessingInitializeOnLoad (68ms)
+			ProcessInitializeOnLoadAttributes (90ms)
+			ProcessInitializeOnLoadMethodAttributes (42ms)
+		AwakeInstancesAfterBackupRestoration (14ms)
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4020 unused Assets / (4.6 MB). Loaded Objects now: 5057.
+Memory consumption went from 210.2 MB to 205.6 MB.
+Total: 6.092518 ms (FindLiveObjects: 0.394448 ms CreateObjectMapping: 0.192152 ms MarkObjects: 4.637706 ms  DeleteObjects: 0.745423 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:54:56.441478Z
+  Time since last request: 79.866229981 seconds.
+  importAddress: GUID: 1080c9385bac2a24eb765488e6194530 - Path: Assets/Samples/Qrack/0.1.0/Example/Scenes/yorktown.unity - Importer: PreviewImporter
+Importing 'GUID: 1080c9385bac2a24eb765488e6194530 - Path: Assets/Samples/Qrack/0.1.0/Example/Scenes/yorktown.unity - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 1080c9385bac2a24eb765488e6194530' -> (Import Result ID: '13cd28abb23036723c007f519ae01142') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=89d8ff54f9caab89b85b34623fc13c94 DependenciesID=6e7c447ba66455a3c62c44cb21c3754d StaticDependenciesID=199ef04b6b7d87ef3b9dc5c27edd4d4a 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 26 unused Assets / (3.0 MB). Loaded Objects now: 5057.
+Memory consumption went from 208.1 MB to 205.1 MB.
+Total: 15.632319 ms (FindLiveObjects: 0.199463 ms CreateObjectMapping: 0.061115 ms MarkObjects: 14.918909 ms  DeleteObjects: 0.356531 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Native extension for LinuxStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Native extension for Android target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  0.359 seconds
+Domain Reload Profiling: 706ms
+	BeginReloadAssembly (120ms)
+		DisableScriptedObjects (7ms)
+		CreateAndSetChildDomain (23ms)
+	RebuildCommonClasses (6ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (22ms)
+	LoadAllAssembliesAndSetupDomain (192ms)
+		LoadAssemblies (137ms)
+		TypeCache.Refresh (4ms)
+		AnalyzeDomain (4ms)
+	FinalizeReload (360ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (10ms)
+			BeforeProcessingInitializeOnLoad (63ms)
+			ProcessInitializeOnLoadAttributes (94ms)
+			ProcessInitializeOnLoadMethodAttributes (38ms)
+		AwakeInstancesAfterBackupRestoration (14ms)
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4020 unused Assets / (4.4 MB). Loaded Objects now: 5059.
+Memory consumption went from 210.4 MB to 206.0 MB.
+Total: 9.123260 ms (FindLiveObjects: 0.366857 ms CreateObjectMapping: 0.138133 ms MarkObjects: 7.830183 ms  DeleteObjects: 0.681947 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 26 unused Assets / (3.0 MB). Loaded Objects now: 5059.
+Memory consumption went from 208.3 MB to 205.3 MB.
+Total: 5.242083 ms (FindLiveObjects: 0.197975 ms CreateObjectMapping: 0.054543 ms MarkObjects: 4.574128 ms  DeleteObjects: 0.313185 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-14T14:55:37.571385Z
+  Time since last request: 41.11856872 seconds.
+  importAddress: GUID: 38e8d209e23401740b1aac9b3743c168 - Path: Assets/Samples/Tachyoid/0.1.0/Example/Scenes/VRTimeTravel.unity - Importer: PreviewImporter
+Importing 'GUID: 38e8d209e23401740b1aac9b3743c168 - Path: Assets/Samples/Tachyoid/0.1.0/Example/Scenes/VRTimeTravel.unity - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 38e8d209e23401740b1aac9b3743c168' -> (Import Result ID: '5f4fc9b11e36094ddac513785f34a7c4') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8d3a04cb3e13c5e084efb9c7251f7859 DependenciesID=553abee35b96ca96b392b50efce96300 StaticDependenciesID=80f18a4372a07d42c9b6a22f3214038c 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+[Licensing::Client] Successfully resolved entitlement details
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Native extension for LinuxStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Native extension for Android target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  0.354 seconds
+Domain Reload Profiling: 697ms
+	BeginReloadAssembly (115ms)
+		DisableScriptedObjects (5ms)
+		CreateAndSetChildDomain (23ms)
+	RebuildCommonClasses (6ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (23ms)
+	LoadAllAssembliesAndSetupDomain (191ms)
+		LoadAssemblies (135ms)
+		TypeCache.Refresh (4ms)
+		AnalyzeDomain (4ms)
+	FinalizeReload (355ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (10ms)
+			BeforeProcessingInitializeOnLoad (62ms)
+			ProcessInitializeOnLoadAttributes (90ms)
+			ProcessInitializeOnLoadMethodAttributes (38ms)
+		AwakeInstancesAfterBackupRestoration (14ms)
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4020 unused Assets / (5.2 MB). Loaded Objects now: 5061.
+Memory consumption went from 210.6 MB to 205.3 MB.
+Total: 5.777325 ms (FindLiveObjects: 0.259774 ms CreateObjectMapping: 0.125532 ms MarkObjects: 4.542387 ms  DeleteObjects: 0.757903 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 26 unused Assets / (3.0 MB). Loaded Objects now: 5061.
+Memory consumption went from 208.5 MB to 205.4 MB.
+Total: 5.033807 ms (FindLiveObjects: 0.204910 ms CreateObjectMapping: 0.055391 ms MarkObjects: 4.321205 ms  DeleteObjects: 0.356780 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 Editor requested this worker to shutdown with reason: Editor is closing down
@@ -1130,5 +1439,5 @@ Process exiting
 
 SDL leaked 2 allocations
 Turn on UNITY_SDL_ALLOCATION_TRACKING for detailed information.
-Vulkan PSO: data extracted [new size=42693, old size=42693, incomplete=0]
-Vulkan PSO: Pipeline cache has not changed skipping save handle[2ebb1870]
+Vulkan PSO: data extracted [new size=36, old size=0, incomplete=0]
+Vulkan PSO: Saved size[36] path[/tmp/DefaultCompany/openrelativity/vulkan_pso_cache.bin] success=1 headerChanged=1 sizeChanged=1

@@ -32,7 +32,7 @@ namespace Qrack
             {
                 if (_qMan == null)
                 {
-                    _qMan = FindFirstObjectByType<QuantumManager>();
+                    _qMan = FindAnyObjectByType<QuantumManager>();
                 }
 
                 return _qMan;

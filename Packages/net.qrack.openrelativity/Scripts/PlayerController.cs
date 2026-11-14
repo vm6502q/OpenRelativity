@@ -162,9 +162,8 @@ namespace OpenRelativity
             //Set the speed of light to the starting speed of light in GameState
             speedOfLightTarget = (int)state.SpeedOfLight;
 
-            string[] names = Input.GetJoystickNames();
             // Inverted, at first
-            inverted = (names.Length > 0) ? -1 : 1;
+            inverted = RelativityInput.IsJoystickConnected ? -1 : 1;
             invertKeyDown = false;
 
             frames = 0;
@@ -207,13 +206,13 @@ namespace OpenRelativity
 
 #if false
             //If they press the Y button, invert all Y axes
-            if (Input.GetAxis("Invert Button") > 0 && !invertKeyDown)
+            if (RelativityInput.IsInvertPressed && !invertKeyDown)
             {
                 inverted *= -1;
                 invertKeyDown = true;
             }
             //And if they released it, set the invertkeydown to false.
-            else if (!(Input.GetAxis("Invert Button") > 0))
+            else if (!RelativityInput.IsInvertPressed)
             {
                 invertKeyDown = false;
             }
@@ -238,13 +237,13 @@ namespace OpenRelativity
 
             float temp;
             // Movement due to forward/back input
-            totalAccel += new Vector3(0, 0, (temp = inverted * -Input.GetAxis("Vertical")) * controllerAcceleration);
+            totalAccel += new Vector3(0, 0, (temp = inverted * -RelativityInput.Vertical) * controllerAcceleration);
             if (temp != 0)
             {
                 state.keyHit = true;
             }
             // Movement due to left/right input
-            totalAccel += new Vector3((temp = -Input.GetAxis("Horizontal")) * controllerAcceleration, 0, 0);
+            totalAccel += new Vector3((temp = -RelativityInput.Horizontal) * controllerAcceleration, 0, 0);
             if (temp != 0)
             {
                 state.keyHit = true;
@@ -356,7 +355,7 @@ namespace OpenRelativity
             //CHANGE the speed of light
 
             //Get our input axis (DEFAULT N, M) value to determine how much to change the speed of light
-            int temp2 = (int)(Input.GetAxis("Speed of Light"));
+            int temp2 = (int)(RelativityInput.SpeedOfLightChange);
             //If it's too low, don't subtract from the speed of light, and reset the speed of light
             if (temp2 < 0 && speedOfLightTarget <= state.MaxSpeed)
             {
@@ -391,10 +390,10 @@ namespace OpenRelativity
             //Current position of the mouse
             //Difference between last frame's mouse position
             //X axis position change
-            float positionChangeX = -Input.GetAxis("Mouse X");
+            float positionChangeX = -RelativityInput.LookX;
 
             //Y axis position change
-            float positionChangeY = inverted * -Input.GetAxis("Mouse Y");
+            float positionChangeY = inverted * -RelativityInput.LookY;
 
             //Use these to determine camera rotation, that is, to look around the world without changing direction of motion
             //These two are for X axis rotation and Y axis rotation, respectively

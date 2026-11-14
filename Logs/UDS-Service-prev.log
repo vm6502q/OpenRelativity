@@ -18,5 +18,4 @@ Initialising UDS system complete:
   - Hashmap size: 4194304
 Starting Unity Data Store Application
 Unity Data Store Application Complete
-[Warning] Shutting down service while there are still connected clients, client count = 2
 Shut down UDS service system complete

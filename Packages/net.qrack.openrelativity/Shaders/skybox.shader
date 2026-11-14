@@ -1,6 +1,3 @@
-// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
-// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
 Shader "Relativity/SkyboxShift" {
 	Properties {
@@ -10,12 +7,9 @@ Shader "Relativity/SkyboxShift" {
 		_viw ("viw", float)=0
 	}
 	
-	CGINCLUDE
-// Upgrade NOTE: excluded shader from Xbox360; has structs without semantics (struct v2f members pos2,uv1,svc,vr)	
-#pragma exclude_renderers xbox360
+	HLSLINCLUDE
 	
-	#pragma glsl
-	#include "UnityCG.cginc"
+	#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 	
 	#define xla 0.39842970153455692
 	#define xlb 444.50376680864167
@@ -40,44 +34,54 @@ Shader "Relativity/SkyboxShift" {
 
 	 
 	
+	struct appdata {
+		float4 vertex : POSITION;
+		float2 texcoord : TEXCOORD0;
+		UNITY_VERTEX_INPUT_INSTANCE_ID
+	};
+
 	struct v2f {
-		float4 pos : POSITION;
+		float4 pos : SV_POSITION;
 		float4 pos2 : TEXCOORD0;
 		float2 uv1  : TEXCOORD1;
 		float svc  : TEXCOORD2; 
 		float4 vr  : TEXCOORD3;
+		UNITY_VERTEX_OUTPUT_STEREO
 	};
 		
-	sampler2D _MainTex;
-	sampler2D _IRTex;
-	sampler2D _UVTex;
-	sampler2D _CameraDepthTexture;
+	TEXTURE2D(_MainTex);
+	SAMPLER(sampler_MainTex);
+	TEXTURE2D(_IRTex);
+	SAMPLER(sampler_IRTex);
+	TEXTURE2D(_UVTex);
+	SAMPLER(sampler_UVTex);
 	
-	float4 _viw = float4(0,0,0,0); //velocity of object
-	float4 _vpc = float4(0,0,0,0);
-	float _spdOfLight = 100	;
-	float4 _playerOffset = float4(0,0,0,0);
-	float _colorShift = 1;
+	float4 _viw; //velocity of object
+	float4 _vpc;
+	float _spdOfLight;
+	float4 _playerOffset;
+	float _colorShift;
 	
-	float cx = 1; //cos x
-	float cy = 1; // cos y
-	float cz = 1; // cos z  
-	float sx = 0; // sin x
-	float sy = 0;  //  sin yv
-	float sz = 0;  // sin z
-	float xyr = 1; // xy ratio
-	float xs = 1; // x scale
+	float cx; //cos x
+	float cy; // cos y
+	float cz; // cos z  
+	float sx; // sin x
+	float sy;  //  sin yv
+	float sz;  // sin z
+	float xyr; // xy ratio
+	float xs; // x scale
 	 
 	uniform float4 _MainTex_TexelSize;
-	uniform float4 _CameraDepthTexture_ST;
 		
 	//For the screen, this function is called a total of 4 times, as the screen renders to a square of 4 verticies.
-	v2f vert( appdata_img v ) {
+	v2f vert( appdata v ) {
 		v2f o;
+		UNITY_SETUP_INSTANCE_ID(v);
+		UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 	   
 		
-		o.pos = UnityObjectToClipPos(v.vertex);
-		o.pos2 = mul(unity_ObjectToWorld, v.vertex);
+		o.pos = TransformObjectToHClip(v.vertex.xyz);
+		o.pos2 = mul(GetObjectToWorldMatrix(), v.vertex);
 		
 		o.pos2 -= _playerOffset;
 
@@ -89,11 +93,6 @@ Shader "Relativity/SkyboxShift" {
 		float s = sqrt(dot(vr, vr));
 		o.svc = sqrt( 1 - s * s); // To decrease number of operations in fragment shader 
 		
-		//You need this otherwise the screen flips and weird stuff happens
-		#ifdef SHADER_API_D3D9
-		if (_MainTex_TexelSize.y < 0)
-			 o.uv1.y = 1- o.uv1.y;
-		#endif 
 		
 		return o;
 	}
@@ -212,7 +211,7 @@ Shader "Relativity/SkyboxShift" {
 	};	
 			
 	//Per pixel or something like that
-	float4 frag(v2f i) : COLOR 
+	float4 frag(v2f i) : SV_Target 
 	{
 	
 		float x1 = i.pos2.x * 2*xs;
@@ -226,9 +225,9 @@ Shader "Relativity/SkyboxShift" {
 			svc = 1;
 		}
 		//Get initial color
-		float3 rgb = tex2D (_MainTex, i.uv1).rgb;  
-		float UV = tex2D( _UVTex, i.uv1).r;
-		float IR = tex2D( _IRTex, i.uv1).r;
+		float3 rgb = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv1).rgb;  
+		float UV = SAMPLE_TEXTURE2D(_UVTex, sampler_UVTex, i.uv1).r;
+		float IR = SAMPLE_TEXTURE2D(_IRTex, sampler_IRTex, i.uv1).r;
 		
 		float3 xyz = RGBToXYZC(rgb.xyz);
 		float3 weights = weightFromXYZCurves(xyz);
@@ -248,7 +247,7 @@ Shader "Relativity/SkyboxShift" {
 		float3 rgbFinal = XYZToRGBC(xyz);
 		//rgbFinal = constrainRGB(rgbFinal.x,rgbFinal.y, rgbFinal.z);
 
-  		float4x4 temp  = mul(unity_ObjectToWorld, unity_WorldToObject);
+  		float4x4 temp  = mul(GetObjectToWorldMatrix(), GetWorldToObjectMatrix());
 		float4 temp2 = mul( temp,float4( (float)rgbFinal.x,(float)rgbFinal.y,(float)rgbFinal.z,1));
 		//float4 temp2 =float4( (float)rgbFinal.x,(float)rgbFinal.y,(float)rgbFinal.z,1);
 		return temp2; 
@@ -258,27 +257,31 @@ Shader "Relativity/SkyboxShift" {
 		
 	}
 
-	ENDCG
+	ENDHLSL
 	
 Subshader {
+
+ Tags { "RenderPipeline" = "UniversalPipeline" }
 	
  Pass {
+	  // (No "LightMode" tag: the Universal Render Pipeline draws an untagged pass with its unlit objects,
+	  // and the pass stays usable when the material is assigned as a scene skybox, as well.)
+	  Name "Unlit"
+
 	  Cull Off ZWrite On
-	  Fog { Mode off }     
 	  Blend SrcAlpha OneMinusSrcAlpha
 
-      CGPROGRAM
+      HLSLPROGRAM
       
-      #pragma fragmentoption ARB_precision_hint_nicest
       
       #pragma vertex vert
       #pragma fragment frag
-	  #pragma target 3.0
+	  #pragma target 3.5
       
-      ENDCG
+      ENDHLSL
   }
 }
 
-Fallback "Unlit/Texture"
+Fallback Off
 	
 } // shader

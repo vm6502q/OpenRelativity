@@ -346,20 +346,20 @@ namespace OpenRelativity
             SpeedOfLightSqrd = (float)(_c * _c);
 
             //Set the pause code in here so that our other objects can access it.
-            if (Input.GetAxis("Fire3") > 0 && !menuKeyDown)
+            if (RelativityInput.IsMenuPressed && !menuKeyDown)
             {
                 menuKeyDown = true;
                 ChangeState();
             }
             //set up our buttonUp function
-            else if (!(Input.GetAxis("Fire3") > 0))
+            else if (!RelativityInput.IsMenuPressed)
             {
                 menuKeyDown = false;
             }
 
 #if false
             //Set our button code for the shader on/off button
-            if (Input.GetAxis("Shader") > 0 && !shaderKeyDown)
+            if (RelativityInput.IsShaderTogglePressed && !shaderKeyDown)
             {
                 if (shaderOff)
                     shaderOff = false;
@@ -369,7 +369,7 @@ namespace OpenRelativity
                 shaderKeyDown = true;
             }
             //set up our buttonUp function
-            else if (!(Input.GetAxis("Shader") > 0))
+            else if (!RelativityInput.IsShaderTogglePressed)
             {
                 shaderKeyDown = false;
             }
