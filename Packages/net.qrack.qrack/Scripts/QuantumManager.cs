@@ -276,15 +276,148 @@ namespace Qrack
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lossy_in_from_file")]
         public static extern void LossyInFromFile(ulong sid, string f);
 
+        // QBridge: bridged patching, (a matrix product state whose sites are whole Qrack simulators).
+        // Bridge IDs are a separate ID space from simulator IDs.
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "init_qbridge")]
+        public static extern ulong InitBridge(ulong numQubits, ulong maxBondQubits, ulong patchCount, [MarshalAs(UnmanagedType.I1)] bool isRing, [MarshalAs(UnmanagedType.I1)] bool isBornTruncation, ulong lazyBondQubits, ulong maxPatchQubits, ulong seed, [MarshalAs(UnmanagedType.I1)] bool tensorNet, [MarshalAs(UnmanagedType.I1)] bool decomposeMulti, [MarshalAs(UnmanagedType.I1)] bool decompose, [MarshalAs(UnmanagedType.I1)] bool stabilizer, [MarshalAs(UnmanagedType.I1)] bool bdt, [MarshalAs(UnmanagedType.I1)] bool pager, [MarshalAs(UnmanagedType.I1)] bool hybrid, [MarshalAs(UnmanagedType.I1)] bool opencl);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "init_qbridge_clone")]
+        public static extern ulong InitBridgeClone(ulong bridgeId);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "destroy_qbridge")]
+        public static extern void DestroyBridge(ulong bridgeId);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "get_qbridge_error")]
+        public static extern int GetBridgeError(ulong bridgeId);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "get_qbridge_qubit_count")]
+        public static extern ulong GetBridgeQubitCount(ulong bridgeId);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_mtrx")]
+        public static extern void BridgeMtrx(ulong bridgeId, double[] m, ulong q);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_u")]
+        public static extern void BridgeU(ulong bridgeId, ulong q, double theta, double phi, double lambda);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_mcmtrx")]
+        public static extern void BridgeMCMtrx(ulong bridgeId, ulong controlLen, ulong[] controls, double[] m, ulong q);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_macmtrx")]
+        public static extern void BridgeMACMtrx(ulong bridgeId, ulong controlLen, ulong[] controls, double[] m, ulong q);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_swap")]
+        public static extern void BridgeSWAP(ulong bridgeId, ulong target1, ulong target2);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_iswap")]
+        public static extern void BridgeISWAP(ulong bridgeId, ulong target1, ulong target2);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_adjiswap")]
+        public static extern void BridgeAdjISWAP(ulong bridgeId, ulong target1, ulong target2);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_fsim")]
+        public static extern void BridgeFSim(ulong bridgeId, double theta, double phi, ulong target1, ulong target2);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_begin_deferred")]
+        public static extern void BridgeBeginDeferred(ulong bridgeId);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_end_deferred")]
+        public static extern void BridgeEndDeferred(ulong bridgeId);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_flush")]
+        public static extern void BridgeFlush(ulong bridgeId);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_measure_shots")]
+        public static extern void BridgeMeasureShots(ulong bridgeId, ulong numQubits, ulong[] qubits, ulong shots, [In, Out] ulong[] measureResults);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_pauli_expectation")]
+        public static extern double BridgePauliExpectation(ulong bridgeId, ulong numQubits, ulong[] qubits, ulong[] bases);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_get_fidelity_estimate")]
+        public static extern double GetBridgeFidelityEstimate(ulong bridgeId);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_get_truncations")]
+        public static extern ulong GetBridgeTruncations(ulong bridgeId);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_get_flushes")]
+        public static extern ulong GetBridgeFlushes(ulong bridgeId);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_get_peak_bonds")]
+        public static extern ulong GetBridgePeakBonds(ulong bridgeId);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_get_peak_patch_qubits")]
+        public static extern ulong GetBridgePeakPatchQubits(ulong bridgeId);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_get_cut_count")]
+        public static extern ulong GetBridgeCutCount(ulong bridgeId);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_get_bonds")]
+        public static extern void GetBridgeBonds(ulong bridgeId, [In, Out] ulong[] bonds);
+
         private static List<ulong> SimulatorIds = new List<ulong>();
+
+        private static List<ulong> BridgeIds = new List<ulong>();
 
         private static Dictionary<ulong, float> SimulatorSdrps = new Dictionary<ulong, float>();
 
         protected void OnDestroy()
         {
-            for (int i = 0; i < SimulatorIds.Count; ++i)
+            // (Deallocation removes the ID from its list, so count down.)
+            for (int i = SimulatorIds.Count - 1; i >= 0; --i)
             {
                 DeallocateSimulator(SimulatorIds[i]);
+            }
+
+            for (int i = BridgeIds.Count - 1; i >= 0; --i)
+            {
+                DeallocateBridge(BridgeIds[i]);
+            }
+        }
+
+        /// <summary>
+        /// Allocate a QBridge: "numQubits" logical qubits, split into "patchCount" contiguous patches, (each one an
+        /// ordinary Qrack simulator,) joined by at most "maxBondQubits" bond qubits per cut, (so, bond dimension
+        /// 2^maxBondQubits). The boolean flags after "seed" pick the simulator layers of every patch, as for
+        /// "InitType()," (and plain CPU state vector patches, if they are all false).
+        /// </summary>
+        public ulong AllocateBridge(ulong numQubits, ulong maxBondQubits = 3, ulong patchCount = 2, bool isRing = false, bool isBornTruncation = false, ulong lazyBondQubits = 0, ulong maxPatchQubits = 0, ulong seed = 0, bool tensorNet = false, bool decomposeMulti = false, bool decompose = false, bool stabilizer = false, bool bdt = false, bool pager = false, bool hybrid = false, bool opencl = false)
+        {
+            if ((patchCount < 1) || (patchCount > numQubits)) {
+                throw new ArgumentException(String.Format("In QuantumManager.AllocateBridge(): {0} patches is not between 1 and the qubit count, {1}!", patchCount, numQubits));
+            }
+
+            ulong bridgeId = InitBridge(numQubits, maxBondQubits, patchCount, isRing, isBornTruncation, lazyBondQubits, maxPatchQubits, seed, tensorNet, decomposeMulti, decompose, stabilizer, bdt, pager, hybrid, opencl);
+
+            if (GetBridgeError(bridgeId) != 0) {
+                DestroyBridge(bridgeId);
+                throw new InvalidOperationException("QBridge C++ library raised exception on allocation.");
+            }
+
+            BridgeIds.Add(bridgeId);
+
+            return bridgeId;
+        }
+
+        public ulong CloneBridge(ulong bridgeId)
+        {
+            ulong nBridgeId = InitBridgeClone(bridgeId);
+
+            if (GetBridgeError(nBridgeId) != 0) {
+                DestroyBridge(nBridgeId);
+                throw new InvalidOperationException("QBridge C++ library raised exception on clone.");
+            }
+
+            BridgeIds.Add(nBridgeId);
+
+            return nBridgeId;
+        }
+
+        public void DeallocateBridge(ulong bridgeId)
+        {
+            if (BridgeIds.Contains(bridgeId))
+            {
+                DestroyBridge(bridgeId);
+                BridgeIds.Remove(bridgeId);
             }
         }
 

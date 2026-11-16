@@ -8,29 +8,20 @@ Kernel version:          7.0.0-43-generic
 Architecture:            x86_64
 Window Protocol:         Wayland (XWayland)
 Available memory:        62697 MB
-Date:                    2026-11-14T14:58:03Z
+Date:                    2026-11-16T16:05:24Z
 [Licensing::Module] Trying to connect to existing licensing client channel...
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu" at "2026-11-14T14:58:03.173879Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu" at "2026-11-16T16:05:24.330003Z"
 [SignatureVerifier] Application signature verification not supported on this platform.
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.19.0+4cc3dda
-  Session Id:              59f6c1d515a4443285f2abf37d028602
-  Correlation Id:          5424193bb46d3b3c1b53bb0b62b34f5d
-  External correlation Id: 6203471787565206924
+  Session Id:              29b354cde5254596aaf08ca263ff87b7
+  Correlation Id:          63dd08ea6192a5e4d9c2ee1adff9d129
+  External correlation Id: 1941857916742393170
   Machine Id:              MauV1ys7dY8Z/1rIzv0Oz3OVQz4=
 [Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-iamu" (connect: 0.00s, validation: 0.00s, handshake: 0.00s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-notifications" at "2026-11-14T14:58:03.174536Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-notifications" at "2026-11-16T16:05:24.330713Z"
 [Licensing::Module] Licensing Background thread has ended after 0.00s
 Selected window backend: (null) 
-Initialising UDS system complete:
-  - System type: Client
-  - Resource namespace: 6f552ceda695996b8e64e227f44bbbdb
-  - Shared memory size: 1073741824
-  - Command buffer id: 1052624
-  - Command buffer size: 8192
-  - Hashmap size: 4194304
-  - Service connected: true
-  - Service working directory: Library/DataStore/
 Desktop is 4096 x 2560 @ 60 Hz
 Initialize udev device monitor.
 
@@ -46,9 +37,9 @@ AssetImportWorkerHW0
 -logFile
 Logs/AssetImportWorkerHW0.log
 -srvPort
-45223
+46319
 -parentPid
-35886
+24734
 -analyticsCloudUserId
 anonymous
 -analyticsLocalProjectId
@@ -108,17 +99,26 @@ Successfully changed project path to: /home/iamu/GitHub/OpenRelativity
     "memorysetup-job-temp-allocator-block-size=2097152"
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
-Player connection [132311127890944]  Target information:
+Player connection [132466707545088]  Target information:
 
-Player connection [132311127890944]  * "[IP] 192.168.1.194 [Port] 0 [Flags] 2 [Guid] 2858622719 [EditorId] 2858622719 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.194) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
+Player connection [132466707545088]  * "[IP] 192.168.1.194 [Port] 0 [Flags] 2 [Guid] 1320472672 [EditorId] 1320472672 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.194) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
 
-Player connection [132311127890944] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [132311127890944] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [132466707545088] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [132466707545088] Host joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 15
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
 [Physics::Module] Id: 0xdecafbad
 Library Redirect Path: Library/
+Initialising UDS system complete:
+  - System type: Client
+  - Resource namespace: 6f552ceda695996b8e64e227f44bbbdb
+  - Shared memory size: 1073741824
+  - Command buffer id: 1052624
+  - Command buffer size: 8192
+  - Hashmap size: 4194304
+  - Service connected: true
+  - Service working directory: Library/DataStore/
 [Physics::Module] Selected backend (deferred post-plugins).
 [Physics::Module] Name: PhysX
 [Physics::Module] Id: 0xf2b8ea05
@@ -169,9 +169,9 @@ GfxDevice: creating device client; kGfxThreadingModeThreaded
 [vulkan] Loaded instance function vkGetPhysicalDeviceProperties
 [vulkan] Loaded instance function vkEnumeratePhysicalDevices
 [Vulkan init] SelectPhysicalDevice requestedDeviceIndex=-1 xrDevice=(nil)
-[Vulkan init] Physical Device 0x55bf0e952ea0 [0]: "Intel(R) Graphics (RPL-S)" deviceType=1 vendorID=8086 deviceID=a788
-[Vulkan init] Physical Device 0x55bf0e953050 [1]: "NVIDIA GeForce RTX 4090 Laptop GPU" deviceType=2 vendorID=10de deviceID=2757
-[Vulkan init] Physical Device 0x55bf0e94aed0 [2]: "llvmpipe (LLVM 21.1.8, 256 bits)" deviceType=4 vendorID=10005 deviceID=0
+[Vulkan init] Physical Device 0x574f9b9835c0 [0]: "Intel(R) Graphics (RPL-S)" deviceType=1 vendorID=8086 deviceID=a788
+[Vulkan init] Physical Device 0x574f9b98e8d0 [1]: "NVIDIA GeForce RTX 4090 Laptop GPU" deviceType=2 vendorID=10de deviceID=2757
+[Vulkan init] Physical Device 0x574f9b988510 [2]: "llvmpipe (LLVM 21.1.8, 256 bits)" deviceType=4 vendorID=10005 deviceID=0
 Vulkan detection: 2
 [Vulkan init] extensions: count=27
 [Vulkan init] extensions: name=VK_EXT_acquire_drm_display [enabled=0, external=0]
@@ -263,10 +263,10 @@ Vulkan detection: 2
 [vulkan] Loaded instance function vkCmdEndDebugUtilsLabelEXT
 [vulkan] Loaded instance function vkCmdInsertDebugUtilsLabelEXT
 [Vulkan init] SelectPhysicalDevice requestedDeviceIndex=-1 xrDevice=(nil)
-[Vulkan init] Physical Device 0x55bf0e96dcc0 [0]: "Intel(R) Graphics (RPL-S)" deviceType=1 vendorID=8086 deviceID=a788
-[Vulkan init] Physical Device 0x55bf0e96d4c0 [1]: "NVIDIA GeForce RTX 4090 Laptop GPU" deviceType=2 vendorID=10de deviceID=2757
-[Vulkan init] Physical Device 0x55bf0e964f00 [2]: "llvmpipe (LLVM 21.1.8, 256 bits)" deviceType=4 vendorID=10005 deviceID=0
-[Vulkan init] Selected physical device 0x55bf0e96d4c0
+[Vulkan init] Physical Device 0x574f9b9a88c0 [0]: "Intel(R) Graphics (RPL-S)" deviceType=1 vendorID=8086 deviceID=a788
+[Vulkan init] Physical Device 0x574f9b99fc00 [1]: "NVIDIA GeForce RTX 4090 Laptop GPU" deviceType=2 vendorID=10de deviceID=2757
+[Vulkan init] Physical Device 0x574f9b9a8a70 [2]: "llvmpipe (LLVM 21.1.8, 256 bits)" deviceType=4 vendorID=10005 deviceID=0
+[Vulkan init] Selected physical device 0x574f9b99fc00
 [Vulkan init] Graphics queue count=1
 [Vulkan init] extensions: count=275
 [Vulkan init] extensions: name=VK_AMD_buffer_marker [enabled=0, external=0]
@@ -694,13 +694,13 @@ Vulkan renderer=[NVIDIA GeForce RTX 4090 Laptop GPU] id=[2757]
 Vulkan device type 2
 Vulkan driverversion=[595.396.128 (0x94d8c080)] uint=[-1797734272]
 Vulkan driverLibraryString=[NVIDIA (4), 595.99.02]
-Vulkan PSO: Cache data successfully loaded [size=36,path=/tmp/DefaultCompany/openrelativity/vulkan_pso_cache.bin]
+Vulkan PSO: cache data not found [path=/tmp/DefaultCompany/openrelativity/vulkan_pso_cache.bin]
 Initialize mono
 Mono path[0] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed'
 Mono path[1] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
 Mono path[2] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-linux'
 Mono config path = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56418
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56630
 CodeReloadManager initialized
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
@@ -712,7 +712,7 @@ Registering precompiled unity dll's ...
   Expiration: Unlimited
 Register platform support module: /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.001425 seconds.
+Registered in 0.002091 seconds.
 Native extension for LinuxStandalone target not found
 Package Manager log level set to [2]
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
@@ -730,23 +730,23 @@ Native extension for Android target not found
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Scripting: successfully reloaded assembly
-- Finished resetting the current domain, in  0.328 seconds
-Domain Reload Profiling: 628ms
-	BeginReloadAssembly (50ms)
+- Finished resetting the current domain, in  0.282 seconds
+Domain Reload Profiling: 587ms
+	BeginReloadAssembly (48ms)
 	RebuildCommonClasses (3ms)
 	RebuildNativeTypeToScriptingClass (7ms)
-	initialDomainReloadingComplete (44ms)
-	LoadAllAssembliesAndSetupDomain (196ms)
-		LoadAssemblies (50ms)
-		TypeCache.Refresh (134ms)
-			TypeCache.ScanAssembly (124ms)
+	initialDomainReloadingComplete (47ms)
+	LoadAllAssembliesAndSetupDomain (199ms)
+		LoadAssemblies (48ms)
+		TypeCache.Refresh (135ms)
+			TypeCache.ScanAssembly (126ms)
 		AnalyzeDomain (0ms)
-	FinalizeReload (328ms)
+	FinalizeReload (283ms)
 		SetupLoadedEditorAssemblies (0ms)
 			InitializePlatformSupportModulesInManaged (7ms)
-			BeforeProcessingInitializeOnLoad (71ms)
-			ProcessInitializeOnLoadAttributes (56ms)
-			ProcessInitializeOnLoadMethodAttributes (134ms)
+			BeforeProcessingInitializeOnLoad (60ms)
+			ProcessInitializeOnLoadAttributes (57ms)
+			ProcessInitializeOnLoadMethodAttributes (100ms)
 Initializing Unity extensions:
 [Licensing::Client] Successfully resolved entitlement details
 ========================================================================
@@ -774,79 +774,157 @@ Scripting: successfully reloaded assembly
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.399 seconds
-Domain Reload Profiling: 791ms
+- Finished resetting the current domain, in  0.371 seconds
+Domain Reload Profiling: 782ms
 	BeginReloadAssembly (102ms)
-		DisableScriptedObjects (7ms)
-		CreateAndSetChildDomain (20ms)
+		DisableScriptedObjects (4ms)
+		CreateAndSetChildDomain (25ms)
 	RebuildCommonClasses (5ms)
 	RebuildNativeTypeToScriptingClass (7ms)
-	initialDomainReloadingComplete (23ms)
-	LoadAllAssembliesAndSetupDomain (254ms)
-		LoadAssemblies (122ms)
+	initialDomainReloadingComplete (24ms)
+	LoadAllAssembliesAndSetupDomain (272ms)
+		LoadAssemblies (123ms)
 		TypeCache.Refresh (58ms)
-			TypeCache.ScanAssembly (50ms)
-		AnalyzeDomain (24ms)
-			BuildScriptInfoCaches (21ms)
-	FinalizeReload (399ms)
+			TypeCache.ScanAssembly (49ms)
+		AnalyzeDomain (32ms)
+			BuildScriptInfoCaches (28ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (372ms)
 		SetupLoadedEditorAssemblies (0ms)
 			InitializePlatformSupportModulesInManaged (10ms)
-			BeforeProcessingInitializeOnLoad (63ms)
-			ProcessInitializeOnLoadAttributes (92ms)
-			ProcessInitializeOnLoadMethodAttributes (40ms)
-		AwakeInstancesAfterBackupRestoration (5ms)
+			BeforeProcessingInitializeOnLoad (61ms)
+			ProcessInitializeOnLoadAttributes (87ms)
+			ProcessInitializeOnLoadMethodAttributes (36ms)
+		AwakeInstancesAfterBackupRestoration (4ms)
 AcceleratorClientConnectionCallback - disconnected - :0
 AutoLocale: current locale expects 'C' but got 'en_US.UTF-8'Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
 Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 4022 unused Assets / (4.8 MB). Loaded Objects now: 4997.
-Memory consumption went from 203.1 MB to 198.3 MB.
-Total: 8.486226 ms (FindLiveObjects: 0.261780 ms CreateObjectMapping: 0.225631 ms MarkObjects: 6.522284 ms  DeleteObjects: 1.371635 ms)
+Unloading 4024 unused Assets / (4.5 MB). Loaded Objects now: 4999.
+Memory consumption went from 206.9 MB to 202.3 MB.
+Total: 6.862338 ms (FindLiveObjects: 0.356950 ms CreateObjectMapping: 0.264451 ms MarkObjects: 4.983920 ms  DeleteObjects: 1.168559 ms)
 
 ========================================================================
-Received Import Request.
-  Time of request: 2026-11-14T14:58:07.452013Z
-  Time since last request: 7338.41559407099976 seconds.
-  importAddress: GUID: 39fe7953953847bd3bee0fa278d0bc98 - Path: Assets/Samples/Qrack/0.1.0/Example/Scenes/yorktown - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B
-Importing 'GUID: 39fe7953953847bd3bee0fa278d0bc98 - Path: Assets/Samples/Qrack/0.1.0/Example/Scenes/yorktown - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B' with importer (ScriptedImporter : UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B)
-Imported 'GUID: 39fe7953953847bd3bee0fa278d0bc98' -> (Import Result ID: '438b51d8ff8bd49021d78174a6c987ce') in 0.033 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7ee075e669e1f7763e2dffcc2f38a2a9 DependenciesID=b4bea332ec990bb5b7cd6106c375f2f8 StaticDependenciesID=70f5f96555f1297ef6676d29a7a18c32 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 26 unused Assets / (3.0 MB). Loaded Objects now: 4999.
+Memory consumption went from 203.0 MB to 200.0 MB.
+Total: 5.111936 ms (FindLiveObjects: 0.197696 ms CreateObjectMapping: 0.053166 ms MarkObjects: 4.468485 ms  DeleteObjects: 0.313363 ms)
+
+Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Import Request.
-  Time of request: 2026-11-14T14:58:07.494898Z
-  Time since last request: 0.000371499 seconds.
-  importAddress: GUID: 9db736070a78e45acb5532de17339f02 - Path: Assets/Samples/Qrack/0.1.0/Example/Scenes/yorktown/ReflectionProbe-0.exr - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B
-Importing 'GUID: 9db736070a78e45acb5532de17339f02 - Path: Assets/Samples/Qrack/0.1.0/Example/Scenes/yorktown/ReflectionProbe-0.exr - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B' with importer (ScriptedImporter : UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B)
-Imported 'GUID: 9db736070a78e45acb5532de17339f02' -> (Import Result ID: 'af0e249d9306e6eeb0ba021999b8400c') in 0.034 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8d5b794c650f935de973da08e3d53ccb DependenciesID=6362de96ed0f9524a699022050738c9e StaticDependenciesID=724ab86af86e1f74e100f05d09de6614 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
-========================================================================
-Received Import Request.
-  Time of request: 2026-11-14T14:58:07.535859Z
-  Time since last request: 0.000028601 seconds.
-  importAddress: GUID: 1080c9385bac2a24eb765488e6194530 - Path: Assets/Samples/Qrack/0.1.0/Example/Scenes/yorktown.unity - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B
-Importing 'GUID: 1080c9385bac2a24eb765488e6194530 - Path: Assets/Samples/Qrack/0.1.0/Example/Scenes/yorktown.unity - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B' with importer (ScriptedImporter : UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B)
-Imported 'GUID: 1080c9385bac2a24eb765488e6194530' -> (Import Result ID: 'c3dd1f9f84ce961c6fd85f5aa88108e3') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f0f3d96a609b1cf007dd3066f6eca9e1 DependenciesID=5b158fea93d7d8b6bc7d757eaf013101 StaticDependenciesID=fafcd41389f2adee75af5a50409b7d1c 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
-========================================================================
-Received Import Request.
-  Time of request: 2026-11-14T14:58:07.544382Z
-  Time since last request: 0.000103965 seconds.
-  importAddress: GUID: 9a0edf3903a63504bb6b02635b626f0c - Path: Assets/Samples/Qrack/0.1.0/Example/Materials/relativityLit.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B
-Importing 'GUID: 9a0edf3903a63504bb6b02635b626f0c - Path: Assets/Samples/Qrack/0.1.0/Example/Materials/relativityLit.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B' with importer (ScriptedImporter : UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B)
-Imported 'GUID: 9a0edf3903a63504bb6b02635b626f0c' -> (Import Result ID: '86506865ce5b62e36f9bdbb8d69a4ad6') in 0.012 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2bb5ec7a903775183ad25ccc4d287bc4 DependenciesID=91b4a86e087b4bd08d3267b1c5853db6 StaticDependenciesID=664faddc78048991ae1bc78475ea230b 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 4
-========================================================================
-Received Import Request.
-  Time of request: 2026-11-14T14:58:07.565304Z
-  Time since last request: 0.000519604 seconds.
-  importAddress: GUID: 67f1033a6d4b838e7802106c43af0549 - Path: Assets/Samples/Qrack/0.1.0/Example/Scenes/yorktown/LightingData.asset - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B
-Importing 'GUID: 67f1033a6d4b838e7802106c43af0549 - Path: Assets/Samples/Qrack/0.1.0/Example/Scenes/yorktown/LightingData.asset - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B' with importer (ScriptedImporter : UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B)
-Imported 'GUID: 67f1033a6d4b838e7802106c43af0549' -> (Import Result ID: 'e93df39a0a4a00223082161a982f9bf4') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=eeeeb2f936e3cb7e2b05599ae3ab094b DependenciesID=689590c625bfd5e332a74491e46ec108 StaticDependenciesID=8dcfe8ce559c3afbcd79faa2261140fb 
+  Time of request: 2026-11-16T16:05:27.04125Z
+  Time since last request: 10350.71336255200004 seconds.
+  importAddress: GUID: dc805960d0458bd4088933828bca33a8 - Path: Packages/net.qrack.openrelativity/Materials/SchwarzschildLens.mat - Importer: PreviewImporter
+Importing 'GUID: dc805960d0458bd4088933828bca33a8 - Path: Packages/net.qrack.openrelativity/Materials/SchwarzschildLens.mat - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: dc805960d0458bd4088933828bca33a8' -> (Import Result ID: '89884d805fbc5f7d8c6b993fe38dcb15') in 0.201 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8a87341551225c0181a774f4a7db57a4 DependenciesID=b1a3c169db2801e57b9ca396c0c59a2b StaticDependenciesID=eb5eaa4294ace7d67b056c470fbae4a8 
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-16T16:05:27.251819Z
+  Time since last request: 0.000015784 seconds.
+  importAddress: GUID: 7226bbf456244e4488f9c22062592614 - Path: Packages/net.qrack.openrelativity/Materials/SchwarzschildMirror.mat - Importer: PreviewImporter
+Importing 'GUID: 7226bbf456244e4488f9c22062592614 - Path: Packages/net.qrack.openrelativity/Materials/SchwarzschildMirror.mat - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 7226bbf456244e4488f9c22062592614' -> (Import Result ID: '3679826faaf2c8e48bcbc4672f76bbe4') in 0.004 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2484bbbce690e96a43bb83422d41f41f DependenciesID=432618a180a793b7b4574876f1e0b2c4 StaticDependenciesID=6b42a0c679c83f59ce1819570e234081 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-16T16:05:28.109663Z
+  Time since last request: 0.847182733 seconds.
+  importAddress: GUID: 074f499876cc0a04db91119ac9237977 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/UVMAP.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B
+Importing 'GUID: 074f499876cc0a04db91119ac9237977 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/UVMAP.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B' with importer (ScriptedImporter : UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B)
+Imported 'GUID: 074f499876cc0a04db91119ac9237977' -> (Import Result ID: '14a9ecbcc9aa981f3ca0437047fd0a62') in 0.046 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=34f1a415ebce5db4ca4c99aebeeecc42 DependenciesID=d09835e1842d1faf80595e02ac85c4d1 StaticDependenciesID=ae1c67b286f23f2f6ac5fc42e7356e05 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-16T16:05:28.16283Z
+  Time since last request: 0.000206241 seconds.
+  importAddress: GUID: 61c3fdb0b77abe643b940cae6ee98d4b - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/blackhole_skybox.unity - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B
+Importing 'GUID: 61c3fdb0b77abe643b940cae6ee98d4b - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/blackhole_skybox.unity - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B' with importer (ScriptedImporter : UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B)
+Imported 'GUID: 61c3fdb0b77abe643b940cae6ee98d4b' -> (Import Result ID: '92b807efabe78a6d08f21ab7b6b214ff') in 0.001 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d62c25e9d3b1bf42fdfbe60ee2ca53be DependenciesID=f22410505ffcb38342ce87438246f17b StaticDependenciesID=f2fa646cac2ec173b07d053bdbed0bcc 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-16T16:05:31.552633Z
+  Time since last request: 3.381468644 seconds.
+  importAddress: GUID: 74209c0d8f829cd4599c3589a74f8d2e - Path: Packages/net.qrack.qrack/net.qrack.qrack.asmdef - Importer: PreviewImporter
+Importing 'GUID: 74209c0d8f829cd4599c3589a74f8d2e - Path: Packages/net.qrack.qrack/net.qrack.qrack.asmdef - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 74209c0d8f829cd4599c3589a74f8d2e' -> (Import Result ID: 'd5e3b47c62a5a056a17ab81f039882c7') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7525cb6fddac2293460fbb43d1c22e16 DependenciesID=42369978f22a7890463ff6c9355be23a StaticDependenciesID=01df3fd97202b67a53d278bbf2eef147 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-16T16:05:38.977789Z
+  Time since last request: 7.418206856 seconds.
+  importAddress: GUID: f75b3b925444e984bbaac413e60f42df - Path: Packages/net.qrack.qrack/Scripts - Importer: PreviewImporter
+Importing 'GUID: f75b3b925444e984bbaac413e60f42df - Path: Packages/net.qrack.qrack/Scripts - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: f75b3b925444e984bbaac413e60f42df' -> (Import Result ID: '5b3e813bade632933993a883240edaee') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=18022092cd27134d13fe765a484d2630 DependenciesID=3ba8c75b5e5baf05892adb58e69d72de StaticDependenciesID=7a2a47af1dfe3aca6baf09e7bf13bf38 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-16T16:05:43.503388Z
+  Time since last request: 4.518732847 seconds.
+  importAddress: GUID: 33df2203eac043809ddb8a40a5895127 - Path: Packages/net.qrack.qrack/Scripts/QuantumBridge.cs - Importer: PreviewImporter
+Importing 'GUID: 33df2203eac043809ddb8a40a5895127 - Path: Packages/net.qrack.qrack/Scripts/QuantumBridge.cs - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 33df2203eac043809ddb8a40a5895127' -> (Import Result ID: '26a2c19afdc5d7f2299440914425feb0') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ce3ab282b78e5f5c9bdfa51a9ed2495f DependenciesID=e200bc4a66ba9b7275fdf0ce7d6a58ec StaticDependenciesID=9c03c969a044e980e72519ae8c53158c 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+[Licensing::Client] Successfully resolved entitlement details
+Begin MonoManager ReloadAssembly
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+[Licensing::Client] Successfully resolved entitlement details
+Native extension for LinuxStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Native extension for Android target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  0.388 seconds
+Domain Reload Profiling: 789ms
+	BeginReloadAssembly (128ms)
+		DisableScriptedObjects (11ms)
+		CreateAndSetChildDomain (31ms)
+	RebuildCommonClasses (5ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (24ms)
+	LoadAllAssembliesAndSetupDomain (236ms)
+		LoadAssemblies (139ms)
+		TypeCache.Refresh (6ms)
+		AnalyzeDomain (50ms)
+			BuildScriptInfoCaches (47ms)
+	FinalizeReload (388ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (9ms)
+			BeforeProcessingInitializeOnLoad (60ms)
+			ProcessInitializeOnLoadAttributes (86ms)
+			ProcessInitializeOnLoadMethodAttributes (38ms)
+		AwakeInstancesAfterBackupRestoration (10ms)
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4022 unused Assets / (5.0 MB). Loaded Objects now: 5113.
+Memory consumption went from 213.2 MB to 208.2 MB.
+Total: 6.731071 ms (FindLiveObjects: 0.260033 ms CreateObjectMapping: 0.121745 ms MarkObjects: 4.916271 ms  DeleteObjects: 1.327313 ms)
+
+Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Prepare
 AcceleratorClientConnectionCallback - disconnected - :0
@@ -869,38 +947,38 @@ Scripting: successfully reloaded assembly
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.391 seconds
-Domain Reload Profiling: 751ms
-	BeginReloadAssembly (120ms)
+- Finished resetting the current domain, in  0.343 seconds
+Domain Reload Profiling: 674ms
+	BeginReloadAssembly (116ms)
 		DisableScriptedObjects (4ms)
-		CreateAndSetChildDomain (29ms)
+		CreateAndSetChildDomain (28ms)
 	RebuildCommonClasses (5ms)
-	RebuildNativeTypeToScriptingClass (7ms)
-	initialDomainReloadingComplete (24ms)
-	LoadAllAssembliesAndSetupDomain (203ms)
-		LoadAssemblies (156ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (23ms)
+	LoadAllAssembliesAndSetupDomain (180ms)
+		LoadAssemblies (126ms)
 		TypeCache.Refresh (4ms)
 		AnalyzeDomain (4ms)
-	FinalizeReload (391ms)
+	FinalizeReload (344ms)
 		SetupLoadedEditorAssemblies (0ms)
 			InitializePlatformSupportModulesInManaged (9ms)
-			BeforeProcessingInitializeOnLoad (63ms)
-			ProcessInitializeOnLoadAttributes (90ms)
+			BeforeProcessingInitializeOnLoad (60ms)
+			ProcessInitializeOnLoadAttributes (85ms)
 			ProcessInitializeOnLoadMethodAttributes (40ms)
-		AwakeInstancesAfterBackupRestoration (11ms)
+		AwakeInstancesAfterBackupRestoration (13ms)
 Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 4020 unused Assets / (4.2 MB). Loaded Objects now: 5048.
-Memory consumption went from 205.9 MB to 201.8 MB.
-Total: 6.185597 ms (FindLiveObjects: 0.358537 ms CreateObjectMapping: 0.178445 ms MarkObjects: 4.765785 ms  DeleteObjects: 0.783609 ms)
+Unloading 4022 unused Assets / (3.8 MB). Loaded Objects now: 5115.
+Memory consumption went from 213.3 MB to 209.5 MB.
+Total: 5.638633 ms (FindLiveObjects: 0.321973 ms CreateObjectMapping: 0.171662 ms MarkObjects: 4.331396 ms  DeleteObjects: 0.726697 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Prepare
 AcceleratorClientConnectionCallback - disconnected - :0
 Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 26 unused Assets / (3.0 MB). Loaded Objects now: 5048.
-Memory consumption went from 203.8 MB to 200.8 MB.
-Total: 5.687562 ms (FindLiveObjects: 0.181570 ms CreateObjectMapping: 0.058763 ms MarkObjects: 4.937316 ms  DeleteObjects: 0.364606 ms)
+Unloading 26 unused Assets / (3.0 MB). Loaded Objects now: 5115.
+Memory consumption went from 211.2 MB to 208.3 MB.
+Total: 5.174163 ms (FindLiveObjects: 0.191144 ms CreateObjectMapping: 0.058606 ms MarkObjects: 4.478308 ms  DeleteObjects: 0.309785 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 Editor requested this worker to shutdown with reason: Editor is closing down
@@ -911,5 +989,6 @@ Process exiting
 
 SDL leaked 2 allocations
 Turn on UNITY_SDL_ALLOCATION_TRACKING for detailed information.
-Vulkan PSO: data extracted [new size=36, old size=36, incomplete=0]
-Vulkan PSO: Pipeline cache has not changed skipping save handle[ee70d20]
+Vulkan PSO: data extracted [new size=62778, old size=0, incomplete=0]
+Vulkan PSO: Saved size[62778] path[/tmp/DefaultCompany/openrelativity/vulkan_pso_cache.bin] success=1 headerChanged=1 sizeChanged=1
+Internal: Possible leak. All render target surfaces should be removed from IdMap when destructed using RenderTargetMap::Remove(RenderSurfaceBase* rs).

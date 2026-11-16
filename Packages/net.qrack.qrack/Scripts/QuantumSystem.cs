@@ -8,16 +8,12 @@ using UnityEngine;
 
 namespace Qrack
 {
-#if OPEN_RELATIVITY_INCLUDED
-    public class QuantumSystem : RelativisticBehavior
-#else
-    public class QuantumSystem : MonoBehaviour
-#endif
+    // (The space-time clock of the system, "LocalTime" and "VisualTime," is in the QuantumClockBehavior base class.)
+    public class QuantumSystem : QuantumClockBehavior
     {
 
         public ulong QubitCount = 1;
         public float ApproximationLevel = 0.0f;
-        public float ClockOffset;
 
         public ulong SystemId { get; set; }
 
@@ -42,66 +38,6 @@ namespace Qrack
         virtual protected ulong GetSystemIndex(ulong registerIndex)
         {
             return registerIndex;
-        }
-
-#if OPEN_RELATIVITY_INCLUDED
-        private RelativisticObject _myRO;
-
-        private RelativisticObject myRO
-        {
-            get
-            {
-                return _myRO ? _myRO : _myRO = GetComponent<RelativisticObject>();
-            }
-        }
-#endif
-
-        public float LocalTime
-        {
-            get
-            {
-#if OPEN_RELATIVITY_INCLUDED
-                return ClockOffset + (myRO ? myRO.GetLocalTime() : state.TotalTimeWorld);
-#else
-                return ClockOffset + Time.time;
-#endif
-            }
-        }
-
-        public float LocalDeltaTime
-        {
-            get
-            {
-#if OPEN_RELATIVITY_INCLUDED
-                return (float)(myRO ? myRO.localDeltaTime : state.DeltaTimeWorld);
-#else
-                return Time.deltaTime;
-#endif
-            }
-        }
-
-        public float LocalFixedDeltaTime
-        {
-            get
-            {
-#if OPEN_RELATIVITY_INCLUDED
-                return (float)(myRO ? myRO.localFixedDeltaTime : state.FixedDeltaTimeWorld);
-#else
-                return Time.fixedDeltaTime;
-#endif
-            }
-        }
-
-        public float VisualTime
-        {
-            get
-            {
-#if OPEN_RELATIVITY_INCLUDED
-                return ClockOffset + (myRO ? myRO.GetVisualTime() : state.TotalTimeWorld);
-#else
-                return ClockOffset + Time.time;
-#endif
-            }
         }
 
         public void AllocateQubit(ulong qid) {

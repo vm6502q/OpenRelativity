@@ -8,6 +8,8 @@ namespace Qrack
     public abstract class RealTimeQasmProgram : MonoBehaviour
     {
         public QuantumSystem QuantumSystem;
+        // A program can run on a QuantumBridge, instead. (Leave "QuantumSystem" empty, then.)
+        public QuantumBridge QuantumBridge;
         public bool IsVisualTime = true;
         public bool DoRepeat = false;
         public int InstructionIndex = 0;
@@ -24,18 +26,27 @@ namespace Qrack
         protected List<RealTimeQasmProgramHistoryPoint> HistoryPoints { get; set; }
         protected abstract void StartProgram();
 
+        // The space-time clock of whichever the program runs on
+        protected QuantumClockBehavior QuantumClock
+        {
+            get
+            {
+                return QuantumSystem ? (QuantumClockBehavior)QuantumSystem : QuantumBridge;
+            }
+        }
+
         // Present time, according to program settings
         protected float ProgramTime
         {
             get
             {
-                return IsVisualTime ? QuantumSystem.VisualTime : QuantumSystem.LocalTime;
+                return IsVisualTime ? QuantumClock.VisualTime : QuantumClock.LocalTime;
             }
         }
 
         public void ResetTime()
         {
-            nextInstructionTime = IsVisualTime ? QuantumSystem.VisualTime : QuantumSystem.LocalTime;
+            nextInstructionTime = ProgramTime;
             if (InstructionIndex < ProgramInstructions.Count)
             {
                 nextInstructionTime += ProgramInstructions[InstructionIndex].DeltaTime;
@@ -64,7 +75,7 @@ namespace Qrack
 
         protected virtual void Start()
         {
-            RelativisticObject = QuantumSystem.GetComponent<RelativisticObject>();
+            RelativisticObject = QuantumClock.GetComponent<RelativisticObject>();
 
             isSignalledSources = new List<QcClassicalChannel>();
             ProgramInstructions = new List<RealTimeQasmInstruction>();
@@ -76,9 +87,9 @@ namespace Qrack
 
         virtual protected void Update()
         {
-            while ((HistoryPoints.Count > 0) && (HistoryPoints[0].WorldTime <= QuantumSystem.VisualTime))
+            while ((HistoryPoints.Count > 0) && (HistoryPoints[0].WorldTime <= QuantumClock.VisualTime))
             {
-                HistoryPoints[0].Action(QuantumSystem.VisualTime);
+                HistoryPoints[0].Action(QuantumClock.VisualTime);
                 HistoryPoints.RemoveAt(0);
             }
         }
