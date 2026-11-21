@@ -21,13 +21,13 @@ PluginImporter:
       enabled: 0
       settings:
         Exclude Android: 1
-        Exclude Editor: 0
+        Exclude Editor: 1
         Exclude Linux64: 1
         Exclude OSXUniversal: 1
         Exclude Win: 1
         Exclude Win64: 1
     Editor:
-      enabled: 1
+      enabled: 0
       settings:
         CPU: ARM64
         DefaultValueInitialized: true
@@ -39,11 +39,11 @@ PluginImporter:
     OSXUniversal:
       enabled: 0
       settings:
-        CPU: None
+        CPU: ARM64
     Win:
       enabled: 0
       settings:
-        CPU: x86
+        CPU: None
     Win64:
       enabled: 0
       settings:

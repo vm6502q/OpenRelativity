@@ -12,9 +12,9 @@ namespace Qrack
     /// most MaxBondQubits. That truncation is the approximation: the whole is a matrix product state, with entire
     /// simulators for its sites.
     ///
-    /// The qubit count and patch layout are fixed when the bridge is allocated, in Awake(). QBridge has no
-    /// (collapsing) measurement gate: read it out with MeasureShots(), Prob(), Prob3Axis(), and PauliExpectation(),
-    /// none of which disturb the state.
+    /// The qubit count and patch layout are fixed when the bridge is allocated, in Awake(). M() and ForceM() measure
+    /// one qubit mid-circuit, collapsing the state. MeasureShots(), MeasureShotsBits(), Prob(), Prob3Axis(), and
+    /// PauliExpectation() read the state out without disturbing it.
     ///
     /// An exception in the C++ library leaves the bridge in an error state, as for QuantumSystem. ResetAll() clears it.
     /// </summary>
@@ -196,17 +196,17 @@ namespace Qrack
             CheckError();
         }
 
-        public void X(ulong control, ulong targetId)
+        public void X(ulong targetId)
         {
             Mtrx(mtrxX, targetId);
         }
 
-        public void Y(ulong control, ulong targetId)
+        public void Y(ulong targetId)
         {
             Mtrx(mtrxY, targetId);
         }
 
-        public void Z(ulong control, ulong targetId)
+        public void Z(ulong targetId)
         {
             Mtrx(mtrxZ, targetId);
         }
@@ -289,10 +289,16 @@ namespace Qrack
 
         /// <summary>
         /// Exact samples of the stored state, one per element of "measureResults," without collapsing the state.
-        /// Bit i of each result is the outcome for qubits[i], (so, up to 64 qubits per call).
+        /// Bit i of each result is the outcome for qubits[i], (so, up to 64 qubits per call: use MeasureShotsBits()
+        /// for more).
         /// </summary>
         public void MeasureShots(ulong[] qubits, ulong[] measureResults)
         {
+            if (qubits.Length > 64)
+            {
+                throw new ArgumentException("MeasureShots() packs at most 64 qubits per result; use MeasureShotsBits() for " + qubits.Length + ".");
+            }
+
             for (int i = 0; i < qubits.Length; ++i)
             {
                 CheckQubit(qubits[i]);
@@ -300,6 +306,40 @@ namespace Qrack
 
             QuantumManager.BridgeMeasureShots(BridgeId, (ulong)qubits.Length, qubits, (ulong)measureResults.Length, measureResults);
             CheckError();
+        }
+
+        /// <summary>
+        /// Exact samples of the stored state, for any number of qubits, without collapsing the state.
+        /// Element [s][i] of the result is the outcome of shot s for qubits[i].
+        /// </summary>
+        public bool[][] MeasureShotsBits(ulong[] qubits, int shots)
+        {
+            for (int i = 0; i < qubits.Length; ++i)
+            {
+                CheckQubit(qubits[i]);
+            }
+
+            if (shots < 1)
+            {
+                return new bool[0][];
+            }
+
+            int words = (qubits.Length + 63) >> 6;
+            ulong[] packed = new ulong[shots * words];
+            QuantumManager.BridgeMeasureShotsWords(BridgeId, (ulong)qubits.Length, qubits, (ulong)shots, packed);
+            CheckError();
+
+            bool[][] results = new bool[shots][];
+            for (int s = 0; s < shots; ++s)
+            {
+                results[s] = new bool[qubits.Length];
+                for (int i = 0; i < qubits.Length; ++i)
+                {
+                    results[s][i] = ((packed[s * words + (i >> 6)] >> (i & 63)) & 1UL) != 0;
+                }
+            }
+
+            return results;
         }
 
         /// <summary>
@@ -331,10 +371,14 @@ namespace Qrack
             return PauliExpectation(new ulong[] { targetId }, new Pauli[] { basis });
         }
 
-        // Probability of |1>, in the Z basis
+        // Exact probability of |1>, in the Z basis, (without collapsing the state)
         public float Prob(ulong targetId)
         {
-            return (float)((1 - PauliExpectation(Pauli.PauliZ, targetId)) / 2);
+            CheckQubit(targetId);
+            double toRet = QuantumManager.BridgeProb(BridgeId, targetId);
+            CheckError();
+
+            return (float)toRet;
         }
 
         // (Unlike for QuantumSystem, this reads the three axes directly, without rotating the qubit there and back.)
@@ -345,6 +389,54 @@ namespace Qrack
             double probZ = (1 - PauliExpectation(Pauli.PauliZ, targetId)) / 2;
 
             return new BlochSphereCoordinates(probX, probY, probZ);
+        }
+
+        #endregion
+
+        #region Measurement
+
+        /// <summary>
+        /// Mid-circuit measurement of one qubit in the Z basis, collapsing the stored state. Returns the result.
+        /// (Like any readout, this truncates any bonds buffered by LazyBondQubits.)
+        /// </summary>
+        public bool M(ulong targetId)
+        {
+            CheckQubit(targetId);
+            bool toRet = QuantumManager.BridgeM(BridgeId, targetId) > 0;
+            CheckError();
+
+            return toRet;
+        }
+
+        /// <summary>
+        /// Post-select "result" on one qubit, collapsing the stored state. A result with zero probability is an error,
+        /// (leaving the bridge in its error state, and the state itself untouched).
+        /// </summary>
+        public bool ForceM(ulong targetId, bool result)
+        {
+            CheckQubit(targetId);
+            bool toRet = QuantumManager.BridgeForceM(BridgeId, targetId, result) > 0;
+            CheckError();
+
+            return toRet;
+        }
+
+        // Measure, then flip to |1> if needed, (as for QuantumSystem.QSET())
+        public void QSET(ulong targetId)
+        {
+            if (!M(targetId))
+            {
+                X(targetId);
+            }
+        }
+
+        // Measure, then flip to |0> if needed
+        public void QRESET(ulong targetId)
+        {
+            if (M(targetId))
+            {
+                X(targetId);
+            }
         }
 
         #endregion

@@ -1,95 +1,119 @@
-[2026-11-16T16:05:17.692Z][INFO] Command-line: /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Resources/PackageManager/Server/UnityPackageManager server -s 24734 --ipc-path /tmp/Unity-Upm-24734.sock -l 2 --log-file /home/iamu/GitHub/OpenRelativity/Logs/upm.log
-[2026-11-16T16:05:17.719Z][INFO] IPC server started (IPC path=/tmp/Unity-Upm-24734.sock).
-[2026-11-16T16:05:17.719Z][INFO] Hint: To connect to this UPM instance, launch Unity with the command-line parameter -upmIpcPath Upm-24734.
-[2026-11-16T16:05:18.647Z][INFO] project:add-dependency <-- Request received
+[2026-11-21T18:14:36.081Z][INFO] Command-line: /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Resources/PackageManager/Server/UnityPackageManager server -s 54431 --ipc-path /tmp/Unity-Upm-54431.sock -l 2 --log-file /home/iamu/GitHub/OpenRelativity/Logs/upm.log
+[2026-11-21T18:14:36.113Z][INFO] IPC server started (IPC path=/tmp/Unity-Upm-54431.sock).
+[2026-11-21T18:14:36.113Z][INFO] Hint: To connect to this UPM instance, launch Unity with the command-line parameter -upmIpcPath Upm-54431.
+[2026-11-21T18:14:36.994Z][INFO] project:add-dependency <-- Request received
 params: {
   "packageId": "com.unity.toolchain.linux-x86_64-linux"
 }
-[2026-11-16T16:05:18.661Z][INFO] project:add-dependency <-- Request received
+[2026-11-21T18:14:37.006Z][INFO] project:add-dependency <-- Request received
 params: {
   "packageId": "com.unity.sdk.linux-x86_64"
 }
-[2026-11-16T16:05:18.821Z][INFO] project:list-packages <-- Request received
+[2026-11-21T18:14:37.171Z][INFO] Downloading package [com.unity.package-manager.metadata-6000.6@0.0.106] from registry 'https://packages.unity.com'
+[2026-11-21T18:14:37.178Z][INFO] project:list-packages <-- Request received
 params: {}
-[2026-11-16T16:05:18.831Z][INFO] project:list-packages <-- Request received
+[2026-11-21T18:14:37.189Z][INFO] project:list-packages <-- Request received
 params: {}
-[2026-11-16T16:05:18.933Z][INFO] project:list-packages --> 200 (112 ms)
-[2026-11-16T16:05:19.769Z][INFO] project:add-dependency --> 200 (1122 ms)
-[2026-11-16T16:05:19.809Z][INFO] project:add-dependency --> 200 (1147 ms)
-[2026-11-16T16:05:19.859Z][INFO] project:list-packages --> 200 (1028 ms)
-[2026-11-16T16:05:20.177Z][INFO] project:list-packages <-- Request received
+[2026-11-21T18:14:37.285Z][INFO] project:list-packages --> 200 (107 ms)
+[2026-11-21T18:14:37.459Z][INFO] Finished downloading package [com.unity.package-manager.metadata-6000.6@0.0.106] from registry 'https://packages.unity.com' (size: 11.5 kB, time: 288ms)
+[2026-11-21T18:14:38.343Z][INFO] project:add-dependency --> 200 (1349 ms)
+[2026-11-21T18:14:38.383Z][INFO] project:add-dependency --> 200 (1377 ms)
+[2026-11-21T18:14:38.440Z][INFO] project:list-packages --> 200 (1251 ms)
+[2026-11-21T18:14:38.782Z][INFO] project:list-packages <-- Request received
 params: {}
-[2026-11-16T16:05:20.187Z][INFO] config:project:get-registries <-- Request received
+[2026-11-21T18:14:38.792Z][INFO] config:project:get-registries <-- Request received
 params: {}
-[2026-11-16T16:05:20.191Z][INFO] config:project:get-registries --> 200 (4 ms)
-[2026-11-16T16:05:20.235Z][INFO] project:list-packages --> 200 (58 ms)
-[2026-11-16T16:05:23.856Z][INFO] project:add-dependency <-- Request received
+[2026-11-21T18:14:38.796Z][INFO] config:project:get-registries --> 200 (4 ms)
+[2026-11-21T18:14:38.828Z][INFO] project:list-packages --> 200 (46 ms)
+[2026-11-21T18:14:41.176Z][INFO] project:add-dependency <-- Request received
 params: {
   "packageId": "com.unity.toolchain.linux-x86_64-linux"
 }
-[2026-11-16T16:05:23.866Z][INFO] project:add-dependency <-- Request received
+[2026-11-21T18:14:41.187Z][INFO] project:add-dependency <-- Request received
 params: {
   "packageId": "com.unity.sdk.linux-x86_64"
 }
-[2026-11-16T16:05:23.905Z][INFO] project:add-dependency --> 200 (49 ms)
-[2026-11-16T16:05:23.954Z][INFO] project:add-dependency --> 200 (88 ms)
-[2026-11-16T16:05:23.959Z][INFO] project:list-packages <-- Request received
+[2026-11-21T18:14:41.221Z][INFO] project:add-dependency --> 200 (45 ms)
+[2026-11-21T18:14:41.260Z][INFO] project:add-dependency --> 200 (73 ms)
+[2026-11-21T18:14:41.278Z][INFO] project:list-packages <-- Request received
 params: {}
-[2026-11-16T16:05:23.980Z][INFO] project:list-packages <-- Request received
+[2026-11-21T18:14:41.304Z][INFO] project:list-packages <-- Request received
 params: {}
-[2026-11-16T16:05:24.009Z][INFO] project:list-packages --> 200 (50 ms)
-[2026-11-16T16:05:24.036Z][INFO] project:list-packages --> 200 (56 ms)
-[2026-11-16T16:05:24.083Z][INFO] config:project:get-registries <-- Request received
+[2026-11-21T18:14:41.342Z][INFO] project:list-packages --> 200 (65 ms)
+[2026-11-21T18:14:41.374Z][INFO] project:list-packages --> 200 (70 ms)
+[2026-11-21T18:14:41.399Z][INFO] config:project:get-registries <-- Request received
 params: {}
-[2026-11-16T16:05:24.087Z][INFO] config:project:get-registries --> 200 (4 ms)
-[2026-11-16T16:05:24.123Z][INFO] packages:get-all-packageinfo <-- Request received
+[2026-11-21T18:14:41.403Z][INFO] config:project:get-registries --> 200 (4 ms)
+[2026-11-21T18:14:41.450Z][INFO] packages:get-all-packageinfo <-- Request received
 params: {}
-[2026-11-16T16:05:24.146Z][INFO] project:list-packages <-- Request received
+[2026-11-21T18:14:41.471Z][INFO] project:list-packages <-- Request received
 params: {}
-[2026-11-16T16:05:24.448Z][INFO] packages:get-all-packageinfo --> 200 (325 ms)
-[2026-11-16T16:05:24.479Z][INFO] project:list-packages --> 200 (333 ms)
-[2026-11-16T16:05:25.852Z][INFO] project:list-packages <-- Request received
+[2026-11-21T18:14:41.722Z][INFO] packages:get-all-packageinfo --> 200 (272 ms)
+[2026-11-21T18:14:41.754Z][INFO] project:list-packages --> 200 (283 ms)
+[2026-11-21T18:14:43.166Z][INFO] project:list-packages <-- Request received
 params: {}
-[2026-11-16T16:05:25.890Z][INFO] project:list-packages --> 200 (38 ms)
-[2026-11-16T16:05:28.220Z][INFO] project:list-packages <-- Request received
+[2026-11-21T18:14:43.208Z][INFO] project:list-packages --> 200 (42 ms)
+[2026-11-21T18:14:45.746Z][INFO] project:list-packages <-- Request received
 params: {}
-[2026-11-16T16:05:28.267Z][INFO] project:list-packages --> 200 (47 ms)
-[2026-11-16T16:09:57.487Z][INFO] project:add-dependency <-- Request received
+[2026-11-21T18:14:45.787Z][INFO] project:list-packages --> 200 (41 ms)
+[2026-11-21T18:15:18.030Z][INFO] project:add-dependency <-- Request received
 params: {
   "packageId": "com.unity.toolchain.linux-x86_64-linux"
 }
-[2026-11-16T16:09:57.500Z][INFO] project:add-dependency <-- Request received
+[2026-11-21T18:15:18.040Z][INFO] project:add-dependency <-- Request received
 params: {
   "packageId": "com.unity.sdk.linux-x86_64"
 }
-[2026-11-16T16:09:57.683Z][INFO] project:list-packages <-- Request received
+[2026-11-21T18:15:18.224Z][INFO] project:list-packages <-- Request received
 params: {}
-[2026-11-16T16:09:57.745Z][INFO] project:list-packages --> 200 (62 ms)
-[2026-11-16T16:09:57.826Z][INFO] config:project:get-registries <-- Request received
+[2026-11-21T18:15:18.259Z][INFO] project:list-packages --> 200 (34 ms)
+[2026-11-21T18:15:18.366Z][INFO] config:project:get-registries <-- Request received
 params: {}
-[2026-11-16T16:09:57.832Z][INFO] config:project:get-registries --> 200 (6 ms)
-[2026-11-16T16:09:58.280Z][INFO] packages:get-all-packageinfo <-- Request received
+[2026-11-21T18:15:18.369Z][INFO] config:project:get-registries --> 200 (3 ms)
+[2026-11-21T18:15:18.803Z][INFO] packages:get-all-packageinfo <-- Request received
 params: {}
-[2026-11-16T16:09:58.291Z][INFO] project:list-packages <-- Request received
+[2026-11-21T18:15:18.817Z][INFO] project:list-packages <-- Request received
 params: {}
-[2026-11-16T16:09:58.580Z][INFO] packages:get-all-packageinfo --> 200 (301 ms)
-[2026-11-16T16:09:58.620Z][INFO] project:list-packages --> 200 (329 ms)
-[2026-11-16T16:09:58.910Z][INFO] project:add-dependency --> 200 (1423 ms)
-[2026-11-16T16:09:58.948Z][INFO] project:add-dependency --> 200 (1448 ms)
-[2026-11-16T16:10:39.028Z][INFO] project:add-dependency <-- Request received
+[2026-11-21T18:15:19.073Z][INFO] packages:get-all-packageinfo --> 200 (270 ms)
+[2026-11-21T18:15:19.106Z][INFO] project:list-packages --> 200 (289 ms)
+[2026-11-21T18:15:19.273Z][INFO] project:add-dependency --> 200 (1243 ms)
+[2026-11-21T18:15:19.308Z][INFO] project:add-dependency --> 200 (1268 ms)
+[2026-11-21T18:17:50.051Z][INFO] project:add-dependency <-- Request received
 params: {
   "packageId": "com.unity.toolchain.linux-x86_64-linux"
 }
-[2026-11-16T16:10:39.038Z][INFO] project:add-dependency <-- Request received
+[2026-11-21T18:17:50.061Z][INFO] project:add-dependency <-- Request received
 params: {
   "packageId": "com.unity.sdk.linux-x86_64"
 }
-[2026-11-16T16:10:39.131Z][INFO] project:list-packages <-- Request received
+[2026-11-21T18:17:50.235Z][INFO] project:list-packages <-- Request received
 params: {}
-[2026-11-16T16:10:39.169Z][INFO] project:list-packages --> 200 (38 ms)
-[2026-11-16T16:10:39.284Z][INFO] config:project:get-registries <-- Request received
+[2026-11-21T18:17:50.291Z][INFO] project:list-packages --> 200 (56 ms)
+[2026-11-21T18:17:50.397Z][INFO] config:project:get-registries <-- Request received
 params: {}
-[2026-11-16T16:10:39.288Z][INFO] config:project:get-registries --> 200 (4 ms)
-[2026-11-16T16:10:40.264Z][INFO] project:add-dependency --> 200 (1236 ms)
-[2026-11-16T16:10:40.300Z][INFO] project:add-dependency --> 200 (1262 ms)
-[2026-11-16T16:11:00.668Z][INFO] Received shutdown request (SIGINT), shutting down Unity Package Manager
+[2026-11-21T18:17:50.399Z][INFO] config:project:get-registries --> 200 (2 ms)
+[2026-11-21T18:17:50.812Z][INFO] packages:get-all-packageinfo <-- Request received
+params: {}
+[2026-11-21T18:17:50.823Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-11-21T18:17:51.095Z][INFO] packages:get-all-packageinfo --> 200 (283 ms)
+[2026-11-21T18:17:51.129Z][INFO] project:list-packages --> 200 (306 ms)
+[2026-11-21T18:17:51.280Z][INFO] project:add-dependency --> 200 (1229 ms)
+[2026-11-21T18:17:51.319Z][INFO] project:add-dependency --> 200 (1258 ms)
+[2026-11-21T18:20:44.074Z][INFO] project:add-dependency <-- Request received
+params: {
+  "packageId": "com.unity.toolchain.linux-x86_64-linux"
+}
+[2026-11-21T18:20:44.084Z][INFO] project:add-dependency <-- Request received
+params: {
+  "packageId": "com.unity.sdk.linux-x86_64"
+}
+[2026-11-21T18:20:44.175Z][INFO] project:list-packages <-- Request received
+params: {}
+[2026-11-21T18:20:44.227Z][INFO] project:list-packages --> 200 (52 ms)
+[2026-11-21T18:20:44.328Z][INFO] config:project:get-registries <-- Request received
+params: {}
+[2026-11-21T18:20:44.333Z][INFO] config:project:get-registries --> 200 (5 ms)
+[2026-11-21T18:20:45.180Z][INFO] project:add-dependency --> 200 (1107 ms)
+[2026-11-21T18:20:45.227Z][INFO] project:add-dependency --> 200 (1143 ms)
+[2026-11-21T18:21:29.310Z][INFO] Received shutdown request (SIGINT), shutting down Unity Package Manager

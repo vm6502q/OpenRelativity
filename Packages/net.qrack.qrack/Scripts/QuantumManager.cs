@@ -330,6 +330,19 @@ namespace Qrack
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_measure_shots")]
         public static extern void BridgeMeasureShots(ulong bridgeId, ulong numQubits, ulong[] qubits, ulong shots, [In, Out] ulong[] measureResults);
 
+        // Any number of qubits: "shots" x ceil(numQubits / 64) little-endian 64-bit words, bit j of shot s at word (s * words + j / 64), bit (j % 64)
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_measure_shots_words")]
+        public static extern void BridgeMeasureShotsWords(ulong bridgeId, ulong numQubits, ulong[] qubits, ulong shots, [In, Out] ulong[] measureWords);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_prob")]
+        public static extern double BridgeProb(ulong bridgeId, ulong q);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_m")]
+        public static extern ulong BridgeM(ulong bridgeId, ulong q);
+
+        [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_force_m")]
+        public static extern ulong BridgeForceM(ulong bridgeId, ulong q, [MarshalAs(UnmanagedType.I1)] bool result);
+
         [DllImport(QRACKSIM_DLL_NAME, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl, EntryPoint = "qbridge_pauli_expectation")]
         public static extern double BridgePauliExpectation(ulong bridgeId, ulong numQubits, ulong[] qubits, ulong[] bases);
 

@@ -3,25 +3,34 @@ Branch:                  6000.6/respin/6000.6.8f1-b6138bef9630
 Build type:              Release
 Batch mode:              YES
 System name:             Linux
-Distro version:          #43-Ubuntu SMP PREEMPT_DYNAMIC Fri Oct 23 13:25:25 UTC 2026
-Kernel version:          7.0.0-43-generic
+Distro version:          #44-Ubuntu SMP PREEMPT_DYNAMIC Fri Nov  6 02:38:04 UTC 2026
+Kernel version:          7.0.0-44-generic
 Architecture:            x86_64
 Window Protocol:         Wayland (XWayland)
 Available memory:        62697 MB
-Date:                    2026-11-16T16:05:24Z
+Date:                    2026-11-21T18:14:41Z
 [Licensing::Module] Trying to connect to existing licensing client channel...
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu" at "2026-11-16T16:05:24.330003Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu" at "2026-11-21T18:14:41.631508Z"
 [SignatureVerifier] Application signature verification not supported on this platform.
 [Licensing::Client] Handshaking with LicensingClient:
   Version:                 1.19.0+4cc3dda
-  Session Id:              29b354cde5254596aaf08ca263ff87b7
-  Correlation Id:          63dd08ea6192a5e4d9c2ee1adff9d129
-  External correlation Id: 1941857916742393170
+  Session Id:              e5fbb507d81441848fa9e12911423739
+  Correlation Id:          72b8fac0c7d7c3c31cb8e6b7f933f9ea
+  External correlation Id: 7863659152475578905
   Machine Id:              MauV1ys7dY8Z/1rIzv0Oz3OVQz4=
 [Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-iamu" (connect: 0.00s, validation: 0.00s, handshake: 0.00s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-notifications" at "2026-11-16T16:05:24.330713Z"
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-iamu-notifications" at "2026-11-21T18:14:41.632491Z"
 [Licensing::Module] Licensing Background thread has ended after 0.00s
 Selected window backend: (null) 
+Initialising UDS system complete:
+  - System type: Client
+  - Resource namespace: 6f552ceda695996b8e64e227f44bbbdb
+  - Shared memory size: 1073741824
+  - Command buffer id: 1052624
+  - Command buffer size: 8192
+  - Hashmap size: 4194304
+  - Service connected: true
+  - Service working directory: Library/DataStore/
 Desktop is 4096 x 2560 @ 60 Hz
 Initialize udev device monitor.
 
@@ -37,9 +46,9 @@ AssetImportWorkerHW0
 -logFile
 Logs/AssetImportWorkerHW0.log
 -srvPort
-46319
+39733
 -parentPid
-24734
+54431
 -analyticsCloudUserId
 anonymous
 -analyticsLocalProjectId
@@ -99,26 +108,17 @@ Successfully changed project path to: /home/iamu/GitHub/OpenRelativity
     "memorysetup-job-temp-allocator-block-size=2097152"
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
-Player connection [132466707545088]  Target information:
+Player connection [137478189095936]  Target information:
 
-Player connection [132466707545088]  * "[IP] 192.168.1.194 [Port] 0 [Flags] 2 [Guid] 1320472672 [EditorId] 1320472672 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.194) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
+Player connection [137478189095936]  * "[IP] 192.168.1.194 [Port] 0 [Flags] 2 [Guid] 2409552937 [EditorId] 2409552937 [Version] 1048832 [Id] LinuxEditor(16,192.168.1.194) [Debug] 1 [PackageName] LinuxEditor [ProjectName] Editor" 
 
-Player connection [132466707545088] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [132466707545088] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [137478189095936] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [137478189095936] Host joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 15
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
 [Physics::Module] Id: 0xdecafbad
 Library Redirect Path: Library/
-Initialising UDS system complete:
-  - System type: Client
-  - Resource namespace: 6f552ceda695996b8e64e227f44bbbdb
-  - Shared memory size: 1073741824
-  - Command buffer id: 1052624
-  - Command buffer size: 8192
-  - Hashmap size: 4194304
-  - Service connected: true
-  - Service working directory: Library/DataStore/
 [Physics::Module] Selected backend (deferred post-plugins).
 [Physics::Module] Name: PhysX
 [Physics::Module] Id: 0xf2b8ea05
@@ -169,9 +169,9 @@ GfxDevice: creating device client; kGfxThreadingModeThreaded
 [vulkan] Loaded instance function vkGetPhysicalDeviceProperties
 [vulkan] Loaded instance function vkEnumeratePhysicalDevices
 [Vulkan init] SelectPhysicalDevice requestedDeviceIndex=-1 xrDevice=(nil)
-[Vulkan init] Physical Device 0x574f9b9835c0 [0]: "Intel(R) Graphics (RPL-S)" deviceType=1 vendorID=8086 deviceID=a788
-[Vulkan init] Physical Device 0x574f9b98e8d0 [1]: "NVIDIA GeForce RTX 4090 Laptop GPU" deviceType=2 vendorID=10de deviceID=2757
-[Vulkan init] Physical Device 0x574f9b988510 [2]: "llvmpipe (LLVM 21.1.8, 256 bits)" deviceType=4 vendorID=10005 deviceID=0
+[Vulkan init] Physical Device 0x57bd3ae49490 [0]: "Intel(R) Graphics (RPL-S)" deviceType=1 vendorID=8086 deviceID=a788
+[Vulkan init] Physical Device 0x57bd3ae65d60 [1]: "NVIDIA GeForce RTX 4090 Laptop GPU" deviceType=2 vendorID=10de deviceID=2757
+[Vulkan init] Physical Device 0x57bd3ae476c0 [2]: "llvmpipe (LLVM 21.1.8, 256 bits)" deviceType=4 vendorID=10005 deviceID=0
 Vulkan detection: 2
 [Vulkan init] extensions: count=27
 [Vulkan init] extensions: name=VK_EXT_acquire_drm_display [enabled=0, external=0]
@@ -263,10 +263,10 @@ Vulkan detection: 2
 [vulkan] Loaded instance function vkCmdEndDebugUtilsLabelEXT
 [vulkan] Loaded instance function vkCmdInsertDebugUtilsLabelEXT
 [Vulkan init] SelectPhysicalDevice requestedDeviceIndex=-1 xrDevice=(nil)
-[Vulkan init] Physical Device 0x574f9b9a88c0 [0]: "Intel(R) Graphics (RPL-S)" deviceType=1 vendorID=8086 deviceID=a788
-[Vulkan init] Physical Device 0x574f9b99fc00 [1]: "NVIDIA GeForce RTX 4090 Laptop GPU" deviceType=2 vendorID=10de deviceID=2757
-[Vulkan init] Physical Device 0x574f9b9a8a70 [2]: "llvmpipe (LLVM 21.1.8, 256 bits)" deviceType=4 vendorID=10005 deviceID=0
-[Vulkan init] Selected physical device 0x574f9b99fc00
+[Vulkan init] Physical Device 0x57bd3ae80430 [0]: "Intel(R) Graphics (RPL-S)" deviceType=1 vendorID=8086 deviceID=a788
+[Vulkan init] Physical Device 0x57bd3ae805e0 [1]: "NVIDIA GeForce RTX 4090 Laptop GPU" deviceType=2 vendorID=10de deviceID=2757
+[Vulkan init] Physical Device 0x57bd3ae77700 [2]: "llvmpipe (LLVM 21.1.8, 256 bits)" deviceType=4 vendorID=10005 deviceID=0
+[Vulkan init] Selected physical device 0x57bd3ae805e0
 [Vulkan init] Graphics queue count=1
 [Vulkan init] extensions: count=275
 [Vulkan init] extensions: name=VK_AMD_buffer_marker [enabled=0, external=0]
@@ -700,7 +700,7 @@ Mono path[0] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/Managed'
 Mono path[1] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
 Mono path[2] = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-linux'
 Mono config path = '/home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56630
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56174
 CodeReloadManager initialized
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
@@ -712,7 +712,7 @@ Registering precompiled unity dll's ...
   Expiration: Unlimited
 Register platform support module: /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: /home/iamu/Unity/Hub/Editor/6000.6.8f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.002091 seconds.
+Registered in 0.001385 seconds.
 Native extension for LinuxStandalone target not found
 Package Manager log level set to [2]
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
@@ -730,23 +730,23 @@ Native extension for Android target not found
 [Package Manager] Cannot connect to Unity Package Manager local server
 ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Scripting: successfully reloaded assembly
-- Finished resetting the current domain, in  0.282 seconds
-Domain Reload Profiling: 587ms
-	BeginReloadAssembly (48ms)
+- Finished resetting the current domain, in  0.297 seconds
+Domain Reload Profiling: 591ms
+	BeginReloadAssembly (50ms)
 	RebuildCommonClasses (3ms)
 	RebuildNativeTypeToScriptingClass (7ms)
-	initialDomainReloadingComplete (47ms)
-	LoadAllAssembliesAndSetupDomain (199ms)
-		LoadAssemblies (48ms)
-		TypeCache.Refresh (135ms)
-			TypeCache.ScanAssembly (126ms)
+	initialDomainReloadingComplete (40ms)
+	LoadAllAssembliesAndSetupDomain (194ms)
+		LoadAssemblies (49ms)
+		TypeCache.Refresh (130ms)
+			TypeCache.ScanAssembly (120ms)
 		AnalyzeDomain (0ms)
-	FinalizeReload (283ms)
+	FinalizeReload (297ms)
 		SetupLoadedEditorAssemblies (0ms)
 			InitializePlatformSupportModulesInManaged (7ms)
-			BeforeProcessingInitializeOnLoad (60ms)
+			BeforeProcessingInitializeOnLoad (65ms)
 			ProcessInitializeOnLoadAttributes (57ms)
-			ProcessInitializeOnLoadMethodAttributes (100ms)
+			ProcessInitializeOnLoadMethodAttributes (104ms)
 Initializing Unity extensions:
 [Licensing::Client] Successfully resolved entitlement details
 ========================================================================
@@ -774,107 +774,112 @@ Scripting: successfully reloaded assembly
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.371 seconds
-Domain Reload Profiling: 782ms
-	BeginReloadAssembly (102ms)
+- Finished resetting the current domain, in  0.368 seconds
+Domain Reload Profiling: 787ms
+	BeginReloadAssembly (99ms)
 		DisableScriptedObjects (4ms)
-		CreateAndSetChildDomain (25ms)
+		CreateAndSetChildDomain (20ms)
 	RebuildCommonClasses (5ms)
-	RebuildNativeTypeToScriptingClass (7ms)
-	initialDomainReloadingComplete (24ms)
-	LoadAllAssembliesAndSetupDomain (272ms)
-		LoadAssemblies (123ms)
-		TypeCache.Refresh (58ms)
-			TypeCache.ScanAssembly (49ms)
-		AnalyzeDomain (32ms)
-			BuildScriptInfoCaches (28ms)
+	RebuildNativeTypeToScriptingClass (6ms)
+	initialDomainReloadingComplete (26ms)
+	LoadAllAssembliesAndSetupDomain (282ms)
+		LoadAssemblies (125ms)
+		TypeCache.Refresh (68ms)
+			TypeCache.ScanAssembly (59ms)
+		AnalyzeDomain (27ms)
+			BuildScriptInfoCaches (23ms)
 			ResolveRequiredComponents (3ms)
-	FinalizeReload (372ms)
+	FinalizeReload (368ms)
 		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (10ms)
+			InitializePlatformSupportModulesInManaged (9ms)
 			BeforeProcessingInitializeOnLoad (61ms)
-			ProcessInitializeOnLoadAttributes (87ms)
+			ProcessInitializeOnLoadAttributes (91ms)
 			ProcessInitializeOnLoadMethodAttributes (36ms)
 		AwakeInstancesAfterBackupRestoration (4ms)
 AcceleratorClientConnectionCallback - disconnected - :0
 AutoLocale: current locale expects 'C' but got 'en_US.UTF-8'Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
 Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 4024 unused Assets / (4.5 MB). Loaded Objects now: 4999.
-Memory consumption went from 206.9 MB to 202.3 MB.
-Total: 6.862338 ms (FindLiveObjects: 0.356950 ms CreateObjectMapping: 0.264451 ms MarkObjects: 4.983920 ms  DeleteObjects: 1.168559 ms)
+Memory consumption went from 209.0 MB to 204.5 MB.
+Total: 8.281700 ms (FindLiveObjects: 0.264838 ms CreateObjectMapping: 0.211621 ms MarkObjects: 6.552416 ms  DeleteObjects: 1.159155 ms)
 
 ========================================================================
 Received Prepare
 AcceleratorClientConnectionCallback - disconnected - :0
 Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 26 unused Assets / (3.0 MB). Loaded Objects now: 4999.
-Memory consumption went from 203.0 MB to 200.0 MB.
-Total: 5.111936 ms (FindLiveObjects: 0.197696 ms CreateObjectMapping: 0.053166 ms MarkObjects: 4.468485 ms  DeleteObjects: 0.313363 ms)
+Memory consumption went from 205.1 MB to 202.1 MB.
+Total: 5.146818 ms (FindLiveObjects: 0.273053 ms CreateObjectMapping: 0.091528 ms MarkObjects: 4.421499 ms  DeleteObjects: 0.266071 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Import Request.
-  Time of request: 2026-11-16T16:05:27.04125Z
-  Time since last request: 10350.71336255200004 seconds.
-  importAddress: GUID: dc805960d0458bd4088933828bca33a8 - Path: Packages/net.qrack.openrelativity/Materials/SchwarzschildLens.mat - Importer: PreviewImporter
-Importing 'GUID: dc805960d0458bd4088933828bca33a8 - Path: Packages/net.qrack.openrelativity/Materials/SchwarzschildLens.mat - Importer: PreviewImporter' with importer (PreviewImporter)
-Imported 'GUID: dc805960d0458bd4088933828bca33a8' -> (Import Result ID: '89884d805fbc5f7d8c6b993fe38dcb15') in 0.201 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8a87341551225c0181a774f4a7db57a4 DependenciesID=b1a3c169db2801e57b9ca396c0c59a2b StaticDependenciesID=eb5eaa4294ace7d67b056c470fbae4a8 
+  Time of request: 2026-11-21T18:14:45.458486Z
+  Time since last request: 18490.43026637000003 seconds.
+  importAddress: GUID: 5f4239d5502bd30499611de1c5b6693e - Path: Assets/Samples/Qrack/0.1.0/Example/Materials/relativityUnlit.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B
+Importing 'GUID: 5f4239d5502bd30499611de1c5b6693e - Path: Assets/Samples/Qrack/0.1.0/Example/Materials/relativityUnlit.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B' with importer (ScriptedImporter : UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B)
+Imported 'GUID: 5f4239d5502bd30499611de1c5b6693e' -> (Import Result ID: '5a07d2bd61704c7e8ecbacd09131cc21') in 0.050 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b1c1f2a95a9d4da30d178e7ff2131ba8 DependenciesID=1c4fc6d20692b3dde27fdf8c82bafaf8 StaticDependenciesID=f2d9f79350d1c5195331fc24a2c0cfec 
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
+Number of asset objects unloaded after import = 4
 ========================================================================
-Received Import Request.
-  Time of request: 2026-11-16T16:05:27.251819Z
-  Time since last request: 0.000015784 seconds.
-  importAddress: GUID: 7226bbf456244e4488f9c22062592614 - Path: Packages/net.qrack.openrelativity/Materials/SchwarzschildMirror.mat - Importer: PreviewImporter
-Importing 'GUID: 7226bbf456244e4488f9c22062592614 - Path: Packages/net.qrack.openrelativity/Materials/SchwarzschildMirror.mat - Importer: PreviewImporter' with importer (PreviewImporter)
-Imported 'GUID: 7226bbf456244e4488f9c22062592614' -> (Import Result ID: '3679826faaf2c8e48bcbc4672f76bbe4') in 0.004 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2484bbbce690e96a43bb83422d41f41f DependenciesID=432618a180a793b7b4574876f1e0b2c4 StaticDependenciesID=6b42a0c679c83f59ce1819570e234081 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Native extension for LinuxStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Native extension for Android target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  0.381 seconds
+Domain Reload Profiling: 782ms
+	BeginReloadAssembly (123ms)
+		DisableScriptedObjects (4ms)
+		CreateAndSetChildDomain (29ms)
+	RebuildCommonClasses (5ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (25ms)
+	LoadAllAssembliesAndSetupDomain (241ms)
+		LoadAssemblies (141ms)
+		TypeCache.Refresh (6ms)
+		AnalyzeDomain (52ms)
+			BuildScriptInfoCaches (49ms)
+	FinalizeReload (382ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (9ms)
+			BeforeProcessingInitializeOnLoad (59ms)
+			ProcessInitializeOnLoadAttributes (87ms)
+			ProcessInitializeOnLoadMethodAttributes (39ms)
+		AwakeInstancesAfterBackupRestoration (11ms)
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4022 unused Assets / (4.3 MB). Loaded Objects now: 5050.
+Memory consumption went from 213.6 MB to 209.4 MB.
+Total: 8.588692 ms (FindLiveObjects: 0.434017 ms CreateObjectMapping: 0.148601 ms MarkObjects: 7.207940 ms  DeleteObjects: 0.698055 ms)
+
+Prepare: number of updated asset objects reloaded= 0
 ========================================================================
-Received Import Request.
-  Time of request: 2026-11-16T16:05:28.109663Z
-  Time since last request: 0.847182733 seconds.
-  importAddress: GUID: 074f499876cc0a04db91119ac9237977 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/UVMAP.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B
-Importing 'GUID: 074f499876cc0a04db91119ac9237977 - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Models/Materials/UVMAP.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B' with importer (ScriptedImporter : UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B)
-Imported 'GUID: 074f499876cc0a04db91119ac9237977' -> (Import Result ID: '14a9ecbcc9aa981f3ca0437047fd0a62') in 0.046 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=34f1a415ebce5db4ca4c99aebeeecc42 DependenciesID=d09835e1842d1faf80595e02ac85c4d1 StaticDependenciesID=ae1c67b286f23f2f6ac5fc42e7356e05 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 3
-========================================================================
-Received Import Request.
-  Time of request: 2026-11-16T16:05:28.16283Z
-  Time since last request: 0.000206241 seconds.
-  importAddress: GUID: 61c3fdb0b77abe643b940cae6ee98d4b - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/blackhole_skybox.unity - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B
-Importing 'GUID: 61c3fdb0b77abe643b940cae6ee98d4b - Path: Assets/Samples/OpenRelativity/0.1.0/Example/Scenes/blackhole_skybox.unity - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B' with importer (ScriptedImporter : UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B)
-Imported 'GUID: 61c3fdb0b77abe643b940cae6ee98d4b' -> (Import Result ID: '92b807efabe78a6d08f21ab7b6b214ff') in 0.001 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d62c25e9d3b1bf42fdfbe60ee2ca53be DependenciesID=f22410505ffcb38342ce87438246f17b StaticDependenciesID=f2fa646cac2ec173b07d053bdbed0bcc 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
-========================================================================
-Received Import Request.
-  Time of request: 2026-11-16T16:05:31.552633Z
-  Time since last request: 3.381468644 seconds.
-  importAddress: GUID: 74209c0d8f829cd4599c3589a74f8d2e - Path: Packages/net.qrack.qrack/net.qrack.qrack.asmdef - Importer: PreviewImporter
-Importing 'GUID: 74209c0d8f829cd4599c3589a74f8d2e - Path: Packages/net.qrack.qrack/net.qrack.qrack.asmdef - Importer: PreviewImporter' with importer (PreviewImporter)
-Imported 'GUID: 74209c0d8f829cd4599c3589a74f8d2e' -> (Import Result ID: 'd5e3b47c62a5a056a17ab81f039882c7') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7525cb6fddac2293460fbb43d1c22e16 DependenciesID=42369978f22a7890463ff6c9355be23a StaticDependenciesID=01df3fd97202b67a53d278bbf2eef147 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time of request: 2026-11-16T16:05:38.977789Z
-  Time since last request: 7.418206856 seconds.
-  importAddress: GUID: f75b3b925444e984bbaac413e60f42df - Path: Packages/net.qrack.qrack/Scripts - Importer: PreviewImporter
-Importing 'GUID: f75b3b925444e984bbaac413e60f42df - Path: Packages/net.qrack.qrack/Scripts - Importer: PreviewImporter' with importer (PreviewImporter)
-Imported 'GUID: f75b3b925444e984bbaac413e60f42df' -> (Import Result ID: '5b3e813bade632933993a883240edaee') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=18022092cd27134d13fe765a484d2630 DependenciesID=3ba8c75b5e5baf05892adb58e69d72de StaticDependenciesID=7a2a47af1dfe3aca6baf09e7bf13bf38 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time of request: 2026-11-16T16:05:43.503388Z
-  Time since last request: 4.518732847 seconds.
-  importAddress: GUID: 33df2203eac043809ddb8a40a5895127 - Path: Packages/net.qrack.qrack/Scripts/QuantumBridge.cs - Importer: PreviewImporter
-Importing 'GUID: 33df2203eac043809ddb8a40a5895127 - Path: Packages/net.qrack.qrack/Scripts/QuantumBridge.cs - Importer: PreviewImporter' with importer (PreviewImporter)
-Imported 'GUID: 33df2203eac043809ddb8a40a5895127' -> (Import Result ID: '26a2c19afdc5d7f2299440914425feb0') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ce3ab282b78e5f5c9bdfa51a9ed2495f DependenciesID=e200bc4a66ba9b7275fdf0ce7d6a58ec StaticDependenciesID=9c03c969a044e980e72519ae8c53158c 
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4009 unused Assets / (5.2 MB). Loaded Objects now: 5046.
+Memory consumption went from 213.9 MB to 208.6 MB.
+Total: 6.147043 ms (FindLiveObjects: 0.326850 ms CreateObjectMapping: 0.170315 ms MarkObjects: 4.686971 ms  DeleteObjects: 0.863410 ms)
+
+Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Prepare
 AcceleratorClientConnectionCallback - disconnected - :0
@@ -899,38 +904,340 @@ Scripting: successfully reloaded assembly
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.388 seconds
-Domain Reload Profiling: 789ms
-	BeginReloadAssembly (128ms)
-		DisableScriptedObjects (11ms)
-		CreateAndSetChildDomain (31ms)
+- Finished resetting the current domain, in  0.348 seconds
+Domain Reload Profiling: 744ms
+	BeginReloadAssembly (127ms)
+		DisableScriptedObjects (5ms)
+		CreateAndSetChildDomain (36ms)
 	RebuildCommonClasses (5ms)
 	RebuildNativeTypeToScriptingClass (7ms)
 	initialDomainReloadingComplete (24ms)
-	LoadAllAssembliesAndSetupDomain (236ms)
-		LoadAssemblies (139ms)
+	LoadAllAssembliesAndSetupDomain (233ms)
+		LoadAssemblies (127ms)
 		TypeCache.Refresh (6ms)
-		AnalyzeDomain (50ms)
-			BuildScriptInfoCaches (47ms)
-	FinalizeReload (388ms)
+		AnalyzeDomain (53ms)
+			BuildScriptInfoCaches (49ms)
+	FinalizeReload (349ms)
 		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (9ms)
+			InitializePlatformSupportModulesInManaged (10ms)
 			BeforeProcessingInitializeOnLoad (60ms)
-			ProcessInitializeOnLoadAttributes (86ms)
-			ProcessInitializeOnLoadMethodAttributes (38ms)
-		AwakeInstancesAfterBackupRestoration (10ms)
+			ProcessInitializeOnLoadAttributes (89ms)
+			ProcessInitializeOnLoadMethodAttributes (40ms)
+		AwakeInstancesAfterBackupRestoration (14ms)
 Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 4022 unused Assets / (5.0 MB). Loaded Objects now: 5113.
-Memory consumption went from 213.2 MB to 208.2 MB.
-Total: 6.731071 ms (FindLiveObjects: 0.260033 ms CreateObjectMapping: 0.121745 ms MarkObjects: 4.916271 ms  DeleteObjects: 1.327313 ms)
+Unloading 4022 unused Assets / (3.1 MB). Loaded Objects now: 5052.
+Memory consumption went from 213.8 MB to 210.7 MB.
+Total: 12.322536 ms (FindLiveObjects: 0.304804 ms CreateObjectMapping: 0.130561 ms MarkObjects: 10.147402 ms  DeleteObjects: 1.616195 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-21T18:18:12.473386Z
+  Time since last request: 206.95327402699999 seconds.
+  importAddress: GUID: e7fba531b1495f24f970b1639fd27d3e - Path: Packages/net.qrack.qrack/Plugin/iOS/ARM64/libqrack_pinvoke.dylib - Importer: PreviewImporter
+Importing 'GUID: e7fba531b1495f24f970b1639fd27d3e - Path: Packages/net.qrack.qrack/Plugin/iOS/ARM64/libqrack_pinvoke.dylib - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: e7fba531b1495f24f970b1639fd27d3e' -> (Import Result ID: 'e7849167cbf3b40e0686b59544d381ee') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1cd0c19cdc0f11acb42404f4ec8766d7 DependenciesID=85dc1b2072f92ea4935812b4603613af StaticDependenciesID=d20575a354c8d54816ecfe1799a16900 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4009 unused Assets / (4.9 MB). Loaded Objects now: 5048.
+Memory consumption went from 214.0 MB to 209.2 MB.
+Total: 5.922682 ms (FindLiveObjects: 0.449695 ms CreateObjectMapping: 0.187009 ms MarkObjects: 4.486424 ms  DeleteObjects: 0.690772 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Prepare
 AcceleratorClientConnectionCallback - disconnected - :0
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4009 unused Assets / (5.1 MB). Loaded Objects now: 5048.
+Memory consumption went from 214.1 MB to 209.1 MB.
+Total: 6.217116 ms (FindLiveObjects: 0.285994 ms CreateObjectMapping: 0.132244 ms MarkObjects: 4.916055 ms  DeleteObjects: 0.779061 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-21T18:18:49.430769Z
+  Time since last request: 36.944770286 seconds.
+  importAddress: GUID: e7fba531b1495f24f970b1639fd27d3e - Path: Packages/net.qrack.qrack/Plugin/iOS/ARM64/libqrack_pinvoke.dylib - Importer: PreviewImporter
+Importing 'GUID: e7fba531b1495f24f970b1639fd27d3e - Path: Packages/net.qrack.qrack/Plugin/iOS/ARM64/libqrack_pinvoke.dylib - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: e7fba531b1495f24f970b1639fd27d3e' -> (Import Result ID: '0612befa4936a818c26b73dde34184e0') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1cd0c19cdc0f11acb42404f4ec8766d7 DependenciesID=f066f3b8d93bcbdfc960a5a144fe416a StaticDependenciesID=12c8224c40caa62dcf783f1a4101770b 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4009 unused Assets / (4.5 MB). Loaded Objects now: 5048.
+Memory consumption went from 214.2 MB to 209.7 MB.
+Total: 6.360095 ms (FindLiveObjects: 0.308559 ms CreateObjectMapping: 0.153636 ms MarkObjects: 4.999336 ms  DeleteObjects: 0.785101 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4009 unused Assets / (5.1 MB). Loaded Objects now: 5048.
+Memory consumption went from 214.3 MB to 209.3 MB.
+Total: 6.345858 ms (FindLiveObjects: 0.443961 ms CreateObjectMapping: 0.242686 ms MarkObjects: 4.784372 ms  DeleteObjects: 0.749449 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-21T18:18:59.608548Z
+  Time since last request: 10.168353723 seconds.
+  importAddress: GUID: e7fba531b1495f24f970b1639fd27d3e - Path: Packages/net.qrack.qrack/Plugin/iOS/ARM64/libqrack_pinvoke.dylib - Importer: PreviewImporter
+Importing 'GUID: e7fba531b1495f24f970b1639fd27d3e - Path: Packages/net.qrack.qrack/Plugin/iOS/ARM64/libqrack_pinvoke.dylib - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: e7fba531b1495f24f970b1639fd27d3e' -> (Import Result ID: '2e5c5ef102900726d86e8293c9a04a42') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1cd0c19cdc0f11acb42404f4ec8766d7 DependenciesID=865df493d6ba0eabbfc0fdbf40815cc7 StaticDependenciesID=af7193198e8b515007866819688e31c9 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-21T18:19:00.898337Z
+  Time since last request: 1.280236583 seconds.
+  importAddress: GUID: a9c11894cc326ca26949821d7bcd3d0b - Path: Packages/net.qrack.qrack/Plugin/iOS/ARM64/libqrack_pinvoke.10.16.0.dylib - Importer: PreviewImporter
+Importing 'GUID: a9c11894cc326ca26949821d7bcd3d0b - Path: Packages/net.qrack.qrack/Plugin/iOS/ARM64/libqrack_pinvoke.10.16.0.dylib - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: a9c11894cc326ca26949821d7bcd3d0b' -> (Import Result ID: '4db61949d0cb967d55bd21b6755680c4') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=62af4ec684b21a436bfb4f189f278281 DependenciesID=d288b4ca3f992e230798e2fba269feae StaticDependenciesID=c475ccec74468d4c25bd894693720934 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4009 unused Assets / (5.2 MB). Loaded Objects now: 5048.
+Memory consumption went from 214.5 MB to 209.3 MB.
+Total: 6.020743 ms (FindLiveObjects: 0.367230 ms CreateObjectMapping: 0.120553 ms MarkObjects: 4.659750 ms  DeleteObjects: 0.742167 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4009 unused Assets / (4.9 MB). Loaded Objects now: 5048.
+Memory consumption went from 214.6 MB to 209.6 MB.
+Total: 5.880190 ms (FindLiveObjects: 0.311040 ms CreateObjectMapping: 0.135390 ms MarkObjects: 4.650800 ms  DeleteObjects: 0.687706 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-21T18:19:10.341715Z
+  Time since last request: 9.434227811 seconds.
+  importAddress: GUID: 5e728d0e29cdd684c856319700e74e70 - Path: Packages/net.qrack.qrack/Plugin/MacOS/ARM64/libqrack_pinvoke.dylib - Importer: PreviewImporter
+Importing 'GUID: 5e728d0e29cdd684c856319700e74e70 - Path: Packages/net.qrack.qrack/Plugin/MacOS/ARM64/libqrack_pinvoke.dylib - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 5e728d0e29cdd684c856319700e74e70' -> (Import Result ID: '7a2c90bbb3e192cbfefabb42aab52e0c') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4dc189fdcba91d80993fc40926ffcee4 DependenciesID=cd03bb7fd7364d67062c8158efcc80c3 StaticDependenciesID=eef15dbfabde706fd434f85f6749cd62 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-21T18:19:15.675387Z
+  Time since last request: 5.323976622 seconds.
+  importAddress: GUID: e63539b10e0e8d652addd736f8af5cab - Path: Packages/net.qrack.qrack/Plugin/MacOS/ARM64/libqrack_pinvoke.10.16.0.dylib - Importer: PreviewImporter
+Importing 'GUID: e63539b10e0e8d652addd736f8af5cab - Path: Packages/net.qrack.qrack/Plugin/MacOS/ARM64/libqrack_pinvoke.10.16.0.dylib - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: e63539b10e0e8d652addd736f8af5cab' -> (Import Result ID: '665e9bff59ba131a10d697c446062cc6') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=41b4fecfdc38ff8a1cf4d0c1f4f249dc DependenciesID=5ce46a2d55847c4b76b0a5f76e973ab4 StaticDependenciesID=7be130bfef6d9cf21111d7784b150951 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4009 unused Assets / (5.1 MB). Loaded Objects now: 5048.
+Memory consumption went from 214.7 MB to 209.6 MB.
+Total: 6.339000 ms (FindLiveObjects: 0.279877 ms CreateObjectMapping: 0.125393 ms MarkObjects: 5.108551 ms  DeleteObjects: 0.731503 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-21T18:19:25.582731Z
+  Time since last request: 9.898801203 seconds.
+  importAddress: GUID: e63539b10e0e8d652addd736f8af5cab - Path: Packages/net.qrack.qrack/Plugin/MacOS/ARM64/libqrack_pinvoke.10.16.0.dylib - Importer: PreviewImporter
+Importing 'GUID: e63539b10e0e8d652addd736f8af5cab - Path: Packages/net.qrack.qrack/Plugin/MacOS/ARM64/libqrack_pinvoke.10.16.0.dylib - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: e63539b10e0e8d652addd736f8af5cab' -> (Import Result ID: '1a642c113183a943ac5c20d2c838d2e6') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=41b4fecfdc38ff8a1cf4d0c1f4f249dc DependenciesID=a495516eaec3b779c8d4c12d4ab44f01 StaticDependenciesID=690ca2425d1a90ebea05448ece6a0f54 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-21T18:19:30.457744Z
+  Time since last request: 4.865224178 seconds.
+  importAddress: GUID: 57232bbb321fe7f4b9f12038bac04a6e - Path: Packages/net.qrack.qrack/Plugin/Windows/x86_64/qrack_cl_precompile.exe - Importer: PreviewImporter
+Importing 'GUID: 57232bbb321fe7f4b9f12038bac04a6e - Path: Packages/net.qrack.qrack/Plugin/Windows/x86_64/qrack_cl_precompile.exe - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 57232bbb321fe7f4b9f12038bac04a6e' -> (Import Result ID: 'ce1b7c38579762c298ca3db83eb0a5bb') in 0.010 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a0da6076d2657973e60cc69216ef60e4 DependenciesID=b557b1cd0b685ae8de2ec83ea9b5314f StaticDependenciesID=e3a64257c015105d3f28577358553342 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-21T18:19:31.564575Z
+  Time since last request: 1.08809215 seconds.
+  importAddress: GUID: b2c0b32244d24f5428e2d59e146f564a - Path: Packages/net.qrack.qrack/Plugin/Windows/x86_64/qrack_pinvoke.dll - Importer: PreviewImporter
+Importing 'GUID: b2c0b32244d24f5428e2d59e146f564a - Path: Packages/net.qrack.qrack/Plugin/Windows/x86_64/qrack_pinvoke.dll - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: b2c0b32244d24f5428e2d59e146f564a' -> (Import Result ID: 'ef94d26bb2c480addaf92eeb2010877e') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=096f9a10d52799ec7d8941bc9aa2cf84 DependenciesID=adee546c83fa9f710bc0d94a23ec486e StaticDependenciesID=ed9b295d9dc843041e3517fb304f8554 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-21T18:19:40.74959Z
+  Time since last request: 9.17690625 seconds.
+  importAddress: GUID: 6f81ac5526141df46b8fa3382e9811fb - Path: Packages/net.qrack.qrack/Plugin/Android/arm64-v8a/libqrack_pinvoke.so - Importer: PreviewImporter
+Importing 'GUID: 6f81ac5526141df46b8fa3382e9811fb - Path: Packages/net.qrack.qrack/Plugin/Android/arm64-v8a/libqrack_pinvoke.so - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 6f81ac5526141df46b8fa3382e9811fb' -> (Import Result ID: '3740d9968b6f58eddd418fd8c8b7b77d') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ca5ece8087987a63d709e34e16bdf47d DependenciesID=6929160699d0a1cc681074d552e3e1b3 StaticDependenciesID=ae6ce7e63f88bc7bad327063a77a4532 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4009 unused Assets / (4.5 MB). Loaded Objects now: 5049.
+Memory consumption went from 214.8 MB to 210.3 MB.
+Total: 6.577250 ms (FindLiveObjects: 0.446115 ms CreateObjectMapping: 0.161557 ms MarkObjects: 4.958992 ms  DeleteObjects: 0.876909 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4009 unused Assets / (6.3 MB). Loaded Objects now: 5049.
+Memory consumption went from 214.9 MB to 208.6 MB.
+Total: 9.547228 ms (FindLiveObjects: 0.480425 ms CreateObjectMapping: 0.271054 ms MarkObjects: 6.636164 ms  DeleteObjects: 2.005482 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-21T18:20:00.085376Z
+  Time since last request: 19.327687797 seconds.
+  importAddress: GUID: 6f81ac5526141df46b8fa3382e9811fb - Path: Packages/net.qrack.qrack/Plugin/Android/arm64-v8a/libqrack_pinvoke.so - Importer: PreviewImporter
+Importing 'GUID: 6f81ac5526141df46b8fa3382e9811fb - Path: Packages/net.qrack.qrack/Plugin/Android/arm64-v8a/libqrack_pinvoke.so - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 6f81ac5526141df46b8fa3382e9811fb' -> (Import Result ID: 'cfccee0d6dab4802af4279e7ad0e2935') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ca5ece8087987a63d709e34e16bdf47d DependenciesID=a3a0ad9635923efbf82f8a3d6e9e6ff7 StaticDependenciesID=765cd2c4e0a7f41366ae18af2a73300c 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-21T18:20:02.580724Z
+  Time since last request: 2.485749272 seconds.
+  importAddress: GUID: 7fcd475a8e33ce548826626dbee6e412 - Path: Packages/net.qrack.qrack/Plugin/Android/armeabi-v7a/libqrack_pinvoke.so - Importer: PreviewImporter
+Importing 'GUID: 7fcd475a8e33ce548826626dbee6e412 - Path: Packages/net.qrack.qrack/Plugin/Android/armeabi-v7a/libqrack_pinvoke.so - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 7fcd475a8e33ce548826626dbee6e412' -> (Import Result ID: '76d0fd5f46fd09c34ac10ddc27a5881a') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=37cf4b928d08ce0b1097e36f72daccf1 DependenciesID=fdbb6c1d1db0cf54a4c3cade28bcfed2 StaticDependenciesID=835d0b3b5b082634d6600e92dd3045ba 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4009 unused Assets / (4.9 MB). Loaded Objects now: 5049.
+Memory consumption went from 215.0 MB to 210.1 MB.
+Total: 6.420842 ms (FindLiveObjects: 0.321417 ms CreateObjectMapping: 0.154237 ms MarkObjects: 5.043574 ms  DeleteObjects: 0.796500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4009 unused Assets / (6.4 MB). Loaded Objects now: 5049.
+Memory consumption went from 215.1 MB to 208.7 MB.
+Total: 7.262335 ms (FindLiveObjects: 0.279817 ms CreateObjectMapping: 0.154963 ms MarkObjects: 5.317449 ms  DeleteObjects: 1.360094 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-21T18:20:15.637828Z
+  Time since last request: 13.048814324 seconds.
+  importAddress: GUID: 377607e2e9d79ff4ea6362c8c5a1c534 - Path: Packages/net.qrack.qrack/Plugin/Android/x86/libqrack_pinvoke.so - Importer: PreviewImporter
+Importing 'GUID: 377607e2e9d79ff4ea6362c8c5a1c534 - Path: Packages/net.qrack.qrack/Plugin/Android/x86/libqrack_pinvoke.so - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 377607e2e9d79ff4ea6362c8c5a1c534' -> (Import Result ID: 'f002473beb6f2997e1e4907dd5bdd436') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=250cca820c7ab9a3e5c3d8014b9d4281 DependenciesID=8ab863c25fc13fb2c22c7487cfd03996 StaticDependenciesID=1383fcdf9b0cb8383a0732790080dd7b 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4009 unused Assets / (4.5 MB). Loaded Objects now: 5049.
+Memory consumption went from 215.2 MB to 210.7 MB.
+Total: 9.642300 ms (FindLiveObjects: 0.336413 ms CreateObjectMapping: 0.159388 ms MarkObjects: 8.288100 ms  DeleteObjects: 0.762514 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4009 unused Assets / (5.0 MB). Loaded Objects now: 5049.
+Memory consumption went from 215.3 MB to 210.4 MB.
+Total: 6.711191 ms (FindLiveObjects: 0.371637 ms CreateObjectMapping: 0.158335 ms MarkObjects: 5.261884 ms  DeleteObjects: 0.812282 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-21T18:20:31.224825Z
+  Time since last request: 15.575891419 seconds.
+  importAddress: GUID: ff62a232155ff804ca7a7b617a7b958e - Path: Packages/net.qrack.qrack/Plugin/Android/x86_64/libqrack_pinvoke.so - Importer: PreviewImporter
+Importing 'GUID: ff62a232155ff804ca7a7b617a7b958e - Path: Packages/net.qrack.qrack/Plugin/Android/x86_64/libqrack_pinvoke.so - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: ff62a232155ff804ca7a7b617a7b958e' -> (Import Result ID: '54dd566cc4be543cbd51a1ce4456684f') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e50f43f22260b5d07952275758fbdb08 DependenciesID=a6c5dc34c1a998d66bde9667d861a7b6 StaticDependenciesID=b87d8bb6ac2a41ee3137c9c365f64c8d 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4009 unused Assets / (5.4 MB). Loaded Objects now: 5049.
+Memory consumption went from 215.4 MB to 210.1 MB.
+Total: 10.380654 ms (FindLiveObjects: 0.454950 ms CreateObjectMapping: 0.146207 ms MarkObjects: 8.436953 ms  DeleteObjects: 1.180189 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 4009 unused Assets / (5.3 MB). Loaded Objects now: 5049.
+Memory consumption went from 215.5 MB to 210.2 MB.
+Total: 6.754567 ms (FindLiveObjects: 0.465696 ms CreateObjectMapping: 0.208132 ms MarkObjects: 4.907154 ms  DeleteObjects: 0.993063 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-11-21T18:20:40.123132Z
+  Time since last request: 8.888350484 seconds.
+  importAddress: GUID: ff62a232155ff804ca7a7b617a7b958e - Path: Packages/net.qrack.qrack/Plugin/Android/x86_64/libqrack_pinvoke.so - Importer: PreviewImporter
+Importing 'GUID: ff62a232155ff804ca7a7b617a7b958e - Path: Packages/net.qrack.qrack/Plugin/Android/x86_64/libqrack_pinvoke.so - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: ff62a232155ff804ca7a7b617a7b958e' -> (Import Result ID: 'da8c069b34cd105ddb1efa05aad4dcfe') in 0.000 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e50f43f22260b5d07952275758fbdb08 DependenciesID=c759d51fbbed5a17537939c5d02febc3 StaticDependenciesID=21c29b1df9f8a871fc099a1ab61b697a 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+AcceleratorClientConnectionCallback - disconnected - :0
+[Licensing::Client] Successfully resolved entitlement details
 Begin MonoManager ReloadAssembly
 'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
 'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+[Licensing::Client] Successfully resolved entitlement details
 Native extension for LinuxStandalone target not found
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
@@ -947,38 +1254,38 @@ Scripting: successfully reloaded assembly
 [Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  0.343 seconds
-Domain Reload Profiling: 674ms
-	BeginReloadAssembly (116ms)
+- Finished resetting the current domain, in  0.357 seconds
+Domain Reload Profiling: 779ms
+	BeginReloadAssembly (115ms)
 		DisableScriptedObjects (4ms)
-		CreateAndSetChildDomain (28ms)
+		CreateAndSetChildDomain (26ms)
 	RebuildCommonClasses (5ms)
-	RebuildNativeTypeToScriptingClass (6ms)
-	initialDomainReloadingComplete (23ms)
-	LoadAllAssembliesAndSetupDomain (180ms)
-		LoadAssemblies (126ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (24ms)
+	LoadAllAssembliesAndSetupDomain (270ms)
+		LoadAssemblies (216ms)
 		TypeCache.Refresh (4ms)
 		AnalyzeDomain (4ms)
-	FinalizeReload (344ms)
+	FinalizeReload (358ms)
 		SetupLoadedEditorAssemblies (0ms)
 			InitializePlatformSupportModulesInManaged (9ms)
-			BeforeProcessingInitializeOnLoad (60ms)
-			ProcessInitializeOnLoadAttributes (85ms)
-			ProcessInitializeOnLoadMethodAttributes (40ms)
+			BeforeProcessingInitializeOnLoad (62ms)
+			ProcessInitializeOnLoadAttributes (87ms)
+			ProcessInitializeOnLoadMethodAttributes (37ms)
 		AwakeInstancesAfterBackupRestoration (13ms)
 Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 4022 unused Assets / (3.8 MB). Loaded Objects now: 5115.
-Memory consumption went from 213.3 MB to 209.5 MB.
-Total: 5.638633 ms (FindLiveObjects: 0.321973 ms CreateObjectMapping: 0.171662 ms MarkObjects: 4.331396 ms  DeleteObjects: 0.726697 ms)
+Unloading 4022 unused Assets / (5.1 MB). Loaded Objects now: 5055.
+Memory consumption went from 215.6 MB to 210.5 MB.
+Total: 5.749238 ms (FindLiveObjects: 0.292284 ms CreateObjectMapping: 0.133328 ms MarkObjects: 4.536256 ms  DeleteObjects: 0.676823 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Prepare
 AcceleratorClientConnectionCallback - disconnected - :0
 Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 26 unused Assets / (3.0 MB). Loaded Objects now: 5115.
-Memory consumption went from 211.2 MB to 208.3 MB.
-Total: 5.174163 ms (FindLiveObjects: 0.191144 ms CreateObjectMapping: 0.058606 ms MarkObjects: 4.478308 ms  DeleteObjects: 0.309785 ms)
+Unloading 26 unused Assets / (3.0 MB). Loaded Objects now: 5055.
+Memory consumption went from 213.6 MB to 210.6 MB.
+Total: 5.988926 ms (FindLiveObjects: 0.216314 ms CreateObjectMapping: 0.061223 ms MarkObjects: 5.014322 ms  DeleteObjects: 0.591457 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 Editor requested this worker to shutdown with reason: Editor is closing down
@@ -989,6 +1296,5 @@ Process exiting
 
 SDL leaked 2 allocations
 Turn on UNITY_SDL_ALLOCATION_TRACKING for detailed information.
-Vulkan PSO: data extracted [new size=62778, old size=0, incomplete=0]
-Vulkan PSO: Saved size[62778] path[/tmp/DefaultCompany/openrelativity/vulkan_pso_cache.bin] success=1 headerChanged=1 sizeChanged=1
-Internal: Possible leak. All render target surfaces should be removed from IdMap when destructed using RenderTargetMap::Remove(RenderSurfaceBase* rs).
+Vulkan PSO: data extracted [new size=36, old size=0, incomplete=0]
+Vulkan PSO: Saved size[36] path[/tmp/DefaultCompany/openrelativity/vulkan_pso_cache.bin] success=1 headerChanged=1 sizeChanged=1
