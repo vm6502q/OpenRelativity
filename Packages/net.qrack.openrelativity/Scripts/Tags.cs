@@ -1,7 +1,5 @@
-﻿namespace OpenRelativity
-{
-    public class Tags
-    {
-        public const string playerRigidbody = "PlayerRigidbody";
-    }
+﻿namespace OpenRelativity {
+public class Tags {
+  public const string playerRigidbody = "PlayerRigidbody";
+}
 }

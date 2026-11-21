@@ -6,61 +6,47 @@ using Tachyoid;
 using Tachyoid.Objects;
 
 namespace Tachyoid {
-	public class PlayerImage : MonoBehaviour {
+public class PlayerImage : MonoBehaviour {
 
-        public Transform head;
-        public Animator myAnimator;
-		public Graspable itemImageHeld { get; set; }
+  public Transform head;
+  public Animator myAnimator;
+  public Graspable itemImageHeld { get; set; }
 
-        public RelativisticObject myRO { get; set; }
-        
-        protected void Awake() {
-            head.localRotation = Quaternion.identity;
-            myRO = GetComponent<RelativisticObject>();
-		}
+  public RelativisticObject myRO { get; set; }
 
-		public void SetImageEnabled(bool enable) {
-            if (gameObject.activeSelf != enable)
-            {
-                myRO.ResetLocalTime();
-            }
+  protected void Awake() {
+    head.localRotation = Quaternion.identity;
+    myRO = GetComponent<RelativisticObject>();
+  }
 
-            gameObject.SetActive(enable);
-			if (itemImageHeld != null) {
-				itemImageHeld.enabled = enable;
-				itemImageHeld.GetComponent<Renderer>().enabled = enable;
-			}
-		}
-
-        protected void OnEnable()
-        {
-            SetImageEnabled(true);
-        }
-
-        protected void OnDisable()
-        {
-            SetImageEnabled(false);
-        }
-
-        public void SetAnimation(Action action)
-        {
-            if (myAnimator != null)
-            {
-                if (action == Action.isRunning)
-                {
-                    myAnimator.SetInteger("Speed", 1);
-                    myAnimator.SetBool("Jumping", false);
-                }
-                else if (action == Action.isJumping)
-                {
-                    myAnimator.SetBool("Jumping", true);
-                }
-                else
-                {
-                    myAnimator.SetInteger("Speed", 0);
-                    myAnimator.SetBool("Jumping", false);
-                }
-            }
-        }
+  public void SetImageEnabled(bool enable) {
+    if (gameObject.activeSelf != enable) {
+      myRO.ResetLocalTime();
     }
+
+    gameObject.SetActive(enable);
+    if (itemImageHeld != null) {
+      itemImageHeld.enabled = enable;
+      itemImageHeld.GetComponent<Renderer>().enabled = enable;
+    }
+  }
+
+  protected void OnEnable() { SetImageEnabled(true); }
+
+  protected void OnDisable() { SetImageEnabled(false); }
+
+  public void SetAnimation(Action action) {
+    if (myAnimator != null) {
+      if (action == Action.isRunning) {
+        myAnimator.SetInteger("Speed", 1);
+        myAnimator.SetBool("Jumping", false);
+      } else if (action == Action.isJumping) {
+        myAnimator.SetBool("Jumping", true);
+      } else {
+        myAnimator.SetInteger("Speed", 0);
+        myAnimator.SetBool("Jumping", false);
+      }
+    }
+  }
+}
 }

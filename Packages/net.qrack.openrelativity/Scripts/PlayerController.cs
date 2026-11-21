@@ -2,207 +2,203 @@
 using System.Collections.Generic;
 using System;
 
-namespace OpenRelativity
-{
-    public class PlayerController : RelativisticBehavior
-    {
-        // Consts
-        protected const int INIT_FRAME_WAIT = 5;
+namespace OpenRelativity {
+public class PlayerController : RelativisticBehavior {
+  // Consts
+  protected const int INIT_FRAME_WAIT = 5;
 
-        #region Public Parameters
-        public float dragConstant = 0.75f;
-        public float controllerAcceleration = 24;
-        public bool useGravity = false;
-        // If using comoveViaAcceleration, turn off isPlayerComoving in GameState.
-        public bool comoveViaAcceleration = false;
-        public float controllerBoost = 6000;
-        // Affect our rotation speed
-        public float rotSpeed;
-        // For now, you can change this how you like.
-        public float mouseSensitivity;
-        // Keep track of the camera transform
-        public Transform camTransform;
-        #endregion
+#region Public Parameters
+  public float dragConstant = 0.75f;
+  public float controllerAcceleration = 24;
+  public bool useGravity = false;
+  // If using comoveViaAcceleration, turn off isPlayerComoving in GameState.
+  public bool comoveViaAcceleration = false;
+  public float controllerBoost = 6000;
+  // Affect our rotation speed
+  public float rotSpeed;
+  // For now, you can change this how you like.
+  public float mouseSensitivity;
+  // Keep track of the camera transform
+  public Transform camTransform;
+#endregion
 
-        //Needed to tell whether we are in free fall
-        protected bool isFalling
-        {
-            get
-            {
-                return state.IsPlayerFalling;
-            }
+  // Needed to tell whether we are in free fall
+  protected bool isFalling {
+    get { return state.IsPlayerFalling; }
 
-            set
-            {
-                state.IsPlayerFalling = value;
-            }
-        }
-        public List<Collider> collidersBelow { get; protected set; }
-        //Just turn this negative when they press the Y button for inversion.
-        protected int inverted;
-        //What is our current target for the speed of light?
-        public int speedOfLightTarget { get; set; }
-        //What is each step we take to reach that target?
-        private float speedOfLightStep;
-        //So we can use getAxis as keyHit function
-        public bool invertKeyDown { get; set; }
-        //Keep track of total frames passed
-        protected int frames;
-        protected Rigidbody myRigidbody;
+    set { state.IsPlayerFalling = value; }
+  }
+  public List<Collider> collidersBelow { get; protected set; }
+  // Just turn this negative when they press the Y button for inversion.
+  protected int inverted;
+  // What is our current target for the speed of light?
+  public int speedOfLightTarget { get; set; }
+  // What is each step we take to reach that target?
+  private float speedOfLightStep;
+  // So we can use getAxis as keyHit function
+  public bool invertKeyDown { get; set; }
+  // Keep track of total frames passed
+  protected int frames;
+  protected Rigidbody myRigidbody;
 
-        // Based on Strano 2019, (preprint).
-        // (I will always implement potentially "cranky" features so you can toggle them off, but I might as well.)
-        public bool isMonopoleAccel = false;
-        public float monopoleAccelerationSoften = 0;
-        // The composite scalar monopole graviton gas is described by statistical mechanics and heat flow equations
-        public float gravitonEmissivity = 0.1f;
-        // By default, 12g per baryon mole would be carbon-12, and this controls the total baryons estimated in the object
-        public float fundamentalAverageMolarMass = 0.012f;
-        public float initialAverageMolarMass = 0.012f;
-        public float currentAverageMolarMass
-        {
-            get
-            {
-                if (!myRigidbody)
-                {
-                    return 0;
-                }
+  // Based on Strano 2019, (preprint).
+  // (I will always implement potentially "cranky" features so you can toggle
+  // them off, but I might as well.)
+  public bool isMonopoleAccel = false;
+  public float monopoleAccelerationSoften = 0;
+  // The composite scalar monopole graviton gas is described by statistical
+  // mechanics and heat flow equations
+  public float gravitonEmissivity = 0.1f;
+  // By default, 12g per baryon mole would be carbon-12, and this controls the
+  // total baryons estimated in the object
+  public float fundamentalAverageMolarMass = 0.012f;
+  public float initialAverageMolarMass = 0.012f;
+  public float currentAverageMolarMass {
+    get {
+      if (!myRigidbody) {
+        return 0;
+      }
 
-                return myRigidbody.mass * SRelativityUtil.avogadroNumber / baryonCount;
-            }
-            protected set
-            {
-                if (myRigidbody)
-                {
-                    myRigidbody.mass = value * baryonCount / SRelativityUtil.avogadroNumber;
-                }
-            }
-        }
-        public Vector3 leviCivitaDevAccel = Vector3.zero;
+      return myRigidbody.mass * SRelativityUtil.avogadroNumber / baryonCount;
+    }
+  protected
+    set {
+      if (myRigidbody) {
+        myRigidbody.mass = value * baryonCount / SRelativityUtil.avogadroNumber;
+      }
+    }
+  }
+  public Vector3 leviCivitaDevAccel = Vector3.zero;
 
-        // Strano 2019 monopole (spin-0 gravitational mode) self-force state; see EvaporateMonopole().
-        // Coupling of the monopole mode to rest mass, relative to gravitational strength (tau0 = coupling * G * m / c^3).
-        public float monopoleCoupling = 1.0f;
-        // Total energy radiated into monopole waves so far (supplied by the applied forces, not the rest mass).
-        public double monopoleRadiatedEnergy = 0;
-        private Vector3 lastMonopoleAccel = Vector3.zero;
-        private bool hasLastMonopoleAccel = false;
-        // Optional, independent of the jerk reaction: restore the Strano 2019 thermal-field postulate, in which the
-        // Rindler horizon of a constantly accelerated frame evaporates and the proper acceleration slowly decays
-        // (a choice of "Unruh-like" quantum state for the monopole scalar; off = Minkowski vacuum, i.e. equilibrium).
-        public bool isMonopoleHorizonEvaporation = false;
-        // Horizon-evaporation law for the monopole channel: black-body (Hawking-order, ~1/M^2) by default, with this many
-        // massless scalar channels; set useLegacy2019PowerLaw to reproduce the original 2019 (~1/M) rule.
-        public float monopoleHorizonChannels = 1.0f;
-        public bool useLegacy2019PowerLaw = false;
-        private Vector3 horizonDevAccel = Vector3.zero;
+  // Strano 2019 monopole (spin-0 gravitational mode) self-force state; see
+  // EvaporateMonopole(). Coupling of the monopole mode to rest mass, relative
+  // to gravitational strength (tau0 = coupling * G * m / c^3).
+  public float monopoleCoupling = 1.0f;
+  // Total energy radiated into monopole waves so far (supplied by the applied
+  // forces, not the rest mass).
+  public double monopoleRadiatedEnergy = 0;
+  private Vector3 lastMonopoleAccel = Vector3.zero;
+  private bool hasLastMonopoleAccel = false;
+  // Optional, independent of the jerk reaction: restore the Strano 2019
+  // thermal-field postulate, in which the Rindler horizon of a constantly
+  // accelerated frame evaporates and the proper acceleration slowly decays (a
+  // choice of "Unruh-like" quantum state for the monopole scalar; off =
+  // Minkowski vacuum, i.e. equilibrium).
+  public bool isMonopoleHorizonEvaporation = false;
+  // Horizon-evaporation law for the monopole channel: black-body
+  // (Hawking-order, ~1/M^2) by default, with this many massless scalar
+  // channels; set useLegacy2019PowerLaw to reproduce the original 2019 (~1/M)
+  // rule.
+  public float monopoleHorizonChannels = 1.0f;
+  public bool useLegacy2019PowerLaw = false;
+  private Vector3 horizonDevAccel = Vector3.zero;
 
-        public float baryonCount { get; set; }
+  public float baryonCount { get; set; }
 
-        public float monopoleTemperature
-        {
-            get
-            {
-                if (!myRigidbody)
-                {
-                    return 0;
-                }
+  public float monopoleTemperature {
+    get {
+      if (!myRigidbody) {
+        return 0;
+      }
 
-                // Per Strano 2019, due to the interaction with the thermal graviton gas radiated by the Rindler horizon,
-                // there is also a change in mass. However, the monopole waves responsible for this are seen from a first-person perspective,
-                // (i.e. as due to "player" acceleration).
+      // Per Strano 2019, due to the interaction with the thermal graviton gas
+      // radiated by the Rindler horizon, there is also a change in mass.
+      // However, the monopole waves responsible for this are seen from a
+      // first-person perspective, (i.e. as due to "player" acceleration).
 
-                // If a gravitating body this RO is attracted to is already excited above the rest mass vacuum,
-                // (which seems to imply the Higgs field vacuum)
-                // then it will spontaneously emit this excitation, with a coupling constant proportional to the
-                // gravitational constant "G" times (baryon) constituent particle rest mass.
+      // If a gravitating body this RO is attracted to is already excited above
+      // the rest mass vacuum, (which seems to imply the Higgs field vacuum)
+      // then it will spontaneously emit this excitation, with a coupling
+      // constant proportional to the gravitational constant "G" times (baryon)
+      // constituent particle rest mass.
 
-                double nuclearMass = myRigidbody.mass / baryonCount;
-                double fundamentalNuclearMass = fundamentalAverageMolarMass / SRelativityUtil.avogadroNumber;
-                double excitationEnergy = (nuclearMass - fundamentalNuclearMass) * state.SpeedOfLightSqrd;
-                double temperature = 2 * excitationEnergy / state.boltzmannConstant;
+      double nuclearMass = myRigidbody.mass / baryonCount;
+      double fundamentalNuclearMass =
+          fundamentalAverageMolarMass / SRelativityUtil.avogadroNumber;
+      double excitationEnergy =
+          (nuclearMass - fundamentalNuclearMass) * state.SpeedOfLightSqrd;
+      double temperature = 2 * excitationEnergy / state.boltzmannConstant;
 
-                return (float)temperature;
+      return (float)temperature;
 
-                //... But just turn "doDegradeAccel" off, if you don't want this effect for any reason.
-            }
+      //... But just turn "doDegradeAccel" off, if you don't want this effect
+      //for any reason.
+    }
 
-            set
-            {
-                if (!myRigidbody)
-                {
-                    return;
-                }
+    set {
+      if (!myRigidbody) {
+        return;
+      }
 
-                double fundamentalNuclearMass = fundamentalAverageMolarMass / SRelativityUtil.avogadroNumber;
-                double excitationEnergy = value * state.boltzmannConstant / 2;
-                double nuclearMass = excitationEnergy / state.SpeedOfLightSqrd + fundamentalNuclearMass;
+      double fundamentalNuclearMass =
+          fundamentalAverageMolarMass / SRelativityUtil.avogadroNumber;
+      double excitationEnergy = value * state.boltzmannConstant / 2;
+      double nuclearMass =
+          excitationEnergy / state.SpeedOfLightSqrd + fundamentalNuclearMass;
 
-                myRigidbody.mass = (float)(nuclearMass * baryonCount);
-            }
-        }
+      myRigidbody.mass = (float)(nuclearMass * baryonCount);
+    }
+  }
 
-        //Keep track of our own Mesh Filter
-        private MeshFilter meshFilter;
+  // Keep track of our own Mesh Filter
+  private MeshFilter meshFilter;
 
-        virtual protected void Start()
-        {
-            collidersBelow = new List<Collider>();
+  virtual protected void Start() {
+    collidersBelow = new List<Collider>();
 
-            //same for RigidBody
-            myRigidbody = state.playerTransform.GetComponent<Rigidbody>();
-            //Assume we are in free fall
-            isFalling = true;
-            //If we have gravity, this factors into transforming to optical space.
-            state.HasWorldGravity = useGravity;
+    // same for RigidBody
+    myRigidbody = state.playerTransform.GetComponent<Rigidbody>();
+    // Assume we are in free fall
+    isFalling = true;
+    // If we have gravity, this factors into transforming to optical space.
+    state.HasWorldGravity = useGravity;
 
-            //Lock and hide cursor
-            Cursor.lockState = CursorLockMode.Locked;
-            //Cursor.visible = false;
-            //Set the speed of light to the starting speed of light in GameState
-            speedOfLightTarget = (int)state.SpeedOfLight;
+    // Lock and hide cursor
+    Cursor.lockState = CursorLockMode.Locked;
+    // Cursor.visible = false;
+    // Set the speed of light to the starting speed of light in GameState
+    speedOfLightTarget = (int)state.SpeedOfLight;
 
-            // Inverted, at first
-            inverted = RelativityInput.IsJoystickConnected ? -1 : 1;
-            invertKeyDown = false;
+    // Inverted, at first
+    inverted = RelativityInput.IsJoystickConnected ? -1 : 1;
+    invertKeyDown = false;
 
-            frames = 0;
+    frames = 0;
 
-            meshFilter = transform.GetComponent<MeshFilter>();
+    meshFilter = transform.GetComponent<MeshFilter>();
 
-            if (myRigidbody != null)
-            {
-                baryonCount = myRigidbody.mass * SRelativityUtil.avogadroNumber / currentAverageMolarMass;
-            }
-        }
-        //Again, use LateUpdate to solve some collision issues.
-        virtual protected void LateUpdate()
-        {
-            if (state.isMovementFrozen)
-            {
-                return;
-            }
+    if (myRigidbody != null) {
+      baryonCount = myRigidbody.mass * SRelativityUtil.avogadroNumber /
+                    currentAverageMolarMass;
+    }
+  }
+  // Again, use LateUpdate to solve some collision issues.
+  virtual protected void LateUpdate() {
+    if (state.isMovementFrozen) {
+      return;
+    }
 
-            Collider myColl = GetComponent<Collider>();
-            Vector3 extents = myColl.bounds.extents;
-            //We assume that the world "down" direction is the direction of gravity.
-            Vector3 playerPos = state.playerTransform.position;
-            Ray rayDown = new Ray(playerPos + extents.y * Vector3.down / 2, Vector3.down);
-            // TODO: Layer mask
-            isFalling = !Physics.Raycast(rayDown, out RaycastHit hitInfo, extents.y / 2);
+    Collider myColl = GetComponent<Collider>();
+    Vector3 extents = myColl.bounds.extents;
+    // We assume that the world "down" direction is the direction of gravity.
+    Vector3 playerPos = state.playerTransform.position;
+    Ray rayDown =
+        new Ray(playerPos + extents.y * Vector3.down / 2, Vector3.down);
+    // TODO: Layer mask
+    isFalling =
+        !Physics.Raycast(rayDown, out RaycastHit hitInfo, extents.y / 2);
 
-            if (!isFalling)
-            {
-                if (myRigidbody.linearVelocity.y < 0)
-                {
-                    myRigidbody.linearVelocity = new Vector3(myRigidbody.linearVelocity.x, 0, myRigidbody.linearVelocity.z);
-                }
-            }
+    if (!isFalling) {
+      if (myRigidbody.linearVelocity.y < 0) {
+        myRigidbody.linearVelocity = new Vector3(
+            myRigidbody.linearVelocity.x, 0, myRigidbody.linearVelocity.z);
+      }
+    }
 
-            //If we're not paused, update speed and rotation using player input.
-            state.deltaRotation = Vector3.zero;
+    // If we're not paused, update speed and rotation using player input.
+    state.deltaRotation = Vector3.zero;
 
-            #region ControlScheme
+#region ControlScheme
 
 #if false
             //If they press the Y button, invert all Y axes
@@ -218,138 +214,146 @@ namespace OpenRelativity
             }
 #endif
 
-            //PLAYER MOVEMENT
+    // PLAYER MOVEMENT
 
-            //If we press W, move forward, if S, backwards.
-            //A adds speed to the left, D to the right. We're using FPS style controls
-            //Here's hoping they work.
+    // If we press W, move forward, if S, backwards.
+    // A adds speed to the left, D to the right. We're using FPS style controls
+    // Here's hoping they work.
 
-            //The acceleration relation is defined by the following equation
-            //vNew = (v+uParallel+ (uPerpendicular/gamma))/(1+(v*u)/c^2)
+    // The acceleration relation is defined by the following equation
+    // vNew = (v+uParallel+ (uPerpendicular/gamma))/(1+(v*u)/c^2)
 
-            //Okay, so Gerd found a good equation that doesn't break when your velocity is zero, BUT your velocity has to be in the x direction.
-            //So, we're gonna reuse some code from our relativisticObject component, and rotate everything to be at the X axis.
+    // Okay, so Gerd found a good equation that doesn't break when your velocity
+    // is zero, BUT your velocity has to be in the x direction. So, we're gonna
+    // reuse some code from our relativisticObject component, and rotate
+    // everything to be at the X axis.
 
-            //Cache our velocity
-            Vector3 playerVelocityVector = state.PlayerVelocityVector;
+    // Cache our velocity
+    Vector3 playerVelocityVector = state.PlayerVelocityVector;
 
-            Vector3 totalAccel = Vector3.zero;
+    Vector3 totalAccel = Vector3.zero;
 
-            float temp;
-            // Movement due to forward/back input
-            totalAccel += new Vector3(0, 0, (temp = inverted * -RelativityInput.Vertical) * controllerAcceleration);
-            if (temp != 0)
-            {
-                state.keyHit = true;
-            }
-            // Movement due to left/right input
-            totalAccel += new Vector3((temp = -RelativityInput.Horizontal) * controllerAcceleration, 0, 0);
-            if (temp != 0)
-            {
-                state.keyHit = true;
-            }
+    float temp;
+    // Movement due to forward/back input
+    totalAccel += new Vector3(0, 0,
+                              (temp = inverted * -RelativityInput.Vertical) *
+                                  controllerAcceleration);
+    if (temp != 0) {
+      state.keyHit = true;
+    }
+    // Movement due to left/right input
+    totalAccel += new Vector3(
+        (temp = -RelativityInput.Horizontal) * controllerAcceleration, 0, 0);
+    if (temp != 0) {
+      state.keyHit = true;
+    }
 
-            //Turn our camera rotation into a Quaternion. This allows us to make where we're pointing the direction of our added velocity.
-            //If you want to constrain the player to just x/z movement, with no Y direction movement, comment out the next two lines
-            //and uncomment the line below that is marked
-            Quaternion cameraRotation = Quaternion.LookRotation(camTransform.forward, camTransform.up);
+    // Turn our camera rotation into a Quaternion. This allows us to make where
+    // we're pointing the direction of our added velocity. If you want to
+    // constrain the player to just x/z movement, with no Y direction movement,
+    // comment out the next two lines and uncomment the line below that is
+    // marked
+    Quaternion cameraRotation =
+        Quaternion.LookRotation(camTransform.forward, camTransform.up);
 
-            //UNCOMMENT THIS LINE if you would like to constrain the player to just x/z movement.
-            //Quaternion cameraRotation = Quaternion.AngleAxis(camTransform.eulerAngles.y, Vector3.up);
+    // UNCOMMENT THIS LINE if you would like to constrain the player to just x/z
+    // movement. Quaternion cameraRotation =
+    // Quaternion.AngleAxis(camTransform.eulerAngles.y, Vector3.up);
 
-            //And rotate our added velocity by camera angle
-            totalAccel = cameraRotation * totalAccel;
+    // And rotate our added velocity by camera angle
+    totalAccel = cameraRotation * totalAccel;
 
-            //AUTO SLOW DOWN CODE BLOCK
+    // AUTO SLOW DOWN CODE BLOCK
 
-            //Add a fluid drag force (as for air)
-            totalAccel -= dragConstant * playerVelocityVector.sqrMagnitude * playerVelocityVector.normalized;
+    // Add a fluid drag force (as for air)
+    totalAccel -= dragConstant * playerVelocityVector.sqrMagnitude *
+                  playerVelocityVector.normalized;
 
-            Vector3 quasiWorldAccel = totalAccel;
+    Vector3 quasiWorldAccel = totalAccel;
 
-            if (comoveViaAcceleration)
-            {
-                // Unlike RelativisticObject instances, this is optionally how the player "comoves."
-                // If using comoveViaAcceleration, turn off isPlayerComoving in GameState.
-                quasiWorldAccel -= state.conformalMap.GetRindlerAcceleration(state.playerTransform.position);
-            }
+    if (comoveViaAcceleration) {
+      // Unlike RelativisticObject instances, this is optionally how the player
+      // "comoves." If using comoveViaAcceleration, turn off isPlayerComoving in
+      // GameState.
+      quasiWorldAccel -= state.conformalMap.GetRindlerAcceleration(
+          state.playerTransform.position);
+    }
 
-            if (isFalling)
-            {
-                if (useGravity)
-                {
-                    quasiWorldAccel -= Physics.gravity;
-                }
-            }
-            else
-            {
-                if (quasiWorldAccel.y < 0)
-                {
-                    quasiWorldAccel.y = 0;
-                }
+    if (isFalling) {
+      if (useGravity) {
+        quasiWorldAccel -= Physics.gravity;
+      }
+    } else {
+      if (quasiWorldAccel.y < 0) {
+        quasiWorldAccel.y = 0;
+      }
 
-                if (totalAccel.y < 0)
-                {
-                    totalAccel.y = 0;
-                }
+      if (totalAccel.y < 0) {
+        totalAccel.y = 0;
+      }
 
-                if (useGravity)
-                {
-                    totalAccel -= Physics.gravity;
-                    quasiWorldAccel = new Vector3(quasiWorldAccel.x, 0, quasiWorldAccel.z);
-                }
+      if (useGravity) {
+        totalAccel -= Physics.gravity;
+        quasiWorldAccel = new Vector3(quasiWorldAccel.x, 0, quasiWorldAccel.z);
+      }
 
-                totalAccel -= state.conformalMap.GetRindlerAcceleration(state.playerTransform.position);
-            }
+      totalAccel -= state.conformalMap.GetRindlerAcceleration(
+          state.playerTransform.position);
+    }
 
-            if (isMonopoleAccel)
-            {
-                // Per Strano 2019, acceleration "nudges" the preferred accelerated rest frame.
-                // (Relativity privileges no "inertial" frame, but there is intrinsic observable difference between "accelerated frames.")
-                // (The author speculates, this accelerated frame "nudge" might be equivalent to the 3-vector potential of the Higgs field.
-                // The scalar potential can excite the "fundamental" rest mass. The independence of the rest mass from gravitational acceleration
-                // has been known since Galileo.)
+    if (isMonopoleAccel) {
+      // Per Strano 2019, acceleration "nudges" the preferred accelerated rest
+      // frame. (Relativity privileges no "inertial" frame, but there is
+      // intrinsic observable difference between "accelerated frames.") (The
+      // author speculates, this accelerated frame "nudge" might be equivalent
+      // to the 3-vector potential of the Higgs field. The scalar potential can
+      // excite the "fundamental" rest mass. The independence of the rest mass
+      // from gravitational acceleration has been known since Galileo.)
 
-                // If a gravitating body this RO is attracted to is already excited above the rest mass vacuum,
-                // (which seems to imply the Higgs field vacuum)
-                // then it will spontaneously emit this excitation, with a coupling constant proportional to the
-                // gravitational constant "G" times (baryon) constituent particle rest mass.
-                // (For video game purposes, there's maybe no easy way to precisely model the mass flow, so just control it with an editor variable.)
+      // If a gravitating body this RO is attracted to is already excited above
+      // the rest mass vacuum, (which seems to imply the Higgs field vacuum)
+      // then it will spontaneously emit this excitation, with a coupling
+      // constant proportional to the gravitational constant "G" times (baryon)
+      // constituent particle rest mass. (For video game purposes, there's maybe
+      // no easy way to precisely model the mass flow, so just control it with
+      // an editor variable.)
 
-                quasiWorldAccel += leviCivitaDevAccel;
+      quasiWorldAccel += leviCivitaDevAccel;
 
-                float softenFactor = 1 + monopoleAccelerationSoften;
-                float tempSoftenFactor = Mathf.Pow(softenFactor, 1.0f / 4);
+      float softenFactor = 1 + monopoleAccelerationSoften;
+      float tempSoftenFactor = Mathf.Pow(softenFactor, 1.0f / 4);
 
-                monopoleTemperature /= tempSoftenFactor;
-                float origBackgroundTemp = state.gravityBackgroundPlanckTemperature;
-                state.gravityBackgroundPlanckTemperature /= tempSoftenFactor;
+      monopoleTemperature /= tempSoftenFactor;
+      float origBackgroundTemp = state.gravityBackgroundPlanckTemperature;
+      state.gravityBackgroundPlanckTemperature /= tempSoftenFactor;
 
-                EvaporateMonopole(softenFactor * Time.deltaTime, totalAccel / softenFactor);
+      EvaporateMonopole(softenFactor * Time.deltaTime,
+                        totalAccel / softenFactor);
 
-                state.gravityBackgroundPlanckTemperature = origBackgroundTemp;
-                monopoleTemperature *= tempSoftenFactor;
-            }
+      state.gravityBackgroundPlanckTemperature = origBackgroundTemp;
+      monopoleTemperature *= tempSoftenFactor;
+    }
 
-            //3-acceleration acts as classically on the rapidity, rather than velocity.
-            Vector3 totalVel = playerVelocityVector.AddVelocity((quasiWorldAccel * Time.deltaTime).RapidityToVelocity());
-            Vector3 projVOnG = Vector3.Project(totalVel, Physics.gravity);
-            if (useGravity && !isFalling && ((projVOnG - Physics.gravity).sqrMagnitude <= SRelativityUtil.FLT_EPSILON))
-            {
-                totalVel = totalVel.AddVelocity(projVOnG * totalVel.Gamma());
-                totalVel = new Vector3(totalVel.x, 0, totalVel.z);
-            }
+    // 3-acceleration acts as classically on the rapidity, rather than velocity.
+    Vector3 totalVel = playerVelocityVector.AddVelocity(
+        (quasiWorldAccel * Time.deltaTime).RapidityToVelocity());
+    Vector3 projVOnG = Vector3.Project(totalVel, Physics.gravity);
+    if (useGravity && !isFalling &&
+        ((projVOnG - Physics.gravity).sqrMagnitude <=
+         SRelativityUtil.FLT_EPSILON)) {
+      totalVel = totalVel.AddVelocity(projVOnG * totalVel.Gamma());
+      totalVel = new Vector3(totalVel.x, 0, totalVel.z);
+    }
 
-            if (totalVel.magnitude >= state.maxPlayerSpeed)
-            {
-                float gamma = totalVel.Gamma();
-                Vector3 diff = totalVel.normalized * state.maxPlayerSpeed - totalVel;
-                totalVel += diff;
-                totalAccel += diff * gamma;
-            }
+    if (totalVel.magnitude >= state.maxPlayerSpeed) {
+      float gamma = totalVel.Gamma();
+      Vector3 diff = totalVel.normalized * state.maxPlayerSpeed - totalVel;
+      totalVel += diff;
+      totalAccel += diff * gamma;
+    }
 
-            state.PlayerVelocityVector = totalVel;
-            state.PlayerAccelerationVector = totalAccel;
+    state.PlayerVelocityVector = totalVel;
+    state.PlayerAccelerationVector = totalAccel;
 
 #if false
             //CHANGE the speed of light
@@ -386,306 +390,297 @@ namespace OpenRelativity
             }
 #endif
 
-            //MOUSE CONTROLS
-            //Current position of the mouse
-            //Difference between last frame's mouse position
-            //X axis position change
-            float positionChangeX = -RelativityInput.LookX;
+    // MOUSE CONTROLS
+    // Current position of the mouse
+    // Difference between last frame's mouse position
+    // X axis position change
+    float positionChangeX = -RelativityInput.LookX;
 
-            //Y axis position change
-            float positionChangeY = inverted * -RelativityInput.LookY;
+    // Y axis position change
+    float positionChangeY = inverted * -RelativityInput.LookY;
 
-            //Use these to determine camera rotation, that is, to look around the world without changing direction of motion
-            //These two are for X axis rotation and Y axis rotation, respectively
-            float viewRotX, viewRotY;
-            if (Mathf.Abs(positionChangeX) <= 1 && Mathf.Abs(positionChangeY) <= 1)
-            {
-                //Take the position changes and translate them into an amount of rotation
-                viewRotX = -positionChangeX * Time.deltaTime * rotSpeed * mouseSensitivity * controllerBoost;
-                viewRotY = positionChangeY * Time.deltaTime * rotSpeed * mouseSensitivity * controllerBoost;
-            }
-            else
-            {
-                //Take the position changes and translate them into an amount of rotation
-                viewRotX = -positionChangeX * Time.deltaTime * rotSpeed * mouseSensitivity;
-                viewRotY = positionChangeY * Time.deltaTime * rotSpeed * mouseSensitivity;
-            }
-            //Perform Rotation on the camera, so that we can look in places that aren't the direction of movement
-            //Wait some frames on start up, otherwise we spin during the intialization when we can't see yet
-            if (frames > INIT_FRAME_WAIT)
-            {
-                camTransform.Rotate(new Vector3(0, viewRotX, 0), Space.World);
-                if ((camTransform.eulerAngles.x + viewRotY < 90 && camTransform.eulerAngles.x + viewRotY > 90 - 180) || (camTransform.eulerAngles.x + viewRotY > 270 && camTransform.eulerAngles.x + viewRotY < 270 + 180))
-                {
-                    camTransform.Rotate(new Vector3(viewRotY, 0, 0));
-                }
-            }
-            else
-            {
-                //keep track of our frames
-                ++frames;
-            }
+    // Use these to determine camera rotation, that is, to look around the world
+    // without changing direction of motion These two are for X axis rotation
+    // and Y axis rotation, respectively
+    float viewRotX, viewRotY;
+    if (Mathf.Abs(positionChangeX) <= 1 && Mathf.Abs(positionChangeY) <= 1) {
+      // Take the position changes and translate them into an amount of rotation
+      viewRotX = -positionChangeX * Time.deltaTime * rotSpeed *
+                 mouseSensitivity * controllerBoost;
+      viewRotY = positionChangeY * Time.deltaTime * rotSpeed *
+                 mouseSensitivity * controllerBoost;
+    } else {
+      // Take the position changes and translate them into an amount of rotation
+      viewRotX =
+          -positionChangeX * Time.deltaTime * rotSpeed * mouseSensitivity;
+      viewRotY = positionChangeY * Time.deltaTime * rotSpeed * mouseSensitivity;
+    }
+    // Perform Rotation on the camera, so that we can look in places that aren't
+    // the direction of movement Wait some frames on start up, otherwise we spin
+    // during the intialization when we can't see yet
+    if (frames > INIT_FRAME_WAIT) {
+      camTransform.Rotate(new Vector3(0, viewRotX, 0), Space.World);
+      if ((camTransform.eulerAngles.x + viewRotY < 90 &&
+           camTransform.eulerAngles.x + viewRotY > 90 - 180) ||
+          (camTransform.eulerAngles.x + viewRotY > 270 &&
+           camTransform.eulerAngles.x + viewRotY < 270 + 180)) {
+        camTransform.Rotate(new Vector3(viewRotY, 0, 0));
+      }
+    } else {
+      // keep track of our frames
+      ++frames;
+    }
 
-            //If we have a speed of light less than max speed, fix it.
-            //This should never happen
-            if (state.SpeedOfLight < state.MaxSpeed)
-            {
-                state.SpeedOfLight = state.MaxSpeed;
-            }
-
+    // If we have a speed of light less than max speed, fix it.
+    // This should never happen
+    if (state.SpeedOfLight < state.MaxSpeed) {
+      state.SpeedOfLight = state.MaxSpeed;
+    }
 
 #endregion
 
-            //Send current speed of light to the shader
-            Shader.SetGlobalFloat("_spdOfLight", state.SpeedOfLight);
+    // Send current speed of light to the shader
+    Shader.SetGlobalFloat("_spdOfLight", state.SpeedOfLight);
 
-            if (Camera.main)
-            {
-                Shader.SetGlobalFloat("xyr", Camera.main.pixelWidth / Camera.main.pixelHeight);
-                Shader.SetGlobalFloat("xs", Mathf.Tan(Mathf.Deg2Rad * Camera.main.fieldOfView / 2f));
+    if (Camera.main) {
+      Shader.SetGlobalFloat("xyr",
+                            Camera.main.pixelWidth / Camera.main.pixelHeight);
+      Shader.SetGlobalFloat(
+          "xs", Mathf.Tan(Mathf.Deg2Rad * Camera.main.fieldOfView / 2f));
 
-                //Don't cull because at high speeds, things come into view that are not visible normally
-                //This is due to the lorenz transformation, which is pretty cool but means that basic culling will not work.
-                Camera.main.layerCullSpherical = true;
-                Camera.main.useOcclusionCulling = false;
-            }
-        }
-
-        protected void EvaporateMonopole(float deltaTime, Vector3 myAccel)
-        {
-            // Strano 2019, corrected update rule (with Claude, Anthropic, 2026).
-            //
-            // The "monopole" mode is a spin-0 mode of the gravitational field coupled to rest mass (the trace of the
-            // stress-energy tensor). A scalar charge q coupled this way obeys the flat-spacetime self-force
-            //     f^mu = (q^2 / 3) (da^mu/dtau - a^2 u^mu),
-            // which VANISHES for uniform (hyperbolic) acceleration: a body held at constant proper acceleration (e.g. at
-            // rest on the ground) does not lose acceleration over time, since its Rindler horizon sits in equilibrium with
-            // the Unruh bath rather than evaporating. Monopole radiation, and its reaction, arise only while the
-            // acceleration CHANGES. In the instantaneous rest frame the reaction is the Abraham-Lorentz term
-            //     a_self = tau0 * da/dtau,   tau0 = monopoleCoupling * G * m / c^3,
-            // evaluated in Landau-Lifshitz reduced order (the jerk of the external acceleration, excluding a_self itself),
-            // which removes the runaway and pre-acceleration solutions of the bare Abraham-Lorentz equation.
-            // The Larmor-like power radiated in the process, m * tau0 * a^2, is supplied by whatever applies the force (the
-            // rest mass is unchanged in flat spacetime), and is tallied in monopoleRadiatedEnergy.
-            // For realistic constants (G, c, kg-scale masses, monopoleCoupling <~ 1e-5 from Cassini and binary pulsars)
-            // tau0 is ~1e-35 s and the effect is invisible; raise monopoleCoupling (or gConst) to see it.
-            // isMonopoleHorizonEvaporation (below) optionally adds the original 2019 horizon-evaporation rule.
-
-            // (The player's caller passes the acceleration before leviCivitaDevAccel is added, i.e. already external.)
-            Vector3 extAccel = myAccel;
-            Vector3 jerkDevAccel = Vector3.zero;
-            if (hasLastMonopoleAccel && (deltaTime > SRelativityUtil.FLT_EPSILON))
-            {
-                jerkDevAccel = SRelativityUtil.MonopoleSelfAccel(extAccel, lastMonopoleAccel, deltaTime, (myRigidbody != null ? myRigidbody.mass : 0), monopoleCoupling);
-            }
-            lastMonopoleAccel = extAccel;
-            hasLastMonopoleAccel = true;
-            monopoleRadiatedEnergy += SRelativityUtil.MonopoleRadiatedPower((myRigidbody != null ? myRigidbody.mass : 0), extAccel.magnitude, monopoleCoupling) * deltaTime;
-
-            // Thermal exchange of any rest-mass excitation ("monopole temperature") with the ambient bath: the Unruh
-            // temperature of the current proper acceleration (equivalently, the Hawking temperature of a Schwarzschild
-            // horizon with the same surface gravity), combined with the background graviton temperature. With the
-            // default (Minkowski-vacuum) state, the horizon itself does not shrink: at constant acceleration this is an
-            // equilibrium, not an evaporation.
-            double alpha = extAccel.magnitude;
-            bool isNonZeroTemp = alpha > SRelativityUtil.FLT_EPSILON;
-
-            double r = double.PositiveInfinity;
-            if (isNonZeroTemp)
-            {
-                // Equivalent Schwarzschild radius for the same surface acceleration:
-                r = state.SpeedOfLightSqrd / (2 * alpha);
-                r = SRelativityUtil.EffectiveRaditiativeRadius((float)r, state.gravityBackgroundPlanckTemperature);
-            }
-
-            if (r < state.planckLength)
-            {
-                // For minimum area calculation, below.
-                r = state.planckLength;
-            }
-
-            isNonZeroTemp = !double.IsInfinity(r) && !double.IsNaN(r);
-
-            if (isMonopoleHorizonEvaporation)
-            {
-                // Optional: Strano 2019 thermal-field postulate (the original update rule, restored as written).
-                // Choose the "Unruh-like" state for the scalar instead of the Minkowski vacuum: the accelerated frame's
-                // Rindler horizon radiates into a cold exterior and evaporates as a Schwarzschild horizon of the same
-                // surface gravity would (E_P / (2 r_s) per Planck time), so constant proper acceleration slowly decays.
-                // Independent of, and additive with, the jerk (Abraham-Lorentz) reaction above.
-                double alphaH = myAccel.magnitude;
-                if (alphaH > SRelativityUtil.FLT_EPSILON)
-                {
-                    double rH = state.SpeedOfLightSqrd / (2 * alphaH);
-                    rH = SRelativityUtil.EffectiveRaditiativeRadius((float)rH, state.gravityBackgroundPlanckTemperature);
-                    if (rH < state.planckLength)
-                    {
-                        rH = state.planckLength;
-                    }
-
-                    if (!double.IsInfinity(rH) && !double.IsNaN(rH))
-                    {
-                        rH += useLegacy2019PowerLaw
-                            ? SRelativityUtil.SchwarzschildRadiusDecay(deltaTime, rH)
-                            : SRelativityUtil.MonopoleHorizonRadiusDecay(deltaTime, rH, monopoleHorizonChannels);
-                        if (rH <= SRelativityUtil.FLT_EPSILON)
-                        {
-                            horizonDevAccel += myAccel;
-                        }
-                        else
-                        {
-                            double alphaF = state.SpeedOfLightSqrd / (2 * rH);
-                            horizonDevAccel += (float)(alphaH - alphaF) * myAccel.normalized;
-                        }
-                        // The ambient (horizon) temperature follows the evaporating horizon, as in the original rule.
-                        r = rH;
-                        isNonZeroTemp = true;
-                    }
-                }
-            }
-            else
-            {
-                horizonDevAccel = Vector3.zero;
-            }
-
-            leviCivitaDevAccel = jerkDevAccel + horizonDevAccel;
-
-            if (myRigidbody != null)
-            {
-                double myTemperature = monopoleTemperature;
-                double surfaceArea;
-                if (meshFilter == null)
-                {
-                    Vector3 lwh = transform.localScale;
-                    surfaceArea = 2 * (lwh.x * lwh.y + lwh.x * lwh.z + lwh.y * lwh.z);
-                }
-                else
-                {
-                    surfaceArea = meshFilter.sharedMesh.SurfaceArea();
-                }
-                // This is the ambient temperature, including contribution from comoving accelerated rest temperature.
-                double ambientTemperature = isNonZeroTemp ? SRelativityUtil.SchwarzRadiusToPlanckScaleTemp(r) : state.gravityBackgroundPlanckTemperature;
-                // Black-body exchange of the rest-mass excitation with the ambient bath, as a mass change over this step.
-                // (Both temperatures in Planck units; Planck power times deltaTime, over c^2.)
-                double dm = SRelativityUtil.MonopoleThermalMassChange(gravitonEmissivity, surfaceArea, myTemperature, ambientTemperature, deltaTime);
-
-                double camm = (myRigidbody.mass - dm) * SRelativityUtil.avogadroNumber / baryonCount;
-
-                if ((myTemperature > 0) && (camm < fundamentalAverageMolarMass))
-                {
-                    currentAverageMolarMass = fundamentalAverageMolarMass;
-                }
-                else if (camm <= 0)
-                {
-                    myRigidbody.mass = 0;
-                }
-                else
-                {
-                    myRigidbody.mass -= (float)dm;
-                }
-
-                // Rest-frame-isotropic emission leaves the 4-velocity unchanged: PlayerVelocityVector is not rescaled.
-            }
-        }
-
-        protected void OnTriggerEnter(Collider collider)
-        {
-            OnTrigger(collider);
-        }
-
-        protected void OnTriggerStay(Collider collider)
-        {
-            OnTrigger(collider);
-        }
-
-        //Note that this method assumes that walls are locked at right angles to the world coordinate axes.
-        private void OnTrigger(Collider collider)
-        {
-            if (collider.isTrigger)
-            {
-                return;
-            }
-
-            Rigidbody otherRB = collider.GetComponent<Rigidbody>();
-
-            if (otherRB != null && !otherRB.isKinematic)
-            {
-                return;
-            }
-
-            // Vector3 origPlayerVel = state.PlayerVelocityVector;
-
-            Collider myColl = GetComponent<Collider>();
-            Vector3 extents = myColl.bounds.extents;
-            //We assume that the world "down" direction is the direction of gravity.
-            Vector3 playerPos = state.playerTransform.position;
-            Ray rayDown = new Ray(playerPos + extents.y * Vector3.down / 2, Vector3.down);
-            Ray rayUp = new Ray(playerPos + extents.y * Vector3.down, Vector3.up);
-            Ray rayLeft = new Ray(playerPos + extents.x * Vector3.right, Vector3.left);
-            Ray rayRight = new Ray(playerPos + extents.x * Vector3.left, Vector3.right);
-            Ray rayForward = new Ray(playerPos + extents.z * Vector3.back, Vector3.forward);
-            Ray rayBack = new Ray(playerPos + extents.z * Vector3.forward, Vector3.back);
-            if (collider.Raycast(rayDown, out RaycastHit hitInfo, extents.y / 2))
-            {
-                if (frames > INIT_FRAME_WAIT)
-                {
-                    Vector3 pVel = state.PlayerVelocityVector;
-                    if (pVel.y > 0)
-                    {
-                        Vector3 pVelPerp = new Vector3(pVel.x, 0, pVel.z);
-                        state.PlayerVelocityVector = state.PlayerVelocityVector.AddVelocity(new Vector3(0, -pVel.y * pVelPerp.Gamma(), 0));
-                        Vector3 totalVel = state.PlayerVelocityVector;
-                        state.PlayerVelocityVector = new Vector3(totalVel.x, 0, totalVel.z);
-                        Rigidbody myRB = transform.parent.GetComponent<Rigidbody>();
-                        myRB.linearVelocity = new Vector3(myRB.linearVelocity.x, 0, myRB.linearVelocity.z);
-                    }
-
-                    float dist = extents.y / 2 - hitInfo.distance;
-                    if (dist > 0.05f)
-                    {
-                        Vector3 pos = state.playerTransform.position;
-                        state.playerTransform.position = new Vector3(pos.x, pos.y + dist, pos.z);
-                    }
-                }
-            }
-
-            Vector3 direction = Vector3.zero;
-            if (collider.Raycast(rayForward, out hitInfo, 2 * extents.z))
-            {
-                direction = Vector3.forward;
-            }
-            else if (collider.Raycast(rayBack, out hitInfo, 2 * extents.z))
-            {
-                direction = Vector3.back;
-            }
-            else if (collider.Raycast(rayLeft, out hitInfo, 2 * extents.x))
-            {
-                direction = Vector3.left;
-            }
-            else if (collider.Raycast(rayRight, out hitInfo, 2 * extents.x))
-            {
-                direction = Vector3.right;
-            }
-            else if (collider.Raycast(rayUp, out hitInfo, 2 * extents.y))
-            {
-                direction = Vector3.up;
-            }
-
-            if (direction != Vector3.zero)
-            {
-                Vector3 pVel = state.PlayerVelocityVector;
-                if (Vector3.Dot(pVel, direction) < 0)
-                {
-                    //Decompose velocity in parallel and perpendicular components:
-                    Vector3 myParraVel = Vector3.Project(pVel, direction) * 2;
-                    //Vector3 myPerpVel = Vector3.Cross(direction, Vector3.Cross(direction, pVel));
-                    //Relativistically cancel the downward velocity:
-                    state.PlayerVelocityVector = state.PlayerVelocityVector - myParraVel;
-                }
-            }
-
-            // Vector3 accel = (state.PlayerVelocityVector - origPlayerVel) / state.FixedDeltaTimePlayer;
-            // EvaporateMonopole(state.FixedDeltaTimePlayer, accel);
-        }
+      // Don't cull because at high speeds, things come into view that are not
+      // visible normally This is due to the lorenz transformation, which is
+      // pretty cool but means that basic culling will not work.
+      Camera.main.layerCullSpherical = true;
+      Camera.main.useOcclusionCulling = false;
     }
+  }
+
+  protected void EvaporateMonopole(float deltaTime, Vector3 myAccel) {
+    // Strano 2019, corrected update rule (with Claude, Anthropic, 2026).
+    //
+    // The "monopole" mode is a spin-0 mode of the gravitational field coupled
+    // to rest mass (the trace of the stress-energy tensor). A scalar charge q
+    // coupled this way obeys the flat-spacetime self-force
+    //     f^mu = (q^2 / 3) (da^mu/dtau - a^2 u^mu),
+    // which VANISHES for uniform (hyperbolic) acceleration: a body held at
+    // constant proper acceleration (e.g. at rest on the ground) does not lose
+    // acceleration over time, since its Rindler horizon sits in equilibrium
+    // with the Unruh bath rather than evaporating. Monopole radiation, and its
+    // reaction, arise only while the acceleration CHANGES. In the instantaneous
+    // rest frame the reaction is the Abraham-Lorentz term
+    //     a_self = tau0 * da/dtau,   tau0 = monopoleCoupling * G * m / c^3,
+    // evaluated in Landau-Lifshitz reduced order (the jerk of the external
+    // acceleration, excluding a_self itself), which removes the runaway and
+    // pre-acceleration solutions of the bare Abraham-Lorentz equation. The
+    // Larmor-like power radiated in the process, m * tau0 * a^2, is supplied by
+    // whatever applies the force (the rest mass is unchanged in flat
+    // spacetime), and is tallied in monopoleRadiatedEnergy. For realistic
+    // constants (G, c, kg-scale masses, monopoleCoupling <~ 1e-5 from Cassini
+    // and binary pulsars) tau0 is ~1e-35 s and the effect is invisible; raise
+    // monopoleCoupling (or gConst) to see it. isMonopoleHorizonEvaporation
+    // (below) optionally adds the original 2019 horizon-evaporation rule.
+
+    // (The player's caller passes the acceleration before leviCivitaDevAccel is
+    // added, i.e. already external.)
+    Vector3 extAccel = myAccel;
+    Vector3 jerkDevAccel = Vector3.zero;
+    if (hasLastMonopoleAccel && (deltaTime > SRelativityUtil.FLT_EPSILON)) {
+      jerkDevAccel = SRelativityUtil.MonopoleSelfAccel(
+          extAccel, lastMonopoleAccel, deltaTime,
+          (myRigidbody != null ? myRigidbody.mass : 0), monopoleCoupling);
+    }
+    lastMonopoleAccel = extAccel;
+    hasLastMonopoleAccel = true;
+    monopoleRadiatedEnergy += SRelativityUtil.MonopoleRadiatedPower(
+                                  (myRigidbody != null ? myRigidbody.mass : 0),
+                                  extAccel.magnitude, monopoleCoupling) *
+                              deltaTime;
+
+    // Thermal exchange of any rest-mass excitation ("monopole temperature")
+    // with the ambient bath: the Unruh temperature of the current proper
+    // acceleration (equivalently, the Hawking temperature of a Schwarzschild
+    // horizon with the same surface gravity), combined with the background
+    // graviton temperature. With the default (Minkowski-vacuum) state, the
+    // horizon itself does not shrink: at constant acceleration this is an
+    // equilibrium, not an evaporation.
+    double alpha = extAccel.magnitude;
+    bool isNonZeroTemp = alpha > SRelativityUtil.FLT_EPSILON;
+
+    double r = double.PositiveInfinity;
+    if (isNonZeroTemp) {
+      // Equivalent Schwarzschild radius for the same surface acceleration:
+      r = state.SpeedOfLightSqrd / (2 * alpha);
+      r = SRelativityUtil.EffectiveRaditiativeRadius(
+          (float)r, state.gravityBackgroundPlanckTemperature);
+    }
+
+    if (r < state.planckLength) {
+      // For minimum area calculation, below.
+      r = state.planckLength;
+    }
+
+    isNonZeroTemp = !double.IsInfinity(r) && !double.IsNaN(r);
+
+    if (isMonopoleHorizonEvaporation) {
+      // Optional: Strano 2019 thermal-field postulate (the original update
+      // rule, restored as written). Choose the "Unruh-like" state for the
+      // scalar instead of the Minkowski vacuum: the accelerated frame's Rindler
+      // horizon radiates into a cold exterior and evaporates as a Schwarzschild
+      // horizon of the same surface gravity would (E_P / (2 r_s) per Planck
+      // time), so constant proper acceleration slowly decays. Independent of,
+      // and additive with, the jerk (Abraham-Lorentz) reaction above.
+      double alphaH = myAccel.magnitude;
+      if (alphaH > SRelativityUtil.FLT_EPSILON) {
+        double rH = state.SpeedOfLightSqrd / (2 * alphaH);
+        rH = SRelativityUtil.EffectiveRaditiativeRadius(
+            (float)rH, state.gravityBackgroundPlanckTemperature);
+        if (rH < state.planckLength) {
+          rH = state.planckLength;
+        }
+
+        if (!double.IsInfinity(rH) && !double.IsNaN(rH)) {
+          rH += useLegacy2019PowerLaw
+                    ? SRelativityUtil.SchwarzschildRadiusDecay(deltaTime, rH)
+                    : SRelativityUtil.MonopoleHorizonRadiusDecay(
+                          deltaTime, rH, monopoleHorizonChannels);
+          if (rH <= SRelativityUtil.FLT_EPSILON) {
+            horizonDevAccel += myAccel;
+          } else {
+            double alphaF = state.SpeedOfLightSqrd / (2 * rH);
+            horizonDevAccel += (float)(alphaH - alphaF) * myAccel.normalized;
+          }
+          // The ambient (horizon) temperature follows the evaporating horizon,
+          // as in the original rule.
+          r = rH;
+          isNonZeroTemp = true;
+        }
+      }
+    } else {
+      horizonDevAccel = Vector3.zero;
+    }
+
+    leviCivitaDevAccel = jerkDevAccel + horizonDevAccel;
+
+    if (myRigidbody != null) {
+      double myTemperature = monopoleTemperature;
+      double surfaceArea;
+      if (meshFilter == null) {
+        Vector3 lwh = transform.localScale;
+        surfaceArea = 2 * (lwh.x * lwh.y + lwh.x * lwh.z + lwh.y * lwh.z);
+      } else {
+        surfaceArea = meshFilter.sharedMesh.SurfaceArea();
+      }
+      // This is the ambient temperature, including contribution from comoving
+      // accelerated rest temperature.
+      double ambientTemperature =
+          isNonZeroTemp ? SRelativityUtil.SchwarzRadiusToPlanckScaleTemp(r)
+                        : state.gravityBackgroundPlanckTemperature;
+      // Black-body exchange of the rest-mass excitation with the ambient bath,
+      // as a mass change over this step. (Both temperatures in Planck units;
+      // Planck power times deltaTime, over c^2.)
+      double dm = SRelativityUtil.MonopoleThermalMassChange(
+          gravitonEmissivity, surfaceArea, myTemperature, ambientTemperature,
+          deltaTime);
+
+      double camm = (myRigidbody.mass - dm) * SRelativityUtil.avogadroNumber /
+                    baryonCount;
+
+      if ((myTemperature > 0) && (camm < fundamentalAverageMolarMass)) {
+        currentAverageMolarMass = fundamentalAverageMolarMass;
+      } else if (camm <= 0) {
+        myRigidbody.mass = 0;
+      } else {
+        myRigidbody.mass -= (float)dm;
+      }
+
+      // Rest-frame-isotropic emission leaves the 4-velocity unchanged:
+      // PlayerVelocityVector is not rescaled.
+    }
+  }
+
+  protected void OnTriggerEnter(Collider collider) { OnTrigger(collider); }
+
+  protected void OnTriggerStay(Collider collider) { OnTrigger(collider); }
+
+  // Note that this method assumes that walls are locked at right angles to the
+  // world coordinate axes.
+  private void OnTrigger(Collider collider) {
+    if (collider.isTrigger) {
+      return;
+    }
+
+    Rigidbody otherRB = collider.GetComponent<Rigidbody>();
+
+    if (otherRB != null && !otherRB.isKinematic) {
+      return;
+    }
+
+    // Vector3 origPlayerVel = state.PlayerVelocityVector;
+
+    Collider myColl = GetComponent<Collider>();
+    Vector3 extents = myColl.bounds.extents;
+    // We assume that the world "down" direction is the direction of gravity.
+    Vector3 playerPos = state.playerTransform.position;
+    Ray rayDown =
+        new Ray(playerPos + extents.y * Vector3.down / 2, Vector3.down);
+    Ray rayUp = new Ray(playerPos + extents.y * Vector3.down, Vector3.up);
+    Ray rayLeft = new Ray(playerPos + extents.x * Vector3.right, Vector3.left);
+    Ray rayRight = new Ray(playerPos + extents.x * Vector3.left, Vector3.right);
+    Ray rayForward =
+        new Ray(playerPos + extents.z * Vector3.back, Vector3.forward);
+    Ray rayBack =
+        new Ray(playerPos + extents.z * Vector3.forward, Vector3.back);
+    if (collider.Raycast(rayDown, out RaycastHit hitInfo, extents.y / 2)) {
+      if (frames > INIT_FRAME_WAIT) {
+        Vector3 pVel = state.PlayerVelocityVector;
+        if (pVel.y > 0) {
+          Vector3 pVelPerp = new Vector3(pVel.x, 0, pVel.z);
+          state.PlayerVelocityVector = state.PlayerVelocityVector.AddVelocity(
+              new Vector3(0, -pVel.y * pVelPerp.Gamma(), 0));
+          Vector3 totalVel = state.PlayerVelocityVector;
+          state.PlayerVelocityVector = new Vector3(totalVel.x, 0, totalVel.z);
+          Rigidbody myRB = transform.parent.GetComponent<Rigidbody>();
+          myRB.linearVelocity =
+              new Vector3(myRB.linearVelocity.x, 0, myRB.linearVelocity.z);
+        }
+
+        float dist = extents.y / 2 - hitInfo.distance;
+        if (dist > 0.05f) {
+          Vector3 pos = state.playerTransform.position;
+          state.playerTransform.position =
+              new Vector3(pos.x, pos.y + dist, pos.z);
+        }
+      }
+    }
+
+    Vector3 direction = Vector3.zero;
+    if (collider.Raycast(rayForward, out hitInfo, 2 * extents.z)) {
+      direction = Vector3.forward;
+    } else if (collider.Raycast(rayBack, out hitInfo, 2 * extents.z)) {
+      direction = Vector3.back;
+    } else if (collider.Raycast(rayLeft, out hitInfo, 2 * extents.x)) {
+      direction = Vector3.left;
+    } else if (collider.Raycast(rayRight, out hitInfo, 2 * extents.x)) {
+      direction = Vector3.right;
+    } else if (collider.Raycast(rayUp, out hitInfo, 2 * extents.y)) {
+      direction = Vector3.up;
+    }
+
+    if (direction != Vector3.zero) {
+      Vector3 pVel = state.PlayerVelocityVector;
+      if (Vector3.Dot(pVel, direction) < 0) {
+        // Decompose velocity in parallel and perpendicular components:
+        Vector3 myParraVel = Vector3.Project(pVel, direction) * 2;
+        // Vector3 myPerpVel = Vector3.Cross(direction, Vector3.Cross(direction,
+        // pVel)); Relativistically cancel the downward velocity:
+        state.PlayerVelocityVector = state.PlayerVelocityVector - myParraVel;
+      }
+    }
+
+    // Vector3 accel = (state.PlayerVelocityVector - origPlayerVel) /
+    // state.FixedDeltaTimePlayer; EvaporateMonopole(state.FixedDeltaTimePlayer,
+    // accel);
+  }
+}
 }

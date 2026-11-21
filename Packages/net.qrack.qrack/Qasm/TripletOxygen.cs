@@ -2,54 +2,51 @@
 using UnityEngine;
 using Qrack.Support;
 
-namespace Qrack
-{
-    public class TripletOxygen : RealTimeQasmProgram
-    {
-        public double alphaParam = 1e-4;
-        
-        public Transform qubitIndicator;
+namespace Qrack {
+public class TripletOxygen : RealTimeQasmProgram {
+  public double alphaParam = 1e-4;
 
-        // Prepare a Bell pair for Alice and Bob to share
-        protected override void StartProgram()
-        {
-            double e0 = Math.Sqrt(1 - alphaParam * alphaParam);
+  public Transform qubitIndicator;
 
-            double[] hamiltonian = {
-                // Hermitian 2x2 complex array 
-                e0, 0, -alphaParam, 0,
-                -alphaParam, 0, e0, 0,
-            };
+  // Prepare a Bell pair for Alice and Bob to share
+  protected override void StartProgram() {
+    double e0 = Math.Sqrt(1 - alphaParam * alphaParam);
 
-            TimeEvolveOpHeader teo = new TimeEvolveOpHeader(0, null);
+    double[] hamiltonian = {
+      // Hermitian 2x2 complex array
+      e0, 0, -alphaParam, 0, -alphaParam, 0, e0, 0,
+    };
 
-            TimeEvolveOpHeader[] timeEvolveOpHeaders = new TimeEvolveOpHeader[1] { teo };
+    TimeEvolveOpHeader teo = new TimeEvolveOpHeader(0, null);
 
-            ProgramInstructions.Add(new RealTimeQasmInstruction()
-            {
-                // Iterate every frame
-                DeltaTime = 0.0f,
-                quantumProgramUpdate = (x, deltaTime) =>
-                {
-                    QuantumSystem qs = QuantumSystem;
+    TimeEvolveOpHeader[] timeEvolveOpHeaders =
+        new TimeEvolveOpHeader[1] { teo };
 
-                    qs.TimeEvolve(deltaTime, timeEvolveOpHeaders, hamiltonian);
+    ProgramInstructions.Add(new RealTimeQasmInstruction() {
+      // Iterate every frame
+      DeltaTime = 0.0f,
+      quantumProgramUpdate =
+          (x, deltaTime) => {
+            QuantumSystem qs = QuantumSystem;
 
-                    BlochSphereCoordinates coords = qs.Prob3Axis(0);
+            qs.TimeEvolve(deltaTime, timeEvolveOpHeaders, hamiltonian);
 
-                    HistoryPoints.Add(new RealTimeQasmProgramHistoryPoint
-                    {
-                        WorldTime = qs.VisualTime,
-                        Action = (time) =>
-                        {
-                            qubitIndicator.rotation = Quaternion.Euler((float)coords.azimuth * Mathf.Rad2Deg, 0, (float)coords.inclination * Mathf.Rad2Deg);
-                            Vector3 localScale = qubitIndicator.localScale;
-                            qubitIndicator.localScale = new Vector3(localScale.x, (float)coords.r, localScale.y);
-                        }
-                    });
-                }
+            BlochSphereCoordinates coords = qs.Prob3Axis(0);
+
+            HistoryPoints.Add(new RealTimeQasmProgramHistoryPoint {
+              WorldTime = qs.VisualTime,
+              Action =
+                  (time) => {
+                    qubitIndicator.rotation = Quaternion.Euler(
+                        (float)coords.azimuth * Mathf.Rad2Deg, 0,
+                        (float)coords.inclination * Mathf.Rad2Deg);
+                    Vector3 localScale = qubitIndicator.localScale;
+                    qubitIndicator.localScale = new Vector3(
+                        localScale.x, (float)coords.r, localScale.y);
+                  }
             });
-        }
-
-    }
+          }
+    });
+  }
+}
 }
