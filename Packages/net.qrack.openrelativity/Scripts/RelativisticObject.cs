@@ -438,10 +438,10 @@ public class RelativisticObject : RelativisticBehavior {
   public bool isMonopoleHorizonEvaporation = false;
   // Horizon-evaporation law for the monopole channel: black-body
   // (Hawking-order, ~1/M^2) by default, with this many massless scalar
-  // channels; set useLegacy2019PowerLaw to reproduce the original 2019 (~1/M)
+  // channels; set use2019PowerLaw to reproduce the original 2019 (~1/M)
   // rule.
   public float monopoleHorizonChannels = 1.0f;
-  public bool useLegacy2019PowerLaw = false;
+  public bool use2019PowerLaw = true;
   private Vector3 horizonDevAccel = Vector3.zero;
   // Optional: the static (near-field) force the same mass-coupled scalar must
   // mediate, i.e. a Yukawa "fifth force" between RelativisticObjects, alpha_ij
@@ -1653,10 +1653,10 @@ public class RelativisticObject : RelativisticBehavior {
         }
 
         if (!double.IsInfinity(rH) && !double.IsNaN(rH)) {
-          rH += useLegacy2019PowerLaw
-                    ? SRelativityUtil.SchwarzschildRadiusDecay(deltaTime, rH)
-                    : SRelativityUtil.MonopoleHorizonRadiusDecay(
-                          deltaTime, rH, monopoleHorizonChannels);
+          rH += use2019PowerLaw
+                    ? SRelativityUtil.MonopoleHorizonRadiusDecay(
+                          deltaTime, rH, monopoleHorizonChannels)
+                    : SRelativityUtil.SchwarzschildRadiusDecay(deltaTime, rH);
           if (rH <= SRelativityUtil.FLT_EPSILON) {
             horizonDevAccel += myAccel;
           } else {

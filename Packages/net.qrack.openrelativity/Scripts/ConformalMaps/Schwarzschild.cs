@@ -7,11 +7,11 @@ public class Schwarzschild : ConformalMap {
 
   // Monopole (scalar) evaporation channel. Default: the black-body law
   // (Hawking-order, ~1/M^2) with monopoleChannels massless scalar modes, which
-  // respects the Second Law. useLegacy2019PowerLaw restores the original 2019
-  // rule (dR/dt ~ 1/R), which exceeds the black-body bound by a factor ~ M/m_P.
+  // respects the Second Law. use2019PowerLaw restores the original 2019
+  // rule (dR/dt ~ 1/R).
   public bool doMonopoleEvaporate = true;
   public float monopoleChannels = 1.0f;
-  public bool useLegacy2019PowerLaw = false;
+  public bool use2019PowerLaw = true;
   public bool doHawkingEvaporate = true;
   public float schwarzschildRadius = 0.5f;
 
@@ -167,11 +167,11 @@ public class Schwarzschild : ConformalMap {
       double diffR = 0;
       if (doMonopoleEvaporate) {
         if (r > state.planckLength) {
-          diffR = useLegacy2019PowerLaw
-                      ? SRelativityUtil.SchwarzschildRadiusDecay(
-                            state.DeltaTimeWorld, r)
-                      : SRelativityUtil.MonopoleHorizonRadiusDecay(
-                            state.DeltaTimeWorld, r, monopoleChannels);
+          diffR = use2019PowerLaw
+                      ? SRelativityUtil.MonopoleHorizonRadiusDecay(
+                            state.DeltaTimeWorld, r, monopoleChannels)
+                      : SRelativityUtil.SchwarzschildRadiusDecay(
+                            state.DeltaTimeWorld, r);
         } else {
           diffR = -state.DeltaTimeWorld * state.planckLength /
                   (2 * state.planckTime);
